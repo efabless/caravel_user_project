@@ -1,1 +1,1 @@
-# caravel_project_example
+# Caravel Project Example
