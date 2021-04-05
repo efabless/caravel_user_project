@@ -25,7 +25,7 @@ jobs:
         run: sh ${GITHUB_WORKSPACE}/.github/scripts/precheck/precheckBuild.sh
 
       - name: Run The Precheck
-        run: sh ${GITHUB_WORKSPACE}/.github/scripts/precheck/run-precheck.sh
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/precheck/run-precheck.sh
 
   simulation-1:
     runs-on: ubuntu-latest

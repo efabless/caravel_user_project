@@ -28,13 +28,13 @@ OUT_FILE=$TARGET_PATH/user_proj_example_dv.$ID.out
 case $ID in
 
   1)
-    bash $TARGET_PATH/.github/scripts/dv/run-dv-set.sh $PDK_PATH "${USER_PROJ_EXAMPLE_PATTERNS_1[@]}" caravel user_proj_example 1 $TARGET_PATH
+    bash $TARGET_PATH/.github/scripts/dv/run-dv-set.sh $PDK_PATH "${USER_PROJ_EXAMPLE_PATTERNS_1[@]}" . user_proj_example 1 $TARGET_PATH
     len=${#USER_PROJ_EXAMPLE_PATTERNS_1[@]}
     export TOTAL=$(( 2*(len) ))
     ;;
 
   2)
-    bash $TARGET_PATH/.github/scripts/dv/run-dv-set.sh $PDK_PATH "${USER_PROJ_EXAMPLE_PATTERNS_2[@]}" caravel user_proj_example 2 $TARGET_PATH
+    bash $TARGET_PATH/.github/scripts/dv/run-dv-set.sh $PDK_PATH "${USER_PROJ_EXAMPLE_PATTERNS_2[@]}" . user_proj_example 2 $TARGET_PATH
     len=${#USER_PROJ_EXAMPLE_PATTERNS_2[@]}
     export TOTAL=$(( 2*(len) ))
     ;;
