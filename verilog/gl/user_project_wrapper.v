@@ -39,10 +39,10 @@ module user_project_wrapper (user_clock2,
  input vssa1;
  input vdda2;
  input vssa2;
- inout [35:0] analog_io;
- input [42:0] io_in;
- output [42:0] io_oeb;
- output [42:0] io_out;
+ inout [30:0] analog_io;
+ input [37:0] io_in;
+ output [37:0] io_oeb;
+ output [37:0] io_out;
  input [127:0] la_data_in;
  output [127:0] la_data_out;
  input [127:0] la_oen;
@@ -65,12 +65,7 @@ module user_project_wrapper (user_clock2,
     .vssa1(vssa1),
     .vdda2(vdda2),
     .vssa2(vssa2),
-    .io_in({io_in[42],
-    io_in[41],
-    io_in[40],
-    io_in[39],
-    io_in[38],
-    io_in[37],
+    .io_in({io_in[37],
     io_in[36],
     io_in[35],
     io_in[34],
@@ -108,12 +103,7 @@ module user_project_wrapper (user_clock2,
     io_in[2],
     io_in[1],
     io_in[0]}),
-    .io_oeb({io_oeb[42],
-    io_oeb[41],
-    io_oeb[40],
-    io_oeb[39],
-    io_oeb[38],
-    io_oeb[37],
+    .io_oeb({io_oeb[37],
     io_oeb[36],
     io_oeb[35],
     io_oeb[34],
@@ -151,12 +141,7 @@ module user_project_wrapper (user_clock2,
     io_oeb[2],
     io_oeb[1],
     io_oeb[0]}),
-    .io_out({io_out[42],
-    io_out[41],
-    io_out[40],
-    io_out[39],
-    io_out[38],
-    io_out[37],
+    .io_out({io_out[37],
     io_out[36],
     io_out[35],
     io_out[34],
