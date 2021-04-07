@@ -1,0 +1,28 @@
+name: CI
+
+
+on:
+    # Runs on Every Push
+    push:
+    # Runs on Pull Requests
+    pull_request:
+
+jobs:
+  precheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Install The Precheck
+        run: sh ${GITHUB_WORKSPACE}/.github/scripts/precheck/precheckBuild.sh
+
+      - name: Run The Precheck
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/precheck/run-precheck.sh
