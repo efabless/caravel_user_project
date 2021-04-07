@@ -15,8 +15,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "../../defs.h"
-#include "../../stub.c"
+#include "../../../caravel/verilog/dv/caravel/defs.h"
+#include "../../../caravel/verilog/dv/caravel/stub.c"
 
 /*
 	MPRJ LA Test:

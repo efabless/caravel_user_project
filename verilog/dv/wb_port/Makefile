@@ -14,22 +14,31 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+## Caravel Pointers
+CARAVEL_PATH ?= ../../../caravel
+CARAVEL_FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
+CARAVEL_VERILOG_PATH  = $(CARAVEL_PATH)/verilog
+CARAVEL_RTL_PATH = $(CARAVEL_VERILOG_PATH)/rtl
+CARAVEL_GL_PATH = $(CARAVEL_VERILOG_PATH)/gl
+CARAVEL_BEHAVIOURAL_MODELS = $(CARAVEL_VERILOG_PATH)/dv/caravel
 
-FIRMWARE_PATH = ../..
-VERILOG_PATH = ../../../..
-RTL_PATH = $(VERILOG_PATH)/rtl
-IP_PATH = ../../../../ip
-BEHAVIOURAL_MODELS = ../../ 
+## User Project Pointers
+UPRJ_VERILOG_PATH ?= ../../../verilog
+UPRJ_RTL_PATH = $(UPRJ_VERILOG_PATH)/rtl
+UPRJ_GL_PATH = $(UPRJ_VERILOG_PATH)/gl
+UPRJ_BEHAVIOURAL_MODELS = ../
 
+## RISCV GCC 
 GCC_PATH?=/ef/apps/bin
 GCC_PREFIX?=riscv32-unknown-elf
 PDK_PATH?=/ef/tech/SW/sky130A
 
+## Simulation mode: RTL/GL
 SIM?=RTL
 
 .SUFFIXES:
 
-PATTERN = la_test2
+PATTERN = wb_port
 
 all:  ${PATTERN:=.vcd}
 
@@ -37,20 +46,22 @@ hex:  ${PATTERN:=.hex}
 
 %.vvp: %_tb.v %.hex
 ifeq ($(SIM),RTL)
-	iverilog -DFUNCTIONAL -DSIM -I $(BEHAVIOURAL_MODELS) \
-	-I $(PDK_PATH) -I $(IP_PATH) -I $(RTL_PATH) \
+	iverilog -DFUNCTIONAL -DSIM -I $(PDK_PATH) \
+	-I $(CARAVEL_BEHAVIOURAL_MODELS) -I $(CARAVEL_RTL_PATH) \
+	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_RTL_PATH) \
 	$< -o $@ 
 else  
-	iverilog -DFUNCTIONAL -DSIM -DGL -I $(BEHAVIOURAL_MODELS) \
-	-I $(PDK_PATH) -I $(IP_PATH) -I $(VERILOG_PATH) -I $(RTL_PATH) \
+	iverilog -DFUNCTIONAL -DSIM -DGL-I $(PDK_PATH) \
+	-I $(CARAVEL_BEHAVIOURAL_MODELS) -I $(CARAVEL_GL_PATH) \
+	-I $(UPRJ_BEHAVIOURAL_MODELS)    -I $(UPRJ_GL_PATH) \
 	$< -o $@ 
 endif
 
 %.vcd: %.vvp
 	vvp $<
 
-%.elf: %.c $(FIRMWARE_PATH)/sections.lds $(FIRMWARE_PATH)/start.s
-	${GCC_PATH}/${GCC_PREFIX}-gcc -march=rv32imc -mabi=ilp32 -Wl,-Bstatic,-T,$(FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(FIRMWARE_PATH)/start.s $<
+%.elf: %.c $(CARAVEL_FIRMWARE_PATH)/sections.lds $(CARAVEL_FIRMWARE_PATH)/start.s
+	${GCC_PATH}/${GCC_PREFIX}-gcc -march=rv32imc -mabi=ilp32 -Wl,-Bstatic,-T,$(CARAVEL_FIRMWARE_PATH)/sections.lds,--strip-debug -ffreestanding -nostdlib -o $@ $(CARAVEL_FIRMWARE_PATH)/start.s $<
 
 %.hex: %.elf
 	${GCC_PATH}/${GCC_PREFIX}-objcopy -O verilog $< $@ 

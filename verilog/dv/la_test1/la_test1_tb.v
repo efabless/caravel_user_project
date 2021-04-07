@@ -17,6 +17,7 @@
 
 `timescale 1 ns / 1 ps
 
+`include "uprj_netlists.v"
 `include "caravel_netlists.v"
 `include "spiflash.v"
 `include "tbuart.v"
