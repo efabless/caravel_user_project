@@ -155,18 +155,11 @@ module counter #(
                 if (wstrb[1]) count[15:8]  <= wdata[15:8];
                 if (wstrb[2]) count[23:16] <= wdata[23:16];
                 if (wstrb[3]) count[31:24] <= wdata[31:24];
+            end else if (|la_write) begin
+                count <= la_write & la_input;
             end
         end
     end
-
-    genvar i;
-    generate 
-        for(i=0; i<BITS; i=i+1) begin
-          always @(posedge clk) begin
-              if (la_write[i]) count[i] <= la_input[i];
-          end
-        end
-    endgenerate
 
 endmodule
 `default_nettype wire
