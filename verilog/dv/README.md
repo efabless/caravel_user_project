@@ -233,12 +233,3 @@ The directory includes four tests for the counter user-project example:
 ### Wishbone Test
 
 * This test is meant to verify that we can read and write to the count register through the wishbone port. The firmware writes a value of `0x2710` to the count register, then reads back the count value after some time. The read and write transactions happen through the management SoC wishbone bus and are initiated by either writing or reading from the user project address on the wishbone bus. 
-
-	```c
-	reg_mprj_slave = 0x00002710;           // Write to the count register through wishbone port
-	if (reg_mprj_slave == 0x274F) {	       // Read from the count register through wishbone port
-		reg_mprj_datal = 0xAB610000;   // FLag success of the test
-	} else {
-		reg_mprj_datal = 0xAB600000;   // FLag Failuer of the test
-	}
-	```
