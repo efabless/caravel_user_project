@@ -1,6 +1,7 @@
 
 // Include caravel global defines for the number of the user project IO pads 
 `include "defines.v"
+`define USE_POWER_PINS
 
 `ifdef GL
     // Assume default net type to be wire because GL netlists don't have the wire definitions

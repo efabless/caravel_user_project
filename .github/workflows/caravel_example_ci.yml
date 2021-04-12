@@ -70,8 +70,8 @@ jobs:
          run:  docker pull efabless/dv_setup:latest
        
        - name: Run DV tests
-         # Run test number 0,1,2,3 in one job                               <test-ids>   <sim-mode>
-         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3      RTL
+         # Run test number 0,1,2,3,4 in one job                            <test-ids>   <sim-mode>
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      RTL
 
   dv_gl:
     runs-on: ubuntu-latest
@@ -95,5 +95,5 @@ jobs:
          run:  docker pull efabless/dv_setup:latest
        
        - name: Run DV tests
-         # Run test number 0,1,2,3 in one job                               <test-ids>   <sim-mode>
-         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3      GL
+         # Run test number 0,1,2,3,4 in one job                             <test-ids>   <sim-mode>
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      GL
