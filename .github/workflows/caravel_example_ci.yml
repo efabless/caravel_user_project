@@ -97,3 +97,49 @@ jobs:
        - name: Run DV tests
          # Run test number 0,1,2,3,4 in one job                             <test-ids>   <sim-mode>
          run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      GL
+
+  make_ship:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+         with:
+          submodules: 'true'
+      
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v1
+
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v1
+        
+       - name: Install The PDK
+         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         env: 
+          OPENLANE_TAG: v0.12
+
+       - name: Run make ship
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/build/run-ship.sh 
+         env: 
+          OPENLANE_TAG: v0.12
+          
+  set_user_id:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+         with:
+          submodules: 'true'
+      
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v1
+
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v1
+        
+       - name: Install The PDK
+         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         env: 
+          OPENLANE_TAG: v0.12
+
+       - name: Run Set User ID
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/build/run-set-id.sh 
+         env: 
+          OPENLANE_TAG: v0.12
