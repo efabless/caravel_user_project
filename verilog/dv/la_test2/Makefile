@@ -16,8 +16,8 @@
 
 ## Caravel Pointers
 # Path to caravel from user project root
-CARAVEL_MASTER ?= caravel
-CARAVEL_PATH ?= ../../../$(CARAVEL_MASTER)
+CARAVEL_ROOT ?= caravel
+CARAVEL_PATH ?= ../../../$(CARAVEL_ROOT)
 CARAVEL_FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
 CARAVEL_VERILOG_PATH  = $(CARAVEL_PATH)/verilog
 CARAVEL_RTL_PATH = $(CARAVEL_VERILOG_PATH)/rtl
