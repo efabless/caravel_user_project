@@ -15,8 +15,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "../../../caravel/verilog/dv/caravel/defs.h"
-#include "../../../caravel/verilog/dv/caravel/stub.c"
+// This include is relative to $CARAVEL_PATH (see Makefile)
+#include "verilog/dv/caravel/defs.h"
+#include "verilog/dv/caravel/stub.c"
 
 /*
 	Wishbone Test:
