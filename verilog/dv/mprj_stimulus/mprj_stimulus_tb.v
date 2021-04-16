@@ -45,7 +45,7 @@ module mprj_stimulus_tb;
 
     // Signals Assignment
     assign checkbits  = mprj_io[31:16];
-    assign status = mprj_io[37:34];
+    assign status = mprj_io[35:32];
     assign uart_tx = mprj_io[6];
     assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
