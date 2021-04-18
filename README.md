@@ -99,9 +99,9 @@ To reproduce hardening this project, run the following:
 ```bash
 export OPENLANE_TAG=v0.12
 cd openlane
-# Runs openlane to harder user_proj_example
+# Run openlane to harden user_proj_example
 make user_proj_example
-# Runs openlane to harder user_project_wrapper
+# Run openlane to harden user_project_wrapper
 make user_project_wrapper
 ```
 
