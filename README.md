@@ -70,7 +70,7 @@ For this sample project, the user macro makes use of:
 Refer to [user_project_wrapper](verilog/rtl/user_project_wrapper.v) for more information. 
 
 <p align=”center”>
-<img src="docs/source_static/counter_32.png" width="50%" height="10%">
+<img src="docs/source/_static/counter_32.png" width="50%" height="10%">
 </p>
 
 # Running Full Chip Simulation
