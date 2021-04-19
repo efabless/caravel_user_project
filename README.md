@@ -19,13 +19,22 @@
 # Caravel User Project
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![CI](https://github.com/efabless/caravel_project_example/actions/workflows/caravel_example_ci.yml/badge.svg)](https://github.com/efabless/caravel_project_example/actions/workflows/caravel_example_ci.yml)
 
+# Table of contents
+- [Overview](#overview)
+- [Caravel Integration](#caravel-integration)
+    - [Repo Integration](#repo-integration)
+    - [Verilog Integration](#verilog-integration)
+- [Running Full Chip Simulation](#running-full-chip-simulation)
+- [Hardening the User Project Macro using Openlane](#hardening-the-user-project-macro-using-openlane)
+- [Checklist for Open-MPW Submission](#checklist-for-open-mpw-submission)
+  
 # Overview
 
 This repo contains a sample user project that utilizes the [caravel](https://github.com/efabless/caravel.git) chip user space. The user project is a simple counter that showcases how to make use of [caravel's](https://github.com/efabless/caravel.git) user space utilities like IO pads, logic analyzer probes, and wishbone port. The repo also demonstrates the recommended structure for the open-mpw shuttle projects. 
 
 # Caravel Integration
 
-## Files Integration
+## Repo Integration
 
 Caravel files are kept separate from the user project by having caravel as submodule. The submodule commit should point to the latest of caravel master. The following files should have a symbolic link to [caravel's](https://github.com/efabless/caravel.git) corresponding files: 
 
@@ -66,7 +75,7 @@ Refer to [user_project_wrapper](verilog/rtl/user_project_wrapper.v) for more inf
 
 # Running Full Chip Simulation
 
-The verilog test-benches are under this [verilog/dv](verilog/dv). For more information on setting up the simulation environment and the available testbenches for this sample project, refer to [README] (verilog/dv/README.md).
+The verilog test-benches are under this [verilog/dv](verilog/dv). For more information on setting up the simulation environment and the available testbenches for this sample project, refer to [README](verilog/dv/README.md).
 
 # Hardening the User Project Macro using Openlane 
 
@@ -90,9 +99,9 @@ To reproduce hardening this project, run the following:
 ```bash
 export OPENLANE_TAG=v0.12
 cd openlane
-# Runs openlane to harder user_proj_example
+# Run openlane to harden user_proj_example
 make user_proj_example
-# Runs openlane to harder user_project_wrapper
+# Run openlane to harden user_project_wrapper
 make user_project_wrapper
 ```
 
