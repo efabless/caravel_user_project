@@ -15,9 +15,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ## Caravel Pointers
-# Path to caravel from user project root
-CARAVEL_ROOT ?= caravel
-CARAVEL_PATH ?= ../../../$(CARAVEL_ROOT)
+CARAVEL_ROOT ?= $(shell pwd)/../../../caravel
+CARAVEL_PATH ?= $(CARAVEL_ROOT)
 CARAVEL_FIRMWARE_PATH = $(CARAVEL_PATH)/verilog/dv/caravel
 CARAVEL_VERILOG_PATH  = $(CARAVEL_PATH)/verilog
 CARAVEL_RTL_PATH = $(CARAVEL_VERILOG_PATH)/rtl
