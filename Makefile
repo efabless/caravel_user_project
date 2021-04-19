@@ -1,1 +1,1 @@
-caravel/Makefile
+caravel-lite/Makefile

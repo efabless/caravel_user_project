@@ -22,6 +22,9 @@ export IMAGE_NAME=efabless/openlane:$OPENLANE_TAG
 
 cd $UPRJ_ROOT
 
+# Install full version of caravel
+git clone https://github.com/efabless/caravel --branch develop --depth 1
+
 docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $UPRJ_ROOT; make ship;"
 
 SHIP_FILE=$UPRJ_ROOT/gds/caravel.gds
