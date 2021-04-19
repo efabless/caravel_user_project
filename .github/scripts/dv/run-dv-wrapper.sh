@@ -22,6 +22,8 @@ SIM_MODE=$2
 DV_TEST_IDS=(${IDS//,/ })
 
 export TARGET_PATH=$(pwd)
+export CARAVEL_ROOT=$(pwd)/caravel
+
 if [ ! -d $TARGET_PATH ] 
 then
     echo "Directory /path/to/dir DOES NOT exists." 
@@ -47,7 +49,9 @@ fi
 for id in "${DV_TEST_IDS[@]}"
 do 
     docker run -v $TARGET_PATH:$TARGET_PATH -v $PDK_PATH:$PDK_PATH \
+                -v $CARAVEL_ROOT:$CARAVEL_ROOT \
                 -e TARGET_PATH=$TARGET_PATH -e PDK_PATH=$PDK_PATH \
+                -e CARAVEL_ROOT=$CARAVEL_ROOT \
                 -u $(id -u $USER):$(id -g $USER) efabless/dv_setup:latest \
                 bash -c "bash $TARGET_PATH/.github/scripts/dv/run-dv.sh $PDK_PATH $DV_PATH $id $SIM_MODE"
 

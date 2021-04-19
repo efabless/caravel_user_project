@@ -15,18 +15,19 @@
 # SPDX-License-Identifier: Apache-2.0
 
 export UPRJ_ROOT=$(pwd)
+export CARAVEL_ROOT=$(pwd)/caravel
 cd ..
 export PDK_ROOT=$(pwd)/pdks
 export IMAGE_NAME=efabless/openlane:$OPENLANE_TAG
 
 cd $UPRJ_ROOT
 
-docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $UPRJ_ROOT; make ship;"
+docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $UPRJ_ROOT; make ship;"
 
 SHIP_FILE=$UPRJ_ROOT/gds/caravel.gds
 
 if test -f "$SHIP_FILE"; then
     exit 0
 else
-    exit 1
+    exit 2
 fi
