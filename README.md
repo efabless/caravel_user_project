@@ -21,6 +21,7 @@
 
 # Table of contents
 - [Overview](#overview)
+- [Install Caravel](#install-caravel)
 - [Caravel Integration](#caravel-integration)
     - [Repo Integration](#repo-integration)
     - [Verilog Integration](#verilog-integration)
@@ -32,28 +33,43 @@
 
 This repo contains a sample user project that utilizes the [caravel](https://github.com/efabless/caravel.git) chip user space. The user project is a simple counter that showcases how to make use of [caravel's](https://github.com/efabless/caravel.git) user space utilities like IO pads, logic analyzer probes, and wishbone port. The repo also demonstrates the recommended structure for the open-mpw shuttle projects. 
 
+# Install Caravel
+
+By default [caravel-lite]() is installed. To install the full version of caravel, run this prior to calling make. 
+```bash
+export CARAVEL_LITE=0
+```
+
+To setup caravel, run the following: 
+
+```bash
+# By default, CARAVEL_ROOT is set to $(pwd)/caravel-lite
+# If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
+# Disable submodule installation if needed by, run "export SUBMODULE=0"
+make install
+```
+
+To update the installed caravel to the latest, run: 
+
+```bash
+ make update_caravel
+```
+
+To remove caravel, run 
+```bash
+make uninstall
+```
+
 # Caravel Integration
 
 ## Repo Integration
 
-Caravel files are kept separate from the user project by having caravel as submodule. The submodule commit should point to the latest of caravel master. The following files should have a symbolic link to [caravel's](https://github.com/efabless/caravel.git) corresponding files: 
+Caravel files are kept separate from the user project by having caravel as submodule. The submodule commit should point to the latest of caravel/caravel-lite master. The following files should have a symbolic link to [caravel's](https://github.com/efabless/caravel.git) corresponding files: 
 
-- [Root Makefile](Makefile): This is to make sure that you adhere to the required implementation of the `compress` and `uncompress` targets. Also, [caravel's](https://github.com/efabless/caravel.git) Makefile provides useful targets like running `lvs`, `drc`, and `xor` checks. Run `make help` to display the available targets. 
-
-- [Openlane Makefile](openlane/Makefile): This provides an easier way for running openlane to harden your macros. Refer to [ Hardening the User Project Macro]. Also, the makefile retains the openlane summary reports under the signoff directory. 
+- [Openlane Makefile](openlane/Makefile): This provides an easier way for running openlane to harden your macros. Refer to [Hardening the User Project Macro]. Also, the makefile retains the openlane summary reports under the signoff directory. 
 
 - [Pin order](openlane/user_project_wrapper/pin_order.cfg) file for the user wrapper: The hardened user project wrapper macro must have the same pin order specified in caravel's repo. Failing to adhere to the same order will fail the gds integration of the macro with caravel's back-end. 
 
-To create the symbolic links run the following: 
-
-```bash
-# In case caravel is sub-moduled under the project root, export CARAVEL_ROOT=caravel
-export CARAVEL_ROOT=<caravel-path> 
-
-ln -s $CARAVEL_ROOT/Makefile  Makefile
-ln -s $CARAVEL_ROOT/openlane/Makefile openlane/Makefile
-ln -s $CARAVEL_ROOT/openlane/user_project_wrapper_empty/pin_order.cfg openlane/user_project_wrapper/pin_order.cfg
-```
 
 ## Verilog Integration
 
