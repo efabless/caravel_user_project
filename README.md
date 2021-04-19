@@ -66,10 +66,12 @@ make uninstall
 
 Caravel files are kept separate from the user project by having caravel as submodule. The submodule commit should point to the latest of caravel/caravel-lite master. The following files should have a symbolic link to [caravel's](https://github.com/efabless/caravel.git) corresponding files: 
 
-- [Openlane Makefile](openlane/Makefile): This provides an easier way for running openlane to harden your macros. Refer to [Hardening the User Project Macro]. Also, the makefile retains the openlane summary reports under the signoff directory. 
+- [Openlane Makefile](openlane/Makefile): This provides an easier way for running openlane to harden your macros. Refer to 
+[Hardening the User Project Macro using Openlane](#hardening-the-user-project-macro-using-openlane). Also, the makefile retains the openlane summary reports under the signoff directory. 
 
 - [Pin order](openlane/user_project_wrapper/pin_order.cfg) file for the user wrapper: The hardened user project wrapper macro must have the same pin order specified in caravel's repo. Failing to adhere to the same order will fail the gds integration of the macro with caravel's back-end. 
 
+The symbolic links are automatically set when you run `make install`. 
 
 ## Verilog Integration
 
@@ -91,7 +93,7 @@ Refer to [user_project_wrapper](verilog/rtl/user_project_wrapper.v) for more inf
 
 # Running Full Chip Simulation
 
-The verilog test-benches are under this [verilog/dv](verilog/dv). For more information on setting up the simulation environment and the available testbenches for this sample project, refer to [README](verilog/dv/README.md).
+The verilog test-benches are under this directory [verilog/dv](verilog/dv). For more information on setting up the simulation environment and the available testbenches for this sample project, refer to [README](verilog/dv/README.md).
 
 # Hardening the User Project Macro using Openlane 
 
