@@ -116,8 +116,10 @@ for more information.
 
 .. raw:: html
 
-   <p align=”center”>
-
+   <p align="center">
+   <img src="./_static/counter_32.png" width="50%" height="50%">
+   </p>
+   
 .. raw:: html
 
    </p>
@@ -151,10 +153,8 @@ wrapper.
 
 .. raw:: html
 
-   <p align=”center”>
-
-.. raw:: html
-
+   <p align="center">
+   <img src="./_static/wrapper.png" width="50%" height="50%">
    </p>
 
 To reproduce hardening this project, run the following:
