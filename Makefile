@@ -55,7 +55,9 @@ $(BLOCKS):
 install:
 ifeq ($(SUBMODULE),1)
 	@echo "Installing $(CARAVEL_NAME) as a submodule.."
-	@git submodule add $(CARAVEL_REPO)
+	#git submodule add $(CARAVEL_REPO) $(CARAVEL_ROOT)
+	@git submodule init
+	@git submodule update
 	$(MAKE) simlink
 else
 	@echo "Installing $(CARAVEL_NAME).."
