@@ -94,6 +94,24 @@ Refer to [user_project_wrapper](verilog/rtl/user_project_wrapper.v) for more inf
 
 # Running Full Chip Simulation
 
+First, you will need to install the simulation environment, by 
+
+```bash
+make simenv
+```
+
+This will pull a docker image with the needed tools installed. 
+
+Then, run the RTL and GL simulation by
+
+```
+export CARAVEL_ROOT=$(pwd)/caravel
+# specify simulation model: RTL/GL
+export SIM=RTL
+# Run IO ports testbench, make verify-io_ports
+make verify-<dv-pattern>
+```
+
 The verilog test-benches are under this directory [verilog/dv](verilog/dv). For more information on setting up the simulation environment and the available testbenches for this sample project, refer to [README](verilog/dv/README.md).
 
 # Hardening the User Project Macro using Openlane 

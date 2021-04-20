@@ -26,6 +26,10 @@ all:  ${PATTERNS}
 		( cd $$i && make -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
 	done
 
+DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
+$(DV_PATTERNS): verify-% : 
+	cd $* && make
+
 clean:  ${PATTERNS}
 	for i in ${PATTERNS}; do \
 		( cd $$i && make clean ) ; \

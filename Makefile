@@ -15,6 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 CARAVEL_ROOT?=caravel
+SIM ?= RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
@@ -39,10 +40,27 @@ SUBMODULE?=1
 .PHONY: verify
 verify:
 	cd ./verilog/dv/ && \
-		$(MAKE) -j$(THREADS) all
-	cd ./verilog/dv/ && \
-		SIM=GL $(MAKE) -j$(THREADS) all
+	export SIM=${SIM} && \
+		$(MAKE) -j$(THREADS)
 
+# Install DV setup
+.PHONY: simenv
+simenv:
+	docker pull efabless/dv_setup:latest
+
+PATTERNS=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
+TARGET_PATH=$(shell pwd)
+PDK_PATH=${PDK_ROOT}/sky130A
+VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
+$(DV_PATTERNS): verify-% : 
+	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_PATH}:${PDK_PATH} \
+                -v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+                -e TARGET_PATH=${TARGET_PATH} -e PDK_PATH=${PDK_PATH} \
+                -e CARAVEL_ROOT=${CARAVEL_ROOT} \
+                -u $(id -u $$USER):$(id -g $$USER) efabless/dv_setup:latest \
+                sh -c $(VERIFY_COMMAND)
+				
 # Openlane Makefile Targets
 BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(BLOCKS)
@@ -93,6 +111,11 @@ ifeq ($(SUBMODULE),1)
 else
 	rm -rf $(CARAVEL_ROOT)
 endif
+
+# Install Openlane
+.PHONY: openlane
+openlane: 
+	cd openlane && $(MAKE) openlane
 
 # Clean 
 .PHONY: clean
