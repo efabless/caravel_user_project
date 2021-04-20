@@ -102,9 +102,17 @@ make simenv
 
 This will pull a docker image with the needed tools installed. 
 
+Then, you will need to build the pdk to obtain the verilog views.
+
+```bash
+export PDK_ROOT=<pdk-installation-path>
+make pdk
+```
+
 Then, run the RTL and GL simulation by
 
-```
+```bash
+export PDK_ROOT=<pdk-installation-path>
 export CARAVEL_ROOT=$(pwd)/caravel
 # specify simulation model: RTL/GL
 export SIM=RTL
