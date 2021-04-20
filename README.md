@@ -35,15 +35,10 @@ This repo contains a sample user project that utilizes the [caravel](https://git
 
 # Install Caravel
 
-By default [caravel-lite]() is installed. To install the full version of caravel, run this prior to calling make. 
-```bash
-export CARAVEL_LITE=0
-```
-
 To setup caravel, run the following: 
 
 ```bash
-# By default, CARAVEL_ROOT is set to $(pwd)/caravel-lite
+# By default, CARAVEL_ROOT is set to $(pwd)/caravel
 # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
 # Disable submodule installation if needed by, run "export SUBMODULE=0"
 make install
@@ -58,6 +53,11 @@ To update the installed caravel to the latest, run:
 To remove caravel, run 
 ```bash
 make uninstall
+```
+
+By default [caravel-lite]() is installed. To install the full version of caravel, run this prior to calling make install. 
+```bash
+export CARAVEL_LITE=0
 ```
 
 # Caravel Integration
