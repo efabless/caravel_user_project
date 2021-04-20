@@ -56,7 +56,7 @@ To remove caravel, run
 make uninstall
 ```
 
-By default [caravel-lite]() is installed. To install the full version of caravel, run this prior to calling make install. 
+By default [caravel-lite](https://github.com/efabless/caravel-lite.git) is installed. To install the full version of caravel, run this prior to calling make install. 
 ```bash
 export CARAVEL_LITE=0
 ```
@@ -116,7 +116,23 @@ The verilog test-benches are under this directory [verilog/dv](verilog/dv). For 
 
 # Hardening the User Project Macro using Openlane 
 
-For instructions on how to install openlane and the pdk refer to [README](https://github.com/efabless/openlane/blob/master/README.md). 
+First, you will need to install the pdk by 
+
+```bash
+export PDK_ROOT=<pdk-installation-path>
+make pdk
+```
+
+Then, you will need to install openlane by 
+
+```bash
+export OPENLANE_ROOT=<openlane-installation-path>
+export OPENLANE_TAG=v0.12
+make openlane
+```
+
+For detailed instructions on how to install openlane and the pdk refer to [README](https://github.com/efabless/openlane/blob/master/README.md). 
+
 
 There are two options for hardening the user project macro using openlane: 
 
@@ -135,7 +151,6 @@ To reproduce hardening this project, run the following:
 
 ```bash
 export OPENLANE_TAG=v0.12
-cd openlane
 # Run openlane to harden user_proj_example
 make user_proj_example
 # Run openlane to harden user_project_wrapper
