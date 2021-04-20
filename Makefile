@@ -56,8 +56,7 @@ install:
 ifeq ($(SUBMODULE),1)
 	@echo "Installing $(CARAVEL_NAME) as a submodule.."
 	#git submodule add $(CARAVEL_REPO) $(CARAVEL_ROOT)
-	@git submodule init
-	@git submodule update
+	@git submodule update --init
 	$(MAKE) simlink
 else
 	@echo "Installing $(CARAVEL_NAME).."
@@ -73,10 +72,8 @@ simlink: check-caravel
 # Update Caravel
 .PHONY: update_caravel
 update_caravel: check-caravel
-ifeq ($(CARAVEL_LITE),1)
-	cd $(CARAVEL_ROOT)/ && \
-		git checkout main && \
-		git pull
+ifeq ($(SUBMODULE),1)
+	@git submodule update --init
 else
 	cd $(CARAVEL_ROOT)/ && \
 		git checkout master && \
