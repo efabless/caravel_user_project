@@ -5,10 +5,8 @@
 ---
 **NOTE**
 
-Fill this README with your caravel project documentation. 
+Fill this README with your caravel user project documentation. 
 
 ---
 
-# Sample User Project
-
-Refer to [CARAVEL_UPRJ](CARAVEL_UPRJ.md) for this sample project documentation. 
+Refer to [CARAVEL_USER](CARAVEL_USER.md) for this sample project documentation. 
