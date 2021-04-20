@@ -9,6 +9,4 @@ Fill this README with your caravel project documentation.
 
 ---
 
-# Sample User Project
-
 Refer to [CARAVEL_UPRJ](CARAVEL_UPRJ.md) for this sample project documentation. 
