@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 export UPRJ_ROOT=$(pwd)
-export CARAVEL_ROOT=$(pwd)/caravel-lite
+export CARAVEL_ROOT=$(pwd)/caravel
 cd ..
 export PDK_ROOT=$(pwd)/pdks
 export IMAGE_NAME=efabless/openlane:$OPENLANE_TAG

@@ -22,7 +22,7 @@ SIM_MODE=$2
 DV_TEST_IDS=(${IDS//,/ })
 
 export TARGET_PATH=$(pwd)
-export CARAVEL_ROOT=$(pwd)/caravel-lite
+export CARAVEL_ROOT=$(pwd)/caravel
 
 if [ ! -d $TARGET_PATH ] 
 then

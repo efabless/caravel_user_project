@@ -65,8 +65,12 @@ endif
 # Create symbolic links to caravel's main files
 .PHONY: simlink
 simlink: check-caravel
-	@ln -f $(CARAVEL_ROOT)/openlane/Makefile openlane/Makefile
-	@ln -f $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg openlane/user_project_wrapper/pin_order.cfg
+	mkdir -p openlane
+	mkdir -p openlane/user_project_wrapper
+	cd openlane &&\
+	ln -sf ../$(CARAVEL_ROOT)/openlane/Makefile Makefile
+	cd openlane/user_project_wrapper &&\
+	ln -sf ../../$(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg pin_order.cfg
 
 # Update Caravel
 .PHONY: update_caravel

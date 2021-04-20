@@ -14,7 +14,7 @@
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
 export TARGET_PATH=$(pwd)
-export CARAVEL_ROOT=$(pwd)/caravel-lite
+export CARAVEL_ROOT=$(pwd)/caravel
 cd ..
 export PDK_ROOT=$(pwd)/precheck_pdks
 cd $TARGET_PATH/open_mpw_precheck/

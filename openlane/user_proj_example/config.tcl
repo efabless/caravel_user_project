@@ -18,7 +18,7 @@ set script_dir [file dirname [file normalize [info script]]]
 set ::env(DESIGN_NAME) user_proj_example
 
 set ::env(VERILOG_FILES) "\
-	$script_dir/../../caravel-lite/verilog/rtl/defines.v \
+	$script_dir/../../caravel/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/user_proj_example.v"
 
 set ::env(CLOCK_PORT) ""

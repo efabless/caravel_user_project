@@ -26,7 +26,7 @@ set ::env(DESIGN_NAME) user_project_wrapper
 
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
-	$script_dir/../../caravel-lite/verilog/rtl/defines.v \
+	$script_dir/../../caravel/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/user_project_wrapper.v"
 
 ## Clock configurations
