@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-CARAVEL_ROOT?=$(shell pwd)/caravel-lite
+CARAVEL_ROOT?=$(shell pwd)/caravel
 UPRJ_ROOT?=$(shell pwd)
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
