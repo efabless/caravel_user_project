@@ -14,8 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-CARAVEL_ROOT?=$(shell pwd)/caravel
-UPRJ_ROOT?=$(shell pwd)
+CARAVEL_ROOT?=caravel
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
@@ -55,7 +54,7 @@ $(BLOCKS):
 install:
 ifeq ($(SUBMODULE),1)
 	@echo "Installing $(CARAVEL_NAME) as a submodule.."
-	#git submodule add $(CARAVEL_REPO) $(CARAVEL_ROOT)
+	@git submodule add --name $(CARAVEL_NAME) $(CARAVEL_REPO) $(CARAVEL_ROOT)
 	@git submodule update --init
 	$(MAKE) simlink
 else
@@ -66,8 +65,8 @@ endif
 # Create symbolic links to caravel's main files
 .PHONY: simlink
 simlink: check-caravel
-	@ln -sf $(CARAVEL_ROOT)/openlane/Makefile openlane/Makefile
-	@ln -sf $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg openlane/user_project_wrapper/pin_order.cfg
+	@ln -f $(CARAVEL_ROOT)/openlane/Makefile openlane/Makefile
+	@ln -f $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg openlane/user_project_wrapper/pin_order.cfg
 
 # Update Caravel
 .PHONY: update_caravel
