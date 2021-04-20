@@ -153,7 +153,7 @@ There are two options for hardening the user project macro using openlane:
 1. Hardening the user macro, then embedding it in the wrapper
 2. Flattening the user macro with the wrapper. 
 
-For more details on this, refer to this [README](caravel/blob/master/openlane/README.rst).
+For more details on this, refer to this [README](https://github.com/efabless/caravel/blob/master/openlane/README.rst).
 
 For this sample project, we went for the first option where the user macro is hardened first, then it is inserted in the user project wrapper. 
 
