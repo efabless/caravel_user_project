@@ -106,6 +106,9 @@ Then, you will need to build the pdk to obtain the verilog views.
 
 ```bash
 export PDK_ROOT=<pdk-installation-path>
+# specify skywater-pdk and open-pdks commit used for this project
+export SKYWATER_COMMIT=db2e06709dc3d876aa6b74a5f3893fa5f1bc2a6e
+export OPEN_PDKS_COMMIT=b9ffc1fd1cfc26cbca85a61c287ac799721f6e6a
 make pdk
 ```
 
@@ -128,6 +131,9 @@ First, you will need to install the pdk by
 
 ```bash
 export PDK_ROOT=<pdk-installation-path>
+# specify skywater-pdk and open-pdks commit used for this project
+export SKYWATER_COMMIT=db2e06709dc3d876aa6b74a5f3893fa5f1bc2a6e
+export OPEN_PDKS_COMMIT=b9ffc1fd1cfc26cbca85a61c287ac799721f6e6a
 make pdk
 ```
 
@@ -147,7 +153,7 @@ There are two options for hardening the user project macro using openlane:
 1. Hardening the user macro, then embedding it in the wrapper
 2. Flattening the user macro with the wrapper. 
 
-For more details on this, refer to this [README](caravel/blob/master/openlane/README.rst).
+For more details on this, refer to this [README](https://github.com/efabless/caravel/blob/master/openlane/README.rst).
 
 For this sample project, we went for the first option where the user macro is hardened first, then it is inserted in the user project wrapper. 
 
