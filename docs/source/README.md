@@ -170,7 +170,8 @@ For this sample project, we went for the first option where the user macro is ha
 To reproduce hardening this project, run the following: 
 
 ```bash
-export OPENLANE_TAG=mpw-two-a
+# export tag to v0.12 because currently mpw-two-a tag doesn't have a docker image.
+export OPENLANE_TAG=v0.12
 # Run openlane to harden user_proj_example
 make user_proj_example
 # Run openlane to harden user_project_wrapper
