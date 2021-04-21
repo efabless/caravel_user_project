@@ -6,21 +6,21 @@ Reading caravel/gds/user_project_wrapper_empty_erased.gds ..
 Reading gds/user_project_wrapper_erased.gds ..
 --- Running XOR for 235/4 ---
 "_input" in: xor.drc:38
-Elapsed: 0.000s
+Elapsed: 0.010s
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "^" in: xor.drc:38
 Elapsed: 0.010s
 XOR differences: 0
 "_output" in: xor.drc:41
-Elapsed: 0.000s
+Elapsed: 0.010s
 --- Running XOR for 69/20 ---
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "^" in: xor.drc:38
-Elapsed: 0.020s
+Elapsed: 0.010s
 XOR differences: 0
 "_output" in: xor.drc:41
 Elapsed: 0.010s
@@ -28,7 +28,7 @@ Elapsed: 0.010s
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "_input" in: xor.drc:38
-Elapsed: 0.000s
+Elapsed: 0.010s
 "^" in: xor.drc:38
 Elapsed: 0.010s
 XOR differences: 0
@@ -46,7 +46,7 @@ XOR differences: 0
 Elapsed: 0.010s
 --- Running XOR for 71/44 ---
 "_input" in: xor.drc:38
-Elapsed: 0.010s
+Elapsed: 0.020s
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "^" in: xor.drc:38
@@ -56,7 +56,7 @@ XOR differences: 0
 Elapsed: 0.010s
 --- Running XOR for 72/20 ---
 "_input" in: xor.drc:38
-Elapsed: 0.010s
+Elapsed: 0.000s
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "^" in: xor.drc:38
@@ -68,11 +68,11 @@ Elapsed: 0.010s
 "_input" in: xor.drc:38
 Elapsed: 0.010s
 "_input" in: xor.drc:38
-Elapsed: 0.010s
+Elapsed: 0.020s
 "^" in: xor.drc:38
 Elapsed: 0.010s
 XOR differences: 0
 "_output" in: xor.drc:41
 Elapsed: 0.010s
 Writing layout file: gds/user_project_wrapper.xor.gds ..
-Total run time: 0.330s
+Total run time: 0.340s
