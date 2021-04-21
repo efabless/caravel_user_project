@@ -305,10 +305,11 @@
 + wbs_dat_o[27] wbs_dat_o[28] wbs_dat_o[29] wbs_dat_o[2] wbs_dat_o[30] wbs_dat_o[31]
 + wbs_dat_o[3] wbs_dat_o[4] wbs_dat_o[5] wbs_dat_o[6] wbs_dat_o[7] wbs_dat_o[8] wbs_dat_o[9]
 + wbs_sel_i[0] wbs_sel_i[1] wbs_sel_i[2] wbs_sel_i[3] wbs_stb_i wbs_we_i vccd1 vssd1
-+ vccd2_uq0 vccd2 vccd2_uq1 vccd2_uq2 vccd2_uq3 vccd2_uq4 vssd2_uq0 vssd2 vssd2_uq1
-+ vssd2_uq2 vssd2_uq3 vssd2_uq4 vdda1_uq0 vdda1 vdda1_uq1 vdda1_uq2 vdda1_uq3 vdda1_uq4
-+ vssa1_uq0 vssa1 vssa1_uq1 vssa1_uq2 vssa1_uq3 vssa1_uq4 vdda2_uq0 vdda2 vdda2_uq1
-+ vdda2_uq2 vdda2_uq3 vdda2_uq4 vssa2_uq0 vssa2 vssa2_uq1 vssa2_uq2 vssa2_uq3 vssa2_uq4
++ vccd2 vssd2 vdda1 vssa1 vdda2 vssa2 vssa2_uq0 vssa2_uq1 vssa2_uq2 vssa2_uq3 vssa2_uq4
++ vssa1_uq0 vssa1_uq1 vssa1_uq2 vssa1_uq3 vssa1_uq4 vssd2_uq0 vssd2_uq1 vssd2_uq2
++ vssd2_uq3 vssd2_uq4 vdda2_uq0 vdda2_uq1 vdda2_uq2 vdda2_uq3 vdda2_uq4 vdda1_uq0
++ vdda1_uq1 vdda1_uq2 vdda1_uq3 vdda1_uq4 vccd2_uq0 vccd2_uq1 vccd2_uq2 vccd2_uq3
++ vccd2_uq4
 XFILLER_136_1491 vssd1 vssd1 vccd1 vccd1 sky130_fd_sc_hd__decap_12
 XFILLER_79_391 vssd1 vssd1 vccd1 vccd1 sky130_fd_sc_hd__decap_8
 XFILLER_171_1393 vssd1 vssd1 vccd1 vccd1 sky130_fd_sc_hd__decap_12

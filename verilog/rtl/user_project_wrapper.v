@@ -14,7 +14,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 `default_nettype none
-
 /*
  *-------------------------------------------------------------
  *
@@ -69,13 +68,12 @@ module user_project_wrapper #(
     // Analog (direct connection to GPIO pad---use with caution)
     // Note that analog I/O is not available on the 7 lowest-numbered
     // GPIO pads, and so the analog_io indexing is offset from the
-    // GPIO indexing by 7.
+    // GPIO indexing by 7 (also upper 2 GPIOs do not have analog_io).
     inout [`MPRJ_IO_PADS-10:0] analog_io,
 
     // Independent clock (on independent integer divider)
     input   user_clock2
 );
-
     /*--------------------------------------*/
     /* User project is instantiated  here   */
     /*--------------------------------------*/
@@ -92,8 +90,8 @@ module user_project_wrapper #(
 	.vssd2(vssd2),	// User area 2 digital ground
     `endif
 
-    	.wb_clk_i(wb_clk_i),
-    	.wb_rst_i(wb_rst_i),
+    .wb_clk_i(wb_clk_i),
+    .wb_rst_i(wb_rst_i),
 
 	// MGMT SoC Wishbone Slave
 
@@ -114,9 +112,9 @@ module user_project_wrapper #(
 
 	// IO Pads
 
-	.io_in (io_in),
-    	.io_out(io_out),
-    	.io_oeb(io_oeb)
+    .io_in (io_in),
+    .io_out(io_out),
+    .io_oeb(io_oeb)
     );
 
 endmodule	// user_project_wrapper

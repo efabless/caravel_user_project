@@ -50,6 +50,9 @@ set ::env(EXTRA_LEFS) "\
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/user_proj_example.gds"
 
+set ::env(GLB_RT_MAXLAYER) 5
+
+set ::env(FP_PDN_CHECK_NODES) 0
 
 # The following is because there are no std cells in the example wrapper project.
 set ::env(SYNTH_TOP_LEVEL) 1
