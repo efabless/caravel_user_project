@@ -89,7 +89,7 @@ For this sample project, the user macro makes use of:
 Refer to [user_project_wrapper](verilog/rtl/user_project_wrapper.v) for more information. 
 
 <p align=”center”>
-<img src="docs/source/_static/counter_32.png" width="50%" height="10%">
+<img src="_static/counter_32.png" width="50%" height="10%">
 </p>
 
 # Running Full Chip Simulation
@@ -164,7 +164,7 @@ For more details on this, refer to this [README](https://github.com/efabless/car
 For this sample project, we went for the first option where the user macro is hardened first, then it is inserted in the user project wrapper. 
 
 <p align=”center”>
-<img src="docs/source/_static/wrapper.png" width="30%" height="5%">
+<img src="_static/wrapper.png" width="30%" height="5%">
 </p>
 
 To reproduce hardening this project, run the following: 
