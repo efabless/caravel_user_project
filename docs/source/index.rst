@@ -21,12 +21,13 @@
 Caravel User Project
 ====================
 
-|License| |CI|
+|License| |User CI| |Caravel Build|
 
 Table of contents
 =================
 
 -  `Overview <#overview>`__
+-  `Install Caravel <#install-caravel>`__
 -  `Caravel Integration <#caravel-integration>`__
 
    -  `Repo Integration <#repo-integration>`__
@@ -49,6 +50,40 @@ utilities like IO pads, logic analyzer probes, and wishbone port. The
 repo also demonstrates the recommended structure for the open-mpw
 shuttle projects.
 
+Install Caravel
+===============
+
+To setup caravel, run the following:
+
+.. code:: bash
+
+    # By default, CARAVEL_ROOT is set to $(pwd)/caravel
+    # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
+    # Disable submodule installation if needed by, run "export SUBMODULE=0"
+
+    make install
+
+To update the installed caravel to the latest, run:
+
+.. code:: bash
+
+     make update_caravel
+
+To remove caravel, run
+
+.. code:: bash
+
+    make uninstall
+
+By default
+`caravel-lite <https://github.com/efabless/caravel-lite.git>`__ is
+installed. To install the full version of caravel, run this prior to
+calling make install.
+
+.. code:: bash
+
+    export CARAVEL_LITE=0
+
 Caravel Integration
 ===================
 
@@ -56,22 +91,17 @@ Repo Integration
 ----------------
 
 Caravel files are kept separate from the user project by having caravel
-as submodule. The submodule commit should point to the latest of caravel
-master. The following files should have a symbolic link to
-`caravel's <https://github.com/efabless/caravel.git>`__ corresponding
-files:
-
--  `Root Makefile <Makefile>`__: This is to make sure that you adhere to
-   the required implementation of the ``compress`` and ``uncompress``
-   targets. Also,
-   `caravel's <https://github.com/efabless/caravel.git>`__ Makefile
-   provides useful targets like running ``lvs``, ``drc``, and ``xor``
-   checks. Run ``make help`` to display the available targets.
+as submodule. The submodule commit should point to the latest of
+caravel/caravel-lite master. The following files should have a symbolic
+link to `caravel's <https://github.com/efabless/caravel.git>`__
+corresponding files:
 
 -  `Openlane Makefile <openlane/Makefile>`__: This provides an easier
-   way for running openlane to harden your macros. Refer to [ Hardening
-   the User Project Macro]. Also, the makefile retains the openlane
-   summary reports under the signoff directory.
+   way for running openlane to harden your macros. Refer to `Hardening
+   the User Project Macro using
+   Openlane <#hardening-the-user-project-macro-using-openlane>`__. Also,
+   the makefile retains the openlane summary reports under the signoff
+   directory.
 
 -  `Pin order <openlane/user_project_wrapper/pin_order.cfg>`__ file for
    the user wrapper: The hardened user project wrapper macro must have
@@ -79,16 +109,7 @@ files:
    the same order will fail the gds integration of the macro with
    caravel's back-end.
 
-To create the symbolic links run the following:
-
-.. code:: bash
-
-    # In case caravel is sub-moduled under the project root, export CARAVEL_ROOT=caravel
-    export CARAVEL_ROOT=<caravel-path> 
-
-    ln -s $CARAVEL_ROOT/Makefile  Makefile
-    ln -s $CARAVEL_ROOT/openlane/Makefile openlane/Makefile
-    ln -s $CARAVEL_ROOT/openlane/user_project_wrapper_empty/pin_order.cfg openlane/user_project_wrapper/pin_order.cfg
+The symbolic links are automatically set when you run ``make install``.
 
 Verilog Integration
 -------------------
@@ -119,7 +140,7 @@ for more information.
    <p align="center">
    <img src="./_static/counter_32.png" width="50%" height="50%">
    </p>
-   
+
 .. raw:: html
 
    </p>
@@ -127,15 +148,69 @@ for more information.
 Running Full Chip Simulation
 ============================
 
-The verilog test-benches are under this `verilog/dv <verilog/dv>`__. For
-more information on setting up the simulation environment and the
-available testbenches for this sample project, refer to
-`README <verilog/dv/README.md>`__.
+First, you will need to install the simulation environment, by
+
+.. code:: bash
+
+    make simenv
+
+This will pull a docker image with the needed tools installed.
+
+Then, you will need to build the pdk to obtain the verilog views.
+
+.. code:: bash
+
+    # set PDK_ROOT to the path you wish to use for the pdk
+    export PDK_ROOT=<pdk-installation-path>
+
+    # you can optionally specify skywater-pdk and open-pdks commit used
+    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
+    # if you do not set them, they default to the last verfied commits tested for this project
+
+    make pdk
+
+Then, run the RTL and GL simulation by
+
+.. code:: bash
+
+    export PDK_ROOT=<pdk-installation-path>
+    export CARAVEL_ROOT=$(pwd)/caravel
+    # specify simulation mode: RTL/GL
+    export SIM=RTL
+    # Run IO ports testbench, make verify-io_ports
+    make verify-<dv-pattern>
+
+The verilog test-benches are under this directory
+`verilog/dv <verilog/dv>`__. For more information on setting up the
+simulation environment and the available testbenches for this sample
+project, refer to `README <verilog/dv/README.md>`__.
 
 Hardening the User Project Macro using Openlane
 ===============================================
 
-For instructions on how to install openlane and the pdk refer to
+First, you will need to install the pdk by
+
+.. code:: bash
+
+    # set PDK_ROOT to the path you wish to use for the pdk
+    export PDK_ROOT=<pdk-installation-path>
+
+    # you can optionally specify skywater-pdk and open-pdks commit used
+    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
+    # if you do not set them, they default to the last verfied commits tested for this project
+
+    make pdk
+
+Then, you will need to install openlane by
+
+.. code:: bash
+
+    export OPENLANE_ROOT=<openlane-installation-path>
+    export OPENLANE_TAG=v0.12
+    make openlane
+
+For detailed instructions on how to install openlane and the pdk refer
+to
 `README <https://github.com/efabless/openlane/blob/master/README.md>`__.
 
 There are two options for hardening the user project macro using
@@ -145,7 +220,7 @@ openlane:
 2. Flattening the user macro with the wrapper.
 
 For more details on this, refer to this
-`README <caravel/blob/master/openlane/README.rst>`__.
+`README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
@@ -157,12 +232,15 @@ wrapper.
    <img src="./_static/wrapper.png" width="50%" height="50%">
    </p>
 
+.. raw:: html
+
+   </p>
+
 To reproduce hardening this project, run the following:
 
 .. code:: bash
 
     export OPENLANE_TAG=v0.12
-    cd openlane
     # Run openlane to harden user_proj_example
     make user_proj_example
     # Run openlane to harden user_project_wrapper
@@ -185,5 +263,7 @@ Checklist for Open-MPW Submission
 
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
-.. |CI| image:: https://github.com/efabless/caravel_project_example/actions/workflows/caravel_example_ci.yml/badge.svg
-   :target: https://github.com/efabless/caravel_project_example/actions/workflows/caravel_example_ci.yml
+.. |User CI| image:: https://github.com/efabless/caravel_project_example/actions/workflows/user_project_ci.yml/badge.svg
+   :target: https://github.com/efabless/caravel_project_example/actions/workflows/user_project_ci.yml
+.. |Caravel Build| image:: https://github.com/efabless/caravel_project_example/actions/workflows/caravel_build.yml/badge.svg
+   :target: https://github.com/efabless/caravel_project_example/actions/workflows/caravel_build.yml
