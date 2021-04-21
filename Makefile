@@ -110,6 +110,7 @@ endif
 uninstall: 
 ifeq ($(SUBMODULE),1)
 	git submodule deinit -f $(CARAVEL_ROOT)
+	sed -ie '/\[submodule \"caravel\"\]/,/\url =/d' .gitmodules
 	rm -rf .git/modules/$(CARAVEL_NAME)
 	git rm -f $(CARAVEL_ROOT)
 else
