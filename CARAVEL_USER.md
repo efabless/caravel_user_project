@@ -108,7 +108,7 @@ Then, you will need to build the pdk to obtain the verilog views.
 # set PDK_ROOT to the path you wish to use for the pdk
 export PDK_ROOT=<pdk-installation-path>
 
-# you can optionally specify skywater-pdk and open-pdks commit used for this project
+# you can optionally specify skywater-pdk and open-pdks commit used
 # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
 # if you do not set them, they default to the last verfied commits tested for this project
 
@@ -136,7 +136,7 @@ First, you will need to install the pdk by
 # set PDK_ROOT to the path you wish to use for the pdk
 export PDK_ROOT=<pdk-installation-path>
 
-# you can optionally specify skywater-pdk and open-pdks commit used for this project
+# you can optionally specify skywater-pdk and open-pdks commit used
 # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
 # if you do not set them, they default to the last verfied commits tested for this project
 
