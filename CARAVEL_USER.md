@@ -105,10 +105,13 @@ This will pull a docker image with the needed tools installed.
 Then, you will need to build the pdk to obtain the verilog views.
 
 ```bash
+# set PDK_ROOT to the path you wish to use for the pdk
 export PDK_ROOT=<pdk-installation-path>
-# specify skywater-pdk and open-pdks commit used for this project
-export SKYWATER_COMMIT=db2e06709dc3d876aa6b74a5f3893fa5f1bc2a6e
-export OPEN_PDKS_COMMIT=b9ffc1fd1cfc26cbca85a61c287ac799721f6e6a
+
+# you can optionally specify skywater-pdk and open-pdks commit used for this project
+# by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
+# if you do not set them, they default to the last verfied commits tested for this project
+
 make pdk
 ```
 
@@ -130,10 +133,13 @@ The verilog test-benches are under this directory [verilog/dv](verilog/dv). For 
 First, you will need to install the pdk by 
 
 ```bash
+# set PDK_ROOT to the path you wish to use for the pdk
 export PDK_ROOT=<pdk-installation-path>
-# specify skywater-pdk and open-pdks commit used for this project
-export SKYWATER_COMMIT=db2e06709dc3d876aa6b74a5f3893fa5f1bc2a6e
-export OPEN_PDKS_COMMIT=b9ffc1fd1cfc26cbca85a61c287ac799721f6e6a
+
+# you can optionally specify skywater-pdk and open-pdks commit used for this project
+# by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
+# if you do not set them, they default to the last verfied commits tested for this project
+
 make pdk
 ```
 
