@@ -101,7 +101,7 @@ ifeq ($(SUBMODULE),1)
 	@git submodule update --init
 else
 	cd $(CARAVEL_ROOT)/ && \
-		git checkout master && \
+		git checkout $(CARAVEL_COMMIT) && \
 		git pull
 endif
 
