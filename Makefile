@@ -64,7 +64,7 @@ $(DV_PATTERNS): verify-% :
 # Openlane Makefile Targets
 BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(BLOCKS)
-$(BLOCKS):
+$(BLOCKS): %:
 	cd openlane && $(MAKE) $*
 
 # Install caravel
