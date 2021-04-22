@@ -147,7 +147,7 @@ Then, you will need to install openlane by
 
 ```bash
 export OPENLANE_ROOT=<openlane-installation-path>
-export OPENLANE_TAG=v0.12
+export OPENLANE_TAG=mpw-two-a
 make openlane
 ```
 
@@ -170,6 +170,7 @@ For this sample project, we went for the first option where the user macro is ha
 To reproduce hardening this project, run the following: 
 
 ```bash
+# export tag to v0.12 because currently mpw-two-a tag doesn't have a docker image.
 export OPENLANE_TAG=v0.12
 # Run openlane to harden user_proj_example
 make user_proj_example
