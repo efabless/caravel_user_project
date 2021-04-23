@@ -9,4 +9,4 @@ Fill this README with your caravel user project documentation.
 
 ---
 
-Refer to [README](docs/source/README.md) for this sample project documentation. 
+Refer to [README](docs/source/index.rst) for this sample project documentation. 
