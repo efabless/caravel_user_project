@@ -69,7 +69,10 @@ module user_proj_example #(
     // IOs
     input  [`MPRJ_IO_PADS-1:0] io_in,
     output [`MPRJ_IO_PADS-1:0] io_out,
-    output [`MPRJ_IO_PADS-1:0] io_oeb
+    output [`MPRJ_IO_PADS-1:0] io_oeb,
+
+    // IRQ
+    output [2:0] irq
 );
     wire clk;
     wire rst;
@@ -95,6 +98,9 @@ module user_proj_example #(
     // IO
     assign io_out = count;
     assign io_oeb = {(`MPRJ_IO_PADS-1){rst}};
+
+    // IRQ
+    assigin irq = 3'b000;	// Unused
 
     // LA
     assign la_data_out = {{(127-BITS){1'b0}}, count};
