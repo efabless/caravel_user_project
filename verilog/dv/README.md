@@ -141,7 +141,7 @@ The directory includes four tests for the counter user-project example:
 	reg_mprj_io_7 =  GPIO_MODE_USER_STD_OUTPUT;
 	```
 
-* Then, the firmware applies the pad configuration by enabling the serial transfer on the shift register responsible for configuring the pads and waits till the transfer is done. 
+* Then, the firmware applies the pad configuration by enabling the serial transfer on the shift register responsible for configuring the pads and waits until the transfer is done. 
 	```c
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
@@ -161,7 +161,7 @@ The directory includes four tests for the counter user-project example:
 
 ### Logic Analyzer Test 1
  
-* This test is meant to verify that we can use the logic analyzer to monitor and write signals in the user project from the management SoC. Firstly, the firmware configures the upper 16 pads as outputs from the managent SoC, applies the configuration by initiating the serial transfer on the shift register, and writes a value on the pads to indicate the end of pad configuration and the start of the test. 
+* This test is meant to verify that we can use the logic analyzer to monitor and write signals in the user project from the management SoC. Firstly, the firmware configures the upper 16 of the first 32 GPIO pads as outputs from the managent SoC, applies the configuration by initiating the serial transfer on the shift register, and writes a value on the pads to indicate the end of pad configuration and the start of the test. 
 
 	```c
 	reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -176,29 +176,29 @@ The directory includes four tests for the counter user-project example:
 	reg_mprj_datal = 0xAB400000;
 	```
 	
-	This is done to flag the start/success/end of the simulation by writing a certain value to the I/Os which is then checked by the testbench to know whether the test started/ended/succeeded. For example, the testbench checks on the value of the upper 16 I/Os, if it is equal to `16'hAB40`, then we know that the test started.  
+	This is done to flag the start/success/end of the simulation by writing a certain value to the I/Os which is then checked by the testbench to know whether the test started/ended/succeeded. For example, the testbench checks on the value of the upper 16 of 32 I/Os, if it is equal to `16'hAB40`, then we know that the test started.  
 
 	```verilog
 	wait(checkbits == 16'hAB40);
 	$display("LA Test 1 started");
 	```
 	
-* Then, the firmware configures the logic analyzer (LA) probes `[31:0]` as inputs to the management SoC to monitor the counter value, and configure the logic analyzer probes `[63:32]` as outputs from the management SoC (inputs to the user_proj_example) to set the counter initial value. This is done by writing to the LA probes enable registers. 
+* Then, the firmware configures the logic analyzer (LA) probes `[31:0]` as inputs to the management SoC to monitor the counter value, and configure the logic analyzer probes `[63:32]` as outputs from the management SoC (inputs to the user_proj_example) to set the counter initial value. This is done by writing to the LA probes enable registers.   Note that the output enable is active low, while the input enable is active high.  Every channel can be configured for input, output, or both independently.
 
  
 	```c
-	reg_la0_ena = 0xFFFFFFFF;    // [31:0] inputs to mgmt_soc
-	reg_la1_ena = 0x00000000;    // [63:32] outputs from mgmt_soc
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0] inputs to mgmt_soc
+	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32] outputs from mgmt_soc
 	```
 
 * Then, the firmware writes an initial value to the counter through the LA1 data register. Afte writing the counter value, the LA probes are disabled to prevent the counter write signal from being always set to one. 
 
 	```c
 	reg_la1_data = 0x00000000;     // Write zero to count register
-	reg_la1_ena  = 0xFFFFFFFF;     // Disable probes
+	reg_la1_oenb  = reg_la1_iena = 0xFFFFFFFF;     // Disable probes
 	```
 
-* The firmware then waits till the count value exceeds 500 and flags the success of the test by writing `0xAB41` to the upper 16 pads.  The firmware reads the count value through the logic analyzer probes `[31:0]` 
+* The firmware then waits until the count value exceeds 500 and flags the success of the test by writing `0xAB41` to pads 16 to 31.  The firmware reads the count value through the logic analyzer probes `[31:0]` 
 
 	```c
 	if (reg_la0_data > 0x1F4) {	     // Read current count value through LA
@@ -212,7 +212,7 @@ The directory includes four tests for the counter user-project example:
 * This test is meant to verify that we can drive the clock and reset signals for the user project example through the logic analyzer. In the [user_proj_example](verilog/rtl/user_proj_example.v) RTL, the clock can either be supplied from the `wb_clk_i` or from the logic analyzer through bit `[64]`. Similarly, the reset signal can be supplied from the `wb_rst_i` or through `LA[65]`.  The firmware configures the clk and reset LA probes as outputs from the management SoC by writing to the LA2 enable register. 
 
 	```c
-	reg_la2_ena  = 0xFFFFFFFC; 	// Configure LA[64] LA[65] as outputs from the cpu
+	reg_la2_oenb  = reg_la2_iena = 0xFFFFFFFC; 	// Configure LA[64] LA[65] as outputs from the cpu
 	```
 
 * Then, the firmware supplies both clock reset signals through LA2 data register. First, both are set to one. Then, reset is driven to zero and the clock is toggled for 6 clock cycles. 
