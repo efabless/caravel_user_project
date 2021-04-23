@@ -60,7 +60,9 @@ To setup caravel, run the following:
     # By default, CARAVEL_ROOT is set to $(pwd)/caravel
     # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
     # Disable submodule installation if needed by, run "export SUBMODULE=0"
-
+    
+    clone https://github.com/efabless/caravel_user_project.git
+    cd caravel_user_project
     make install
 
 To update the installed caravel to the latest, run:
