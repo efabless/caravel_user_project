@@ -100,7 +100,7 @@ module user_proj_example #(
     assign io_oeb = {(`MPRJ_IO_PADS-1){rst}};
 
     // IRQ
-    assigin irq = 3'b000;	// Unused
+    assign irq = 3'b000;	// Unused
 
     // LA
     assign la_data_out = {{(127-BITS){1'b0}}, count};
