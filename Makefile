@@ -76,12 +76,12 @@ ifeq ($(SUBMODULE),1)
 	@echo "Installing $(CARAVEL_NAME) as a submodule.."
 	@if [ ! -d $(CARAVEL_ROOT) ]; then git submodule add --name $(CARAVEL_NAME) $(CARAVEL_REPO) $(CARAVEL_ROOT); fi
 	@git submodule update --init
-	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_HASH)
+	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_COMMIT)
 	$(MAKE) simlink
 else
 	@echo "Installing $(CARAVEL_NAME).."
 	@git clone $(CARAVEL_REPO) $(CARAVEL_ROOT)
-	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_HASH)
+	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_COMMIT)
 endif
 
 # Create symbolic links to caravel's main files
