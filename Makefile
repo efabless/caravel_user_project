@@ -24,11 +24,11 @@ CARAVEL_LITE?=1
 ifeq ($(CARAVEL_LITE),1) 
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
-	CARAVEL_BRANCH := main
+	CARAVEL_COMMIT := main
 else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel 
-	CARAVEL_BRANCH := master
+	CARAVEL_COMMIT := master
 endif
 
 # Install caravel as submodule, (1): submodule, (0): clone
@@ -79,12 +79,12 @@ ifeq ($(SUBMODULE),1)
 	$(eval CARAVEL_PATH := $(shell realpath --relative-to=$(shell pwd) $(CARAVEL_ROOT)))
 	@if [ ! -d $(CARAVEL_ROOT) ]; then git submodule add --name $(CARAVEL_NAME) $(CARAVEL_REPO) $(CARAVEL_PATH); fi
 	@git submodule update --init
-	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_HASH)
+	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_COMMIT)
 	$(MAKE) simlink
 else
 	@echo "Installing $(CARAVEL_NAME).."
 	@git clone $(CARAVEL_REPO) $(CARAVEL_ROOT)
-	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_HASH)
+	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_COMMIT)
 endif
 
 # Create symbolic links to caravel's main files
