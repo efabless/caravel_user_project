@@ -83,16 +83,16 @@ void main()
         while (reg_mprj_xfer == 1);
 
 	// Configure All LA probes as inputs to the cpu 
-	reg_la0_ena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_ena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_ena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_ena = 0xFFFFFFFF;    // [127:96]
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
+	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
+	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
 
 	// Flag start of the test
 	reg_mprj_datal = 0xAB600000;
 
 	// Configure LA[64] LA[65] as outputs from the cpu
-	reg_la2_ena  = 0xFFFFFFFC; 
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFC; 
 
 	// Set clk & reset to one
 	reg_la2_data = 0x00000003;
