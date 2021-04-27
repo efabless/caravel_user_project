@@ -131,7 +131,7 @@ For this sample project, the user macro makes use of:
 -  The LA probes for supplying an optional reset and clock signals and
    for setting an initial value for the count register.
 
--  The wishbeone port for reading/writing the count value through the
+-  The wishbone port for reading/writing the count value through the
    management SoC.
 
 Refer to `user\_project\_wrapper <verilog/rtl/user_project_wrapper.v>`__
