@@ -61,7 +61,7 @@ To setup caravel, run the following:
     # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
     # Disable submodule installation if needed by, run "export SUBMODULE=0"
     
-    clone https://github.com/efabless/caravel_user_project.git
+    git clone https://github.com/efabless/caravel_user_project.git
     cd caravel_user_project
     make install
 
@@ -207,9 +207,9 @@ Then, you will need to install openlane by
 
 .. code:: bash
 
-    export OPENLANE_ROOT=<openlane-installation-path>
-    export OPENLANE_TAG=v0.12
-    make openlane
+   export OPENLANE_ROOT=<openlane-installation-path>
+   export OPENLANE_TAG=<latest-openlane-tag>
+   make openlane
 
 For detailed instructions on how to install openlane and the pdk refer
 to
@@ -242,11 +242,85 @@ To reproduce hardening this project, run the following:
 
 .. code:: bash
 
-    export OPENLANE_TAG=v0.12
-    # Run openlane to harden user_proj_example
-    make user_proj_example
-    # Run openlane to harden user_project_wrapper
-    make user_project_wrapper
+   # Run openlane to harden user_proj_example
+   make user_proj_example
+   # Run openlane to harden user_project_wrapper
+   make user_project_wrapper
+
+
+
+Running Open-MPW Precheck Locally
+=================================
+
+You can install the precheck by running 
+
+.. code:: bash
+
+   # By default, this install the precheck in your home directory
+   # To change the installtion path, run "export PRECHECK_ROOT=<precheck installation path>" 
+   make precheck
+
+This will clone the precheck repo and pull the latest precheck docker image. 
+
+
+Then, you can run the precheck by running
+
+.. code:: bash
+
+   make run-precheck
+
+This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
+
+
+Other Miscellaneous Targets
+============================
+
+The makefile provides a number of useful that targets that can run LVS, DRC, and XOR checks on your hardened design outside of openlane's flow. 
+
+Run ```make help`` to display available targets. 
+
+Specify CARAVEL_ROOT before running any of the following, 
+
+.. code:: bash
+   
+   export CARAVEL_ROOT=<path-to-caravel>
+
+Run lvs on spice, 
+
+.. code:: bash
+
+   make lvs-<macro_name>
+
+Run lvs on the gds, 
+
+.. code:: bash
+
+   make lvs-gds-<macro_name>
+
+Run lvs on the maglef, 
+
+.. code:: bash
+
+   make lvs-maglef-<macro_name>
+
+Run drc using magic,
+
+.. code:: bash
+
+   make drc-<macro_name>
+
+Run antenna check using magic, 
+
+.. code:: bash
+
+   make antenna-<macro_name>
+
+Run XOR check, 
+
+.. code:: bash
+
+   make xor-wrapper
+
 
 Checklist for Open-MPW Submission
 =================================
