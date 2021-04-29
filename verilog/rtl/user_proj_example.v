@@ -64,7 +64,7 @@ module user_proj_example #(
     // Logic Analyzer Signals
     input  [127:0] la_data_in,
     output [127:0] la_data_out,
-    input  [127:0] la_oenb,
+    input  [127:0] la_oen,
 
     // IOs
     input  [`MPRJ_IO_PADS-1:0] io_in,
@@ -105,10 +105,10 @@ module user_proj_example #(
     // LA
     assign la_data_out = {{(127-BITS){1'b0}}, count};
     // Assuming LA probes [63:32] are for controlling the count register  
-    assign la_write = ~la_oenb[63:32] & ~{BITS{valid}};
+    assign la_write = ~la_oen[63:32] & ~{BITS{valid}};
     // Assuming LA probes [65:64] are for controlling the count clk & reset  
-    assign clk = (~la_oenb[64]) ? la_data_in[64]: wb_clk_i;
-    assign rst = (~la_oenb[65]) ? la_data_in[65]: wb_rst_i;
+    assign clk = (~la_oen[64]) ? la_data_in[64]: wb_clk_i;
+    assign rst = (~la_oen[65]) ? la_data_in[65]: wb_rst_i;
 
     counter #(
         .BITS(BITS)
