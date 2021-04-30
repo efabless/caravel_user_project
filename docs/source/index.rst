@@ -208,9 +208,9 @@ Then, run the RTL and GL simulation by
     make verify-<dv-pattern>
 
 The verilog test-benches are under this directory
-`verilog/dv <verilog/dv>`__. For more information on setting up the
+`verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__. For more information on setting up the
 simulation environment and the available testbenches for this sample
-project, refer to `README <verilog/dv/README.md>`__.
+project, refer to `README <https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md>`__.
 
 Hardening the User Project Macro using Openlane
 ===============================================
