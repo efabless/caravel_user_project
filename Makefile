@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 CARAVEL_ROOT?=$(PWD)/caravel
-PRECHECK_ROOT?=${HOME}/precheck
+PRECHECK_ROOT?=${HOME}/open_mpw_precheck
 SIM ?= RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
@@ -56,7 +56,7 @@ DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
 TARGET_PATH=$(shell pwd)
 PDK_PATH=${PDK_ROOT}/sky130A
 VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
-$(DV_PATTERNS): verify-% : 
+$(DV_PATTERNS): verify-% : ./verilog/dv/% 
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_PATH}:${PDK_PATH} \
                 -v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
                 -e TARGET_PATH=${TARGET_PATH} -e PDK_PATH=${PDK_PATH} \
@@ -145,7 +145,12 @@ run-precheck: check-precheck check-pdk check-caravel
 	$(eval TARGET_PATH := $(shell pwd))
 	cd $(PRECHECK_ROOT) && \
 	docker run -v $(PRECHECK_ROOT):/usr/local/bin -v $(TARGET_PATH):$(TARGET_PATH) -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
-	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/open_mpw_precheck:latest bash -c "python3 open_mpw_prechecker.py --pdk_root $(PDK_ROOT) --target_path $(TARGET_PATH) -c $(CARAVEL_ROOT)"
+	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/open_mpw_precheck:latest bash -c "python3 open_mpw_prechecker.py --pdk_root $(PDK_ROOT) --target_path $(TARGET_PATH) -rfc -c $(CARAVEL_ROOT) "
+
+# Install PDK using OL's Docker Image
+.PHONY: pdk-nonnative
+pdk-nonnative: skywater-pdk skywater-library skywater-timing open_pdks
+	docker run --rm -v $(PDK_ROOT):$(PDK_ROOT) -v $(pwd):/user_project -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -e PDK_ROOT=$(PDK_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/openlane:current sh -c "cd $(CARAVEL_ROOT); make build-pdk; make gen-sources"
 
 # Clean 
 .PHONY: clean
@@ -170,3 +175,8 @@ check-pdk:
 		echo "PDK Root: "$(PDK_ROOT)" doesn't exists, please export the correct path before running make. "; \
 		exit 1; \
 	fi
+
+.PHONY: help
+help:
+	cd $(CARAVEL_ROOT) && $(MAKE) help 
+	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'

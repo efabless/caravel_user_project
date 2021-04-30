@@ -50,6 +50,11 @@ utilities like IO pads, logic analyzer probes, and wishbone port. The
 repo also demonstrates the recommended structure for the open-mpw
 shuttle projects.
 
+Prerequisites
+=============
+
+- Docker
+
 Install Caravel
 ===============
 
@@ -147,18 +152,14 @@ for more information.
 
    </p>
 
-Running Full Chip Simulation
-============================
+Building the PDK 
+================
 
-First, you will need to install the simulation environment, by
+You have two options for building the pdk: 
 
-.. code:: bash
+- Build the pdk natively. 
 
-    make simenv
-
-This will pull a docker image with the needed tools installed.
-
-Then, you will need to build the pdk to obtain the verilog views.
+Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
 
 .. code:: bash
 
@@ -170,6 +171,30 @@ Then, you will need to build the pdk to obtain the verilog views.
     # if you do not set them, they default to the last verfied commits tested for this project
 
     make pdk
+
+- Build the pdk using openlane's docker image which has magic installed. 
+
+.. code:: bash
+
+    # set PDK_ROOT to the path you wish to use for the pdk
+    export PDK_ROOT=<pdk-installation-path>
+
+    # you can optionally specify skywater-pdk and open-pdks commit used
+    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
+    # if you do not set them, they default to the last verfied commits tested for this project
+
+    make pdk-nonnative
+
+Running Full Chip Simulation
+============================
+
+First, you will need to install the simulation environment, by
+
+.. code:: bash
+
+    make simenv
+
+This will pull a docker image with the needed tools installed.
 
 Then, run the RTL and GL simulation by
 
@@ -190,20 +215,7 @@ project, refer to `README <verilog/dv/README.md>`__.
 Hardening the User Project Macro using Openlane
 ===============================================
 
-First, you will need to install the pdk by
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-
-    # you can optionally specify skywater-pdk and open-pdks commit used
-    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
-    # if you do not set them, they default to the last verfied commits tested for this project
-
-    make pdk
-
-Then, you will need to install openlane by
+You will need to install openlane by running the following
 
 .. code:: bash
 
@@ -248,7 +260,6 @@ To reproduce hardening this project, run the following:
    make user_project_wrapper
 
 
-
 Running Open-MPW Precheck Locally
 =================================
 
@@ -264,9 +275,12 @@ This will clone the precheck repo and pull the latest precheck docker image.
 
 
 Then, you can run the precheck by running
+Specify CARAVEL_ROOT before running any of the following, 
 
 .. code:: bash
 
+   # export CARAVEL_ROOT=$(pwd)/caravel 
+   export CARAVEL_ROOT=<path-to-caravel>
    make run-precheck
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
@@ -282,7 +296,8 @@ Run ```make help`` to display available targets.
 Specify CARAVEL_ROOT before running any of the following, 
 
 .. code:: bash
-   
+
+   # export CARAVEL_ROOT=$(pwd)/caravel 
    export CARAVEL_ROOT=<path-to-caravel>
 
 Run lvs on spice, 
