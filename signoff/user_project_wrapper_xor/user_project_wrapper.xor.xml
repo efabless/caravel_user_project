@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <report-database>
- <description>XOR caravel/gds/user_project_wrapper_empty_erased.gds vs. gds/user_project_wrapper_erased.gds</description>
+ <description>XOR /home/ma/ef/caravel_user_project/caravel/gds/user_project_wrapper_empty_erased.gds vs. gds/user_project_wrapper_erased.gds</description>
  <original-file/>
- <generator>drc: script='caravel/utils/xor.drc'</generator>
+ <generator>drc: script='/home/ma/ef/caravel_user_project/caravel/utils/xor.drc'</generator>
  <top-cell>user_project_wrapper</top-cell>
  <tags>
  </tags>

@@ -81,7 +81,7 @@ void main()
 	reg_mprj_datal = 0xAB600000;
 
     reg_mprj_slave = 0x00002710;
-    if (reg_mprj_slave == 0x274F) {
+    if (reg_mprj_slave == 0x2752) {
         reg_mprj_datal = 0xAB610000;
     } else {
         reg_mprj_datal = 0xAB600000;

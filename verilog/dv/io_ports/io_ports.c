@@ -64,9 +64,9 @@ void main()
 	reg_mprj_io_6 =  GPIO_MODE_USER_STD_OUTPUT;
 	reg_mprj_io_7 =  GPIO_MODE_USER_STD_OUTPUT;
 
-        /* Apply configuration */
-        reg_mprj_xfer = 1;
-        while (reg_mprj_xfer == 1);
+	/* Apply configuration */
+	reg_mprj_xfer = 1;
+	while (reg_mprj_xfer == 1);
 
 }
 
