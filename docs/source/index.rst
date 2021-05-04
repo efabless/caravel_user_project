@@ -62,8 +62,10 @@ To setup caravel, run the following:
 
 .. code:: bash
 
-    # By default, CARAVEL_ROOT is set to $(pwd)/caravel
+    # If unset, CARAVEL_ROOT will be set to $(pwd)/caravel
     # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
+    export CARAVEL_ROOT=$(pwd)/caravel
+
     # Disable submodule installation if needed by, run "export SUBMODULE=0"
     
     git clone https://github.com/efabless/caravel_user_project.git
