@@ -2,8 +2,10 @@
 
 module control_logic (
     input clk_in,
-    input [] packet,
-    
+    input [(`RAM_BLOCKS*6+48):0] packet,
+    input [31:0] read_data,
+    output [31:0] read_to_pico    
+    /*
     //R/W Port Pins
     output [`RAM_BLOCKS-1:0] chip_select,
     output [`RAM_BLOCKS-1:0] write_en,
@@ -15,7 +17,14 @@ module control_logic (
     output read_enable,
     output [7:0] read_addr,
     input [31:0] read_data
+    */
 );
+
+    //Store input in a register 
+    reg [(`RAM_BLOCKS*6+48):0] in_packet;
+    always @(posedge clk_in) begin
+        in_packet <= packet
+    end
 
     //Instantiating storage module instance and
     //connecting ports
