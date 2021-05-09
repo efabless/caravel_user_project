@@ -4,24 +4,24 @@
 module control_logic (
     input clk_in,
     input [:0] packet,
-    input [31:0] read_data,
-    output [31:0] write_to_sram,
     output [31:0] read_to_pico    
 );
 
 parameter NUM_SRAM = 2 ;
 
 //Connections for R/W Port
-reg [$clog2(NUM_SRAM) - 1:0] chip_select;
+reg [1:0] chip_select;
 reg csb0_reg;
 reg web0_reg;
 reg [3:0] wmask_reg;
 reg [7:0] addr0_reg;
 reg [31:0] din_reg;
+reg [31:0] dout0_reg;
 
 //Connections for RO Port
 reg csb1_reg;
 reg [7:0] addr1_reg;
+reg[31:0] dout1_reg;
 
 //Capture data from pico into registers
 always @ (packet) begin
@@ -62,7 +62,6 @@ wire [7:0] sram1_addr1;
 wire [31:0] sram1_dout1;
 
 //Create SRAM Blocks
-
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0 (
         // MGMT R/W port
         .clk0(clk_in), 
@@ -95,8 +94,49 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1 (
         .dout1(sram1_dout1)
     );
 
+//Demux values from flops into SRAM
 always @ (chip_select) begin
-    //Demux values from flops into SRAM
+    case 1'b0: begin
+        sram0_csb0 <= csb0_reg;
+        sram0_web0 <= web0_reg;
+        sram0_wmask <= wmask_reg;
+        sram0_addr0 <= addr0_reg;
+        sram0_din <= din_reg;
+
+        sram0_csb1 <= csb1_reg;
+        sram0_addr1 <= addr1_reg;
+    end
+
+    case 1'b1: begin
+        sram1_csb0 <= csb0_reg;
+        sram1_web0 <= web0_reg;
+        sram1_wmask <= wmask_reg;
+        sram1_addr0 <= addr0_reg;
+        sram1_din <= din_reg;
+
+        sram1_csb1 <= csb1_reg;
+        sram1_addr1 <= addr1_reg;
+    end
+end
+
+//Mux in values read from SRAM
+always @ (sram0_dout0, sram0_dout1, sram1_dout0, sram1_dout1) begin
+    if(chip_select == 0) begin
+       dout0_reg <= sram0_dout0;
+       dout1_reg <= sram0_dout1;
+    end
+    else if(chip_select == 1) begin
+       dout0_reg <= sram1_dout0;
+       dout1_reg <= sram1_dout1;
+    end
+end
+
+//Forward read data to Picorv
+always @ (*) begin
+    if (port == 0)
+        read_to_pico <= dout0_reg;
+    else if (port == 1)
+        read_to_pico <= dout1_reg;
 end
 
 endmodule
