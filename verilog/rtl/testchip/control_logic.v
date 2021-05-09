@@ -3,14 +3,14 @@
 
 module control_logic (
     input clk_in,
-    input [:0] packet,
+    input [55:0] packet,
     output [31:0] read_to_pico    
 );
 
 parameter NUM_SRAM = 2 ;
 
 //Connections for R/W Port
-reg [1:0] chip_select;
+reg chip_select;
 reg csb0_reg;
 reg web0_reg;
 reg [3:0] wmask_reg;
@@ -25,15 +25,15 @@ reg[31:0] dout1_reg;
 
 //Capture data from pico into registers
 always @ (packet) begin
-    chip_select <= packet[]
-    csb0_reg <= packet[]
-    web0_reg <= packet[]
-    wmask_reg <= packet[]
-    addr0_reg <= packet[]
-    din_reg <= packet[]
+    chip_select <= packet[55]
+    csb0_reg <= packet[54]
+    web0_reg <= packet[53]
+    wmask_reg <= packet[52:49]
+    addr0_reg <= packet[48:41]
+    din_reg <= packet[40:9]
     
-    csb1_reg <= packet[]
-    addr1_reg <= packet[]
+    csb1_reg <= packet[8]
+    addr1_reg <= packet[7:0]
 end
 
 //Declare wires to connect to SRAM ports
