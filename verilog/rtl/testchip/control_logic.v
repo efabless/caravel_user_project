@@ -1,142 +1,123 @@
 `default_nettype  none
 `include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
-module control_logic (
+module SRAM_IN (
     input clk_in,
     input [55:0] packet,
-    output [31:0] read_to_pico    
+    
+    //SRAM0
+    //RW Port
+    output mgmt_ena0, 
+    output mgmt_wen0, 
+    output [3:0] mgmt_wen_mask0,  
+    output [7:0] mgmt_addr0,
+    output [31:0] mgmt_wdata0,
+
+    //RO Port
+    output mgmt_ena_ro0,
+    output [7:0] mgmt_addr_ro0,
+
+    //SRAM1
+    output mgmt_ena1, 
+    output mgmt_wen1, 
+    output [3:0] mgmt_wen_mask1,  
+    output [7:0] mgmt_addr1,
+    output [31:0] mgmt_wdata1,
+
+    //RO Port
+    output mgmt_ena_ro1,
+    output [7:0] mgmt_addr_ro1
 );
 
-parameter NUM_SRAM = 2 ;
-
-//Connections for R/W Port
+reg [54:0] in_packet;
 reg chip_select;
-reg csb0_reg;
-reg web0_reg;
-reg [3:0] wmask_reg;
-reg [7:0] addr0_reg;
-reg [31:0] din_reg;
-reg [31:0] dout0_reg;
 
-//Connections for RO Port
-reg csb1_reg;
-reg [7:0] addr1_reg;
-reg[31:0] dout1_reg;
+reg sram0_csb0; 
+reg sram0_web0; 
+reg [3:0] sram0_wmask;  
+reg [7:0] sram0_addr0;
+reg [31:0] sram0_wdata;
 
-//Capture data from pico into registers
-always @ (packet) begin
-    chip_select <= packet[55]
-    csb0_reg <= packet[54]
-    web0_reg <= packet[53]
-    wmask_reg <= packet[52:49]
-    addr0_reg <= packet[48:41]
-    din_reg <= packet[40:9]
-    
-    csb1_reg <= packet[8]
-    addr1_reg <= packet[7:0]
+reg sram0_csb1;
+reg [7:0] sram0_addr1;
+
+reg sram1_csb0; 
+reg sram1_web0; 
+reg [3:0] sram1_wmask;  
+reg [7:0] sram1_addr0;
+reg [31:0] sram1_wdata;
+
+reg sram1_csb1;
+reg [7:0] sram1_addr1;
+
+always @(packet) begin
+    in_packet <= packet[54:0];
+    chip_select <= packet[55];
 end
 
-//Declare wires to connect to SRAM ports
-//SRAM0
-wire sram0_csb0;
-wire sram0_web0;
-wire [3:0] sram0_wmask;
-wire [7:0] sram0_addr0;
-wire [31:0] sram0_din;
-wire [31:0] sram0_dout0;
+//Forward input bits to proper SRAM and
+//0's to other SRAM pins
+always @(in_packet, chip_select) begin
+    case(chip_select)
+        1'b0 : begin
+            sram0_csb0 = in_packet[54];
+            sram0_web0 = in_packet[53];
+            sram0_wmask = in_packet[52:49];
+            sram0_addr0 = in_packet[48:41];
+            sram0_wdata = in_packet[40:9];
+            sram0_csb1 = in_packet[8];
+            sram0_addr1 = in_packet[7:0];
 
-wire sram0_csb1;
-wire [7:0] sram0_addr1;
-wire [31:0] sram0_dout1;
+            sram1_csb0 = 0;
+            sram1_web0 = 0;
+            sram1_wmask = 0;
+            sram1_addr0 = 0;
+            sram1_wdata = 0;
+            sram1_csb1 = 0;
+            sram1_addr1 = 0;
+        end 
 
-//SRAM1
-wire sram1_csb0;
-wire sram1_web0;
-wire [3:0] sram1_wmask;
-wire [7:0] sram1_addr0;
-wire [31:0] sram1_din;
-wire [31:0] sram1_dout0;
+        1'b1 : begin
+            sram1_csb0 = in_packet[54];
+            sram1_web0 = in_packet[53];
+            sram1_wmask = in_packet[52:49];
+            sram1_addr0 = in_packet[48:41];
+            sram1_wdata = in_packet[40:9];
+            sram1_csb1 = in_packet[8];
+            sram1_addr1 = in_packet[7:0];
 
-wire sram1_csb1;
-wire [7:0] sram1_addr1;
-wire [31:0] sram1_dout1;
+            sram0_csb0 = 0;
+            sram0_web0 = 0;
+            sram0_wmask = 0;
+            sram0_addr0 = 0;
+            sram0_wdata = 0;
+            sram0_csb1 = 0;
+            sram0_addr1 = 0;
+        end
 
-//Create SRAM Blocks
-sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0 (
-        // MGMT R/W port
-        .clk0(clk_in), 
-        .csb0(sram0_csb0),   
-        .web0(sram0_web0),  
-        .wmask0(sram0_wmask),
-        .addr0(sram0_addr0),
-        .din0(sram0_din),
-        .dout0(sram0_dout0),
-        // MGMT RO port
-        .clk1(clk_in),
-        .csb1(sram0_csb1), 
-        .addr1(sram0_addr1),
-        .dout1(sram0_dout1)
-    );
-
-sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1 (
-        // MGMT R/W port
-        .clk0(clk_in), 
-        .csb0(sram1_csb0),   
-        .web0(sram1_web0),  
-        .wmask0(sram1_wmask),
-        .addr0(sram1_addr0),
-        .din0(sram1_din),
-        .dout0(sram1_dout0),
-        // MGMT RO port
-        .clk1(clk_in),
-        .csb1(sram1_csb1), 
-        .addr1(sram1_addr1),
-        .dout1(sram1_dout1)
-    );
-
-//Demux values from flops into SRAM
-always @ (chip_select) begin
-    case 1'b0: begin
-        sram0_csb0 <= csb0_reg;
-        sram0_web0 <= web0_reg;
-        sram0_wmask <= wmask_reg;
-        sram0_addr0 <= addr0_reg;
-        sram0_din <= din_reg;
-
-        sram0_csb1 <= csb1_reg;
-        sram0_addr1 <= addr1_reg;
-    end
-
-    case 1'b1: begin
-        sram1_csb0 <= csb0_reg;
-        sram1_web0 <= web0_reg;
-        sram1_wmask <= wmask_reg;
-        sram1_addr0 <= addr0_reg;
-        sram1_din <= din_reg;
-
-        sram1_csb1 <= csb1_reg;
-        sram1_addr1 <= addr1_reg;
-    end
+    endcase
 end
 
-//Mux in values read from SRAM
-always @ (sram0_dout0, sram0_dout1, sram1_dout0, sram1_dout1) begin
-    if(chip_select == 0) begin
-       dout0_reg <= sram0_dout0;
-       dout1_reg <= sram0_dout1;
-    end
-    else if(chip_select == 1) begin
-       dout0_reg <= sram1_dout0;
-       dout1_reg <= sram1_dout1;
-    end
-end
+always @(*) begin
+    //Connect output to SRAM0
+    mgmt_ena0 = sram0_csb0;
+    mgmt_wen0 = sram0_web0;
+    mgmt_wen_mask0 = sram0_wmask;
+    mgmt_addr0 = sram0_addr0;
+    mgmt_wdata0 = sram0_wdata;
 
-//Forward read data to Picorv
-always @ (*) begin
-    if (port == 0)
-        read_to_pico <= dout0_reg;
-    else if (port == 1)
-        read_to_pico <= dout1_reg;
+    mgmt_ena_ro0 = sram0_csb1;
+    mgmt_addr_ro0 = sram0_addr1;
+
+    //Connect output to SRAM1
+    mgmt_ena1 = sram1_csb0; 
+    mgmt_wen1 = sram1_web0;
+    mgmt_wen_mask1 = sram1_wmask;
+    mgmt_addr1 = sram1_addr0;
+    mgmt_wdata1 = sram1_wdata;
+
+    mgmt_ena_ro1 = sram1_csb1;
+    mgmt_addr_ro1 = sram1_addr1;
 end
 
 endmodule
