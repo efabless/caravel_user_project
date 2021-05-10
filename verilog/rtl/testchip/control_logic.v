@@ -3,7 +3,8 @@
 
 module SRAM_IN (
     input clk_in,
-    input [55:0] packet,
+    input chip_select,
+    input [54:0] packet,
     
     //SRAM0
     //RW Port
@@ -30,7 +31,7 @@ module SRAM_IN (
 );
 
 reg [54:0] in_packet;
-reg chip_select;
+reg cs;
 
 reg sram0_csb0; 
 reg sram0_web0; 
@@ -52,13 +53,13 @@ reg [7:0] sram1_addr1;
 
 always @(packet) begin
     in_packet <= packet[54:0];
-    chip_select <= packet[55];
+    cs <= chip_select;
 end
 
 //Forward input bits to proper SRAM and
 //0's to other SRAM pins
 always @(in_packet, chip_select) begin
-    case(chip_select)
+    case(cs)
         1'b0 : begin
             sram0_csb0 = in_packet[54];
             sram0_web0 = in_packet[53];
@@ -119,6 +120,13 @@ always @(*) begin
     mgmt_ena_ro1 = sram1_csb1;
     mgmt_addr_ro1 = sram1_addr1;
 end
+endmodule
+
+module SRAM_OUT(
+    input [31:0] sram0_data,
+    input [31:0] sram1_data,
+    output [31:0] sram_contents
+);
 
 endmodule
 `default_nettype wire 
