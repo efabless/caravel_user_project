@@ -136,6 +136,5 @@ always @(sram0_data, sram1_data) begin
     else if(chip_select == 1)
         sram_contents = sram1_data;
 end
-
 endmodule
 `default_nettype wire 
