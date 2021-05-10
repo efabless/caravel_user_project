@@ -3,7 +3,6 @@
 
 module SRAM_IN (
     input clk_in,
-    input chip_select,
     input [54:0] packet,
     
     //SRAM0
@@ -31,7 +30,7 @@ module SRAM_IN (
 );
 
 reg [54:0] in_packet;
-reg cs;
+reg chip_select;
 
 reg sram0_csb0; 
 reg sram0_web0; 
@@ -53,13 +52,13 @@ reg [7:0] sram1_addr1;
 
 always @(packet) begin
     in_packet <= packet[54:0];
-    cs <= chip_select;
+    chip_select <= packet[55];
 end
 
 //Forward input bits to proper SRAM and
 //0's to other SRAM pins
 always @(in_packet, chip_select) begin
-    case(cs)
+    case(chip_select)
         1'b0 : begin
             sram0_csb0 = in_packet[54];
             sram0_web0 = in_packet[53];
@@ -123,10 +122,20 @@ end
 endmodule
 
 module SRAM_OUT(
+    input chip_select,
     input [31:0] sram0_data,
     input [31:0] sram1_data,
     output [31:0] sram_contents
 );
+
+//Mux read values from different SRAMS
+//and send to picorv
+always @(sram0_data, sram1_data) begin
+    if(chip_select == 0)
+        sram_contents = sram0_data;
+    else if(chip_select == 1)
+        sram_contents = sram1_data;
+end
 
 endmodule
 `default_nettype wire 
