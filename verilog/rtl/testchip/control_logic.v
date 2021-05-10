@@ -3,6 +3,7 @@
 
 module SRAM_IN (
     input clk_in,
+    input chip_select,
     input [54:0] packet,
     
     //SRAM0
@@ -30,17 +31,17 @@ module SRAM_IN (
 );
 
 reg [54:0] in_packet;
-reg chip_select;
+reg cs;
 
 always @(packet) begin
     in_packet <= packet[54:0];
-    chip_select <= packet[55];
+    cs <= chip_select;
 end
 
 //Forward input bits to proper SRAM and
 //0's to other SRAM pins
-always @(in_packet, chip_select) begin
-    case(chip_select)
+always @(in_packet, cs) begin
+    case(cs)
     1'b0 : begin
             mgmt_ena0 <= in_packet[54];
             mgmt_wen0 <= in_packet[53];
