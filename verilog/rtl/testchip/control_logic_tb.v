@@ -108,20 +108,19 @@ initial begin
     clk_in = 1;
     chip_select = 0;
     //Write 1 to address 0 in SRAM 0
-    assign packet_bits = {1'b1, 1'b1, 4'd0, 8'd0, 32'd1, 1'b0, 8'd0}
-    packet = packet_bits
+    //assign packet_bits = {1'b1, 1'b1, 4'd0, 8'd0, 32'd1, 1'b0, 8'd0}
+    packet = {1'b1, 1'b1, 4'd0, 8'd0, 32'd1, 1'b0, 8'd0};
 
-    #20
     //Check each output is being sent properly to SRAM
-    `assert(mgmt_ena0, 1'b1)
-    `assert(mgmt_wen0, 1'b1)
-    `assert(mgmt_wen_mask0, 4'd0)
-    `assert(mgmt_addr0, 8'd0)
-    `assert(mgmt_wdata0, 32'd1)
+    #20 `assert(mgmt_ena0, 1'b1);
+    `assert(mgmt_wen0, 1'b1);
+    `assert(mgmt_wen_mask0, 4'd0);
+    `assert(mgmt_addr0, 8'd0);
+    `assert(mgmt_wdata0, 32'd1);
 
     //RO Port
-    `assert(mgmt_ena_ro0, 1'b0)
-    `assert(mgmt_wen0, 8'd0)
+    `assert(mgmt_ena_ro0, 1'b0);
+    `assert(mgmt_wen0, 8'd0);
 end
 
 endmodule
