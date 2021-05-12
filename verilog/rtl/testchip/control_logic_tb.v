@@ -103,7 +103,8 @@ SRAM_OUT out_control(.chip_select(chip_select),
                      .sram_contents(read_data)
 );
 
-/*
+
+
 initial begin
     $dumpfile("control_logic_tb.vcd")
     //$dumpvars(0, control_logic_tb)
@@ -114,5 +115,5 @@ initial begin
     
     //$display("Test Complete")
 end
-*/
+
 endmodule
