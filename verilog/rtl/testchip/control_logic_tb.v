@@ -104,16 +104,24 @@ SRAM_OUT out_control(.chip_select(chip_select),
 );
 
 
-
 initial begin
-    $dumpfile("control_logic_tb.vcd")
-    //$dumpvars(0, control_logic_tb)
+    clk_in = 1;
+    chip_select = 0;
+    //Write 1 to address 0 in SRAM 0
+    assign packet_bits = {1'b1, 1'b1, 4'd0, 8'd0, 32'd1, 1'b0, 8'd0}
+    packet = packet_bits
 
-    //Pass in inputs
+    #20
+    //Check each output is being sent properly to SRAM
+    `assert(mgmt_ena0, 1'b1)
+    `assert(mgmt_wen0, 1'b1)
+    `assert(mgmt_wen_mask0, 4'd0)
+    `assert(mgmt_addr0, 8'd0)
+    `assert(mgmt_wdata0, 32'd1)
 
-    //Figure out how to "expect" values
-    
-    //$display("Test Complete")
+    //RO Port
+    `assert(mgmt_ena_ro0, 1'b0)
+    `assert(mgmt_wen0, 8'd0)
 end
 
 endmodule
