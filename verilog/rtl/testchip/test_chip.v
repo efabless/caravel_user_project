@@ -2,7 +2,7 @@
 `include "control_logic.v"
 `include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
-module test_chip(
+module TEST_CHIP(
     input clk_in,
     input [55:0] analyzer_packet,
     input [55:0] gpio_packet,
@@ -38,7 +38,7 @@ wire mgmt_ena_ro1;
 wire [7:0] mgmt_addr_ro1;
 wire [31:0] mgmt_rdata_ro1;
 
-
+//Data from SRAMs
 wire [31:0] sram0_data;
 wire [31:0] sram1_data;
 wire [31:0] read_data;
@@ -127,6 +127,8 @@ SRAM_OUT out_control(.chip_select(chip_select),
                      .sram_contents(read_data)
 );
 
-
+always @(read_data) begin
+    sram_data <= read_data;
+end
 endmodule
 `default_nettype wire
