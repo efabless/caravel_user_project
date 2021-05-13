@@ -42,6 +42,8 @@ wire mgmt_ena_ro1;
 wire [7:0] mgmt_addr_ro1;
 wire [31:0] mgmt_rdata_ro1;
 
+wire [31:0] sram0_data;
+wire [31:0] sram1_data;
 wire [31:0] read_data;
 
 //Instantitate port connections
@@ -96,12 +98,26 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM_1 (
     .dout1(mgmt_rdata_ro1)
 );  
 
+SRAM_DATA sram0_out(.csb0(packet[54]),
+          .csb1(packet[8]),
+          .dout0(mgmt_rdata0),
+          .dout1(mgmt_rdata_ro0),
+          .sram_data(sram0_data)
+);
+
+SRAM_DATA sram1_out(.csb0(packet[54]),
+          .csb1(packet[8]),
+          .dout0(mgmt_rdata1),
+          .dout1(mgmt_rdata_ro1),
+          .sram_data(sram1_data)
+);
 
 SRAM_OUT out_control(.chip_select(chip_select),
-                     .sram0_data(mgmt_rdata0),
-                     .sram1_data(mgmt_rdata1),
+                     .sram0_data(sram0_data),
+                     .sram1_data(sram1_data),
                      .sram_contents(read_data)
 );
+
 
 initial begin
     $dumpfile("control_logic_tb.vcd");
@@ -125,6 +141,7 @@ initial begin
     `assert(mgmt_addr_ro0, 8'd0);
 
     #10
+    
     //Read from address 1 in SRAM 0
     packet = {1'b0, 1'b1, 4'd0, 8'd1, 32'd0, 1'b1, 8'd0};
     #10;
@@ -141,7 +158,7 @@ initial begin
     
     #10
     `assert(read_data, 32'd1);
-
+    
     chip_select = 1;
     //Write to address 2 in SRAM 1
     packet = {1'b0, 1'b0, 4'd15, 8'd2, 32'd2, 1'b0, 8'd0};
