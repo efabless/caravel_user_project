@@ -103,24 +103,81 @@ SRAM_OUT out_control(.chip_select(chip_select),
                      .sram_contents(read_data)
 );
 
-
 initial begin
+    $dumpfile("control_logic_tb.vcd");
+    $dumpvars(0, control_logic_tb);
     clk_in = 1;
     chip_select = 0;
-    //Write 1 to address 0 in SRAM 0
-    //assign packet_bits = {1'b1, 1'b1, 4'd0, 8'd0, 32'd1, 1'b0, 8'd0}
-    packet = {1'b1, 1'b1, 4'd0, 8'd0, 32'd1, 1'b0, 8'd0};
+    packet = 55'd0;
+    //Write 1 to address 1 in SRAM 0
+    packet = {1'b0, 1'b0, 4'd15, 8'd1, 32'd1, 1'b0, 8'd0};
 
     //Check each output is being sent properly to SRAM
-    #20 `assert(mgmt_ena0, 1'b1);
-    `assert(mgmt_wen0, 1'b1);
-    `assert(mgmt_wen_mask0, 4'd0);
-    `assert(mgmt_addr0, 8'd0);
+    #10;
+    `assert(mgmt_ena0, 1'b0);
+    `assert(mgmt_wen0, 1'b0);
+    `assert(mgmt_wen_mask0, 4'd15);
+    `assert(mgmt_addr0, 8'd1);
     `assert(mgmt_wdata0, 32'd1);
 
     //RO Port
     `assert(mgmt_ena_ro0, 1'b0);
-    `assert(mgmt_wen0, 8'd0);
+    `assert(mgmt_addr_ro0, 8'd0);
+
+    #10
+    //Read from address 1 in SRAM 0
+    packet = {1'b0, 1'b1, 4'd0, 8'd1, 32'd0, 1'b1, 8'd0};
+    #10;
+    
+    `assert(mgmt_ena0, 1'b0);
+    `assert(mgmt_wen0, 1'b1);
+    `assert(mgmt_wen_mask0, 4'd0);
+    `assert(mgmt_addr0, 8'd1);
+    `assert(mgmt_wdata0, 32'd0);
+
+    //RO Port
+    `assert(mgmt_ena_ro0, 1'b1);
+    `assert(mgmt_addr_ro0, 8'd0);
+    
+    #10
+    `assert(read_data, 32'd1);
+
+    chip_select = 1;
+    //Write to address 2 in SRAM 1
+    packet = {1'b0, 1'b0, 4'd15, 8'd2, 32'd2, 1'b0, 8'd0};
+
+    //Check each output is being sent properly to SRAM
+    #10;
+    `assert(mgmt_ena1, 1'b0);
+    `assert(mgmt_wen1, 1'b0);
+    `assert(mgmt_wen_mask1, 4'd15);
+    `assert(mgmt_addr1, 8'd2);
+    `assert(mgmt_wdata1, 32'd2);
+
+    //RO Port
+    `assert(mgmt_ena_ro1, 1'b0);
+    `assert(mgmt_addr_ro1, 8'd0);
+
+    //Read from address 2 in SRAM 1
+    packet = {1'b0, 1'b1, 4'd0, 8'd2, 32'd0, 1'b1, 8'd0};
+    #10;
+    
+    `assert(mgmt_ena1, 1'b0);
+    `assert(mgmt_wen1, 1'b1);
+    `assert(mgmt_wen_mask1, 4'd0);
+    `assert(mgmt_addr1, 8'd2);
+    `assert(mgmt_wdata1, 32'd0);
+
+    //RO Port
+    `assert(mgmt_ena_ro1, 1'b1);
+    `assert(mgmt_addr_ro1, 8'd0);
+    
+    #10
+    `assert(read_data, 32'd2);
+    #100;$finish;
 end
+
+always 
+    #5 clk_in = !clk_in;
 
 endmodule
