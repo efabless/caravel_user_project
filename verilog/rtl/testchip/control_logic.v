@@ -1,7 +1,6 @@
 `default_nettype  none
-`include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
-module SRAM_IN (
+module SRAM_IN(
     input clk_in,
     input chip_select,
     input [54:0] packet,
@@ -51,8 +50,8 @@ always @(in_packet, cs) begin
             mgmt_ena_ro0 = in_packet[8];
             mgmt_addr_ro0 = in_packet[7:0];
 
-            mgmt_ena1 <= 1'b0;
-            mgmt_wen1 <= 1'b0;
+            mgmt_ena1 <= 1'b1;
+            mgmt_wen1 <= 1'b1;
             mgmt_wen_mask1 <= 4'b0000;
             mgmt_addr1 <= 8'd0;
             mgmt_wdata1 = 32'd0;
@@ -69,8 +68,8 @@ always @(in_packet, cs) begin
             mgmt_ena_ro1 = in_packet[8];
             mgmt_addr_ro1 = in_packet[7:0];
 
-            mgmt_ena0 <= 1'b0;
-            mgmt_wen0 <= 1'b0;
+            mgmt_ena0 <= 1'b1;
+            mgmt_wen0 <= 1'b1;
             mgmt_wen_mask0 <= 4'b0000;
             mgmt_addr0 <= 8'd0;
             mgmt_wdata0 = 32'd0;
@@ -80,6 +79,23 @@ always @(in_packet, cs) begin
 
     endcase
 
+end
+endmodule
+
+module SRAM_DATA(
+    input csb0, 
+    input csb1,
+    input [31:0] dout0,
+    input [31:0] dout1,
+    output reg [31:0] sram_data
+);
+
+//Mux out values from SRAM Ports 
+always @(dout0, dout1) begin
+    if(csb0 == 0)
+        sram_data <= dout0;
+    else if(csb1 == 0)
+        sram_data <= dout1;
 end
 endmodule
 
