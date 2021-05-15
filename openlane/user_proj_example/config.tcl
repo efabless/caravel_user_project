@@ -15,15 +15,24 @@
 
 set script_dir [file dirname [file normalize [info script]]]
 
-set ::env(DESIGN_NAME) user_proj_example
+set ::env(DESIGN_NAME) user_proj
+
 
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+	$script_dir/../../verilog/rtl/user_proj.v \
+	$script_dir/../../verilog/rtl/ecc_registers/register_file.v \
+	$script_dir/../../verilog/rtl/ecc_registers/register_data.v \
+	$script_dir/../../verilog/rtl/ecc_registers/data_verificator.v \
+	$script_dir/../../verilog/rtl/ecc_registers/decoder_output.v \
+	$script_dir/../../verilog/rtl/ecc_registers/parity_calculator.v \
+	$script_dir/../../verilog/rtl/ecc_registers/state_counters.v"
 
 set ::env(CLOCK_PORT) ""
-set ::env(CLOCK_NET) "counter.clk"
+set ::env(CLOCK_NET) "register_file.clk_i"
 set ::env(CLOCK_PERIOD) "10"
+
+
 
 set ::env(FP_SIZING) absolute
 set ::env(DIE_AREA) "0 0 900 600"
@@ -37,5 +46,12 @@ set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 set ::env(PL_BASIC_PLACEMENT) 1
 set ::env(PL_TARGET_DENSITY) 0.05
 
+
+
 # If you're going to use multiple power domains, then keep this disabled.
 set ::env(RUN_CVC) 0
+
+set ::env(ROUTING_OPT_ITERS) 70
+set ::env(ROUTING_CORES) 8
+#set ::env(DETAILED_ROUTER) drcu
+

@@ -24,5 +24,11 @@
     `include "gl/user_proj_example.v"
 `else
     `include "user_project_wrapper.v"
-    `include "user_proj_example.v"
+    `include "ecc_registers/register_file.v"
+    `include "ecc_registers/register_data.v"
+    `include "ecc_registers/data_verificator.v"
+    `include "ecc_registers/decoder_output.v"
+    `include "ecc_registers/parity_calculator.v"
+    `include "ecc_registers/state_counters.v"
+    `include "user_proj.v"
 `endif

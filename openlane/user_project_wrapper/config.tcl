@@ -42,7 +42,13 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+	$script_dir/../../verilog/rtl/user_proj.v \
+	$script_dir/../../verilog/rtl/ecc_registers/register_file.v \
+	$script_dir/../../verilog/rtl/ecc_registers/register_data.v \
+	$script_dir/../../verilog/rtl/ecc_registers/data_verificator.v \
+	$script_dir/../../verilog/rtl/ecc_registers/decoder_output.v \
+	$script_dir/../../verilog/rtl/ecc_registers/parity_calculator.v \
+	$script_dir/../../verilog/rtl/ecc_registers/state_counters.v"
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/user_proj_example.lef"
@@ -67,3 +73,6 @@ set ::env(DIODE_INSERTION_STRATEGY) 0
 set ::env(FILL_INSERTION) 0
 set ::env(TAP_DECAP_INSERTION) 0
 set ::env(CLOCK_TREE_SYNTH) 0
+
+set ::env(MAGIC_DRC_USE_GDS) 0
+set ::env(MAGIC_EXT_USE_GDS) 1
