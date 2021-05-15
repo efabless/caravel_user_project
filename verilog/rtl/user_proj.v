@@ -94,7 +94,7 @@ module user_proj #(
 
     wire valid;
     wire [3:0] wstrb;
-    //wire [WORD_SIZE-1:0] la_write;
+    wire [WORD_SIZE-1:0] la_write;
 
     // WB MI A
     assign valid = wbs_cyc_i && wbs_stb_i; 

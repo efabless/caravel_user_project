@@ -74,5 +74,5 @@ set ::env(FILL_INSERTION) 0
 set ::env(TAP_DECAP_INSERTION) 0
 set ::env(CLOCK_TREE_SYNTH) 0
 
-set ::env(MAGIC_DRC_USE_GDS) 0
-set ::env(MAGIC_EXT_USE_GDS) 1
+#set ::env(MAGIC_DRC_USE_GDS) 0
+#set ::env(MAGIC_EXT_USE_GDS) 1
