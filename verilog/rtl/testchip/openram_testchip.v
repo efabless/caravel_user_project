@@ -1,6 +1,6 @@
 `default_nettype  none
-`include "control_logic.v"
-`include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
+//`include "control_logic.v"
+//`include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
 module openram_testchip(
     input clk_in,
