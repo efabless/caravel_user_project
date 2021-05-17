@@ -7,9 +7,9 @@ set ::env(FP_PDN_CORE_RING) 0
 set ::env(GLB_RT_MAXLAYER) 5
 
 set ::env(VERILOG_FILES) "\
-	$script_dir/src/control_logic.v \
-	$script_dir/src/openram_testchip.v \ 
-	$script_dir/src/sky130_sram_1kbyte_1rw1r_32x256_8.v"
+	$script_dir/../../verilog/rtl/testchip/control_logic.v \
+	$script_dir/../../verilog/rtl/testchip/openram_testchip.v \ 
+	$script_dir/../../verilog/rtl/testchip/sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
 set ::env(CLOCK_PORT) "clk_in"
 set ::env(CLOCK_PERIOD) "10"
