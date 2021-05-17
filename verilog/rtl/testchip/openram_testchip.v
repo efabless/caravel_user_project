@@ -3,12 +3,35 @@
 //`include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
 module openram_testchip(
+
+  `ifdef USE_POWER_PINS
+      vdda1,        // User area 1 3.3V supply
+      vdda2,        // User area 2 3.3V supply
+      vssa1,        // User area 1 analog ground
+      vssa2,        // User area 2 analog ground
+      vccd1,        // User area 1 1.8V supply
+      vccd2,        // User area 2 1.8v supply
+      vssd1,        // User area 1 digital ground
+      vssd2,        // User area 2 digital ground
+  `endif
+
     input clk_in,
     input [55:0] analyzer_packet,
     input [55:0] gpio_packet,
     input in_select,  
     output reg [31:0] sram_data
 );
+  `ifdef USE_POWER_PINS
+      inout vdda1;        // User area 1 3.3V supply
+      inout vdda2;        // User area 2 3.3V supply
+      inout vssa1;        // User area 1 analog ground
+      inout vssa2;        // User area 2 analog ground
+      inout vccd1;        // User area 1 1.8V supply
+      inout vccd2;        // User area 2 1.8v supply
+      inout vssd1;        // User area 1 digital ground
+      inout vssd2;        // User area 2 digital ground
+  `endif
+
 
 reg [54:0] packet;
 reg chip_select;
