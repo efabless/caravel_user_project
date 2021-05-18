@@ -46,10 +46,12 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/testchip/openram_testchip.v"
 
 set ::env(EXTRA_LEFS) "\
+	$script_dir/../../lef/user_project_wrapper.lef \
 	$script_dir/../../lef/openram_testchip.lef \
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
+	$script_dir/../../gds/user_project_wrapper.gds \
 	$script_dir/../../gds/openram_testchip.gds \
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.gds"
 
