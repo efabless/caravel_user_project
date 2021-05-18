@@ -117,16 +117,20 @@ module SRAM_DATA(
 );
 
 //Mux out values from SRAM Ports 
+//always @(posedge clk_in or rst) begin
+always @(dout0 or dout1) begin
+    if(csb0 == 0)
+        sram_data <= dout0;
+    else if(csb1 == 0)
+        sram_data <= dout1;
+end
+
 always @(posedge clk_in or rst) begin
     if(rst) begin
         sram_data <= 32'd0;
     end
-    
     else begin
-        if(csb0 == 0)
-            sram_data <= dout0;
-        else if(csb1 == 0)
-            sram_data <= dout1;
+        sram_data <= sram_data;
     end
 end
 endmodule
@@ -142,16 +146,22 @@ module SRAM_OUT(
 
 //Mux read values from different SRAMS
 //and send to picorv
+always @(sram0_data or sram1_data) begin
+    if(chip_select == 0)
+        sram_contents <= sram0_data;
+    else if(chip_select == 1)
+        sram_contents <= sram1_data;
+end
+
 always @(posedge clk_in or rst) begin
     if(rst) begin
         sram_contents <= 32'd0;
     end
     else begin
-        if(chip_select == 0)
-            sram_contents <= sram0_data;
-        else if(chip_select == 1)
-            sram_contents <= sram1_data;
+        sram_contents <= sram_contents;
     end
 end
+
+
 endmodule
 `default_nettype wire 
