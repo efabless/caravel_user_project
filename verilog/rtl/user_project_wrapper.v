@@ -124,6 +124,65 @@ user_proj_example mprj (
     .irq(user_irq)
 );
 
+wire [54:0] sram0_connections;
+wire [54:0] sram1_connections;
+
+wire [31:0] sram0_rw_out;
+wire [31:0] sram0_ro_out;
+wire [31:0] sram1_rw_out;
+wire [31:0] sram1_ro_out;
+
+openram_testchip CONTROL_LOGIC(
+    .clock(wb_clk_i),
+    .reset(wb_rst_i),
+    .io_logical_analyzer_packet(la_data_in[55:0]),
+    .io_gpio_packet(la_data_in[55:0]),
+    .io_in_select(la_data_in[56]),
+    .io_sram0_rw_in(sram0_rw_out),
+    .io_sram0_r0_in(sram0_ro_out),
+    .io_sram1_rw_in(sram1_rw_out),
+    .io_sram1_ro_in(sram1_ro_out),
+    .io_sram0_connections(sram0_connections),
+    .io_sram1_connections(sram1_connections),
+    .io_sram_data(la_data_out[31:0])
+)
+
+sky130_sram_1kbyte_1rw1r_32x256_8
+     #(// FIXME: This delay is arbitrary.
+       .DELAY (3),
+       .VERBOSE (0))
+   SRAM0
+     (
+      .clk0   (wb_clk_i),
+      .csb0   (sram0_connections[54]),
+      .web0   (sram0_connections[53]),
+      .wmask0 (sram0_connections[52:49]),
+      .addr0  (sram0_connections[48:41]),
+      .din0   (sram0_connections[40:9]),
+      .dout0  (sram0_rw_out),
+      .clk1   (wb_clk_i),
+      .csb1   (sram0_connections[8]),
+      .addr1  (sram0_connections[7:0]),
+      .dout1  (sram0_ro_out));
+
+sky130_sram_1kbyte_1rw1r_32x256_8
+     #(// FIXME: This delay is arbitrary.
+       .DELAY (3),
+       .VERBOSE (0))
+   SRAM1
+     (
+      .clk0   (wb_clk_i),
+      .csb0   (sram1_connections[54]),
+      .web0   (sram1_connections[53]),
+      .wmask0 (sram1_connections[52:49]),
+      .addr0  (sram1_connections[48:41]),
+      .din0   (sram1_connections[40:9]),
+      .dout0  (sram1_rw_out),
+      .clk1   (wb_clk_i),
+      .csb1   (sram1_connections[8]),
+      .addr1  (sram1_connections[7:0]),
+      .dout1  (sram1_ro_out));      
+
 endmodule	// user_project_wrapper
 
 `default_nettype wire
