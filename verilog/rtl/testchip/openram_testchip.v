@@ -1,37 +1,26 @@
 `default_nettype  none
-//`include "control_logic.v"
-//`include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
+`include "control_logic.v"
+`include "sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
 module openram_testchip(
-
-  `ifdef USE_POWER_PINS
-      vdda1,        // User area 1 3.3V supply
-      vdda2,        // User area 2 3.3V supply
-      vssa1,        // User area 1 analog ground
-      vssa2,        // User area 2 analog ground
-      vccd1,        // User area 1 1.8V supply
-      vccd2,        // User area 2 1.8v supply
-      vssd1,        // User area 1 digital ground
-      vssd2,        // User area 2 digital ground
-  `endif
-
     input clk_in,
+    input rst,
     input [55:0] analyzer_packet,
     input [55:0] gpio_packet,
     input in_select,  
     output reg [31:0] sram_data
-);
-  `ifdef USE_POWER_PINS
-      inout vdda1;        // User area 1 3.3V supply
-      inout vdda2;        // User area 2 3.3V supply
-      inout vssa1;        // User area 1 analog ground
-      inout vssa2;        // User area 2 analog ground
-      inout vccd1;        // User area 1 1.8V supply
-      inout vccd2;        // User area 2 1.8v supply
-      inout vssd1;        // User area 1 digital ground
-      inout vssd2;        // User area 2 digital ground
+   
+    `ifdef USE_POWER_PINS
+      inout vdda1,        // User area 1 3.3V supply
+      inout vdda2,        // User area 2 3.3V supply
+      inout vssa1,        // User area 1 analog ground
+      inout vssa2,        // User area 2 analog ground
+      inout vccd1,        // User area 1 1.8V supply
+      inout vccd2,        // User area 2 1.8v supply
+      inout vssd1,        // User area 1 digital ground
+      inout vssd2,        // User area 2 digital ground
   `endif
-
+);
 
 reg [54:0] packet;
 reg chip_select;
@@ -67,19 +56,27 @@ wire [31:0] sram1_data;
 wire [31:0] read_data;
 
 //Read in input packet from analyzer or GPIO pins
-always @(analyzer_packet, gpio_packet) begin
-    if(in_select == 0) begin
-       chip_select <= analyzer_packet[55]; 
-       packet <= analyzer_packet[54:0];
+always @(posedge clk_in or rst) begin
+    if(rst) begin
+        chip_select <= 0;
+        packet <= 0;
     end
-    else if(in_select == 1) begin
-       chip_select <= gpio_packet[55]; 
-       packet <= gpio_packet[54:0];
+    
+    else begin
+        if(in_select == 0) begin
+            chip_select <= analyzer_packet[55]; 
+            packet <= analyzer_packet[54:0];
+        end
+        else if(in_select == 1) begin
+            chip_select <= gpio_packet[55]; 
+            packet <= gpio_packet[54:0];
+        end
     end
 end
 
 //Instantitate port connections
 SRAM_IN in_control(.clk_in(clk_in),
+                   .rst(rst),
                    .chip_select(chip_select),
                    .packet(packet),
                    .mgmt_ena0(mgmt_ena0),
@@ -131,6 +128,7 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM_1 (
 );  
 
 SRAM_DATA sram0_out(.csb0(packet[54]),
+          .rst(rst),
           .csb1(packet[8]),
           .dout0(mgmt_rdata0),
           .dout1(mgmt_rdata_ro0),
@@ -138,6 +136,7 @@ SRAM_DATA sram0_out(.csb0(packet[54]),
 );
 
 SRAM_DATA sram1_out(.csb0(packet[54]),
+          .rst(rst),
           .csb1(packet[8]),
           .dout0(mgmt_rdata1),
           .dout1(mgmt_rdata_ro1),
@@ -145,12 +144,13 @@ SRAM_DATA sram1_out(.csb0(packet[54]),
 );
 
 SRAM_OUT out_control(.chip_select(chip_select),
+                     .rst(rst),
                      .sram0_data(sram0_data),
                      .sram1_data(sram1_data),
                      .sram_contents(read_data)
 );
 
-always @(read_data) begin
+always @(posedge clk_in) begin
     sram_data <= read_data;
 end
 endmodule
