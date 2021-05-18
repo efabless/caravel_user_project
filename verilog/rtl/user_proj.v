@@ -40,7 +40,7 @@ module user_proj #(
     parameter integer REGISTERS = 8,
     parameter integer LINE_SIZE = 128,
     parameter integer ALUOP_SIZE = 4,
-    parameter integer REGDIRSIZE = 4,
+    parameter integer REGDIRSIZE = 3,
     parameter integer ECCBITS = 7,
     parameter integer VERIFICATION_PINS = 2
 )(
@@ -103,7 +103,7 @@ module user_proj #(
     assign wdata = wbs_dat_i;
 
     // IO
-    assign io_out = {6'b000000,output_data};
+    assign io_out = {output_verification,output_data[15:0], 20'b00000000000000000000};//{6'b000000,output_data};
     assign io_oeb = {(`MPRJ_IO_PADS-1){rst}};
 
     // IRQ
@@ -134,7 +134,7 @@ module user_proj #(
         .wstrb_i(wstrb),
         .wdata_i(wdata),
         .data_to_register_i(la_data_in[63:32]),
-        .register_i(la_data_in[5:2]),
+        .register_i(la_data_in[4:2]),
         .wregister_i(la_data_in[1]),
         .rregister_i(la_data_in[0]),
         .store_data_o(output_data),
