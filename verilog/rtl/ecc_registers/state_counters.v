@@ -9,7 +9,9 @@
 
 //***Module***
 module state_counters #(
-        parameter integer WORD_SIZE = 32
+        parameter integer WORD_SIZE = 32,
+        parameter integer VERIFICATION_PINS = 2,
+        parameter integer WHISBONE_MASK_COUNTER = 2
     )
     (
         input  clk_i ,
@@ -17,7 +19,8 @@ module state_counters #(
         input  valid_i, 
         input  [3 : 0] wstrb_i,
         input  [WORD_SIZE -1 : 0] wdata_i,
-        input  [1 : 0] operation_result_i ,
+        input  [WHISBONE_MASK_COUNTER - 1 : 0] whisbone_mask_counter_i,
+        input  [VERIFICATION_PINS - 1 : 0] operation_result_i ,
         input  valid_output_i,
         output  ready_o,
         output [WORD_SIZE - 1 : 0] rdata_o
@@ -53,11 +56,33 @@ module state_counters #(
             end
             if (valid_i) begin
                 ready_o <= 1'b1;
-                rdata_o = ecc_corrected_errors;
-                if (wstrb_i[0]) ecc_corrected_errors[7:0]   <= wdata_i[7:0];
-                if (wstrb_i[1]) ecc_corrected_errors[15:8]  <= wdata_i[15:8];
-                if (wstrb_i[2]) ecc_corrected_errors[23:16] <= wdata_i[23:16];
-                if (wstrb_i[3]) ecc_corrected_errors[31:24] <= wdata_i[31:24];
+                case (whisbone_mask_counter_i)
+                2'b00 : begin
+                        rdata_o = total_reads;
+                        if (wstrb_i[0]) total_reads[7:0]   <= wdata_i[7:0];
+                        if (wstrb_i[1]) total_reads[15:8]  <= wdata_i[15:8];
+                        if (wstrb_i[2]) total_reads[23:16] <= wdata_i[23:16];
+                        if (wstrb_i[3]) total_reads[31:24] <= wdata_i[31:24];
+                        end
+                2'b01: begin
+                        rdata_o = ecc_corrected_errors;
+                        if (wstrb_i[0]) ecc_corrected_errors[7:0]   <= wdata_i[7:0];
+                        if (wstrb_i[1]) ecc_corrected_errors[15:8]  <= wdata_i[15:8];
+                        if (wstrb_i[2]) ecc_corrected_errors[23:16] <= wdata_i[23:16];
+                        if (wstrb_i[3]) ecc_corrected_errors[31:24] <= wdata_i[31:24];
+                        end
+                2'b10: begin
+                        rdata_o = ecc_uncorrected_errors;
+                        if (wstrb_i[0]) ecc_uncorrected_errors[7:0]   <= wdata_i[7:0];
+                        if (wstrb_i[1]) ecc_uncorrected_errors[15:8]  <= wdata_i[15:8];
+                        if (wstrb_i[2]) ecc_uncorrected_errors[23:16] <= wdata_i[23:16];
+                        if (wstrb_i[3]) ecc_uncorrected_errors[31:24] <= wdata_i[31:24];
+                       end
+                2'b11: begin
+                        rdata_o = {WORD_SIZE {1'b0}};
+                       end
+                endcase
+                
             end
         end
     end

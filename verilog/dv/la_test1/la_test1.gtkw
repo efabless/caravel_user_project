@@ -1,0 +1,201 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Thu May 20 07:21:04 2021
+[*]
+[dumpfile] "/home/shuttle/core_radiation_hard/verilog/dv/la_test1/la_test1.vcd"
+[dumpfile_mtime] "Thu May 20 07:12:28 2021"
+[dumpfile_size] 2289251237
+[savefile] "/home/shuttle/core_radiation_hard/verilog/dv/la_test1/la_test1.gtkw"
+[timestart] 1091000000
+[size] 1848 1016
+[pos] -1 -1
+*-27.000000 1444962500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] la_test1_tb.
+[treeopen] la_test1_tb.uut.
+[treeopen] la_test1_tb.uut.mprj.
+[treeopen] la_test1_tb.uut.mprj.mprj.
+[treeopen] la_test1_tb.uut.mprj.mprj.register_file.
+[treeopen] la_test1_tb.uut.mprj.mprj.register_file.inst_RD.
+[sst_width] 279
+[signals_width] 222
+[sst_expanded] 1
+[sst_vpaned_height] 289
+@200
+-TOP MODULE
+@28
+[color] 5
+la_test1_tb.uut.mprj.mprj.register_file.clk_i
+la_test1_tb.uut.mprj.mprj.register_file.rst_i
+@24
+[color] 4
+la_test1_tb.uut.mprj.mprj.register_file.data_to_register_i[31:0]
+[color] 2
+la_test1_tb.uut.mprj.mprj.register_file.register_i[2:0]
+@28
+[color] 3
+la_test1_tb.uut.mprj.mprj.register_file.wregister_i
+[color] 3
+la_test1_tb.uut.mprj.mprj.register_file.rregister_i
+@24
+[color] 1
+la_test1_tb.uut.mprj.mprj.register_file.store_data_o[31:0]
+@28
+[color] 2
+la_test1_tb.uut.mprj.mprj.register_file.operation_result_o[1:0]
+@200
+-
+-DATA REGISTER
+@24
+[color] 2
+la_test1_tb.uut.mprj.mprj.register_file.inst_RD.register_i[2:0]
+@22
+[color] 1
+la_test1_tb.uut.mprj.mprj.register_file.inst_RD.data_to_register_i[38:0]
+[color] 7
+la_test1_tb.uut.mprj.mprj.register_file.inst_RD.store_data_o[38:0]
+@200
+-
+-DATA VERIFICATOR
+@c00028
+[color] 1
+la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+@28
+[color] 1
+(0)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(1)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(2)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(3)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(4)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(5)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(6)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(7)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(8)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(9)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(10)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(11)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(12)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(13)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(14)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(15)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(16)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(17)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(18)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(19)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(20)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(21)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(22)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(23)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(24)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(25)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(26)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(27)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(28)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(29)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(30)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(31)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(32)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(33)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(34)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(35)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(36)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(37)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+[color] 1
+(38)la_test1_tb.uut.mprj.mprj.register_file.inst_DV.internal_data_i[38:0]
+@1401200
+-group_end
+@28
+[color] 3
+la_test1_tb.uut.mprj.mprj.register_file.inst_DV.operate_i
+[color] 3
+la_test1_tb.uut.mprj.mprj.register_file.inst_DV.valid_output_o
+[color] 2
+la_test1_tb.uut.mprj.mprj.register_file.inst_DV.operation_result_o[1:0]
+@24
+la_test1_tb.uut.mprj.mprj.register_file.inst_DV.store_data_o[31:0]
+@200
+-
+-IO DATA
+@800022
+la_test1_tb.mprj_io[37:0]
+@28
+(0)la_test1_tb.mprj_io[37:0]
+(1)la_test1_tb.mprj_io[37:0]
+(2)la_test1_tb.mprj_io[37:0]
+(3)la_test1_tb.mprj_io[37:0]
+(4)la_test1_tb.mprj_io[37:0]
+(5)la_test1_tb.mprj_io[37:0]
+(6)la_test1_tb.mprj_io[37:0]
+(7)la_test1_tb.mprj_io[37:0]
+(8)la_test1_tb.mprj_io[37:0]
+(9)la_test1_tb.mprj_io[37:0]
+(10)la_test1_tb.mprj_io[37:0]
+(11)la_test1_tb.mprj_io[37:0]
+(12)la_test1_tb.mprj_io[37:0]
+(13)la_test1_tb.mprj_io[37:0]
+(14)la_test1_tb.mprj_io[37:0]
+(15)la_test1_tb.mprj_io[37:0]
+@29
+(16)la_test1_tb.mprj_io[37:0]
+@28
+(17)la_test1_tb.mprj_io[37:0]
+(18)la_test1_tb.mprj_io[37:0]
+(19)la_test1_tb.mprj_io[37:0]
+(20)la_test1_tb.mprj_io[37:0]
+(21)la_test1_tb.mprj_io[37:0]
+(22)la_test1_tb.mprj_io[37:0]
+(23)la_test1_tb.mprj_io[37:0]
+(24)la_test1_tb.mprj_io[37:0]
+(25)la_test1_tb.mprj_io[37:0]
+(26)la_test1_tb.mprj_io[37:0]
+(27)la_test1_tb.mprj_io[37:0]
+(28)la_test1_tb.mprj_io[37:0]
+(29)la_test1_tb.mprj_io[37:0]
+(30)la_test1_tb.mprj_io[37:0]
+(31)la_test1_tb.mprj_io[37:0]
+(32)la_test1_tb.mprj_io[37:0]
+(33)la_test1_tb.mprj_io[37:0]
+(34)la_test1_tb.mprj_io[37:0]
+(35)la_test1_tb.mprj_io[37:0]
+(36)la_test1_tb.mprj_io[37:0]
+(37)la_test1_tb.mprj_io[37:0]
+@1001200
+-group_end
+[pattern_trace] 1
+[pattern_trace] 0

@@ -9,13 +9,13 @@
 //***Module***
 module data_verificator #(
         parameter integer WORD_SIZE = 32,
-        parameter integer ECCBITS = 7
+        parameter integer ECCBITS = 7,
+        parameter integer VERIFICATION_PINS = 2
     )
     (
-        input  [WORD_SIZE - 1 : 0] internal_data_i ,
-        input  [ECCBITS - 1 : 0] parity_bits_i ,
+        input  [WORD_SIZE + ECCBITS- 1 : 0] internal_data_i ,
         input  operate_i ,
-        output reg [1 : 0] operation_result_o ,
+        output reg [VERIFICATION_PINS - 1 : 0] operation_result_o ,
         output reg [WORD_SIZE - 1 : 0] store_data_o ,
         output reg valid_output_o 
     );
@@ -27,30 +27,87 @@ reg [1:0] state_of_data;
     reg valid_output;
     reg [WORD_SIZE-1:0] data_store;
     reg [WORD_SIZE + ECCBITS -1:0] correction_stage;
-    wire [WORD_SIZE + ECCBITS -1:0] data_representation;
+    wire [WORD_SIZE + ECCBITS  :0] data_representation;
     wire [ECCBITS -1:0] parity_bits;
 
-    assign parity_bits[0] = operate_i ? parity_bits_i[0] ^ internal_data_i[0] ^ internal_data_i[1]^ internal_data_i[3] ^ internal_data_i[4]  ^ internal_data_i[6] ^ internal_data_i[8]^ internal_data_i[10] ^ internal_data_i[11] ^ internal_data_i[13]^ internal_data_i[15]^ internal_data_i[17] ^ internal_data_i[19] ^ internal_data_i[21] ^ internal_data_i[23] ^ internal_data_i[25] ^ internal_data_i[26] ^ internal_data_i[28] ^ internal_data_i[30] : 1'b0;
-    assign parity_bits[1] = operate_i ? parity_bits_i[1] ^ internal_data_i[0] ^ internal_data_i[2]^ internal_data_i[3] ^ internal_data_i[5]  ^ internal_data_i[6] ^ internal_data_i[9]^ internal_data_i[10] ^ internal_data_i[12] ^ internal_data_i[13]^ internal_data_i[16]^ internal_data_i[17] ^ internal_data_i[20] ^ internal_data_i[21] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[27] ^ internal_data_i[28] ^ internal_data_i[31] : 1'b0;
-    assign parity_bits[2] = operate_i ? parity_bits_i[2] ^ internal_data_i[1] ^ internal_data_i[2]^ internal_data_i[3] ^ internal_data_i[7]  ^ internal_data_i[8] ^ internal_data_i[9]^ internal_data_i[10] ^ internal_data_i[14] ^ internal_data_i[15]^ internal_data_i[16]^ internal_data_i[17] ^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[29] ^ internal_data_i[30] ^ internal_data_i[31] : 1'b0;
-    assign parity_bits[3] = operate_i ? parity_bits_i[3] ^ internal_data_i[4] ^ internal_data_i[5]^ internal_data_i[6] ^ internal_data_i[7]  ^ internal_data_i[8] ^ internal_data_i[9]^ internal_data_i[10] ^ internal_data_i[18] ^ internal_data_i[19]^ internal_data_i[20]^ internal_data_i[21] ^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] : 1'b0;
-    assign parity_bits[4] = operate_i ? parity_bits_i[4] ^ internal_data_i[11] ^ internal_data_i[12] ^ internal_data_i[13]^ internal_data_i[14] ^ internal_data_i[15]  ^ internal_data_i[16] ^ internal_data_i[17]^ internal_data_i[18] ^ internal_data_i[19] ^ internal_data_i[20]^ internal_data_i[21]^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] : 1'b0;
-    assign parity_bits[5] = operate_i ? parity_bits_i[5] ^ internal_data_i[26] ^ internal_data_i[27]^ internal_data_i[28] ^ internal_data_i[29]  ^ internal_data_i[30] ^ internal_data_i[31] : 1'b0;
-    assign parity_bits[6] = operate_i ? parity_bits_i[0] ^ parity_bits_i[1] ^ parity_bits_i[2] ^ parity_bits_i[3] ^ parity_bits_i[4] ^ parity_bits_i[5] ^ parity_bits_i[6] ^internal_data_i[0] ^internal_data_i[1] ^ internal_data_i[2] ^ internal_data_i[3] ^ internal_data_i[4]^ internal_data_i[5]^ internal_data_i[6]^ internal_data_i[7]^ internal_data_i[8]^ internal_data_i[9]^ internal_data_i[10]^ internal_data_i[11]^ internal_data_i[12]^ internal_data_i[13]^ internal_data_i[14]^ internal_data_i[15]^ internal_data_i[16]^ internal_data_i[17]^ internal_data_i[18]^ internal_data_i[19]^ internal_data_i[20]^ internal_data_i[21]^ internal_data_i[22]^ internal_data_i[23]^ internal_data_i[24]^ internal_data_i[25]^ internal_data_i[26]^ internal_data_i[27]^ internal_data_i[28]^ internal_data_i[29]^ internal_data_i[30]^ internal_data_i[31] : 1'b0;
+    
+    /*
+    #######################################################################################
+    # Conversion table
+    #######################################################################################
+    Position -> value
+    0:  parity_bits_i[0]
+    1:  parity_bits_i[1]
+    2:  internal_data_i[0]
+    3:  parity_bits_i[2]
+    4:  internal_data_i[1]
+    5:  internal_data_i[2]
+    6:  internal_data_i[3]
+    7:  parity_bits_i[3]
+    8:  internal_data_i[4]
+    9:  internal_data_i[5]
+    10: internal_data_i[6]
+    11: internal_data_i[7]
+    12: internal_data_i[8]
+    13: internal_data_i[9]
+    14: internal_data_i[10]
+    15: parity_bits_i[4]
+    16: internal_data_i[11]
+    17: internal_data_i[12]
+    18: internal_data_i[13]
+    19: internal_data_i[14]
+    20: internal_data_i[15]
+    21: internal_data_i[16]
+    22: internal_data_i[17]
+    23: internal_data_i[18]
+    24: internal_data_i[19]
+    25: internal_data_i[20]
+    26: internal_data_i[21]
+    27: internal_data_i[22]
+    28: internal_data_i[23]
+    29: internal_data_i[24]
+    30: internal_data_i[25]
+    31: parity_bits_i[5]
+    32: internal_data_i[26]
+    33: internal_data_i[27]
+    34: internal_data_i[28]
+    35: internal_data_i[29]
+    36: internal_data_i[30]
+    37: internal_data_i[31]
+    38: parity_bits_i[6]
+    #######################################################################################
+    */
 
-    assign data_representation = {internal_data_i[31],internal_data_i[30],internal_data_i[29],internal_data_i[28],internal_data_i[27],internal_data_i[26],parity_bits_i[5],internal_data_i[25],internal_data_i[24],internal_data_i[23],internal_data_i[22],internal_data_i[21],internal_data_i[20],internal_data_i[19],internal_data_i[18],internal_data_i[17],internal_data_i[16],internal_data_i[15],internal_data_i[14],internal_data_i[13],internal_data_i[12],internal_data_i[11],parity_bits_i[4],internal_data_i[10],internal_data_i[9],internal_data_i[8],internal_data_i[7],internal_data_i[6],internal_data_i[5],internal_data_i[4],parity_bits_i[3],internal_data_i[3],internal_data_i[2],internal_data_i[1],parity_bits_i[2],internal_data_i[0], parity_bits_i[1], parity_bits_i[0],1'b0};
+    
+    assign parity_bits[0] = operate_i ? internal_data_i[0] ^ internal_data_i[2] ^ internal_data_i[4] ^ internal_data_i[6] ^ internal_data_i[8] ^ internal_data_i[10] ^ internal_data_i[12] ^ internal_data_i[14] ^ internal_data_i[16] ^ internal_data_i[18] ^ internal_data_i[20] ^ internal_data_i[22] ^ internal_data_i[24] ^ internal_data_i[26] ^ internal_data_i[28] ^ internal_data_i[30] ^ internal_data_i[32] ^ internal_data_i[34] ^ internal_data_i[36] : 1'b0;
+    //assign parity_bits[0] = operate_i ? parity_bits_i[0] ^ internal_data_i[0] ^ internal_data_i[1]^ internal_data_i[3] ^ internal_data_i[4]  ^ internal_data_i[6] ^ internal_data_i[8]^ internal_data_i[10] ^ internal_data_i[11] ^ internal_data_i[13]^ internal_data_i[15]^ internal_data_i[17] ^ internal_data_i[19] ^ internal_data_i[21] ^ internal_data_i[23] ^ internal_data_i[25] ^ internal_data_i[26] ^ internal_data_i[28] ^ internal_data_i[30] : 1'b0;
+    assign parity_bits[1] = operate_i ? internal_data_i[1] ^ internal_data_i[2] ^ internal_data_i[5] ^ internal_data_i[6] ^ internal_data_i[9] ^ internal_data_i[10] ^ internal_data_i[13] ^ internal_data_i[14] ^ internal_data_i[17] ^ internal_data_i[18] ^ internal_data_i[21] ^ internal_data_i[22] ^ internal_data_i[25] ^ internal_data_i[26] ^ internal_data_i[29] ^ internal_data_i[30] ^ internal_data_i[33] ^ internal_data_i[34]^ internal_data_i[37] : 1'b0; 
+    //assign parity_bits[1] = operate_i ? parity_bits_i[1] ^ internal_data_i[0] ^ internal_data_i[2]^ internal_data_i[3] ^ internal_data_i[5]  ^ internal_data_i[6] ^ internal_data_i[9]^ internal_data_i[10] ^ internal_data_i[12] ^ internal_data_i[13]^ internal_data_i[16]^ internal_data_i[17] ^ internal_data_i[20] ^ internal_data_i[21] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[27] ^ internal_data_i[28] ^ internal_data_i[31] : 1'b0;
+    assign parity_bits[2] = operate_i ? internal_data_i[3] ^ internal_data_i[4] ^ internal_data_i[5] ^ internal_data_i[6] ^ internal_data_i[11] ^ internal_data_i[12] ^ internal_data_i[13] ^ internal_data_i[14] ^ internal_data_i[19] ^ internal_data_i[20] ^ internal_data_i[21] ^ internal_data_i[22] ^ internal_data_i[27] ^ internal_data_i[28] ^ internal_data_i[29] ^ internal_data_i[30] ^ internal_data_i[35] ^ internal_data_i[36] ^ internal_data_i[37] : 1'b0; 
+    //assign parity_bits[2] = operate_i ? parity_bits_i[2] ^ internal_data_i[1] ^ internal_data_i[2]^ internal_data_i[3] ^ internal_data_i[7]  ^ internal_data_i[8] ^ internal_data_i[9]^ internal_data_i[10] ^ internal_data_i[14] ^ internal_data_i[15]^ internal_data_i[16]^ internal_data_i[17] ^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[29] ^ internal_data_i[30] ^ internal_data_i[31] : 1'b0;
+    assign parity_bits[3] = operate_i ? internal_data_i[7] ^ internal_data_i[8] ^ internal_data_i[9] ^ internal_data_i[10] ^ internal_data_i[11] ^ internal_data_i[12] ^ internal_data_i[13] ^ internal_data_i[14] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[26] ^ internal_data_i[27] ^ internal_data_i[28] ^ internal_data_i[29] ^ internal_data_i[30] : 1'b0;              
+    //assign parity_bits[3] = operate_i ? parity_bits_i[3] ^ internal_data_i[4] ^ internal_data_i[5]^ internal_data_i[6] ^ internal_data_i[7]  ^ internal_data_i[8] ^ internal_data_i[9]^ internal_data_i[10] ^ internal_data_i[18] ^ internal_data_i[19]^ internal_data_i[20]^ internal_data_i[21] ^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] : 1'b0;
+    assign parity_bits[4] = operate_i ? internal_data_i[15] ^ internal_data_i[16] ^ internal_data_i[17] ^ internal_data_i[18] ^ internal_data_i[19] ^ internal_data_i[20] ^ internal_data_i[21] ^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[26] ^ internal_data_i[27] ^ internal_data_i[28] ^ internal_data_i[29] ^ internal_data_i[30] : 1'b0;
+    //assign parity_bits[4] = operate_i ? parity_bits_i[4] ^ internal_data_i[11] ^ internal_data_i[12] ^ internal_data_i[13]^ internal_data_i[14] ^ internal_data_i[15]  ^ internal_data_i[16] ^ internal_data_i[17]^ internal_data_i[18] ^ internal_data_i[19] ^ internal_data_i[20]^ internal_data_i[21]^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] : 1'b0;
+    assign parity_bits[5] = operate_i ? internal_data_i[31] ^ internal_data_i[32] ^ internal_data_i[33] ^ internal_data_i[34] ^ internal_data_i[35] ^ internal_data_i[36] ^ internal_data_i[37] : 1'b0;
+    //assign parity_bits[5] = operate_i ? parity_bits_i[5] ^ internal_data_i[26] ^ internal_data_i[27]^ internal_data_i[28] ^ internal_data_i[29]  ^ internal_data_i[30] ^ internal_data_i[31] : 1'b0;
+    assign parity_bits[6] = operate_i ? internal_data_i[0] ^ internal_data_i[1] ^ internal_data_i[3] ^ internal_data_i[7] ^ internal_data_i[15] ^ internal_data_i[31] ^ internal_data_i[38] ^ internal_data_i[2] ^ internal_data_i[4] ^ internal_data_i[5] ^ internal_data_i[6] ^ internal_data_i[8] ^ internal_data_i[9] ^ internal_data_i[10] ^ internal_data_i[11] ^ internal_data_i[12] ^ internal_data_i[13] ^ internal_data_i[14] ^ internal_data_i[16] ^ internal_data_i[17] ^ internal_data_i[18] ^ internal_data_i[19] ^ internal_data_i[20] ^ internal_data_i[21] ^ internal_data_i[22] ^ internal_data_i[23] ^ internal_data_i[24] ^ internal_data_i[25] ^ internal_data_i[26] ^ internal_data_i[27] ^ internal_data_i[28] ^ internal_data_i[29] ^ internal_data_i[30] ^ internal_data_i[32] ^ internal_data_i[33] ^ internal_data_i[34] ^ internal_data_i[35] ^ internal_data_i[36] ^ internal_data_i[37] : 1'b0;      
+    //assign parity_bits[6] = operate_i ? parity_bits_i[0] ^ parity_bits_i[1] ^ parity_bits_i[2] ^ parity_bits_i[3] ^ parity_bits_i[4] ^ parity_bits_i[5] ^ parity_bits_i[6] ^                  internal_data_i[0] ^internal_data_i[1] ^ internal_data_i[2] ^ internal_data_i[3] ^ internal_data_i[4]^ internal_data_i[5]   ^ internal_data_i[6]^ internal_data_i[7]^ internal_data_i[8]^ internal_data_i[9]^ internal_data_i[10]         ^ internal_data_i[11]^ internal_data_i[12]^ internal_data_i[13]^ internal_data_i[14]^ internal_data_i[15]^ internal_data_i[16]^ internal_data_i[17]^ internal_data_i[18]        ^ internal_data_i[19]^ internal_data_i[20]^ internal_data_i[21]^ internal_data_i[22]^ internal_data_i[23]^ internal_data_i[24]^ internal_data_i[25]^ internal_data_i[26]^ internal_data_i[27]         ^ internal_data_i[28]^ internal_data_i[29]^ internal_data_i[30]^ internal_data_i[31] : 1'b0;
+
+    //assign data_representation = {internal_data_i[31],internal_data_i[30],internal_data_i[29],internal_data_i[28],internal_data_i[27],internal_data_i[26],parity_bits_i[5],internal_data_i[25],internal_data_i[24],internal_data_i[23],internal_data_i[22],internal_data_i[21],internal_data_i[20],internal_data_i[19],internal_data_i[18],internal_data_i[17],internal_data_i[16],internal_data_i[15],internal_data_i[14],internal_data_i[13],internal_data_i[12],internal_data_i[11],parity_bits_i[4],internal_data_i[10],internal_data_i[9],internal_data_i[8],internal_data_i[7],internal_data_i[6],internal_data_i[5],internal_data_i[4],parity_bits_i[3],internal_data_i[3],internal_data_i[2],internal_data_i[1],parity_bits_i[2],internal_data_i[0], parity_bits_i[1], parity_bits_i[0],1'b0};
+    assign data_representation = {internal_data_i, 1'b0};
 
     always @(*) begin
         if (operate_i == 1'b1) begin
             if (parity_bits == 7'b0000000) begin
                 state_of_data = 2'b00;
-                data_store = internal_data_i;
+                data_store = {data_representation[38],data_representation[37],data_representation[36],data_representation[35],data_representation[34],data_representation[33],data_representation[31],data_representation[30],data_representation[29],data_representation[28],data_representation[27],data_representation[26],data_representation[25],data_representation[24],data_representation[23],data_representation[22],data_representation[21],data_representation[20],data_representation[19],data_representation[18],data_representation[17],data_representation[15],data_representation[14],data_representation[13],data_representation[12],data_representation[11],data_representation[10],data_representation[9],data_representation[7],data_representation[6],data_representation[5], data_representation[3]};
                 valid_output = 1'b1;
             end
             else begin
                 if (parity_bits[6] == 1'b0) begin
                     state_of_data = 2'b10;
-                    data_store = internal_data_i;
+                    data_store = {data_representation[38],data_representation[37],data_representation[36],data_representation[35],data_representation[34],data_representation[33],data_representation[31],data_representation[30],data_representation[29],data_representation[28],data_representation[27],data_representation[26],data_representation[25],data_representation[24],data_representation[23],data_representation[22],data_representation[21],data_representation[20],data_representation[19],data_representation[18],data_representation[17],data_representation[15],data_representation[14],data_representation[13],data_representation[12],data_representation[11],data_representation[10],data_representation[9],data_representation[7],data_representation[6],data_representation[5], data_representation[3]};
                     valid_output = 1'b1;
                 end
                 else begin

@@ -52,22 +52,22 @@ void main()
 	// logic analyzer probes.
 	// I/O 6 is configured for the UART Tx line
 
-        reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_27 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_26 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_25 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_24 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_23 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_22 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_21 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_20 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_19 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_18 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_17 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_16 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_31 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_30 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_29 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_28 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_27 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_26 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_25 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_24 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_23 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_22 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_21 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_20 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_19 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_18 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_17 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_16 = GPIO_MODE_USER_STD_OUTPUT;
 
         reg_mprj_io_15 = GPIO_MODE_USER_STD_OUTPUT;
         reg_mprj_io_14 = GPIO_MODE_USER_STD_OUTPUT;
@@ -127,28 +127,13 @@ void main()
 	
 	reg_la2_data = 0x00000001;
 	reg_la2_data = 0x00000000;
-	if (reg_la3_data == 0x00000020) {
-		print("Correct\n");
-	}
-	else {
-		print("Error\n");
-	}
 
-	
 
 	reg_la0_data = 0x00000005;
 	reg_la1_data = 0x00000000;
 	
-	
-	
 	reg_la2_data = 0x00000001;
 	reg_la2_data = 0x00000000;
-	if (reg_la3_data == 0x00000010) {
-		print("Correct\n");
-	}
-	else {
-		print("Error\n");
-	}
 
 	reg_mprj_datal = 0xAB410000;
 	print("\n");
