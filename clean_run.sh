@@ -6,3 +6,4 @@ rm -rf mag/*
 rm -rf maglef/*
 rm -rf openlane/*/runs
 rm -rf spi/lvs/*
+rm -rf verilog/gl/user_proj*

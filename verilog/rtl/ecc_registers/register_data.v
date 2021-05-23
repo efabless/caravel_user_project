@@ -1,9 +1,9 @@
 `default_nettype none
 //-----------------------------------------------------
-// Project Name : a.out
-// Function     : Main processor 
+// Project Name : Register File
+// Function     : Rergiter bank data 
 // Description  : This is the main processor
-// Coder        : Jaquer AND VORIXO
+// Coder        : Ivan Rodriguez Ferrandez  AND Alvaro Jover-Alvarez
 
 //***Headers***
 
@@ -13,18 +13,22 @@ module register_data #(
         parameter integer REGISTERS = 32,
         parameter integer REGDIRSIZE = 5,
         parameter integer ECCBITS = 7,
-        parameter integer WHISBONE_MASK_REGISTERS = 3
+        parameter integer WHISBONE_ADR = 32,
+        parameter [31:0]  ADDRBASE     = 32'h3000_0000,
+        parameter [31:0]  REGISTERDATA  = ADDRBASE
     )
     (
+        input  clk_i,
         input  rst_i ,
         input  [WORD_SIZE + ECCBITS - 1 : 0] data_to_register_i ,
         input  [REGDIRSIZE - 1 : 0] register_i ,
-        input  [WHISBONE_MASK_REGISTERS - 1 : 0] whisbone_mask_registers_i,
+        input  [WHISBONE_ADR - 1 : 0] whisbone_addr_i,
         input  wregister_i ,
         input  rregister_i ,
         input  valid_i, 
         input  [3 : 0] wstrb_i,
         input  [WORD_SIZE -1 : 0] wdata_i,
+        input  wbs_we_i,
         output reg [WORD_SIZE + ECCBITS -1: 0] store_data_o ,
         output reg ready_o,
         output reg [WORD_SIZE - 1 : 0] rdata_o
@@ -38,15 +42,8 @@ module register_data #(
     reg [WORD_SIZE + ECCBITS -1:0] r[0:REGISTERS-1];
     wire [ECCBITS - 1:0] parity_bits;
 
-    /*assign  parity_bits[0] =  parity_bits_i[0];
-    assign  parity_bits[1] =  parity_bits_i[1];
-    assign  parity_bits[2] =  parity_bits_i[2];
-    assign  parity_bits[3] =  parity_bits_i[3];
-    assign  parity_bits[4] =  parity_bits_i[4];
-    assign  parity_bits[5] =  parity_bits_i[5];
-    assign  parity_bits[6] =  parity_bits_i[6] ^ parity_bits_i[0] ^ parity_bits_i[1] ^ parity_bits_i[2] ^ parity_bits_i[3] ^ parity_bits_i[4] ^ parity_bits_i[5]  ; 
-    */
     //request
+
     always @(*) begin
         // calculate last parity bit
         if (rst_i) begin
@@ -59,39 +56,65 @@ module register_data #(
             r[5] = {WORD_SIZE + ECCBITS{1'b0}};
             r[6] = {WORD_SIZE + ECCBITS{1'b0}};
             r[7] = {WORD_SIZE + ECCBITS{1'b0}};
-            /*r[8] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[8] = {WORD_SIZE + ECCBITS{1'b0}};
             r[9] = {WORD_SIZE + ECCBITS{1'b0}};
             r[10] = {WORD_SIZE + ECCBITS{1'b0}};
             r[11] = {WORD_SIZE + ECCBITS{1'b0}};
             r[12] = {WORD_SIZE + ECCBITS{1'b0}};
             r[13] = {WORD_SIZE + ECCBITS{1'b0}};
             r[14] = {WORD_SIZE + ECCBITS{1'b0}};
-            r[15] = {WORD_SIZE + ECCBITS{1'b0}};*/
-           
+            r[15] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[16] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[17] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[18] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[19] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[20] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[21] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[22] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[23] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[24] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[25] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[26] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[27] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[28] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[29] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[30] = {WORD_SIZE + ECCBITS{1'b0}};
+            r[31] = {WORD_SIZE + ECCBITS{1'b0}};
+            ready_o <= 1'b0;
             store_data_o = {WORD_SIZE + ECCBITS {1'b0}};
         end
         else if (rregister_i) begin
             store_data_o = r[register_i];
         end
         else if (wregister_i) begin
-            // calculate parity bits
+            // Sore data
             r[register_i] = data_to_register_i;
-            //r[register_i] = {parity_bits[6], internal_data_i[31],internal_data_i[30],internal_data_i[29],internal_data_i[28],internal_data_i[27],internal_data_i[26],parity_bits[5],internal_data_i[25],internal_data_i[24],internal_data_i[23],internal_data_i[22],internal_data_i[21],internal_data_i[20],internal_data_i[19],internal_data_i[18],internal_data_i[17],internal_data_i[16],internal_data_i[15],internal_data_i[14],internal_data_i[13],internal_data_i[12],internal_data_i[11],parity_bits[4],internal_data_i[10],internal_data_i[9],internal_data_i[8],internal_data_i[7],internal_data_i[6],internal_data_i[5],internal_data_i[4],parity_bits[3],internal_data_i[3],internal_data_i[2],internal_data_i[1],parity_bits[2],internal_data_i[0], parity_bits[1], parity_bits[0]};
-            //r[register_i] = {parity_bits, data_to_register_i};
             store_data_o = {WORD_SIZE + ECCBITS {1'b0}}; 
         end
-        if (valid_i) begin
-            ready_o = 1'b1;
-            rdata_o = {r[whisbone_mask_registers_i]};
-            if (wstrb_i[0]) store_data_o[7:0]   = wdata_i[7:0];
-            if (wstrb_i[1]) store_data_o[15:8]  = wdata_i[15:8];
-            if (wstrb_i[2]) store_data_o[23:16] = wdata_i[23:16];
-            if (wstrb_i[3]) store_data_o[31:24] = wdata_i[31:24];
-        end
+
     end
 
-   
-    
-//***Handcrafted Internal logic*** 
-//TODO
+    always @(posedge clk_i) begin
+        if (valid_i) begin
+            case (whisbone_addr_i)
+                REGISTERDATA: begin
+                    ready_o <= 1'b1;
+                    if (wbs_we_i) begin
+                        if (wstrb_i[0]) r[31][7:0]   <= wdata_i[7:0];
+                        if (wstrb_i[1]) r[31][15:8]  <= wdata_i[15:8];
+                        if (wstrb_i[2]) r[31][23:16] <= wdata_i[23:16];
+                        if (wstrb_i[3]) r[31][31:24] <= wdata_i[31:24];
+                    end
+                    else begin
+                        rdata_o <= {r[31][31:0]};
+                    end
+                end
+                ADDRBASE + 4: begin ready_o <= 1'b1; end
+                ADDRBASE + 8: begin ready_o <= 1'b1; end
+                ADDRBASE + 16: begin ready_o <= 1'b1; end
+                default: ready_o <= 1'b0;
+            endcase
+        end
+    end
+        
 endmodule

@@ -15,8 +15,9 @@ module register_file #(
         parameter integer REGISTERS = 32,
         parameter integer REGDIRSIZE = 5,
         parameter integer ECCBITS = 7,
-        parameter integer WHISBONE_MASK = 5,
-        parameter integer VERIFICATION_PINS = 2
+        parameter integer WHISBONE_ADR = 32,
+        parameter integer VERIFICATION_PINS = 2,
+        parameter integer COUNTERSIZE = 8
     )
     (
 
@@ -26,7 +27,8 @@ module register_file #(
         input valid_i,
         input [3:0] wstrb_i,
         input [WORD_SIZE - 1 : 0] wdata_i,
-        input [WHISBONE_MASK - 1 : 0] whisbone_mask_i,
+        input [WHISBONE_ADR - 1 : 0] whisbone_addr_i,
+        input wbs_we_i,
         // end whishbone interface
         input  [WORD_SIZE - 1 : 0] data_to_register_i ,
         input  [REGDIRSIZE - 1 : 0] register_i ,
@@ -62,10 +64,11 @@ module register_file #(
         .REGISTERS (REGISTERS),
         .REGDIRSIZE (REGDIRSIZE),
         .ECCBITS (ECCBITS),
-        .WHISBONE_MASK_REGISTERS (WHISBONE_MASK - 2)
+        .WHISBONE_ADR (WHISBONE_ADR)
 
     )
     inst_RD(
+        .clk_i                     (clk_i ),
         .rst_i                     (rst_i ),
         .data_to_register_i        (data_to_register_PCW_RD),
         .register_i                (register_i ),
@@ -73,8 +76,9 @@ module register_file #(
         .rregister_i               (rregister_i ),
         .valid_i                   (valid_i),
         .wstrb_i                   (wstrb_i),
+        .wbs_we_i                  (wbs_we_i),
         .wdata_i                   (wdata_i),
-        .whisbone_mask_registers_i (whisbone_mask_i[4:2]),
+        .whisbone_addr_i           (whisbone_addr_i),
         .store_data_o              (store_data_RD_DV),
         .ready_o                   (ready_o),
         .rdata_o                   (rdata_o)
@@ -106,7 +110,9 @@ module register_file #(
 
     state_counters #(
         .WORD_SIZE (WORD_SIZE),
-        .VERIFICATION_PINS (VERIFICATION_PINS)
+        .VERIFICATION_PINS (VERIFICATION_PINS),
+        .WHISBONE_ADR (WHISBONE_ADR),
+        .COUNTERSIZE (COUNTERSIZE)
     )
     inst_PMU(
         .clk_i                    (clk_i ),
@@ -114,7 +120,8 @@ module register_file #(
         .valid_i                  (valid_i),
         .wstrb_i                  (wstrb_i),
         .wdata_i                  (wdata_i),
-        .whisbone_mask_counter_i  (whisbone_mask_i[1:0]),
+        .wbs_we_i                 (wbs_we_i),
+        .whisbone_addr_i          (whisbone_addr_i),
         .operation_result_i       (operation_result_DV_PMU),
         .valid_output_i           (valid_output_DV_PMU),
         .ready_o                  (ready_o),

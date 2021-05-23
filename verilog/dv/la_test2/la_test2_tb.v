@@ -20,20 +20,22 @@
 `include "uprj_netlists.v"
 `include "caravel_netlists.v"
 `include "spiflash.v"
+`include "tbuart.v"
 
 module la_test2_tb;
 	reg clock;
-	reg RSTB;
+    reg RSTB;
 	reg CSB;
 
 	reg power1, power2;
 
-    	wire gpio;
-    	wire [37:0] mprj_io;
+    wire gpio;
+	wire uart_tx;
+    wire [37:0] mprj_io;
 	wire [15:0] checkbits;
 
-	assign checkbits = mprj_io[31:16];
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+	assign checkbits  = mprj_io[31:16];
+	assign uart_tx = mprj_io[6];
 
 	always #12.5 clock <= (clock === 1'b0);
 
@@ -41,30 +43,66 @@ module la_test2_tb;
 		clock = 0;
 	end
 
+	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+
 	initial begin
 		$dumpfile("la_test2.vcd");
 		$dumpvars(0, la_test2_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (30) begin
+		repeat (200) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
 		$display("%c[1;31m",27);
 		`ifdef GL
-			$display ("Monitor: Timeout, Test Mega-Project IO (GL) Failed");
+			$display ("Monitor: Timeout, Test LA (GL) Failed");
 		`else
-			$display ("Monitor: Timeout, Test Mega-Project IO (RTL) Failed");
+			$display ("Monitor: Timeout, Test LA (RTL) Failed");
 		`endif
 		$display("%c[0m",27);
 		$finish;
 	end
 
 	initial begin
-		wait(checkbits == 16'h AB60);
-		$display("Monitor: Test 2 MPRJ-Logic Analyzer Started");
-		wait(checkbits == 16'h AB61);
-		$display("Monitor: Test 2 MPRJ-Logic Analyzer Passed");
+		wait(mprj_io[25:20] == 6'd0);
+		$display("LA Test 2 started");
+		wait(mprj_io[25:20] == 6'd1);
+		wait(mprj_io[25:20] == 6'd2);
+		wait(mprj_io[25:20] == 6'd3);
+		wait(mprj_io[25:20] == 6'd4);
+		wait(mprj_io[25:20] == 6'd5);
+		wait(mprj_io[25:20] == 6'd6);
+		wait(mprj_io[25:20] == 6'd7);
+		wait(mprj_io[25:20] == 6'd8);
+		wait(mprj_io[25:20] == 6'd9);
+		wait(mprj_io[25:20] == 6'd10);
+		wait(mprj_io[25:20] == 6'd11);
+		wait(mprj_io[25:20] == 6'd12);
+		wait(mprj_io[25:20] == 6'd13);
+		wait(mprj_io[25:20] == 6'd14);
+		wait(mprj_io[25:20] == 6'd15);
+		wait(mprj_io[25:20] == 6'd16);
+		wait(mprj_io[25:20] == 6'd17);
+		wait(mprj_io[25:20] == 6'd18);
+		wait(mprj_io[25:20] == 6'd19);
+		wait(mprj_io[25:20] == 6'd20);
+		wait(mprj_io[25:20] == 6'd21);
+		wait(mprj_io[25:20] == 6'd22);
+		wait(mprj_io[25:20] == 6'd23);
+		wait(mprj_io[25:20] == 6'd24);
+		wait(mprj_io[25:20] == 6'd25);
+		wait(mprj_io[25:20] == 6'd26);
+		wait(mprj_io[25:20] == 6'd27);
+		wait(mprj_io[25:20] == 6'd28);
+		wait(mprj_io[25:20] == 6'd29);
+		wait(mprj_io[25:20] == 6'd30);
+		wait(mprj_io[25:20] == 6'd31);
+		wait(mprj_io[25:20] == 6'd32);
+		
+		$display("LA Test 2 Finish correctly");
+		//wait(checkbits == 16'h0002);
+		#10000;
 		$finish;
 	end
 
@@ -131,8 +169,13 @@ module la_test2_tb;
 		.clk(flash_clk),
 		.io0(flash_io0),
 		.io1(flash_io1),
-		.io2(),
-		.io3()
+		.io2(),			// not used
+		.io3()			// not used
+	);
+
+	// Testbench UART
+	tbuart tbuart (
+		.ser_rx(uart_tx)
 	);
 
 endmodule

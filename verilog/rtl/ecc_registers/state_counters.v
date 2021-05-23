@@ -11,7 +11,10 @@
 module state_counters #(
         parameter integer WORD_SIZE = 32,
         parameter integer VERIFICATION_PINS = 2,
-        parameter integer WHISBONE_MASK_COUNTER = 2
+        parameter integer WHISBONE_ADR = 32,
+        parameter integer COUNTERSIZE = 32,
+        parameter [31:0]  ADDRBASE     = 32'h3000_0000,
+        parameter [31:0]  COUNTERDATA  = ADDRBASE + 4
     )
     (
         input  clk_i ,
@@ -19,9 +22,10 @@ module state_counters #(
         input  valid_i, 
         input  [3 : 0] wstrb_i,
         input  [WORD_SIZE -1 : 0] wdata_i,
-        input  [WHISBONE_MASK_COUNTER - 1 : 0] whisbone_mask_counter_i,
+        input  [WHISBONE_ADR - 1 : 0] whisbone_addr_i,
         input  [VERIFICATION_PINS - 1 : 0] operation_result_i ,
         input  valid_output_i,
+        input  wbs_we_i,
         output  ready_o,
         output [WORD_SIZE - 1 : 0] rdata_o
     );
@@ -30,9 +34,9 @@ module state_counters #(
 
 
 //***Dumped Internal logic***
-    reg [WORD_SIZE-1:0] ecc_corrected_errors;
-    reg [WORD_SIZE-1:0] ecc_uncorrected_errors;
-    reg [WORD_SIZE-1:0] total_reads;
+    reg [COUNTERSIZE-1:0] ecc_corrected_errors;
+    reg [COUNTERSIZE-1:0] ecc_uncorrected_errors;
+    reg [COUNTERSIZE-1:0] total_reads;
     reg ready_o;
     reg [WORD_SIZE-1:0] rdata_o;
 
@@ -43,6 +47,7 @@ module state_counters #(
             total_reads <= {WORD_SIZE {1'b0}}; 
             ecc_uncorrected_errors <= {WORD_SIZE {1'b0}}; 
             ecc_corrected_errors <= {WORD_SIZE {1'b0}}; 
+            ready_o <= 1'b0;
         end
         else begin
             if (valid_output_i == 1'b1) begin
@@ -55,32 +60,49 @@ module state_counters #(
                 end
             end
             if (valid_i) begin
-                ready_o <= 1'b1;
-                case (whisbone_mask_counter_i)
-                2'b00 : begin
-                        rdata_o = total_reads;
-                        if (wstrb_i[0]) total_reads[7:0]   <= wdata_i[7:0];
-                        if (wstrb_i[1]) total_reads[15:8]  <= wdata_i[15:8];
-                        if (wstrb_i[2]) total_reads[23:16] <= wdata_i[23:16];
-                        if (wstrb_i[3]) total_reads[31:24] <= wdata_i[31:24];
+                case (whisbone_addr_i)
+                COUNTERDATA : begin
+                        ready_o <= 1'b1;
+                        if (wbs_we_i) begin
+                            if (wstrb_i[0]) total_reads[7:0]   <= wdata_i[7:0];
+                            if (wstrb_i[1]) total_reads[15:8]  <= wdata_i[15:8];
+                            if (wstrb_i[2]) total_reads[23:16] <= wdata_i[23:16];
+                            if (wstrb_i[3]) total_reads[31:24] <= wdata_i[31:24];
                         end
-                2'b01: begin
+                        else begin
+                            rdata_o = total_reads;
+                        end
+                    end
+                COUNTERDATA + 4: begin
+                        ready_o <= 1'b1;
                         rdata_o = ecc_corrected_errors;
-                        if (wstrb_i[0]) ecc_corrected_errors[7:0]   <= wdata_i[7:0];
-                        if (wstrb_i[1]) ecc_corrected_errors[15:8]  <= wdata_i[15:8];
-                        if (wstrb_i[2]) ecc_corrected_errors[23:16] <= wdata_i[23:16];
-                        if (wstrb_i[3]) ecc_corrected_errors[31:24] <= wdata_i[31:24];
+                        if (wbs_we_i) begin
+                            if (wstrb_i[0]) ecc_corrected_errors[7:0]   <= wdata_i[7:0];
+                            if (wstrb_i[1]) ecc_corrected_errors[15:8]  <= wdata_i[15:8];
+                            if (wstrb_i[2]) ecc_corrected_errors[23:16] <= wdata_i[23:16];
+                            if (wstrb_i[3]) ecc_corrected_errors[31:24] <= wdata_i[31:24];
                         end
-                2'b10: begin
-                        rdata_o = ecc_uncorrected_errors;
-                        if (wstrb_i[0]) ecc_uncorrected_errors[7:0]   <= wdata_i[7:0];
-                        if (wstrb_i[1]) ecc_uncorrected_errors[15:8]  <= wdata_i[15:8];
-                        if (wstrb_i[2]) ecc_uncorrected_errors[23:16] <= wdata_i[23:16];
-                        if (wstrb_i[3]) ecc_uncorrected_errors[31:24] <= wdata_i[31:24];
-                       end
-                2'b11: begin
-                        rdata_o = {WORD_SIZE {1'b0}};
-                       end
+                        else begin
+                            rdata_o = ecc_corrected_errors;
+                        end
+                    end
+                COUNTERDATA + 8: begin
+                        ready_o <= 1'b1;
+                        if (wbs_we_i) begin
+                            if (wstrb_i[0]) ecc_uncorrected_errors[7:0]   <= wdata_i[7:0];
+                            if (wstrb_i[1]) ecc_uncorrected_errors[15:8]  <= wdata_i[15:8];
+                            if (wstrb_i[2]) ecc_uncorrected_errors[23:16] <= wdata_i[23:16];
+                            if (wstrb_i[3]) ecc_uncorrected_errors[31:24] <= wdata_i[31:24];
+                        end
+                        else begin
+                            rdata_o = ecc_uncorrected_errors;
+                        end
+                    end
+                ADDRBASE: begin
+                        ready_o <= 1'b1;
+                    end
+                default: ready_o <= 1'b0;
+                
                 endcase
                 
             end

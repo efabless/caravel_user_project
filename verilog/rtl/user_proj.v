@@ -37,11 +37,12 @@
 
 module user_proj #(
     parameter integer WORD_SIZE = 32,
-    parameter integer REGISTERS = 8,
-    parameter integer REGDIRSIZE = 3,
+    parameter integer REGISTERS = 32,
+    parameter integer REGDIRSIZE = 5,
     parameter integer ECCBITS = 7,
     parameter integer VERIFICATION_PINS = 2,
-    parameter integer WHISBONE_MASK = 5
+    parameter integer WHISBONE_ADR = 32,
+    parameter integer COUNTERSIZE = 32
 )(
 `ifdef USE_POWER_PINS
     inout vdda1,	// User area 1 3.3V supply
@@ -102,7 +103,7 @@ module user_proj #(
     assign wdata = wbs_dat_i;
 
     // IO
-    assign io_out = {output_verification,output_data[15:0], 20'b00000000000000000000};//{6'b000000,output_data};
+    assign io_out = {output_verification,output_data[15:0], 20'b0};//{6'b000000,output_data};
     assign io_oeb = {(`MPRJ_IO_PADS-1){rst}};
 
     // IRQ
@@ -119,21 +120,23 @@ module user_proj #(
     register_file #(
         .WORD_SIZE (WORD_SIZE),
         .REGISTERS (REGISTERS),
-        .WHISBONE_MASK (WHISBONE_MASK),
+        .WHISBONE_ADR (WHISBONE_ADR),
         .VERIFICATION_PINS (VERIFICATION_PINS),
         .REGDIRSIZE (REGDIRSIZE),
-        .ECCBITS (ECCBITS)
+        .ECCBITS (ECCBITS),
+        .COUNTERSIZE (COUNTERSIZE)
     ) register_file(
         .clk_i(clk),
         .rst_i(rst),
         .valid_i(valid),
         .wstrb_i(wstrb),
         .wdata_i(wdata),
+        .wbs_we_i(wbs_we_i),
         .data_to_register_i(la_data_in[63:32]),
-        .register_i(la_data_in[4:2]),
+        .register_i(la_data_in[6:2]),
         .wregister_i(la_data_in[1]),
         .rregister_i(la_data_in[0]),
-        .whisbone_mask_i (la_data_in[9:5]),
+        .whisbone_addr_i (wbs_adr_i),
         .store_data_o(output_data),
         .operation_result_o(output_verification),
         .ready_o(wbs_ack_o),

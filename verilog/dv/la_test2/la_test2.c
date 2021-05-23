@@ -19,19 +19,40 @@
 #include "verilog/dv/caravel/defs.h"
 #include "verilog/dv/caravel/stub.c"
 
-/*
-	MPRJ LA Test:
-		- Sets counter clk through LA[64]
-		- Sets counter rst through LA[65] 
-		- Observes count value for five clk cycle through LA[31:0]
-*/
+// --------------------------------------------------------
 
+/*
+	MPRJ Logic Analyzer Test:
+		- Observes counter value through LA probes [31:0] 
+		- Sets counter initial value through LA probes [63:32]
+		- Flags when counter value exceeds 500 through the management SoC gpio
+		- Outputs message to the UART when the test concludes successfuly
+*/
 int clk = 0;
-int i;
+
+void clock(){
+	// clock
+	reg_la2_data = 0x00000001;
+	reg_la2_data = 0x00000000;
+	// end clock
+}
+
+void add_value_to_register(uint32_t value, uint32_t selected_regsiter){
+
+	reg_la0_data = (selected_regsiter << 2| 2 & 0x3);
+	reg_la1_data = value;
+}
+
+void read_value_from_register(uint32_t selected_regsiter){
+
+	reg_la0_data = (selected_regsiter << 2| 1 & 0x3);
+
+}
 
 void main()
 {
-        /* Set up the housekeeping SPI to be connected internally so	*/
+
+	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
 
 	reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
@@ -41,26 +62,32 @@ void main()
 	// so that the CSB line is not left floating.  This allows
 	// all of the GPIO pins to be used for user functions.
 
-
-	// All GPIO pins are configured to be output
+	// The upper GPIO pins are configured to be output
+	// and accessble to the management SoC.
 	// Used to flad the start/end of a test 
+	// The lower GPIO pins are configured to be output
+	// and accessible to the user project.  They show
+	// the project count value, although this test is
+	// designed to read the project count through the
+	// logic analyzer probes.
+	// I/O 6 is configured for the UART Tx line
 
-        reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_29 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_28 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_27 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_26 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_25 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_24 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_23 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_22 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_21 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_20 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_19 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_18 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_17 = GPIO_MODE_MGMT_STD_OUTPUT;
-        reg_mprj_io_16 = GPIO_MODE_MGMT_STD_OUTPUT;
+        reg_mprj_io_31 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_30 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_29 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_28 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_27 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_26 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_25 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_24 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_23 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_22 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_21 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_20 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_19 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_18 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_17 = GPIO_MODE_USER_STD_OUTPUT;
+        reg_mprj_io_16 = GPIO_MODE_USER_STD_OUTPUT;
 
         reg_mprj_io_15 = GPIO_MODE_USER_STD_OUTPUT;
         reg_mprj_io_14 = GPIO_MODE_USER_STD_OUTPUT;
@@ -78,34 +105,69 @@ void main()
         reg_mprj_io_1  = GPIO_MODE_USER_STD_OUTPUT;
         reg_mprj_io_0  = GPIO_MODE_USER_STD_OUTPUT;
 
+        reg_mprj_io_6  = GPIO_MODE_MGMT_STD_OUTPUT;
+
+	// Set UART clock to 64 kbaud (enable before I/O configuration)
+	reg_uart_clkdiv = 625;
+	reg_uart_enable = 1;
+
         /* Apply configuration */
         reg_mprj_xfer = 1;
         while (reg_mprj_xfer == 1);
 
-	// Configure All LA probes as inputs to the cpu 
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
+	// Configure LA probes 
+	// outputs from the cpu are inputs for my project denoted for been 0 
+	// inputs to the cpu are outpus for my project denoted for been 1
+	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0] 
+	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFC;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
 
-	// Flag start of the test
-	reg_mprj_datal = 0xAB600000;
+	
+	// Flag start of the test 
+	reg_mprj_datal = 0xAB400000;
 
-	// Configure LA[64] LA[65] as outputs from the cpu
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFC; 
-
-	// Set clk & reset to one
+	// clock and reset
 	reg_la2_data = 0x00000003;
+	reg_la2_data = 0x00000000;
+	// end clock
 
-	// Toggle clk & de-assert reset
-	for (i=0; i<11; i=i+1) {
-		clk = !clk;
-		reg_la2_data = 0x00000000 | clk;
+
+	for (uint32_t i = 0; i < 32; ++i ){
+		add_value_to_register(i+1, i);
+		clock();
+	}
+	for (uint32_t i = 0; i < 32; ++i ){
+		read_value_from_register(i);
+		clock();
 	}
 
-	if (reg_la0_data == 0x05) {
-		reg_mprj_datal = 0xAB610000;
-	}
+	/*reg_la0_data = 0x00000006;
+	reg_la1_data = 0x00000001;
+	
+	clock();
+	reg_la0_data = 0x0000000A;
+	reg_la1_data = 0x00000002;
+	clock();
 
+	reg_la0_data = 0x00000009;
+	reg_la1_data = 0x00000000;
+
+	clock();
+
+	reg_la0_data = 0x00000005;
+	reg_la1_data = 0x00000000;
+	
+	clock();*/
+
+	reg_mprj_datal = 0xAB410000;
+	print("\n");
+	print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
+	reg_mprj_datal = 0xAB510000;
+	
+
+
+
+	
 }
 

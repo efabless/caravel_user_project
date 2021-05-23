@@ -1,0 +1,83 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Sun May 23 10:28:11 2021
+[*]
+[dumpfile] "/home/shuttle/core_radiation_hard/verilog/dv/wb_test1/wb_test1.vcd"
+[dumpfile_mtime] "Sun May 23 00:42:04 2021"
+[dumpfile_size] 2291826299
+[savefile] "/home/shuttle/core_radiation_hard/verilog/dv/wb_test1/wb_test1.gtkw"
+[timestart] 512390000
+[size] 1848 1016
+[pos] -1 -1
+*-20.000000 515862500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] wb_test1_tb.
+[treeopen] wb_test1_tb.uut.
+[treeopen] wb_test1_tb.uut.mprj.
+[treeopen] wb_test1_tb.uut.mprj.mprj.
+[treeopen] wb_test1_tb.uut.mprj.mprj.register_file.
+[sst_width] 233
+[signals_width] 248
+[sst_expanded] 1
+[sst_vpaned_height] 289
+@200
+-TOP MODULE INPUTS
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.clk_i
+wb_test1_tb.uut.mprj.mprj.register_file.rst_i
+@24
+wb_test1_tb.uut.mprj.mprj.register_file.data_to_register_i[31:0]
+wb_test1_tb.uut.mprj.mprj.register_file.register_i[4:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.rregister_i
+wb_test1_tb.uut.mprj.mprj.register_file.wregister_i
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.store_data_o[31:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.operation_result_o[1:0]
+@200
+-
+-GPIO
+@29
+wb_test1_tb.mprj_io[37:0]
+@200
+-
+-WB_INTERFACE
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.clk_i
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.wdata_i[31:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.wstrb_i[3:0]
+wb_test1_tb.uut.mprj.mprj.register_file.valid_i
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.whisbone_addr_i[31:0]
+wb_test1_tb.uut.mprj.mprj.register_file.rdata_o[31:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.ready_o
+@200
+-
+-REGISTER DATA
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.inst_RD.data_to_register_i[38:0]
+wb_test1_tb.uut.mprj.mprj.register_file.inst_RD.register_i[4:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.inst_RD.rregister_i
+wb_test1_tb.uut.mprj.mprj.register_file.inst_RD.wregister_i
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.inst_RD.wdata_i[31:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.inst_RD.ready_o
+@200
+-
+-PMU
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.inst_PMU.wdata_i[31:0]
+wb_test1_tb.uut.mprj.mprj.register_file.inst_PMU.whisbone_addr_i[31:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.inst_PMU.valid_i
+@22
+wb_test1_tb.uut.mprj.mprj.register_file.inst_PMU.wstrb_i[3:0]
+@28
+wb_test1_tb.uut.mprj.mprj.register_file.inst_PMU.ready_o
+[pattern_trace] 1
+[pattern_trace] 0
