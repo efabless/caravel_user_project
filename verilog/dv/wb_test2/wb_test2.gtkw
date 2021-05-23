@@ -1,0 +1,61 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Sun May 23 12:10:10 2021
+[*]
+[dumpfile] "/home/shuttle/core_radiation_hard/verilog/dv/wb_test2/wb_test2.vcd"
+[dumpfile_mtime] "Sun May 23 11:41:09 2021"
+[dumpfile_size] 1179668140
+[savefile] "/home/shuttle/core_radiation_hard/verilog/dv/wb_test2/wb_test2.gtkw"
+[timestart] 613400000
+[size] 1848 1016
+[pos] -1 -1
+*-26.000000 2444300000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] wb_test2_tb.
+[treeopen] wb_test2_tb.uut.
+[treeopen] wb_test2_tb.uut.mprj.
+[treeopen] wb_test2_tb.uut.mprj.mprj.
+[treeopen] wb_test2_tb.uut.mprj.mprj.register_file.
+[sst_width] 233
+[signals_width] 222
+[sst_expanded] 1
+[sst_vpaned_height] 289
+@200
+-TOP MODULE
+@28
+wb_test2_tb.uut.mprj.mprj.register_file.clk_i
+wb_test2_tb.uut.mprj.mprj.register_file.rst_i
+@22
+wb_test2_tb.uut.mprj.mprj.register_file.register_i[4:0]
+wb_test2_tb.uut.mprj.mprj.register_file.data_to_register_i[31:0]
+@28
+wb_test2_tb.uut.mprj.mprj.register_file.wregister_i
+wb_test2_tb.uut.mprj.mprj.register_file.rregister_i
+@22
+wb_test2_tb.uut.mprj.mprj.register_file.store_data_o[31:0]
+@28
+wb_test2_tb.uut.mprj.mprj.register_file.operation_result_o[1:0]
+@200
+-
+-WB TOP
+@22
+wb_test2_tb.uut.mprj.mprj.register_file.whisbone_addr_i[31:0]
+wb_test2_tb.uut.mprj.mprj.register_file.wdata_i[31:0]
+wb_test2_tb.uut.mprj.mprj.register_file.wstrb_i[3:0]
+@28
+wb_test2_tb.uut.mprj.mprj.register_file.valid_i
+wb_test2_tb.uut.mprj.mprj.register_file.wbs_we_i
+wb_test2_tb.uut.mprj.mprj.register_file.ready_o
+@22
+wb_test2_tb.uut.mprj.mprj.register_file.rdata_o[31:0]
+@200
+-
+-GPIO
+@22
+wb_test2_tb.mprj_io[37:0]
+@200
+-
+-PMU
+@23
+wb_test2_tb.uut.mprj.mprj.register_file.inst_PMU.rdata_o[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
