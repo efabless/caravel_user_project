@@ -44,7 +44,7 @@ module register_data #(
 
     //request
 
-    always @(*) begin
+    always @(posedge clk_i) begin
         // calculate last parity bit
         if (rst_i) begin
 
@@ -81,21 +81,18 @@ module register_data #(
             r[30] = {WORD_SIZE + ECCBITS{1'b0}};
             r[31] = {WORD_SIZE + ECCBITS{1'b0}};
             ready_o <= 1'b0;
-            store_data_o = {WORD_SIZE + ECCBITS {1'b0}};
+            store_data_o <= {WORD_SIZE + ECCBITS {1'b0}};
         end
         else if (rregister_i) begin
-            store_data_o = r[register_i];
+            store_data_o <= r[register_i];
         end
         else if (wregister_i) begin
             // Sore data
-            r[register_i] = data_to_register_i;
-            store_data_o = {WORD_SIZE + ECCBITS {1'b0}}; 
+            r[register_i] <= data_to_register_i;
+            store_data_o <= {WORD_SIZE + ECCBITS {1'b0}}; 
         end
 
-    end
-
-    always @(posedge clk_i) begin
-        if (valid_i) begin
+         if (valid_i) begin
             case (whisbone_addr_i)
                 REGISTERDATA: begin
                     ready_o <= 1'b1;

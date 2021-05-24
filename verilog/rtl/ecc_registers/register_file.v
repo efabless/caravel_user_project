@@ -101,7 +101,6 @@ module register_file #(
         .WORD_SIZE (WORD_SIZE)
     )
     inst_DO(
-        .clk_i                    (clk_i ),
         .operation_result_i       (operation_result_DV_PMU),
         .store_data_i             (store_data_DV_DO),
         .operation_result_o       (operation_result_o ),
