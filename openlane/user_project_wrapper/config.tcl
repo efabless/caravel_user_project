@@ -27,11 +27,12 @@ set ::env(DESIGN_NAME) user_project_wrapper
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_project_wrapper.v"
+	$script_dir/../../verilog/rtl/user_project_wrapper.v \
+	$script_dir/../../verilog/rtl/testchip/openram_testchip.v"
 
 ## Clock configurations
-set ::env(CLOCK_PORT) "user_clock2"
-set ::env(CLOCK_NET) "mprj.clk"
+set ::env(CLOCK_PORT) "wb_clk_i"
+set ::env(CLOCK_NET) "wb_clk_i"
 
 set ::env(CLOCK_PERIOD) "10"
 
@@ -42,28 +43,30 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+	$script_dir/../../verilog/rtl/sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/user_proj_example.lef"
+	$script_dir/../../lef/user_project_wrapper.lef \
+	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/user_proj_example.gds"
+	$script_dir/../../gds/user_project_wrapper.gds \
+	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.gds"
 
 set ::env(GLB_RT_MAXLAYER) 5
 
 set ::env(FP_PDN_CHECK_NODES) 0
+# Power config
+#set ::env(PDN_CFG) $script_dir/pdn.tcl
 
-# The following is because there are no std cells in the example wrapper project.
-set ::env(SYNTH_TOP_LEVEL) 1
+#set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
+
+# Placement config
+set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+set ::env(PL_BASIC_PLACEMENT) 1
+set ::env(PL_TARGET_DENSITY) 0.99
 
-set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
-set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
-set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
-set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+set ::env(MAGIC_DRC_USE_GDS) 0
 
-set ::env(DIODE_INSERTION_STRATEGY) 0
-set ::env(FILL_INSERTION) 0
-set ::env(TAP_DECAP_INSERTION) 0
-set ::env(CLOCK_TREE_SYNTH) 0
+set ::env(RUN_CVC) 0

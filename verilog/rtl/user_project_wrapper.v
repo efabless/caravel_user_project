@@ -78,51 +78,65 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
-/*--------------------------------------*/
-/* User project is instantiated  here   */
-/*--------------------------------------*/
+wire [54:0] sram0_connections;
+wire [54:0] sram1_connections;
 
-user_proj_example mprj (
-    `ifdef USE_POWER_PINS
-	.vdda1(vdda1),	// User area 1 3.3V power
-	.vdda2(vdda2),	// User area 2 3.3V power
-	.vssa1(vssa1),	// User area 1 analog ground
-	.vssa2(vssa2),	// User area 2 analog ground
-	.vccd1(vccd1),	// User area 1 1.8V power
-	.vccd2(vccd2),	// User area 2 1.8V power
-	.vssd1(vssd1),	// User area 1 digital ground
-	.vssd2(vssd2),	// User area 2 digital ground
-    `endif
+wire [31:0] sram0_rw_out;
+wire [31:0] sram0_ro_out;
+wire [31:0] sram1_rw_out;
+wire [31:0] sram1_ro_out;
 
-    .wb_clk_i(wb_clk_i),
-    .wb_rst_i(wb_rst_i),
-
-    // MGMT SoC Wishbone Slave
-
-    .wbs_cyc_i(wbs_cyc_i),
-    .wbs_stb_i(wbs_stb_i),
-    .wbs_we_i(wbs_we_i),
-    .wbs_sel_i(wbs_sel_i),
-    .wbs_adr_i(wbs_adr_i),
-    .wbs_dat_i(wbs_dat_i),
-    .wbs_ack_o(wbs_ack_o),
-    .wbs_dat_o(wbs_dat_o),
-
-    // Logic Analyzer
-
-    .la_data_in(la_data_in),
-    .la_data_out(la_data_out),
-    .la_oenb (la_oenb),
-
-    // IO Pads
-
-    .io_in (io_in),
-    .io_out(io_out),
-    .io_oeb(io_oeb),
-
-    // IRQ
-    .irq(user_irq)
+openram_testchip CONTROL_LOGIC(
+    .clock(wb_clk_i),
+    .reset(wb_rst_i),
+    .io_logical_analyzer_packet(la_data_in[55:0]),
+    .io_gpio_packet(la_data_in[55:0]),
+    .io_in_select(la_data_in[56]),
+    .io_sram0_rw_in(sram0_rw_out),
+    .io_sram0_r0_in(sram0_ro_out),
+    .io_sram1_rw_in(sram1_rw_out),
+    .io_sram1_ro_in(sram1_ro_out),
+    .io_sram0_connections(sram0_connections),
+    .io_sram1_connections(sram1_connections),
+    .io_sram_data(la_data_out[31:0])
 );
+
+sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
+     (
+      
+     `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (wb_clk_i),
+      .csb0   (sram0_connections[54]),
+      .web0   (sram0_connections[53]),
+      .wmask0 (sram0_connections[52:49]),
+      .addr0  (sram0_connections[48:41]),
+      .din0   (sram0_connections[40:9]),
+      .dout0  (sram0_rw_out),
+      .clk1   (wb_clk_i),
+      .csb1   (sram0_connections[8]),
+      .addr1  (sram0_connections[7:0]),
+      .dout1  (sram0_ro_out));
+
+sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
+     (
+      `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (wb_clk_i),
+      .csb0   (sram1_connections[54]),
+      .web0   (sram1_connections[53]),
+      .wmask0 (sram1_connections[52:49]),
+      .addr0  (sram1_connections[48:41]),
+      .din0   (sram1_connections[40:9]),
+      .dout0  (sram1_rw_out),
+      .clk1   (wb_clk_i),
+      .csb1   (sram1_connections[8]),
+      .addr1  (sram1_connections[7:0]),
+      .dout1  (sram1_ro_out));      
 
 endmodule	// user_project_wrapper
 

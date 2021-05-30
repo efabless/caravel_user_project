@@ -3,7 +3,18 @@
 // Word size: 32
 // Write size: 8
 
+
 module sky130_sram_1kbyte_1rw1r_32x256_8(
+`ifdef USE_POWER_PINS
+	vdda1,
+	vdda2,
+	vssa1,
+	vssa2,
+	vccd1,
+	vccd2,
+	vssd1,
+	vssd2,
+`endif
 // Port 0: RW
     clk0,csb0,web0,wmask0,addr0,din0,dout0,
 // Port 1: R
@@ -19,6 +30,16 @@ module sky130_sram_1kbyte_1rw1r_32x256_8(
   parameter VERBOSE = 1 ; //Set to 0 to only display warnings
   parameter T_HOLD = 1 ; //Delay to hold dout value after posedge. Value is arbitrary
 
+  `ifdef USE_POWER_PINS
+    inout vdda1;        // User area 1 3.3V supply
+    inout vdda2;        // User area 2 3.3V supply
+    inout vssa1;        // User area 1 analog ground
+    inout vssa2;        // User area 2 analog ground
+    inout vccd1;        // User area 1 1.8V supply
+    inout vccd2;        // User area 2 1.8v supply
+    inout vssd1;        // User area 1 digital ground
+    inout vssd2;        // User area 2 digital ground
+  `endif
   input  clk0; // clock
   input   csb0; // active low chip select
   input  web0; // active low write control

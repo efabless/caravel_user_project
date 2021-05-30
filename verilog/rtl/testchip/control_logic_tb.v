@@ -12,6 +12,7 @@ end
 module control_logic_tb;
 
 reg clk_in;
+reg rst;
 reg chip_select;
 reg [54:0] packet;
 
@@ -48,6 +49,7 @@ wire [31:0] read_data;
 
 //Instantitate port connections
 SRAM_IN in_control(.clk_in(clk_in),
+                   .rst(rst),
                    .chip_select(chip_select),
                    .packet(packet),
                    .mgmt_ena0(mgmt_ena0),
@@ -84,7 +86,7 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM_0 (
 
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM_1 (
     // MGMT R/W port
-     .clk0(clk_in), 
+    .clk0(clk_in), 
     .csb0(mgmt_ena1),   
     .web0(mgmt_wen1),  
     .wmask0(mgmt_wen_mask1),
@@ -98,24 +100,33 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM_1 (
     .dout1(mgmt_rdata_ro1)
 );  
 
-SRAM_DATA sram0_out(.csb0(packet[54]),
+SRAM_DATA sram0_out(
+          .clk_in(clk_in),
+          .rst(rst),
+          .csb0(packet[54]),
           .csb1(packet[8]),
           .dout0(mgmt_rdata0),
           .dout1(mgmt_rdata_ro0),
           .sram_data(sram0_data)
 );
 
-SRAM_DATA sram1_out(.csb0(packet[54]),
+SRAM_DATA sram1_out(
+          .clk_in(clk_in),
+          .rst(rst),
+          .csb0(packet[54]),
           .csb1(packet[8]),
           .dout0(mgmt_rdata1),
           .dout1(mgmt_rdata_ro1),
           .sram_data(sram1_data)
 );
 
-SRAM_OUT out_control(.chip_select(chip_select),
-                     .sram0_data(sram0_data),
-                     .sram1_data(sram1_data),
-                     .sram_contents(read_data)
+SRAM_OUT out_control(
+            .clk_in(clk_in),
+            .rst(rst),
+            .chip_select(chip_select),
+            .sram0_data(sram0_data),
+            .sram1_data(sram1_data),
+            .sram_contents(read_data)
 );
 
 
@@ -123,13 +134,14 @@ initial begin
     $dumpfile("control_logic_tb.vcd");
     $dumpvars(0, control_logic_tb);
     clk_in = 1;
+    rst = 0;
     chip_select = 0;
     packet = 55'd0;
     //Write 1 to address 1 in SRAM 0
     packet = {1'b0, 1'b0, 4'd15, 8'd1, 32'd1, 1'b0, 8'd0};
 
     //Check each output is being sent properly to SRAM
-    #10;
+    #15;
     `assert(mgmt_ena0, 1'b0);
     `assert(mgmt_wen0, 1'b0);
     `assert(mgmt_wen_mask0, 4'd15);
@@ -140,11 +152,13 @@ initial begin
     `assert(mgmt_ena_ro0, 1'b0);
     `assert(mgmt_addr_ro0, 8'd0);
 
-    #10
+    //Disable write enable after write
+    packet = {1'b0, 1'b1, 4'd15, 8'd1, 32'd1, 1'b0, 8'd0};
+    #20
     
     //Read from address 1 in SRAM 0
     packet = {1'b0, 1'b1, 4'd0, 8'd1, 32'd0, 1'b1, 8'd0};
-    #10;
+    #20;
     
     `assert(mgmt_ena0, 1'b0);
     `assert(mgmt_wen0, 1'b1);
@@ -156,15 +170,16 @@ initial begin
     `assert(mgmt_ena_ro0, 1'b1);
     `assert(mgmt_addr_ro0, 8'd0);
     
-    #10
+    #15
     `assert(read_data, 32'd1);
+    
     
     chip_select = 1;
     //Write to address 2 in SRAM 1
     packet = {1'b0, 1'b0, 4'd15, 8'd2, 32'd2, 1'b0, 8'd0};
 
     //Check each output is being sent properly to SRAM
-    #10;
+    #15;
     `assert(mgmt_ena1, 1'b0);
     `assert(mgmt_wen1, 1'b0);
     `assert(mgmt_wen_mask1, 4'd15);
@@ -174,10 +189,14 @@ initial begin
     //RO Port
     `assert(mgmt_ena_ro1, 1'b0);
     `assert(mgmt_addr_ro1, 8'd0);
-
+    
+    //Disable write enable after write
+    packet = {1'b0, 1'b1, 4'd15, 8'd2, 32'd2, 1'b0, 8'd0};
+    #20
+    
     //Read from address 2 in SRAM 1
     packet = {1'b0, 1'b1, 4'd0, 8'd2, 32'd0, 1'b1, 8'd0};
-    #10;
+    #20;
     
     `assert(mgmt_ena1, 1'b0);
     `assert(mgmt_wen1, 1'b1);
@@ -189,8 +208,9 @@ initial begin
     `assert(mgmt_ena_ro1, 1'b1);
     `assert(mgmt_addr_ro1, 8'd0);
     
-    #10
+    #15
     `assert(read_data, 32'd2);
+    
     #100;$finish;
 end
 
