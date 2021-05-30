@@ -1,0 +1,92 @@
+|==============================================================================|
+|=========                      OpenRAM v1.1.15                       =========|
+|=========                                                            =========|
+|=========               VLSI Design and Automation Lab               =========|
+|=========        Computer Science and Engineering Department         =========|
+|=========            University of California Santa Cruz             =========|
+|=========                                                            =========|
+|=========          Usage help: openram-user-group@ucsc.edu           =========|
+|=========        Development help: openram-dev-group@ucsc.edu        =========|
+|=========            Temp dir: /home/odette/macros/run3/             =========|
+|=========                See LICENSE for license info                =========|
+|==============================================================================|
+** Start: 05/28/2021 15:43:50
+Technology: sky130
+Total size: 32768 bits
+WARNING: file globals.py: line 626: Characterizing large memories (32768) will have a large run-time. 
+
+Word size: 32
+Words: 1024
+Banks: 1
+Write size: 8
+RW ports: 1
+R-only ports: 0
+W-only ports: 0
+DRC/LVS/PEX is only run on the top-level design to save run-time (inline_lvsdrc=True to do inline checking).
+Performing simulation-based characterization with ngspice
+Trimming netlist to speed up characterization (trim_netlist=False to disable).
+Only generating nominal corner timing.
+Words per row: 8
+Output files are: 
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.lvs
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.sp
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.v
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.lib
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.py
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.html
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.log
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.lef
+/home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.gds
+WARNING: file sky130_replica_bitcell_array.py: line 68: Invalid number of cols including rbl(s): 257. Total cols must be divisible by 2
+
+WARNING: file sky130_replica_bitcell_array.py: line 69: forcing cols to 258
+
+WARNING: file sky130_replica_bitcell_array.py: line 74: invalid number of rows including dummy row(s): 129. Total cols must be divisible by 2
+
+WARNING: file sky130_replica_bitcell_array.py: line 75: forcing rows to 130
+
+** Submodules: 16.8 seconds
+** Placement: 0.0 seconds
+**** Retrieving pins: 0.0 seconds
+**** Analyzing pins: 0.0 seconds
+**** Finding blockages: 7.6 seconds
+**** Converting blockages: 0.5 seconds
+**** Converting pins: 0.1 seconds
+**** Separating adjacent pins: 0.0 seconds
+**** Enclosing pins: 0.1 seconds
+*** Finding pins and blockages: 174.1 seconds
+*** Maze routing pins: 273.4 seconds
+**** Retrieving pins: 0.2 seconds
+**** Analyzing pins: 15.1 seconds
+**** Finding blockages: 31.0 seconds
+**** Converting blockages: 0.2 seconds
+**** Converting pins: 6.2 seconds
+**** Separating adjacent pins: 25.5 seconds
+**** Enclosing pins: 38.6 seconds
+*** Finding pins and blockages: 283.6 seconds
+*** Maze routing supplies: 1751.3 seconds
+** Routing: 3302.2 seconds
+WARNING: file magic.py: line 232: DRC Errors sram_1rw0r0w_32_1024_sky130	256
+
+ERROR: file magic.py: line 338: sram_1rw0r0w_32_1024_sky130	LVS mismatch (results in /home/odette/macros/run3/sram_1rw0r0w_32_1024_sky130.lvs.report)
+
+** Verification: 5744.0 seconds
+** SRAM creation: 9063.2 seconds
+SP: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.sp
+** Spice writing: 0.1 seconds
+GDS: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.gds
+** GDS: 1.9 seconds
+LEF: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.lef
+** LEF: 0.0 seconds
+LVS: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.lvs.sp
+** LVS writing: 0.1 seconds
+LIB: Characterizing... 
+** Characterization: 0.0 seconds
+Config: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.py
+** Config: 0.0 seconds
+Datasheet: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.html
+** Datasheet: 0.0 seconds
+Verilog: Writing to /home/odette/macros/sram_1rw0r0w_32_1024_sky130/sram_1rw0r0w_32_1024_sky130.v
+** Verilog: 0.0 seconds
+[globals/cleanup_paths]: Preserving temp directory: /home/odette/macros/run3/
+** End: 9065.4 seconds
