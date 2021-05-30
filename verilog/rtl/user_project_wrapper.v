@@ -103,6 +103,11 @@ openram_testchip CONTROL_LOGIC(
 
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
      (
+      
+     `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
       .clk0   (wb_clk_i),
       .csb0   (sram0_connections[54]),
       .web0   (sram0_connections[53]),
@@ -117,6 +122,10 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
 
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
      (
+      `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
       .clk0   (wb_clk_i),
       .csb0   (sram1_connections[54]),
       .web0   (sram1_connections[53]),
