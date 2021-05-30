@@ -43,7 +43,7 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/sky130_sram_1kbyte_1rw1r_32x256_8.v"
+	$script_dir/../../verilog/rtl/sky130_sram_1kbyte_1rw1r_32x256_8.v "
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/user_project_wrapper.lef \
@@ -63,10 +63,22 @@ set ::env(FP_PDN_CHECK_NODES) 0
 
 # Placement config
 set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
+
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
-set ::env(PL_BASIC_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.99
 
-set ::env(MAGIC_DRC_USE_GDS) 0
+#set ::env(PL_BASIC_PLACEMENT) 1
+#set ::env(PL_TARGET_DENSITY) 0.99
 
-set ::env(RUN_CVC) 0
+#set ::env(MAGIC_DRC_USE_GDS) 0
+
+set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
+set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
+set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
+set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
+set ::env(DIODE_INSERTION_STRATEGY) 0
+set ::env(FILL_INSERTION) 0
+set ::env(TAP_DECAP_INSERTION) 0
+
+#set ::env(RUN_KLAYOUT_DRC) 0
+
