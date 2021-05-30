@@ -31,7 +31,7 @@ set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/testchip/openram_testchip.v"
 
 ## Clock configurations
-set ::env(CLOCK_PORT) "user_clock2"
+set ::env(CLOCK_PORT) "wb_clk_i"
 set ::env(CLOCK_NET) "wb_clk_i"
 
 set ::env(CLOCK_PERIOD) "10"
@@ -53,18 +53,13 @@ set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/user_project_wrapper.gds \
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.gds"
 
-#set ::env(GLB_RT_MAXLAYER) 5
+set ::env(GLB_RT_MAXLAYER) 5
 
-#set ::env(FP_PDN_CHECK_NODES) 0
+set ::env(FP_PDN_CHECK_NODES) 0
 # Power config
-set ::env(PDN_CFG) $script_dir/pdn.tcl
+#set ::env(PDN_CFG) $script_dir/pdn.tcl
 
-set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
-set ::env(FP_HORIZONTAL_HALO) 15
-set ::env(FP_VERTICAL_HALO) 15
-set ::env(FP_PDN_VOFFSET) 5
-set ::env(FP_PDN_VPITCH) 20
-set ::env(FP_PDN_HPITCH) 50
+#set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
 # Placement config
 set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
