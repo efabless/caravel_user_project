@@ -5,8 +5,8 @@
 
 module sram_1rw0r0w_32_512_sky130(
 `ifdef USE_POWER_PINS
-    vpwr,
-    vgnd,
+    vccd1,
+    vssd1,
 `endif
 // Port 0: RW
     clk0,csb0,web0,wmask0,addr0,din0,dout0
@@ -22,8 +22,8 @@ module sram_1rw0r0w_32_512_sky130(
   parameter T_HOLD = 1 ; //Delay to hold dout value after posedge. Value is arbitrary
 
 `ifdef USE_POWER_PINS
-    inout vpwr;
-    inout vgnd;
+    inout vccd1;
+    inout vssd1;
 `endif
   input  clk0; // clock
   input   csb0; // active low chip select
