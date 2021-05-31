@@ -80,25 +80,42 @@ module user_project_wrapper #(
 
 wire [54:0] sram0_connections;
 wire [54:0] sram1_connections;
+wire [47:0] io_sram2_connections;
+wire [45:0] io_sram3_connections;
+wire [46:0] io_sram4_connections;
+wire [82:0] io_sram5_connections;
+
 
 wire [31:0] sram0_rw_out;
 wire [31:0] sram0_ro_out;
 wire [31:0] sram1_rw_out;
 wire [31:0] sram1_ro_out;
+wire [31:0] sram2_rw_out;
+wire [31:0] sram3_rw_out;
+wire [31:0] sram4_rw_out;
+wire [63:0] sram5_rw_out;
 
 openram_testchip CONTROL_LOGIC(
     .clock(wb_clk_i),
     .reset(wb_rst_i),
-    .io_logical_analyzer_packet(la_data_in[55:0]),
-    .io_gpio_packet(la_data_in[55:0]),
-    .io_in_select(la_data_in[56]),
+    .io_logical_analyzer_packet(la_data_in[85:0]),
+    .io_gpio_packet(la_data_in[85:0]),
+    .io_in_select(la_data_in[86]),
     .io_sram0_rw_in(sram0_rw_out),
     .io_sram0_r0_in(sram0_ro_out),
     .io_sram1_rw_in(sram1_rw_out),
     .io_sram1_ro_in(sram1_ro_out),
+    .io_sram2_rw_in(sram2_rw_out),
+    .io_sram3_rw_in(sram3_rw_out),
+    .io_sram4_rw_in(sram4_rw_out),
+    .io_sram5_rw_in(sram5_rw_out),
     .io_sram0_connections(sram0_connections),
     .io_sram1_connections(sram1_connections),
-    .io_sram_data(la_data_out[31:0])
+    .io_sram2_connections(sram2_connections),
+    .io_sram3_connections(sram3_connections),
+    .io_sram4_connections(sram4_connections),
+    .io_sram5_connections(sram5_connections),
+    .io_sram_data(la_data_out[63:0])
 );
 
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
@@ -137,6 +154,62 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
       .csb1   (sram1_connections[8]),
       .addr1  (sram1_connections[7:0]),
       .dout1  (sram1_ro_out));      
+
+sram_1rw0r0w_32_1024_sky130 SRAM2
+    (
+      `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (wb_clk_i),
+      .csb0   (sram2_connections[47]),
+      .web0   (sram2_connections[46]),
+      .wmask0 (sram2_connections[45:42]),
+      .addr0  (sram2_connections[41:32]),
+      .din0   (sram2_connections[31:0]),
+      .dout0  (sram2_rw_out)); 
+
+sram_1rw0r0w_32_256_sky130 SRAM3
+    (
+      `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (wb_clk_i),
+      .csb0   (sram3_connections[45]),
+      .web0   (sram3_connections[44]),
+      .wmask0 (sram3_connections[43:40]),
+      .addr0  (sram3_connections[39:32]),
+      .din0   (sram3_connections[31:0]),
+      .dout0  (sram3_rw_out));
+
+sram_1rw0r0w_32_512_sky130 SRAM4
+    (
+      `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (wb_clk_i),
+      .csb0   (sram4_connections[46]),
+      .web0   (sram4_connections[45]),
+      .wmask0 (sram4_connections[44:41]),
+      .addr0  (sram4_connections[40:32]),
+      .din0   (sram4_connections[31:0]),
+      .dout0  (sram4_rw_out));
+
+sram_1rw0r0w_64_512_sky130 SRAM5
+    (
+      `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (wb_clk_i),
+      .csb0   (sram5_connections[82]),
+      .web0   (sram5_connections[81]),
+      .wmask0 (sram5_connections[80:73]),
+      .addr0  (sram5_connections[72:64]),
+      .din0   (sram5_connections[63:0]),
+      .dout0  (sram5_rw_out));
 
 endmodule	// user_project_wrapper
 
