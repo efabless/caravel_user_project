@@ -22,7 +22,7 @@ module sram_1rw0r0w_32_1024_sky130(
   parameter T_HOLD = 1 ; //Delay to hold dout value after posedge. Value is arbitrary
 
 `ifdef USE_POWER_PINS
-    inout vccd1
+    inout vccd1;
     inout vssd1;
 `endif
   input  clk0; // clock
