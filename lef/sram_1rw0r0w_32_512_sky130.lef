@@ -590,7 +590,7 @@ MACRO sram_1rw0r0w_32_512_sky130
          RECT  474.64 61.88 475.02 62.26 ;
       END
    END dout0[32]
-   PIN vpwr
+   PIN vccd1
       DIRECTION INOUT ;
       USE POWER ; 
       SHAPE ABUTMENT ; 
@@ -604,8 +604,8 @@ MACRO sram_1rw0r0w_32_512_sky130
          LAYER met4 ;
          RECT  471.92 1.36 473.66 319.3 ;
       END
-   END vpwr
-   PIN vgnd
+   END vccd1
+   PIN vssd1
       DIRECTION INOUT ;
       USE GROUND ; 
       SHAPE ABUTMENT ; 
@@ -619,7 +619,7 @@ MACRO sram_1rw0r0w_32_512_sky130
          LAYER met4 ;
          RECT  468.52 4.76 470.26 315.9 ;
       END
-   END vgnd
+   END vssd1
    OBS
    LAYER  met1 ;
       RECT  0.62 0.62 474.4 318.68 ;
