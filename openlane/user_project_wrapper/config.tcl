@@ -50,7 +50,6 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v "
 
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/user_project_wrapper.lef \
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_1024_sky130.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_256_sky130.lef \
@@ -58,7 +57,6 @@ set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sram_1rw0r0w_64_512_sky130.lef "
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/user_project_wrapper.gds \
 	$script_dir/../../gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_1024_sky130.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_256_sky130.gds \
@@ -77,7 +75,7 @@ set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
 
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
-set ::env(GLB_RT_ADJUSTMENT) 0.40
+set ::env(GLB_RT_ADJUSTMENT) 0.20
 set ::env(PL_TARGET_DENSITY) 0.40
 
 #set ::env(MAGIC_DRC_USE_GDS) 0
