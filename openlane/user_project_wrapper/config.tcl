@@ -81,4 +81,4 @@ set ::env(PL_TARGET_DENSITY) 0.40
 #set ::env(MAGIC_DRC_USE_GDS) 0
 
 set ::env(RUN_KLAYOUT_DRC) 0
-
+set ::env(RUN_KLAYOUT_XOR) 0
