@@ -27,8 +27,7 @@ set ::env(DESIGN_NAME) user_project_wrapper
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_project_wrapper.v \
-	$script_dir/../../verilog/rtl/testchip/openram_testchip.v"
+	$script_dir/../../verilog/rtl/user_project_wrapper.v "
 
 ## Clock configurations
 set ::env(CLOCK_PORT) "wb_clk_i"
@@ -47,21 +46,24 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_1024_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_256_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_512_sky130.v \
-	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v "
+	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v \
+	$script_dir/../../verilog/rtl/testchip/openram_testchip.v "
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_1024_sky130.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_256_sky130.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_512_sky130.lef \
-	$script_dir/../../lef/sram_1rw0r0w_64_512_sky130.lef "
+	$script_dir/../../lef/sram_1rw0r0w_64_512_sky130.lef \
+	$script_dir/../../lef/openram_testchip.lef "
 
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_1024_sky130.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_256_sky130.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_512_sky130.gds \
-	$script_dir/../../gds/sram_1rw0r0w_64_512_sky130.gds "
+	$script_dir/../../gds/sram_1rw0r0w_64_512_sky130.gds \
+	$script_dir/../../gds/openram_testchip.gds "
 
 set ::env(GLB_RT_MAXLAYER) 5
 
@@ -75,10 +77,24 @@ set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
 
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
-set ::env(GLB_RT_ADJUSTMENT) 0.20
-set ::env(PL_TARGET_DENSITY) 0.40
+set ::env(GLB_RT_ADJUSTMENT) 0.15
+set ::env(PL_TARGET_DENSITY) 0.35
 
 #set ::env(MAGIC_DRC_USE_GDS) 0
 
 set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(RUN_KLAYOUT_XOR) 0
+
+# The following is because there are no std cells in the example wrapper project.
+set ::env(SYNTH_TOP_LEVEL) 1
+set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+
+set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
+set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
+set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
+set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
+set ::env(DIODE_INSERTION_STRATEGY) 0
+set ::env(FILL_INSERTION) 0
+set ::env(TAP_DECAP_INSERTION) 0
+# set ::env(CLOCK_TREE_SYNTH) 0
