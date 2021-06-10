@@ -203,7 +203,7 @@ initial begin
     #40;
     `assert(read_data, 32'd2);
     */
-    #40;$finish;
+    #30;$finish;
 end
 
 always 
