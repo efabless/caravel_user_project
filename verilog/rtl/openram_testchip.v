@@ -63,14 +63,10 @@ always @(input_connection) begin
 end
 
 always @(posedge clk) begin
-    toggle_clk <= toggle_clk;
+    sram_clk <= toggle_clk;
     if(toggle_clk) begin
             toggle_clk <= 0;
     end
-end
-
-always @(posedge clk) begin
-    sram_clk <= toggle_clk;   
 end
 
 always @(posedge clk) begin
@@ -101,12 +97,12 @@ always @(posedge clk) begin
 end
 
 always @ (posedge clk) begin
-    sram0_connections <= (chip_select == 0) ? {sram_clk || toggle_clk, input_connection[54:0]} : {56{1'b0}};
-    sram1_connections <= (chip_select == 1) ? {sram_clk || toggle_clk, input_connection[54:0]} : {56{1'b0}};
-    sram2_connections <= (chip_select == 2) ? {sram_clk || toggle_clk, input_connection[47:0]} : {48{1'b0}};
-    sram3_connections <= (chip_select == 3) ? {sram_clk || toggle_clk, input_connection[45:0]} : {46{1'b0}};
-    sram4_connections <= (chip_select == 4) ? {sram_clk || toggle_clk, input_connection[46:0]} : {47{1'b0}};
-    sram5_connections <= (chip_select == 5) ? {sram_clk || toggle_clk, input_connection[82:0]} : {83{1'b0}};
+    sram0_connections <= (chip_select == 0) ? {sram_clk, input_connection[54:0]} : {56{1'b0}};
+    sram1_connections <= (chip_select == 1) ? {sram_clk, input_connection[54:0]} : {56{1'b0}};
+    sram2_connections <= (chip_select == 2) ? {sram_clk, input_connection[47:0]} : {48{1'b0}};
+    sram3_connections <= (chip_select == 3) ? {sram_clk, input_connection[45:0]} : {46{1'b0}};
+    sram4_connections <= (chip_select == 4) ? {sram_clk, input_connection[46:0]} : {47{1'b0}};
+    sram5_connections <= (chip_select == 5) ? {sram_clk, input_connection[82:0]} : {83{1'b0}};
 end
 
 always @ (posedge clk) begin
