@@ -13,7 +13,7 @@ module openram_testchip(
   input         gpio_clock,
   input         reset,
   input  [85:0] la_packet,
-  input  [32:0] gpio_packet,
+  input         gpio_packet,
   input         in_select,
   input  [31:0] sram0_rw_in,
   input  [31:0] sram0_ro_in,
@@ -29,7 +29,8 @@ module openram_testchip(
   output reg [46:0] sram3_connections,
   output reg [47:0] sram4_connections,
   output reg [83:0] sram5_connections,
-  output reg [63:0] sram_data
+  output reg [63:0] la_data,
+  output reg gpio_data
 );
 
 reg [83:0] input_connection;
@@ -40,11 +41,11 @@ reg sram_clk;
 reg web;
 reg csb0;
 reg toggle_clk;
+reg [63:0] read_data;
 
 always @(*) begin
     clk = in_select ? gpio_clock : wb_clock;
 end 
-
 
 always @ (posedge clk) begin
     if(reset) begin
@@ -53,8 +54,13 @@ always @ (posedge clk) begin
         sram_clk <= 0;
     end
     else begin
-        input_connection <= la_packet[82:0];
-        chip_select <= la_packet[85:83];
+        if(in_select) begin
+            
+        end
+        else begin
+           input_connection <= la_packet[82:0];
+           chip_select <= la_packet[85:83]; 
+        end
     end
 end 
 
@@ -108,14 +114,23 @@ end
 always @ (posedge clk) begin
     if(web) begin
         case(chip_select)
-        3'd0: sram_data <= csb0 ? sram0_ro_in : sram0_rw_in;
-        3'd1: sram_data <= csb0 ? sram1_ro_in : sram1_rw_in;
-        3'd2: sram_data <= sram2_rw_in;
-        3'd3: sram_data <= sram3_rw_in;
-        3'd4: sram_data <= sram4_rw_in;
-        3'd5: sram_data <= sram5_rw_in;
-        default: sram_data <= 64'd0;
+        3'd0: read_data <= csb0 ? sram0_ro_in : sram0_rw_in;
+        3'd1: read_data <= csb0 ? sram1_ro_in : sram1_rw_in;
+        3'd2: read_data <= sram2_rw_in;
+        3'd3: read_data <= sram3_rw_in;
+        3'd4: read_data <= sram4_rw_in;
+        3'd5: read_data <= sram5_rw_in;
+        default: read_data <= 64'd0;
         endcase
+    end
+end
+
+always @ (posedge clk) begin
+    if(in_select) begin
+        
+    end    
+    else begin
+        la_data <= read_data;
     end
 end
 
