@@ -152,6 +152,11 @@ initial begin
     #60;
     `assert(to_la, 64'd1);
 
+    //Read from address 1 in SRAM 0 using RO Port
+    from_analyzer = {3'd0, 28'd0, 1'b1, 1'b1, 4'd0, 8'd0, 32'd0, 1'b0, 8'd1};
+    #60;
+    `assert(to_la, 64'd1);
+
     //Write 1 to address 1 in SRAM 1
     from_analyzer = {3'd1, 28'd0, 1'b0, 1'b0, 4'd15, 8'd1, 32'd1, 1'b0, 8'd0};
     #20
@@ -160,6 +165,11 @@ initial begin
     from_analyzer = {3'd1, 28'd0, 1'b0, 1'b1, 4'd0, 8'd1, 32'd0, 1'b1, 8'd0};
     #60;
 
+    `assert(to_la, 64'd1);
+
+    //Read from address 1 in SRAM 1 using RO Port
+    from_analyzer = {3'd0, 28'd0, 1'b1, 1'b1, 4'd0, 8'd0, 32'd0, 1'b0, 8'd1};
+    #60;
     `assert(to_la, 64'd1);
 
     //Write 2 to address 2 in SRAM 2
