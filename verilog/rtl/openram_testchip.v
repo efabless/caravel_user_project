@@ -23,61 +23,41 @@ module openram_testchip(
   input  [31:0] sram3_rw_in,
   input  [31:0] sram4_rw_in,
   input  [63:0] sram5_rw_in,
-  output reg [55:0] sram0_connections,
-  output reg [55:0] sram1_connections,
-  output reg [48:0] sram2_connections,
-  output reg [46:0] sram3_connections,
-  output reg [47:0] sram4_connections,
-  output reg [83:0] sram5_connections,
+  output reg [54:0] sram0_connections,
+  output reg [54:0] sram1_connections,
+  output reg [47:0] sram2_connections,
+  output reg [45:0] sram3_connections,
+  output reg [46:0] sram4_connections,
+  output reg [82:0] sram5_connections,
   output reg [63:0] la_data,
   output reg gpio_data
 );
 
-reg [83:0] input_connection = 84'd0;
+reg [83:0] input_connection;
 reg [2:0] chip_select;
 
-reg sram_clk;
 reg web;
 reg csb0;
-reg toggle_clk;
+
 reg [63:0] read_data;
 
-reg[6:0] gpio_counter = 7'd0;
-reg transfer = 1'b0;
+reg [6:0] gpio_counter;
 
 reg clk;
 
 always @(*) begin
-    clk <= in_select ? gpio_clk : la_clk;
-end
-
-always @(gpio_packet, read_data) begin
-    if(!transfer && in_select) begin
-        transfer <= 1;
-        gpio_counter <= 7'd0;
-    end
-end
-
-always @ (posedge clk) begin
-    if(transfer) begin
-        transfer <= 1;
-        gpio_counter <= gpio_counter + 7'd1;
-        if(gpio_counter == 84) begin
-            gpio_counter <= 7'd0;
-            transfer <= 0;
-        end
-    end
+    clk = in_select ? gpio_clk : la_clk;
 end
 
 always @ (posedge clk) begin
     if(reset) begin
-        input_connection <= 0;
-        chip_select <= 0;
-        sram_clk <= 0;
-        gpio_counter <= 0;
+        input_connection <= 84'd0;
+        chip_select <= 3'd0;
+        gpio_counter <= 7'd0;
     end
     else begin
-        if(in_select && transfer) begin
+        gpio_counter <= (gpio_counter == 83) ? 0 : gpio_counter + 1;
+        if(in_select) begin
             input_connection[gpio_counter] <= gpio_packet;
         end
         else begin
@@ -86,24 +66,6 @@ always @ (posedge clk) begin
         end
     end
 end 
-
-always @(input_connection) begin
-    if(in_select) begin
-        if(gpio_counter == 84) begin
-            toggle_clk <= 1;
-        end
-    end
-    else begin
-        toggle_clk <= 1;
-    end
-end
-
-always @(posedge clk) begin
-    sram_clk <= toggle_clk;
-    if(toggle_clk) begin
-            toggle_clk <= 0;
-    end
-end
 
 always @(posedge clk) begin
     if(reset) begin
@@ -132,13 +94,13 @@ always @(posedge clk) begin
     end
 end
 
-always @ (posedge clk) begin
-    sram0_connections <= (chip_select == 0) ? {sram_clk, input_connection[54:0]} : {56{1'b0}};
-    sram1_connections <= (chip_select == 1) ? {sram_clk, input_connection[54:0]} : {56{1'b0}};
-    sram2_connections <= (chip_select == 2) ? {sram_clk, input_connection[47:0]} : {48{1'b0}};
-    sram3_connections <= (chip_select == 3) ? {sram_clk, input_connection[45:0]} : {46{1'b0}};
-    sram4_connections <= (chip_select == 4) ? {sram_clk, input_connection[46:0]} : {47{1'b0}};
-    sram5_connections <= (chip_select == 5) ? {sram_clk, input_connection[82:0]} : {83{1'b0}};
+always @ (input_connection) begin
+    sram0_connections = (chip_select == 0) ? input_connection[54:0] : {55{1'b0}};
+    sram1_connections = (chip_select == 1) ? input_connection[54:0] : {55{1'b0}};
+    sram2_connections = (chip_select == 2) ? input_connection[47:0] : {48{1'b0}};
+    sram3_connections = (chip_select == 3) ? input_connection[45:0] : {46{1'b0}};
+    sram4_connections = (chip_select == 4) ? input_connection[46:0] : {47{1'b0}};
+    sram5_connections = (chip_select == 5) ? input_connection[82:0] : {83{1'b0}};
 end
 
 always @ (posedge clk) begin
@@ -155,12 +117,12 @@ always @ (posedge clk) begin
     end
 end
 
-always @ (posedge clk) begin
-    if(in_select && transfer) begin
-        gpio_data <= read_data[gpio_counter];
+always @ (*) begin
+    if(in_select) begin
+        gpio_data = read_data[gpio_counter];
     end    
     else begin
-        la_data <= read_data;
+        la_data = read_data;
     end
 end
 
