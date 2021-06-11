@@ -50,9 +50,10 @@ always @(*) begin
     clk = in_select ? gpio_clock : wb_clock;
 end 
 
-always @(gpio_packet) begin
-    if(!transfer) begin
+always @(gpio_packet, read_data) begin
+    if(!transfer && in_select) begin
         transfer <= 1;
+        gpio_counter <= 7'd0;
     end
 end
 
@@ -87,7 +88,7 @@ end
 
 always @(input_connection) begin
     if(in_select) begin
-        if(gpio_counter == 83) begin
+        if(gpio_counter == 84) begin
             toggle_clk <= 1;
         end
     end
@@ -154,8 +155,8 @@ always @ (posedge clk) begin
 end
 
 always @ (posedge clk) begin
-    if(in_select) begin
-        
+    if(in_select && transfer) begin
+        gpio_data <= read_data[gpio_counter];
     end    
     else begin
         la_data <= read_data;
