@@ -41,8 +41,7 @@ wire [63:0] to_la;
 wire to_gpio;
 
 openram_testchip CONTROL_LOGIC(
-    .wb_clock(clk_in),
-    .gpio_clock(clk_in),
+    .clk(clk_in),
     .reset(rst),
     .la_packet(from_analyzer),
     .gpio_packet(from_gpio),
