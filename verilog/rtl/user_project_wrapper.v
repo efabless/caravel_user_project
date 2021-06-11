@@ -102,13 +102,13 @@ always @(*) begin
 end
 
 openram_testchip CONTROL_LOGIC(
-    .clock(clk),
+    .clk(clk),
     .reset(wb_rst_i),
     .la_packet(la_data_in[85:0]),
     .gpio_packet(io_in[2]),
     .in_select(la_data_in[86]),
     .sram0_rw_in(sram0_rw_out),
-    .sram0_r0_in(sram0_ro_out),
+    .sram0_ro_in(sram0_ro_out),
     .sram1_rw_in(sram1_rw_out),
     .sram1_ro_in(sram1_ro_out),
     .sram2_rw_in(sram2_rw_out),
