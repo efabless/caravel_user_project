@@ -33,7 +33,7 @@ module openram_testchip(
   output reg gpio_data
 );
 
-reg [83:0] input_connection;
+reg [83:0] input_connection = 84'd0;
 reg [2:0] chip_select;
 
 reg clk;
@@ -43,19 +43,40 @@ reg csb0;
 reg toggle_clk;
 reg [63:0] read_data;
 
+reg[6:0] gpio_counter = 7'd0;
+reg transfer = 1'b0;
+
 always @(*) begin
     clk = in_select ? gpio_clock : wb_clock;
 end 
 
+always @(gpio_packet) begin
+    if(!transfer) begin
+        transfer <= 1;
+    end
+end
+
+always @ (posedge clk) begin
+    if(transfer) begin
+        transfer <= 1;
+        gpio_counter <= gpio_counter + 7'd1;
+        if(gpio_counter == 84) begin
+            gpio_counter <= 7'd0;
+            transfer <= 0;
+        end
+    end
+end
+
 always @ (posedge clk) begin
     if(reset) begin
-        input_connection <= ~0;
+        input_connection <= 0;
         chip_select <= 0;
         sram_clk <= 0;
+        gpio_counter <= 0;
     end
     else begin
-        if(in_select) begin
-            
+        if(in_select && transfer) begin
+            input_connection[gpio_counter] <= gpio_packet;
         end
         else begin
            input_connection <= la_packet[82:0];
@@ -65,7 +86,14 @@ always @ (posedge clk) begin
 end 
 
 always @(input_connection) begin
-    toggle_clk <= 1;
+    if(in_select) begin
+        if(gpio_counter == 83) begin
+            toggle_clk <= 1;
+        end
+    end
+    else begin
+        toggle_clk <= 1;
+    end
 end
 
 always @(posedge clk) begin
