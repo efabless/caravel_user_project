@@ -95,18 +95,13 @@ wire [31:0] sram3_rw_out;
 wire [31:0] sram4_rw_out;
 wire [63:0] sram5_rw_out;
 
-reg clk;
-
-always @(*) begin
-    clk <= io_in[1] ? user_clock2 : wb_clk_i;
-end
-
 openram_testchip CONTROL_LOGIC(
-    .clk(clk),
+    .la_clk(wb_clk_i),
+    .gpio_clk(io_in[1]),
     .reset(wb_rst_i),
     .la_packet(la_data_in[85:0]),
     .gpio_packet(io_in[2]),
-    .in_select(la_data_in[86]),
+    .in_select(io_in[3]),
     .sram0_rw_in(sram0_rw_out),
     .sram0_ro_in(sram0_ro_out),
     .sram1_rw_in(sram1_rw_out),

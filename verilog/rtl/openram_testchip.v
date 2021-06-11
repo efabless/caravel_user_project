@@ -9,7 +9,8 @@ module openram_testchip(
       inout vssd1,        // User area 1 digital ground
       inout vssd2,        // User area 2 digital ground
   `endif
-  input         clk,
+  input         la_clk,
+  input         gpio_clk,
   input         reset,
   input  [85:0] la_packet,
   input         gpio_packet,
@@ -43,6 +44,12 @@ reg [63:0] read_data;
 
 reg[6:0] gpio_counter = 7'd0;
 reg transfer = 1'b0;
+
+reg clk;
+
+always @(*) begin
+    clk <= in_select ? gpio_clk : la_clk;
+end
 
 always @(gpio_packet, read_data) begin
     if(!transfer && in_select) begin
