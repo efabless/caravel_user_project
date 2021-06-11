@@ -142,7 +142,7 @@ initial begin
     in_select = 0;
     from_analyzer = 86'd0;
     from_gpio =  1'd0;
-
+    
     //Write 1 to address 1 in SRAM 0
     from_analyzer = {3'd0, 28'd0, 1'b0, 1'b0, 4'd15, 8'd1, 32'd1, 1'b0, 8'd0};
     #20;
@@ -209,11 +209,9 @@ initial begin
     from_analyzer = {3'd5, 1'b0, 1'b1, 8'd0, 9'd5, 64'd0};
     #60;
     `assert(to_la, 64'd5);
-
     #10;$finish;
 end
 
 always 
     #5 clk_in = !clk_in;
-
 endmodule
