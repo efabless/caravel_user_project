@@ -61,8 +61,8 @@ reg [31:0] sram4_data;
 
 // Mux output to connect final output data
 // into sram_register
-reg [32:0] read_data0;
-reg [32:0] read_data1;
+reg [31:0] read_data0;
+reg [31:0] read_data1;
 
 // SRAM input connections
 reg [3:0] chip_select;
@@ -98,6 +98,7 @@ always @ (posedge clk) begin
     end
     else if(gpio_sram_load || la_sram_load) begin
         sram_register <= {sram_register[111:92], read_data0, sram_register[59:38], read_data1, sram_register[5:0]};
+        //sram_register <= sram_register;
     end
     //GPIO scanning for output transfer
     else if(gpio_out_scan) begin
