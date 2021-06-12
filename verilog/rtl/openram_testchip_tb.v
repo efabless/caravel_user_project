@@ -10,59 +10,75 @@ end
 `include "sram_1rw0r0w_32_256_sky130.v"
 `include "sram_1rw0r0w_32_512_sky130.v"
 `include "sram_1rw0r0w_32_1024_sky130.v"
-`include "sram_1rw0r0w_64_512_sky130.v"
+//`include "sram_1rw0r0w_64_512_sky130.v"
 `include "openram_testchip.v"
 
 module test_chip_tb;
 
-reg clk_in;
-reg rst;
-reg [85:0] from_analyzer;
-reg        from_gpio;
-reg in_select;
-
-wire [55:0] sram0_connections;
-wire [55:0] sram1_connections;
-wire [48:0] sram2_connections;
-wire [46:0] sram3_connections;
-wire [47:0] sram4_connections;
-wire [83:0] sram5_connections;
-
-wire [31:0] sram0_rw_out;
-wire [31:0] sram0_ro_out;
-wire [31:0] sram1_rw_out;
-wire [31:0] sram1_ro_out;
-wire [31:0] sram2_rw_out;
-wire [31:0] sram3_rw_out;
-wire [31:0] sram4_rw_out;
-wire [63:0] sram5_rw_out;
-
-wire [63:0] to_la;
-wire to_gpio;
+  reg          la_clk;
+  reg          gpio_clk;
+  reg          la_sram_clk;
+  reg          gpio_sram_clk;
+  reg          reset;
+  reg          la_in_load; 
+  reg          gpio_in_scan;
+  reg          la_sram_load;
+  reg          gpio_sram_load;
+  reg          gpio_out_scan;
+  reg  [111:0] la_bits;
+  reg          gpio_bit;
+  reg          in_select;
+  wire  [31:0] sram0_rw_in;
+  wire  [31:0] sram0_ro_in;
+  wire  [31:0] sram1_rw_in;
+  wire  [31:0] sram1_ro_in;
+  wire  [31:0] sram2_rw_in;
+  wire  [31:0] sram3_rw_in;
+  wire  [31:0] sram4_rw_in;
+  //wire  [63:0] sram5_rw_in;
+  wire [54:0] sram0_connections;
+  wire [54:0] sram1_connections;
+  wire [47:0] sram2_connections;
+  wire [45:0] sram3_connections;
+  wire [46:0] sram4_connections;
+  //wire [82:0] sram5_connections;
+  wire [63:0] la_data0;
+  wire [63:0] la_data1;
+  wire gpio_data0;
+  wire gpio_data1;
 
 openram_testchip CONTROL_LOGIC(
     .la_clk(clk_in),
     .gpio_clk(clk_in),
-    .reset(rst),
-    .la_packet(from_analyzer),
-    .gpio_packet(from_gpio),
+    .la_sram_clk(la_sram_clk),
+    .gpio_sram_clk(gpio_sram_clk),
+    .reset(reset),
+    .la_in_load(la_in_load),
+    .gpio_in_scan(gpio_in_scan),
+    .la_sram_load(la_sram_load),
+    .gpio_sram_load(gpio_sram_load),
+    .gpio_out_scan(gpio_out_scan),
+    .la_bits(la_bits),
+    .gpio_bit(gpio_bit),
     .in_select(in_select),
-    .sram0_rw_in(sram0_rw_out),
-    .sram0_ro_in(sram0_ro_out),
-    .sram1_rw_in(sram1_rw_out),
-    .sram1_ro_in(sram1_ro_out),
-    .sram2_rw_in(sram2_rw_out),
-    .sram3_rw_in(sram3_rw_out),
-    .sram4_rw_in(sram4_rw_out),
-    .sram5_rw_in(sram5_rw_out),
+    .sram0_rw_in(sram0_rw_in),
+    .sram0_ro_in(sram0_ro_in),
+    .sram1_rw_in(sram1_rw_in),
+    .sram1_ro_in(sram1_ro_in),
+    .sram2_rw_in(sram2_rw_in),
+    .sram3_rw_in(sram3_rw_in),
+    .sram4_rw_in(sram4_rw_in),
+    //.sram5_rw_in(sram5_rw_out),
     .sram0_connections(sram0_connections),
     .sram1_connections(sram1_connections),
     .sram2_connections(sram2_connections),
     .sram3_connections(sram3_connections),
     .sram4_connections(sram4_connections),
-    .sram5_connections(sram5_connections),
-    .la_data(to_la),
-    .gpio_data(to_gpio)
+    //.sram5_connections(sram5_connections),
+    .la_data0(la_data0),
+    .la_data1(la_data1),
+    .gpio_data0(gpio_data0),
+    .gpio_data1(gpio_data1)
 );
 
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
@@ -73,11 +89,11 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
       .wmask0 (sram0_connections[52:49]),
       .addr0  (sram0_connections[48:41]),
       .din0   (sram0_connections[40:9]),
-      .dout0  (sram0_rw_out),
+      .dout0  (sram0_rw_in),
       .clk1   (sram0_connections[55]),
       .csb1   (sram0_connections[8]),
       .addr1  (sram0_connections[7:0]),
-      .dout1  (sram0_ro_out));
+      .dout1  (sram0_ro_in));
 
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
      (
@@ -87,11 +103,11 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
       .wmask0 (sram1_connections[52:49]),
       .addr0  (sram1_connections[48:41]),
       .din0   (sram1_connections[40:9]),
-      .dout0  (sram1_rw_out),
+      .dout0  (sram1_rw_in),
       .clk1   (sram1_connections[55]),
       .csb1   (sram1_connections[8]),
       .addr1  (sram1_connections[7:0]),
-      .dout1  (sram1_ro_out));      
+      .dout1  (sram1_ro_in));      
 
 sram_1rw0r0w_32_1024_sky130 SRAM2
     (
@@ -101,7 +117,7 @@ sram_1rw0r0w_32_1024_sky130 SRAM2
       .wmask0 (sram2_connections[45:42]),
       .addr0  (sram2_connections[41:32]),
       .din0   (sram2_connections[31:0]),
-      .dout0  (sram2_rw_out)); 
+      .dout0  (sram2_rw_in)); 
 
 sram_1rw0r0w_32_256_sky130 SRAM3
     (
@@ -111,7 +127,7 @@ sram_1rw0r0w_32_256_sky130 SRAM3
       .wmask0 (sram3_connections[43:40]),
       .addr0  (sram3_connections[39:32]),
       .din0   (sram3_connections[31:0]),
-      .dout0  (sram3_rw_out));
+      .dout0  (sram3_rw_in));
 
 sram_1rw0r0w_32_512_sky130 SRAM4
     (
@@ -121,8 +137,9 @@ sram_1rw0r0w_32_512_sky130 SRAM4
       .wmask0 (sram4_connections[44:41]),
       .addr0  (sram4_connections[40:32]),
       .din0   (sram4_connections[31:0]),
-      .dout0  (sram4_rw_out));
+      .dout0  (sram4_rw_in));
 
+/*
 sram_1rw0r0w_64_512_sky130 SRAM5
     (
       .clk0   (sram5_connections[83]),
@@ -132,14 +149,17 @@ sram_1rw0r0w_64_512_sky130 SRAM5
       .addr0  (sram5_connections[72:64]),
       .din0   (sram5_connections[63:0]),
       .dout0  (sram5_rw_out));
+*/
 
 initial begin
     $dumpfile("testchip_tb.vcd");
     $dumpvars(0, test_chip_tb);
-    clk_in = 1;
-    rst = 0;
+    la_clk = 1;
+    reset = 0;
     //Send packet using logic analyzer
     in_select = 0;
+    
+    /*
     from_analyzer = 86'd0;
     from_gpio =  1'd0;
     
@@ -209,9 +229,10 @@ initial begin
     from_analyzer = {3'd5, 1'b0, 1'b1, 8'd0, 9'd5, 64'd0};
     #60;
     `assert(to_la, 64'd5);
+    */
     #10;$finish;
 end
 
 always 
-    #5 clk_in = !clk_in;
+    #5 la_clk = !la_clk;
 endmodule
