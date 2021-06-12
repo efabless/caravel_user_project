@@ -15,9 +15,10 @@ module openram_testchip(
   input         gpio_sram_clk,
   input         reset,
   input         la_in_load, 
-  input         gpio_scanning,
+  input         gpio_in_scan,
   input         la_sram_load,
   input         gpio_sram_load,
+  input         gpio_out_scan,
   input  [111:0] la_bits,
   input         gpio_bit,
   input         in_select,
@@ -58,13 +59,10 @@ reg [63:0] sram3_data;
 reg [63:0] sram4_data;
 //reg [63:0] sram5_data;
 
-// Hold final output data
-// clocked by la/gpio clk
-reg [63:0] read_data0;   // Mux output
-reg [63:0] read_data1;   // Mux output
-
-reg [63:0] sram_data0;
-reg [63:0] sram_data1;
+// Mux output to connect final output data
+// into sram_register
+reg [63:0] read_data0;
+reg [63:0] read_data1;
 
 // SRAM input connections
 reg [3:0] chip_select;
@@ -91,15 +89,19 @@ always @ (posedge clk) begin
     if(reset) begin
         sram_register <= 112'd0;
     end
-    else if(gpio_scanning) begin
+    //GPIO scanning for input transfer
+    else if(gpio_in_scan) begin
         sram_register <= {sram_register[110:0], gpio_bit};
     end
     else if(la_in_load) begin
         sram_register <= la_bits;
     end
     else if(gpio_sram_load || la_sram_load) begin
-        //Why is this necessary?
-        //sram_register = {sram_register[bits above DIN0], DOUT0, sram_register[bits between DIN0 and DIN1], DOUT1, sram_register[bits below din1}
+        sram_register <= {sram_register[bits above DIN0], DOUT0, sram_register[bits between DIN0 and DIN1], DOUT1, sram_register[bits below din1}
+    end
+    //GPIO scanning for output transfer
+    else if(gpio_out_scan) begin
+        sram_register <= sram_register >> 1;
     end
 end
 
@@ -180,32 +182,11 @@ always @ (*) begin
     endcase
 end
 
-always @(posedge clk) begin
-    if(reset) begin
-       sram_data0 <= 64'd0; 
-       sram_data1 <= 64'd0; 
-    end
-    // Shifting for serial transfer
-    else if(gpio_scanning) begin
-        sram_data0 <= sram_data0 >> 1;
-        sram_data1 <= sram_data1 >> 1;
-    end
-    // Reading in data from SRAM dout FF's
-    else begin
-        if(web0) begin
-            sram_data0 <= read_data0;
-        end
-        if(web1) begin
-            sram_data1 <= read_data1;            
-        end
-    end
-end
-
 // Output transfer
 always @ (*) begin
     if(in_select) begin
-        gpio_data0 = sram_data0[0];
-        gpio_data1 = sram_data1[0];
+        gpio_data0 = sram_register[???];
+        gpio_data1 = sram_register[???];
     end    
     else begin
         la_data0 = sram_data0;
