@@ -82,7 +82,7 @@ reg [3:0] wmask1;
 //Selecting clock pin
 always @(*) begin
     clk = in_select ? gpio_clk : la_clk;
-    sram_clk = in_select ? gpio_clk : la_clk;
+    sram_clk = in_select ? gpio_sram_clk : la_sram_clk;
 end
 
 always @ (posedge clk) begin
