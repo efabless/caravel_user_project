@@ -11,17 +11,23 @@ module openram_testchip(
   `endif
   input         la_clk,
   input         gpio_clk,
+  input         la_sram_clk,
+  input         gpio_sram_clk,
   input         reset,
-  input  [85:0] la_packet,
-  input         gpio_packet,
+  input         la_in_load, 
+  input         gpio_in_load,
+  input         la_sram_load,
+  input         gpio_sram_load,
+  input  [111:0] la_bits,
+  input         gpio_bit,
   input         in_select,
-  input  [31:0] sram0_rw_in,
-  input  [31:0] sram0_ro_in,
-  input  [31:0] sram1_rw_in,
-  input  [31:0] sram1_ro_in,
-  input  [31:0] sram2_rw_in,
-  input  [31:0] sram3_rw_in,
-  input  [31:0] sram4_rw_in,
+  input  [63:0] sram0_rw_in,
+  input  [63:0] sram0_ro_in,
+  input  [63:0] sram1_rw_in,
+  input  [63:0] sram1_ro_in,
+  input  [63:0] sram2_rw_in,
+  input  [63:0] sram3_rw_in,
+  input  [63:0] sram4_rw_in,
   input  [63:0] sram5_rw_in,
   output reg [54:0] sram0_connections,
   output reg [54:0] sram1_connections,
@@ -33,32 +39,43 @@ module openram_testchip(
   output reg gpio_data
 );
 
-reg [83:0] input_connection;
-reg [2:0] chip_select;
-
-reg web;
-reg csb0;
+reg [111:0] sram_register;
+reg [3:0] chip_select;
 
 reg [63:0] read_data;
-
-reg [6:0] gpio_counter;
+reg [63:0] sram_data;
 
 reg clk;
+reg sram_clk;
 
 always @(*) begin
     clk = in_select ? gpio_clk : la_clk;
+    sram_clk = in_select ? gpio_clk : la_clk;
+end
+
+always @ (posedge clk) begin
+    if(reset) begin
+        sram_register <= 112'd0;
+    end
+    else if(gpio_in_load) begin
+        sram_register <= {sram_register[110:0], gpio_bit};
+    end
+    else if(la_in_load) begin
+        sram_register <= la_bits;
+    end
+    else if(gpio_sram_load || la_sram_load) begin
+        
+    end
 end
 
 always @ (posedge clk) begin
     if(reset) begin
         input_connection <= 84'd0;
         chip_select <= 3'd0;
-        gpio_counter <= 7'd0;
     end
     else begin
-        gpio_counter <= (gpio_counter == 83) ? 0 : gpio_counter + 1;
         if(in_select) begin
-            input_connection[gpio_counter] <= gpio_packet;
+            input_connection <= {input_connection[82:0], gpio_packet};
         end
         else begin
            input_connection <= la_packet[82:0];
@@ -94,6 +111,10 @@ always @(posedge clk) begin
     end
 end
 
+always @ (posedge clk) begin
+    
+end
+
 always @ (input_connection) begin
     sram0_connections = (chip_select == 0) ? input_connection[54:0] : {55{1'b0}};
     sram1_connections = (chip_select == 1) ? input_connection[54:0] : {55{1'b0}};
@@ -103,26 +124,36 @@ always @ (input_connection) begin
     sram5_connections = (chip_select == 5) ? input_connection[82:0] : {83{1'b0}};
 end
 
-always @ (posedge clk) begin
-    if(web) begin
-        case(chip_select)
-        3'd0: read_data <= csb0 ? sram0_ro_in : sram0_rw_in;
-        3'd1: read_data <= csb0 ? sram1_ro_in : sram1_rw_in;
-        3'd2: read_data <= sram2_rw_in;
-        3'd3: read_data <= sram3_rw_in;
-        3'd4: read_data <= sram4_rw_in;
-        3'd5: read_data <= sram5_rw_in;
-        default: read_data <= 64'd0;
-        endcase
+always @ (*) begin   
+    case(chip_select)
+    3'd0: read_data <= csb0 ? sram0_ro_in : sram0_rw_in;
+    3'd1: read_data <= csb0 ? sram1_ro_in : sram1_rw_in;
+    3'd2: read_data <= sram2_rw_in;
+    3'd3: read_data <= sram3_rw_in;
+    3'd4: read_data <= sram4_rw_in;
+    3'd5: read_data <= sram5_rw_in;
+    default: read_data <= 64'd0;
+    endcase
+end
+
+always @(posedge clk) begin
+    if(reset) begin
+       sram_data <= 64'd0; 
+    end
+    else begin
+        if(web) begin
+            sram_data <= read_data;
+            sram_data <= sram_data >> 1;
+        end
     end
 end
 
 always @ (*) begin
     if(in_select) begin
-        gpio_data = read_data[gpio_counter];
+        gpio_data = sram_data[0];
     end    
     else begin
-        la_data = read_data;
+        la_data = sram_data;
     end
 end
 
