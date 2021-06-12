@@ -171,11 +171,22 @@ initial begin
     la_in_load = 0;
     la_sram_load = 1;
     la_sram_clk = 1;
-    #5
+    #5;
     la_sram_clk = 0;
-    #5
+    #5;
     
-    
+    la_in_load = 1;
+    la_sram_load = 0;
+    la_bits = {4'd0, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+
+    #10;
+    la_in_load = 0;
+    la_sram_load = 1;
+    la_sram_clk = 1;
+    #5;
+    la_sram_clk = 0;
+    #5;
+
     /*
     from_analyzer = 86'd0;
     from_gpio =  1'd0;
@@ -188,6 +199,7 @@ initial begin
     from_analyzer = {3'd0, 28'd0, 1'b0, 1'b1, 4'd0, 8'd1, 32'd0, 1'b1, 8'd0};
     #60;
     `assert(to_la, 64'd1);
+    */
     #30;$finish;
 end
 
