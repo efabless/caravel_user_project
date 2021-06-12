@@ -22,13 +22,13 @@ module openram_testchip(
   input  [111:0] la_bits,
   input         gpio_bit,
   input         in_select,
-  input  [63:0] sram0_rw_in,
-  input  [63:0] sram0_ro_in,
-  input  [63:0] sram1_rw_in,
-  input  [63:0] sram1_ro_in,
-  input  [63:0] sram2_rw_in,
-  input  [63:0] sram3_rw_in,
-  input  [63:0] sram4_rw_in,
+  input  [31:0] sram0_rw_in,
+  input  [31:0] sram0_ro_in,
+  input  [31:0] sram1_rw_in,
+  input  [31:0] sram1_ro_in,
+  input  [31:0] sram2_rw_in,
+  input  [31:0] sram3_rw_in,
+  input  [31:0] sram4_rw_in,
   //input  [63:0] sram5_rw_in,
   output reg [54:0] sram0_connections,
   output reg [54:0] sram1_connections,
@@ -134,27 +134,27 @@ end
 // Store dout of each SRAM  
 always @ (posedge sram_clk) begin   
     if(reset) begin
-        sram0_rw_data <= 32'd0;
-        sram0_ro_data <= 32'd0;
+        sram0_rw_data <= 64'd0;
+        sram0_ro_data <= 64'd0;
 
-        sram1_rw_data <= 32'd0;
-        sram1_ro_data <= 32'd0;
+        sram1_rw_data <= 64'd0;
+        sram1_ro_data <= 64'd0;
 
-        sram2_data <= 32'd0;
-        sram3_data <= 32'd0;
-        sram4_data <= 32'd0;
+        sram2_data <= 64'd0;
+        sram3_data <= 64'd0;
+        sram4_data <= 64'd0;
         //sram5_data <= 32'd0; 
     end
     else begin
-        sram0_rw_data <= sram0_rw_in;
-        sram0_ro_data <= sram0_ro_in;
+        sram0_rw_data <= {32'd0, sram0_rw_in};
+        sram0_ro_data <= {32'd0, sram0_ro_in};
 
-        sram1_rw_data <= sram1_rw_in;
-        sram1_ro_data <= sram1_ro_in;
+        sram1_rw_data <= {32'd0, sram1_rw_in};
+        sram1_ro_data <= {32'd0, sram1_ro_in};
 
-        sram2_data <= sram2_rw_in;
-        sram3_data <= sram3_rw_in;
-        sram4_data <= sram4_rw_in;
+        sram2_data <= {32'd0, sram2_rw_in};
+        sram3_data <= {32'd0, sram3_rw_in};
+        sram4_data <= {32'd0, sram4_rw_in};
         //sram5_data <= sram5_rw_in; 
     end
 end
