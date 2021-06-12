@@ -36,8 +36,8 @@ module openram_testchip(
   output reg [45:0] sram3_connections,
   output reg [46:0] sram4_connections,
   //output reg [82:0] sram5_connections,
-  output reg [63:0] la_data0,
-  output reg [63:0] la_data1,
+  output reg [31:0] la_data0,
+  output reg [31:0] la_data1,
   output reg gpio_data0,
   output reg gpio_data1
 );
@@ -50,19 +50,19 @@ reg [111:0] sram_register;
 
 // Hold dout from SRAM
 // clocked by SRAM clk
-reg [63:0] sram0_rw_data;
-reg [63:0] sram0_ro_data;
-reg [63:0] sram1_rw_data;
-reg [63:0] sram1_ro_data;
-reg [63:0] sram2_data;
-reg [63:0] sram3_data;
-reg [63:0] sram4_data;
+reg [31:0] sram0_rw_data;
+reg [31:0] sram0_ro_data;
+reg [31:0] sram1_rw_data;
+reg [31:0] sram1_ro_data;
+reg [31:0] sram2_data;
+reg [31:0] sram3_data;
+reg [31:0] sram4_data;
 //reg [63:0] sram5_data;
 
 // Mux output to connect final output data
 // into sram_register
-reg [63:0] read_data0;
-reg [63:0] read_data1;
+reg [32:0] read_data0;
+reg [32:0] read_data1;
 
 // SRAM input connections
 reg [3:0] chip_select;
@@ -87,7 +87,7 @@ end
 
 always @ (posedge clk) begin
     if(reset) begin
-        sram_register <= 112'd0;
+        sram_register <= 112'd1;
     end
     //GPIO scanning for input transfer
     else if(gpio_in_scan) begin
@@ -123,38 +123,38 @@ always @(sram_register) begin
 end
 
 always @ (*) begin
-    sram0_connections = (chip_select == 0) ? {csb0, web0, wmask0, addr0[7:0], din0, csb1, addr1} : {55{1'b0}};     //32x256 Dual Port
-    sram1_connections = (chip_select == 1) ? {csb0, web0, wmask0, addr0[7:0], din0, csb1, addr1} : {55{1'b0}};     //32x256 Dual Port
-    sram2_connections = (chip_select == 2) ? {csb0, web0, wmask0, addr0[9:0], din0} : {48{1'b0}};   //32x1024 Single Port
-    sram3_connections = (chip_select == 3) ? {csb0, web0, wmask0, addr0[7:0], din0} : {46{1'b0}};      //32x256 Single Port
-    sram4_connections = (chip_select == 4) ? {csb0, web0, wmask0, addr0[8:0], din0} : {47{1'b0}};      //32x512 Single Port
+    sram0_connections = (chip_select == 0) ? {csb0, web0, wmask0, addr0[7:0], din0, csb1, addr1[7:0]} : {55{1'b1}};     //32x256 Dual Port
+    sram1_connections = (chip_select == 1) ? {csb0, web0, wmask0, addr0[7:0], din0, csb1, addr1[7:0]} : {55{1'b1}};     //32x256 Dual Port
+    sram2_connections = (chip_select == 2) ? {csb0, web0, wmask0, addr0[9:0], din0} : {48{1'b1}};   //32x1024 Single Port
+    sram3_connections = (chip_select == 3) ? {csb0, web0, wmask0, addr0[7:0], din0} : {46{1'b1}};      //32x256 Single Port
+    sram4_connections = (chip_select == 4) ? {csb0, web0, wmask0, addr0[8:0], din0} : {47{1'b1}};      //32x512 Single Port
     //sram5_connections = (chip_select == 5) ? {csb0, web0, wmask0, addr0, din0} : {83{1'b0}};
 end
 
 // Store dout of each SRAM  
 always @ (posedge sram_clk) begin   
     if(reset) begin
-        sram0_rw_data <= 64'd0;
-        sram0_ro_data <= 64'd0;
+        sram0_rw_data <= 32'd0;
+        sram0_ro_data <= 32'd0;
 
-        sram1_rw_data <= 64'd0;
-        sram1_ro_data <= 64'd0;
+        sram1_rw_data <= 32'd0;
+        sram1_ro_data <= 32'd0;
 
-        sram2_data <= 64'd0;
-        sram3_data <= 64'd0;
-        sram4_data <= 64'd0;
+        sram2_data <= 32'd0;
+        sram3_data <= 32'd0;
+        sram4_data <= 32'd0;
         //sram5_data <= 32'd0; 
     end
     else begin
-        sram0_rw_data <= {32'd0, sram0_rw_in};
-        sram0_ro_data <= {32'd0, sram0_ro_in};
+        sram0_rw_data <= sram0_rw_in;
+        sram0_ro_data <= sram0_ro_in;
 
-        sram1_rw_data <= {32'd0, sram1_rw_in};
-        sram1_ro_data <= {32'd0, sram1_ro_in};
+        sram1_rw_data <= sram1_rw_in;
+        sram1_ro_data <= sram1_ro_in;
 
-        sram2_data <= {32'd0, sram2_rw_in};
-        sram3_data <= {32'd0, sram3_rw_in};
-        sram4_data <= {32'd0, sram4_rw_in};
+        sram2_data <= sram2_rw_in;
+        sram3_data <= sram3_rw_in;
+        sram4_data <= sram4_rw_in;
         //sram5_data <= sram5_rw_in; 
     end
 end
@@ -164,20 +164,40 @@ end
 always @ (*) begin
     case(chip_select)
     3'd0: begin
-        read_data0 = sram0_rw_data;
-        read_data1 = sram0_ro_data;
+        if(web0) begin
+            read_data0 = sram0_rw_data;
+        end
+        if(web1) begin
+            read_data1 = sram0_ro_data;
+        end
     end 
     3'd1: begin
-        read_data0 = sram1_rw_data;
-        read_data1 = sram1_ro_data;
+        if(web0) begin
+            read_data0 = sram1_rw_data;
+        end
+        if(web1) begin
+            read_data1 = sram1_ro_data;
+        end
     end 
-    3'd2: read_data0 = sram2_data;
-    3'd3: read_data0 = sram3_data;
-    3'd4: read_data0 = sram4_data;
+    3'd2: begin
+        if(web0) begin
+            read_data0 = sram2_data;
+        end
+    end
+    3'd3: begin
+        if(web0) begin
+            read_data0 = sram3_data;
+        end
+    end
+    3'd4: begin
+        if(web0) begin
+            read_data0 = sram4_data;
+        end
+    end
     //3'd5: assign read_data0 = sram5_data;
     default: begin
-        read_data0 = 64'd0;
-        read_data1 = 64'd0;
+        read_data0 = 32'd0;
+        read_data1 = 32'd0;
     end
     endcase
 end
