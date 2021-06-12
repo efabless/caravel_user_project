@@ -97,7 +97,7 @@ always @ (posedge clk) begin
         sram_register <= la_bits;
     end
     else if(gpio_sram_load || la_sram_load) begin
-        sram_register <= {sram_register[bits above DIN0], DOUT0, sram_register[bits between DIN0 and DIN1], DOUT1, sram_register[bits below din1}
+        sram_register <= {sram_register[111:92], read_data0, sram_register[59:38], read_data1, sram_register[5:0]};
     end
     //GPIO scanning for output transfer
     else if(gpio_out_scan) begin
@@ -185,12 +185,12 @@ end
 // Output transfer
 always @ (*) begin
     if(in_select) begin
-        gpio_data0 = sram_register[???];
-        gpio_data1 = sram_register[???];
+        gpio_data0 = sram_register[60];
+        gpio_data1 = sram_register[6];
     end    
     else begin
-        la_data0 = sram_data0;
-        la_data1 = sram_data1;
+        la_data0 = sram_register[91:60];
+        la_data1 = sram_register[37:6];
     end
 end
 
