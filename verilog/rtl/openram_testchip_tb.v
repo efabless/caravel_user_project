@@ -156,6 +156,7 @@ initial begin
     $dumpvars(0, test_chip_tb);
     la_clk = 1;
     gpio_clk = 0;
+    la_sram_clk = 0;
     gpio_sram_clk = 0;
     gpio_in_scan = 0;
     gpio_bit = 0;
@@ -165,6 +166,7 @@ initial begin
     //Send bits using logic analyzer
     in_select = 0;
     la_in_load = 1;
+    la_sram_load = 0;
     la_bits = {4'd0, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
     
     #10;
