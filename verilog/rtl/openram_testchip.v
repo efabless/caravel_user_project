@@ -34,6 +34,12 @@ module openram_testchip(
   output reg [47:0] sram2_connections,
   output reg [45:0] sram3_connections,
   output reg [46:0] sram4_connections,
+  output reg sram0_clk,
+  output reg sram1_clk,
+  output reg sram2_clk,
+  output reg sram3_clk,
+  output reg sram4_clk,
+  //output reg sram5_clk,
   //output reg [82:0] sram5_connections,
   output reg [31:0] la_data0,
   output reg [31:0] la_data1,
@@ -82,6 +88,12 @@ reg [3:0] wmask1;
 always @(*) begin
     clk = in_select ? gpio_clk : la_clk;
     sram_clk = in_select ? gpio_sram_clk : la_sram_clk;
+    sram0_clk = sram_clk;
+    sram1_clk = sram_clk;
+    sram2_clk = sram_clk;
+    sram3_clk = sram_clk;
+    sram4_clk = sram_clk;
+    //sram5_clk = sram_clk;
 end
 
 always @ (posedge clk) begin
