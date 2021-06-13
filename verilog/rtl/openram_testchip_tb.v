@@ -189,20 +189,13 @@ initial begin
     la_sram_clk = 0;
     #5;
 
-    /*
-    from_analyzer = 86'd0;
-    from_gpio =  1'd0;
-    
-    //Write 1 to address 1 in SRAM 0
-    from_analyzer = {3'd0, 28'd0, 1'b0, 1'b0, 4'd15, 8'd1, 32'd1, 1'b0, 8'd0};
-    #20;
+    la_sram_clk = 1;
+    #5;
+    la_sram_clk = 0;
+    #10;
+    `assert(la_data0, 32'd1);
 
-    //Read from address 1 in SRAM 0
-    from_analyzer = {3'd0, 28'd0, 1'b0, 1'b1, 4'd0, 8'd1, 32'd0, 1'b1, 8'd0};
-    #60;
-    `assert(to_la, 64'd1);
-    */
-    #30;$finish;
+    #10;$finish;
 end
 
 always 
