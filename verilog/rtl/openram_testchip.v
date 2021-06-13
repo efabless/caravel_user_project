@@ -17,7 +17,7 @@ module openram_testchip(
 			input         la_sram_clk,
 			input         la_in_load, 
 			input         la_sram_load,
-			input  [127:0] la_bits,
+			input  [111:0] la_data_in,
 			// GPIO bit to clock control register
 			input         gpio_clk,
 			input         gpio_in,
@@ -89,7 +89,7 @@ module openram_testchip(
 			output reg sram13_clk,
 			output reg sram14_clk,
 			output reg sram15_clk,
-			output reg [127:0] la_data,
+			output reg [111:0] la_data_in,
 			output reg gpio_out
 );
 
@@ -176,7 +176,7 @@ always @ (posedge clk) begin
    end
    // LA parallel load
    else if(la_in_load) begin
-      sram_register <= la_bits;
+      sram_register <= la_data_in;
    end
    // Store results for read out
    else if(gpio_sram_load || la_sram_load) begin
@@ -354,7 +354,7 @@ end
 // Output logic
 always @ (*) begin
    gpio_out = sram_register[111];
-   la_data = {17'd0, sram_register};
+   la_data_out = {16'd0, sram_register};
 end
 
 endmodule
