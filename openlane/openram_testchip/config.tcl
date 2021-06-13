@@ -14,7 +14,7 @@ set ::env(CLOCK_NET) "clk"
 set ::env(CLOCK_PERIOD) "10"
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 500 800"
+set ::env(DIE_AREA) "0 0 1000 2000"
 set ::env(DESIGN_IS_CORE) 0
 
 set ::env(VDD_NETS) [list {vccd1} {vccd2} {vdda1} {vdda2}]
