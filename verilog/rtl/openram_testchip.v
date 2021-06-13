@@ -15,10 +15,9 @@ module openram_testchip(
   input         gpio_sram_clk,
   input         reset,
   input         la_in_load, 
-  input         gpio_in_scan,
+  input         gpio_scan,
   input         la_sram_load,
   input         gpio_sram_load,
-  input         gpio_out_scan,
   input  [111:0] la_bits,
   input         gpio_bit,
   input         in_select,
@@ -89,8 +88,8 @@ always @ (posedge clk) begin
     if(reset) begin
         sram_register <= 112'd1;
     end
-    //GPIO scanning for input transfer
-    else if(gpio_in_scan) begin
+    //GPIO scanning for transfer
+    else if(gpio_scan) begin
         sram_register <= {sram_register[110:0], gpio_bit};
     end
     else if(la_in_load) begin
@@ -99,10 +98,6 @@ always @ (posedge clk) begin
     else if(gpio_sram_load || la_sram_load) begin
         sram_register <= {sram_register[111:92], read_data0, sram_register[59:38], read_data1, sram_register[5:0]};
         //sram_register <= sram_register;
-    end
-    //GPIO scanning for output transfer
-    else if(gpio_out_scan) begin
-        sram_register <= sram_register >> 1;
     end
 end
 
@@ -206,8 +201,8 @@ end
 // Output transfer
 always @ (*) begin
     if(in_select) begin
-        gpio_data0 = sram_register[60];
-        gpio_data1 = sram_register[6];
+        gpio_data0 = sram_register[91];
+        gpio_data1 = sram_register[37];
     end    
     else begin
         la_data0 = sram_register[91:60];

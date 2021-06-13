@@ -21,10 +21,9 @@ module test_chip_tb;
   reg          gpio_sram_clk;
   reg          reset;
   reg          la_in_load; 
-  reg          gpio_in_scan;
+  reg          gpio_scan;
   reg          la_sram_load;
   reg          gpio_sram_load;
-  reg          gpio_out_scan;
   reg  [111:0] la_bits;
   reg          gpio_bit;
   reg          in_select;
@@ -54,10 +53,9 @@ openram_testchip CONTROL_LOGIC(
     .gpio_sram_clk(gpio_sram_clk),
     .reset(reset),
     .la_in_load(la_in_load),
-    .gpio_in_scan(gpio_in_scan),
+    .gpio_scan(gpio_scan),
     .la_sram_load(la_sram_load),
     .gpio_sram_load(gpio_sram_load),
-    .gpio_out_scan(gpio_out_scan),
     .la_bits(la_bits),
     .gpio_bit(gpio_bit),
     .in_select(in_select),
@@ -158,9 +156,8 @@ initial begin
     gpio_clk = 0;
     la_sram_clk = 0;
     gpio_sram_clk = 0;
-    gpio_in_scan = 0;
+    gpio_scan = 0;
     gpio_bit = 0;
-    gpio_out_scan = 0;
     reset = 0;
     
     //Send bits using logic analyzer
