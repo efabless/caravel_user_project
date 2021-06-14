@@ -78,12 +78,12 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
-wire [54:0] sram0_connections;
-wire [54:0] sram1_connections;
-wire [47:0] io_sram2_connections;
-wire [45:0] io_sram3_connections;
-wire [46:0] io_sram4_connections;
-wire [82:0] io_sram5_connections;
+wire [55:0] sram0_connections;
+wire [55:0] sram1_connections;
+wire [48:0] io_sram2_connections;
+wire [46:0] io_sram3_connections;
+wire [47:0] io_sram4_connections;
+wire [83:0] io_sram5_connections;
 
 
 wire [31:0] sram0_rw_out;
@@ -95,121 +95,344 @@ wire [31:0] sram3_rw_out;
 wire [31:0] sram4_rw_out;
 wire [63:0] sram5_rw_out;
 
+			
+			
+   
 openram_testchip CONTROL_LOGIC(
-    .clock(wb_clk_i),
-    .reset(wb_rst_i),
-    .io_logical_analyzer_packet(la_data_in[85:0]),
-    .io_gpio_packet(la_data_in[85:0]),
-    .io_in_select(la_data_in[86]),
-    .io_sram0_rw_in(sram0_rw_out),
-    .io_sram0_r0_in(sram0_ro_out),
-    .io_sram1_rw_in(sram1_rw_out),
-    .io_sram1_ro_in(sram1_ro_out),
-    .io_sram2_rw_in(sram2_rw_out),
-    .io_sram3_rw_in(sram3_rw_out),
-    .io_sram4_rw_in(sram4_rw_out),
-    .io_sram5_rw_in(sram5_rw_out),
-    .io_sram0_connections(sram0_connections),
-    .io_sram1_connections(sram1_connections),
-    .io_sram2_connections(sram2_connections),
-    .io_sram3_connections(sram3_connections),
-    .io_sram4_connections(sram4_connections),
-    .io_sram5_connections(sram5_connections),
-    .io_sram_data(la_data_out[63:0])
+			       .reset(wb_rst_i),
+			       .in_select(io_in[0]),
+			       .gpio_clk(io_in[1]),
+			       .gpio_sram_clk(io_in[2]),
+			       .gpio_scan(io_in[3]),
+			       .gpio_sram_load(io_in[4]),
+			       .la_clk(la_data_in[127]),
+			       .la_sram_clk(la_data_in[126]),
+			       .la_in_load(la_data_in[125]),
+			       .la_sram_load(la_data_in[124]),
+			       .la_data_in(la_data_in[111:0]),
+			       .la_data_out(la_data_out[111:0]),
+			       .gpio_out(io_out[0]),
+
+			       // Shared control/data to the SRAMs
+			       .addr0(addr0),
+			       .din0(din0),
+			       .web0(web0),
+			       .wmask0(wmask0),
+			       .addr1(addr1),
+			       .web1(web1),
+			       .wmask1(wmask1),
+			       
+			       // One CSB for each SRAM
+			       .csb0(csb0)
+			       .csb1(csb1)
+			       
+			       // Clocks for each SRAM
+			       .sram0_clk(sram0_clk),
+			       .sram1_clk(sram1_clk),
+			       .sram2_clk(sram2_clk),
+			       .sram3_clk(sram3_clk),
+			       .sram4_clk(sram4_clk),
+			       .sram5_clk(sram5_clk),
+			       .sram6_clk(sram6_clk),
+			       .sram7_clk(sram7_clk),
+			       .sram8_clk(sram8_clk),
+			       .sram9_clk(sram9_clk),
+			       .sram10_clk(sram10_clk),
+			       .sram11_clk(sram11_clk),
+			       .sram12_clk(sram12_clk),
+			       .sram13_clk(sram13_clk),
+			       .sram14_clk(sram14_clk),
+			       .sram15_clk(sram15_clk),
+
+			       // SRAM data outputs to be captured
+			       .sram0_dout0(sram0_dout0),
+			       .sram0_dout1(sram0_dout1),
+			       .sram1_dout0(sram1_dout0),
+			       .sram1_dout1(sram1_dout1),
+			       .sram2_dout0(sram2_dout0),
+			       .sram2_dout1(sram2_dout1),
+			       .sram3_dout0(sram3_dout0),
+			       .sram3_dout1(sram3_dout1),
+			       .sram4_dout0(sram4_dout0),
+			       .sram4_dout1(sram4_dout1),
+			       .sram5_dout0(sram5_dout0),
+			       .sram5_dout1(sram5_dout1),
+			       .sram6_dout0(sram6_dout0),
+			       .sram6_dout1(sram6_dout1),
+			       .sram7_dout0(sram7_dout0),
+			       .sram7_dout1(sram7_dout1),
+			       .sram8_dout0(sram8_dout0),
+			       .sram8_dout1(sram8_dout1),
+			       .sram9_dout0(sram9_dout0),
+			       .sram9_dout1(sram9_dout1),
+			       .sram10_dout0(sram10_dout0),
+			       .sram10_dout1(sram10_dout1),
+			       .sram11_dout0(sram11_dout0),
+			       .sram11_dout1(sram11_dout1),
+			       .sram12_dout0(sram12_dout0),
+			       .sram12_dout1(sram12_dout1),
+			       .sram13_dout0(sram13_dout0),
+			       .sram13_dout1(sram13_dout1),
+			       .sram14_dout0(sram14_dout0),
+			       .sram14_dout1(sram14_dout1),
+			       .sram15_dout0(sram15_dout0),
+			       .sram15_dout1(sram15_dout1),
+			       
+			       
 );
 
-sky130_sram_1kbyte_1rw1r_32x256_8 SRAM0
+   wire [31:0] din0;
+   wire  web0;
+   wire [3:0] wmask0;
+   wire [15:0] addr1;
+   wire [31:0] din1;
+   wire        web1;
+   wire [3:0]  wmask1;
+
+   wire [15:0] csb0;
+   wire [15:0] csb1;
+
+   wire [31:0] sram0_dout0;
+   wire [31:0] sram0_dout1;
+   wire [31:0] sram1_dout0;
+   wire [31:0] sram1_dout1;
+   wire [31:0] sram2_dout0;
+   wire [31:0] sram2_dout1;
+   wire [31:0] sram3_dout0;
+   wire [31:0] sram3_dout1;
+   wire [31:0] sram4_dout0;
+   wire [31:0] sram4_dout1;
+   wire [31:0] sram5_dout0;
+   wire [31:0] sram5_dout1;
+   wire [31:0] sram6_dout0;
+   wire [31:0] sram6_dout1;
+   wire [31:0] sram7_dout0;
+   wire [31:0] sram7_dout1;
+   wire [31:0] sram8_dout0;
+   wire [31:0] sram8_dout1;
+   wire [31:0] sram9_dout0;
+   wire [31:0] sram9_dout1;
+   wire [31:0] sram10_dout0;
+   wire [31:0] sram10_dout1;
+   wire [31:0] sram11_dout0;
+   wire [31:0] sram11_dout1;
+   wire [31:0] sram12_dout0;
+   wire [31:0] sram12_dout1;
+   wire [31:0] sram13_dout0;
+   wire [31:0] sram13_dout1;
+   wire [31:0] sram14_dout0;
+   wire [31:0] sram14_dout1;
+   wire [31:0] sram15_dout0;
+   wire [31:0] sram15_dout1;
+   
+
+// Not working yet
+// sky130_sram_1kbyte_1r1w_8x1024_8 SRAM0
+//      (
+//      `ifdef USE_POWER_PINS
+//       .vccd1(vccd1),
+//       .vssd1(vssd1), 
+//       `endif
+//       .clk0   (sram0_clk),
+//       .csb0   (csb0[0]),
+//       .web0   (web0),
+//       .wmask0 (wmask0),
+//       .addr0  (addr0),
+//       .din0   (din0),
+//       .dout0  (sram0_dout0[7:0]),
+//       .clk1   (sram0_clk),
+//       .csb1   (csb1[0]),
+//       .addr1  (addr1),
+//       .dout1  (sram0_dout1[7:0])
+//       );
+//    assign sram0_dout0 = 0;
+//    assign sram0_dout1[31:8] = 0;
+
+
+sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM1
      (
-      
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
       `endif
-      .clk0   (wb_clk_i),
-      .csb0   (sram0_connections[54]),
-      .web0   (sram0_connections[53]),
-      .wmask0 (sram0_connections[52:49]),
-      .addr0  (sram0_connections[48:41]),
-      .din0   (sram0_connections[40:9]),
-      .dout0  (sram0_rw_out),
-      .clk1   (wb_clk_i),
-      .csb1   (sram0_connections[8]),
-      .addr1  (sram0_connections[7:0]),
-      .dout1  (sram0_ro_out));
-
-sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
+      .clk0   (sram1_clk),
+      .csb0   (csb0[1]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram1_dout0[7:0]),
+      .clk1   (sram1_clk),
+      .csb1   (csb1[1]),
+      .addr1  (addr1),
+      .dout1  (sram1_dout1[7:0])
+      );
+   assign sram1_dout0[31:8] = 0;
+   assign sram1_dout1[31:8] = 0;
+   
+sky130_sram_1kbyte_1rw1r_32x256_8 SRAM2
      (
-      `ifdef USE_POWER_PINS
+     `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
       `endif
-      .clk0   (wb_clk_i),
-      .csb0   (sram1_connections[54]),
-      .web0   (sram1_connections[53]),
-      .wmask0 (sram1_connections[52:49]),
-      .addr0  (sram1_connections[48:41]),
-      .din0   (sram1_connections[40:9]),
-      .dout0  (sram1_rw_out),
-      .clk1   (wb_clk_i),
-      .csb1   (sram1_connections[8]),
-      .addr1  (sram1_connections[7:0]),
-      .dout1  (sram1_ro_out));      
+      .clk0   (sram2_clk),
+      .csb0   (csb0[2]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram2_dout0),
+      .clk1   (sram2_clk),
+      .csb1   (csb1[2]),
+      .addr1  (addr1),
+      .dout1  (sram2_dout1)
+      );
+   
+sky130_sram_2kbyte_1rw1r_32x512_8 SRAM3
+     (p
+     `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (sram3_clk),
+      .csb0   (csb0[3]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram3_dout0),
+      .clk1   (sram3_clk),
+      .csb1   (csb1[3]),
+      .addr1  (addr1),
+      .dout1  (sram3_dout1)
+      );
 
-sram_1rw0r0w_32_1024_sky130 SRAM2
+sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM4
+     (
+     `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (sram4_clk),
+      .csb0   (csb0[4]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram4_dout0),
+      .clk1   (sram4_clk),
+      .csb1   (csb1[4]),
+      .addr1  (addr1),
+      .dout1  (sram4_dout1)
+      );
+   
+sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM5
+     (
+     `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (sram5_clk),
+      .csb0   (csb0[5]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram5_dout0),
+      .clk1   (sram5_clk),
+      .csb1   (csb1[5]),
+      .addr1  (addr1),
+      .dout1  (sram5_dout1)
+      );
+
+// Not working yet
+// sky130_sram_16kbyte_1rw1r_32x4096_8 SRAM6
+//      (
+//      `ifdef USE_POWER_PINS
+//       .vccd1(vccd1),
+//       .vssd1(vssd1), 
+//       `endif
+//       .clk0   (sram6_clk),
+//       .csb0   (csb0[6]),
+//       .web0   (web0),
+//       .wmask0 (wmask0),
+//       .addr0  (addr0),
+//       .din0   (din0),
+//       .dout0  (sram6_dout0),
+//       .clk1   (sram6_clk),
+//       .csb1   (csb1[6]),
+//       .addr1  (addr1),
+//       .dout1  (sram6_dout1)
+//       );
+   
+   
+
+// Single port memories
+sram_1rw0r0w_32_256_sky130 SRAM8
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
       `endif
-      .clk0   (wb_clk_i),
-      .csb0   (sram2_connections[47]),
-      .web0   (sram2_connections[46]),
-      .wmask0 (sram2_connections[45:42]),
-      .addr0  (sram2_connections[41:32]),
-      .din0   (sram2_connections[31:0]),
-      .dout0  (sram2_rw_out)); 
+      .clk0   (sram8_clk),
+      .csb0   (csb0[8]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram8_dout0)
+     );
+   assign sram8_dout1 = 0;
 
-sram_1rw0r0w_32_256_sky130 SRAM3
+sram_1rw0r0w_32_512_sky130 SRAM9
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
       `endif
-      .clk0   (wb_clk_i),
-      .csb0   (sram3_connections[45]),
-      .web0   (sram3_connections[44]),
-      .wmask0 (sram3_connections[43:40]),
-      .addr0  (sram3_connections[39:32]),
-      .din0   (sram3_connections[31:0]),
-      .dout0  (sram3_rw_out));
+      .clk0   (sram9_clk),
+      .csb0   (csb0[9]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram9_dout0)
+     );
+   assign sram9_dout1 = 0;
 
-sram_1rw0r0w_32_512_sky130 SRAM4
+sram_1rw0r0w_32_1024_sky130 SRAM10
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
       `endif
-      .clk0   (wb_clk_i),
-      .csb0   (sram4_connections[46]),
-      .web0   (sram4_connections[45]),
-      .wmask0 (sram4_connections[44:41]),
-      .addr0  (sram4_connections[40:32]),
-      .din0   (sram4_connections[31:0]),
-      .dout0  (sram4_rw_out));
+      .clk0   (sram10_clk),
+      .csb0   (csb0[10]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram10_dout0)
+     );
+   assign sram10_dout1 = 0;
 
-sram_1rw0r0w_64_512_sky130 SRAM5
+sram_1rw0r0w_64_512_sky130 SRAM11
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
       `endif
-      .clk0   (wb_clk_i),
-      .csb0   (sram5_connections[82]),
-      .web0   (sram5_connections[81]),
-      .wmask0 (sram5_connections[80:73]),
-      .addr0  (sram5_connections[72:64]),
-      .din0   (sram5_connections[63:0]),
-      .dout0  (sram5_rw_out));
+      .clk0   (sram11_clk),
+      .csb0   (csb0[11]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram11_dout0)
+     );
+   assign sram11_dout1 = 0;
+   
 
 endmodule	// user_project_wrapper
 

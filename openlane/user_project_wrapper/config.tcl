@@ -30,7 +30,7 @@ set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/user_project_wrapper.v "
 
 ## Clock configurations
-set ::env(CLOCK_PORT) "wb_clk_i"
+set ::env(CLOCK_PORT) "user_clock2"
 set ::env(CLOCK_NET) "wb_clk_i"
 
 set ::env(CLOCK_PERIOD) "10"
@@ -47,7 +47,7 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_256_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_512_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v \
-	$script_dir/../../verilog/rtl/testchip/openram_testchip.v "
+	$script_dir/../../verilog/rtl/openram_testchip.v "
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef \
@@ -86,15 +86,15 @@ set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(RUN_KLAYOUT_XOR) 0
 
 # The following is because there are no std cells in the example wrapper project.
-set ::env(SYNTH_TOP_LEVEL) 1
-set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+#set ::env(SYNTH_TOP_LEVEL) 1
+#set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
-set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
-set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
-set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
-set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+#set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
+#set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
+#set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
+#set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
-set ::env(DIODE_INSERTION_STRATEGY) 0
-set ::env(FILL_INSERTION) 0
-set ::env(TAP_DECAP_INSERTION) 0
+#set ::env(DIODE_INSERTION_STRATEGY) 0
+#set ::env(FILL_INSERTION) 0
+#set ::env(TAP_DECAP_INSERTION) 0
 # set ::env(CLOCK_TREE_SYNTH) 0
