@@ -76,7 +76,7 @@ module openram_testchip(
 			// Shared control/data to the SRAMs
 			output [`ADDR_SIZE-1:0] right_addr0,
 			output [`DATA_SIZE-1:0] right_din0,
-			output  	  right_web0,
+			output 	  right_web0,
 			output [`WMASK_SIZE-1:0]  right_wmask0,
 			// One CSB for each SRAM
 			output [`MAX_CHIPS-1:0] right_csb0,
@@ -160,7 +160,7 @@ always @(*) begin
    left_csb0 = csb0_temp << chip_select;
    left_csb1 = csb1_temp << chip_select;
 end
-
+   
 // Mux value of correct SRAM dout FF to feed into 
 // DFF clocked by la/gpio clk 
 always @ (*) begin
