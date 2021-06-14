@@ -10,12 +10,13 @@ set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/openram_defines.v \
 			 $script_dir/../../verilog/rtl/openram_testchip.v"
 #set ::env(BASE_SDC_FILE) "$script_dir/clks.sdc"
 
-set ::env(CLOCK_PORT) "clk"
-set ::env(CLOCK_NET) "clk sram_clk"
+set ::env(CLOCK_PORT) "la_clk"
+#set ::env(CLOCK_NET) "clk sram_clk"
+set ::env(CLOCK_NET) ""
 set ::env(CLOCK_PERIOD) "10"
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 800 2900"
+set ::env(DIE_AREA) "0 0 400 2900"
 set ::env(DESIGN_IS_CORE) 0
 
 set ::env(VDD_NETS) [list {vccd1} {vccd2} {vdda1} {vdda2}]
