@@ -8,15 +8,16 @@ set ::env(GLB_RT_MAXLAYER) 5
 
 set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/openram_defines.v \
 			 $script_dir/../../verilog/rtl/openram_testchip.v"
-#set ::env(BASE_SDC_FILE) "$script_dir/clks.sdc"
+set ::env(BASE_SDC_FILE) "$script_dir/openram_testchip.sdc"
 
-set ::env(CLOCK_PORT) "la_clk"
-#set ::env(CLOCK_NET) "clk sram_clk"
-set ::env(CLOCK_NET) ""
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) "clk sram_clk"
+#set ::env(CLOCK_NET) ""
+set ::env(CLOCK_PERIOD) "20"
+set ::env(IO_PCT) 0.1
 
 set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 400 2900"
+set ::env(DIE_AREA) "0 0 400 2600"
 set ::env(DESIGN_IS_CORE) 0
 
 set ::env(VDD_NETS) [list {vccd1} {vccd2} {vdda1} {vdda2}]
