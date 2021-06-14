@@ -6,11 +6,12 @@ set ::env(DESIGN_IS_CORE) 0
 set ::env(FP_PDN_CORE_RING) 0
 set ::env(GLB_RT_MAXLAYER) 5
 
-set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/openram_testchip.v"
+set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/openram_defines.v \
+			 $script_dir/../../verilog/rtl/openram_testchip.v"
 #set ::env(BASE_SDC_FILE) "$script_dir/clks.sdc"
 
-set ::env(CLOCK_PORT) "la_clk"
-set ::env(CLOCK_NET) "clk"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) "clk sram_clk"
 set ::env(CLOCK_PERIOD) "10"
 
 set ::env(FP_SIZING) absolute
@@ -26,6 +27,9 @@ set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 set ::env(GLB_RT_ADJUSTMENT) 0.20
 set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(PL_TARGET_DENSITY) 0.40
+
+# This doesn't check for supply connectivity:
+set ::env(FP_PDN_CHECK_NODES) 0
 
 # If you're going to use multiple power domains, then keep this disabled.
 set ::env(RUN_CVC) 0
