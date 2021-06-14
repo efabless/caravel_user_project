@@ -14,6 +14,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 `default_nettype none
+`include "openram_defines.v"
 /*
  *-------------------------------------------------------------
  *
@@ -78,40 +79,69 @@ module user_project_wrapper #(
     output [2:0] user_irq
 );
 
-wire [55:0] sram0_connections;
-wire [55:0] sram1_connections;
-wire [48:0] io_sram2_connections;
-wire [46:0] io_sram3_connections;
-wire [47:0] io_sram4_connections;
-wire [83:0] io_sram5_connections;
+   // Shared control/data to the SRAMs
+   wire [`ADDR_SIZE-1:0] addr0;
+   wire [`DATA_SIZE-1:0] din0;
+   wire 		 web0;
+   wire [`WMASK_SIZE-1:0] wmask0;
+   wire [`ADDR_SIZE-1:0]  addr1;
+   wire [`DATA_SIZE-1:0]  din1;
+   wire 		  web1;
+   wire [`WMASK_SIZE-1:0] wmask1;
+   // One CSB for each SRAM
+   wire [`MAX_CHIPS-1:0]  csb0;
+   wire [`MAX_CHIPS-1:0]  csb1;
+   
 
 
-wire [31:0] sram0_rw_out;
-wire [31:0] sram0_ro_out;
-wire [31:0] sram1_rw_out;
-wire [31:0] sram1_ro_out;
-wire [31:0] sram2_rw_out;
-wire [31:0] sram3_rw_out;
-wire [31:0] sram4_rw_out;
-wire [63:0] sram5_rw_out;
-
+wire [31:0] sram0_dout0;
+wire [31:0] sram0_dout1;
+wire [31:0] sram1_dout0;
+wire [31:0] sram1_dout1;
+wire [31:0] sram2_dout0;
+wire [31:0] sram2_dout1;
+wire [31:0] sram3_dout0;
+wire [31:0] sram3_dout1;
+wire [31:0] sram4_dout0;
+wire [31:0] sram4_dout1;
+wire [31:0] sram5_dout0;
+wire [31:0] sram5_dout1;
+wire [31:0] sram6_dout0;
+wire [31:0] sram6_dout1;
+wire [31:0] sram7_dout0;
+wire [31:0] sram7_dout1;
+wire [31:0] sram8_dout0;
+wire [31:0] sram8_dout1;
+wire [31:0] sram9_dout0;
+wire [31:0] sram9_dout1;
+wire [31:0] sram10_dout0;
+wire [31:0] sram10_dout1;
+wire [31:0] sram11_dout0;
+wire [31:0] sram11_dout1;
+wire [31:0] sram12_dout0;
+wire [31:0] sram12_dout1;
+wire [31:0] sram13_dout0;
+wire [31:0] sram13_dout1;
+wire [31:0] sram14_dout0;
+wire [31:0] sram14_dout1;
 			
 			
    
 openram_testchip CONTROL_LOGIC(
-			       .reset(wb_rst_i),
-			       .in_select(io_in[0]),
-			       .gpio_clk(io_in[1]),
-			       .gpio_sram_clk(io_in[2]),
-			       .gpio_scan(io_in[3]),
-			       .gpio_sram_load(io_in[4]),
+			       .reset(io_in[15]|~wb_rst_i),
+			       .in_select(io_in[16]),
+			       .gpio_clk(io_in[17]),
+			       .gpio_sram_clk(io_in[18]),
+			       .gpio_scan(io_in[19]),
+			       .gpio_sram_load(io_in[20]),
+			       
 			       .la_clk(la_data_in[127]),
 			       .la_sram_clk(la_data_in[126]),
 			       .la_in_load(la_data_in[125]),
 			       .la_sram_load(la_data_in[124]),
 			       .la_data_in(la_data_in[111:0]),
 			       .la_data_out(la_data_out[111:0]),
-			       .gpio_out(io_out[0]),
+			       .gpio_out(io_out[21]),
 
 			       // Shared control/data to the SRAMs
 			       .addr0(addr0),
@@ -224,7 +254,9 @@ openram_testchip CONTROL_LOGIC(
    wire [31:0] sram14_dout1;
    wire [31:0] sram15_dout0;
    wire [31:0] sram15_dout1;
-   
+
+   // Only io_out[27] is output
+   assgin io_oeb = 1'b1 << 21;
 
 // Not working yet
 // sky130_sram_1kbyte_1r1w_8x1024_8 SRAM0

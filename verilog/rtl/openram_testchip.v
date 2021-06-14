@@ -1,10 +1,4 @@
-`define WMASK_SIZE 4
-`define ADDR_SIZE 16
-`define DATA_SIZE 32
-`define SELECT_SIZE 4
-`define MAX_CHIPS 16
-`define PORT_SIZE `DATA_SIZE+`DATA_SIZE+`WMASK_SIZE+2
-`define TOTAL_SIZE 2*`PORT_SIZE + `SELECT_SIZE
+`include "openram_defines.v"
 
 module openram_testchip(
 `ifdef USE_POWER_PINS
@@ -68,17 +62,26 @@ module openram_testchip(
 			input  [`DATA_SIZE-1:0] sram15_dout1,
 			
 			// Shared control/data to the SRAMs
-			output reg [`ADDR_SIZE-1:0] addr0,
-			output reg [`DATA_SIZE-1:0] din0,
-			output reg 	  web0,
-			output reg [`WMASK_SIZE-1:0]  wmask0,
-			output reg [`ADDR_SIZE-1:0] addr1,
-			output reg [`DATA_SIZE-1:0] din1,
-			output reg 	  web1,
-			output reg [`WMASK_SIZE-1:0]  wmask1,
+			output reg [`ADDR_SIZE-1:0] left_addr0,
+			output reg [`DATA_SIZE-1:0] left_din0,
+			output reg 	  left_web0,
+			output reg [`WMASK_SIZE-1:0]  left_wmask0,
+			output reg [`ADDR_SIZE-1:0] left_addr1,
+			output reg [`DATA_SIZE-1:0] left_din1,
+			output reg 	  left_web1,
+			output reg [`WMASK_SIZE-1:0]  left_wmask1,
 			// One CSB for each SRAM
-			output reg [`ADDR_SIZE-1:0] csb0,
-			output reg [`ADDR_SIZE-1:0] csb1,
+			// One CSB for each SRAM
+			output reg [`MAX_CHIPS-1:0] left_csb0,
+			output reg [`MAX_CHIPS-1:0] left_csb1,
+
+			// Shared control/data to the SRAMs
+			output [`ADDR_SIZE-1:0] right_addr0,
+			output [`DATA_SIZE-1:0] right_din0,
+			output  	  right_web0,
+			output [`WMASK_SIZE-1:0]  right_wmask0,
+			// One CSB for each SRAM
+			output [`MAX_CHIPS-1:0] right_csb0,
 			
 			// Clocks for each SRAM
 			output reg sram0_clk,
@@ -144,13 +147,22 @@ module openram_testchip(
    reg [`DATA_SIZE-1:0] sram15_data0;
    reg [`DATA_SIZE-1:0] sram15_data1;
 
-// Mux output to connect final output data
-// into sram_register
+   // Mux output to connect final output data
+   // into sram_register
    reg [`DATA_SIZE-1:0] read_data0;
    reg [`DATA_SIZE-1:0] read_data1;
 
-// SRAM input connections
+   // SRAM input connections
    reg [`SELECT_SIZE-1:0]  chip_select;
+
+   // Duplicate pins on other side
+   wire [`ADDR_SIZE-1:0] right_addr0 = left_addr0;
+   wire [`DATA_SIZE-1:0] right_din0 = left_din0;
+   wire 		   right_web0 = left_web0;
+   wire [`WMASK_SIZE-1:0] right_wmask0 = left_wmask0;
+   wire [`MAX_CHIPS-1:0]  right_csb0 = left_csb0;
+   
+   
 
 //Selecting clock pin
 always @(*) begin
@@ -202,17 +214,17 @@ always @(*) begin
    // TODO: Use defines for these
    chip_select = sram_register[`TOTAL_SIZE-1:108];
    
-   addr0 = sram_register[107:92];
-   din0 = sram_register[91:60];
+   left_addr0 = sram_register[107:92];
+   left_din0 = sram_register[91:60];
    csb0_temp = sram_register[59];
-   web0 = sram_register[58];
-   wmask0 = sram_register[57:54];
+   left_web0 = sram_register[58];
+   left_wmask0 = sram_register[57:54];
    
-   addr1 = sram_register[`PORT_SIZE-1:`DATA_SIZE+`WMASK_SIZE+2];
-   din1 = sram_register[`DATA_SIZE+`WMASK_SIZE+1:`WMASK_SIZE+2];
-   csb1_temp = sram_register[`WMASK_SIZE+1];
-   web1 = sram_register[`WMASK_SIZE];
-   wmask1 = sram_register[`WMASK_SIZE-1:0];
+   left_addr1 = sram_register[`PORT_SIZE-1:`DATA_SIZE+`WMASK_SIZE+2];
+   left_din1 = sram_register[`DATA_SIZE+`WMASK_SIZE+1:`WMASK_SIZE+2];
+   left_csb1_temp = sram_register[`WMASK_SIZE+1];
+   left_web1 = sram_register[`WMASK_SIZE];
+   left_wmask1 = sram_register[`WMASK_SIZE-1:0];
 end 
    
 // Apply the correct CSB
