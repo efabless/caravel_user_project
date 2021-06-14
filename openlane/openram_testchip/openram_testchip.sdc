@@ -15,6 +15,9 @@ set all_inputs_wo_clk_rst $all_inputs_wo_clk
 # correct resetn
 set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
 #set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] {resetn}
+#set clk_indx [lsearch [all_outputs] [get_port sram*_clk]]
+#set all_outputs_wo_clk [lreplace [all_outputs] $clk_indx $clk_indx]
+#set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_outputs_wo_clk
 set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
 
 # TODO set this as parameter
