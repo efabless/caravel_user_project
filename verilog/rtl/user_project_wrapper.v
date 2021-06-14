@@ -258,30 +258,28 @@ openram_testchip CONTROL_LOGIC(
    // Only io_out[27] is output
    assgin io_oeb = 1'b1 << 21;
 
-// Not working yet
-// sky130_sram_1kbyte_1r1w_8x1024_8 SRAM0
-//      (
-//      `ifdef USE_POWER_PINS
-//       .vccd1(vccd1),
-//       .vssd1(vssd1), 
-//       `endif
-//       .clk0   (sram0_clk),
-//       .csb0   (csb0[0]),
-//       .web0   (web0),
-//       .wmask0 (wmask0),
-//       .addr0  (addr0),
-//       .din0   (din0),
-//       .dout0  (sram0_dout0[7:0]),
-//       .clk1   (sram0_clk),
-//       .csb1   (csb1[0]),
-//       .addr1  (addr1),
-//       .dout1  (sram0_dout1[7:0])
-//       );
-//    assign sram0_dout0 = 0;
-//    assign sram0_dout1[31:8] = 0;
-
-
-sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM1
+sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
+     (
+     `ifdef USE_POWER_PINS
+      .vccd1(vccd1),
+      .vssd1(vssd1), 
+      `endif
+      .clk0   (sram0_clk),
+      .csb0   (csb0[0]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
+      .dout0  (sram0_dout0[7:0]),
+      .clk1   (sram0_clk),
+      .csb1   (csb1[0]),
+      .addr1  (addr0),
+      .dout1  (sram0_dout1[7:0])
+      );
+   assign sram0_dout0[31:8] = 0;
+   assign sram0_dout1[31:8] = 0;
+   
+sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
@@ -293,17 +291,15 @@ sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM1
       .wmask0 (wmask0),
       .addr0  (addr0),
       .din0   (din0),
-      .dout0  (sram1_dout0[7:0]),
+      .dout0  (sram1_dout0),
       .clk1   (sram1_clk),
       .csb1   (csb1[1]),
       .addr1  (addr1),
-      .dout1  (sram1_dout1[7:0])
+      .dout1  (sram1_dout1)
       );
-   assign sram1_dout0[31:8] = 0;
-   assign sram1_dout1[31:8] = 0;
    
-sky130_sram_1kbyte_1rw1r_32x256_8 SRAM2
-     (
+sky130_sram_2kbyte_1rw1r_32x512_8 SRAM2
+     (p
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
@@ -320,9 +316,9 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM2
       .addr1  (addr1),
       .dout1  (sram2_dout1)
       );
-   
-sky130_sram_2kbyte_1rw1r_32x512_8 SRAM3
-     (p
+
+sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM3
+     (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
       .vssd1(vssd1), 
@@ -339,8 +335,8 @@ sky130_sram_2kbyte_1rw1r_32x512_8 SRAM3
       .addr1  (addr1),
       .dout1  (sram3_dout1)
       );
-
-sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM4
+   
+sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM4
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
@@ -357,25 +353,6 @@ sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM4
       .csb1   (csb1[4]),
       .addr1  (addr1),
       .dout1  (sram4_dout1)
-      );
-   
-sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM5
-     (
-     `ifdef USE_POWER_PINS
-      .vccd1(vccd1),
-      .vssd1(vssd1), 
-      `endif
-      .clk0   (sram5_clk),
-      .csb0   (csb0[5]),
-      .web0   (web0),
-      .wmask0 (wmask0),
-      .addr0  (addr0),
-      .din0   (din0),
-      .dout0  (sram5_dout0),
-      .clk1   (sram5_clk),
-      .csb1   (csb1[5]),
-      .addr1  (addr1),
-      .dout1  (sram5_dout1)
       );
 
 // Not working yet
