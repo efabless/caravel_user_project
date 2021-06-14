@@ -78,7 +78,7 @@ module openram_testchip(
 			// Shared control/data to the SRAMs
 			output [`ADDR_SIZE-1:0] right_addr0,
 			output [`DATA_SIZE-1:0] right_din0,
-			output  	  right_web0,
+			output 	  right_web0,
 			output [`WMASK_SIZE-1:0]  right_wmask0,
 			// One CSB for each SRAM
 			output [`MAX_CHIPS-1:0] right_csb0,
@@ -222,15 +222,15 @@ always @(*) begin
    
    left_addr1 = sram_register[`PORT_SIZE-1:`DATA_SIZE+`WMASK_SIZE+2];
    left_din1 = sram_register[`DATA_SIZE+`WMASK_SIZE+1:`WMASK_SIZE+2];
-   left_csb1_temp = sram_register[`WMASK_SIZE+1];
+   csb1_temp = sram_register[`WMASK_SIZE+1];
    left_web1 = sram_register[`WMASK_SIZE];
    left_wmask1 = sram_register[`WMASK_SIZE-1:0];
 end 
    
 // Apply the correct CSB
 always @(*) begin
-   csb0 = csb0_temp << chip_select;
-   csb1 = csb1_temp << chip_select;
+   left_csb0 = csb0_temp << chip_select;
+   left_csb1 = csb1_temp << chip_select;
 end
        
 
