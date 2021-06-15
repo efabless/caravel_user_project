@@ -561,8 +561,23 @@ always @(posedge sram_clk) begin
        // sram14_data1 <= sram14_dout1;
        // sram15_data0 <= sram15_dout0;
        // sram15_data1 <= sram15_dout1;
-   end
+   end // else: !if(in_reset)
 end
+   
+   assign sram5_data0 = 0;
+   assign sram5_data1 = 0;
+   assign sram6_data0 = 0;
+   assign sram6_data1 = 0;
+   assign sram7_data0 = 0;
+   assign sram7_data1 = 0;
+   assign sram12_data0 = 0;
+   assign sram12_data1 = 0;
+   assign sram13_data0 = 0;
+   assign sram13_data1 = 0;
+   assign sram14_data0 = 0;
+   assign sram14_data1 = 0;
+   assign sram15_data0 = 0;
+   assign sram15_data1 = 0;
    
 
 endmodule	// user_project_wrapper

@@ -33,7 +33,7 @@ set ::env(VERILOG_FILES) "\
 set ::env(CLOCK_PORT) "la_sram_clk"
 set ::env(CLOCK_NET) "sram_clk"
 
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_PERIOD) "20"
 
 ## Internal Macros
 ### Macro Placement
@@ -89,8 +89,8 @@ set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
 
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
-set ::env(GLB_RT_ADJUSTMENT) 0.15
-set ::env(PL_TARGET_DENSITY) 0.35
+set ::env(GLB_RT_ADJUSTMENT) 0.10
+set ::env(PL_TARGET_DENSITY) 0.7
 
 #set ::env(MAGIC_DRC_USE_GDS) 0
 
