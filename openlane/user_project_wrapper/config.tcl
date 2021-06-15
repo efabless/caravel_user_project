@@ -86,7 +86,7 @@ set ::env(FP_PDN_CHECK_NODES) 0
 
 # Placement config
 set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
-
+set ::env(PL_DIAMOND_SEARCH_HEIGHT) 500
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
 set ::env(GLB_RT_ADJUSTMENT) 0.10
