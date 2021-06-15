@@ -139,15 +139,13 @@ end
 
 // Splitting register bits into fields
 always @(*) begin
+   chip_select = sram_register[`TOTAL_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE];
 
-   // TODO: Use defines for these
-   chip_select = sram_register[`TOTAL_SIZE-1:108];
-   
-   left_addr0 = sram_register[107:92];
-   left_din0 = sram_register[91:60];
-   csb0_temp = sram_register[59];
-   left_web0 = sram_register[58];
-   left_wmask0 = sram_register[57:54];
+   left_addr0 = sram_register[`TOTAL_SIZE-`SELECT_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE-`ADDR_SIZE];
+   left_din0 = sram_register[`DATA_SIZE+`PORT_SIZE+`WMASK_SIZE+1:`PORT_SIZE+`WMASK_SIZE+2];
+   csb0_temp = sram_register[`PORT_SIZE+`WMASK_SIZE+1];
+   left_web0 = sram_register[`PORT_SIZE+`WMASK_SIZE];
+   left_wmask0 = sram_register[`PORT_SIZE+`WMASK_SIZE-1:`PORT_SIZE];
    
    left_addr1 = sram_register[`PORT_SIZE-1:`DATA_SIZE+`WMASK_SIZE+2];
    left_din1 = sram_register[`DATA_SIZE+`WMASK_SIZE+1:`WMASK_SIZE+2];
