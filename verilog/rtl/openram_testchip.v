@@ -161,73 +161,73 @@ always @(*) begin
    left_csb1 = csb1_temp << chip_select;
 end
    
-// Mux value of correct SRAM dout FF to feed into 
+// Mux value of correct SRAM data input to feed into 
 // DFF clocked by la/gpio clk 
 always @ (*) begin
     case(chip_select)
     4'd0: begin
-       read_data0 = sram0_dout0;
-       read_data1 = sram0_dout1;
+       read_data0 = sram0_data0;
+       read_data1 = sram0_data1;
     end
     4'd1: begin
-       read_data0 = sram1_dout0;
-       read_data1 = sram1_dout1;
+       read_data0 = sram1_data0;
+       read_data1 = sram1_data1;
     end
     4'd2: begin
-       read_data0 = sram2_dout0;
-       read_data1 = sram2_dout1;
+       read_data0 = sram2_data0;
+       read_data1 = sram2_data1;
     end
     4'd3: begin
-       read_data0 = sram3_dout0;
-       read_data1 = sram3_dout1;
+       read_data0 = sram3_data0;
+       read_data1 = sram3_data1;
     end
     4'd4: begin
-       read_data0 = sram4_dout0;
-       read_data1 = sram4_dout1;
+       read_data0 = sram4_data0;
+       read_data1 = sram4_data1;
     end
     4'd5: begin
-       read_data0 = sram5_dout0;
-       read_data1 = sram5_dout1;
+       read_data0 = sram5_data0;
+       read_data1 = sram5_data1;
     end
     4'd6: begin
-       read_data0 = sram6_dout0;
-       read_data1 = sram6_dout1;
+       read_data0 = sram6_data0;
+       read_data1 = sram6_data1;
     end
     4'd7: begin
-       read_data0 = sram7_dout0;
-       read_data1 = sram7_dout1;
+       read_data0 = sram7_data0;
+       read_data1 = sram7_data1;
     end
     4'd8: begin
-       read_data0 = sram8_dout0;
-       read_data1 = sram8_dout1;
+       read_data0 = sram8_data0;
+       read_data1 = sram8_data1;
     end
     4'd9: begin
-       read_data0 = sram9_dout0;
-       read_data1 = sram9_dout1;
+       read_data0 = sram9_data0;
+       read_data1 = sram9_data1;
     end
     4'd10: begin
-       read_data0 = sram10_dout0;
-       read_data1 = sram10_dout1;
+       read_data0 = sram10_data0;
+       read_data1 = sram10_data1;
     end
     4'd11: begin
-       read_data0 = sram11_dout0;
-       read_data1 = sram11_dout1;
+       read_data0 = sram11_data0;
+       read_data1 = sram11_data1;
     end
     4'd12: begin
-       read_data0 = sram12_dout0;
-       read_data1 = sram12_dout1;
+       read_data0 = sram12_data0;
+       read_data1 = sram12_data1;
     end
     4'd13: begin
-       read_data0 = sram13_dout0;
-       read_data1 = sram13_dout1;
+       read_data0 = sram13_data0;
+       read_data1 = sram13_data1;
     end
     4'd14: begin
-       read_data0 = sram14_dout0;
-       read_data1 = sram14_dout1;
+       read_data0 = sram14_data0;
+       read_data1 = sram14_data1;
     end
     4'd15: begin
-       read_data0 = sram15_dout0;
-       read_data1 = sram15_dout1;
+       read_data0 = sram15_data0;
+       read_data1 = sram15_data1;
     end
     endcase
 end
