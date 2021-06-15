@@ -51,36 +51,38 @@ module test_chip_tb;
   wire [`WMASK_SIZE-1:0] right_wmask0;
   wire [`MAX_CHIPS-1:0]  right_csb0;  
 
-  wire [31:0] sram0_dout0;
-  wire [31:0] sram0_dout1;
-  wire [31:0] sram1_dout0;
-  wire [31:0] sram1_dout1;
-  wire [31:0] sram2_dout0;
-  wire [31:0] sram2_dout1;
-  wire [31:0] sram3_dout0;
-  wire [31:0] sram3_dout1;
-  wire [31:0] sram4_dout0;
-  wire [31:0] sram4_dout1;
-  wire [31:0] sram5_dout0;
-  wire [31:0] sram5_dout1;
-  wire [31:0] sram6_dout0;
-  wire [31:0] sram6_dout1;
-  wire [31:0] sram7_dout0;
-  wire [31:0] sram7_dout1;
-  wire [31:0] sram8_dout0;
-  wire [31:0] sram8_dout1;
-  wire [31:0] sram9_dout0;
-  wire [31:0] sram9_dout1;
-  wire [31:0] sram10_dout0;
-  wire [31:0] sram10_dout1;
-  wire [31:0] sram11_dout0;
-  wire [31:0] sram11_dout1;
-  wire [31:0] sram12_dout0;
-  wire [31:0] sram12_dout1;
-  wire [31:0] sram13_dout0;
-  wire [31:0] sram13_dout1;
-  wire [31:0] sram14_dout0;
-  wire [31:0] sram14_dout1;
+  wire [`DATA_SIZE-1:0] sram0_dout0;
+  wire [`DATA_SIZE-1:0] sram0_dout1;
+  wire [`DATA_SIZE-1:0] sram1_dout0;
+  wire [`DATA_SIZE-1:0] sram1_dout1;
+  wire [`DATA_SIZE-1:0] sram2_dout0;
+  wire [`DATA_SIZE-1:0] sram2_dout1;
+  wire [`DATA_SIZE-1:0] sram3_dout0;
+  wire [`DATA_SIZE-1:0] sram3_dout1;
+  wire [`DATA_SIZE-1:0] sram4_dout0;
+  wire [`DATA_SIZE-1:0] sram4_dout1;
+  wire [`DATA_SIZE-1:0] sram5_dout0;
+  wire [`DATA_SIZE-1:0] sram5_dout1;
+  wire [`DATA_SIZE-1:0] sram6_dout0;
+  wire [`DATA_SIZE-1:0] sram6_dout1;
+  wire [`DATA_SIZE-1:0] sram7_dout0;
+  wire [`DATA_SIZE-1:0] sram7_dout1;
+  wire [`DATA_SIZE-1:0] sram8_dout0;
+  wire [`DATA_SIZE-1:0] sram8_dout1;
+  wire [`DATA_SIZE-1:0] sram9_dout0;
+  wire [`DATA_SIZE-1:0] sram9_dout1;
+  wire [`DATA_SIZE-1:0] sram10_dout0;
+  wire [`DATA_SIZE-1:0] sram10_dout1;
+  wire [`DATA_SIZE-1:0] sram11_dout0;
+  wire [`DATA_SIZE-1:0] sram11_dout1;
+  wire [`DATA_SIZE-1:0] sram12_dout0;
+  wire [`DATA_SIZE-1:0] sram12_dout1;
+  wire [`DATA_SIZE-1:0] sram13_dout0;
+  wire [`DATA_SIZE-1:0] sram13_dout1;
+  wire [`DATA_SIZE-1:0] sram14_dout0;
+  wire [`DATA_SIZE-1:0] sram14_dout1;
+  wire [`DATA_SIZE-1:0] sram15_dout0;
+  wire [`DATA_SIZE-1:0] sram15_dout1;
 
   wire sram0_clk;
   wire sram1_clk;
@@ -99,6 +101,7 @@ module test_chip_tb;
   wire sram14_clk;
   wire sram15_clk;
 
+  wire [`TOTAL_SIZE-1:0] la_data_out;
 openram_testchip CONTROL_LOGIC(
     .reset(reset),
     .in_select(in_select),
@@ -151,7 +154,7 @@ openram_testchip CONTROL_LOGIC(
     .left_addr1(left_addr1),
     .left_din1(left_din1),
     .left_web1(left_web1),
-    .left_wmask1(wmask1),
+    .left_wmask1(left_wmask1),
     .left_csb0(left_csb0),
     .left_csb1(left_csb1),
     .right_addr0(right_addr0),
@@ -347,6 +350,7 @@ sram_1rw0r0w_32_1024_sky130 SRAM10
      );
 assign sram10_dout1 = 0;
 
+wire [63:0] temp_sram11_dout0;
 sram_1rw0r0w_64_512_sky130 SRAM11
     (
       `ifdef USE_POWER_PINS
@@ -362,9 +366,8 @@ sram_1rw0r0w_64_512_sky130 SRAM11
       .dout0  (temp_sram11_dout0)
      );
 
-wire [63:0] temp_sram11_dout0;
 assign sram11_dout1 = 0;
-assign sram11_dout0 = {temp_sram11_dout0[64:33], temp_sram11_dout[15:0]};
+assign sram11_dout0 = {temp_sram11_dout0[64:49], temp_sram11_dout[15:0]};
 
 initial begin
     $dumpfile("testchip_tb.vcd");
@@ -374,10 +377,11 @@ initial begin
     la_sram_clk = 0;
     gpio_sram_clk = 0;
     gpio_scan = 0;
-    gpio_bit = 0;
+    gpio_in = 0;
     reset = 0;
     
     //Send bits using logic analyzer
+    /*
     in_select = 0;
     la_in_load = 1;
     la_sram_load = 0;
@@ -408,7 +412,7 @@ initial begin
     la_sram_clk = 0;
     #10;
     `assert(la_data0, 32'd1);
-
+  */
     #10;$finish;
 end
 
