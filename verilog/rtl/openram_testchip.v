@@ -16,50 +16,48 @@ module openram_testchip(
 			input         in_select,
 			
 			input         la_clk,
-			input         la_sram_clk,
 			input         la_in_load, 
 			input         la_sram_load,
 			input  [`TOTAL_SIZE-1:0] la_data_in,
 			// GPIO bit to clock control register
 			input         gpio_clk,
 			input         gpio_in,
-			input         gpio_sram_clk,
 			input         gpio_scan,
 			input         gpio_sram_load,
 
 			// SRAM data outputs to be captured
-			input  [`DATA_SIZE-1:0] sram0_dout0,
-			input  [`DATA_SIZE-1:0] sram0_dout1,
-			input  [`DATA_SIZE-1:0] sram1_dout0,
-			input  [`DATA_SIZE-1:0] sram1_dout1,
-			input  [`DATA_SIZE-1:0] sram2_dout0,
-			input  [`DATA_SIZE-1:0] sram2_dout1,
-			input  [`DATA_SIZE-1:0] sram3_dout0,
-			input  [`DATA_SIZE-1:0] sram3_dout1,
-			input  [`DATA_SIZE-1:0] sram4_dout0,
-			input  [`DATA_SIZE-1:0] sram4_dout1,
-			input  [`DATA_SIZE-1:0] sram5_dout0,
-			input  [`DATA_SIZE-1:0] sram5_dout1,
-			input  [`DATA_SIZE-1:0] sram6_dout0,
-			input  [`DATA_SIZE-1:0] sram6_dout1,
-			input  [`DATA_SIZE-1:0] sram7_dout0,
-			input  [`DATA_SIZE-1:0] sram7_dout1,
-			input  [`DATA_SIZE-1:0] sram8_dout0,
-			input  [`DATA_SIZE-1:0] sram8_dout1,
-			input  [`DATA_SIZE-1:0] sram9_dout0,
-			input  [`DATA_SIZE-1:0] sram9_dout1,
-			input  [`DATA_SIZE-1:0] sram10_dout0,
-			input  [`DATA_SIZE-1:0] sram10_dout1,
-			input  [`DATA_SIZE-1:0] sram11_dout0,
-			input  [`DATA_SIZE-1:0] sram11_dout1,
-			input  [`DATA_SIZE-1:0] sram12_dout0,
-			input  [`DATA_SIZE-1:0] sram12_dout1,
-			input  [`DATA_SIZE-1:0] sram13_dout0,
-			input  [`DATA_SIZE-1:0] sram13_dout1,
-			input  [`DATA_SIZE-1:0] sram14_dout0,
-			input  [`DATA_SIZE-1:0] sram14_dout1,
-			input  [`DATA_SIZE-1:0] sram15_dout0,
-			input  [`DATA_SIZE-1:0] sram15_dout1,
+			input  [`DATA_SIZE-1:0] sram0_data0,
+			input  [`DATA_SIZE-1:0] sram0_data1,
+			input  [`DATA_SIZE-1:0] sram1_data0,
+			input  [`DATA_SIZE-1:0] sram1_data1,
+			input  [`DATA_SIZE-1:0] sram2_data0,
+			input  [`DATA_SIZE-1:0] sram2_data1,
+			input  [`DATA_SIZE-1:0] sram3_data0,
+			input  [`DATA_SIZE-1:0] sram3_data1,
+			input  [`DATA_SIZE-1:0] sram4_data0,
+			input  [`DATA_SIZE-1:0] sram4_data1,
+			input  [`DATA_SIZE-1:0] sram5_data0,
+			input  [`DATA_SIZE-1:0] sram5_data1,
+			input  [`DATA_SIZE-1:0] sram6_data0,
+			input  [`DATA_SIZE-1:0] sram6_data1,
+			input  [`DATA_SIZE-1:0] sram7_data0,
+			input  [`DATA_SIZE-1:0] sram7_data1,
+			input  [`DATA_SIZE-1:0] sram8_data0,
+			input  [`DATA_SIZE-1:0] sram8_data1,
+			input  [`DATA_SIZE-1:0] sram9_data0,
+			input  [`DATA_SIZE-1:0] sram9_data1,
+			input  [`DATA_SIZE-1:0] sram10_data0,
+			input  [`DATA_SIZE-1:0] sram10_data1,
+			input  [`DATA_SIZE-1:0] sram11_data0,
+			input  [`DATA_SIZE-1:0] sram11_data1,
+			input  [`DATA_SIZE-1:0] sram12_data0,
+			input  [`DATA_SIZE-1:0] sram12_data1,
+			input  [`DATA_SIZE-1:0] sram13_data0,
+			input  [`DATA_SIZE-1:0] sram13_data1,
+			input  [`DATA_SIZE-1:0] sram14_data0,
+			input  [`DATA_SIZE-1:0] sram14_data1,
+			input  [`DATA_SIZE-1:0] sram15_data0,
+			input  [`DATA_SIZE-1:0] sram15_data1,
 			
 			// Shared control/data to the SRAMs
 			output reg [`ADDR_SIZE-1:0] left_addr0,
@@ -83,69 +81,16 @@ module openram_testchip(
 			// One CSB for each SRAM
 			output [`MAX_CHIPS-1:0] right_csb0,
 			
-			// Clocks for each SRAM
-			output reg sram0_clk,
-			output reg sram1_clk,
-			output reg sram2_clk,
-			output reg sram3_clk,
-			output reg sram4_clk,
-			output reg sram5_clk,
-			output reg sram6_clk,
-			output reg sram7_clk,
-			output reg sram8_clk,
-			output reg sram9_clk,
-			output reg sram10_clk,
-			output reg sram11_clk,
-			output reg sram12_clk,
-			output reg sram13_clk,
-			output reg sram14_clk,
-			output reg sram15_clk,
 			output reg [`TOTAL_SIZE-1:0] la_data_out,
 			output reg gpio_out
 );
 
    reg clk;
-   reg sram_clk;
 
 // Store input instruction
    reg [`TOTAL_SIZE-1:0] sram_register;
    reg 		       csb0_temp;
    reg 		       csb1_temp;
-
-// Hold dout from SRAM
-// clocked by SRAM clk
-   reg [`DATA_SIZE-1:0] sram0_data0;
-   reg [`DATA_SIZE-1:0] sram0_data1;
-   reg [`DATA_SIZE-1:0] sram1_data0;
-   reg [`DATA_SIZE-1:0] sram1_data1;
-   reg [`DATA_SIZE-1:0] sram2_data0;
-   reg [`DATA_SIZE-1:0] sram2_data1;
-   reg [`DATA_SIZE-1:0] sram3_data0;
-   reg [`DATA_SIZE-1:0] sram3_data1;
-   reg [`DATA_SIZE-1:0] sram4_data0;
-   reg [`DATA_SIZE-1:0] sram4_data1;
-   reg [`DATA_SIZE-1:0] sram5_data0;
-   reg [`DATA_SIZE-1:0] sram5_data1;
-   reg [`DATA_SIZE-1:0] sram6_data0;
-   reg [`DATA_SIZE-1:0] sram6_data1;
-   reg [`DATA_SIZE-1:0] sram7_data0;
-   reg [`DATA_SIZE-1:0] sram7_data1;
-   reg [`DATA_SIZE-1:0] sram8_data0;
-   reg [`DATA_SIZE-1:0] sram8_data1;
-   reg [`DATA_SIZE-1:0] sram9_data0;
-   reg [`DATA_SIZE-1:0] sram9_data1;
-   reg [`DATA_SIZE-1:0] sram10_data0;
-   reg [`DATA_SIZE-1:0] sram10_data1;
-   reg [`DATA_SIZE-1:0] sram11_data0;
-   reg [`DATA_SIZE-1:0] sram11_data1;
-   reg [`DATA_SIZE-1:0] sram12_data0;
-   reg [`DATA_SIZE-1:0] sram12_data1;
-   reg [`DATA_SIZE-1:0] sram13_data0;
-   reg [`DATA_SIZE-1:0] sram13_data1;
-   reg [`DATA_SIZE-1:0] sram14_data0;
-   reg [`DATA_SIZE-1:0] sram14_data1;
-   reg [`DATA_SIZE-1:0] sram15_data0;
-   reg [`DATA_SIZE-1:0] sram15_data1;
 
    // Mux output to connect final output data
    // into sram_register
@@ -167,23 +112,6 @@ module openram_testchip(
 //Selecting clock pin
 always @(*) begin
     clk = in_select ? gpio_clk : la_clk;
-    sram_clk = in_select ? gpio_sram_clk : la_sram_clk;
-    sram0_clk = sram_clk;
-    sram1_clk = sram_clk;
-    sram2_clk = sram_clk;
-    sram3_clk = sram_clk;
-    sram4_clk = sram_clk;
-    sram5_clk = sram_clk;
-    sram6_clk = sram_clk;
-    sram7_clk = sram_clk;
-    sram8_clk = sram_clk;
-    sram9_clk = sram_clk;
-    sram10_clk = sram_clk;
-    sram11_clk = sram_clk;
-    sram12_clk = sram_clk;
-    sram13_clk = sram_clk;
-    sram14_clk = sram_clk;
-    sram15_clk = sram_clk;
 end
 
 always @ (posedge clk) begin
@@ -232,80 +160,7 @@ always @(*) begin
    left_csb0 = csb0_temp << chip_select;
    left_csb1 = csb1_temp << chip_select;
 end
-       
-
-// Store dout of each SRAM  
-always @(posedge sram_clk) begin   
-    if(reset) begin
-       sram0_data0 <= 0;
-       sram0_data1 <= 0;
-       sram1_data0 <= 0;
-       sram1_data1 <= 0;
-       sram2_data0 <= 0;
-       sram2_data1 <= 0;
-       sram3_data0 <= 0;
-       sram3_data1 <= 0;
-       sram4_data0 <= 0;
-       sram4_data1 <= 0;
-       sram5_data0 <= 0;
-       sram5_data1 <= 0;
-       sram6_data0 <= 0;
-       sram6_data1 <= 0;
-       sram7_data0 <= 0;
-       sram7_data1 <= 0;
-       sram8_data0 <= 0;
-       sram8_data1 <= 0;
-       sram9_data0 <= 0;
-       sram9_data1 <= 0;
-       sram10_data0 <= 0;
-       sram10_data1 <= 0;
-       sram11_data0 <= 0;
-       sram11_data1 <= 0;
-       sram12_data0 <= 0;
-       sram12_data1 <= 0;
-       sram13_data0 <= 0;
-       sram13_data1 <= 0;
-       sram14_data0 <= 0;
-       sram14_data1 <= 0;
-       sram15_data0 <= 0;
-       sram15_data1 <= 0;
-    end
-    else begin
-       sram0_data0 <= sram0_dout0;
-       sram0_data1 <= sram0_dout1;
-       sram1_data0 <= sram1_dout0;
-       sram1_data1 <= sram1_dout1;
-       sram2_data0 <= sram2_dout0;
-       sram2_data1 <= sram2_dout1;
-       sram3_data0 <= sram3_dout0;
-       sram3_data1 <= sram3_dout1;
-       sram4_data0 <= sram4_dout0;
-       sram4_data1 <= sram4_dout1;
-       sram5_data0 <= sram5_dout0;
-       sram5_data1 <= sram5_dout1;
-       sram6_data0 <= sram6_dout0;
-       sram6_data1 <= sram6_dout1;
-       sram7_data0 <= sram7_dout0;
-       sram7_data1 <= sram7_dout1;
-       sram8_data0 <= sram8_dout0;
-       sram8_data1 <= sram8_dout1;
-       sram9_data0 <= sram9_dout0;
-       sram9_data1 <= sram9_dout1;
-       sram10_data0 <= sram10_dout0;
-       sram10_data1 <= sram10_dout1;
-       sram11_data0 <= sram11_dout0;
-       sram11_data1 <= sram11_dout1;
-       sram12_data0 <= sram12_dout0;
-       sram12_data1 <= sram12_dout1;
-       sram13_data0 <= sram13_dout0;
-       sram13_data1 <= sram13_dout1;
-       sram14_data0 <= sram14_dout0;
-       sram14_data1 <= sram14_dout1;
-       sram15_data0 <= sram15_dout0;
-       sram15_data1 <= sram15_dout1;
-    end
-end
-
+   
 // Mux value of correct SRAM dout FF to feed into 
 // DFF clocked by la/gpio clk 
 always @ (*) begin
