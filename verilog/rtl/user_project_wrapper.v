@@ -453,7 +453,7 @@ sram_1rw0r0w_64_512_sky130 SRAM11
       .dout0  (temp_sram11_dout0)
      );
    assign sram11_dout1 = 0;
-   assign sram11_dout0 = {temp_sram11_dout0[64:33], temp_sram11_dout[15:0]};
+   assign sram11_dout0 = {temp_sram11_dout0[64:49], temp_sram11_dout0[15:0]};
 
 
 
