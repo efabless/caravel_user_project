@@ -391,8 +391,8 @@ initial begin
       sram_clk = 1;
       #5;
       sram_clk = 0;
-      #10;
-      
+      #20;
+
       `assert(la_data_out, {4'd0, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
     end
     #10;$finish;
