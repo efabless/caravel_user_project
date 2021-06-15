@@ -284,7 +284,7 @@ sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
       .dout0  (sram0_dout0[7:0]),
       .clk1   (sram_clk),
       .csb1   (left_csb1[0]),
-      .addr1  (left_addr0),
+      .addr1  (left_addr1),
       .dout1  (sram0_dout1[7:0])
       );
    assign sram0_dout0[`DATA_SIZE-1:8] = 0;
