@@ -345,39 +345,49 @@ initial begin
     gpio_in = 0;
     reset = 0;
     
-    //Send bits using logic analyzer
-    /*
+    //Write 1 to SRAM0 addr1 using logic analyzer
     in_select = 0;
     la_in_load = 1;
     la_sram_load = 0;
-    la_bits = {4'd0, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+    la_data_in = {4'd0, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
     
     #10;
     la_in_load = 0;
     la_sram_load = 1;
-    la_sram_clk = 1;
+    sram_clk = 1;
     #5;
-    la_sram_clk = 0;
+    sram_clk = 0;
     #5;
-    
+
+    //Write 1 to SRAM0 addr1 using logic analyzer
+    in_select = 0;
     la_in_load = 1;
     la_sram_load = 0;
-    la_bits = {4'd0, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+    la_data_in = {4'd0, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+    
+    #10;
+    la_in_load = 0;
+    la_sram_load = 1;
+    sram_clk = 1;
+    #5;
+    sram_clk = 0;
+    #5;
+
+    //Read SRAM0 addr1 and addr2
+    la_in_load = 1;
+    la_sram_load = 0;
+    la_data_in = {4'd0, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
 
     #10;
     la_in_load = 0;
     la_sram_load = 1;
-    la_sram_clk = 1;
+    sram_clk = 1;
     #5;
-    la_sram_clk = 0;
+    sram_clk = 0;
     #5;
 
-    la_sram_clk = 1;
-    #5;
-    la_sram_clk = 0;
     #10;
-    `assert(la_data0, 32'd1);
-  */
+    `assert(la_data_out, {4'd0, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
     #10;$finish;
 end
 
