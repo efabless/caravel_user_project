@@ -90,41 +90,7 @@ module user_project_wrapper #(
    wire [`WMASK_SIZE-1:0] wmask1;
    // One CSB for each SRAM
    wire [`MAX_CHIPS-1:0]  csb0;
-   wire [`MAX_CHIPS-1:0]  csb1;
-   
-
-
-wire [31:0] sram0_dout0;
-wire [31:0] sram0_dout1;
-wire [31:0] sram1_dout0;
-wire [31:0] sram1_dout1;
-wire [31:0] sram2_dout0;
-wire [31:0] sram2_dout1;
-wire [31:0] sram3_dout0;
-wire [31:0] sram3_dout1;
-wire [31:0] sram4_dout0;
-wire [31:0] sram4_dout1;
-wire [31:0] sram5_dout0;
-wire [31:0] sram5_dout1;
-wire [31:0] sram6_dout0;
-wire [31:0] sram6_dout1;
-wire [31:0] sram7_dout0;
-wire [31:0] sram7_dout1;
-wire [31:0] sram8_dout0;
-wire [31:0] sram8_dout1;
-wire [31:0] sram9_dout0;
-wire [31:0] sram9_dout1;
-wire [31:0] sram10_dout0;
-wire [31:0] sram10_dout1;
-wire [31:0] sram11_dout0;
-wire [31:0] sram11_dout1;
-wire [31:0] sram12_dout0;
-wire [31:0] sram12_dout1;
-wire [31:0] sram13_dout0;
-wire [31:0] sram13_dout1;
-wire [31:0] sram14_dout0;
-wire [31:0] sram14_dout1;
-			
+   wire [`MAX_CHIPS-1:0]  csb1;	
 
    wire     in_select = io_in[16];
    wire     in_reset = io_in[15];
