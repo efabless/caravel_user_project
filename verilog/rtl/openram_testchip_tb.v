@@ -335,141 +335,91 @@ sram_1rw0r0w_64_512_sky130 SRAM11
 assign sram11_data1 = 0;
 assign sram11_data0 = {temp_sram11_data0[64:49], temp_sram11_data0[15:0]};
 
-integer i;
+integer i, j;
 reg [3:0] sel;
+reg [111:0] in_data;
+reg [111:0] out_data;
 
 initial begin
     $dumpfile("testchip_tb.vcd");
     $dumpvars(0, test_chip_tb);
-    la_clk = 1;
-    gpio_clk = 0;
+    gpio_clk = 1;
+    la_clk = 0;
+    la_in_load = 0;
+    la_sram_load = 0;
+    la_data_in = 0;
     sram_clk = 0;
-    gpio_scan = 0;
-    gpio_in = 0;
     reset = 0;
    
     //Testing 32B Dual Port Memories
-    for(i = 0; i < 5; i = i + 1) begin
+    for(i = 0; i < 1; i = i + 1) begin
       sel = i;
         
-      //Write 1 to addr1 using logic analyzer
-      in_select = 0;
-      la_in_load = 1;
-      la_sram_load = 0;
-      la_data_in = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+      //Write 1 to addr1 using GPIO Pins
+      in_select = 1;
+      gpio_scan = 1;
+      gpio_sram_load = 0;
+      in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
       
-      #10;
-      la_in_load = 0;
-      la_sram_load = 1;
+      for(j = 0; j < 112; j = j + 1) begin
+        gpio_in = in_data[111 - j];
+        #10;
+      end
+      
+      gpio_scan = 0;
+      gpio_sram_load = 1;
       sram_clk = 1;
       #5;
       sram_clk = 0;
       #5;
-
-      //Write 2 to addr2 using logic analyzer
-      in_select = 0;
-      la_in_load = 1;
-      la_sram_load = 0;
-      la_data_in = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
       
-      #10;
-      la_in_load = 0;
-      la_sram_load = 1;
+      //Write 2 to addr2 using GPIO Pins
+      gpio_scan = 1;
+      gpio_sram_load = 0;
+      in_data = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+      
+      for(j = 0; j < 112; j = j + 1) begin
+        gpio_in = in_data[111 - j];
+        #10;
+      end
+
+      gpio_scan = 0;
+      gpio_sram_load = 1;
       sram_clk = 1;
       #5;
       sram_clk = 0;
-      #5;
-
+      #5;     
+      
       //Read addr1 and addr2
-      la_in_load = 1;
-      la_sram_load = 0;
-      la_data_in = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
-
-      #10;
-      la_in_load = 0;
-      la_sram_load = 1;
-      sram_clk = 1;
-      #5;
-      sram_clk = 0;
-      #5;
-
-      #10;
-      `assert(la_data_out, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
-    end
-
-     //Testing 32B Single Port Memories
-    for(i = 8; i < 11; i = i + 1) begin
-      sel = i;
-        
-      //Write 1 to addr1 using logic analyzer
-      in_select = 0;
-      la_in_load = 1;
-      la_sram_load = 0;
-      la_data_in = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+      gpio_scan = 1;
+      gpio_sram_load = 0;
+      in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
       
-      #10;
-      la_in_load = 0;
-      la_sram_load = 1;
+      for(j = 0; j < 112; j = j + 1) begin
+        gpio_in = in_data[111 - j];
+        #10;
+      end
+
+      gpio_scan = 0;
+      gpio_sram_load = 1;
       sram_clk = 1;
       #5;
       sram_clk = 0;
-      #5;
+      #5;  
 
-      //Read addr1
-      la_in_load = 1;
-      la_sram_load = 0;
-      la_data_in = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-
-      #10;
-      la_in_load = 0;
-      la_sram_load = 1;
-      sram_clk = 1;
-      #5;
-      sram_clk = 0;
-      #5;
-
-      #10;
-      `assert(la_data_out, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
+      gpio_scan = 1;
+      for(j = 0; j < 112; j = j + 1) begin
+        out_data[111 - j] = gpio_out;
+        #10;
+      end
+      //#10;
+      //`assert(la_data_out, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
     end
 
-    //Testing 64b Single Port Memory
-    sel = 11;
-        
-    //Write 1 to addr1 using logic analyzer
-    in_select = 0;
-    la_in_load = 1;
-    la_sram_load = 0;
-    la_data_in = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
     
-    #10;
-    la_in_load = 0;
-    la_sram_load = 1;
-    sram_clk = 1;
-    #5;
-    sram_clk = 0;
-    #5;
-
-    //Read addr1
-    la_in_load = 1;
-    la_sram_load = 0;
-    la_data_in = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-
-    #10;
-    la_in_load = 0;
-    la_sram_load = 1;
-    sram_clk = 1;
-    #5;
-    sram_clk = 0;
-    #5;
-
-    #10;
-    `assert(la_data_out[111:92], {sel, 16'd1});
-    `assert(la_data_out[75:60], 16'd1);
-    `assert(la_data_out[59:0], {1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
-
     #10;$finish;
 end
 
 always 
-    #5 la_clk = !la_clk;
+    #5 gpio_clk = !gpio_clk;
 endmodule
