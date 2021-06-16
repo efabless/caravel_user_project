@@ -7,7 +7,8 @@ project:
   organization_url: "http://efabless.com"
   owner: "Tim Edwards"
   process: "SKY130"
-  project_name: "Caravel"
+  project_type: "Caravel"
+  project_name: "caravel_user_project"
   project_id: "00000000"
   tags:
     - "Open MPW"
