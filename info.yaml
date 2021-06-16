@@ -8,7 +8,7 @@ project:
   owner: "Tim Edwards"
   process: "SKY130"
   project_type: "Caravel"
-  project_name: "caravel_user_project"
+  project_name: "user_proj_example"
   project_id: "00000000"
   tags:
     - "Open MPW"
