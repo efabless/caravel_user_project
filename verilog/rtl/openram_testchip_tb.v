@@ -348,7 +348,7 @@ initial begin
     gpio_in = 0;
     reset = 0;
    
-    //Testing Dual Port Memories
+    //Testing 32B Dual Port Memories
     for(i = 0; i < 5; i = i + 1) begin
       sel = i;
         
@@ -366,7 +366,7 @@ initial begin
       sram_clk = 0;
       #5;
 
-      //Write 1 to addr1 using logic analyzer
+      //Write 2 to addr2 using logic analyzer
       in_select = 0;
       la_in_load = 1;
       la_sram_load = 0;
@@ -396,6 +396,77 @@ initial begin
       #10;
       `assert(la_data_out, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
     end
+
+     //Testing 32B Single Port Memories
+    for(i = 8; i < 11; i = i + 1) begin
+      sel = i;
+        
+      //Write 1 to addr1 using logic analyzer
+      in_select = 0;
+      la_in_load = 1;
+      la_sram_load = 0;
+      la_data_in = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+      
+      #10;
+      la_in_load = 0;
+      la_sram_load = 1;
+      sram_clk = 1;
+      #5;
+      sram_clk = 0;
+      #5;
+
+      //Read addr1
+      la_in_load = 1;
+      la_sram_load = 0;
+      la_data_in = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+
+      #10;
+      la_in_load = 0;
+      la_sram_load = 1;
+      sram_clk = 1;
+      #5;
+      sram_clk = 0;
+      #5;
+
+      #10;
+      `assert(la_data_out, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
+    end
+
+    //Testing 64b Single Port Memory
+    sel = 11;
+        
+    //Write 1 to addr1 using logic analyzer
+    in_select = 0;
+    la_in_load = 1;
+    la_sram_load = 0;
+    la_data_in = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+    
+    #10;
+    la_in_load = 0;
+    la_sram_load = 1;
+    sram_clk = 1;
+    #5;
+    sram_clk = 0;
+    #5;
+
+    //Read addr1
+    la_in_load = 1;
+    la_sram_load = 0;
+    la_data_in = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+
+    #10;
+    la_in_load = 0;
+    la_sram_load = 1;
+    sram_clk = 1;
+    #5;
+    sram_clk = 0;
+    #5;
+
+    #10;
+    `assert(la_data_out[111:92], {sel, 16'd1});
+    `assert(la_data_out[75:60], 16'd1);
+    `assert(la_data_out[59:0], {1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
+
     #10;$finish;
 end
 
