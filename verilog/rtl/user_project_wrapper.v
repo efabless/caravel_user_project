@@ -105,7 +105,7 @@ module user_project_wrapper #(
    // Only io_out[21] is output
    assign io_oeb = ~(1'b1 << 21);
    // Assign other outputs to 0
-   assign io_out[`MPRJ_IO_PADS:22] = 0;
+   assign io_out[`MPRJ_IO_PADS-1:22] = 0;
    wire     gpio_out;
    assign io_out[21] = gpio_out;
    assign io_out[20:0] = 0;
