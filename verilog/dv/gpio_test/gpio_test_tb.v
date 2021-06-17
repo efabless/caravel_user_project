@@ -21,7 +21,7 @@
 `include "caravel_netlists.v"
 `include "spiflash.v"
 
-module io_ports_tb;
+module gpio_test_tb;
 	reg clock;
 	reg RSTB;
 	reg CSB;
@@ -49,7 +49,7 @@ module io_ports_tb;
 	end
 
 	initial begin
-		$dumpfile("gpio_test_tb.vcd");
+		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
@@ -155,7 +155,7 @@ module io_ports_tb;
 	);
 
 	spiflash #(
-		.FILENAME("io_ports.hex")
+		.FILENAME("gpio_test.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),
