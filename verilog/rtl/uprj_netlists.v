@@ -13,7 +13,7 @@
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
 
-// Include caravel global defines for the number of the user project IO pads 
+// Include caravel global defines for the number of the user project IO pads
 `include "defines.v"
 `define USE_POWER_PINS
 
@@ -34,5 +34,4 @@
     `include "sram_1rw0r0w_32_512_sky130.v"
     `include "sram_1rw0r0w_32_1024_sky130.v"
     `include "sram_1rw0r0w_64_512_sky130.v"
-    `include "clock_mux.v"
 `endif
