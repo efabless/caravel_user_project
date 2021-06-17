@@ -85,8 +85,6 @@ module openram_testchip(
 			output reg gpio_out
 );
 
-   reg clk;
-
 // Store input instruction
    reg [`TOTAL_SIZE-1:0] sram_register;
    reg 		       csb0_temp;
@@ -109,10 +107,13 @@ module openram_testchip(
 
 
 
-//Selecting clock pin
-always @(*) begin
-    clk = in_select ? gpio_clk : la_clk;
-end
+   // Selecting clock pin
+   wire 		  clk;
+   clock_mux clkmux(.clk0(la_clk),
+		    .clk1(gpio_clk),
+		    .sel(in_select),
+		    .clk(clk));
+
 
 always @ (posedge clk) begin
    if(!resetn) begin

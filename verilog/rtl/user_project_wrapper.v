@@ -141,85 +141,84 @@ wire [31:0] sram14_dout1;
    assign io_out[21] = gpio_out;
    assign io_out[20:0] = 0;
 
-   wire la_sram_clk = la_data_in[126];
+   wire sram_clk;
+   clock_mux clkmux(.clk0(la_data_in[126]),
+		    .clk1(gpio_sram_clk),
+		    .sel(in_select),
+		    .clk(sram_clk));
 
-   reg 	sram_clk;
 
-always @(*) begin
-    sram_clk = in_select ? gpio_sram_clk : la_sram_clk;
-end
+   openram_testchip CONTROL_LOGIC(
+				  .resetn(resetn & wb_rst_i),
+				  .in_select(in_select),
+				  .gpio_clk(gpio_clk),
+				  .gpio_scan(gpio_scan),
+				  .gpio_sram_load(gpio_sram_load),
 
-openram_testchip CONTROL_LOGIC(
-			       .resetn(resetn & wb_rst_i),
-			       .in_select(in_select),
-			       .gpio_clk(gpio_clk),
-			       .gpio_scan(gpio_scan),
-			       .gpio_sram_load(gpio_sram_load),
+				  .la_clk(la_data_in[127]),
+				  .la_in_load(la_data_in[125]),
+				  .la_sram_load(la_data_in[124]),
+				  .la_data_in(la_data_in[111:0]),
+				  .la_data_out(la_data_out[111:0]),
+				  .gpio_out(gpio_out),
 
-			       .la_clk(la_data_in[127]),
-			       .la_in_load(la_data_in[125]),
-			       .la_sram_load(la_data_in[124]),
-			       .la_data_in(la_data_in[111:0]),
-			       .la_data_out(la_data_out[111:0]),
-			       .gpio_out(gpio_out),
+				  // Shared control/data to the SRAMs
+				  .left_addr0(left_addr0),
+				  .left_din0(left_din0),
+				  .left_web0(left_web0),
+				  .left_wmask0(left_wmask0),
+				  .left_addr1(left_addr1),
+				  .left_web1(left_web1),
+				  .left_wmask1(left_wmask1),
+				  // One CSB for each SRAM
+				  .left_csb0(left_csb0),
+				  .left_csb1(left_csb1),
 
-			       // Shared control/data to the SRAMs
-			       .left_addr0(left_addr0),
-			       .left_din0(left_din0),
-			       .left_web0(left_web0),
-			       .left_wmask0(left_wmask0),
-			       .left_addr1(left_addr1),
-			       .left_web1(left_web1),
-			       .left_wmask1(left_wmask1),
-			       // One CSB for each SRAM
-			       .left_csb0(left_csb0),
-			       .left_csb1(left_csb1),
+				  // Shared control/data to the SRAMs
+				  .right_addr0(right_addr0),
+				  .right_din0(right_din0),
+				  .right_web0(right_web0),
+				  .right_wmask0(right_wmask0),
+				  // One CSB for each SRAM
+				  .right_csb0(right_csb0),
 
-			       // Shared control/data to the SRAMs
-			       .right_addr0(right_addr0),
-			       .right_din0(right_din0),
-			       .right_web0(right_web0),
-			       .right_wmask0(right_wmask0),
-			       // One CSB for each SRAM
-			       .right_csb0(right_csb0),
+				  // SRAM data outputs to be captured
+				  .sram0_data0(sram0_data0),
+				  .sram0_data1(sram0_data1),
+				  .sram1_data0(sram1_data0),
+				  .sram1_data1(sram1_data1),
+				  .sram2_data0(sram2_data0),
+				  .sram2_data1(sram2_data1),
+				  .sram3_data0(sram3_data0),
+				  .sram3_data1(sram3_data1),
+				  .sram4_data0(sram4_data0),
+				  .sram4_data1(sram4_data1),
+				  .sram5_data0(sram5_data0),
+				  .sram5_data1(sram5_data1),
+				  .sram6_data0(sram6_data0),
+				  .sram6_data1(sram6_data1),
+				  .sram7_data0(sram7_data0),
+				  .sram7_data1(sram7_data1),
+				  .sram8_data0(sram8_data0),
+				  .sram8_data1(sram8_data1),
+				  .sram9_data0(sram9_data0),
+				  .sram9_data1(sram9_data1),
+				  .sram10_data0(sram10_data0),
+				  .sram10_data1(sram10_data1),
+				  .sram11_data0(sram11_data0),
+				  .sram11_data1(sram11_data1),
+				  .sram12_data0(sram12_data0),
+				  .sram12_data1(sram12_data1),
+				  .sram13_data0(sram13_data0),
+				  .sram13_data1(sram13_data1),
+				  .sram14_data0(sram14_data0),
+				  .sram14_data1(sram14_data1),
+				  .sram15_data0(sram15_data0),
+				  .sram15_data1(sram15_data1)
 
-			       // SRAM data outputs to be captured
-			       .sram0_data0(sram0_data0),
-			       .sram0_data1(sram0_data1),
-			       .sram1_data0(sram1_data0),
-			       .sram1_data1(sram1_data1),
-			       .sram2_data0(sram2_data0),
-			       .sram2_data1(sram2_data1),
-			       .sram3_data0(sram3_data0),
-			       .sram3_data1(sram3_data1),
-			       .sram4_data0(sram4_data0),
-			       .sram4_data1(sram4_data1),
-			       .sram5_data0(sram5_data0),
-			       .sram5_data1(sram5_data1),
-			       .sram6_data0(sram6_data0),
-			       .sram6_data1(sram6_data1),
-			       .sram7_data0(sram7_data0),
-			       .sram7_data1(sram7_data1),
-			       .sram8_data0(sram8_data0),
-			       .sram8_data1(sram8_data1),
-			       .sram9_data0(sram9_data0),
-			       .sram9_data1(sram9_data1),
-			       .sram10_data0(sram10_data0),
-			       .sram10_data1(sram10_data1),
-			       .sram11_data0(sram11_data0),
-			       .sram11_data1(sram11_data1),
-			       .sram12_data0(sram12_data0),
-			       .sram12_data1(sram12_data1),
-			       .sram13_data0(sram13_data0),
-			       .sram13_data1(sram13_data1),
-			       .sram14_data0(sram14_data0),
-			       .sram14_data1(sram14_data1),
-			       .sram15_data0(sram15_data0),
-			       .sram15_data1(sram15_data1)
+				  );
 
-);
-
-   wire [`ADDR_SIZE-1:0]  left_addr0;
+   wire [`ADDR_SIZE-1:0] left_addr0;
    wire [`DATA_SIZE-1:0] left_din0;
    wire 		 left_web0;
    wire [`WMASK_SIZE-1:0] left_wmask0;
@@ -231,43 +230,43 @@ openram_testchip CONTROL_LOGIC(
    wire [`MAX_CHIPS-1:0]  left_csb1;
 
    wire [`ADDR_SIZE-1:0]  right_addr0;
-   wire [`DATA_SIZE-1:0] right_din0;
-   wire 		 right_web0;
+   wire [`DATA_SIZE-1:0]  right_din0;
+   wire 		  right_web0;
    wire [`WMASK_SIZE-1:0] right_wmask0;
    wire [`MAX_CHIPS-1:0]  right_csb0;
 
-   wire [`DATA_SIZE-1:0] sram0_dout0;
-   wire [`DATA_SIZE-1:0] sram0_dout1;
-   wire [`DATA_SIZE-1:0] sram1_dout0;
-   wire [`DATA_SIZE-1:0] sram1_dout1;
-   wire [`DATA_SIZE-1:0] sram2_dout0;
-   wire [`DATA_SIZE-1:0] sram2_dout1;
-   wire [`DATA_SIZE-1:0] sram3_dout0;
-   wire [`DATA_SIZE-1:0] sram3_dout1;
-   wire [`DATA_SIZE-1:0] sram4_dout0;
-   wire [`DATA_SIZE-1:0] sram4_dout1;
-   wire [`DATA_SIZE-1:0] sram5_dout0;
-   wire [`DATA_SIZE-1:0] sram5_dout1;
-   wire [`DATA_SIZE-1:0] sram6_dout0;
-   wire [`DATA_SIZE-1:0] sram6_dout1;
-   wire [`DATA_SIZE-1:0] sram7_dout0;
-   wire [`DATA_SIZE-1:0] sram7_dout1;
-   wire [`DATA_SIZE-1:0] sram8_dout0;
-   wire [`DATA_SIZE-1:0] sram8_dout1;
-   wire [`DATA_SIZE-1:0] sram9_dout0;
-   wire [`DATA_SIZE-1:0] sram9_dout1;
-   wire [`DATA_SIZE-1:0] sram10_dout0;
-   wire [`DATA_SIZE-1:0] sram10_dout1;
-   wire [`DATA_SIZE-1:0] sram11_dout0;
-   wire [`DATA_SIZE-1:0] sram11_dout1;
-   wire [`DATA_SIZE-1:0] sram12_dout0;
-   wire [`DATA_SIZE-1:0] sram12_dout1;
-   wire [`DATA_SIZE-1:0] sram13_dout0;
-   wire [`DATA_SIZE-1:0] sram13_dout1;
-   wire [`DATA_SIZE-1:0] sram14_dout0;
-   wire [`DATA_SIZE-1:0] sram14_dout1;
-   wire [`DATA_SIZE-1:0] sram15_dout0;
-   wire [`DATA_SIZE-1:0] sram15_dout1;
+   wire [`DATA_SIZE-1:0]  sram0_dout0;
+   wire [`DATA_SIZE-1:0]  sram0_dout1;
+   wire [`DATA_SIZE-1:0]  sram1_dout0;
+   wire [`DATA_SIZE-1:0]  sram1_dout1;
+   wire [`DATA_SIZE-1:0]  sram2_dout0;
+   wire [`DATA_SIZE-1:0]  sram2_dout1;
+   wire [`DATA_SIZE-1:0]  sram3_dout0;
+   wire [`DATA_SIZE-1:0]  sram3_dout1;
+   wire [`DATA_SIZE-1:0]  sram4_dout0;
+   wire [`DATA_SIZE-1:0]  sram4_dout1;
+   wire [`DATA_SIZE-1:0]  sram5_dout0;
+   wire [`DATA_SIZE-1:0]  sram5_dout1;
+   wire [`DATA_SIZE-1:0]  sram6_dout0;
+   wire [`DATA_SIZE-1:0]  sram6_dout1;
+   wire [`DATA_SIZE-1:0]  sram7_dout0;
+   wire [`DATA_SIZE-1:0]  sram7_dout1;
+   wire [`DATA_SIZE-1:0]  sram8_dout0;
+   wire [`DATA_SIZE-1:0]  sram8_dout1;
+   wire [`DATA_SIZE-1:0]  sram9_dout0;
+   wire [`DATA_SIZE-1:0]  sram9_dout1;
+   wire [`DATA_SIZE-1:0]  sram10_dout0;
+   wire [`DATA_SIZE-1:0]  sram10_dout1;
+   wire [`DATA_SIZE-1:0]  sram11_dout0;
+   wire [`DATA_SIZE-1:0]  sram11_dout1;
+   wire [`DATA_SIZE-1:0]  sram12_dout0;
+   wire [`DATA_SIZE-1:0]  sram12_dout1;
+   wire [`DATA_SIZE-1:0]  sram13_dout0;
+   wire [`DATA_SIZE-1:0]  sram13_dout1;
+   wire [`DATA_SIZE-1:0]  sram14_dout0;
+   wire [`DATA_SIZE-1:0]  sram14_dout1;
+   wire [`DATA_SIZE-1:0]  sram15_dout0;
+   wire [`DATA_SIZE-1:0]  sram15_dout1;
 
 sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
      (

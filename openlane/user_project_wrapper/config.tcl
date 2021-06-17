@@ -27,14 +27,12 @@ set ::env(DESIGN_NAME) user_project_wrapper
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
+	$script_dir/../../verilog/rtl/clock_mux.v \
 	$script_dir/../../verilog/rtl/user_project_wrapper.v "
 
 ## Clock configurations
-# This is la_sram_clk
-# This should be la_data_in[126]
-#set ::env(CLOCK_PORT) "la_sram_clk"
-set ::env(CLOCK_PORT) {la_data_in\[126\]}
-set ::env(CLOCK_NET) "sram_clk"
+set ::env(CLOCK_PORT) "clkmux.clk"
+set ::env(CLOCK_NET) "clkmux.clk"
 
 set ::env(CLOCK_PERIOD) "20"
 set ::env(BASE_SDC_FILE) "$script_dir/user_project_wrapper.sdc"

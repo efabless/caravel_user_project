@@ -7,11 +7,12 @@ set ::env(FP_PDN_CORE_RING) 0
 set ::env(GLB_RT_MAXLAYER) 5
 
 set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/openram_defines.v \
-			 $script_dir/../../verilog/rtl/openram_testchip.v"
+    			  $script_dir/../../verilog/rtl/clock_mux.v \
+			  $script_dir/../../verilog/rtl/openram_testchip.v"
 set ::env(BASE_SDC_FILE) "$script_dir/openram_testchip.sdc"
 
-set ::env(CLOCK_PORT) "la_clk"
-set ::env(CLOCK_NET) "clk"
+set ::env(CLOCK_PORT) "clkmux.clk"
+set ::env(CLOCK_NET) "clkmux.clk"
 set ::env(RESET_PORT) "resetn"
 
 #set ::env(CLOCK_NET) ""
