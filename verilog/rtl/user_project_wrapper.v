@@ -98,7 +98,7 @@ module user_project_wrapper #(
    wire     gpio_sram_clk = io_in[18];
    wire     gpio_scan = io_in[19];
    wire     gpio_sram_load = io_in[20];
-   wire     global_csr = io_in[21];
+   wire     global_csb = io_in[21];
    wire     la_clk = la_data_in[127];
    wire     la_in_load = la_data_in[125];
    wire     la_sram_load = la_data_in[124];
@@ -119,7 +119,7 @@ module user_project_wrapper #(
    openram_testchip CONTROL_LOGIC(
 				  .resetn(resetn & wb_rst_i),
 				  .clk(clk),
-              .global_csr(global_csr),
+				  .global_csb(global_csb),
 				  .gpio_scan(gpio_scan),
 				  .gpio_sram_load(gpio_sram_load),
 				  .la_in_load(la_in_load),
