@@ -32,7 +32,10 @@ module gpio_test_tb;
     	wire [37:0] mprj_io;
 	wire mprj_io_22;
 
-	assign mprj_io_0 = mprj_io[22];
+	reg gpio_clk;
+	assign gpio_clk = mprj_io[17];
+
+	assign mprj_io_22 = mprj_io[22];
 	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
 
 	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
@@ -52,6 +55,10 @@ module gpio_test_tb;
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
 		
+		//mprj_io[15] = 1;
+		//mprj_io[21] = 1;
+		//mprj_io[17] = 1;
+
 		/*
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (25) begin
@@ -69,28 +76,24 @@ module gpio_test_tb;
 		*/
 	end
 
+
+	always  #5 assign gpio_clk = !gpio_clk;
+
 	initial begin
-	    // Observe Output pins [7:0]
-	    wait(mprj_io_0 == 8'h01);
-	    wait(mprj_io_0 == 8'h02);
-	    wait(mprj_io_0 == 8'h03);
-    	    wait(mprj_io_0 == 8'h04);
-	    wait(mprj_io_0 == 8'h05);
-            wait(mprj_io_0 == 8'h06);
-	    wait(mprj_io_0 == 8'h07);
-            wait(mprj_io_0 == 8'h08);
-	    wait(mprj_io_0 == 8'h09);
-            wait(mprj_io_0 == 8'h0A);   
-	    wait(mprj_io_0 == 8'hFF);
-	    wait(mprj_io_0 == 8'h00);
+	    // Observe Output pins [22]
+	    //wait(mprj_io_22 == 8'h00);
 		
+		/*
 		`ifdef GL
 	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
 		`else
 		    $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
 		`endif
-	    $finish;
+		*/
+	    //$finish;
 	end
+
+
 
 	initial begin
 		RSTB <= 1'b0;
@@ -117,7 +120,7 @@ module gpio_test_tb;
 	end
 
 	always @(mprj_io) begin
-		#1 $display("MPRJ-IO state = %b ", mprj_io[7:0]);
+		#1 $display("MPRJ-IO state = %b ", mprj_io[22]);
 	end
 
 	wire flash_csb;
