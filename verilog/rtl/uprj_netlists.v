@@ -34,4 +34,5 @@
     `include "sram_1rw0r0w_32_512_sky130.v"
     `include "sram_1rw0r0w_32_1024_sky130.v"
     `include "sram_1rw0r0w_64_512_sky130.v"
+    `include "clock_mux.v"
 `endif
