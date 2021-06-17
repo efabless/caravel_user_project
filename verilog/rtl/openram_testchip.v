@@ -156,8 +156,8 @@ end
 
 // Apply the correct CSB
 always @(*) begin
-   left_csb0 = ~( ~csb0_temp << chip_select);
-   left_csb1 = ~( ~csb1_temp << chip_select);
+   left_csb0 = ~( (~{15'b111111111111111, csb0_temp}) << chip_select);
+   left_csb1 = ~(  (~{15'b111111111111111, csb1_temp}) << chip_select);
 end
 
 // Mux value of correct SRAM data input to feed into
