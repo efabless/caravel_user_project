@@ -27,14 +27,15 @@ set ::env(DESIGN_NAME) user_project_wrapper
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
 	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/clock_mux.v \
+	$script_dir/../../verilog/rtl/openram_testchip.v \
 	$script_dir/../../verilog/rtl/user_project_wrapper.v "
 
 ## Clock configurations
-set ::env(CLOCK_PORT) "clkmux.clk"
-set ::env(CLOCK_NET) "clkmux.clk"
+set ::env(CLOCK_PORT) {io_in\[17\]}
+set ::env(CLOCK_NET) "CONTROL_LOGIC.clk"
+set ::env(RESET_PORT) {io_in\[15\] wb_rst_i}
 
-set ::env(CLOCK_PERIOD) "20"
+set ::env(CLOCK_PERIOD) "30"
 set ::env(BASE_SDC_FILE) "$script_dir/user_project_wrapper.sdc"
 
 ## Internal Macros
@@ -52,8 +53,8 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_1024_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_256_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_512_sky130.v \
-	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v \
-	$script_dir/../../verilog/rtl/openram_testchip.v "
+	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v"
+#$script_dir/../../verilog/rtl/openram_testchip.v
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef \
@@ -64,8 +65,8 @@ set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sram_1rw0r0w_32_1024_sky130.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_256_sky130.lef \
 	$script_dir/../../lef/sram_1rw0r0w_32_512_sky130.lef \
-	$script_dir/../../lef/sram_1rw0r0w_64_512_sky130.lef \
-	$script_dir/../../lef/openram_testchip.lef "
+	$script_dir/../../lef/sram_1rw0r0w_64_512_sky130.lef"
+#	$script_dir/../../lef/openram_testchip.lef
 
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds \
@@ -74,10 +75,10 @@ set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_4kbyte_1rw1r_32x1024_8.gds \
 	$script_dir/../../gds/sky130_sram_8kbyte_1rw1r_32x2048_8.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_1024_sky130.gds \
-	$script_dir/../../gds/sram_1rw0r0w_32_256_sky130.gds \
+p	$script_dir/../../gds/sram_1rw0r0w_32_256_sky130.gds \
 	$script_dir/../../gds/sram_1rw0r0w_32_512_sky130.gds \
-	$script_dir/../../gds/sram_1rw0r0w_64_512_sky130.gds \
-	$script_dir/../../gds/openram_testchip.gds "
+	$script_dir/../../gds/sram_1rw0r0w_64_512_sky130.gds"
+#	$script_dir/../../gds/openram_testchip.gds
 
 set ::env(GLB_RT_MAXLAYER) 5
 
@@ -89,10 +90,10 @@ set ::env(FP_PDN_CHECK_NODES) 0
 # Placement config
 set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
 set ::env(PL_DIAMOND_SEARCH_HEIGHT) 500
-set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+#set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
 set ::env(GLB_RT_ADJUSTMENT) 0.25
-set ::env(PL_TARGET_DENSITY) 0.5
+set ::env(PL_TARGET_DENSITY) 0.3
 
 #set ::env(MAGIC_DRC_USE_GDS) 0
 

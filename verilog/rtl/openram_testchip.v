@@ -12,15 +12,11 @@ module openram_testchip(
 			inout vssd2,        // User area 2 digital ground
 `endif
 			input         resetn,
-			// Select either GPIO or LA mode
-			input         in_select,
-
-			input         la_clk,
+			input         clk,
 			input         la_in_load,
 			input         la_sram_load,
 			input  [`TOTAL_SIZE-1:0] la_data_in,
 			// GPIO bit to clock control register
-			input         gpio_clk,
 			input         gpio_in,
 			input         gpio_scan,
 			input         gpio_sram_load,
@@ -105,16 +101,6 @@ module openram_testchip(
    wire [`WMASK_SIZE-1:0] right_wmask0 = left_wmask0;
    wire [`MAX_CHIPS-1:0]  right_csb0 = left_csb0;
 
-
-
-   // Selecting clock pin
-   wire 		  clk;
-   clock_mux clkmux(.clk0(la_clk),
-		    .clk1(gpio_clk),
-		    .sel(in_select),
-		    .clk(clk));
-
-
 always @ (posedge clk) begin
    if(!resetn) begin
       sram_register <= {`TOTAL_SIZE{1'b0}};
@@ -138,19 +124,20 @@ always @ (posedge clk) begin
    end
 end
 
+
 // Splitting register bits into fields
 always @(*) begin
    chip_select = sram_register[`TOTAL_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE];
 
    left_addr0 = sram_register[`TOTAL_SIZE-`SELECT_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE-`ADDR_SIZE];
    left_din0 = sram_register[`DATA_SIZE+`PORT_SIZE+`WMASK_SIZE+1:`PORT_SIZE+`WMASK_SIZE+2];
-   csb0_temp = sram_register[`PORT_SIZE+`WMASK_SIZE+1];
+   csb0_temp = gpio_scan | la_in_load | sram_register[`PORT_SIZE+`WMASK_SIZE+1];
    left_web0 = sram_register[`PORT_SIZE+`WMASK_SIZE];
    left_wmask0 = sram_register[`PORT_SIZE+`WMASK_SIZE-1:`PORT_SIZE];
 
    left_addr1 = sram_register[`PORT_SIZE-1:`DATA_SIZE+`WMASK_SIZE+2];
    left_din1 = sram_register[`DATA_SIZE+`WMASK_SIZE+1:`WMASK_SIZE+2];
-   csb1_temp = sram_register[`WMASK_SIZE+1];
+   csb1_temp = gpio_scan | la_in_load | sram_register[`WMASK_SIZE+1];
    left_web1 = sram_register[`WMASK_SIZE];
    left_wmask1 = sram_register[`WMASK_SIZE-1:0];
 end
