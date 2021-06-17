@@ -30,10 +30,14 @@ set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/user_project_wrapper.v "
 
 ## Clock configurations
-set ::env(CLOCK_PORT) "la_sram_clk"
+# This is la_sram_clk
+# This should be la_data_in[126]
+#set ::env(CLOCK_PORT) "la_sram_clk"
+set ::env(CLOCK_PORT) {la_data_in\[126\]}
 set ::env(CLOCK_NET) "sram_clk"
 
 set ::env(CLOCK_PERIOD) "20"
+set ::env(BASE_SDC_FILE) "$script_dir/user_project_wrapper.sdc"
 
 ## Internal Macros
 ### Macro Placement
@@ -89,8 +93,8 @@ set ::env(PL_OPENPHYSYN_OPTIMIZATIONS) 0
 set ::env(PL_DIAMOND_SEARCH_HEIGHT) 500
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
-set ::env(GLB_RT_ADJUSTMENT) 0.10
-set ::env(PL_TARGET_DENSITY) 0.7
+set ::env(GLB_RT_ADJUSTMENT) 0.25
+set ::env(PL_TARGET_DENSITY) 0.5
 
 #set ::env(MAGIC_DRC_USE_GDS) 0
 

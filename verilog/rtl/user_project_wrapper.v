@@ -91,7 +91,7 @@ module user_project_wrapper #(
    // One CSB for each SRAM
    wire [`MAX_CHIPS-1:0]  csb0;
    wire [`MAX_CHIPS-1:0]  csb1;
-   
+
 
 
 wire [31:0] sram0_dout0;
@@ -124,10 +124,10 @@ wire [31:0] sram13_dout0;
 wire [31:0] sram13_dout1;
 wire [31:0] sram14_dout0;
 wire [31:0] sram14_dout1;
-			
+
 
    wire     in_select = io_in[16];
-   wire     in_reset = io_in[15];
+   wire     resetn = io_in[15];
    wire     gpio_clk = io_in[17];
    wire     gpio_sram_clk = io_in[18];
    wire     gpio_scan = io_in[19];
@@ -140,22 +140,22 @@ wire [31:0] sram14_dout1;
    wire     gpio_out;
    assign io_out[21] = gpio_out;
    assign io_out[20:0] = 0;
-   
+
    wire la_sram_clk = la_data_in[126];
 
    reg 	sram_clk;
-   
+
 always @(*) begin
     sram_clk = in_select ? gpio_sram_clk : la_sram_clk;
 end
-   
+
 openram_testchip CONTROL_LOGIC(
-			       .reset(in_reset|~wb_rst_i),
+			       .resetn(resetn & wb_rst_i),
 			       .in_select(in_select),
 			       .gpio_clk(gpio_clk),
 			       .gpio_scan(gpio_scan),
 			       .gpio_sram_load(gpio_sram_load),
-			       
+
 			       .la_clk(la_data_in[127]),
 			       .la_in_load(la_data_in[125]),
 			       .la_sram_load(la_data_in[124]),
@@ -174,7 +174,7 @@ openram_testchip CONTROL_LOGIC(
 			       // One CSB for each SRAM
 			       .left_csb0(left_csb0),
 			       .left_csb1(left_csb1),
-			       
+
 			       // Shared control/data to the SRAMs
 			       .right_addr0(right_addr0),
 			       .right_din0(right_din0),
@@ -182,7 +182,7 @@ openram_testchip CONTROL_LOGIC(
 			       .right_wmask0(right_wmask0),
 			       // One CSB for each SRAM
 			       .right_csb0(right_csb0),
-			       
+
 			       // SRAM data outputs to be captured
 			       .sram0_data0(sram0_data0),
 			       .sram0_data1(sram0_data1),
@@ -216,7 +216,7 @@ openram_testchip CONTROL_LOGIC(
 			       .sram14_data1(sram14_data1),
 			       .sram15_data0(sram15_data0),
 			       .sram15_data1(sram15_data1)
-			       
+
 );
 
    wire [`ADDR_SIZE-1:0]  left_addr0;
@@ -235,7 +235,7 @@ openram_testchip CONTROL_LOGIC(
    wire 		 right_web0;
    wire [`WMASK_SIZE-1:0] right_wmask0;
    wire [`MAX_CHIPS-1:0]  right_csb0;
-   
+
    wire [`DATA_SIZE-1:0] sram0_dout0;
    wire [`DATA_SIZE-1:0] sram0_dout1;
    wire [`DATA_SIZE-1:0] sram1_dout0;
@@ -273,7 +273,7 @@ sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (left_csb0[0]),
@@ -289,12 +289,12 @@ sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
       );
    assign sram0_dout0[`DATA_SIZE-1:8] = 0;
    assign sram0_dout1[`DATA_SIZE-1:8] = 0;
-   
+
 sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (left_csb0[1]),
@@ -308,12 +308,12 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
       .addr1  (left_addr1),
       .dout1  (sram1_dout1)
       );
-   
+
 sky130_sram_2kbyte_1rw1r_32x512_8 SRAM2
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (left_csb0[2]),
@@ -332,7 +332,7 @@ sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM3
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (left_csb0[3]),
@@ -346,12 +346,12 @@ sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM3
       .addr1  (left_addr1),
       .dout1  (sram3_dout1)
       );
-   
+
 sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM4
      (
      `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (left_csb0[4]),
@@ -371,7 +371,7 @@ sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM4
 //      (
 //      `ifdef USE_POWER_PINS
 //       .vccd1(vccd1),
-//       .vssd1(vssd1), 
+//       .vssd1(vssd1),
 //       `endif
 //       .clk0   (sram_clk),
 //       .csb0   (csb0[6]),
@@ -385,15 +385,15 @@ sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM4
 //       .addr1  (addr1),
 //       .dout1  (sram6_dout1)
 //       );
-   
-   
+
+
 
 // Single port memories
 sram_1rw0r0w_32_256_sky130 SRAM8
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (right_csb0[8]),
@@ -409,7 +409,7 @@ sram_1rw0r0w_32_512_sky130 SRAM9
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (right_csb0[9]),
@@ -425,7 +425,7 @@ sram_1rw0r0w_32_1024_sky130 SRAM10
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (right_csb0[10]),
@@ -442,7 +442,7 @@ sram_1rw0r0w_64_512_sky130 SRAM11
     (
       `ifdef USE_POWER_PINS
       .vccd1(vccd1),
-      .vssd1(vssd1), 
+      .vssd1(vssd1),
       `endif
       .clk0   (sram_clk),
       .csb0   (right_csb0[11]),
@@ -457,7 +457,7 @@ sram_1rw0r0w_64_512_sky130 SRAM11
 
 
 
-   
+
 // Hold dout from SRAM
 // clocked by SRAM clk
    reg [`DATA_SIZE-1:0] sram0_data0;
@@ -492,9 +492,9 @@ sram_1rw0r0w_64_512_sky130 SRAM11
    reg [`DATA_SIZE-1:0] sram14_data1;
    reg [`DATA_SIZE-1:0] sram15_data0;
    reg [`DATA_SIZE-1:0] sram15_data1;
-   
+
 always @(posedge sram_clk) begin
-   if (in_reset) begin
+   if (!resetn) begin
       sram0_data0 <= 0;
       sram0_data1 <= 0;
       sram1_data0 <= 0;
@@ -563,7 +563,7 @@ always @(posedge sram_clk) begin
        // sram15_data1 <= sram15_dout1;
    end // else: !if(in_reset)
 end
-   
+
    assign sram5_data0 = 0;
    assign sram5_data1 = 0;
    assign sram6_data0 = 0;
@@ -578,7 +578,7 @@ end
    assign sram14_data1 = 0;
    assign sram15_data0 = 0;
    assign sram15_data1 = 0;
-   
+
 
 endmodule	// user_project_wrapper
 

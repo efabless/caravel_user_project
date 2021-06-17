@@ -8,10 +8,12 @@ set ::env(GLB_RT_MAXLAYER) 5
 
 set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/openram_defines.v \
 			 $script_dir/../../verilog/rtl/openram_testchip.v"
-#set ::env(BASE_SDC_FILE) "$script_dir/openram_testchip.sdc"
+set ::env(BASE_SDC_FILE) "$script_dir/openram_testchip.sdc"
 
 set ::env(CLOCK_PORT) "la_clk"
 set ::env(CLOCK_NET) "clk"
+set ::env(RESET_PORT) "resetn"
+
 #set ::env(CLOCK_NET) ""
 set ::env(CLOCK_PERIOD) "20"
 set ::env(IO_PCT) 0.1
