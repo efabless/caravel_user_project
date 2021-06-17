@@ -93,13 +93,16 @@ set ::env(PL_DIAMOND_SEARCH_HEIGHT) 500
 #set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
 set ::env(GLB_RT_ADJUSTMENT) 0.25
-set ::env(PL_TARGET_DENSITY) 0.3
+set ::env(PL_TARGET_DENSITY) 0.25
 
 #set ::env(MAGIC_DRC_USE_GDS) 0
 
 set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(RUN_KLAYOUT_XOR) 0
 
+# Spray diodes
+
+set ::env(DIODE_INSERTION_STRATEGY) 1
 # The following is because there are no std cells in the example wrapper project.
 #set ::env(SYNTH_TOP_LEVEL) 1
 #set ::env(PL_RANDOM_GLB_PLACEMENT) 1

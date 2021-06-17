@@ -98,7 +98,7 @@ module user_project_wrapper #(
    wire     gpio_sram_clk = io_in[18];
    wire     gpio_scan = io_in[19];
    wire     gpio_sram_load = io_in[20];
-   wire     global_csr = io_in[21];  
+   wire     global_csr = io_in[21];
    wire     la_clk = la_data_in[127];
    wire     la_in_load = la_data_in[125];
    wire     la_sram_load = la_data_in[124];
@@ -129,24 +129,16 @@ module user_project_wrapper #(
 				  .gpio_out(gpio_out),
 
 				  // Shared control/data to the SRAMs
-				  .left_addr0(left_addr0),
-				  .left_din0(left_din0),
-				  .left_web0(left_web0),
-				  .left_wmask0(left_wmask0),
-				  .left_addr1(left_addr1),
-				  .left_web1(left_web1),
-				  .left_wmask1(left_wmask1),
+				  .addr0(addr0),
+				  .din0(din0),
+				  .web0(web0),
+				  .wmask0(wmask0),
+				  .addr1(addr1),
+				  .web1(web1),
+				  .wmask1(wmask1),
 				  // One CSB for each SRAM
-				  .left_csb0(left_csb0),
-				  .left_csb1(left_csb1),
-
-				  // Shared control/data to the SRAMs
-				  .right_addr0(right_addr0),
-				  .right_din0(right_din0),
-				  .right_web0(right_web0),
-				  .right_wmask0(right_wmask0),
-				  // One CSB for each SRAM
-				  .right_csb0(right_csb0),
+				  .csb0(csb0),
+				  .csb1(csb1),
 
 				  // SRAM data outputs to be captured
 				  .sram0_data0(sram0_data0),
@@ -184,22 +176,16 @@ module user_project_wrapper #(
 
 				  );
 
-   wire [`ADDR_SIZE-1:0] left_addr0;
-   wire [`DATA_SIZE-1:0] left_din0;
-   wire 		 left_web0;
-   wire [`WMASK_SIZE-1:0] left_wmask0;
-   wire [`ADDR_SIZE-1:0]  left_addr1;
-   wire [`DATA_SIZE-1:0]  left_din1;
-   wire 		  left_web1;
-   wire [`WMASK_SIZE-1:0] left_wmask1;
-   wire [`MAX_CHIPS-1:0]  left_csb0;
-   wire [`MAX_CHIPS-1:0]  left_csb1;
-
-   wire [`ADDR_SIZE-1:0]  right_addr0;
-   wire [`DATA_SIZE-1:0]  right_din0;
-   wire 		  right_web0;
-   wire [`WMASK_SIZE-1:0] right_wmask0;
-   wire [`MAX_CHIPS-1:0]  right_csb0;
+   wire [`ADDR_SIZE-1:0] addr0;
+   wire [`DATA_SIZE-1:0] din0;
+   wire 		 web0;
+   wire [`WMASK_SIZE-1:0] wmask0;
+   wire [`ADDR_SIZE-1:0]  addr1;
+   wire [`DATA_SIZE-1:0]  din1;
+   wire 		  web1;
+   wire [`WMASK_SIZE-1:0] wmask1;
+   wire [`MAX_CHIPS-1:0]  csb0;
+   wire [`MAX_CHIPS-1:0]  csb1;
 
    wire [`DATA_SIZE-1:0]  sram0_dout0;
    wire [`DATA_SIZE-1:0]  sram0_dout1;
@@ -241,15 +227,15 @@ sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (left_csb0[0]),
-      .web0   (left_web0),
-      .wmask0 (left_wmask0),
-      .addr0  (left_addr0),
-      .din0   (left_din0),
+      .csb0   (csb0[0]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram0_dout0[7:0]),
       .clk1   (clk),
-      .csb1   (left_csb1[0]),
-      .addr1  (left_addr1),
+      .csb1   (csb1[0]),
+      .addr1  (addr1),
       .dout1  (sram0_dout1[7:0])
       );
    assign sram0_dout0[`DATA_SIZE-1:8] = 0;
@@ -262,15 +248,15 @@ sky130_sram_1kbyte_1rw1r_32x256_8 SRAM1
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (left_csb0[1]),
-      .web0   (left_web0),
-      .wmask0 (left_wmask0),
-      .addr0  (left_addr0),
-      .din0   (left_din0),
+      .csb0   (csb0[1]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram1_dout0),
       .clk1   (clk),
-      .csb1   (left_csb1[1]),
-      .addr1  (left_addr1),
+      .csb1   (csb1[1]),
+      .addr1  (addr1),
       .dout1  (sram1_dout1)
       );
 
@@ -281,15 +267,15 @@ sky130_sram_2kbyte_1rw1r_32x512_8 SRAM2
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (left_csb0[2]),
-      .web0   (left_web0),
-      .wmask0 (left_wmask0),
-      .addr0  (left_addr0),
-      .din0   (left_din0),
+      .csb0   (csb0[2]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram2_dout0),
       .clk1   (clk),
-      .csb1   (left_csb1[2]),
-      .addr1  (left_addr1),
+      .csb1   (csb1[2]),
+      .addr1  (addr1),
       .dout1  (sram2_dout1)
       );
 
@@ -300,15 +286,15 @@ sky130_sram_4kbyte_1rw1r_32x1024_8 SRAM3
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (left_csb0[3]),
-      .web0   (left_web0),
-      .wmask0 (left_wmask0),
-      .addr0  (left_addr0),
-      .din0   (left_din0),
+      .csb0   (csb0[3]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram3_dout0),
       .clk1   (clk),
-      .csb1   (left_csb1[3]),
-      .addr1  (left_addr1),
+      .csb1   (csb1[3]),
+      .addr1  (addr1),
       .dout1  (sram3_dout1)
       );
 
@@ -319,15 +305,15 @@ sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM4
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (left_csb0[4]),
-      .web0   (left_web0),
-      .wmask0 (left_wmask0),
-      .addr0  (left_addr0),
-      .din0   (left_din0),
+      .csb0   (csb0[4]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram4_dout0),
       .clk1   (clk),
-      .csb1   (left_csb1[4]),
-      .addr1  (left_addr1),
+      .csb1   (csb1[4]),
+      .addr1  (addr1),
       .dout1  (sram4_dout1)
       );
 
@@ -361,14 +347,13 @@ sram_1rw0r0w_32_256_sky130 SRAM8
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (right_csb0[8]),
-      .web0   (right_web0),
-      .wmask0 (right_wmask0),
-      .addr0  (right_addr0),
-      .din0   (right_din0),
+      .csb0   (csb0[8]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram8_dout0)
      );
-   assign sram8_dout1 = 0;
 
 sram_1rw0r0w_32_512_sky130 SRAM9
     (
@@ -377,14 +362,13 @@ sram_1rw0r0w_32_512_sky130 SRAM9
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (right_csb0[9]),
-      .web0   (right_web0),
-      .wmask0 (right_wmask0),
-      .addr0  (right_addr0),
-      .din0   (right_din0),
+      .csb0   (csb0[9]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram9_dout0)
      );
-   assign sram9_dout1 = 0;
 
 sram_1rw0r0w_32_1024_sky130 SRAM10
     (
@@ -393,14 +377,14 @@ sram_1rw0r0w_32_1024_sky130 SRAM10
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (right_csb0[10]),
-      .web0   (right_web0),
-      .wmask0 (right_wmask0),
-      .addr0  (right_addr0),
-      .din0   (right_din0),
+      .csb0   (csb0[10]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   (din0),
       .dout0  (sram10_dout0)
      );
-   assign sram10_dout1 = 0;
+
 
    wire [63:0] temp_sram11_dout0;
 sram_1rw0r0w_64_512_sky130 SRAM11
@@ -410,14 +394,13 @@ sram_1rw0r0w_64_512_sky130 SRAM11
       .vssd1(vssd1),
       `endif
       .clk0   (clk),
-      .csb0   (right_csb0[11]),
-      .web0   (right_web0),
-      .wmask0 (right_wmask0),
-      .addr0  (right_addr0),
-      .din0   ({right_din0[31:16], 32'd0, right_din0[15:0]}),
+      .csb0   (csb0[11]),
+      .web0   (web0),
+      .wmask0 (wmask0),
+      .addr0  (addr0),
+      .din0   ({din0[31:16], 32'd0, din0[15:0]}),
       .dout0  (temp_sram11_dout0)
      );
-   assign sram11_dout1 = 0;
    assign sram11_dout0 = {temp_sram11_dout0[64:49], temp_sram11_dout0[15:0]};
 
 // Hold dout from SRAM
@@ -439,13 +422,13 @@ reg [`DATA_SIZE-1:0] sram4_data1;
 //reg [`DATA_SIZE-1:0] sram7_data0;
 //reg [`DATA_SIZE-1:0] sram7_data1;
 reg [`DATA_SIZE-1:0] sram8_data0;
-reg [`DATA_SIZE-1:0] sram8_data1;
+//reg [`DATA_SIZE-1:0] sram8_data1;
 reg [`DATA_SIZE-1:0] sram9_data0;
-reg [`DATA_SIZE-1:0] sram9_data1;
+//reg [`DATA_SIZE-1:0] sram9_data1;
 reg [`DATA_SIZE-1:0] sram10_data0;
-reg [`DATA_SIZE-1:0] sram10_data1;
+//reg [`DATA_SIZE-1:0] sram10_data1;
 reg [`DATA_SIZE-1:0] sram11_data0;
-reg [`DATA_SIZE-1:0] sram11_data1;
+//reg [`DATA_SIZE-1:0] sram11_data1;
 //reg [`DATA_SIZE-1:0] sram12_data0;
 //reg [`DATA_SIZE-1:0] sram12_data1;
 //reg [`DATA_SIZE-1:0] sram13_data0;
@@ -474,13 +457,13 @@ always @(posedge clk) begin
       // sram7_data0 <= 0;
       // sram7_data1 <= 0;
       sram8_data0 <= 0;
-      sram8_data1 <= 0;
+      //sram8_data1 <= 0;
       sram9_data0 <= 0;
-      sram9_data1 <= 0;
+      //sram9_data1 <= 0;
       sram10_data0 <= 0;
-      sram10_data1 <= 0;
+      //sram10_data1 <= 0;
       sram11_data0 <= 0;
-      sram11_data1 <= 0;
+      //sram11_data1 <= 0;
       //sram12_data0 <= 0;
       //sram12_data1 <= 0;
       //sram13_data0 <= 0;
@@ -508,13 +491,13 @@ always @(posedge clk) begin
        // sram7_data0 <= sram7_dout0;
        // sram7_data1 <= sram7_dout1;
        sram8_data0 <= sram8_dout0;
-       sram8_data1 <= sram8_dout1;
+       // sram8_data1 <= sram8_dout1;
        sram9_data0 <= sram9_dout0;
-       sram9_data1 <= sram9_dout1;
+       // sram9_data1 <= sram9_dout1;
        sram10_data0 <= sram10_dout0;
-       sram10_data1 <= sram10_dout1;
+       // sram10_data1 <= sram10_dout1;
        sram11_data0 <= sram11_dout0;
-       sram11_data1 <= sram11_dout1;
+       // sram11_data1 <= sram11_dout1;
        // sram12_data0 <= sram12_dout0;
        // sram12_data1 <= sram12_dout1;
        // sram13_data0 <= sram13_dout0;
@@ -525,6 +508,11 @@ always @(posedge clk) begin
        // sram15_data1 <= sram15_dout1;
    end
 end
+
+   wire [`DATA_SIZE-1:0] sram8_dout1 = 0;
+   wire [`DATA_SIZE-1:0] sram9_dout1 = 0;
+   wire [`DATA_SIZE-1:0] sram10_dout1 = 0;
+   wire [`DATA_SIZE-1:0] sram11_dout1 = 0;
 
    wire [`DATA_SIZE-1:0] sram5_data0 = 0;
    wire [`DATA_SIZE-1:0] sram5_data1 = 0;
