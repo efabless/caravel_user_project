@@ -94,37 +94,36 @@ module user_project_wrapper #(
 
 
 
-wire [31:0] sram0_dout0;
-wire [31:0] sram0_dout1;
-wire [31:0] sram1_dout0;
-wire [31:0] sram1_dout1;
-wire [31:0] sram2_dout0;
-wire [31:0] sram2_dout1;
-wire [31:0] sram3_dout0;
-wire [31:0] sram3_dout1;
-wire [31:0] sram4_dout0;
-wire [31:0] sram4_dout1;
-wire [31:0] sram5_dout0;
-wire [31:0] sram5_dout1;
-wire [31:0] sram6_dout0;
-wire [31:0] sram6_dout1;
-wire [31:0] sram7_dout0;
-wire [31:0] sram7_dout1;
-wire [31:0] sram8_dout0;
-wire [31:0] sram8_dout1;
-wire [31:0] sram9_dout0;
-wire [31:0] sram9_dout1;
-wire [31:0] sram10_dout0;
-wire [31:0] sram10_dout1;
-wire [31:0] sram11_dout0;
-wire [31:0] sram11_dout1;
-wire [31:0] sram12_dout0;
-wire [31:0] sram12_dout1;
-wire [31:0] sram13_dout0;
-wire [31:0] sram13_dout1;
-wire [31:0] sram14_dout0;
-wire [31:0] sram14_dout1;
-
+   wire [31:0] 		  sram0_dout0;
+   wire [31:0] 		  sram0_dout1;
+   wire [31:0] 		  sram1_dout0;
+   wire [31:0] 		  sram1_dout1;
+   wire [31:0] 		  sram2_dout0;
+   wire [31:0] 		  sram2_dout1;
+   wire [31:0] 		  sram3_dout0;
+   wire [31:0] 		  sram3_dout1;
+   wire [31:0] 		  sram4_dout0;
+   wire [31:0] 		  sram4_dout1;
+   wire [31:0] 		  sram5_dout0;
+   wire [31:0] 		  sram5_dout1;
+   wire [31:0] 		  sram6_dout0;
+   wire [31:0] 		  sram6_dout1;
+   wire [31:0] 		  sram7_dout0;
+   wire [31:0] 		  sram7_dout1;
+   wire [31:0] 		  sram8_dout0;
+   wire [31:0] 		  sram8_dout1;
+   wire [31:0] 		  sram9_dout0;
+   wire [31:0] 		  sram9_dout1;
+   wire [31:0] 		  sram10_dout0;
+   wire [31:0] 		  sram10_dout1;
+   wire [31:0] 		  sram11_dout0;
+   wire [31:0] 		  sram11_dout1;
+   wire [31:0] 		  sram12_dout0;
+   wire [31:0] 		  sram12_dout1;
+   wire [31:0] 		  sram13_dout0;
+   wire [31:0] 		  sram13_dout1;
+   wire [31:0] 		  sram14_dout0;
+   wire [31:0] 		  sram14_dout1;
 
    wire     in_select = io_in[16];
    wire     resetn = io_in[15];
@@ -455,43 +454,6 @@ sram_1rw0r0w_64_512_sky130 SRAM11
    assign sram11_dout0 = {temp_sram11_dout0[64:49], temp_sram11_dout0[15:0]};
 
 
-
-
-// Hold dout from SRAM
-// clocked by SRAM clk
-   reg [`DATA_SIZE-1:0] sram0_data0;
-   reg [`DATA_SIZE-1:0] sram0_data1;
-   reg [`DATA_SIZE-1:0] sram1_data0;
-   reg [`DATA_SIZE-1:0] sram1_data1;
-   reg [`DATA_SIZE-1:0] sram2_data0;
-   reg [`DATA_SIZE-1:0] sram2_data1;
-   reg [`DATA_SIZE-1:0] sram3_data0;
-   reg [`DATA_SIZE-1:0] sram3_data1;
-   reg [`DATA_SIZE-1:0] sram4_data0;
-   reg [`DATA_SIZE-1:0] sram4_data1;
-   reg [`DATA_SIZE-1:0] sram5_data0;
-   reg [`DATA_SIZE-1:0] sram5_data1;
-   reg [`DATA_SIZE-1:0] sram6_data0;
-   reg [`DATA_SIZE-1:0] sram6_data1;
-   reg [`DATA_SIZE-1:0] sram7_data0;
-   reg [`DATA_SIZE-1:0] sram7_data1;
-   reg [`DATA_SIZE-1:0] sram8_data0;
-   reg [`DATA_SIZE-1:0] sram8_data1;
-   reg [`DATA_SIZE-1:0] sram9_data0;
-   reg [`DATA_SIZE-1:0] sram9_data1;
-   reg [`DATA_SIZE-1:0] sram10_data0;
-   reg [`DATA_SIZE-1:0] sram10_data1;
-   reg [`DATA_SIZE-1:0] sram11_data0;
-   reg [`DATA_SIZE-1:0] sram11_data1;
-   reg [`DATA_SIZE-1:0] sram12_data0;
-   reg [`DATA_SIZE-1:0] sram12_data1;
-   reg [`DATA_SIZE-1:0] sram13_data0;
-   reg [`DATA_SIZE-1:0] sram13_data1;
-   reg [`DATA_SIZE-1:0] sram14_data0;
-   reg [`DATA_SIZE-1:0] sram14_data1;
-   reg [`DATA_SIZE-1:0] sram15_data0;
-   reg [`DATA_SIZE-1:0] sram15_data1;
-
 always @(posedge sram_clk) begin
    if (!resetn) begin
       sram0_data0 <= 0;
@@ -518,14 +480,14 @@ always @(posedge sram_clk) begin
       sram10_data1 <= 0;
       sram11_data0 <= 0;
       sram11_data1 <= 0;
-      sram12_data0 <= 0;
-      sram12_data1 <= 0;
-      sram13_data0 <= 0;
-      sram13_data1 <= 0;
-      sram14_data0 <= 0;
-      sram14_data1 <= 0;
-      sram15_data0 <= 0;
-      sram15_data1 <= 0;
+      //sram12_data0 <= 0;
+      //sram12_data1 <= 0;
+      //sram13_data0 <= 0;
+      //sram13_data1 <= 0;
+      //sram14_data0 <= 0;
+      //sram14_data1 <= 0;
+      //sram15_data0 <= 0;
+      //sram15_data1 <= 0;
    end
    else begin
        sram0_data0 <= sram0_dout0;
@@ -563,21 +525,20 @@ always @(posedge sram_clk) begin
    end // else: !if(in_reset)
 end
 
-   assign sram5_data0 = 0;
-   assign sram5_data1 = 0;
-   assign sram6_data0 = 0;
-   assign sram6_data1 = 0;
-   assign sram7_data0 = 0;
-   assign sram7_data1 = 0;
-   assign sram12_data0 = 0;
-   assign sram12_data1 = 0;
-   assign sram13_data0 = 0;
-   assign sram13_data1 = 0;
-   assign sram14_data0 = 0;
-   assign sram14_data1 = 0;
-   assign sram15_data0 = 0;
-   assign sram15_data1 = 0;
-
+   wire [`DATA_SIZE-1:0] sram5_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram5_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram6_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram6_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram7_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram7_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram12_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram12_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram13_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram13_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram14_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram14_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram15_data0 = 0;
+   wire [`DATA_SIZE-1:0] sram15_data1 = 0;
 
 endmodule	// user_project_wrapper
 
