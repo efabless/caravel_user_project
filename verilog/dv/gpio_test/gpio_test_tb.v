@@ -30,9 +30,9 @@ module gpio_test_tb;
 
     	wire gpio;
     	wire [37:0] mprj_io;
-	wire [7:0] mprj_io_0;
+	wire mprj_io_22;
 
-	assign mprj_io_0 = mprj_io[7:0];
+	assign mprj_io_0 = mprj_io[22];
 	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
 
 	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
@@ -42,7 +42,7 @@ module gpio_test_tb;
 	// simulation.  Normally this would be a slow clock and the digital PLL
 	// would be the fast clock.
 
-	always #12.5 clock <= (clock === 1'b0);
+	always #5 clock <= (clock === 1'b0);
 
 	initial begin
 		clock = 0;
@@ -51,7 +51,8 @@ module gpio_test_tb;
 	initial begin
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
-
+		
+		/*
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (25) begin
 			repeat (1000) @(posedge clock);
@@ -65,6 +66,7 @@ module gpio_test_tb;
 		`endif
 		$display("%c[0m",27);
 		$finish;
+		*/
 	end
 
 	initial begin

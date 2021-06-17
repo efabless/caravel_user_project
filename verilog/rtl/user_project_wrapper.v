@@ -98,17 +98,17 @@ module user_project_wrapper #(
    wire     gpio_sram_clk = io_in[18];
    wire     gpio_scan = io_in[19];
    wire     gpio_sram_load = io_in[20];
+   wire     global_csr = io_in[21];  
    wire     la_clk = la_data_in[127];
    wire     la_in_load = la_data_in[125];
    wire     la_sram_load = la_data_in[124];
-
-   // Only io_out[21] is output
-   assign io_oeb = ~(1'b1 << 21);
+   // Only io_out[22] is output
+   assign io_oeb = ~(1'b1 << 22);
    // Assign other outputs to 0
-   assign io_out[`MPRJ_IO_PADS-1:22] = 0;
+   assign io_out[`MPRJ_IO_PADS-1:23] = 0;
    wire     gpio_out;
-   assign io_out[21] = gpio_out;
-   assign io_out[20:0] = 0;
+   assign io_out[22] = gpio_out;
+   assign io_out[21:0] = 0;
 
    // Selecting clock pin
    reg clk;
@@ -119,6 +119,7 @@ module user_project_wrapper #(
    openram_testchip CONTROL_LOGIC(
 				  .resetn(resetn & wb_rst_i),
 				  .clk(clk),
+              .global_csr(global_csr),
 				  .gpio_scan(gpio_scan),
 				  .gpio_sram_load(gpio_sram_load),
 				  .la_in_load(la_in_load),
