@@ -120,7 +120,7 @@ module user_project_wrapper #(
    end
 
    openram_testchip CONTROL_LOGIC(
-				  .resetn(resetn & wb_rst_i),
+'				  .resetn(resetn & wb_rst_i),
 				  .clk(clk),
 				  .global_csb(global_csb),
 				  .gpio_scan(gpio_scan),
