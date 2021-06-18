@@ -506,13 +506,6 @@ sram_1rw0r0w_64_512_sky130 SRAM11
       end
    end
 
-   // Single port SRAMs
-   wire [`DATA_SIZE-1:0] sram8_dout1 = 0;
-   wire [`DATA_SIZE-1:0] sram9_dout1 = 0;
-   wire [`DATA_SIZE-1:0] sram10_dout1 = 0;
-   wire [`DATA_SIZE-1:0] sram11_dout1 = 0;
-
-
 endmodule	// user_project_wrapper
 
 `default_nettype wire
