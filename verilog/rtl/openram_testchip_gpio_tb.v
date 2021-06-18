@@ -28,7 +28,7 @@ module test_chip_tb;
   reg          gpio_in;
   reg          gpio_scan;
   reg          gpio_sram_load;
-  reg          global_csr;
+  reg          global_csb;
  
   wire [`ADDR_SIZE-1:0] addr0;
   wire [`DATA_SIZE-1:0] din0;
@@ -86,7 +86,7 @@ openram_testchip CONTROL_LOGIC(
     .gpio_in(gpio_in),
     .gpio_scan(gpio_scan),
     .gpio_sram_load(gpio_sram_load),
-    .global_csr(global_csr),
+    .global_csb(global_csb),
     .sram0_data0(sram0_data0),
     .sram0_data1(sram0_data1),
     .sram1_data0(sram1_data0),
@@ -332,7 +332,7 @@ initial begin
   la_sram_load = 0;
   la_data_in = 0;
   resetn = 1;
-  global_csr = 1;
+  global_csb = 1;
   clk = 1;
   
   //Testing 32B Dual Port Memories
@@ -350,9 +350,9 @@ initial begin
     end
     
     gpio_scan = 0;
-    global_csr = 0;
+    global_csb = 0;
     #10;
-    global_csr = 1;
+    global_csb = 1;
     gpio_sram_load = 1;
     #10;
       
@@ -367,9 +367,9 @@ initial begin
     end
 
     gpio_scan = 0;
-    global_csr = 0;
+    global_csb = 0;
     #10;
-    global_csr = 1;
+    global_csb = 1;
     gpio_sram_load = 1;
     #10;     
     
@@ -385,9 +385,9 @@ initial begin
     end
 
     gpio_scan = 0;
-    global_csr = 0;
+    global_csb = 0;
     #10;
-    global_csr = 1;
+    global_csb = 1;
     gpio_sram_load = 1;
     #10;
     
@@ -417,9 +417,9 @@ initial begin
     end
     
     gpio_scan = 0;
-    global_csr = 0;
+    global_csb = 0;
     #10;
-    global_csr = 1;
+    global_csb = 1;
     gpio_sram_load = 1;
     #10;  
     
@@ -434,9 +434,9 @@ initial begin
     end
 
     gpio_scan = 0;
-    global_csr = 0;
+    global_csb = 0;
     #10;
-    global_csr = 1;
+    global_csb = 1;
     gpio_sram_load = 1;
     #10;    
       
@@ -465,9 +465,9 @@ initial begin
   end
   
   gpio_scan = 0;
-  global_csr = 0;
+  global_csb = 0;
   #10;
-  global_csr = 1;
+  global_csb = 1;
   gpio_sram_load = 1;
   #10;  
   
@@ -482,9 +482,9 @@ initial begin
   end
 
   gpio_scan = 0;
-  global_csr = 0;
+  global_csb = 0;
   #10;
-  global_csr = 1;
+  global_csb = 1;
   gpio_sram_load = 1;
   #10;    
     
