@@ -47,7 +47,7 @@ module gpio_test_tb;
 	initial begin
 		clock = 0;
 	end
-	
+
 	reg gpio_clk;
 	reg gpio_scan;
 	reg gpio_sram_load;
@@ -63,11 +63,11 @@ module gpio_test_tb;
 	assign mprj_io[21] = global_csb;
 
 	always #12.5 gpio_clk = !gpio_clk;
-	
+
 	initial begin
 		//$dumpfile("gpio_test.vcd");
 		//$dumpvars(0, gpio_test_tb);
-		
+
 		/*
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (2) begin
@@ -90,16 +90,21 @@ module gpio_test_tb;
 	reg [111:0] out_data;
 
 	initial begin
+
+	   // Wait until after the reset
+		#170000;
+
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
-		
+
+
 		gpio_clk = 1;
 		global_csb = 1;
-		
+
 		//Testing 32B Dual Port Memories
-		for(i = 0; i < 1; i = i + 1) begin
+		for(i = 0; i < 4; i = i + 1) begin
 			sel = i;
-		
+
 			//Write 1 to addr1 using GPIO Pins
 			gpio_scan = 1;
 			gpio_sram_load = 0;
@@ -116,13 +121,12 @@ module gpio_test_tb;
 			global_csb = 1;
 			gpio_sram_load = 1;
 			#25;
-			
-			/*
+
 			//Write 2 to addr2 using GPIO Pins
 			gpio_scan = 1;
 			gpio_sram_load = 0;
 			in_data = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
-			
+
 			for(j = 0; j < 112; j = j + 1) begin
 			gpio_in = in_data[111 - j];
 			#25;
@@ -133,14 +137,14 @@ module gpio_test_tb;
 			#25;
 			global_csb = 1;
 			gpio_sram_load = 1;
-			#25;     
-			
+			#25;
+
 			#25;
 			//Read addr1 and addr2
 			gpio_scan = 1;
 			gpio_sram_load = 0;
 			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
-			
+
 			for(j = 0; j < 112; j = j + 1) begin
 			gpio_in = in_data[111 - j];
 			#25;
@@ -152,7 +156,7 @@ module gpio_test_tb;
 			global_csb = 1;
 			gpio_sram_load = 1;
 			#25;
-			
+
 			#25;
 			gpio_sram_load = 0;
 			gpio_scan = 1;
@@ -162,7 +166,6 @@ module gpio_test_tb;
 			end
 			#25;
 			//`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
-			*/
 		end
 		#25; $finish;
 	end
@@ -170,7 +173,7 @@ module gpio_test_tb;
 	initial begin
 	    // Observe Output pin 22
 	    wait(mprj_io_22 == 8'h01);
-		
+
 		/*
 		`ifdef GL
 	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
