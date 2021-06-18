@@ -98,11 +98,10 @@ module user_project_wrapper #(
    wire     in_select = io_in[16];
    wire     resetn = io_in[15];
    wire     gpio_clk = io_in[17];
-   wire     gpio_sram_clk = io_in[18];
    wire     gpio_scan = io_in[19];
    wire     gpio_sram_load = io_in[20];
    wire     global_csb = io_in[21];
-   wire     gpio_in = io_in[22];
+   wire     gpio_in = io_in[18];
    wire     la_clk = la_data_in[127];
    wire     la_in_load = la_data_in[125];
    wire     la_sram_load = la_data_in[124];
