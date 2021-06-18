@@ -21,7 +21,7 @@
 `include "caravel_netlists.v"
 `include "spiflash.v"
 
-module gpio_test_tb;
+module la_test_tb;
 	reg clock;
 	reg RSTB;
 	reg CSB;
@@ -48,13 +48,13 @@ module gpio_test_tb;
 		clock = 0;
 	end
 
-	reg gpio_clk;
-	reg gpio_scan;
-	reg gpio_sram_load;
-	reg global_csb;
-	reg gpio_in;
+        wire gpio_clk = 1'b0;
+        wire gpio_scan = 1'b0;
+	wire gpio_sram_load = 1'b0;
+	wire global_csb = 1'b1;
+        wire gpio_in = 1'b0;
 
-	assign mprj_io[15] = 1'b1; // in_select
+	assign mprj_io[15] = 1'b0; // in_select
 	assign mprj_io[16] = 1'b1; // resetn
 	assign mprj_io[17] = gpio_clk;
 	assign mprj_io[18] = gpio_in;
@@ -62,125 +62,26 @@ module gpio_test_tb;
 	assign mprj_io[20] = gpio_sram_load;
 	assign mprj_io[21] = global_csb;
 
-	always #12.5 gpio_clk = !gpio_clk;
-
 	initial begin
-		//$dumpfile("gpio_test.vcd");
-		//$dumpvars(0, gpio_test_tb);
+	   #170000;
 
-		/*
-		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (2) begin
-			repeat (1000) @(posedge clock);
-			// $display("+1000 cycles");
-		end
-		`ifdef GL
-			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (GL) Failed");
-		`else
-			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (RTL) Failed");
-		`endif
-		$finish;
-		*/
+	   $dumpfile("la_test.vcd");
+	   $dumpvars(0, la_test_tb);
+
+	   #100000 $display("FAILED");
 	end
 
-
-	integer i, j;
-	reg [3:0] sel;
-	reg [111:0] in_data;
-	reg [111:0] out_data;
-
-	initial begin
-
-	   // Wait until after the reset
-		#170000;
-
-		$dumpfile("gpio_test.vcd");
-		$dumpvars(0, gpio_test_tb);
-
-
-		gpio_clk = 1;
-		global_csb = 1;
-
-		//Testing 32B Dual Port Memories
-		for(i = 0; i < 4; i = i + 1) begin
-			sel = i;
-
-			//Write 1 to addr1 using GPIO Pins
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
-
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
-
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			//Write 2 to addr2 using GPIO Pins
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
-
-			for(j = 0; j < 112; j = j + 1) begin
-			gpio_in = in_data[111 - j];
-			#25;
-			end
-
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			#25;
-			//Read addr1 and addr2
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
-
-			for(j = 0; j < 112; j = j + 1) begin
-			gpio_in = in_data[111 - j];
-			#25;
-			end
-
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			#25;
-			gpio_sram_load = 0;
-			gpio_scan = 1;
-			for(j = 0; j < 112; j = j + 1) begin
-			out_data[111 - j] = mprj_io_22;
-			#25;
-			end
-			#25;
-			//`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
-		end
-		#25; $finish;
-	end
 
 	initial begin
 	    // Observe Output pin 22
 	    wait(mprj_io_22 == 8'h01);
 
-		/*
-		`ifdef GL
-	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
-		`else
-		    $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
-		`endif
-		*/
+
+`ifdef GL
+	   $display("Monitor: Test 1 Mega-Project IO (GL) Passed");
+`else
+	   $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
+`endif
 	    $finish;
 	end
 
@@ -249,7 +150,7 @@ module gpio_test_tb;
 	);
 
 	spiflash #(
-		.FILENAME("gpio_test.hex")
+		.FILENAME("la_test.hex")
 	) spiflash (
 		.csb(flash_csb),
 		.clk(flash_clk),
