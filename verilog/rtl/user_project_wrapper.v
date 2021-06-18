@@ -92,12 +92,13 @@ module user_project_wrapper #(
    wire [`MAX_CHIPS-1:0]  csb0;
    wire [`MAX_CHIPS-1:0]  csb1;
 
-   wire     in_select = io_in[16];
-   wire     resetn = io_in[15];
-   wire     gpio_clk = io_in[17];
-   wire     gpio_sram_clk = io_in[18];
-   wire     gpio_scan = io_in[19];
-   wire     gpio_sram_load = io_in[20];
+   wire     in_select = io_in[15];
+   wire     resetn = io_in[14];
+   wire     gpio_clk = io_in[16];
+   wire     gpio_sram_clk = io_in[17];
+   wire     gpio_scan = io_in[18];
+   wire     gpio_sram_load = io_in[19];
+   wire     gpio_in = io_in[20];
    wire     global_csr = io_in[21];
    wire     la_clk = la_data_in[127];
    wire     la_in_load = la_data_in[125];
@@ -122,6 +123,7 @@ module user_project_wrapper #(
               .global_csr(global_csr),
 				  .gpio_scan(gpio_scan),
 				  .gpio_sram_load(gpio_sram_load),
+              .gpio_in(gpio_in),
 				  .la_in_load(la_in_load),
 				  .la_sram_load(la_sram_load),
 				  .la_data_in(la_data_in[111:0]),
@@ -175,17 +177,6 @@ module user_project_wrapper #(
 				  .sram15_data1(sram15_data1)
 
 				  );
-
-   wire [`ADDR_SIZE-1:0] addr0;
-   wire [`DATA_SIZE-1:0] din0;
-   wire 		 web0;
-   wire [`WMASK_SIZE-1:0] wmask0;
-   wire [`ADDR_SIZE-1:0]  addr1;
-   wire [`DATA_SIZE-1:0]  din1;
-   wire 		  web1;
-   wire [`WMASK_SIZE-1:0] wmask1;
-   wire [`MAX_CHIPS-1:0]  csb0;
-   wire [`MAX_CHIPS-1:0]  csb1;
 
    wire [`DATA_SIZE-1:0]  sram0_dout0;
    wire [`DATA_SIZE-1:0]  sram0_dout1;
@@ -509,10 +500,10 @@ always @(posedge clk) begin
    end
 end
 
-   wire [`DATA_SIZE-1:0] sram8_dout1 = 0;
-   wire [`DATA_SIZE-1:0] sram9_dout1 = 0;
-   wire [`DATA_SIZE-1:0] sram10_dout1 = 0;
-   wire [`DATA_SIZE-1:0] sram11_dout1 = 0;
+   wire [`DATA_SIZE-1:0] sram8_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram9_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram10_data1 = 0;
+   wire [`DATA_SIZE-1:0] sram11_data1 = 0;
 
    wire [`DATA_SIZE-1:0] sram5_data0 = 0;
    wire [`DATA_SIZE-1:0] sram5_data1 = 0;
