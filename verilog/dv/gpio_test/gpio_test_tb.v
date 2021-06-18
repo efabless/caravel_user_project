@@ -21,6 +21,12 @@
 `include "caravel_netlists.v"
 `include "spiflash.v"
 
+`define assert(signal, value) \
+if (!(signal === value)) begin \
+   $display("ASSERTION FAILED in %m: signal != value"); \
+   $finish;\
+end
+
 module gpio_test_tb;
 	reg clock;
 	reg RSTB;
@@ -64,26 +70,6 @@ module gpio_test_tb;
 
 	always #12.5 gpio_clk = !gpio_clk;
 
-	initial begin
-		//$dumpfile("gpio_test.vcd");
-		//$dumpvars(0, gpio_test_tb);
-
-		/*
-		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (2) begin
-			repeat (1000) @(posedge clock);
-			// $display("+1000 cycles");
-		end
-		`ifdef GL
-			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (GL) Failed");
-		`else
-			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (RTL) Failed");
-		`endif
-		$finish;
-		*/
-	end
-
-
 	integer i, j;
 	reg [3:0] sel;
 	reg [111:0] in_data;
@@ -97,12 +83,11 @@ module gpio_test_tb;
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
 
-
 		gpio_clk = 1;
 		global_csb = 1;
 
 		//Testing 32B Dual Port Memories
-		for(i = 0; i < 4; i = i + 1) begin
+		for(i = 0; i < 5; i = i + 1) begin
 			sel = i;
 
 			//Write 1 to addr1 using GPIO Pins
@@ -128,8 +113,8 @@ module gpio_test_tb;
 			in_data = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
 
 			for(j = 0; j < 112; j = j + 1) begin
-			gpio_in = in_data[111 - j];
-			#25;
+				gpio_in = in_data[111 - j];
+				#25;
 			end
 
 			gpio_scan = 0;
@@ -146,8 +131,8 @@ module gpio_test_tb;
 			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
 
 			for(j = 0; j < 112; j = j + 1) begin
-			gpio_in = in_data[111 - j];
-			#25;
+				gpio_in = in_data[111 - j];
+				#25;
 			end
 
 			gpio_scan = 0;
@@ -161,27 +146,114 @@ module gpio_test_tb;
 			gpio_sram_load = 0;
 			gpio_scan = 1;
 			for(j = 0; j < 112; j = j + 1) begin
-			out_data[111 - j] = mprj_io_22;
-			#25;
+				out_data[111 - j] = mprj_io_22;
+				#25;
 			end
 			#25;
-			//`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
+			`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
 		end
+
+		//Testing 32B Single Port Memories
+		for(i = 8; i < 11; i = i + 1) begin
+			sel = i;
+			
+			//Write 1 to addr1 using GPIO Pins
+			gpio_scan = 1;
+			gpio_sram_load = 0;
+			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+			
+			for(j = 0; j < 112; j = j + 1) begin
+				gpio_in = in_data[111 - j];
+				#25;
+			end
+			
+			gpio_scan = 0;
+			global_csb = 0;
+			#25;
+			global_csb = 1;
+			gpio_sram_load = 1;
+			#25;  
+			
+			//Read addr1
+			gpio_scan = 1;
+			gpio_sram_load = 0;
+			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+			
+			for(j = 0; j < 112; j = j + 1) begin
+				gpio_in = in_data[111 - j];
+				#25;
+			end
+
+			gpio_scan = 0;
+			global_csb = 0;
+			#25;
+			global_csb = 1;
+			gpio_sram_load = 1;
+			#25;    
+			
+			#25;
+			gpio_sram_load = 0;
+			gpio_scan = 1;
+			for(j = 0; j < 112; j = j + 1) begin
+				out_data[111 - j] = mprj_io_22;
+				#25;
+			end
+			#25;
+			`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
+		end
+
+		//Testing 64b Single Port Memory
+		sel = 11;
+		
+		//Write 1 to addr1 using GPIO Pins
+		gpio_scan = 1;
+		gpio_sram_load = 0;
+		in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+		
+		for(j = 0; j < 112; j = j + 1) begin
+			gpio_in = in_data[111 - j];
+			#25;
+		end
+		
+		gpio_scan = 0;
+		global_csb = 0;
+		#10;
+		global_csb = 1;
+		gpio_sram_load = 1;
+		#10;  
+		
+		//Read addr1
+		gpio_scan = 1;
+		gpio_sram_load = 0;
+		in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+		
+		for(j = 0; j < 112; j = j + 1) begin
+			gpio_in = in_data[111 - j];
+			#25;
+		end
+
+		gpio_scan = 0;
+		global_csb = 0;
+		#25;
+		global_csb = 1;
+		gpio_sram_load = 1;
+		#25;    
+		
+		#25;
+		gpio_sram_load = 0;
+		gpio_scan = 1;
+		for(j = 0; j < 112; j = j + 1) begin
+			out_data[111 - j] = mprj_io_22;
+			#25;
+		end
+		
+		#25;
+		`assert(out_data[111:92], {sel, 16'd1});
+		`assert(out_data[75:60], 16'd1);
+		`assert(out_data[59:0], {1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
+
+
 		#25; $finish;
-	end
-
-	initial begin
-	    // Observe Output pin 22
-	    wait(mprj_io_22 == 8'h01);
-
-		/*
-		`ifdef GL
-	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
-		`else
-		    $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
-		`endif
-		*/
-	    $finish;
 	end
 
 	initial begin
@@ -206,10 +278,6 @@ module gpio_test_tb;
 		power3 <= 1'b1;
 		#100;
 		power4 <= 1'b1;
-	end
-
-	always @(mprj_io) begin
-		//#1 $display("MPRJ-IO state = %b ", mprj_io[22]);
 	end
 
 	wire flash_csb;
