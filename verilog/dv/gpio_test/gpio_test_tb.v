@@ -21,12 +21,6 @@
 `include "caravel_netlists.v"
 `include "spiflash.v"
 
-`define assert(signal, value) \
-if (!(signal === value)) begin \
-   $display("ASSERTION FAILED in %m: signal != value"); \
-   $finish;\
-end
-
 module gpio_test_tb;
 	reg clock;
 	reg RSTB;
@@ -150,7 +144,6 @@ module gpio_test_tb;
 				#25;
 			end
 			#25;
-			`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
 		end
 
 		//Testing 32B Single Port Memories
@@ -199,7 +192,6 @@ module gpio_test_tb;
 				#25;
 			end
 			#25;
-			`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
 		end
 
 		//Testing 64b Single Port Memory
@@ -248,10 +240,6 @@ module gpio_test_tb;
 		end
 		
 		#25;
-		`assert(out_data[111:92], {sel, 16'd1});
-		`assert(out_data[75:60], 16'd1);
-		`assert(out_data[59:0], {1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0});
-
 
 		#25; $finish;
 	end
