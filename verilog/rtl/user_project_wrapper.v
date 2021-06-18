@@ -123,7 +123,7 @@ module user_project_wrapper #(
 
    // global csb is low with either GPIO or LA csb
    // la_global_cs is low because default LA values are 0
-   wire global_csb = gpio_global_csb & la_global_cs;
+   wire global_csb = gpio_global_csb & ~la_global_cs;
    // rstn is low with either GPIO or LA reset
    // la_reset is not active low because default LA values are 0
    wire rstn = gpio_resetn & ~la_reset;
