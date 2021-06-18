@@ -32,9 +32,6 @@ module gpio_test_tb;
     	wire [37:0] mprj_io;
 	wire mprj_io_22;
 
-	reg gpio_clk;
-	assign gpio_clk = mprj_io[17];
-
 	assign mprj_io_22 = mprj_io[22];
 	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
 
@@ -45,43 +42,127 @@ module gpio_test_tb;
 	// simulation.  Normally this would be a slow clock and the digital PLL
 	// would be the fast clock.
 
-	always #5 clock <= (clock === 1'b0);
+	always #12.5 clock <= (clock === 1'b0);
 
 	initial begin
 		clock = 0;
 	end
+	
+	reg gpio_clk;
+	reg gpio_scan;
+	reg gpio_sram_load;
+	reg global_csb;
+	reg gpio_in;
 
+	assign mprj_io[15] = 1;
+	assign mprj_io[16] = 1;
+	assign mprj_io[17] = gpio_clk;
+	assign mprj_io[18] = gpio_in;
+	assign mprj_io[20] = gpio_scan;
+	assign mprj_io[21] = gpio_sram_load;
+
+	always #12.5 gpio_clk = !gpio_clk;
+	
 	initial begin
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
-		
-		//mprj_io[15] = 1;
-		//mprj_io[21] = 1;
-		//mprj_io[17] = 1;
-
-		/*
+				
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
 		repeat (25) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
-		$display("%c[1;31m",27);
 		`ifdef GL
-			$display ("Monitor: Timeout, Test Mega-Project IO Ports (GL) Failed");
+			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (GL) Failed");
 		`else
-			$display ("Monitor: Timeout, Test Mega-Project IO Ports (RTL) Failed");
+			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (RTL) Failed");
 		`endif
-		$display("%c[0m",27);
 		$finish;
-		*/
 	end
 
 
-	always  #5 assign gpio_clk = !gpio_clk;
+	integer i, j;
+	reg [3:0] sel;
+	reg [111:0] in_data;
+	reg [111:0] out_data;
 
 	initial begin
-	    // Observe Output pins [22]
-	    //wait(mprj_io_22 == 8'h00);
+		gpio_clk = 1;
+		global_csb = 1;
+
+		 //Testing 32B Dual Port Memories
+		for(i = 0; i < 5; i = i + 1) begin
+			sel = i;
+		
+			//Write 1 to addr1 using GPIO Pins
+			gpio_scan = 1;
+			gpio_sram_load = 0;
+			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+			
+			for(j = 0; j < 112; j = j + 1) begin
+				gpio_in = in_data[111 - j];
+				#10;
+			end
+		
+			gpio_scan = 0;
+			global_csb = 0;
+			#10;
+			global_csb = 1;
+			gpio_sram_load = 1;
+			#10;
+			
+			//Write 2 to addr2 using GPIO Pins
+			gpio_scan = 1;
+			gpio_sram_load = 0;
+			in_data = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+			
+			for(j = 0; j < 112; j = j + 1) begin
+			gpio_in = in_data[111 - j];
+			#10;
+			end
+
+			gpio_scan = 0;
+			global_csb = 0;
+			#10;
+			global_csb = 1;
+			gpio_sram_load = 1;
+			#10;     
+			
+			#10;
+			//Read addr1 and addr2
+			gpio_scan = 1;
+			gpio_sram_load = 0;
+			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
+			
+			for(j = 0; j < 112; j = j + 1) begin
+			gpio_in = in_data[111 - j];
+			#10;
+			end
+
+			gpio_scan = 0;
+			global_csb = 0;
+			#10;
+			global_csb = 1;
+			gpio_sram_load = 1;
+			#10;
+			
+			#10
+			gpio_sram_load = 0;
+			gpio_scan = 1;
+			for(j = 0; j < 112; j = j + 1) begin
+			out_data[111 - j] = mprj_io_22;
+			#10;
+			end
+			#10;
+			//`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
+		end
+
+		#10; $finish;
+	end
+
+	initial begin
+	    // Observe Output pin 22
+	    wait(mprj_io_22 == 8'h01);
 		
 		/*
 		`ifdef GL
@@ -90,10 +171,8 @@ module gpio_test_tb;
 		    $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
 		`endif
 		*/
-	    //$finish;
+	    $finish;
 	end
-
-
 
 	initial begin
 		RSTB <= 1'b0;
@@ -120,7 +199,7 @@ module gpio_test_tb;
 	end
 
 	always @(mprj_io) begin
-		#1 $display("MPRJ-IO state = %b ", mprj_io[22]);
+		//#1 $display("MPRJ-IO state = %b ", mprj_io[22]);
 	end
 
 	wire flash_csb;
