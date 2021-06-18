@@ -63,14 +63,14 @@ module la_test_tb;
 	assign mprj_io[21] = global_csb;
 
 	initial begin
-	   #170000;
+	   //#170000;
 
 	   $dumpfile("la_test.vcd");
 	   $dumpvars(0, la_test_tb);
 
-	   // Extend this if needed, but have a safety timeout
-	   #10000 $display("FAILED");
-	   $finish;
+	   // #200000 $display("TIMEOUT");
+	   // $finish;
+
 	end
 
 
@@ -79,11 +79,7 @@ module la_test_tb;
 	    wait(mprj_io_22 == 8'h01);
 
 
-`ifdef GL
-	   $display("Monitor: Test 1 Mega-Project IO (GL) Passed");
-`else
-	   $display("Monitor: Test 1 Mega-Project IO (RTL) Passed");
-`endif
+	   $display("Saw bit 22");
 	    $finish;
 	end
 
