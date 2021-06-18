@@ -58,17 +58,19 @@ module gpio_test_tb;
 	assign mprj_io[16] = 1;
 	assign mprj_io[17] = gpio_clk;
 	assign mprj_io[18] = gpio_in;
-	assign mprj_io[20] = gpio_scan;
-	assign mprj_io[21] = gpio_sram_load;
+	assign mprj_io[19] = gpio_scan;
+	assign mprj_io[20] = gpio_sram_load;
+	assign mprj_io[21] = global_csb;
 
 	always #12.5 gpio_clk = !gpio_clk;
 	
 	initial begin
-		$dumpfile("gpio_test.vcd");
-		$dumpvars(0, gpio_test_tb);
-				
+		//$dumpfile("gpio_test.vcd");
+		//$dumpvars(0, gpio_test_tb);
+		
+		/*
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (25) begin
+		repeat (2) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -78,6 +80,7 @@ module gpio_test_tb;
 			$display ("Monitor: Timeout, Test GPIO Full Chip Sim (RTL) Failed");
 		`endif
 		$finish;
+		*/
 	end
 
 
@@ -87,30 +90,34 @@ module gpio_test_tb;
 	reg [111:0] out_data;
 
 	initial begin
+		$dumpfile("gpio_test.vcd");
+		$dumpvars(0, gpio_test_tb);
+		
 		gpio_clk = 1;
 		global_csb = 1;
-
-		 //Testing 32B Dual Port Memories
-		for(i = 0; i < 5; i = i + 1) begin
+		
+		//Testing 32B Dual Port Memories
+		for(i = 0; i < 1; i = i + 1) begin
 			sel = i;
 		
 			//Write 1 to addr1 using GPIO Pins
 			gpio_scan = 1;
 			gpio_sram_load = 0;
 			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
-			
+
 			for(j = 0; j < 112; j = j + 1) begin
 				gpio_in = in_data[111 - j];
-				#10;
+				#25;
 			end
-		
+
 			gpio_scan = 0;
 			global_csb = 0;
-			#10;
+			#25;
 			global_csb = 1;
 			gpio_sram_load = 1;
-			#10;
+			#25;
 			
+			/*
 			//Write 2 to addr2 using GPIO Pins
 			gpio_scan = 1;
 			gpio_sram_load = 0;
@@ -118,17 +125,17 @@ module gpio_test_tb;
 			
 			for(j = 0; j < 112; j = j + 1) begin
 			gpio_in = in_data[111 - j];
-			#10;
+			#25;
 			end
 
 			gpio_scan = 0;
 			global_csb = 0;
-			#10;
+			#25;
 			global_csb = 1;
 			gpio_sram_load = 1;
-			#10;     
+			#25;     
 			
-			#10;
+			#25;
 			//Read addr1 and addr2
 			gpio_scan = 1;
 			gpio_sram_load = 0;
@@ -136,28 +143,28 @@ module gpio_test_tb;
 			
 			for(j = 0; j < 112; j = j + 1) begin
 			gpio_in = in_data[111 - j];
-			#10;
+			#25;
 			end
 
 			gpio_scan = 0;
 			global_csb = 0;
-			#10;
+			#25;
 			global_csb = 1;
 			gpio_sram_load = 1;
-			#10;
+			#25;
 			
-			#10
+			#25;
 			gpio_sram_load = 0;
 			gpio_scan = 1;
 			for(j = 0; j < 112; j = j + 1) begin
 			out_data[111 - j] = mprj_io_22;
-			#10;
+			#25;
 			end
-			#10;
+			#25;
 			//`assert(out_data, {sel, 16'd1, 32'd1, 1'b0, 1'b1, 4'd0, 16'd2, 32'd2, 1'b0, 1'b1, 4'd0});
+			*/
 		end
-
-		#10; $finish;
+		#25; $finish;
 	end
 
 	initial begin
