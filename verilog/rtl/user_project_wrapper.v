@@ -80,6 +80,8 @@ module user_project_wrapper #(
 );
 
 
+   assign la_data_out[127:112] = 0;
+
    // Shared control/data to the SRAMs
    wire [`ADDR_SIZE-1:0] addr0;
    wire [`DATA_SIZE-1:0] din0;
@@ -192,28 +194,28 @@ module user_project_wrapper #(
    wire [`DATA_SIZE-1:0]  sram3_dout1;
    wire [`DATA_SIZE-1:0]  sram4_dout0;
    wire [`DATA_SIZE-1:0]  sram4_dout1;
-   wire [`DATA_SIZE-1:0]  sram5_dout0;
-   wire [`DATA_SIZE-1:0]  sram5_dout1;
-   wire [`DATA_SIZE-1:0]  sram6_dout0;
-   wire [`DATA_SIZE-1:0]  sram6_dout1;
-   wire [`DATA_SIZE-1:0]  sram7_dout0;
-   wire [`DATA_SIZE-1:0]  sram7_dout1;
+   wire [`DATA_SIZE-1:0]  sram5_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram5_dout1 = 0;
+   wire [`DATA_SIZE-1:0]  sram6_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram6_dout1 = 0;
+   wire [`DATA_SIZE-1:0]  sram7_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram7_dout1 = 0;
    wire [`DATA_SIZE-1:0]  sram8_dout0;
-   wire [`DATA_SIZE-1:0]  sram8_dout1;
+   wire [`DATA_SIZE-1:0]  sram8_dout1 = 0;
    wire [`DATA_SIZE-1:0]  sram9_dout0;
-   wire [`DATA_SIZE-1:0]  sram9_dout1;
+   wire [`DATA_SIZE-1:0]  sram9_dout1 = 0;
    wire [`DATA_SIZE-1:0]  sram10_dout0;
-   wire [`DATA_SIZE-1:0]  sram10_dout1;
+   wire [`DATA_SIZE-1:0]  sram10_dout1 = 0;
    wire [`DATA_SIZE-1:0]  sram11_dout0;
-   wire [`DATA_SIZE-1:0]  sram11_dout1;
-   wire [`DATA_SIZE-1:0]  sram12_dout0;
-   wire [`DATA_SIZE-1:0]  sram12_dout1;
-   wire [`DATA_SIZE-1:0]  sram13_dout0;
-   wire [`DATA_SIZE-1:0]  sram13_dout1;
-   wire [`DATA_SIZE-1:0]  sram14_dout0;
-   wire [`DATA_SIZE-1:0]  sram14_dout1;
-   wire [`DATA_SIZE-1:0]  sram15_dout0;
-   wire [`DATA_SIZE-1:0]  sram15_dout1;
+   wire [`DATA_SIZE-1:0]  sram11_dout1 = 0;
+   wire [`DATA_SIZE-1:0]  sram12_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram12_dout1 = 0;
+   wire [`DATA_SIZE-1:0]  sram13_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram13_dout1 = 0;
+   wire [`DATA_SIZE-1:0]  sram14_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram14_dout1 = 0;
+   wire [`DATA_SIZE-1:0]  sram15_dout0 = 0;
+   wire [`DATA_SIZE-1:0]  sram15_dout1 = 0;
 
 sky130_sram_1kbyte_1rw1r_8x1024_8 SRAM0
      (
@@ -410,28 +412,28 @@ sram_1rw0r0w_64_512_sky130 SRAM11
    reg [`DATA_SIZE-1:0] sram3_data1;
    reg [`DATA_SIZE-1:0] sram4_data0;
    reg [`DATA_SIZE-1:0] sram4_data1;
-   //reg [`DATA_SIZE-1:0] sram5_data0;
-   //reg [`DATA_SIZE-1:0] sram5_data1;
-   //reg [`DATA_SIZE-1:0] sram6_data0;
-   //reg [`DATA_SIZE-1:0] sram6_data1;
-   //reg [`DATA_SIZE-1:0] sram7_data0;
-   //reg [`DATA_SIZE-1:0] sram7_data1;
+   reg [`DATA_SIZE-1:0] sram5_data0;
+   reg [`DATA_SIZE-1:0] sram5_data1;
+   reg [`DATA_SIZE-1:0] sram6_data0;
+   reg [`DATA_SIZE-1:0] sram6_data1;
+   reg [`DATA_SIZE-1:0] sram7_data0;
+   reg [`DATA_SIZE-1:0] sram7_data1;
    reg [`DATA_SIZE-1:0] sram8_data0;
-   //reg [`DATA_SIZE-1:0] sram8_data1;
+   reg [`DATA_SIZE-1:0] sram8_data1;
    reg [`DATA_SIZE-1:0] sram9_data0;
-   //reg [`DATA_SIZE-1:0] sram9_data1;
+   reg [`DATA_SIZE-1:0] sram9_data1;
    reg [`DATA_SIZE-1:0] sram10_data0;
-   //reg [`DATA_SIZE-1:0] sram10_data1;
+   reg [`DATA_SIZE-1:0] sram10_data1;
    reg [`DATA_SIZE-1:0] sram11_data0;
-   //reg [`DATA_SIZE-1:0] sram11_data1;
-   //reg [`DATA_SIZE-1:0] sram12_data0;
-   //reg [`DATA_SIZE-1:0] sram12_data1;
-   //reg [`DATA_SIZE-1:0] sram13_data0;
-   //reg [`DATA_SIZE-1:0] sram13_data1;
-   //reg [`DATA_SIZE-1:0] sram14_data0;
-   //reg [`DATA_SIZE-1:0] sram14_data1;
-   //reg [`DATA_SIZE-1:0] sram15_data0;
-   //reg [`DATA_SIZE-1:0] sram15_data1;
+   reg [`DATA_SIZE-1:0] sram11_data1;
+   reg [`DATA_SIZE-1:0] sram12_data0;
+   reg [`DATA_SIZE-1:0] sram12_data1;
+   reg [`DATA_SIZE-1:0] sram13_data0;
+   reg [`DATA_SIZE-1:0] sram13_data1;
+   reg [`DATA_SIZE-1:0] sram14_data0;
+   reg [`DATA_SIZE-1:0] sram14_data1;
+   reg [`DATA_SIZE-1:0] sram15_data0;
+   reg [`DATA_SIZE-1:0] sram15_data1;
 
    always @(posedge clk) begin
       if (!resetn) begin
@@ -445,28 +447,28 @@ sram_1rw0r0w_64_512_sky130 SRAM11
 	 sram3_data1 <= 0;
 	 sram4_data0 <= 0;
 	 sram4_data1 <= 0;
-	 // sram5_data0 <= 0;
-	 // sram5_data1 <= 0;
-	 // sram6_data0 <= 0;
-	 // sram6_data1 <= 0;
-	 // sram7_data0 <= 0;
-	 // sram7_data1 <= 0;
+	 sram5_data0 <= 0;
+	 sram5_data1 <= 0;
+	 sram6_data0 <= 0;
+	 sram6_data1 <= 0;
+	 sram7_data0 <= 0;
+	 sram7_data1 <= 0;
 	 sram8_data0 <= 0;
-	 //sram8_data1 <= 0;
+	 sram8_data1 <= 0;
 	 sram9_data0 <= 0;
-	 //sram9_data1 <= 0;
+	 sram9_data1 <= 0;
 	 sram10_data0 <= 0;
-	 //sram10_data1 <= 0;
+	 sram10_data1 <= 0;
 	 sram11_data0 <= 0;
-	 //sram11_data1 <= 0;
-	 //sram12_data0 <= 0;
-	 //sram12_data1 <= 0;
-	 //sram13_data0 <= 0;
-	 //sram13_data1 <= 0;
-	 //sram14_data0 <= 0;
-	 //sram14_data1 <= 0;
-	 //sram15_data0 <= 0;
-	 //sram15_data1 <= 0;
+	 sram11_data1 <= 0;
+	 sram12_data0 <= 0;
+	 sram12_data1 <= 0;
+	 sram13_data0 <= 0;
+	 sram13_data1 <= 0;
+	 sram14_data0 <= 0;
+	 sram14_data1 <= 0;
+	 sram15_data0 <= 0;
+	 sram15_data1 <= 0;
       end
       else begin
 	 sram0_data0 <= sram0_dout0;
@@ -479,55 +481,37 @@ sram_1rw0r0w_64_512_sky130 SRAM11
 	 sram3_data1 <= sram3_dout1;
 	 sram4_data0 <= sram4_dout0;
 	 sram4_data1 <= sram4_dout1;
-	 // sram5_data0 <= sram5_dout0;
-	 // sram5_data1 <= sram5_dout1;
-	 // sram6_data0 <= sram6_dout0;
-	 // sram6_data1 <= sram6_dout1;
-	 // sram7_data0 <= sram7_dout0;
-	 // sram7_data1 <= sram7_dout1;
+	 sram5_data0 <= sram5_dout0;
+	 sram5_data1 <= sram5_dout1;
+	 sram6_data0 <= sram6_dout0;
+	 sram6_data1 <= sram6_dout1;
+	 sram7_data0 <= sram7_dout0;
+	 sram7_data1 <= sram7_dout1;
 	 sram8_data0 <= sram8_dout0;
-	 // sram8_data1 <= sram8_dout1;
+	 sram8_data1 <= sram8_dout1;
 	 sram9_data0 <= sram9_dout0;
-	 // sram9_data1 <= sram9_dout1;
+	 sram9_data1 <= sram9_dout1;
 	 sram10_data0 <= sram10_dout0;
-	 // sram10_data1 <= sram10_dout1;
+	 sram10_data1 <= sram10_dout1;
 	 sram11_data0 <= sram11_dout0;
-	 // sram11_data1 <= sram11_dout1;
-	 // sram12_data0 <= sram12_dout0;
-	 // sram12_data1 <= sram12_dout1;
-	 // sram13_data0 <= sram13_dout0;
-	 // sram13_data1 <= sram13_dout1;
-	 // sram14_data0 <= sram14_dout0;
-	 // sram14_data1 <= sram14_dout1;
-	 // sram15_data0 <= sram15_dout0;
-	 // sram15_data1 <= sram15_dout1;
+	 sram11_data1 <= sram11_dout1;
+	 sram12_data0 <= sram12_dout0;
+	 sram12_data1 <= sram12_dout1;
+	 sram13_data0 <= sram13_dout0;
+	 sram13_data1 <= sram13_dout1;
+	 sram14_data0 <= sram14_dout0;
+	 sram14_data1 <= sram14_dout1;
+	 sram15_data0 <= sram15_dout0;
+	 sram15_data1 <= sram15_dout1;
       end
    end
 
+   // Single port SRAMs
    wire [`DATA_SIZE-1:0] sram8_dout1 = 0;
    wire [`DATA_SIZE-1:0] sram9_dout1 = 0;
    wire [`DATA_SIZE-1:0] sram10_dout1 = 0;
    wire [`DATA_SIZE-1:0] sram11_dout1 = 0;
 
-   wire [`DATA_SIZE-1:0] sram5_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram5_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram6_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram6_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram7_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram7_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram7_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram8_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram9_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram10_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram11_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram12_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram12_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram13_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram13_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram14_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram14_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram15_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram15_data1 = 0;
 
 endmodule	// user_project_wrapper
 

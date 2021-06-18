@@ -103,7 +103,7 @@ always @ (posedge clk) begin
 
       sram_register <= {sram_register[`TOTAL_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE-`ADDR_SIZE],
 			read_data0,
-			sram_register[`ADDR_SIZE+`DATA_SIZE+2*`WMASK_SIZE+3:`DATA_SIZE+`WMASK_SIZE+2],
+			sram_register[`ADDR_SIZE+`DATA_SIZE+`WMASK_SIZE+`WMASK_SIZE+3:`DATA_SIZE+`WMASK_SIZE+2],
 			read_data1,
 			sram_register[`WMASK_SIZE+1:0]};
    end
@@ -114,7 +114,7 @@ end
 always @(*) begin
    chip_select = sram_register[`TOTAL_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE];
 
-   addr0 = sram_register[`TOTAL_SIZE-`SELECT_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE-`ADDR_SIZE];
+   addr0 = sram_register[`ADDR_SIZE+`DATA_SIZE+`PORT_SIZE+`WMASK_SIZE+1:`DATA_SIZE+`PORT_SIZE+`WMASK_SIZE+2];
    din0 = sram_register[`DATA_SIZE+`PORT_SIZE+`WMASK_SIZE+1:`PORT_SIZE+`WMASK_SIZE+2];
    csb0_temp = global_csb | sram_register[`PORT_SIZE+`WMASK_SIZE+1];
    web0 = sram_register[`PORT_SIZE+`WMASK_SIZE];
