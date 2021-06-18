@@ -20,9 +20,9 @@
 #include "verilog/dv/caravel/stub.c"
 
 /*
-	GPIO Test:
-		- Configures MPRJ pin 21 as outputs
-		- Observes gpio out value (in the testbench)
+	IO Test:
+		- Configures MPRJ lower 8-IO pins as outputs
+		- Observes counter value through the MPRJ lower 8 IO pins (in the testbench)
 */
 
 void main()
@@ -53,10 +53,17 @@ void main()
 	// so that the CSB line is not left floating.  This allows
 	// all of the GPIO pins to be used for user functions.
 
-	// Configure IO pin 21 as user output
-	// Observe value in the testbench
+	// Configure Pin 22 as user output
+	// Observe counter value in the testbench
 	reg_mprj_io_22 =  GPIO_MODE_USER_STD_OUTPUT;
 
+	reg_mprj_io_15 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+	reg_mprj_io_16 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+	reg_mprj_io_17 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+	reg_mprj_io_18 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+	reg_mprj_io_19 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+	reg_mprj_io_20 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+	reg_mprj_io_21 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
