@@ -76,8 +76,8 @@ typedef struct word_fields {
 } word_fields_t;
 
 union packet {
-  bit_fields_t bif;
-  word_fields_t byf;
+  bit_fields_t bf;
+  word_fields_t wf;
 };
 
 
@@ -99,42 +99,44 @@ void main()
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
 
-
-	union packet p;
-	p.bif.rst = 0;
-	reg_la0_data = p.byf.word0;
-	reg_la1_data = p.byf.word1;
-	reg_la2_data = p.byf.word2;
-	reg_la3_data = p.byf.word3;
-
-	p.bif.rst = 1;
-	reg_la0_data = p.byf.word0;
-	reg_la1_data = p.byf.word1;
-	reg_la2_data = p.byf.word2;
-	reg_la3_data = p.byf.word3;
-
-	p.bif.rst = 0;
-	reg_la0_data = p.byf.word0;
-	reg_la1_data = p.byf.word1;
-	reg_la2_data = p.byf.word2;
-	reg_la3_data = p.byf.word3;
-
-	p.bif.addr0 = 0x000000001;
-	p.bif.din0 = 0xDEADBEEF;
-	p.bif.csb0 = 0;
-	p.bif.web0 = 0;
-	p.bif.csb1 = 1;
-	p.bif.web1 = 1;
-	reg_la0_data = p.byf.word0;
-	reg_la1_data = p.byf.word1;
-	reg_la2_data = p.byf.word2;
-	reg_la3_data = p.byf.word3;
-
-
 	// On success, set pin 22 to 1
 	reg_mprj_datal = 0xFFFFFFFF;
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
+
+	union packet p;
+	p.bf.rst = 0;
+	// Only send the MSByte
+	reg_la3_data = p.wf.word3;
+
+	p.bf.rst = 1;
+	// Only send the MSByte
+	reg_la3_data = p.wf.word3;
+
+	p.bf.rst = 0;
+	// Only send the MSByte
+	reg_la3_data = p.wf.word3;
+
+	// This is how to read from the LA
+	// This will trigger a sample of the LA bits to read
+	reg_la_sample = 1;
+	// Now read them
+	p.wf.word0 = reg_la0_data;
+	p.wf.word1 = reg_la1_data;
+	p.wf.word2 = reg_la2_data;
+	p.wf.word3 = reg_la3_data;
+
+	/* p.bf.addr0 = 0x000000001; */
+	/* p.bf.din0 = 0xDEADBEEF; */
+	/* p.bf.csb0 = 0; */
+	/* p.bf.web0 = 0; */
+	/* p.bf.csb1 = 1; */
+	/* p.bf.web1 = 1; */
+	/* reg_la0_data = p.wf.word0; */
+	/* reg_la1_data = p.wf.word1; */
+	/* reg_la2_data = p.wf.word2; */
+	/* reg_la3_data = p.wf.word3; */
+
 
 }
