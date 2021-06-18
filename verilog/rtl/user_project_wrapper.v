@@ -340,46 +340,49 @@ sky130_sram_8kbyte_1rw1r_32x2048_8 SRAM4
 sram_1rw0r0w_32_256_sky130 SRAM8
     (
       `ifdef USE_POWER_PINS
-      .vccd1(vccd1),
-      .vssd1(vssd1),
+     .vccd1(vccd1),
+     .vssd1(vssd1),
       `endif
-      .clk0   (clk),
-      .csb0   (csb0[8]),
-      .web0   (web0),
-      .wmask0 (wmask0),
-      .addr0  (addr0),
-      .din0   (din0),
-      .dout0  (sram8_dout0)
+     .clk0   (clk),
+     .csb0   (csb0[8]),
+     .web0   (web0),
+     .wmask0 (wmask0),
+     .addr0  (addr0),
+     .din0   (din0),
+     .dout0  (sram8_dout0),
+     .spare_wen0(1'b0)
      );
 
 sram_1rw0r0w_32_512_sky130 SRAM9
     (
       `ifdef USE_POWER_PINS
-      .vccd1(vccd1),
-      .vssd1(vssd1),
+     .vccd1(vccd1),
+     .vssd1(vssd1),
       `endif
-      .clk0   (clk),
-      .csb0   (csb0[9]),
-      .web0   (web0),
-      .wmask0 (wmask0),
-      .addr0  (addr0),
-      .din0   (din0),
-      .dout0  (sram9_dout0)
+     .clk0   (clk),
+     .csb0   (csb0[9]),
+     .web0   (web0),
+     .wmask0 (wmask0),
+     .addr0  (addr0),
+     .din0   (din0),
+     .dout0  (sram9_dout0),
+     .spare_wen0(1'b0)
      );
 
 sram_1rw0r0w_32_1024_sky130 SRAM10
     (
       `ifdef USE_POWER_PINS
-      .vccd1(vccd1),
-      .vssd1(vssd1),
+     .vccd1(vccd1),
+     .vssd1(vssd1),
       `endif
-      .clk0   (clk),
-      .csb0   (csb0[10]),
-      .web0   (web0),
-      .wmask0 (wmask0),
-      .addr0  (addr0),
-      .din0   (din0),
-      .dout0  (sram10_dout0)
+     .clk0   (clk),
+     .csb0   (csb0[10]),
+     .web0   (web0),
+     .wmask0 (wmask0),
+     .addr0  (addr0),
+     .din0   (din0),
+     .dout0  (sram10_dout0),
+     .spare_wen0(1'b0)
      );
 
 
@@ -387,16 +390,17 @@ sram_1rw0r0w_32_1024_sky130 SRAM10
 sram_1rw0r0w_64_512_sky130 SRAM11
     (
       `ifdef USE_POWER_PINS
-      .vccd1(vccd1),
-      .vssd1(vssd1),
+     .vccd1(vccd1),
+     .vssd1(vssd1),
       `endif
-      .clk0   (clk),
-      .csb0   (csb0[11]),
-      .web0   (web0),
-      .wmask0 (wmask0),
-      .addr0  (addr0),
-      .din0   ({din0[31:16], 32'd0, din0[15:0]}),
-      .dout0  (temp_sram11_dout0)
+     .clk0   (clk),
+     .csb0   (csb0[11]),
+     .web0   (web0),
+     .wmask0 (wmask0),
+     .addr0  (addr0),
+     .din0   ({din0[31:16], 32'd0, din0[15:0]}),
+     .dout0  (temp_sram11_dout0),
+     .spare_wen0(1'b0)
      );
    assign sram11_dout0 = {temp_sram11_dout0[63:49], temp_sram11_dout0[15:0]};
 

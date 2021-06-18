@@ -11,11 +11,13 @@
 // packet order:
 
 // 4 chip_select
+
 // 16 addr0
 // 32 din0
 // 1 csb0
 // 1 web0
 // 4 wmask0
+
 // 16 addr1
 // 32 din1
 // 1 csb1

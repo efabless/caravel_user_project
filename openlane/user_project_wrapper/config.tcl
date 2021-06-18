@@ -53,6 +53,7 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_1024_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_256_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_512_sky130.v \
+	$script_dir/../../verilog/rtl/sram_1rw0r0w_32_512_sky130.v \
 	$script_dir/../../verilog/rtl/sram_1rw0r0w_64_512_sky130.v"
 #$script_dir/../../verilog/rtl/openram_testchip.v
 
@@ -101,7 +102,6 @@ set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(RUN_KLAYOUT_XOR) 0
 
 # Spray diodes
-
 set ::env(DIODE_INSERTION_STRATEGY) 1
 # The following is because there are no std cells in the example wrapper project.
 #set ::env(SYNTH_TOP_LEVEL) 1

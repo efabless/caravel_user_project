@@ -359,13 +359,13 @@ MACRO sram_1rw0r0w_32_1024_sky130
          RECT  119.68 0.0 120.06 0.38 ;
       END
    END wmask0[3]
-   PIN spare_wen0[0]
+   PIN spare_wen0
       DIRECTION INPUT ;
       PORT
          LAYER met4 ;
          RECT  317.56 0.0 317.94 0.38 ;
       END
-   END spare_wen0[0]
+   END spare_wen0
    PIN dout0[0]
       DIRECTION OUTPUT ;
       PORT
