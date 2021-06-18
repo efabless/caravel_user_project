@@ -20,7 +20,7 @@ module openram_testchip(
 			input         gpio_in,
 			input         gpio_scan,
 			input         gpio_sram_load,
-         input         global_csr,
+			input         global_csb,
 			// SRAM data outputs to be captured
 			input  [`DATA_SIZE-1:0] sram0_data0,
 			input  [`DATA_SIZE-1:0] sram0_data1,
@@ -116,13 +116,13 @@ always @(*) begin
 
    addr0 = sram_register[`TOTAL_SIZE-`SELECT_SIZE-1:`TOTAL_SIZE-`SELECT_SIZE-`ADDR_SIZE];
    din0 = sram_register[`DATA_SIZE+`PORT_SIZE+`WMASK_SIZE+1:`PORT_SIZE+`WMASK_SIZE+2];
-   csb0_temp = global_csr | sram_register[`PORT_SIZE+`WMASK_SIZE+1];
+   csb0_temp = global_csb | sram_register[`PORT_SIZE+`WMASK_SIZE+1];
    web0 = sram_register[`PORT_SIZE+`WMASK_SIZE];
    wmask0 = sram_register[`PORT_SIZE+`WMASK_SIZE-1:`PORT_SIZE];
 
    addr1 = sram_register[`PORT_SIZE-1:`DATA_SIZE+`WMASK_SIZE+2];
    din1 = sram_register[`DATA_SIZE+`WMASK_SIZE+1:`WMASK_SIZE+2];
-   csb1_temp = global_csr | sram_register[`WMASK_SIZE+1];
+   csb1_temp = global_csb | sram_register[`WMASK_SIZE+1];
    web1 = sram_register[`WMASK_SIZE];
    wmask1 = sram_register[`WMASK_SIZE-1:0];
 end
