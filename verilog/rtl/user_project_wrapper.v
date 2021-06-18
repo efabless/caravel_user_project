@@ -103,10 +103,10 @@ module user_project_wrapper #(
    wire     gpio_global_csb = io_in[21];
    wire     gpio_in = io_in[18];
    wire     la_clk = la_data_in[127];
-   wire     la_resetn = la_data_in[126];
+   wire     la_reset = la_data_in[126];
    wire     la_in_load = la_data_in[125];
    wire     la_sram_load = la_data_in[124];
-   wire     la_global_csb = la_data_in[123];
+   wire     la_global_cs = la_data_in[123];
    // Only io_out[22] is output
    assign io_oeb = ~(1'b1 << 22);
    // Assign other outputs to 0
@@ -122,9 +122,11 @@ module user_project_wrapper #(
    end
 
    // global csb is low with either GPIO or LA csb
-   wire global_csb = gpio_global_csb & la_global_csb;
+   // la_global_cs is low because default LA values are 0
+   wire global_csb = gpio_global_csb & la_global_cs;
    // rstn is low with either GPIO or LA reset
-   wire rstn = gpio_resetn & la_resetn;
+   // la_reset is not active low because default LA values are 0
+   wire rstn = gpio_resetn & ~la_reset;
 
    openram_testchip CONTROL_LOGIC(
 				  .resetn(rstn),
