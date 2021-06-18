@@ -504,17 +504,11 @@ sram_1rw0r0w_64_512_sky130 SRAM11
       end
    end
 
-   wire [`DATA_SIZE-1:0] sram8_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram9_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram10_data1 = 0;
-   wire [`DATA_SIZE-1:0] sram11_data1 = 0;
-
    wire [`DATA_SIZE-1:0] sram5_data0 = 0;
    wire [`DATA_SIZE-1:0] sram5_data1 = 0;
    wire [`DATA_SIZE-1:0] sram6_data0 = 0;
    wire [`DATA_SIZE-1:0] sram6_data1 = 0;
    wire [`DATA_SIZE-1:0] sram7_data0 = 0;
-   wire [`DATA_SIZE-1:0] sram7_data1 = 0;
    wire [`DATA_SIZE-1:0] sram7_data1 = 0;
    wire [`DATA_SIZE-1:0] sram8_data1 = 0;
    wire [`DATA_SIZE-1:0] sram9_data1 = 0;
