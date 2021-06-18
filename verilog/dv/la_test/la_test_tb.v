@@ -68,7 +68,9 @@ module la_test_tb;
 	   $dumpfile("la_test.vcd");
 	   $dumpvars(0, la_test_tb);
 
-	   #100000 $display("FAILED");
+	   // Extend this if needed, but have a safety timeout
+	   #10000 $display("FAILED");
+	   $finish;
 	end
 
 
