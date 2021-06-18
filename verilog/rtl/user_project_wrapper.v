@@ -96,15 +96,17 @@ module user_project_wrapper #(
    wire [`MAX_CHIPS-1:0]  csb1;
 
    wire     in_select = io_in[16];
-   wire     resetn = io_in[15];
+   wire     gpio_resetn = io_in[15];
    wire     gpio_clk = io_in[17];
    wire     gpio_scan = io_in[19];
    wire     gpio_sram_load = io_in[20];
-   wire     global_csb = io_in[21];
+   wire     gpio_global_csb = io_in[21];
    wire     gpio_in = io_in[18];
    wire     la_clk = la_data_in[127];
+   wire     la_resetn = la_data_in[126];
    wire     la_in_load = la_data_in[125];
    wire     la_sram_load = la_data_in[124];
+   wire     la_global_csb = la_data_in[123];
    // Only io_out[22] is output
    assign io_oeb = ~(1'b1 << 22);
    // Assign other outputs to 0
@@ -119,8 +121,13 @@ module user_project_wrapper #(
       clk = in_select ? gpio_clk : la_clk;
    end
 
+   // global csb is low with either GPIO or LA csb
+   wire global_csb = gpio_global_csb & la_global_csb;
+   // rstn is low with either GPIO or LA reset
+   wire rstn = gpio_resetn & la_resetn;
+
    openram_testchip CONTROL_LOGIC(
-'				  .resetn(resetn & wb_rst_i),
+				  .resetn(rstn),
 				  .clk(clk),
 				  .global_csb(global_csb),
 				  .gpio_scan(gpio_scan),
@@ -439,7 +446,7 @@ sram_1rw0r0w_64_512_sky130 SRAM11
    reg [`DATA_SIZE-1:0] sram15_data1;
 
    always @(posedge clk) begin
-      if (!resetn) begin
+      if (!rstn) begin
 	 sram0_data0 <= 0;
 	 sram0_data1 <= 0;
 	 sram1_data0 <= 0;
