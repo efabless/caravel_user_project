@@ -136,7 +136,7 @@ module gpio_test_tb;
 			gpio_sram_load = 1;
 			#25;
 
-			#25;
+			#75;
 			gpio_sram_load = 0;
 			gpio_scan = 1;
 			for(j = 0; j < 112; j = j + 1) begin
@@ -184,7 +184,7 @@ module gpio_test_tb;
 			gpio_sram_load = 1;
 			#25;    
 			
-			#25;
+			#75;
 			gpio_sram_load = 0;
 			gpio_scan = 1;
 			for(j = 0; j < 112; j = j + 1) begin
@@ -231,7 +231,7 @@ module gpio_test_tb;
 		gpio_sram_load = 1;
 		#25;    
 		
-		#25;
+		#75;
 		gpio_sram_load = 0;
 		gpio_scan = 1;
 		for(j = 0; j < 112; j = j + 1) begin
@@ -242,7 +242,14 @@ module gpio_test_tb;
 		#25;
 
 		#25; $finish;
-	end
+	end 
+
+	initial begin
+            // Observe Output pin 22
+            wait(mprj_io_22 == 8'h01);
+            $display("Saw bit 22");
+            //$finish;
+        end
 
 	initial begin
 		RSTB <= 1'b0;
