@@ -37,9 +37,11 @@ module gpio_test_tb;
 	// would be the fast clock.
 
 	always #12.5 clock <= (clock === 1'b0);
+	always #12.5 gpio_clk <= (gpio_clk === 1'b0);
 
 	initial begin
-		clock = 0;
+	   clock = 0;
+	   gpio_clk = 0;
 	end
 
 	reg gpio_clk;
@@ -77,7 +79,6 @@ module gpio_test_tb;
       begin
 
 
-	 gpio_clk = 1;
 	 global_csb = 1;
 	 gpio_scan = 1;
 	 gpio_sram_load = 0;
@@ -110,7 +111,6 @@ module gpio_test_tb;
       begin
 
 
-	 gpio_clk = 1;
 	 global_csb = 1;
 	 gpio_scan = 1;
 	 gpio_sram_load = 0;
@@ -158,7 +158,6 @@ module gpio_test_tb;
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
 
-		gpio_clk = 1;
 		global_csb = 1;
 
 	   # 100;
