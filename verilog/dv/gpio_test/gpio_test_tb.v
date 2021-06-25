@@ -185,12 +185,12 @@ module gpio_test_tb;
 			      16'd0,
 			      32'd0);
 
-		   // write 2 to address 2
+		   // write i^3 to address 2
 		   write_sram(i,
 			      1'b0,
 			      1'b0,
 			      16'd2,
-			      ~i,
+			      i<<3,
 			      1'b1,
 			      1'b1,
 			      16'd0,
@@ -205,7 +205,7 @@ module gpio_test_tb;
 			     1'b0,
 			     1'b1,
 			     16'd2,
-			     ~i);
+			     i<<3);
 
 
 
