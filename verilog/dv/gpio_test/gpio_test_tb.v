@@ -65,7 +65,8 @@ module gpio_test_tb;
 
 	reg [111:0] in_data;
 	reg [111:0] out_data;
-   reg 		    gpio_out;
+        wire gpio_out = mprj_io[22];
+
    	 integer j;
 
 
@@ -138,7 +139,11 @@ module gpio_test_tb;
 	 in_data = {sel, addr0, din0, csb0, web0, 4'hF, addr1, din1, csb1, web1, 4'hF};
 	 gpio_scan = 1;
 	 for(j = 0; j < 112; j = j + 1) begin
-	    //wait(gpio_out == in_data[111 - j];
+	    // Important to use !== so x is not don't care
+	    if (in_data[111 - j] !== gpio_out) begin
+	       $display($time, " Data read mismatch %b != %b", gpio_out, in_data[111 - j]);
+	    end
+
 	    #25;
 	 end
       end
