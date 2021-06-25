@@ -30,12 +30,7 @@ module gpio_test_tb;
 
     	wire gpio;
     	wire [37:0] mprj_io;
-	wire mprj_io_22 = mprj_io[22];
-
         wire mprj_io_0 = mprj_io[0];
-
-	//assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
-	// assign mprj_io[3] = 1'b1;
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -52,6 +47,7 @@ module gpio_test_tb;
 	reg gpio_sram_load;
 	reg global_csb;
 	reg gpio_in;
+        wire gpio_out = mprj_io[22];
 
 	assign mprj_io[15] = 1'b1; // in_select
 	assign mprj_io[16] = 1'b1; // resetn
@@ -61,13 +57,10 @@ module gpio_test_tb;
 	assign mprj_io[20] = gpio_sram_load;
 	assign mprj_io[21] = global_csb;
 
-	always #12.5 gpio_clk = !gpio_clk;
-
 	reg [111:0] in_data;
 	reg [111:0] out_data;
-        wire gpio_out = mprj_io[22];
 
-   	 integer j;
+   	 integer i,j;
 
 
 
@@ -156,12 +149,11 @@ module gpio_test_tb;
       end
    endtask // read_sram
 
-   integer i;
 
 	initial begin
 
             wait(mprj_io_0 == 1'b1);
-            $display("Saw bit 0");
+            $display($time, " Saw bit 0: VCD starting");
 
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
