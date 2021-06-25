@@ -129,17 +129,22 @@ module gpio_test_tb;
 	 end
 
 	 gpio_scan = 0;
-	 global_csb = 0;
-	 #25;
-	 global_csb = 1;
-	 gpio_sram_load = 1;
-	 #25;
+         global_csb = 0;
+	 // Do the SRAM Read
+         #25;
+	 // Store result in dout FF
+         global_csb = 1;
+         #25;
+	 // Load dout FF into scan register
+         gpio_sram_load = 1;
+         #25;
+	 // Start scanning
+         gpio_sram_load = 0;
 
-	 gpio_sram_load = 1;
+         gpio_scan = 1;
 
 	 // This should scan out the results and check they match the same thing expected here:
 	 in_data = {sel, addr0, din0, csb0, web0, 4'hF, addr1, din1, csb1, web1, 4'hF};
-	 gpio_scan = 1;
 	 for(j = 0; j < 112; j = j + 1) begin
 	    // Important to use !== so x is not don't care
 	    if (in_data[111 - j] !== gpio_out) begin
