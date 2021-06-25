@@ -63,10 +63,88 @@ module gpio_test_tb;
 
 	always #12.5 gpio_clk = !gpio_clk;
 
-	integer i, j;
-	reg [3:0] sel;
 	reg [111:0] in_data;
 	reg [111:0] out_data;
+   reg 		    gpio_out;
+   	 integer j;
+
+
+
+   task write_sram;
+      input [3:0] sel;
+      input 	  csb0;
+      input 	  web0;
+      input [15:0] addr0;
+      input [31:0] din0;
+      input 	   csb1;
+      input 	   web1;
+      input [15:0] addr1;
+      input [31:0] din1;
+      begin
+
+
+	 gpio_clk = 1;
+	 global_csb = 1;
+	 gpio_scan = 1;
+	 gpio_sram_load = 0;
+	 in_data = {sel, addr0, din0, csb0, web0, 4'hF, addr1, din1, csb1, web1, 4'hF};
+
+	 for(j = 0; j < 112; j = j + 1) begin
+	    gpio_in = in_data[111 - j];
+	    #25;
+	 end
+
+	 gpio_scan = 0;
+	 global_csb = 0;
+	 #25;
+	 global_csb = 1;
+
+      end
+   endtask // write_sram
+
+
+   task read_sram;
+      input [3:0] sel;
+      input 	  csb0;
+      input 	  web0;
+      input [15:0] addr0;
+      input [31:0] din0;
+      input 	   csb1;
+      input 	   web1;
+      input [15:0] addr1;
+      input [31:0] din1;
+      begin
+
+
+	 gpio_clk = 1;
+	 global_csb = 1;
+	 gpio_scan = 1;
+	 gpio_sram_load = 0;
+	 in_data = {sel, addr0, din0, csb0, web0, 4'hF, addr1, din1, csb1, web1, 4'hF};
+
+	 for(j = 0; j < 112; j = j + 1) begin
+	    gpio_in = in_data[111 - j];
+	    #25;
+	 end
+
+	 gpio_scan = 0;
+	 global_csb = 0;
+	 #25;
+	 global_csb = 1;
+	 gpio_sram_load = 1;
+	 #25;
+
+	 // This should scan out the results and check they match the same thing expected here:
+	 in_data = {sel, addr0, din0, csb0, web0, 4'hF, addr1, din1, csb1, web1, 4'hF};
+	 gpio_scan = 1;
+	 for(j = 0; j < 112; j = j + 1) begin
+	    //wait(gpio_out == in_data[111 - j];
+	    #25;
+	 end
+      end
+   endtask // read_sram
+
+   integer i;
 
 	initial begin
 
@@ -79,166 +157,76 @@ module gpio_test_tb;
 		gpio_clk = 1;
 		global_csb = 1;
 
+	   # 100;
+
+
 		//Testing 32B Dual Port Memories
 		for(i = 0; i < 5; i = i + 1) begin
-			sel = i;
+		   // write 1 to address 1
+		   write_sram(i,
+			      1'b0,
+			      1'b0,
+			      16'd1,
+			      32'd1,
+			      1'b1,
+			      1'b1,
+			      16'd0,
+			      32'd0);
 
-			//Write 1 to addr1 using GPIO Pins
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
+		   // write 2 to address 2
+		   write_sram(i,
+			      1'b0,
+			      1'b0,
+			      16'd2,
+			      32'd2,
+			      1'b1,
+			      1'b1,
+			      16'd0,
+			      32'd0);
 
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
+		   // read address 1 and 2
+		   read_sram(i,
+			     1'b0,
+			     1'b1,
+			     16'd1,
+			     32'd1,
+			     1'b0,
+			     1'b1,
+			     16'd2,
+			     32'd2);
 
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
 
-			//Write 2 to addr2 using GPIO Pins
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd2, 32'd2, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b1, 1'b1, 4'd0};
 
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
-
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			#25;
-			//Read addr1 and addr2
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd2, 32'd0, 1'b0, 1'b1, 4'd0};
-
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
-
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			#75;
-			gpio_sram_load = 0;
-			gpio_scan = 1;
-			for(j = 0; j < 112; j = j + 1) begin
-				out_data[111 - j] = mprj_io_22;
-				#25;
-			end
-			#25;
 		end
 
 		//Testing 32B Single Port Memories
-		for(i = 8; i < 11; i = i + 1) begin
-			sel = i;
+		for(i = 8; i < 12; i = i + 1) begin
 
-			//Write 1 to addr1 using GPIO Pins
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+		   // write 1 to address 1
+		   write_sram(i,
+			      1'b0,
+			      1'b0,
+			      16'd1,
+			      32'd1,
+			      1'b1,
+			      1'b1,
+			      16'd0,
+			      32'd0);
 
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
+		   // read address 1 and 2
+		   read_sram(i,
+			     1'b0,
+			     1'b1,
+			     16'd1,
+			     32'd1,
+			     1'b1,
+			     1'b1,
+			     16'd0,
+			     32'd0);
 
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			//Read addr1
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
-
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;
-
-			#75;
-			gpio_sram_load = 0;
-			gpio_scan = 1;
-			for(j = 0; j < 112; j = j + 1) begin
-				out_data[111 - j] = mprj_io_22;
-				#25;
-			end
-			#25;
 		end
 
-		//Testing 64b Single Port Memory
-		sel = 11;
-
-		//Write 1 to addr1 using GPIO Pins
-		gpio_scan = 1;
-		gpio_sram_load = 0;
-		in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-
-		for(j = 0; j < 112; j = j + 1) begin
-			gpio_in = in_data[111 - j];
-			#25;
-		end
-
-		gpio_scan = 0;
-		global_csb = 0;
-		#10;
-		global_csb = 1;
-		gpio_sram_load = 1;
-		#10;
-
-		//Read addr1
-		gpio_scan = 1;
-		gpio_sram_load = 0;
-		in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-
-		for(j = 0; j < 112; j = j + 1) begin
-			gpio_in = in_data[111 - j];
-			#25;
-		end
-
-		gpio_scan = 0;
-		global_csb = 0;
-		#25;
-		global_csb = 1;
-		gpio_sram_load = 1;
-		#25;
-
-		#75;
-		gpio_sram_load = 0;
-		gpio_scan = 1;
-		for(j = 0; j < 112; j = j + 1) begin
-			out_data[111 - j] = mprj_io_22;
-			#25;
-		end
-
-		#25;
+	   $display("Done with tests");
 
 		#25; $finish;
 	end
