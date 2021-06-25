@@ -30,13 +30,7 @@ module la_test_tb;
 
     	wire gpio;
     	wire [37:0] mprj_io;
-	wire mprj_io_22;
-
-	assign mprj_io_22 = mprj_io[22];
-	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
-
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
-	// assign mprj_io[3] = 1'b1;
+        wire mprj_io_0 = mprj_io[0];
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -48,11 +42,12 @@ module la_test_tb;
 		clock = 0;
 	end
 
-        wire gpio_clk = 1'b0;
+        wire gpio_clk = 1'b1;
         wire gpio_scan = 1'b0;
 	wire gpio_sram_load = 1'b0;
 	wire global_csb = 1'b1;
         wire gpio_in = 1'b0;
+        wire gpio_out = mprj_io[22];
 
 	assign mprj_io[15] = 1'b0; // in_select
 	assign mprj_io[16] = 1'b1; // resetn
@@ -63,25 +58,30 @@ module la_test_tb;
 	assign mprj_io[21] = global_csb;
 
 	initial begin
-	   //#170000;
+
+           wait(mprj_io_0 == 1'b1);
+           $display($time, " Saw bit 0: VCD starting");
 
 	   $dumpfile("la_test.vcd");
 	   $dumpvars(0, la_test_tb);
 
-	   // #200000 $display("TIMEOUT");
-	   // $finish;
+           wait(mprj_io_0 == 1'b0);
+           $display($time, " Saw bit 0: VCD stopping");
+	   $finish;
 
-	end
+	end // initial begin
+
+   initial begin
+      $dumpfile("foo.vcd");
+      $dumpvars(0, la_test_tb);
+
+      #500000
+      $display("Timeout");
+      $finish;
+   end
 
 
-	initial begin
-	    // Observe Output pin 22
-	    wait(mprj_io_22 == 8'h01);
 
-
-	   $display("Saw bit 22");
-	    $finish;
-	end
 
 	initial begin
 		RSTB <= 1'b0;
@@ -105,10 +105,6 @@ module la_test_tb;
 		power3 <= 1'b1;
 		#100;
 		power4 <= 1'b1;
-	end
-
-	always @(mprj_io) begin
-		//#1 $display("MPRJ-IO state = %b ", mprj_io[22]);
 	end
 
 	wire flash_csb;

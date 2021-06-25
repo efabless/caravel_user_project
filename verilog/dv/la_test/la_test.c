@@ -85,9 +85,12 @@ void main()
 {
 	reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
                                         // connect to housekeeping SPI
-	// Configure Pin 22 as user output
-	// Observe counter value in the testbench
-	reg_mprj_io_22 =  GPIO_MODE_USER_STD_OUTPUT;
+
+	// This is to signal when the code is ready to the test bench
+	reg_mprj_io_0 = GPIO_MODE_MGMT_STD_OUTPUT;
+
+	// To start, set pin 0 to 1
+	reg_mprj_datal = 0x000000001;
 
 	// Configure LA probes as outputs from the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
@@ -98,12 +101,14 @@ void main()
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
-
-	// On success, set pin 22 to 1
-	reg_mprj_datal = 0xFFFFFFFF;
-	/* Apply configuration */
-	reg_mprj_xfer = 1;
-	while (reg_mprj_xfer == 1);
+	reg_la0_data = 0x10101111;
+	reg_la1_data = 0x20202222;
+	reg_la2_data = 0x30303333;
+	reg_la3_data = 0x40404444;
+	reg_la0_data = 0x00000000;
+	reg_la1_data = 0x00000000;
+	reg_la2_data = 0x00000000;
+	reg_la3_data = 0x00000000;
 
 	union packet p;
 	p.bf.rst = 0;
@@ -127,16 +132,25 @@ void main()
 	p.wf.word2 = reg_la2_data;
 	p.wf.word3 = reg_la3_data;
 
-	/* p.bf.addr0 = 0x000000001; */
-	/* p.bf.din0 = 0xDEADBEEF; */
-	/* p.bf.csb0 = 0; */
-	/* p.bf.web0 = 0; */
-	/* p.bf.csb1 = 1; */
-	/* p.bf.web1 = 1; */
-	/* reg_la0_data = p.wf.word0; */
-	/* reg_la1_data = p.wf.word1; */
-	/* reg_la2_data = p.wf.word2; */
-	/* reg_la3_data = p.wf.word3; */
+	p.bf.addr0 = 0x000000001;
+	p.bf.din0 = 0xDEADBEEF;
+	p.bf.csb0 = 0;
+	p.bf.web0 = 0;
+	p.bf.csb1 = 1;
+	p.bf.web1 = 1;
+	reg_la0_data = p.wf.word0;
+	reg_la1_data = p.wf.word1;
+	reg_la2_data = p.wf.word2;
+	reg_la3_data = p.wf.word3;
+
+
+	// On end, set pin 0 to 0
+	reg_mprj_datal = 0x000000000;
+
+	/* Apply configuration */
+	reg_mprj_xfer = 1;
+	while (reg_mprj_xfer == 1);
+
 
 
 }
