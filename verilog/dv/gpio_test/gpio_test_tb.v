@@ -167,7 +167,7 @@ module gpio_test_tb;
 			      1'b0,
 			      1'b0,
 			      16'd1,
-			      32'd1,
+			      i,
 			      1'b1,
 			      1'b1,
 			      16'd0,
@@ -178,7 +178,7 @@ module gpio_test_tb;
 			      1'b0,
 			      1'b0,
 			      16'd2,
-			      32'd2,
+			      ~i,
 			      1'b1,
 			      1'b1,
 			      16'd0,
@@ -189,11 +189,11 @@ module gpio_test_tb;
 			     1'b0,
 			     1'b1,
 			     16'd1,
-			     32'd1,
+			     i,
 			     1'b0,
 			     1'b1,
 			     16'd2,
-			     32'd2);
+			     ~i);
 
 
 
@@ -207,7 +207,7 @@ module gpio_test_tb;
 			      1'b0,
 			      1'b0,
 			      16'd1,
-			      32'd1,
+			      32'hDEADBEEF,
 			      1'b1,
 			      1'b1,
 			      16'd0,
@@ -218,7 +218,7 @@ module gpio_test_tb;
 			     1'b0,
 			     1'b1,
 			     16'd1,
-			     32'd1,
+			     32'hDEADBEEF,
 			     1'b1,
 			     1'b1,
 			     16'd0,
