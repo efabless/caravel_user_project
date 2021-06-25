@@ -49,13 +49,8 @@ void main()
 	reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
                                         // connect to housekeeping SPI
 
-	// Connect the housekeeping SPI to the SPI master
-	// so that the CSB line is not left floating.  This allows
-	// all of the GPIO pins to be used for user functions.
-
-	// Configure Pin 22 as user output
-	// Observe counter value in the testbench
-	reg_mprj_io_22 =  GPIO_MODE_USER_STD_OUTPUT;
+	// This is to signal when the code is done to the test bench
+	reg_mprj_io_0 = GPIO_MODE_MGMT_STD_OUTPUT;
 
 	reg_mprj_io_15 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 	reg_mprj_io_16 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
@@ -64,6 +59,11 @@ void main()
 	reg_mprj_io_19 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 	reg_mprj_io_20 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
 	reg_mprj_io_21 =  GPIO_MODE_USER_STD_INPUT_NOPULL;
+
+	// Configure Pin 22 as user output
+	// Observe counter value in the testbench
+	reg_mprj_io_22 =  GPIO_MODE_USER_STD_OUTPUT;
+
 
 	// Configure LA probes as outputs from the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
@@ -74,6 +74,9 @@ void main()
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
+
+	// Set bit 0 when done
+	reg_mprj_datal = 0x00000001;
 
 	/* Apply configuration */
 	reg_mprj_xfer = 1;

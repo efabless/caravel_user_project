@@ -30,12 +30,11 @@ module gpio_test_tb;
 
     	wire gpio;
     	wire [37:0] mprj_io;
-	wire mprj_io_22;
+	wire mprj_io_22 = mprj_io[22];
 
-	assign mprj_io_22 = mprj_io[22];
-	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
+        wire mprj_io_0 = mprj_io[0];
 
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+	//assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 	// assign mprj_io[3] = 1'b1;
 
 	// External clock is used by default.  Make this artificially fast for the
@@ -71,8 +70,8 @@ module gpio_test_tb;
 
 	initial begin
 
-	   // Wait until after the reset
-		#170000;
+            wait(mprj_io_0 == 1'b1);
+            $display("Saw bit 0");
 
 		$dumpfile("gpio_test.vcd");
 		$dumpvars(0, gpio_test_tb);
@@ -149,29 +148,12 @@ module gpio_test_tb;
 		//Testing 32B Single Port Memories
 		for(i = 8; i < 11; i = i + 1) begin
 			sel = i;
-			
+
 			//Write 1 to addr1 using GPIO Pins
 			gpio_scan = 1;
 			gpio_sram_load = 0;
 			in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-			
-			for(j = 0; j < 112; j = j + 1) begin
-				gpio_in = in_data[111 - j];
-				#25;
-			end
-			
-			gpio_scan = 0;
-			global_csb = 0;
-			#25;
-			global_csb = 1;
-			gpio_sram_load = 1;
-			#25;  
-			
-			//Read addr1
-			gpio_scan = 1;
-			gpio_sram_load = 0;
-			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-			
+
 			for(j = 0; j < 112; j = j + 1) begin
 				gpio_in = in_data[111 - j];
 				#25;
@@ -182,8 +164,25 @@ module gpio_test_tb;
 			#25;
 			global_csb = 1;
 			gpio_sram_load = 1;
-			#25;    
-			
+			#25;
+
+			//Read addr1
+			gpio_scan = 1;
+			gpio_sram_load = 0;
+			in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
+
+			for(j = 0; j < 112; j = j + 1) begin
+				gpio_in = in_data[111 - j];
+				#25;
+			end
+
+			gpio_scan = 0;
+			global_csb = 0;
+			#25;
+			global_csb = 1;
+			gpio_sram_load = 1;
+			#25;
+
 			#75;
 			gpio_sram_load = 0;
 			gpio_scan = 1;
@@ -196,29 +195,29 @@ module gpio_test_tb;
 
 		//Testing 64b Single Port Memory
 		sel = 11;
-		
+
 		//Write 1 to addr1 using GPIO Pins
 		gpio_scan = 1;
 		gpio_sram_load = 0;
 		in_data = {sel, 16'd1, 32'd1, 1'b0, 1'b0, 4'd15, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-		
+
 		for(j = 0; j < 112; j = j + 1) begin
 			gpio_in = in_data[111 - j];
 			#25;
 		end
-		
+
 		gpio_scan = 0;
 		global_csb = 0;
 		#10;
 		global_csb = 1;
 		gpio_sram_load = 1;
-		#10;  
-		
+		#10;
+
 		//Read addr1
 		gpio_scan = 1;
 		gpio_sram_load = 0;
 		in_data = {sel, 16'd1, 32'd0, 1'b0, 1'b1, 4'd0, 16'd0, 32'd0, 1'b0, 1'b0, 4'd0};
-		
+
 		for(j = 0; j < 112; j = j + 1) begin
 			gpio_in = in_data[111 - j];
 			#25;
@@ -229,8 +228,8 @@ module gpio_test_tb;
 		#25;
 		global_csb = 1;
 		gpio_sram_load = 1;
-		#25;    
-		
+		#25;
+
 		#75;
 		gpio_sram_load = 0;
 		gpio_scan = 1;
@@ -238,18 +237,11 @@ module gpio_test_tb;
 			out_data[111 - j] = mprj_io_22;
 			#25;
 		end
-		
+
 		#25;
 
 		#25; $finish;
-	end 
-
-	initial begin
-            // Observe Output pin 22
-            wait(mprj_io_22 == 8'h01);
-            $display("Saw bit 22");
-            //$finish;
-        end
+	end
 
 	initial begin
 		RSTB <= 1'b0;
