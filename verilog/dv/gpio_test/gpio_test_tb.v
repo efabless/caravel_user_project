@@ -135,6 +135,8 @@ module gpio_test_tb;
 	 gpio_sram_load = 1;
 	 #25;
 
+	 gpio_sram_load = 1;
+
 	 // This should scan out the results and check they match the same thing expected here:
 	 in_data = {sel, addr0, din0, csb0, web0, 4'hF, addr1, din1, csb1, web1, 4'hF};
 	 gpio_scan = 1;
