@@ -404,13 +404,13 @@ sram_1rw0r0w_64_512_sky130 SRAM11
      .clk0   (clk),
      .csb0   (csb0[11]),
      .web0   (web0),
-     .wmask0 (wmask0),
+     .wmask0 ({wmask0[3:2],4'hF,wmask0[1:0]}),
      .addr0  (addr0),
-     .din0   ({din0[31:16], 32'd0, din0[15:0]}),
+     .din0   ({din0, din0}),
      .dout0  (temp_sram11_dout0),
      .spare_wen0(1'b0)
      );
-   assign sram11_dout0 = {temp_sram11_dout0[63:49], temp_sram11_dout0[15:0]};
+   assign sram11_dout0 = {temp_sram11_dout0[63:48], temp_sram11_dout0[15:0]};
 
    // Hold dout from SRAM
    // clocked by SRAM clk
