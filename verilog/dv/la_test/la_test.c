@@ -88,6 +88,7 @@ void main()
 
 	// This is to signal when the code is ready to the test bench
 	reg_mprj_io_0 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_1 = GPIO_MODE_MGMT_STD_OUTPUT;
 
 	// To start, set pin 0 to 1
 	reg_mprj_datal = 0x00000001;
@@ -111,7 +112,7 @@ void main()
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
-	
+
 	union packet p;
 	p.bf.rst = 0;
 	// Only send the MSByte
@@ -146,7 +147,7 @@ void main()
 	reg_la3_data = p.wf.word3;
 	
 	// On end, set pin 0 to 0
-	reg_mprj_datal = 0x00000000;
+	reg_mprj_datal = 0x00000003;
 
 	/* Apply configuration */
 	reg_mprj_xfer = 1;

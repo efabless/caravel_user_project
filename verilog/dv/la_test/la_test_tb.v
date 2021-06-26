@@ -31,6 +31,7 @@ module la_test_tb;
     	wire gpio;
     	wire [37:0] mprj_io;
         wire mprj_io_0 = mprj_io[0];
+        wire mprj_io_1 = mprj_io[1];
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -65,12 +66,13 @@ module la_test_tb;
 	   $dumpfile("la_test.vcd");
 	   $dumpvars(0, la_test_tb);
 
-           wait(mprj_io_0 == 1'b0);
-           $display($time, " Saw bit 0: VCD stopping");
+           wait(mprj_io_1 == 1'b1);
+           $display($time, " Saw bit 1: VCD stopping");
+	
 	   $finish;
 
 	end // initial begin
-
+	
    initial begin
       $dumpfile("foo.vcd");
       $dumpvars(0, la_test_tb);
