@@ -90,7 +90,7 @@ void main()
 	reg_mprj_io_0 = GPIO_MODE_MGMT_STD_OUTPUT;
 
 	// To start, set pin 0 to 1
-	reg_mprj_datal = 0x000000001;
+	reg_mprj_datal = 0x00000001;
 
 	// Configure LA probes as outputs from the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
@@ -101,6 +101,7 @@ void main()
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
+	/*
 	reg_la0_data = 0x10101111;
 	reg_la1_data = 0x20202222;
 	reg_la2_data = 0x30303333;
@@ -109,7 +110,7 @@ void main()
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
-
+	
 	union packet p;
 	p.bf.rst = 0;
 	// Only send the MSByte
@@ -142,10 +143,10 @@ void main()
 	reg_la1_data = p.wf.word1;
 	reg_la2_data = p.wf.word2;
 	reg_la3_data = p.wf.word3;
-
+	*/
 
 	// On end, set pin 0 to 0
-	reg_mprj_datal = 0x000000000;
+	//reg_mprj_datal = 0x00000000;
 
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
