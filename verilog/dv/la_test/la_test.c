@@ -91,17 +91,18 @@ void main()
 
 	// To start, set pin 0 to 1
 	reg_mprj_datal = 0x00000001;
-
+	
 	// Configure LA probes as outputs from the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
+	
 	reg_la0_data = 0x00000000;
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
-	/*
+	
 	reg_la0_data = 0x10101111;
 	reg_la1_data = 0x20202222;
 	reg_la2_data = 0x30303333;
@@ -143,15 +144,11 @@ void main()
 	reg_la1_data = p.wf.word1;
 	reg_la2_data = p.wf.word2;
 	reg_la3_data = p.wf.word3;
-	*/
-
+	
 	// On end, set pin 0 to 0
-	//reg_mprj_datal = 0x00000000;
+	reg_mprj_datal = 0x00000000;
 
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
-
-
-
 }
