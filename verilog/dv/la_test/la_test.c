@@ -48,12 +48,13 @@ typedef struct bit_fields {
   unsigned int rst : 1;
   unsigned int in_load : 1;
   unsigned int sram_load : 1;
-  unsigned int cs : 1;
+  unsigned int la_gcs : 1;
 
   // unused bits
-  unsigned int unused : 15;
+  unsigned int unused : 11;
 
   // 112 bits
+  unsigned int cs : 4;
   unsigned int addr0 : 16;
   unsigned int din0 : 32;
   unsigned int csb0 : 1;
@@ -103,35 +104,56 @@ void main()
 	
 	// To start, set pin 0 to 1
 	reg_mprj_datal = 0x00000001;
+	/*
+	union packet p;
+	p.bf.rst = 1;
+	p.bf.clk = 1;
+	p.bf.in_load = 1;
+	p.bf.sram_load = 0;
+	p.bf.la_gcs = 0;
+	
+	p.bf.unused = 0;
+
+	p.bf.cs = 0;
+	p.bf.addr0 = 0;
+	p.bf.din0 = 1;
+	p.bf.csb0 = 0;
+	p.bf.web0 = 0;
+	p.bf.wmask0 = 15;
+
+	p.bf.addr1 = 0;
+	p.bf.din1 = 0;
+	p.bf.csb1 = 1;
+	p.bf.web1 = 1;
+	p.bf.wmask1 = 0;
+
+	//Send data
+	reg_la3_data = p.wf.word3;
+	reg_la2_data = p.wf.word2;
+	reg_la1_data = p.wf.word1;
+	reg_la0_data = p.wf.word0;
+	*/
+
+	// Write 1 to address 1
+	// Send input packet
+	reg_la3_data = 0xA0000000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x13C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20000000;
+	reg_la3_data = 0xA0000000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x28000000;
+	reg_la3_data = 0xA0000000;
+
+	// Write 2 to address 2
+
+	// Read back data
 
 	/*
-	reg_la0_data = 0x00000000;
-	reg_la1_data = 0x00000000;
-	reg_la2_data = 0x00000000;
-	reg_la3_data = 0x00000000;
-	
-	reg_la0_data = 0x10101111;
-	reg_la1_data = 0x20202222;
-	reg_la2_data = 0x30303333;
-	reg_la3_data = 0x40404444;
-	reg_la0_data = 0x00000000;
-	reg_la1_data = 0x00000000;
-	reg_la2_data = 0x00000000;
-	reg_la3_data = 0x00000000;
-
-	union packet p;
-	p.bf.rst = 0;
-	// Only send the MSByte
-	reg_la3_data = p.wf.word3;
-
-	p.bf.rst = 1;
-	// Only send the MSByte
-	reg_la3_data = p.wf.word3;
-
-	p.bf.rst = 0;
-	// Only send the MSByte
-	reg_la3_data = p.wf.word3;
-
 	// This is how to read from the LA
 	// This will trigger a sample of the LA bits to read
 	// Configure LA probes as outputs from the cpu
