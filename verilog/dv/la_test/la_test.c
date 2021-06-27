@@ -80,6 +80,8 @@ union packet {
   word_fields_t wf;
 };
 
+int clk = 0;
+int i;
 
 void main()
 {
@@ -88,17 +90,21 @@ void main()
 
 	// This is to signal when the code is ready to the test bench
 	reg_mprj_io_0 = GPIO_MODE_MGMT_STD_OUTPUT;
-	reg_mprj_io_1 = GPIO_MODE_MGMT_STD_OUTPUT;
 
-	// To start, set pin 0 to 1
-	reg_mprj_datal = 0x00000001;
-	
+	/* Apply configuration */
+	reg_mprj_xfer = 1;
+	while (reg_mprj_xfer == 1);
+
 	// Configure LA probes as outputs from the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 	
+	// To start, set pin 0 to 1
+	reg_mprj_datal = 0x00000001;
+
+	/*
 	reg_la0_data = 0x00000000;
 	reg_la1_data = 0x00000000;
 	reg_la2_data = 0x00000000;
@@ -128,6 +134,12 @@ void main()
 
 	// This is how to read from the LA
 	// This will trigger a sample of the LA bits to read
+	// Configure LA probes as outputs from the cpu
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
+	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
+	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
+	
 	reg_la_sample = 1;
 	// Now read them
 	p.wf.word0 = reg_la0_data;
@@ -135,6 +147,7 @@ void main()
 	p.wf.word2 = reg_la2_data;
 	p.wf.word3 = reg_la3_data;
 
+	
 	p.bf.addr0 = 0x000000001;
 	p.bf.din0 = 0xDEADBEEF;
 	p.bf.csb0 = 0;
@@ -145,11 +158,8 @@ void main()
 	reg_la1_data = p.wf.word1;
 	reg_la2_data = p.wf.word2;
 	reg_la3_data = p.wf.word3;
-	
-	// On end, set pin 0 to 0
-	reg_mprj_datal = 0x00000003;
+	*/
 
-	/* Apply configuration */
-	reg_mprj_xfer = 1;
-	while (reg_mprj_xfer == 1);
+	// On end, set pin 0 to 0
+	reg_mprj_datal = 0x00000000;
 }
