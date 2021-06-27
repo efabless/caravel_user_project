@@ -146,12 +146,46 @@ void main()
 	reg_la3_data = 0xA0000000;
 	
 	// Toggle clock to write SRAM
-	reg_la3_data = 0x28000000;
-	reg_la3_data = 0xA0000000;
+	reg_la3_data = 0x08000000;
+	reg_la3_data = 0x80000000;
 
 	// Write 2 to address 2
+	// Send input packet
+	reg_la3_data = 0xA0000000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x23C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20000000;
+	reg_la3_data = 0xA0000000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08000000;
+	reg_la3_data = 0x80000000;
 
 	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0000000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x04000040;
+	reg_la0_data = 0x00000010;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20000000;
+	reg_la3_data = 0xA0000000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08000000;
+	reg_la3_data = 0x80000000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00000000;
+	reg_la3_data = 0x80000000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x10000000;
+	reg_la3_data = 0x90000000;
 
 	/*
 	// This is how to read from the LA
