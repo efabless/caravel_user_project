@@ -20,9 +20,9 @@
 #include "verilog/dv/caravel/stub.c"
 
 /*
-	IO Test:
-		- Configures MPRJ lower 8-IO pins as outputs
-		- Observes counter value through the MPRJ lower 8 IO pins (in the testbench)
+	GPIO Test:
+		- Reads to and writes from each SRAM
+		- Uses Logic Analyzer interface for communication between SRAMs and CPU
 */
 
 void main()
