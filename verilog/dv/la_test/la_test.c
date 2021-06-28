@@ -75,6 +75,14 @@ void main()
 	// This is to signal when the code is ready to the test bench
 	reg_mprj_io_0 = GPIO_MODE_MGMT_STD_OUTPUT;
 	reg_mprj_io_1 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_2 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_3 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_4 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_5 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_6 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_7 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_8 = GPIO_MODE_MGMT_STD_OUTPUT;
+	reg_mprj_io_9 = GPIO_MODE_MGMT_STD_OUTPUT;
 
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
@@ -164,7 +172,7 @@ void main()
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
+	
 	//SRAM 1
 	// Write 1 to address 1
 	// Send input packet
@@ -230,7 +238,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000001;
+		reg_mprj_datal = 0x00000005;
 	}
 
 	// Configure LA as CPU output
@@ -304,7 +312,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000003;
+		reg_mprj_datal = 0x00000009;
 	}
 
 	// Configure LA as CPU output
@@ -378,7 +386,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000001;
+		reg_mprj_datal = 0x00000011;
 	}
 
 	// Configure LA as CPU output
@@ -452,7 +460,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000003;
+		reg_mprj_datal = 0x000000021;
 	}
 
 	// Configure LA as CPU output
@@ -460,7 +468,7 @@ void main()
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
+	
 	/* SINGLE PORT MEMORIES */
 	// SRAM 8
 	// Write DEADBEEF to address 1
@@ -512,7 +520,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la2_data != 0x1DEADBEE){
-		reg_mprj_datal = 0x00000001;
+		reg_mprj_datal = 0x00000041;
 	}
 
 	// Configure LA as CPU output
@@ -571,7 +579,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la2_data != 0x1DEADBEE){
-		reg_mprj_datal = 0x00000003;
+		reg_mprj_datal = 0x00000081;
 	}
 
 	// Configure LA as CPU output
@@ -630,7 +638,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la2_data != 0x1DEADBEE){
-		reg_mprj_datal = 0x00000001;
+		reg_mprj_datal = 0x00000101;
 	}
 
 	// Configure LA as CPU output
@@ -689,7 +697,7 @@ void main()
 	reg_la_sample = 1;
 	// Now read them
 	if(reg_la2_data != 0x1DEADBEE){
-		reg_mprj_datal = 0x00000003;
+		reg_mprj_datal = 0x00000201;
 	}
 
 	// Configure LA as CPU output
@@ -697,7 +705,7 @@ void main()
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-	
+
 	// On end, set pin 0 to 0
 	reg_mprj_datal = 0x00000000;
 }
