@@ -134,6 +134,9 @@ void main()
 	reg_la0_data = p.wf.word0;
 	*/
 
+	/* DUAL PORT MEMORIES */
+
+	//SRAM 0
 	// Write 1 to address 1
 	// Send input packet
 	reg_la3_data = 0xA0000000;
@@ -187,6 +190,380 @@ void main()
 	reg_la3_data = 0x10000000;
 	reg_la3_data = 0x90000000;
 
+	//SRAM 1
+	// Write 1 to address 1
+	// Send input packet
+	reg_la3_data = 0xA0001000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x13C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20001000;
+	reg_la3_data = 0xA0001000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08001000;
+	reg_la3_data = 0x80001000;
+
+	// Write 2 to address 2
+	// Send input packet
+	reg_la3_data = 0xA0001000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x23C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20001000;
+	reg_la3_data = 0xA0001000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08001000;
+	reg_la3_data = 0x80001000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0001000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x04000040;
+	reg_la0_data = 0x00000010;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20001000;
+	reg_la3_data = 0xA0001000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08001000;
+	reg_la3_data = 0x80001000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00001000;
+	reg_la3_data = 0x80001000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x100001000;
+	reg_la3_data = 0x900001000;
+
+	// SRAM 2
+	// Write 1 to address 1
+	// Send input packet
+	reg_la3_data = 0xA0002000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x13C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20002000;
+	reg_la3_data = 0xA0002000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08002000;
+	reg_la3_data = 0x80002000;
+
+	// Write 2 to address 2
+	// Send input packet
+	reg_la3_data = 0xA0002000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x23C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20002000;
+	reg_la3_data = 0xA0002000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08002000;
+	reg_la3_data = 0x80002000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0002000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x04000040;
+	reg_la0_data = 0x00000010;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20002000;
+	reg_la3_data = 0xA0002000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08002000;
+	reg_la3_data = 0x80002000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00002000;
+	reg_la3_data = 0x80002000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x100002000;
+	reg_la3_data = 0x900002000;
+
+	// SRAM 3
+	// Write 1 to address 1
+	// Send input packet
+	reg_la3_data = 0xA0003000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x13C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20003000;
+	reg_la3_data = 0xA0003000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08003000;
+	reg_la3_data = 0x80003000;
+
+	// Write 2 to address 2
+	// Send input packet
+	reg_la3_data = 0xA0003000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x23C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20003000;
+	reg_la3_data = 0xA0003000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08003000;
+	reg_la3_data = 0x80003000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0003000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x04000040;
+	reg_la0_data = 0x00000010;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20003000;
+	reg_la3_data = 0xA0003000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08003000;
+	reg_la3_data = 0x80003000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00003000;
+	reg_la3_data = 0x80003000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x100003000;
+	reg_la3_data = 0x900003000;
+
+	// SRAM 4
+	// Write 1 to address 1
+	// Send input packet
+	reg_la3_data = 0xA0004000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x13C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20004000;
+	reg_la3_data = 0xA0004000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08004000;
+	reg_la3_data = 0x80004000;
+
+	// Write 2 to address 2
+	// Send input packet
+	reg_la3_data = 0xA0004000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x23C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20004000;
+	reg_la3_data = 0xA0004000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08004000;
+	reg_la3_data = 0x80004000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0004000;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x04000040;
+	reg_la0_data = 0x00000010;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20004000;
+	reg_la3_data = 0xA0004000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08004000;
+	reg_la3_data = 0x80004000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00004000;
+	reg_la3_data = 0x80004000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x100004000;
+	reg_la3_data = 0x900004000;
+
+	/* SINGLE PORT MEMORIES */
+	
+	// SRAM 8
+	// Write DEADBEEF to address 1
+	// Send input packet
+	reg_la3_data = 0xA0008000;
+	reg_la2_data = 0x1DEADBEE;
+	reg_la1_data = 0xF3C00000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20008000;
+	reg_la3_data = 0xA0008000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08008000;
+	reg_la3_data = 0x80008000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0008000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x04000000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20008000;
+	reg_la3_data = 0xA0008000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08008000;
+	reg_la3_data = 0x80008000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00008000;
+	reg_la3_data = 0x80008000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x100008000;
+	reg_la3_data = 0x900008000;
+
+	// SRAM 9
+	// Write DEADBEEF to address 1
+	// Send input packet
+	reg_la3_data = 0xA0009000;
+	reg_la2_data = 0x1DEADBEE;
+	reg_la1_data = 0xF3C00000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20009000;
+	reg_la3_data = 0xA0009000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08009000;
+	reg_la3_data = 0x80009000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0009000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x04000000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20009000;
+	reg_la3_data = 0xA0009000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08009000;
+	reg_la3_data = 0x80009000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00009000;
+	reg_la3_data = 0x80009000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x100009000;
+	reg_la3_data = 0x900009000;
+
+	// SRAM 10
+	// Write DEADBEEF to address 1
+	// Send input packet
+	reg_la3_data = 0xA000A000;
+	reg_la2_data = 0x1DEADBEE;
+	reg_la1_data = 0xF3C00000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x2000A000;
+	reg_la3_data = 0xA000A000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x0800A000;
+	reg_la3_data = 0x8000A000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA000A000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x04000000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x2000A000;
+	reg_la3_data = 0xA000A000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x0800A000;
+	reg_la3_data = 0x8000A000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x0000A000;
+	reg_la3_data = 0x8000A000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x10000A000;
+	reg_la3_data = 0x90000A000;
+
+	// SRAM 11
+	// Write DEADBEEF to address 1
+	// Send input packet
+	reg_la3_data = 0xA000B000;
+	reg_la2_data = 0x1DEADBEE;
+	reg_la1_data = 0xF3C00000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x2000B000;
+	reg_la3_data = 0xA000B000;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x0800B000;
+	reg_la3_data = 0x8000B000;
+
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA000B000;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x04000000;
+	reg_la0_data = 0x00000000;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x2000B000;
+	reg_la3_data = 0xA000B000;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x0800B000;
+	reg_la3_data = 0x8000B000;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x0000B000;
+	reg_la3_data = 0x8000B000;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x10000B000;
+	reg_la3_data = 0x90000B000;
+
 	/*
 	// This is how to read from the LA
 	// This will trigger a sample of the LA bits to read
@@ -198,24 +575,12 @@ void main()
 	
 	reg_la_sample = 1;
 	// Now read them
-	p.wf.word0 = reg_la0_data;
-	p.wf.word1 = reg_la1_data;
-	p.wf.word2 = reg_la2_data;
-	p.wf.word3 = reg_la3_data;
 
-	
-	p.bf.addr0 = 0x000000001;
-	p.bf.din0 = 0xDEADBEEF;
-	p.bf.csb0 = 0;
-	p.bf.web0 = 0;
-	p.bf.csb1 = 1;
-	p.bf.web1 = 1;
-	reg_la0_data = p.wf.word0;
-	reg_la1_data = p.wf.word1;
-	reg_la2_data = p.wf.word2;
-	reg_la3_data = p.wf.word3;
+	if(reg_la0_data == 0x00000050){
+		print("Passed!\n");
+	}
 	*/
-
+	print("Done with tests\n");
 	// On end, set pin 0 to 0
 	reg_mprj_datal = 0x00000000;
 }
