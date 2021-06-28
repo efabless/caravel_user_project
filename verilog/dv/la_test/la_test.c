@@ -74,6 +74,8 @@ void write_dp_sram(int sel) {
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
+	// Write 1 to address 1
+	// Send input packet
 	reg_la3_data = 0xA0000000 | sel << 12;
 	reg_la2_data = 0x10000000;
 	reg_la1_data = 0x13C00000;
@@ -149,25 +151,12 @@ void write_sp_sram(int sel) {
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
+	// Write DEADBEEF to address 1
+	// Send input packet
 	reg_la3_data = 0xA0000000 | sel << 12;
 	reg_la2_data = 0x1DEADBEE;
 	reg_la1_data = 0xF3C00000;
 	reg_la0_data = 0x00000000;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20000000 | sel << 12;
-	reg_la3_data = 0xA0000000 | sel << 12;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08000000 | sel << 12;
-	reg_la3_data = 0x80000000 | sel << 12;
-
-	// Write 2 to address 2
-	// Send input packet
-	reg_la3_data = 0xA0000000 | sel << 12;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x23C00000;
-	reg_la0_data = 0x00000030;
 
 	// Toggle clock to load into SRAM register
 	reg_la3_data = 0x20000000 | sel << 12;
@@ -234,7 +223,7 @@ void main()
 	reg_mprj_io_7 = GPIO_MODE_MGMT_STD_OUTPUT;
 	reg_mprj_io_8 = GPIO_MODE_MGMT_STD_OUTPUT;
 	reg_mprj_io_9 = GPIO_MODE_MGMT_STD_OUTPUT;
-
+ 
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
@@ -265,7 +254,7 @@ void main()
 	read_dp_sram(4);
 	
 	/* SINGLE PORT MEMORIES */
-
+	
 	// SRAM 8
 	write_sp_sram(8);
 	read_sp_sram(8);
