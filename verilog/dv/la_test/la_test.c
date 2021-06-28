@@ -67,6 +67,81 @@ union packet {
 int clk = 0;
 int i;
 
+void write_dp_sram(int sel) {
+	// Configure LA probes as outputs from the cpu
+	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
+	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
+	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
+
+	reg_la3_data = 0xA0000000 | sel << 12;
+	reg_la2_data = 0x10000000;
+	reg_la1_data = 0x13C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20000000 | sel << 12;
+	reg_la3_data = 0xA0000000 | sel << 12;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08000000 | sel << 12;
+	reg_la3_data = 0x80000000 | sel << 12;
+
+	// Write 2 to address 2
+	// Send input packet
+	reg_la3_data = 0xA0000000 | sel << 12;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x23C00000;
+	reg_la0_data = 0x00000030;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20000000 | sel << 12;
+	reg_la3_data = 0xA0000000 | sel << 12;
+	
+	// Toggle clock to write SRAM
+	reg_la3_data = 0x08000000 | sel << 12;
+	reg_la3_data = 0x80000000 | sel << 12;
+}
+
+void read_dp_sram(int sel){
+	// Read back data
+	// Send input packet
+	reg_la3_data = 0xA0000000 | sel << 12;
+	reg_la2_data = 0x20000000;
+	reg_la1_data = 0x04000040;
+	reg_la0_data = 0x00000010;
+
+	// Toggle clock to load into SRAM register
+	reg_la3_data = 0x20000000 | sel << 12;
+	reg_la3_data = 0xA0000000 | sel << 12;
+	
+	// Toggle clock to read SRAM
+	reg_la3_data = 0x08000000 | sel << 12;
+	reg_la3_data = 0x80000000 | sel << 12;
+
+	// Toggle clock to store into dout FF
+	reg_la3_data = 0x00000000 | sel << 12;
+	reg_la3_data = 0x80000000 | sel << 12;
+
+	// Toggle clock to replace din with dout
+	reg_la3_data = 0x10000000 | sel << 12;
+	reg_la3_data = 0x90000000 | sel << 12;
+
+	// Read from the LA
+	// This will trigger a sample of the LA bits to read
+	// Configure LA probes as outputs from the cpu
+	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
+	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
+	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
+	
+	reg_la_sample = 1;
+	// Now read them
+	if(reg_la0_data != 0x00000050){
+		reg_mprj_datal = 0x00000001 | 1 << (sel + 1);
+	}
+}
+
 void main()
 {
 	reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
@@ -87,12 +162,6 @@ void main()
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
-
-	// Configure LA probes as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 	
 	// To start, set pin 0 to 1
 	reg_mprj_datal = 0x00000001;
@@ -100,376 +169,32 @@ void main()
 	/* DUAL PORT MEMORIES */
 
 	//SRAM 0
-	// Write 1 to address 1
-	// Send input packet
-	reg_la3_data = 0xA0000000;
-	reg_la2_data = 0x10000000;
-	reg_la1_data = 0x13C00000;
-	reg_la0_data = 0x00000030;
+	write_dp_sram(0);
+	read_dp_sram(0);
 
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20000000;
-	reg_la3_data = 0xA0000000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08000000;
-	reg_la3_data = 0x80000000;
-
-	// Write 2 to address 2
-	// Send input packet
-	reg_la3_data = 0xA0000000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x23C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20000000;
-	reg_la3_data = 0xA0000000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08000000;
-	reg_la3_data = 0x80000000;
-
-	// Read back data
-	// Send input packet
-	reg_la3_data = 0xA0000000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x04000040;
-	reg_la0_data = 0x00000010;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20000000;
-	reg_la3_data = 0xA0000000;
-	
-	// Toggle clock to read SRAM
-	reg_la3_data = 0x08000000;
-	reg_la3_data = 0x80000000;
-
-	// Toggle clock to store into dout FF
-	reg_la3_data = 0x00000000;
-	reg_la3_data = 0x80000000;
-
-	// Toggle clock to replace din with dout
-	reg_la3_data = 0x10000000;
-	reg_la3_data = 0x90000000;
-
-	// Read from the LA
-	// This will trigger a sample of the LA bits to read
-	// Configure LA probes as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
-	
-	reg_la_sample = 1;
-	// Now read them
-	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000003;
-	}
-
-	// Configure LA as CPU output
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-	
 	//SRAM 1
-	// Write 1 to address 1
-	// Send input packet
-	reg_la3_data = 0xA0001000;
-	reg_la2_data = 0x10000000;
-	reg_la1_data = 0x13C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20001000;
-	reg_la3_data = 0xA0001000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08001000;
-	reg_la3_data = 0x80001000;
-
-	// Write 2 to address 2
-	// Send input packet
-	reg_la3_data = 0xA0001000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x23C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20001000;
-	reg_la3_data = 0xA0001000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08001000;
-	reg_la3_data = 0x80001000;
-
-	// Read back data
-	// Send input packet
-	reg_la3_data = 0xA0001000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x04000040;
-	reg_la0_data = 0x00000010;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20001000;
-	reg_la3_data = 0xA0001000;
-	
-	// Toggle clock to read SRAM
-	reg_la3_data = 0x08001000;
-	reg_la3_data = 0x80001000;
-
-	// Toggle clock to store into dout FF
-	reg_la3_data = 0x00001000;
-	reg_la3_data = 0x80001000;
-
-	// Toggle clock to replace din with dout
-	reg_la3_data = 0x100001000;
-	reg_la3_data = 0x900001000;
-
-	// Read from the LA
-	// This will trigger a sample of the LA bits to read
-	// Configure LA probes as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
-	
-	reg_la_sample = 1;
-	// Now read them
-	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000005;
-	}
-
-	// Configure LA as CPU output
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
+	write_dp_sram(1);
+	read_dp_sram(1);
 
 	// SRAM 2
-	// Write 1 to address 1
-	// Send input packet
-	reg_la3_data = 0xA0002000;
-	reg_la2_data = 0x10000000;
-	reg_la1_data = 0x13C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20002000;
-	reg_la3_data = 0xA0002000;
+	write_dp_sram(2);
+	read_dp_sram(2);
 	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08002000;
-	reg_la3_data = 0x80002000;
-
-	// Write 2 to address 2
-	// Send input packet
-	reg_la3_data = 0xA0002000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x23C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20002000;
-	reg_la3_data = 0xA0002000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08002000;
-	reg_la3_data = 0x80002000;
-
-	// Read back data
-	// Send input packet
-	reg_la3_data = 0xA0002000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x04000040;
-	reg_la0_data = 0x00000010;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20002000;
-	reg_la3_data = 0xA0002000;
-	
-	// Toggle clock to read SRAM
-	reg_la3_data = 0x08002000;
-	reg_la3_data = 0x80002000;
-
-	// Toggle clock to store into dout FF
-	reg_la3_data = 0x00002000;
-	reg_la3_data = 0x80002000;
-
-	// Toggle clock to replace din with dout
-	reg_la3_data = 0x100002000;
-	reg_la3_data = 0x900002000;
-
-	// Read from the LA
-	// This will trigger a sample of the LA bits to read
-	// Configure LA probes as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
-	
-	reg_la_sample = 1;
-	// Now read them
-	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000009;
-	}
-
-	// Configure LA as CPU output
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
-
 	// SRAM 3
-	// Write 1 to address 1
-	// Send input packet
-	reg_la3_data = 0xA0003000;
-	reg_la2_data = 0x10000000;
-	reg_la1_data = 0x13C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20003000;
-	reg_la3_data = 0xA0003000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08003000;
-	reg_la3_data = 0x80003000;
-
-	// Write 2 to address 2
-	// Send input packet
-	reg_la3_data = 0xA0003000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x23C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20003000;
-	reg_la3_data = 0xA0003000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08003000;
-	reg_la3_data = 0x80003000;
-
-	// Read back data
-	// Send input packet
-	reg_la3_data = 0xA0003000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x04000040;
-	reg_la0_data = 0x00000010;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20003000;
-	reg_la3_data = 0xA0003000;
-	
-	// Toggle clock to read SRAM
-	reg_la3_data = 0x08003000;
-	reg_la3_data = 0x80003000;
-
-	// Toggle clock to store into dout FF
-	reg_la3_data = 0x00003000;
-	reg_la3_data = 0x80003000;
-
-	// Toggle clock to replace din with dout
-	reg_la3_data = 0x100003000;
-	reg_la3_data = 0x900003000;
-
-	// Read from the LA
-	// This will trigger a sample of the LA bits to read
-	// Configure LA probes as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
-	
-	reg_la_sample = 1;
-	// Now read them
-	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x00000011;
-	}
-
-	// Configure LA as CPU output
-	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
+	write_dp_sram(3);
+	read_dp_sram(3);
 
 	// SRAM 4
-	// Write 1 to address 1
-	// Send input packet
-	reg_la3_data = 0xA0004000;
-	reg_la2_data = 0x10000000;
-	reg_la1_data = 0x13C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20004000;
-	reg_la3_data = 0xA0004000;
+	write_dp_sram(4);
+	read_dp_sram(4);
 	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08004000;
-	reg_la3_data = 0x80004000;
-
-	// Write 2 to address 2
-	// Send input packet
-	reg_la3_data = 0xA0004000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x23C00000;
-	reg_la0_data = 0x00000030;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20004000;
-	reg_la3_data = 0xA0004000;
-	
-	// Toggle clock to write SRAM
-	reg_la3_data = 0x08004000;
-	reg_la3_data = 0x80004000;
-
-	// Read back data
-	// Send input packet
-	reg_la3_data = 0xA0004000;
-	reg_la2_data = 0x20000000;
-	reg_la1_data = 0x04000040;
-	reg_la0_data = 0x00000010;
-
-	// Toggle clock to load into SRAM register
-	reg_la3_data = 0x20004000;
-	reg_la3_data = 0xA0004000;
-	
-	// Toggle clock to read SRAM
-	reg_la3_data = 0x08004000;
-	reg_la3_data = 0x80004000;
-
-	// Toggle clock to store into dout FF
-	reg_la3_data = 0x00004000;
-	reg_la3_data = 0x80004000;
-
-	// Toggle clock to replace din with dout
-	reg_la3_data = 0x100004000;
-	reg_la3_data = 0x900004000;
-
-	// Read from the LA
-	// This will trigger a sample of the LA bits to read
+	/* SINGLE PORT MEMORIES */
 	// Configure LA probes as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
-	
-	reg_la_sample = 1;
-	// Now read them
-	if(reg_la0_data != 0x00000050){
-		reg_mprj_datal = 0x000000021;
-	}
-
-	// Configure LA as CPU output
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 	
-	/* SINGLE PORT MEMORIES */
 	// SRAM 8
 	// Write DEADBEEF to address 1
 	// Send input packet
