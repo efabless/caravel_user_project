@@ -68,16 +68,38 @@ module la_test_tb;
 
 		wait(mprj_io_0 == 1'b0);
 		$display($time, " Saw bit 0: VCD stopping");
-		
+		$display("Done with tests");
 		$finish;
 
 	end // initial begin
 	
 	initial begin
-		repeat (9) begin
-			wait (mprj_io_1 == 1'b1);
-			$display($time, " Read byte correctly using logic analyzer!");
-		end
+		wait (mprj_io_1 == 1'b1);
+		$display($time, " Data mismatch while reading byte from SRAM 0!");
+
+		wait (mprj_io_1 == 1'b0);
+		$display($time, " Data mismatch while reading byte from SRAM 1!");
+
+		wait (mprj_io_1 == 1'b1);
+		$display($time, " Data mismatch while reading byte from SRAM 2!");
+
+		wait (mprj_io_1 == 1'b0);
+		$display($time, " Data mismatch while reading byte from SRAM 3!");
+
+		wait (mprj_io_1 == 1'b1);
+		$display($time, " Data mismatch while reading byte from SRAM 4!");
+
+		wait (mprj_io_1 == 1'b0);
+		$display($time, " Data mismatch while reading byte from SRAM 8!");
+
+		wait (mprj_io_1 == 1'b1);
+		$display($time, " Data mismatch while reading byte from SRAM 9!");
+
+		wait (mprj_io_1 == 1'b0);
+		$display($time, " Data mismatch while reading byte from SRAM 10!");
+
+		wait (mprj_io_1 == 1'b1);
+		$display($time, " Data mismatch while reading byte from SRAM 11!");
 	end
    initial begin
       //$dumpfile("foo.vcd");
