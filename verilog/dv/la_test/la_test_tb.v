@@ -31,6 +31,7 @@ module la_test_tb;
 	wire gpio;
 	wire [37:0] mprj_io;
 	wire mprj_io_0 = mprj_io[0];
+	wire mprj_io_1 = mprj_io[1];
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -72,11 +73,17 @@ module la_test_tb;
 
 	end // initial begin
 	
+	initial begin
+		repeat (9) begin
+			wait (mprj_io_1 == 1'b1);
+			$display($time, " Read byte correctly using logic analyzer!");
+		end
+	end
    initial begin
-      $dumpfile("foo.vcd");
-      $dumpvars(0, la_test_tb);
+      //$dumpfile("foo.vcd");
+      //$dumpvars(0, la_test_tb);
 
-      #500000
+      #5000000
       $display("Timeout");
       $finish;
    end
