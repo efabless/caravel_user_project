@@ -356,8 +356,8 @@ sram_1rw0r0w_32_256_sky130 SRAM8
      .web0   (web0),
      .wmask0 (wmask0),
      .addr0  (addr0),
-     .din0   (din0),
-     .dout0  (sram8_dout0),
+     .din0   ({1'b0, din0}),
+     .dout0  ({disconn8, sram8_dout0}),
      .spare_wen0(1'b0)
      );
 
@@ -372,8 +372,8 @@ sram_1rw0r0w_32_512_sky130 SRAM9
      .web0   (web0),
      .wmask0 (wmask0),
      .addr0  (addr0),
-     .din0   (din0),
-     .dout0  (sram9_dout0),
+     .din0   ({1'b0, din0}),
+     .dout0  ({disconn9, sram9_dout0}),
      .spare_wen0(1'b0)
      );
 
@@ -388,8 +388,8 @@ sram_1rw0r0w_32_1024_sky130 SRAM10
      .web0   (web0),
      .wmask0 (wmask0),
      .addr0  (addr0),
-     .din0   (din0),
-     .dout0  (sram10_dout0),
+     .din0   ({1'b0, din0}),
+     .dout0  ({disconn10, sram10_dout0}),
      .spare_wen0(1'b0)
      );
 
@@ -406,8 +406,8 @@ sram_1rw0r0w_64_512_sky130 SRAM11
      .web0   (web0),
      .wmask0 ({wmask0[3:2],4'hF,wmask0[1:0]}),
      .addr0  (addr0),
-     .din0   ({din0, din0}),
-     .dout0  (temp_sram11_dout0),
+     .din0   ({1'b0, din0, din0}),
+     .dout0  ({disconn11, temp_sram11_dout0}),
      .spare_wen0(1'b0)
      );
    assign sram11_dout0 = {temp_sram11_dout0[63:48], temp_sram11_dout0[15:0]};
