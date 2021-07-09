@@ -240,13 +240,13 @@ MACRO sky130_sram_1kbyte_1rw1r_8x1024_8
          RECT  454.24 395.76 455.3 396.14 ;
       END
    END clk1
-   PIN wmask0[0]
+   PIN wmask0
       DIRECTION INPUT ;
       PORT
          LAYER met4 ;
          RECT  82.28 0.0 82.66 1.06 ;
       END
-   END wmask0[0]
+   END wmask0
    PIN dout0[0]
       DIRECTION OUTPUT ;
       PORT
