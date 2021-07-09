@@ -1,9 +1,9 @@
 // OpenRAM SRAM model
-// Words: 512
+// Words: 256
 // Word size: 32
 // Write size: 8
 
-module sram_1rw0r0w_32_512_sky130(
+module sky130_sram_1kbyte_1rw_32x256_8(
 `ifdef USE_POWER_PINS
     vccd1,
     vssd1,
@@ -30,7 +30,7 @@ module sram_1rw0r0w_32_512_sky130(
   input  web0; // active low write control
   input [NUM_WMASKS-1:0]   wmask0; // write mask
   input           spare_wen0; // spare mask
-   input [ADDR_WIDTH-1:0] addr0;
+  input [ADDR_WIDTH-1:0]  addr0;
   input [DATA_WIDTH-1:0]  din0;
   output [DATA_WIDTH-1:0] dout0;
 
@@ -52,7 +52,7 @@ module sram_1rw0r0w_32_512_sky130(
     addr0_reg = addr0;
     din0_reg = din0;
     #(T_HOLD) dout0 = 32'bx;
-    if ( !csb0_reg && web0_reg && VERBOSE )
+    if ( !csb0_reg && web0_reg && VERBOSE ) 
       $display($time," Reading %m addr0=%b dout0=%b",addr0_reg,mem[addr0_reg]);
     if ( !csb0_reg && !web0_reg && VERBOSE )
       $display($time," Writing %m addr0=%b din0=%b wmask0=%b",addr0_reg,din0_reg,wmask0_reg);
