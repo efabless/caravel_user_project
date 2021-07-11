@@ -413,7 +413,7 @@ sky130_sram_4kbyte_1rw_64x512_8 SRAM11
    assign sram11_dout0 = {temp_sram11_dout0[63:48], temp_sram11_dout0[15:0]};
 
    wire [63:0] temp_sram12_dout0;
-sky130_sram_4kbyte_1rw_64x512_8 SRAM12
+sky130_sram_8kbyte_1rw_64x1024_8 SRAM12
     (
       `ifdef USE_POWER_PINS
      .vccd1(vccd1),
