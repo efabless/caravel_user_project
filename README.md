@@ -70,3 +70,9 @@ The top bits of the LA register are used for the control signals during test:
 * Load control register: la_in_load la_data_in[125]
 * Load SRAM result into register: la_sram_load la_data_in[124]
 * CSB for all SRAM: ??
+
+# Authors
+
+Jesse Cirimeli-Low <jcirimel@ucsc.edu>
+Amogh Lonkar <alonkar@ucsc.edu>
+Matthew Guthaus <mrg@ucsc.edu>
