@@ -17,7 +17,7 @@ configurations have varying levels of verification. In particular, it has these 
 * sky130_sram_1kbyte_1rw_32x256_8
 * sky130_sram_2kbyte_1rw_32x512_8
 * sky130_sram_4kbyte_1rw_32x1024_8
-* sky130_sram_8kbyte_1rw_32x512_8
+* sky130_sram_4kbyte_1rw_32x512_8
 * sky130_sram_8kbyte_1rw_64x1024_8
 
 # Test Modes
