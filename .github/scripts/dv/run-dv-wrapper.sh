@@ -23,7 +23,6 @@ DV_TEST_IDS=(${IDS//,/ })
 
 export TARGET_PATH=$(pwd)
 export CARAVEL_ROOT=$(pwd)/caravel
-export PDK_ROOT=$(pwd)/pdks
 
 if [ ! -d $TARGET_PATH ] 
 then
@@ -33,6 +32,7 @@ fi
 
 cd ..
 
+export PDK_ROOT=$(pwd)/pdks
 if [ ! -d $PDK_ROOT ] 
 then
     echo "Directory pdk /path/to/dir DOES NOT exists." 
