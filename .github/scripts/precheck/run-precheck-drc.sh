@@ -19,7 +19,7 @@ cd ..
 export PDK_ROOT=$(pwd)/precheck_pdks
 cd $TARGET_PATH/open_mpw_precheck/
 
-docker run -v $(pwd):/usr/local/bin -v $TARGET_PATH:$TARGET_PATH -v $CARAVEL_ROOT:$CARAVEL_ROOT  -v $PDK_ROOT:$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/open_mpw_precheck:latest bash -c "python3 open_mpw_prechecker.py --drc_only -p $PDK_ROOT -t $TARGET_PATH -c $CARAVEL_ROOT"
+docker run -v $(pwd):/usr/local/bin -v $TARGET_PATH:$TARGET_PATH -v $CARAVEL_ROOT:$CARAVEL_ROOT  -v $PDK_ROOT:$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "python3 mpw_precheck.py check magic_drc klayout_offgrid klayout_feol klayout_zeroarea klayout_pin_label_purposes_overlapping_drawing --pdk_root $PDK_ROOT --input_direcoty $TARGET_PATH --caravel_root $CARAVEL_ROOT"
 output=$TARGET_PATH/checks/full_log.log
 
 gzipped_file=$TARGET_PATH/checks/full_log.log.gz
