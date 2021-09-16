@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 CARAVEL_ROOT?=$(PWD)/caravel
-PRECHECK_ROOT?=${HOME}/open_mpw_precheck
+PRECHECK_ROOT?=${HOME}/mpw_precheck
 SIM ?= RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
@@ -35,9 +35,9 @@ endif
 SUBMODULE?=1
 
 # Include Caravel Makefile Targets
-.PHONY: %
+.PHONY: % : check-caravel
 %: 
-	$(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 # Verify Target for running simulations
 .PHONY: verify
