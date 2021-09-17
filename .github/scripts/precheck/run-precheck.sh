@@ -17,9 +17,9 @@ export TARGET_PATH=$(pwd)
 export CARAVEL_ROOT=$(pwd)/caravel
 cd ..
 export PDK_ROOT=$(pwd)/precheck_pdks
-cd $TARGET_PATH/open_mpw_precheck/
+cd $TARGET_PATH/mpw_precheck/
 
-docker run -v $(pwd):/usr/local/bin -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) efabless/open_mpw_precheck:latest bash -c "python3 open_mpw_prechecker.py --skip_drc -p $PDK_ROOT -t $TARGET_PATH -c $CARAVEL_ROOT"
+docker run -v $(pwd):/usr/local/bin -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "python3 mpw_precheck.py --pdk_root $PDK_ROOT --input_directory $TARGET_PATH --caravel_root $CARAVEL_ROOT"
 output=$TARGET_PATH/checks/full_log.log
 
 gzipped_file=$TARGET_PATH/checks/full_log.log.gz

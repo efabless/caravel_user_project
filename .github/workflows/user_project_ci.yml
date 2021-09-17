@@ -62,7 +62,7 @@ jobs:
          uses: docker/setup-buildx-action@v1
         
        - name: Install The PDK
-         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
          env: 
           OPENLANE_TAG: v0.12
           
