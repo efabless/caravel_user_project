@@ -15,9 +15,14 @@
 
 # Base Configurations. Don't Touch
 # section begin
-set script_dir [file dirname [file normalize [info script]]]
 
-source $script_dir/../../caravel/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl
+# YOU ARE NOT ALLOWED TO CHANGE ANY VARIABLES DEFINED IN THE FIXED WRAPPER CFGS 
+source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl
+
+# YOU CAN CHANGE ANY VARIABLES DEFINED IN THE DEFAULT WRAPPER CFGS BY OVERRIDING THEM IN THIS CONFIG.TCL
+source $::env(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/default_wrapper_cfgs.tcl
+
+set script_dir [file dirname [file normalize [info script]]]
 
 set ::env(DESIGN_NAME) user_project_wrapper
 #section end
@@ -26,7 +31,7 @@ set ::env(DESIGN_NAME) user_project_wrapper
 
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
-	$script_dir/../../caravel/verilog/rtl/defines.v \
+	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/user_project_wrapper.v"
 
 ## Clock configurations
@@ -36,12 +41,16 @@ set ::env(CLOCK_NET) "mprj.clk"
 set ::env(CLOCK_PERIOD) "10"
 
 ## Internal Macros
+### Macro PDN Connections
+set ::env(FP_PDN_MACRO_HOOKS) "\
+	mprj vccd1 vssd1"
+
 ### Macro Placement
 set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
-	$script_dir/../../caravel/verilog/rtl/defines.v \
+	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/user_proj_example.v"
 
 set ::env(EXTRA_LEFS) "\
@@ -52,6 +61,8 @@ set ::env(EXTRA_GDS_FILES) "\
 
 set ::env(GLB_RT_MAXLAYER) 5
 
+# disable pdn check nodes becuase it hangs with multiple power domains.
+# any issue with pdn connections will be flagged with LVS so it is not a critical check.
 set ::env(FP_PDN_CHECK_NODES) 0
 
 # The following is because there are no std cells in the example wrapper project.
@@ -62,6 +73,8 @@ set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
 set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
 set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
+set ::env(FP_PDN_ENABLE_RAILS) 0
 
 set ::env(DIODE_INSERTION_STRATEGY) 0
 set ::env(FILL_INSERTION) 0
