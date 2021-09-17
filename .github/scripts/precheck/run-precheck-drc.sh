@@ -22,9 +22,9 @@ export OUTPUT_DIRECTORY=$TARGET_PATH/checks
 cd $TARGET_PATH/mpw_precheck/
 
 docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $TARGET_PATH:$TARGET_PATH -v $CARAVEL_ROOT:$CARAVEL_ROOT  -v $PDK_ROOT:$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py magic_drc klayout_offgrid klayout_feol klayout_zeroarea klayout_pin_label_purposes_overlapping_drawing --pdk_root $PDK_ROOT --input_directory $TARGET_PATH --caravel_root $CARAVEL_ROOT --output_directory $OUTPUT_DIRECTORY"
-output=$OUTPUT_DIRECTORY/precheck.log
+output=$OUTPUT_DIRECTORY/logs/precheck.log
 
-gzipped_file=$OUTPUT_DIRECTORY/precheck.log.gz
+gzipped_file=$OUTPUT_DIRECTORY/logs/precheck.log.gz
 
 if [[ -f $gzipped_file ]]; then
     gzip -d $gzipped_file
