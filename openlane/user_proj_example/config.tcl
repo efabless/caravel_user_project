@@ -18,24 +18,33 @@ set script_dir [file dirname [file normalize [info script]]]
 set ::env(DESIGN_NAME) user_proj_example
 
 set ::env(VERILOG_FILES) "\
-	$script_dir/../../caravel/verilog/rtl/defines.v \
+	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/user_proj_example.v"
 
-set ::env(CLOCK_PORT) ""
+set ::env(DESIGN_IS_CORE) 0
+
+set ::env(CLOCK_PORT) "wb_clk_i"
 set ::env(CLOCK_NET) "counter.clk"
 set ::env(CLOCK_PERIOD) "10"
 
 set ::env(FP_SIZING) absolute
 set ::env(DIE_AREA) "0 0 900 600"
-set ::env(DESIGN_IS_CORE) 0
-
-set ::env(VDD_NETS) [list {vccd1} {vccd2} {vdda1} {vdda2}]
-set ::env(GND_NETS) [list {vssd1} {vssd2} {vssa1} {vssa2}]
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
 set ::env(PL_BASIC_PLACEMENT) 1
 set ::env(PL_TARGET_DENSITY) 0.05
 
-# If you're going to use multiple power domains, then keep this disabled.
-set ::env(RUN_CVC) 0
+# Maximum layer used for routing is metal 4.
+# This is because this macro will be inserted in a top level (user_project_wrapper) 
+# where the PDN is planned on metal 5. So, to avoid having shorts between routes
+# in this macro and the top level metal 5 stripes, we have to restrict routes to metal4.  
+set ::env(GLB_RT_MAXLAYER) 5
+
+# You can draw more power domains if you need to 
+set ::env(VDD_NETS) [list {vccd1}]
+set ::env(GND_NETS) [list {vssd1}]
+
+set ::env(DIODE_INSERTION_STRATEGY) 4 
+# If you're going to use multiple power domains, then disable cvc run.
+set ::env(RUN_CVC) 1

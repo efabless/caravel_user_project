@@ -1,33 +1,18 @@
-// SPDX-FileCopyrightText: 2020 Efabless Corporation
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-// SPDX-License-Identifier: Apache-2.0
-
 module user_project_wrapper (user_clock2,
+    vccd1,
+    vccd2,
+    vdda1,
+    vdda2,
+    vssa1,
+    vssa2,
+    vssd1,
+    vssd2,
     wb_clk_i,
     wb_rst_i,
     wbs_ack_o,
     wbs_cyc_i,
     wbs_stb_i,
     wbs_we_i,
-    vccd1,
-    vssd1,
-    vccd2,
-    vssd2,
-    vdda1,
-    vssa1,
-    vdda2,
-    vssa2,
     analog_io,
     io_in,
     io_oeb,
@@ -41,20 +26,20 @@ module user_project_wrapper (user_clock2,
     wbs_dat_o,
     wbs_sel_i);
  input user_clock2;
+ input vccd1;
+ input vccd2;
+ input vdda1;
+ input vdda2;
+ input vssa1;
+ input vssa2;
+ input vssd1;
+ input vssd2;
  input wb_clk_i;
  input wb_rst_i;
  output wbs_ack_o;
  input wbs_cyc_i;
  input wbs_stb_i;
  input wbs_we_i;
- input vccd1;
- input vssd1;
- input vccd2;
- input vssd2;
- input vdda1;
- input vssa1;
- input vdda2;
- input vssa2;
  inout [28:0] analog_io;
  input [37:0] io_in;
  output [37:0] io_oeb;
@@ -68,20 +53,15 @@ module user_project_wrapper (user_clock2,
  output [31:0] wbs_dat_o;
  input [3:0] wbs_sel_i;
 
- user_proj_example mprj (.wb_clk_i(wb_clk_i),
+
+ user_proj_example mprj (.vccd1(vccd1),
+    .vssd1(vssd1),
+    .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
     .wbs_ack_o(wbs_ack_o),
     .wbs_cyc_i(wbs_cyc_i),
     .wbs_stb_i(wbs_stb_i),
     .wbs_we_i(wbs_we_i),
-    .vccd1(vccd1),
-    .vssd1(vssd1),
-    .vccd2(vccd2),
-    .vssd2(vssd2),
-    .vdda1(vdda1),
-    .vssa1(vssa1),
-    .vdda2(vdda2),
-    .vssa2(vssa2),
     .io_in({io_in[37],
     io_in[36],
     io_in[35],
