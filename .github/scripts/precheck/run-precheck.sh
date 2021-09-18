@@ -17,12 +17,14 @@ export TARGET_PATH=$(pwd)
 export CARAVEL_ROOT=$(pwd)/caravel
 cd ..
 export PDK_ROOT=$(pwd)/precheck_pdks
+export PRECHECK_ROOT=$TARGET_PATH/mpw_precheck/
+export OUTPUT_DIRECTORY=$TARGET_PATH/checks
 cd $TARGET_PATH/mpw_precheck/
 
-docker run -v $(pwd):/usr/local/bin -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "python3 mpw_precheck.py --pdk_root $PDK_ROOT --input_directory $TARGET_PATH --caravel_root $CARAVEL_ROOT"
-output=$TARGET_PATH/checks/full_log.log
+docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c " cd $PRECHECK_ROOT ; python3 mpw_precheck.py license yaml manifest makefile consistency xor --pdk_root $PDK_ROOT --input_directory $TARGET_PATH --caravel_root $CARAVEL_ROOT --output_directory $OUTPUT_DIRECTORY"
+output=$OUTPUT_DIRECTORY/logs/precheck.log
 
-gzipped_file=$TARGET_PATH/checks/full_log.log.gz
+gzipped_file=$OUTPUT_DIRECTORY/logs/precheck.log.gz
 
 if [[ -f $gzipped_file ]]; then
     gzip -d $gzipped_file
@@ -30,7 +32,7 @@ fi
 
 grep "Violation Message" $output
 
-cnt=$(grep -c "All Checks PASSED!" $output)
+cnt=$(grep -c "All Checks Passed" $output)
 if ! [[ $cnt ]]; then cnt=0; fi
 if [[ $cnt -eq 1 ]]; then exit 0; fi
 exit 2
