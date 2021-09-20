@@ -162,6 +162,7 @@ You have two options for building the pdk:
 - Build the pdk natively. 
 
 Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
+The pdk build is tested with magic version `8.3.209`. 
 
 .. code:: bash
 
