@@ -125,9 +125,9 @@ Verilog Integration
 
 You need to create a wrapper around your macro that adheres to the
 template at
-`user\_project\_wrapper <../../caravel/verilog/rtl/__user_project_wrapper.v>`__.
+`user\_project\_wrapper <https://github.com/efabless/caravel/blob/master/verilog/rtl/__user_project_wrapper.v>`__.
 The wrapper top module must be named ``user_project_wrapper`` and must
-have the same input and output ports as the golden wrapper `template <../../caravel/verilog/rtl/__user_project_wrapper.v>`__. The wrapper gives access to the
+have the same input and output ports as the golden wrapper `template <https://github.com/efabless/caravel/blob/master/verilog/rtl/__user_project_wrapper.v>`__. The wrapper gives access to the
 user space utilities provided by caravel like IO ports, logic analyzer
 probes, and wishbone bus connection to the management SoC.
 
@@ -266,7 +266,7 @@ To reproduce hardening this project, run the following:
    make user_project_wrapper
 
 
-Running Open-MPW Precheck Locally
+Running MPW Precheck Locally
 =================================
 
 You can install the precheck by running 
@@ -297,7 +297,7 @@ Other Miscellaneous Targets
 
 The makefile provides a number of useful that targets that can run LVS, DRC, and XOR checks on your hardened design outside of openlane's flow. 
 
-Run ```make help`` to display available targets. 
+Run ``make help`` to display available targets. 
 
 Specify CARAVEL_ROOT before running any of the following, 
 
@@ -346,18 +346,19 @@ Run XOR check,
 Checklist for Open-MPW Submission
 =================================
 
--  [x] The project repo adheres to the same directory structure in this
+-  ✔️ The project repo adheres to the same directory structure in this
    repo.
--  [x] The project repo contain info.yaml at the project root.
--  [x] Top level macro is named ``user_project_wrapper``.
--  [x] Full Chip Simulation passes for RTL and GL (gate-level)
--  [x] The hardened Macros are LVS and DRC clean
--  [x] The hardened ``user_project_wrapper`` adheres to the same pin
+-  ✔️ The project repo contain info.yaml at the project root.
+-  ✔️ Top level macro is named ``user_project_wrapper``.
+-  ✔️ Full Chip Simulation passes for RTL and GL (gate-level)
+-  ✔️ The hardened Macros are LVS and DRC clean
+-  ✔️ The hardened ``user_project_wrapper`` adheres to the same pin
    order specified at
    `pin\_order <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/pin_order.cfg>`__
--  [x] XOR check passes with zero total difference.
--  [x] Openlane summary reports are retained under ./signoff/
--  [x] The design passes the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ 
+-  ✔️ The hardened ``user_project_wrapper`` adheres to the fixed wrapper configuration specified at `fixed_wrapper_cfgs <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl>`__
+-  ✔️ XOR check passes with zero total difference.
+-  ✔️ Openlane summary reports are retained under ./signoff/
+-  ✔️ The design passes the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ 
 
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
