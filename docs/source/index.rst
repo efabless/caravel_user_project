@@ -105,14 +105,14 @@ caravel/caravel-lite master. The following files should have a symbolic
 link to `caravel's <https://github.com/efabless/caravel.git>`__
 corresponding files:
 
--  `Openlane Makefile <openlane/Makefile>`__: This provides an easier
+-  `Openlane Makefile <../../openlane/Makefile>`__: This provides an easier
    way for running openlane to harden your macros. Refer to `Hardening
    the User Project Macro using
    Openlane <#hardening-the-user-project-macro-using-openlane>`__. Also,
    the makefile retains the openlane summary reports under the signoff
    directory.
 
--  `Pin order <openlane/user_project_wrapper/pin_order.cfg>`__ file for
+-  `Pin order <../../openlane/user_project_wrapper/pin_order.cfg>`__ file for
    the user wrapper: The hardened user project wrapper macro must have
    the same pin order specified in caravel's repo. Failing to adhere to
    the same order will fail the gds integration of the macro with
@@ -125,9 +125,9 @@ Verilog Integration
 
 You need to create a wrapper around your macro that adheres to the
 template at
-`user\_project\_wrapper <caravel/verilog/rtl/__user_project_wrapper.v>`__.
+`user\_project\_wrapper <https://github.com/efabless/caravel/blob/master/verilog/rtl/__user_project_wrapper.v>`__.
 The wrapper top module must be named ``user_project_wrapper`` and must
-have the same input and output ports. The wrapper gives access to the
+have the same input and output ports as the golden wrapper `template <https://github.com/efabless/caravel/blob/master/verilog/rtl/__user_project_wrapper.v>`__. The wrapper gives access to the
 user space utilities provided by caravel like IO ports, logic analyzer
 probes, and wishbone bus connection to the management SoC.
 
@@ -141,7 +141,7 @@ For this sample project, the user macro makes use of:
 -  The wishbone port for reading/writing the count value through the
    management SoC.
 
-Refer to `user\_project\_wrapper <verilog/rtl/user_project_wrapper.v>`__
+Refer to `user\_project\_wrapper <../../verilog/rtl/user_project_wrapper.v>`__
 for more information.
 
 .. raw:: html
@@ -162,6 +162,7 @@ You have two options for building the pdk:
 - Build the pdk natively. 
 
 Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
+The pdk build is tested with magic version `8.3.209`. 
 
 .. code:: bash
 
@@ -222,25 +223,29 @@ You will need to install openlane by running the following
 .. code:: bash
 
    export OPENLANE_ROOT=<openlane-installation-path>
-   export OPENLANE_TAG=<latest-openlane-tag>
+
+   # you can optionally specify the openlane tag to use
+   # by running: export OPENLANE_TAG=<openlane-tag>
+   # if you do not set the tag, it defaults to the last verfied tag tested for this project
+
    make openlane
 
-For detailed instructions on how to install openlane and the pdk refer
+For detailed instructions on the openlane and the pdk installation refer
 to
 `README <https://github.com/efabless/openlane/blob/master/README.md>`__.
 
-There are two options for hardening the user project macro using
+There are three options for hardening the user project macro using
 openlane:
 
 1. Hardening the user macro, then embedding it in the wrapper
 2. Flattening the user macro with the wrapper.
+3. Placing multiple macros in the wrapper along with standard cells on the top level. 
 
-For more details on this, refer to this
-`README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
+For more details on hardening the user project macro using openlane, refer to `README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
-wrapper.
+wrapper without having any standard cells on the top level.
 
 .. raw:: html
 
@@ -262,7 +267,7 @@ To reproduce hardening this project, run the following:
    make user_project_wrapper
 
 
-Running Open-MPW Precheck Locally
+Running MPW Precheck Locally
 =================================
 
 You can install the precheck by running 
@@ -293,7 +298,7 @@ Other Miscellaneous Targets
 
 The makefile provides a number of useful that targets that can run LVS, DRC, and XOR checks on your hardened design outside of openlane's flow. 
 
-Run ```make help`` to display available targets. 
+Run ``make help`` to display available targets. 
 
 Specify CARAVEL_ROOT before running any of the following, 
 
@@ -302,7 +307,7 @@ Specify CARAVEL_ROOT before running any of the following,
    # export CARAVEL_ROOT=$(pwd)/caravel 
    export CARAVEL_ROOT=<path-to-caravel>
 
-Run lvs on spice, 
+Run lvs on the mag view, 
 
 .. code:: bash
 
@@ -342,17 +347,19 @@ Run XOR check,
 Checklist for Open-MPW Submission
 =================================
 
--  [x] The project repo adheres to the same directory structure in this
+-  ✔️ The project repo adheres to the same directory structure in this
    repo.
--  [x] The project repo contain info.yaml at the project root.
--  [x] Top level macro is named ``user_project_wrapper``.
--  [x] Full Chip Simulation passes for RTL and GL (gate-level)
--  [x] The hardened Macros are LVS and DRC clean
--  [x] The hardened ``user_project_wrapper`` adheres to the same pin
+-  ✔️ The project repo contain info.yaml at the project root.
+-  ✔️ Top level macro is named ``user_project_wrapper``.
+-  ✔️ Full Chip Simulation passes for RTL and GL (gate-level)
+-  ✔️ The hardened Macros are LVS and DRC clean
+-  ✔️ The hardened ``user_project_wrapper`` adheres to the same pin
    order specified at
    `pin\_order <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/pin_order.cfg>`__
--  [x] XOR check passes with zero total difference.
--  [x] Openlane summary reports are retained under ./signoff/
+-  ✔️ The hardened ``user_project_wrapper`` adheres to the fixed wrapper configuration specified at `fixed_wrapper_cfgs <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl>`__
+-  ✔️ XOR check passes with zero total difference.
+-  ✔️ Openlane summary reports are retained under ./signoff/
+-  ✔️ The design passes the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ 
 
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
