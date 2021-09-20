@@ -105,14 +105,14 @@ caravel/caravel-lite master. The following files should have a symbolic
 link to `caravel's <https://github.com/efabless/caravel.git>`__
 corresponding files:
 
--  `Openlane Makefile <openlane/Makefile>`__: This provides an easier
+-  `Openlane Makefile <../../openlane/Makefile>`__: This provides an easier
    way for running openlane to harden your macros. Refer to `Hardening
    the User Project Macro using
    Openlane <#hardening-the-user-project-macro-using-openlane>`__. Also,
    the makefile retains the openlane summary reports under the signoff
    directory.
 
--  `Pin order <openlane/user_project_wrapper/pin_order.cfg>`__ file for
+-  `Pin order <../../openlane/user_project_wrapper/pin_order.cfg>`__ file for
    the user wrapper: The hardened user project wrapper macro must have
    the same pin order specified in caravel's repo. Failing to adhere to
    the same order will fail the gds integration of the macro with
@@ -302,7 +302,7 @@ Specify CARAVEL_ROOT before running any of the following,
    # export CARAVEL_ROOT=$(pwd)/caravel 
    export CARAVEL_ROOT=<path-to-caravel>
 
-Run lvs on spice, 
+Run lvs on the mag view, 
 
 .. code:: bash
 
@@ -353,6 +353,7 @@ Checklist for Open-MPW Submission
    `pin\_order <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/pin_order.cfg>`__
 -  [x] XOR check passes with zero total difference.
 -  [x] Openlane summary reports are retained under ./signoff/
+-  [x] The design passes the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ 
 
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
    :target: https://opensource.org/licenses/Apache-2.0
