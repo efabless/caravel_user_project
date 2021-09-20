@@ -67,7 +67,7 @@ $(DV_PATTERNS): verify-% : ./verilog/dv/%
 BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(BLOCKS)
 $(BLOCKS): %:
-	cd openlane && $(MAKE) $*
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
 # Install caravel
 .PHONY: install
