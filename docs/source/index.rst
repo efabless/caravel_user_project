@@ -125,9 +125,9 @@ Verilog Integration
 
 You need to create a wrapper around your macro that adheres to the
 template at
-`user\_project\_wrapper <caravel/verilog/rtl/__user_project_wrapper.v>`__.
+`user\_project\_wrapper <../../caravel/verilog/rtl/__user_project_wrapper.v>`__.
 The wrapper top module must be named ``user_project_wrapper`` and must
-have the same input and output ports. The wrapper gives access to the
+have the same input and output ports as the golden wrapper `template <../../caravel/verilog/rtl/__user_project_wrapper.v>`__. The wrapper gives access to the
 user space utilities provided by caravel like IO ports, logic analyzer
 probes, and wishbone bus connection to the management SoC.
 
@@ -141,7 +141,7 @@ For this sample project, the user macro makes use of:
 -  The wishbone port for reading/writing the count value through the
    management SoC.
 
-Refer to `user\_project\_wrapper <verilog/rtl/user_project_wrapper.v>`__
+Refer to `user\_project\_wrapper <../../verilog/rtl/user_project_wrapper.v>`__
 for more information.
 
 .. raw:: html
@@ -222,25 +222,29 @@ You will need to install openlane by running the following
 .. code:: bash
 
    export OPENLANE_ROOT=<openlane-installation-path>
-   export OPENLANE_TAG=<latest-openlane-tag>
+
+   # you can optionally specify the openlane tag to use
+   # by running: export OPENLANE_TAG=<openlane-tag>
+   # if you do not set the tag, it defaults to the last verfied tag tested for this project
+
    make openlane
 
-For detailed instructions on how to install openlane and the pdk refer
+For detailed instructions on the openlane and the pdk installation refer
 to
 `README <https://github.com/efabless/openlane/blob/master/README.md>`__.
 
-There are two options for hardening the user project macro using
+There are three options for hardening the user project macro using
 openlane:
 
 1. Hardening the user macro, then embedding it in the wrapper
 2. Flattening the user macro with the wrapper.
+3. Placing multiple macros in the wrapper along with standard cells on the top level. 
 
-For more details on this, refer to this
-`README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
+For more details on hardening the user project macro using openlane, refer to `README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
-wrapper.
+wrapper without having any standard cells on the top level.
 
 .. raw:: html
 
