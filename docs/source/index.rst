@@ -207,8 +207,8 @@ Then, run the RTL and GL simulation by
     export CARAVEL_ROOT=$(pwd)/caravel
     # specify simulation mode: RTL/GL
     export SIM=RTL
-    # Run IO ports testbench, make verify-io_ports
-    make verify-<dv-pattern>
+    # Run RTL simulation on IO ports testbench, make verify-io_ports
+    make verify-<testbench-name>
 
 The verilog test-benches are under this directory
 `verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__. For more information on setting up the
@@ -217,6 +217,9 @@ project, refer to `README <https://github.com/efabless/caravel_user_project/blob
 
 Hardening the User Project Macro using Openlane
 ===============================================
+
+OpenLane Installation 
+---------------------
 
 You will need to install openlane by running the following
 
@@ -234,12 +237,34 @@ For detailed instructions on the openlane and the pdk installation refer
 to
 `README <https://github.com/efabless/openlane/blob/master/README.md>`__.
 
+Hardening Options 
+-----------------
+
 There are three options for hardening the user project macro using
 openlane:
 
-1. Hardening the user macro, then embedding it in the wrapper
-2. Flattening the user macro with the wrapper.
-3. Placing multiple macros in the wrapper along with standard cells on the top level. 
+
++--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
+|           Option 1                                           |            Option 2                        |           Option 3                         |
++--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
+| Hardening the user macro(s) first, then inserting it in the  |  Flattening the user macro(s)              | Placing multiple macros in the wrapper     |
+| user project wrapper with no std cells on the top level      |  with the user_project_wrapper             | along with standard cells on the top level |
++==============================================================+============================================+============================================+
+| |pic1|                                                       |   |pic2|                                   |   |pic3|                                   |
+|                                                              |                                            |                                            |
++--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
+|           Ex: caravel_user_porject                           |                                            |           Ex: caravel_ibex, openfpga       |
++--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
+
+
+.. |pic1| image:: ./_static/wrapper.png
+   :width: 40%
+
+.. |pic2| image:: ./_static/wrapper.png
+   :width: 50%
+
+.. |pic3| image:: ./_static/wrapper.png
+   :width: 50%
 
 For more details on hardening the user project macro using openlane, refer to `README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
 
@@ -257,6 +282,9 @@ wrapper without having any standard cells on the top level.
 
    </p>
 
+Running OpenLane 
+-----------------
+
 To reproduce hardening this project, run the following:
 
 .. code:: bash
@@ -266,6 +294,8 @@ To reproduce hardening this project, run the following:
    # Run openlane to harden user_project_wrapper
    make user_project_wrapper
 
+
+For more information on the openlane flow, check `README <>`__.
 
 Running MPW Precheck Locally
 =================================
