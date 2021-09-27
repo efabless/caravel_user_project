@@ -270,7 +270,7 @@ openlane:
 .. |pic3| image:: ./_static/wrapper.png
    :width: 80%
 
-For more details on hardening the user project macro using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane#running-openlane>`__.
+For more details on hardening the user project macro using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
