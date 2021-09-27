@@ -235,7 +235,7 @@ You will need to install openlane by running the following
 
 For detailed instructions on the openlane and the pdk installation refer
 to
-`README <https://github.com/efabless/openlane/blob/master/README.md>`__.
+`README <https://github.com/The-OpenROAD-Project/OpenLane#setting-up-openlane>`__.
 
 Hardening Options 
 -----------------
@@ -243,30 +243,34 @@ Hardening Options
 There are three options for hardening the user project macro using
 openlane:
 
-
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 |           Option 1                                           |            Option 2                        |           Option 3                         |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 | Hardening the user macro(s) first, then inserting it in the  |  Flattening the user macro(s)              | Placing multiple macros in the wrapper     |
-| user project wrapper with no std cells on the top level      |  with the user_project_wrapper             | along with standard cells on the top level |
+| user project wrapper with no standard cells on the top level |  with the user_project_wrapper             | along with standard cells on the top level |
 +==============================================================+============================================+============================================+
 | |pic1|                                                       |   |pic2|                                   |   |pic3|                                   |
 |                                                              |                                            |                                            |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
-|           Ex: caravel_user_porject                           |                                            |           Ex: caravel_ibex, openfpga       |
+|           ex: |link1|                                        |                                            |           ex: |link2|                      |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 
 
+.. |link1| replace:: `caravel_user_project <https://github.com/efabless/caravel_user_project>`__
+
+.. |link2| replace:: `caravel_ibex <https://github.com/efabless/caravel_ibex>`__
+
+
 .. |pic1| image:: ./_static/wrapper.png
-   :width: 40%
+   :width: 65%
 
 .. |pic2| image:: ./_static/wrapper.png
-   :width: 50%
+   :width: 80%
 
 .. |pic3| image:: ./_static/wrapper.png
-   :width: 50%
+   :width: 80%
 
-For more details on hardening the user project macro using openlane, refer to `README <https://github.com/efabless/caravel/blob/master/openlane/README.rst>`__.
+For more details on hardening the user project macro using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane#running-openlane>`__.
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
@@ -275,7 +279,7 @@ wrapper without having any standard cells on the top level.
 .. raw:: html
 
    <p align="center">
-   <img src="./_static/wrapper.png" width="50%" height="50%">
+   <img src="./_static/wrapper.png" width="30%" height="30%">
    </p>
 
 .. raw:: html
@@ -295,12 +299,12 @@ To reproduce hardening this project, run the following:
    make user_project_wrapper
 
 
-For more information on the openlane flow, check `README <>`__.
+For more information on the openlane flow, check `README <https://github.com/The-OpenROAD-Project/OpenLane#readme>`__.
 
 Running MPW Precheck Locally
 =================================
 
-You can install the precheck by running 
+You can install the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ by running 
 
 .. code:: bash
 
