@@ -32,10 +32,12 @@ Table of contents
 
    -  `Repo Integration <#repo-integration>`__
    -  `Verilog Integration <#verilog-integration>`__
+   -  `Layout Integration <#layout-integration>`__
 
 -  `Running Full Chip Simulation <#running-full-chip-simulation>`__
--  `Hardening the User Project Macro using
-   Openlane <#hardening-the-user-project-macro-using-openlane>`__
+-  `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__
+-  `Hardening the User Project using
+   Openlane <#hardening-the-user-project-using-openlane>`__
 -  `Checklist for Open-MPW
    Submission <#checklist-for-open-mpw-submission>`__
 
@@ -101,7 +103,7 @@ Repo Integration
 
 Caravel files are kept separate from the user project by having caravel
 as submodule. The submodule commit should point to the latest of
-caravel/caravel-lite master. The following files should have a symbolic
+caravel/caravel-lite master/main branch. The following files should have a symbolic
 link to `caravel's <https://github.com/efabless/caravel.git>`__
 corresponding files:
 
@@ -154,6 +156,11 @@ for more information.
 
    </p>
 
+
+Layout Integration
+-------------------
+
+
 Building the PDK 
 ================
 
@@ -199,7 +206,7 @@ First, you will need to install the simulation environment, by
 
 This will pull a docker image with the needed tools installed.
 
-Then, run the RTL and GL simulation by
+Then, run the RTL simulation by
 
 .. code:: bash
 
@@ -210,13 +217,33 @@ Then, run the RTL and GL simulation by
     # Run RTL simulation on IO ports testbench, make verify-io_ports
     make verify-<testbench-name>
 
-The verilog test-benches are under this directory
-`verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__. For more information on setting up the
+Once you have the physical implementation done and you have the gate-level netlists ready, it is very crucial to run full gate-level simulations. This is to make sure that synthesis and design optimizations didn't ruin your design logic. 
+
+Run the gate-level simulation by: 
+
+.. code:: bash
+
+    export PDK_ROOT=<pdk-installation-path>
+    export CARAVEL_ROOT=$(pwd)/caravel
+    # specify simulation mode: RTL/GL
+    export SIM=GL
+    # Run RTL simulation on IO ports testbench, make verify-io_ports
+    make verify-<testbench-name>
+
+
+This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
+`verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__ directory. For more information on setting up the
 simulation environment and the available testbenches for this sample
 project, refer to `README <https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md>`__.
 
-Hardening the User Project Macro using Openlane
-===============================================
+
+
+User Project Wrapper Requirements
+=================================
+
+
+Hardening the User Project using OpenLane
+==================================================
 
 OpenLane Installation 
 ---------------------
