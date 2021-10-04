@@ -160,6 +160,16 @@ for more information.
 Layout Integration
 -------------------
 
+The caravel layout is pre-designed with an empty golden wrapper in the user space. You only need to provide us with a valid ``user_project_wrapper`` GDS file. And, as part of the tapeout process, your hardened ``user_project_wrapper`` will be inserted into a vanilla caravel layout to get the final layout shipped for fabrication. 
+
+.. raw:: html
+
+   <p align="center">
+   <img src="./_static/layout.png" width="80%" height="80%">
+   </p>
+   
+To make sure that this integration process goes smoothly without having any DRC or LVS issues, your hardened ``user_project_wrapper`` must adhere to a number of requirements listed at `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__ .
+
 
 Building the PDK 
 ================
@@ -169,7 +179,7 @@ You have two options for building the pdk:
 - Build the pdk natively. 
 
 Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
-The pdk build is tested with magic version `8.3.209`. 
+The pdk build is tested with magic version ``8.3.209``. 
 
 .. code:: bash
 
@@ -217,7 +227,7 @@ Then, run the RTL simulation by
     # Run RTL simulation on IO ports testbench, make verify-io_ports
     make verify-<testbench-name>
 
-Once you have the physical implementation done and you have the gate-level netlists ready, it is very crucial to run full gate-level simulations. This is to make sure that synthesis and design optimizations didn't ruin your design logic. 
+Once you have the physical implementation done and you have the gate-level netlists ready, it is crucial to run full gate-level simulations to make sure that your design works as intended after running the physical implementation. 
 
 Run the gate-level simulation by: 
 
@@ -237,13 +247,34 @@ simulation environment and the available testbenches for this sample
 project, refer to `README <https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md>`__.
 
 
-
 User Project Wrapper Requirements
 =================================
 
+Your hardened ``user_project_wrapper`` must match the `golden user_project_wrapper <https://github.com/efabless/caravel/blob/master/gds/user_project_wrapper_empty.gds.gz>`__ in the following: 
+
+- Pin Placement
+- Pin Sizes 
+- Core Rings Width and Offset
+- PDN Vertical and Horizontal Straps Width 
+
+These fixed configurations are specified `here <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl>`__ .
+
+However, you are allowed to change the following if you need to: 
+
+- PDN Vertical and Horizontal Pitch & Offset
+
+.. raw:: html
+
+   <p align="center">
+   <img src="./_static/pitch.png" width="30%" height="30%">
+   </p>
+ 
+To make sure that you adhere to these requirements, we run an exclusive-or (XOR) check between your hardened ``user_project_wrapper`` GDS and the golden wrapper GDS after processing both layouts to include only the boundary (pins and core rings). This check is done as part of the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ tool. 
+
+
 
 Hardening the User Project using OpenLane
-==================================================
+==========================================
 
 OpenLane Installation 
 ---------------------
@@ -273,31 +304,34 @@ openlane:
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 |           Option 1                                           |            Option 2                        |           Option 3                         |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
-| Hardening the user macro(s) first, then inserting it in the  |  Flattening the user macro(s)              | Placing multiple macros in the wrapper     |
-| user project wrapper with no standard cells on the top level |  with the user_project_wrapper             | along with standard cells on the top level |
+| Hardening the user macro(s) first, then inserting it in the  |  Flattening the user macro(s) with the     | Placing multiple macros in the wrapper     |
+| user project wrapper with no standard cells on the top level |  user_project_wrapper                      | along with standard cells on the top level |
 +==============================================================+============================================+============================================+
-| |pic1|                                                       |   |pic2|                                   |   |pic3|                                   |
+| |pic1|                                                       | |pic2|                                     | |pic3|                                     |
 |                                                              |                                            |                                            |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 |           ex: |link1|                                        |                                            |           ex: |link2|                      |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
-
 
 .. |link1| replace:: `caravel_user_project <https://github.com/efabless/caravel_user_project>`__
 
 .. |link2| replace:: `caravel_ibex <https://github.com/efabless/caravel_ibex>`__
 
 
-.. |pic1| image:: ./_static/wrapper.png
-   :width: 65%
+.. |pic1| image:: ./_static/option1.png
+   :width: 48%
 
-.. |pic2| image:: ./_static/wrapper.png
-   :width: 80%
+.. |pic2| image:: ./_static/option2.png
+   :width: 140%
 
-.. |pic3| image:: ./_static/wrapper.png
-   :width: 80%
+.. |pic3| image:: ./_static/option3.png
+   :width: 72%
 
-For more details on hardening the user project macro using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
+For more details on hardening macros using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
+
+
+Running OpenLane 
+-----------------
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
@@ -312,10 +346,7 @@ wrapper without having any standard cells on the top level.
 .. raw:: html
 
    </p>
-
-Running OpenLane 
------------------
-
+   
 To reproduce hardening this project, run the following:
 
 .. code:: bash
