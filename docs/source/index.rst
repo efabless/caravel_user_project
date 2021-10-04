@@ -160,6 +160,16 @@ for more information.
 Layout Integration
 -------------------
 
+The caravel layout is pre-designed with an empty golden wrapper in the user space. You only need to provide us with a valid ``user_project_wrapper`` GDS file. And, as part of the tapeout process, your hardened ``user_project_wrapper`` will be inserted into a vanilla caravel layout to get the final layout shipped for fabrication. 
+
+.. raw:: html
+
+   <p align="center">
+   <img src="./_static/layout.png" width="80%" height="80%">
+   </p>
+   
+To make sure that this integration process goes smoothly without having any DRC or LVS issues, your hardened ``user_project_wrapper`` must adhere to a number of requirements listed at `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__ .
+
 
 Building the PDK 
 ================
@@ -169,7 +179,7 @@ You have two options for building the pdk:
 - Build the pdk natively. 
 
 Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
-The pdk build is tested with magic version `8.3.209`. 
+The pdk build is tested with magic version ``8.3.209``. 
 
 .. code:: bash
 
@@ -273,31 +283,216 @@ openlane:
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 |           Option 1                                           |            Option 2                        |           Option 3                         |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
-| Hardening the user macro(s) first, then inserting it in the  |  Flattening the user macro(s)              | Placing multiple macros in the wrapper     |
-| user project wrapper with no standard cells on the top level |  with the user_project_wrapper             | along with standard cells on the top level |
+| Hardening the user macro(s) first, then inserting it in the  |  Flattening the user macro(s) with the     | Placing multiple macros in the wrapper     |
+| user project wrapper with no standard cells on the top level |  user_project_wrapper                      | along with standard cells on the top level |
 +==============================================================+============================================+============================================+
-| |pic1|                                                       |   |pic2|                                   |   |pic3|                                   |
+| |pic1|                                                       | |pic2|                                     | |pic3|                                     |
 |                                                              |                                            |                                            |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 |           ex: |link1|                                        |                                            |           ex: |link2|                      |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 
 
+Option 1: Inserting your design macro(s) into the wrapper with no standard cells on the top level 
+-------------------------------------------------------------------------------------------------
+
+1. This could be done by creating a directory for your design under the ``<your_user_project_root>/openlane/<my-design>`` and adding a configuration file for it under the same directory. You can start with the following for your config.tcl:
+
+.. code:: tcl
+
+   set script_dir [file dirname [file normalize [info script]]]
+
+   set ::env(DESIGN_NAME) <Your Design Name>
+
+   set ::env(DESIGN_IS_CORE) 0
+   set ::env(GLB_RT_MAXLAYER) 5
+
+   set ::env(VERILOG_FILES) "$script_dir/../../verilog/rtl/<Your RTL.v>"
+
+   set ::env(CLOCK_PORT) <Clock port name if it exists>
+   set ::env(CLOCK_PERIOD) <Desired clock period>
+
+Then you can add any other configurations as you see fit to get the desired DRC/LVS clean outcome.
+
+After that, run the following command from your ``<your_user_project_root>``:
+
+.. code:: bash
+
+   make <macro-name>
+
+2. Then, you will need to harden the ``user_project_wrapper``. Before doing so, you will need to make sure that the following configurations exist in the the ``user_project_wrapper`` `config.tcl <https://github.com/efabless/caravel_user_project/blob/main/openlane/user_project_wrapper/config.tcl>`__  in order to tell openlane to not insert any standard cells on the top level. 
+
+.. code:: tcl
+
+   # The following is because there are no std cells in the example wrapper project.
+   set ::env(SYNTH_TOP_LEVEL) 1
+   set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+
+   set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
+   set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
+   set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
+   set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
+   set ::env(FP_PDN_ENABLE_RAILS) 0
+
+   set ::env(DIODE_INSERTION_STRATEGY) 0
+   set ::env(FILL_INSERTION) 0
+   set ::env(TAP_DECAP_INSERTION) 0
+   set ::env(CLOCK_TREE_SYNTH) 0
+   
+
+You may need to adjust the macro placement, you can do so by adjusting the `macro placement configuration file <https://github.com/efabless/caravel_user_project/blob/main/openlane/user_project_wrapper/macro.cfg>`__ which specifies the x and y positions and the orientation for your macro.  
+
+Additionally, you can adjust the pointers to your hardened macro(s) by adjusting the following variables that point to the verilog, LEF, and GDS view of your hardened macro. 
+
+.. code:: tcl
+
+   ### Black-box verilog and views
+   set ::env(VERILOG_FILES_BLACKBOX) "\
+      $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+      $script_dir/../../verilog/rtl/user_proj_example.v"
+
+   set ::env(EXTRA_LEFS) "\
+      $script_dir/../../lef/user_proj_example.lef"
+
+   set ::env(EXTRA_GDS_FILES) "\
+      $script_dir/../../gds/user_proj_example.gds"
+
+
+3. Re-iterate and adjust the configurations if you need to get a DRC/LVS clean run. 
+
+
+Option 2: Flattening the user macro(s) with the user project wrapper
+--------------------------------------------------------------------
+
+1. First, you will need to adjust the wrapper config.tcl to remove any pointers to internal macros. For example, the following configurations will need to be removed: 
+
+.. code:: tcl
+
+   ## Internal Macros
+   ### Macro PDN Connections
+   set ::env(FP_PDN_MACRO_HOOKS) "\
+      mprj vccd1 vssd1"
+
+   ### Macro Placement
+   set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
+
+   ### Black-box verilog and views
+   set ::env(VERILOG_FILES_BLACKBOX) "\
+      $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+      $script_dir/../../verilog/rtl/user_proj_example.v"
+
+   set ::env(EXTRA_LEFS) "\
+      $script_dir/../../lef/user_proj_example.lef"
+
+   set ::env(EXTRA_GDS_FILES) "\
+      $script_dir/../../gds/user_proj_example.gds"
+
+2. Then, you need to modify the configuration file to remove or change these configs accordingly to let openlane insert standard cells on the top level:
+
+.. code:: tcl
+
+   # The following is because there are no std cells in the example wrapper project.
+   set ::env(SYNTH_TOP_LEVEL) 1
+   set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+
+   set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
+   set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
+   set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
+   set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
+   set ::env(FP_PDN_ENABLE_RAILS) 0
+
+   set ::env(DIODE_INSERTION_STRATEGY) 0
+   set ::env(FILL_INSERTION) 0
+   set ::env(TAP_DECAP_INSERTION) 0
+   set ::env(CLOCK_TREE_SYNTH) 0
+
+3. Run your design through the flow by running the following from your ``<user-project-root>``: 
+
+.. code:: bash
+
+   make user_project_wrapper
+   
+  
+4. Re-iterate and adjust the configurations if you need to get a DRC/LVS clean run. 
+
+
+Option 3: Placing multiple macros in the wrapper along with standard cells on the top level
+-------------------------------------------------------------------------------------------
+
+1.First, create a directory for each different macro in your design ``<your_user_project_root>/openlane/<my-design>`` and add a configuration file for each one under the same directory.
+
+2. Run each macro through the openlane flow by running the following from your ``<user-project-root>``: 
+
+.. code:: bash
+
+   make <macro-name> 
+   
+3. Then, you will need to harden the top module ``user_project_wrapper``. Before doing so, you need to modify the wrapper configuration file by removing or adjusting the following configurations to let openlane insert standard cells on the top level: 
+
+.. code:: tcl
+
+   # The following is because there are no std cells in the example wrapper project.
+   set ::env(SYNTH_TOP_LEVEL) 1
+   set ::env(PL_RANDOM_GLB_PLACEMENT) 1
+
+   set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
+   set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
+   set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
+   set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
+
+   set ::env(FP_PDN_ENABLE_RAILS) 0
+
+   set ::env(DIODE_INSERTION_STRATEGY) 0
+   set ::env(FILL_INSERTION) 0
+   set ::env(TAP_DECAP_INSERTION) 0
+   set ::env(CLOCK_TREE_SYNTH) 0
+   
+
+4. Then, adjust the internal macros pointers to accomodate the multiple macros in your design. 
+
+.. code:: tcl
+
+   ## Internal Macros
+   ### Macro PDN Connections
+   set ::env(FP_PDN_MACRO_HOOKS) "\
+      mprj vccd1 vssd1"
+
+   ### Macro Placement
+   set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
+
+   ### Black-box verilog and views
+   set ::env(VERILOG_FILES_BLACKBOX) "\
+      $::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+      $script_dir/../../verilog/rtl/user_proj_example.v"
+
+   set ::env(EXTRA_LEFS) "\
+      $script_dir/../../lef/user_proj_example.lef"
+
+   set ::env(EXTRA_GDS_FILES) "\
+      $script_dir/../../gds/user_proj_example.gds"
+      
+
 .. |link1| replace:: `caravel_user_project <https://github.com/efabless/caravel_user_project>`__
 
 .. |link2| replace:: `caravel_ibex <https://github.com/efabless/caravel_ibex>`__
 
 
-.. |pic1| image:: ./_static/wrapper.png
-   :width: 65%
+.. |pic1| image:: ./_static/option1.png
+   :width: 48%
 
-.. |pic2| image:: ./_static/wrapper.png
-   :width: 80%
+.. |pic2| image:: ./_static/option2.png
+   :width: 140%
 
-.. |pic3| image:: ./_static/wrapper.png
-   :width: 80%
+.. |pic3| image:: ./_static/option3.png
+   :width: 72%
 
-For more details on hardening the user project macro using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
+For more details on hardening macros using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
+
+
+Running OpenLane 
+-----------------
 
 For this sample project, we went for the first option where the user
 macro is hardened first, then it is inserted in the user project
@@ -312,10 +507,7 @@ wrapper without having any standard cells on the top level.
 .. raw:: html
 
    </p>
-
-Running OpenLane 
------------------
-
+   
 To reproduce hardening this project, run the following:
 
 .. code:: bash
