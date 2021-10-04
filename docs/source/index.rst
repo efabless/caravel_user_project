@@ -252,10 +252,20 @@ User Project Wrapper Requirements
 
 Your hardened ``user_project_wrapper`` must match the `golden user_project_wrapper <https://github.com/efabless/caravel/blob/master/gds/user_project_wrapper_empty.gds.gz>`__ in the following: 
 
+- Area ``(2.920um x 3.520um)``
+- Top module name ``"user_project_wrapper"``
 - Pin Placement
 - Pin Sizes 
 - Core Rings Width and Offset
 - PDN Vertical and Horizontal Straps Width 
+
+
+.. raw:: html
+
+   <p align="center">
+   <img src="./_static/empty.png" width="40%" height="40%">
+   </p>
+ 
 
 These fixed configurations are specified `here <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl>`__ .
 
@@ -270,7 +280,6 @@ However, you are allowed to change the following if you need to:
    </p>
  
 To make sure that you adhere to these requirements, we run an exclusive-or (XOR) check between your hardened ``user_project_wrapper`` GDS and the golden wrapper GDS after processing both layouts to include only the boundary (pins and core rings). This check is done as part of the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ tool. 
-
 
 
 Hardening the User Project using OpenLane
