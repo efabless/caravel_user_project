@@ -1,0 +1,19 @@
+{
+    "CARAVEL_ROOT"             : "../../caravel",
+    "CLOCK_NET"                : "counter.clk",
+    "CLOCK_PERIOD"             : "10",
+    "CLOCK_PORT"               : "wb_clk_i",
+    "DESIGN_IS_CORE"           : "0",
+    "DESIGN_NAME"              : "user_proj_example",
+    "DIE_AREA"                 : "0 0 900 600",
+    "DIODE_INSERTION_STRATEGY" : "4",
+    "FP_PIN_ORDER_CFG"         : "pin_order.cfg",
+    "FP_SIZING"                : "absolute",
+    "GLB_RT_MAXLAYER"          : "5",
+    "GND_NETS"                 : "vssd1",
+    "PL_BASIC_PLACEMENT"       : "1",
+    "PL_TARGET_DENSITY"        : "0.05",
+    "RUN_CVC"                  : "1",
+    "VDD_NETS"                 : "vccd1",
+    "VERILOG_FILES"            : ["../../caravel/verilog/rtl/defines.v", "../../verilog/rtl/user_proj_example.v"]
+}
