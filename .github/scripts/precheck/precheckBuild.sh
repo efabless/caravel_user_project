@@ -18,16 +18,16 @@
 export SKIP_PDK_BUILD=${1:-0}
 
 export TARGET_PATH=$(pwd)
-git clone https://github.com/efabless/open_mpw_precheck.git
+git clone https://github.com/efabless/mpw_precheck.git
 
-docker pull efabless/open_mpw_precheck:latest
+docker pull efabless/mpw_precheck:latest
 
 
 if [ $SKIP_PDK_BUILD -eq 0 ]; then
     cd $TARGET_PATH/..
     export PDK_ROOT=$(pwd)/precheck_pdks
     mkdir $PDK_ROOT
-    cd $TARGET_PATH/open_mpw_precheck/dependencies
+    cd $TARGET_PATH/mpw_precheck/dependencies
     sh build-pdk.sh
     cd $TARGET_DIR
 

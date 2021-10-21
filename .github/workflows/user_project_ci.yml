@@ -1,4 +1,4 @@
-name: UPRJ_CI
+name: CI
 
 
 on:
@@ -6,6 +6,7 @@ on:
     push:
     # Runs on Pull Requests
     pull_request:
+    workflow_dispatch:
 
 jobs:
   precheck:
@@ -62,9 +63,9 @@ jobs:
          uses: docker/setup-buildx-action@v1
         
        - name: Install The PDK
-         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
          env: 
-          OPENLANE_TAG: v0.12
+          OPENLANE_TAG: 2021.09.16_03.28.21
           
        - name: Install The Dockerized DV Setup
          run:  docker pull efabless/dv_setup:latest
@@ -73,27 +74,27 @@ jobs:
          # Run test number 0,1,2,3,4 in one job                            <test-ids>   <sim-mode>
          run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      RTL
 
-  # dv_gl:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #      - uses: actions/checkout@v2
-  #        with:
-  #         submodules: 'true'
+  dv_gl:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+         with:
+          submodules: 'true'
       
-  #      - name: Set up QEMU
-  #        uses: docker/setup-qemu-action@v1
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v1
 
-  #      - name: Set up Docker Buildx
-  #        uses: docker/setup-buildx-action@v1
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v1
         
-  #      - name: Install The PDK
-  #        run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
-  #        env: 
-  #         OPENLANE_TAG: v0.12
+       - name: Install The PDK
+         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         env: 
+          OPENLANE_TAG: 2021.09.16_03.28.21
           
-  #      - name: Install The Dockerized DV Setup
-  #        run:  docker pull efabless/dv_setup:latest
+       - name: Install The Dockerized DV Setup
+         run:  docker pull efabless/dv_setup:latest
        
-  #      - name: Run DV tests
-  #        # Run test number 0,1,2,3,4 in one job                             <test-ids>   <sim-mode>
-  #        run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      GL
+       - name: Run DV tests
+         # Run test number 0,1,2,3,4 in one job                             <test-ids>   <sim-mode>
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      GL

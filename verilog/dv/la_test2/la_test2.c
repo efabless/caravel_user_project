@@ -97,13 +97,16 @@ void main()
 	// Set clk & reset to one
 	reg_la2_data = 0x00000003;
 
+        // DELAY
+        for (i=0; i<5; i=i+1) {}
+
 	// Toggle clk & de-assert reset
 	for (i=0; i<11; i=i+1) {
 		clk = !clk;
 		reg_la2_data = 0x00000000 | clk;
 	}
 
-	if (reg_la0_data == 0x05) {
+	if (reg_la0_data >= 0x05) {
 		reg_mprj_datal = 0xAB610000;
 	}
 

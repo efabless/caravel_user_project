@@ -26,16 +26,16 @@ export CARAVEL_ROOT=$(pwd)/caravel
 
 if [ ! -d $TARGET_PATH ] 
 then
-    echo "Directory /path/to/dir DOES NOT exists." 
+    echo "Directory target /path/to/dir DOES NOT exists." 
     exit 9999 
 fi
 
 cd ..
 
-export PDK_PATH=$(pwd)/pdks/sky130A
-if [ ! -d $PDK_PATH ] 
+export PDK_ROOT=$(pwd)/pdks
+if [ ! -d $PDK_ROOT ] 
 then
-    echo "Directory /path/to/dir DOES NOT exists." 
+    echo "Directory pdk /path/to/dir DOES NOT exists." 
     exit 9999 
 fi
 
@@ -48,12 +48,12 @@ fi
 
 for id in "${DV_TEST_IDS[@]}"
 do 
-    docker run -v $TARGET_PATH:$TARGET_PATH -v $PDK_PATH:$PDK_PATH \
+    docker run -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT \
                 -v $CARAVEL_ROOT:$CARAVEL_ROOT \
-                -e TARGET_PATH=$TARGET_PATH -e PDK_PATH=$PDK_PATH \
+                -e TARGET_PATH=$TARGET_PATH -e PDK_ROOT=$PDK_ROOT \
                 -e CARAVEL_ROOT=$CARAVEL_ROOT \
                 -u $(id -u $USER):$(id -g $USER) efabless/dv_setup:latest \
-                bash -c "bash $TARGET_PATH/.github/scripts/dv/run-dv.sh $PDK_PATH $DV_PATH $id $SIM_MODE"
+                bash -c "bash $TARGET_PATH/.github/scripts/dv/run-dv.sh $PDK_ROOT $DV_PATH $id $SIM_MODE"
 
     echo "DONE!"
 
