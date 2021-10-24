@@ -454,7 +454,7 @@ Checklist for Open-MPW Submission
 -  ✔️ Top level macro is named ``user_project_wrapper``.
 -  ✔️ Full Chip Simulation passes for RTL and GL (gate-level)
 -  ✔️ The hardened Macros are LVS and DRC clean
--  ✔️ The project contains a gate-level netlist for the user project wrapper at verilog/gl/user_project_wrapper.v
+-  ✔️ The project contains a gate-level netlist for ``user_project_wrapper`` at verilog/gl/user_project_wrapper.v
 -  ✔️ The hardened ``user_project_wrapper`` adheres to the same pin
    order specified at
    `pin\_order <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/pin_order.cfg>`__
