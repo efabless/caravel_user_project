@@ -1,4 +1,6 @@
 {
+    "PDK"                      : "sky130A",
+    "STD_CELL_LIBRARY"         : "sky130_fd_sc_hd",
     "CARAVEL_ROOT"             : "../../caravel",
     "CLOCK_NET"                : "counter.clk",
     "CLOCK_PERIOD"             : "10",
