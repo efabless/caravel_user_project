@@ -51,8 +51,8 @@ module gpio_test_tb;
 	reg gpio_in;
         wire gpio_out = mprj_io[22];
 
-	assign mprj_io[15] = 1'b1; // in_select
-	assign mprj_io[16] = 1'b1; // resetn
+	assign mprj_io[15] = 1'b1; // reset
+	assign mprj_io[16] = 1'b1; // in_select
 	assign mprj_io[17] = gpio_clk;
 	assign mprj_io[18] = gpio_in;
 	assign mprj_io[19] = gpio_scan;
