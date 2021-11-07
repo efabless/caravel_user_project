@@ -30,8 +30,9 @@
     `include "sky130_sram_2kbyte_1rw1r_32x512_8.v"
     `include "sky130_sram_4kbyte_1rw1r_32x1024_8.v"
     `include "sky130_sram_8kbyte_1rw1r_32x2048_8.v"
-    `include "sram_1rw0r0w_32_256_sky130.v"
-    `include "sram_1rw0r0w_32_512_sky130.v"
-    `include "sram_1rw0r0w_32_1024_sky130.v"
-    `include "sram_1rw0r0w_64_512_sky130.v"
+    `include "sky130_sram_1kbyte_1rw_32x256_8.v"
+    `include "sky130_sram_2kbyte_1rw_32x512_8.v"
+    `include "sky130_sram_4kbyte_1rw_32x1024_8.v"
+    `include "sky130_sram_4kbyte_1rw_64x512_8.v"
+    `include "sky130_sram_8kbyte_1rw_64x1024_8.v"
 `endif
