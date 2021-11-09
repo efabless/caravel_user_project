@@ -31,9 +31,9 @@ set ::env(VERILOG_FILES) "\
 	$script_dir/../../verilog/rtl/user_project_wrapper.v "
 
 ## Clock configurations
-set ::env(CLOCK_PORT) {io_in\[17\]}
+set ::env(CLOCK_PORT) {io_in[17]}
 set ::env(CLOCK_NET) "CONTROL_LOGIC.clk"
-set ::env(RESET_PORT) {io_in\[15\] wb_rst_i}
+set ::env(RESET_PORT) {io_in[15] wb_rst_i}
 
 set ::env(CLOCK_PERIOD) "30"
 set ::env(BASE_SDC_FILE) "$script_dir/base.sdc"

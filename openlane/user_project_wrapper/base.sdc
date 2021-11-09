@@ -4,11 +4,12 @@ set ::env(CLOCK_NET) "CONTROL_LOGIC.clk"
 set ::env(RESET_PORT) {io_in[15] wb_rst_i}
 
 set ::env(CLOCK_PERIOD) "30"
+
 set ::env(IO_PCT) 0.2
-set ::env(SYNTH_MAX_FANOUT) 5
-set ::env(SYNTH_DRIVING_CELL) "sky130_fd_sc_hd__inv_8"
+set ::env(SYNTH_DRIVING_CELL) "sky130_fd_sc_hd__inv_1"
 set ::env(SYNTH_DRIVING_CELL_PIN) "Y"
-set ::env(SYNTH_CAP_LOAD) 17.65
+set ::env(SYNTH_CAP_LOAD) "33.5"
+set ::env(SYNTH_MAX_FANOUT) "4"
 
 create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
 set_propagated_clock [get_ports $::env(CLOCK_PORT)]
@@ -28,8 +29,8 @@ set all_inputs_wo_clk_rst [lreplace $all_inputs_wo_clk $rst_indx $rst_indx]
 
 
 # correct resetn
-set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
-set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] [get_port $::env(RESET_PORT)]
+#set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
+#set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] [get_port $::env(RESET_PORT)]
 set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
 
 # TODO set this as parameter
@@ -37,3 +38,5 @@ set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_
 set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
 puts "\[INFO\]: Setting load to: $cap_load"
 set_load  $cap_load [all_outputs]
+
+report_clock_skew
