@@ -26,9 +26,9 @@ set ::env(DESIGN_NAME) user_project_wrapper
 
 ## Source Verilog Files
 set ::env(VERILOG_FILES) "\
-	$script_dir/../../caravel/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/openram_testchip.v \
-	$script_dir/../../verilog/rtl/user_project_wrapper.v "
+	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+	$script_dir/../../verilog/rtl/user_project_wrapper.v \
+	$script_dir/../../verilog/rtl/testchip/openram_testchip.v"
 
 ## Clock configurations
 set ::env(CLOCK_PORT) {io_in[17]}
@@ -55,7 +55,6 @@ set ::env(VERILOG_FILES_BLACKBOX) "\
 	$script_dir/../../verilog/rtl/sky130_sram_4kbyte_1rw_32x1024_8.v \
 	$script_dir/../../verilog/rtl/sky130_sram_4kbyte_1rw_64x512_8.v \
 	$script_dir/../../verilog/rtl/sky130_sram_8kbyte_1rw_64x1024_8.v"
-#$script_dir/../../verilog/rtl/openram_testchip.v
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef \
@@ -68,7 +67,6 @@ set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/sky130_sram_4kbyte_1rw_32x1024_8.lef \
 	$script_dir/../../lef/sky130_sram_4kbyte_1rw_64x512_8.lef \
 	$script_dir/../../lef/sky130_sram_8kbyte_1rw_64x1024_8.lef"
-#	$script_dir/../../lef/openram_testchip.lef
 
 set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds \
@@ -81,7 +79,6 @@ set ::env(EXTRA_GDS_FILES) "\
 	$script_dir/../../gds/sky130_sram_4kbyte_1rw_32x1024_8.gds \
 	$script_dir/../../gds/sky130_sram_4kbyte_1rw_64x512_8.gds \
 	$script_dir/../../gds/sky130_sram_8kbyte_1rw_64x1024_8.gds"
-#	$script_dir/../../gds/openram_testchip.gds
 
 set ::env(GLB_RT_MAXLAYER) 5
 
