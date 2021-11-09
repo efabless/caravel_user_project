@@ -428,7 +428,7 @@ sky130_sram_8kbyte_1rw_64x1024_8 SRAM12
      .wmask0 ({wmask0[3:2],4'hF,wmask0[1:0]}),
      .addr0  (addr0),
      .din0   ({1'b0, din0, din0}),
-     .dout0  ({disconn12, temp_sram11_dout0}),
+     .dout0  ({disconn12, temp_sram12_dout0}),
      .spare_wen0(1'b0)
      );
    assign sram12_dout0 = {temp_sram12_dout0[63:48], temp_sram12_dout0[15:0]};
