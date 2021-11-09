@@ -1,7 +1,7 @@
 ## Clock configurations
-set ::env(CLOCK_PORT) {io_in\[17\]}
+set ::env(CLOCK_PORT) {io_in[17]}
 set ::env(CLOCK_NET) "CONTROL_LOGIC.clk"
-set ::env(RESET_PORT) {io_in\[15\] wb_rst_i}
+set ::env(RESET_PORT) {io_in[15] wb_rst_i}
 
 set ::env(CLOCK_PERIOD) "30"
 set ::env(IO_PCT) 0.2
@@ -11,6 +11,8 @@ set ::env(SYNTH_DRIVING_CELL_PIN) "Y"
 set ::env(SYNTH_CAP_LOAD) 17.65
 
 create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+set_propagated_clock [get_ports $::env(CLOCK_PORT)]
+
 set input_delay_value [expr $::env(CLOCK_PERIOD) * $::env(IO_PCT)]
 set output_delay_value [expr $::env(CLOCK_PERIOD) * $::env(IO_PCT)]
 puts "\[INFO\]: Setting output delay to: $output_delay_value"
