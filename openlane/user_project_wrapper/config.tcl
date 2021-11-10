@@ -34,7 +34,7 @@ set ::env(DESIGN_NAME) user_project_wrapper
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
 	$script_dir/../../verilog/rtl/user_project_wrapper.v \
-	$script_dir/../../verilog/rtl/testchip/openram_testchip.v"
+	$script_dir/../../verilog/rtl/openram_testchip.v"
 
 ## Clock configurations
 set ::env(CLOCK_PORT) {io_in\[17\]}
