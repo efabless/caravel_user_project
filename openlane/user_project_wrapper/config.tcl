@@ -107,7 +107,8 @@ set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(RUN_KLAYOUT_XOR) 0
 
 # Spray diodes
-set ::env(DIODE_INSERTION_STRATEGY) 1
+set ::env(DIODE_INSERTION_STRATEGY) 4
+set ::env(FILL_INSERTION) 1
 # The following is because there are no std cells in the example wrapper project.
 #set ::env(SYNTH_TOP_LEVEL) 1
 #set ::env(PL_RANDOM_GLB_PLACEMENT) 1
