@@ -80,60 +80,60 @@ module la_test_tb;
 		$finish;
 
 	end // initial begin
-	
-	initial begin
-		wait (mprj_io_1 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 0!"); $finish;
-	end
-	
-	initial begin
-		wait (mprj_io_2 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 1!"); $finish;
-	end
-		
-	initial begin 
-		wait (mprj_io_3 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 2!"); $finish;
-	end
 
-	initial begin
-		wait (mprj_io_4 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 3!"); $finish;
-	end
+	// initial begin
+	// 	wait (mprj_io_1 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 0!"); $finish;
+	// end
 
-	initial begin
-		wait (mprj_io_5 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 4!"); $finish;
-	end
+	// initial begin
+	// 	wait (mprj_io_2 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 1!"); $finish;
+	// end
 
-	initial begin
-		wait (mprj_io_6 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 8!"); $finish;
-	end
+	// initial begin
+	// 	wait (mprj_io_3 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 2!"); $finish;
+	// end
 
-	initial begin
-		wait (mprj_io_7 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 9!"); $finish;
-	end
+	// initial begin
+	// 	wait (mprj_io_4 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 3!"); $finish;
+	// end
 
-	initial begin
-		wait (mprj_io_8 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 10!"); $finish;
-	end
+	// initial begin
+	// 	wait (mprj_io_5 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 4!"); $finish;
+	// end
 
-	initial begin
-		wait (mprj_io_9 == 1'b1);
-		$display($time, " Data mismatch while reading byte from SRAM 11!"); $finish;
-	end
+	// initial begin
+	// 	wait (mprj_io_6 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 8!"); $finish;
+	// end
 
-   initial begin
-      //$dumpfile("foo.vcd");
-      //$dumpvars(0, la_test_tb);
+	// initial begin
+	// 	wait (mprj_io_7 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 9!"); $finish;
+	// end
 
-      #5000000
-      $display("Timeout");
-      $finish;
-   end
+	// initial begin
+	// 	wait (mprj_io_8 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 10!"); $finish;
+	// end
+
+	// initial begin
+	// 	wait (mprj_io_9 == 1'b1);
+	// 	$display($time, " Data mismatch while reading byte from SRAM 11!"); $finish;
+	// end
+
+   // initial begin
+   //    //$dumpfile("foo.vcd");
+   //    //$dumpvars(0, la_test_tb);
+
+   //    #5000000
+   //    $display("Timeout");
+   //    $finish;
+   // end
 
 
 

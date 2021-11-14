@@ -75,11 +75,11 @@ void main()
 	reg_la2_data = 0x00000000;
 	reg_la3_data = 0x00000000;
 
-	// Set bit 0 when done
-	reg_mprj_datal = 0x00000001;
-
 	/* Apply configuration */
 	reg_mprj_xfer = 1;
 	while (reg_mprj_xfer == 1);
+
+	// Set bit 0 when done
+	reg_mprj_datal = 0x00000001;
 
 }

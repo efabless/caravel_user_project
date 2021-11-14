@@ -106,9 +106,10 @@ set ::env(PL_TARGET_DENSITY) 0.25
 set ::env(RUN_KLAYOUT_DRC) 0
 set ::env(RUN_KLAYOUT_XOR) 0
 
-# Spray diodes
 set ::env(DIODE_INSERTION_STRATEGY) 4
 set ::env(FILL_INSERTION) 1
+#set ::env(DIODE_INSERTION_STRATEGY) 0
+#set ::env(FILL_INSERTION) 0
 # The following is because there are no std cells in the example wrapper project.
 #set ::env(SYNTH_TOP_LEVEL) 1
 #set ::env(PL_RANDOM_GLB_PLACEMENT) 1
@@ -122,3 +123,4 @@ set ::env(FILL_INSERTION) 1
 #set ::env(FILL_INSERTION) 0
 #set ::env(TAP_DECAP_INSERTION) 0
 # set ::env(CLOCK_TREE_SYNTH) 0
+set ::env(RUN_CVC) 0
