@@ -23,7 +23,7 @@ CARAVEL_LITE?=1
 
 ifeq ($(CARAVEL_LITE),1) 
 	CARAVEL_NAME := caravel-lite
-	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
+	CARAVEL_REPO := https://github.com/efabless/caravel_openframe-lite 
 	CARAVEL_BRANCH := main
 else
 	CARAVEL_NAME := caravel
