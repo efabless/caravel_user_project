@@ -71,8 +71,7 @@ $(BLOCKS): %:
 .PHONY: install
 install:
 	@echo "Installing $(CARAVEL_NAME).."
-	@git clone $(CARAVEL_REPO) $(CARAVEL_ROOT)
-	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_TAG)
+	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT)
 
 # Create symbolic links to caravel's main files
 .PHONY: simlink
