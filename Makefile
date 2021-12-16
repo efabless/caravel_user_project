@@ -31,8 +31,6 @@ else
 	CARAVEL_TAG := 'rc-8'
 endif
 
-# Install caravel as submodule, (1): submodule, (0): clone
-SUBMODULE?=1
 
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
@@ -72,19 +70,9 @@ $(BLOCKS): %:
 # Install caravel
 .PHONY: install
 install:
-ifeq ($(SUBMODULE),1)
-	@echo "Installing $(CARAVEL_NAME) as a submodule.."
-# Convert CARAVEL_ROOT to relative path because .gitmodules doesn't accept '/'
-	$(eval CARAVEL_PATH := $(shell realpath --relative-to=$(shell pwd) $(CARAVEL_ROOT)))
-	@if [ ! -d $(CARAVEL_ROOT) ]; then git submodule add --name $(CARAVEL_NAME) $(CARAVEL_REPO) $(CARAVEL_PATH); fi
-	@git submodule update --init
-	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_TAG)
-	$(MAKE) simlink
-else
 	@echo "Installing $(CARAVEL_NAME).."
 	@git clone $(CARAVEL_REPO) $(CARAVEL_ROOT)
 	@cd $(CARAVEL_ROOT); git checkout $(CARAVEL_TAG)
-endif
 
 # Create symbolic links to caravel's main files
 .PHONY: simlink
@@ -102,30 +90,12 @@ simlink: check-caravel
 # Update Caravel
 .PHONY: update_caravel
 update_caravel: check-caravel
-ifeq ($(SUBMODULE),1)
-	@git submodule update --init --recursive
-	cd $(CARAVEL_ROOT) && \
-	git checkout $(CARAVEL_TAG) && \
-	git pull
-else
-	cd $(CARAVEL_ROOT)/ && \
-		git checkout $(CARAVEL_TAG) && \
-		git pull
-endif
+	cd $(CARAVEL_ROOT)/ && git checkout $(CARAVEL_TAG) && git pull
 
 # Uninstall Caravel
 .PHONY: uninstall
 uninstall: 
-ifeq ($(SUBMODULE),1)
-	git config -f .gitmodules --remove-section "submodule.$(CARAVEL_NAME)"
-	git add .gitmodules
-	git submodule deinit -f $(CARAVEL_ROOT)
-	git rm --cached $(CARAVEL_ROOT)
-	rm -rf .git/modules/$(CARAVEL_NAME)
 	rm -rf $(CARAVEL_ROOT)
-else
-	rm -rf $(CARAVEL_ROOT)
-endif
 
 # Install Openlane
 .PHONY: openlane
