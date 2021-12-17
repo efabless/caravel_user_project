@@ -29,6 +29,7 @@ jobs:
          run: bash ${GITHUB_WORKSPACE}/.github/scripts/build/run-ship.sh 
          env: 
           OPENLANE_TAG:  2021.09.16_03.28.21
+          USER: 12345678
           
   set_user_id:
     runs-on: ubuntu-latest
