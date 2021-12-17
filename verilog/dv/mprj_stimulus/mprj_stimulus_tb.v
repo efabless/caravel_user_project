@@ -28,17 +28,8 @@ module mprj_stimulus_tb;
     reg RSTB;
     reg CSB;
     reg power1, power2;
-    reg power3, power4;
-
-    wire HIGH;
-    wire LOW;
-    wire TRI;
-    assign HIGH = 1'b1;
-    assign LOW = 1'b0;
-    assign TRI = 1'bz;
 
     wire gpio;
-    wire uart_tx;
     wire [37:0] mprj_io;
     wire [15:0] checkbits;
     wire [3:0] status;
@@ -46,8 +37,10 @@ module mprj_stimulus_tb;
     // Signals Assignment
     assign checkbits  = mprj_io[31:16];
     assign status = mprj_io[35:32];
-    assign uart_tx = mprj_io[6];
-    assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+
+    // Force CSB high until simulation is underway
+    // Note:  The CSB GPIO pin default needs to be set to a pull-up. . .
+    assign mprj_io[3] = CSB;
 
     always #12.5 clock <= (clock === 1'b0);
 
@@ -74,23 +67,29 @@ module mprj_stimulus_tb;
         $display("Monitor: mprj_stimulus test started");
         wait(status == 4'ha);
         wait(status == 4'h5);
-	// Value 0009 reflects copying user-controlled outputs to memory and back
-	// to management-controlled outputs.
-        wait(checkbits == 16'h0009);
+
+	// Values reflect copying user-controlled outputs to memory and back
+	// to management-controlled outputs.  Note that there is a slight
+	// discrepancy in timing when using gate level simulation;  either
+	// of the specified values is okay.
+
+        wait(checkbits == 16'h0840 || checkbits == 16'h0841);
+        wait(checkbits == 16'h0a00 || checkbits == 16'h0a01);
+
         wait(checkbits == 16'hAB51);
         $display("Monitor: mprj_stimulus test Passed");
         #10000;
         $finish;
     end
 
-   // Reset Operation
+    // Reset Operation
     initial begin
         RSTB <= 1'b0;
-        CSB  <= 1'b1;       // Force CSB high
+	CSB <= 1'b1;
         #2000;
-        RSTB <= 1'b1;       // Release reset
-        #170000;
-        CSB = 1'b0;         // CSB can be released
+        RSTB <= 1'b1;       	// Release reset
+	#200000;
+	CSB <= 1'bz;		// Stop driving CSB
     end
 
     initial begin		// Power-up sequence
@@ -146,11 +145,6 @@ module mprj_stimulus_tb;
         .io1(flash_io1),
         .io2(),         // not used
         .io3()          // not used
-    );
-
-    // Testbench UART
-    tbuart tbuart (
-        .ser_rx(uart_tx)
     );
 
 endmodule

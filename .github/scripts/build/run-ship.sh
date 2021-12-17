@@ -25,7 +25,9 @@ cd $UPRJ_ROOT
 # Install full version of caravel
 git clone https://github.com/efabless/caravel --depth 1 $CARAVEL_ROOT
 
-docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $CARAVEL_ROOT; make uncompress; cd $UPRJ_ROOT; make ship;"
+make install_mcw
+
+docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $CARAVEL_ROOT; make uncompress; cd $UPRJ_ROOT; make -f $CARAVEL_ROOT/Makefile ship;"
 
 SHIP_FILE=$UPRJ_ROOT/gds/caravel.gds
 
