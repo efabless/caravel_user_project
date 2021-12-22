@@ -1,0 +1,78 @@
+
+Equate elements:  no current cell.
+
+Equate elements:  no current cell.
+
+Class tff_lay.spice(0):  Merged 6 parallel devices.
+Subcircuit summary:
+Circuit 1: tff_lay.spice                   |Circuit 2: tff_sch.spice                   
+-------------------------------------------|-------------------------------------------
+sky130_fd_sc_lp__dfrtp_1 (1)               |sky130_fd_sc_lp__dfrtp_1 (1)               
+sky130_fd_sc_lp__xor2_1 (1)                |sky130_fd_sc_lp__xor2_1 (1)                
+Number of devices: 2                       |Number of devices: 2                       
+Number of nets: 7                          |Number of nets: 7                          
+---------------------------------------------------------------------------------------
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuits match uniquely.
+Property errors were found.
+Netlists match uniquely.
+There were property errors.
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__dfrtp_1_3 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__dfrtp_1_3 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance /sky130_fd_sc_lp__dfrtp_1_3 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Cells have no pins;  pin matching not needed.
+Device classes tff_lay.spice and tff_sch.spice are equivalent.
+Circuits match uniquely.
+Property errors were found.
+The following cells had property errors:
+ tff_lay.spice

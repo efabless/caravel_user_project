@@ -1,0 +1,197 @@
+magic
+tech sky130A
+timestamp 1639186247
+<< nwell >>
+rect -16 301 140 481
+<< nmos >>
+rect 53 142 71 242
+<< pmos >>
+rect 53 360 71 460
+<< ndiff >>
+rect 3 229 53 242
+rect 3 211 20 229
+rect 37 211 53 229
+rect 3 173 53 211
+rect 3 155 20 173
+rect 37 155 53 173
+rect 3 142 53 155
+rect 71 229 121 242
+rect 71 211 87 229
+rect 104 211 121 229
+rect 71 173 121 211
+rect 71 155 87 173
+rect 104 155 121 173
+rect 71 142 121 155
+<< pdiff >>
+rect 3 447 53 460
+rect 3 429 20 447
+rect 37 429 53 447
+rect 3 391 53 429
+rect 3 373 20 391
+rect 37 373 53 391
+rect 3 360 53 373
+rect 71 447 121 460
+rect 71 429 87 447
+rect 104 429 121 447
+rect 71 391 121 429
+rect 71 373 87 391
+rect 104 373 121 391
+rect 71 360 121 373
+<< ndiffc >>
+rect 20 211 37 229
+rect 20 155 37 173
+rect 87 211 104 229
+rect 87 155 104 173
+<< pdiffc >>
+rect 20 429 37 447
+rect 20 373 37 391
+rect 87 429 104 447
+rect 87 373 104 391
+<< poly >>
+rect 53 460 71 474
+rect 53 346 71 360
+rect 45 336 79 346
+rect 45 318 53 336
+rect 71 318 79 336
+rect 45 282 79 318
+rect 45 264 53 282
+rect 71 264 79 282
+rect 45 256 79 264
+rect 53 242 71 256
+rect 53 128 71 142
+<< polycont >>
+rect 53 318 71 336
+rect 53 264 71 282
+<< locali >>
+rect 10 450 46 456
+rect 10 423 15 450
+rect 10 420 46 423
+rect 78 451 114 456
+rect 78 424 83 451
+rect 78 420 114 424
+rect 10 391 46 400
+rect 10 373 20 391
+rect 37 373 46 391
+rect 10 364 46 373
+rect 78 395 114 400
+rect 78 368 83 395
+rect 78 364 114 368
+rect 45 336 79 346
+rect 45 318 53 336
+rect 71 318 79 336
+rect 45 317 79 318
+rect 45 290 47 317
+rect 77 290 79 317
+rect 45 282 79 290
+rect 45 264 53 282
+rect 71 264 79 282
+rect 45 256 79 264
+rect 10 229 46 238
+rect 10 211 20 229
+rect 37 211 46 229
+rect 10 202 46 211
+rect 78 234 114 238
+rect 78 207 83 234
+rect 78 202 114 207
+rect 10 178 46 182
+rect 10 151 11 178
+rect 42 151 46 178
+rect 10 146 46 151
+rect 78 178 114 182
+rect 78 151 83 178
+rect 78 146 114 151
+<< viali >>
+rect 15 447 46 450
+rect 15 429 20 447
+rect 20 429 37 447
+rect 37 429 46 447
+rect 15 423 46 429
+rect 83 447 114 451
+rect 83 429 87 447
+rect 87 429 104 447
+rect 104 429 114 447
+rect 83 424 114 429
+rect 83 391 114 395
+rect 83 373 87 391
+rect 87 373 104 391
+rect 104 373 114 391
+rect 83 368 114 373
+rect 47 290 77 317
+rect 83 229 114 234
+rect 83 211 87 229
+rect 87 211 104 229
+rect 104 211 114 229
+rect 83 207 114 211
+rect 11 173 42 178
+rect 11 155 20 173
+rect 20 155 37 173
+rect 37 155 42 173
+rect 11 151 42 155
+rect 83 173 114 178
+rect 83 155 87 173
+rect 87 155 104 173
+rect 104 155 114 173
+rect 83 151 114 155
+<< metal1 >>
+rect -6 454 51 459
+rect -81 450 52 454
+rect -81 426 15 450
+rect -6 423 15 426
+rect 46 426 52 450
+rect 78 451 163 461
+rect 46 423 51 426
+rect -6 416 51 423
+rect 78 424 83 451
+rect 114 424 163 451
+rect 78 395 163 424
+rect 78 368 83 395
+rect 114 368 163 395
+rect 78 359 163 368
+rect -81 322 65 339
+rect 110 323 163 359
+rect -81 317 84 322
+rect -81 290 47 317
+rect 77 290 84 317
+rect -81 283 84 290
+rect -81 260 65 283
+rect 110 248 180 323
+rect 110 242 163 248
+rect 77 234 163 242
+rect 77 207 83 234
+rect 114 207 163 234
+rect -10 178 47 184
+rect -10 171 11 178
+rect -81 151 11 171
+rect 42 151 47 178
+rect -81 142 47 151
+rect 77 178 163 207
+rect 77 151 83 178
+rect 114 151 163 178
+rect 77 142 163 151
+rect -10 141 47 142
+<< labels >>
+rlabel viali 110 165 110 165 5 Drain
+port 3 n
+rlabel locali 14 222 14 222 5 Source
+port 6 n
+rlabel viali 13 165 13 165 5 Source
+port 5 n
+rlabel locali 62 290 62 290 5 Gate
+port 1 n
+rlabel viali 62 313 62 313 1 Gate
+port 2 n
+rlabel locali 15 440 15 440 1 Source
+port 3 n
+rlabel locali 14 382 14 382 1 Source
+port 4 n
+rlabel viali 109 437 109 437 1 Drain
+port 5 n
+rlabel viali 110 381 110 381 1 Drain
+port 6 n
+rlabel viali 112 222 112 222 5 Drain
+port 4 n
+rlabel metal1 -81 437 -81 437 7 VDD
+rlabel metal1 -81 298 -81 298 7 IN
+rlabel metal1 -81 156 -81 156 7 GND
+rlabel metal1 180 284 180 284 3 OUT
+<< end >>

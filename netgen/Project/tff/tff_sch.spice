@@ -1,0 +1,10 @@
+**.subckt asyn_rst_t_ff T CLK Q RST_bar
+*.ipin T
+*.ipin CLK
+*.opin Q
+*.ipin RST_bar
+x1 CLK net1 RST_bar GND GND VDD VDD Q sky130_fd_sc_lp__dfrtp_1
+x3 T Q GND GND VDD VDD net1 sky130_fd_sc_lp__xor2_1
+**.ends
+** flattened .save nodes
+.end

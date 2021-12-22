@@ -1,0 +1,47 @@
+* SPICE3 file created from counter_cell.ext - technology: sky130A
+
+*.option scale=5000u
+
+*C0 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/CLK
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/RESET_B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_1 sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_2 sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3 sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_0 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/CLK
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/RESET_B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_1 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/CLK
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/RESET_B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_2 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/CLK
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/RESET_B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xsky130_fd_sc_lp__xor2_1_0 sky130_fd_sc_lp__xor2_1_0/A sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/X sky130_fd_sc_lp__xor2_1
+Xsky130_fd_sc_lp__and2_1_0 sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__and2_1_0/X sky130_fd_sc_lp__and2_1
+*C1 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# sky130_fd_sc_lp__xor2_1_0/VNB 2.35fF **FLOATING
+*C2 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# sky130_fd_sc_lp__xor2_1_0/VNB 2.62fF **FLOATING
+*C3 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# sky130_fd_sc_lp__xor2_1_0/VNB 7.42fF **FLOATING
+*C4 asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# sky130_fd_sc_lp__xor2_1_0/VNB 4.48fF **FLOATING
+*C5 sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__xor2_1_0/VNB 2.54fF
+*C6 sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__xor2_1_0/VNB 6.79fF
+*C7 sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/VNB 20.50fF
+*C8 asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# sky130_fd_sc_lp__xor2_1_0/VNB 3.06fF **FLOATING

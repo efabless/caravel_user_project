@@ -1,0 +1,283 @@
+**.subckt analog_wrapper_tb
+x1 net1 net6 GND net7 net2 net8 net9 net10 net16 net17 net18 net19 net20 net21[3] net21[2] net21[1]
++ net21[0] net22[31] net22[30] net22[29] net22[28] net22[27] net22[26] net22[25] net22[24] net22[23] net22[22]
++ net22[21] net22[20] net22[19] net22[18] net22[17] net22[16] net22[15] net22[14] net22[13] net22[12] net22[11]
++ net22[10] net22[9] net22[8] net22[7] net22[6] net22[5] net22[4] net22[3] net22[2] net22[1] net22[0] net23[31]
++ net23[30] net23[29] net23[28] net23[27] net23[26] net23[25] net23[24] net23[23] net23[22] net23[21] net23[20]
++ net23[19] net23[18] net23[17] net23[16] net23[15] net23[14] net23[13] net23[12] net23[11] net23[10] net23[9]
++ net23[8] net23[7] net23[6] net23[5] net23[4] net23[3] net23[2] net23[1] net23[0] net11 net12[31] net12[30]
++ net12[29] net12[28] net12[27] net12[26] net12[25] net12[24] net12[23] net12[22] net12[21] net12[20] net12[19]
++ net12[18] net12[17] net12[16] net12[15] net12[14] net12[13] net12[12] net12[11] net12[10] net12[9] net12[8]
++ net12[7] net12[6] net12[5] net12[4] net12[3] net12[2] net12[1] net12[0] net24[127] net24[126] net24[125]
++ net24[124] net24[123] net24[122] net24[121] net24[120] net24[119] net24[118] net24[117] net24[116] net24[115]
++ net24[114] net24[113] net24[112] net24[111] net24[110] net24[109] net24[108] net24[107] net24[106] net24[105]
++ net24[104] net24[103] net24[102] net24[101] net24[100] net24[99] net24[98] net24[97] net24[96] net24[95]
++ net24[94] net24[93] net24[92] net24[91] net24[90] net24[89] net24[88] net24[87] net24[86] net24[85] net24[84]
++ net24[83] net24[82] net24[81] net24[80] net24[79] net24[78] net24[77] net24[76] net24[75] net24[74] net24[73]
++ net24[72] net24[71] net24[70] net24[69] net24[68] net24[67] net24[66] net24[65] net24[64] net24[63] net24[62]
++ net24[61] net24[60] net24[59] net24[58] net24[57] net24[56] net24[55] net24[54] net24[53] net24[52] net24[51]
++ net24[50] net24[49] net24[48] net24[47] net24[46] net24[45] net24[44] net24[43] net24[42] net24[41] net24[40]
++ net24[39] net24[38] net24[37] net24[36] net24[35] net24[34] net24[33] net24[32] net24[31] net24[30] net24[29]
++ net24[28] net24[27] net24[26] net24[25] net24[24] net24[23] net24[22] net24[21] net24[20] net24[19] net24[18]
++ net24[17] net24[16] net24[15] net24[14] net24[13] net24[12] net24[11] net24[10] net24[9] net24[8] net24[7]
++ net24[6] net24[5] net24[4] net24[3] net24[2] net24[1] net24[0] net13[127] net13[126] net13[125] net13[124]
++ net13[123] net13[122] net13[121] net13[120] net13[119] net13[118] net13[117] net13[116] net13[115] net13[114]
++ net13[113] net13[112] net13[111] net13[110] net13[109] net13[108] net13[107] net13[106] net13[105] net13[104]
++ net13[103] net13[102] net13[101] net13[100] net13[99] net13[98] net13[97] net13[96] net13[95] net13[94]
++ net13[93] net13[92] net13[91] net13[90] net13[89] net13[88] net13[87] net13[86] net13[85] net13[84] net13[83]
++ net13[82] net13[81] net13[80] net13[79] net13[78] net13[77] net13[76] net13[75] net13[74] net13[73] net13[72]
++ net13[71] net13[70] net13[69] net13[68] net13[67] net13[66] net13[65] net13[64] net13[63] net13[62] net13[61]
++ net13[60] net13[59] net13[58] net13[57] net13[56] net13[55] net13[54] net13[53] net13[52] net13[51] net13[50]
++ net13[49] net13[48] net13[47] net13[46] net13[45] net13[44] net13[43] net13[42] net13[41] net13[40] net13[39]
++ net13[38] net13[37] net13[36] net13[35] net13[34] net13[33] net13[32] net13[31] net13[30] net13[29] net13[28]
++ net13[27] net13[26] net13[25] net13[24] net13[23] net13[22] net13[21] net13[20] net13[19] net13[18] net13[17]
++ net13[16] net13[15] net13[14] net13[13] net13[12] net13[11] net13[10] net13[9] net13[8] net13[7] net13[6]
++ net13[5] net13[4] net13[3] net13[2] net13[1] net13[0] net25[127] net25[126] net25[125] net25[124] net25[123]
++ net25[122] net25[121] net25[120] net25[119] net25[118] net25[117] net25[116] net25[115] net25[114] net25[113]
++ net25[112] net25[111] net25[110] net25[109] net25[108] net25[107] net25[106] net25[105] net25[104] net25[103]
++ net25[102] net25[101] net25[100] net25[99] net25[98] net25[97] net25[96] net25[95] net25[94] net25[93]
++ net25[92] net25[91] net25[90] net25[89] net25[88] net25[87] net25[86] net25[85] net25[84] net25[83] net25[82]
++ net25[81] net25[80] net25[79] net25[78] net25[77] net25[76] net25[75] net25[74] net25[73] net25[72] net25[71]
++ net25[70] net25[69] net25[68] net25[67] net25[66] net25[65] net25[64] net25[63] net25[62] net25[61] net25[60]
++ net25[59] net25[58] net25[57] net25[56] net25[55] net25[54] net25[53] net25[52] net25[51] net25[50] net25[49]
++ net25[48] net25[47] net25[46] net25[45] net25[44] net25[43] net25[42] net25[41] net25[40] net25[39] net25[38]
++ net25[37] net25[36] net25[35] net25[34] net25[33] net25[32] net25[31] net25[30] net25[29] net25[28] net25[27]
++ net25[26] net25[25] net25[24] net25[23] net25[22] net25[21] net25[20] net25[19] net25[18] net25[17] net25[16]
++ net25[15] net25[14] net25[13] net25[12] net25[11] net25[10] net25[9] net25[8] net25[7] net25[6] net25[5]
++ net25[4] net25[3] net25[2] net25[1] net25[0] net26[26] net26[25] net26[24] net26[23] net26[22] net26[21]
++ net26[20] net26[19] net26[18] net26[17] net26[16] net26[15] net26[14] net26[13] net26[12] net26[11] net26[10]
++ net26[9] net26[8] net26[7] net26[6] net26[5] net26[4] net26[3] net26[2] net26[1] net26[0] net27[26]
++ net27[25] net27[24] net27[23] net27[22] net27[21] net27[20] net27[19] net27[18] net27[17] net27[16] net27[15]
++ net27[14] net27[13] net27[12] net27[11] net27[10] net27[9] net27[8] net27[7] net27[6] net27[5] net27[4]
++ net27[3] net27[2] net27[1] net27[0] net29[26] net29[25] net29[24] net29[23] net29[22] net29[21] net29[20]
++ net29[19] net29[18] net29[17] net29[16] net29[15] net29[14] net29[13] net29[12] net29[11] net29[10] net29[9]
++ net29[8] net29[7] net29[6] net29[5] net29[4] net29[3] net29[2] net29[1] net29[0] net30[26] net30[25]
++ net30[24] net30[23] net30[22] net30[21] net30[20] net30[19] net30[18] net30[17] net30[16] net30[15] net30[14]
++ net30[13] net30[12] net30[11] net30[10] net30[9] net30[8] net30[7] net30[6] net30[5] net30[4] net30[3]
++ net30[2] net30[1] net30[0] net31[17] net31[16] net31[15] net31[14] net31[13] net31[12] net31[11] net31[10]
++ net31[9] net31[8] net31[7] net31[6] net31[5] net31[4] net31[3] net31[2] net31[1] net31[0] net14[17]
++ net14[16] net14[15] net14[14] net14[13] net14[12] net14[11] net14[10] net14[9] net14[8] net14[7] net14[6]
++ net14[5] net14[4] net14[3] net14[2] net14[1] net14[0] net3[10] net3[9] net3[8] net3[7] net3[6] net3[5]
++ net3[4] net3[3] net3[2] net3[1] net3[0] net4[2] net4[1] net4[0] net5[2] net5[1] net5[0] net28 net15[2]
++ net15[1] net15[0] user_analog_project_wrapper
+V1 net1 GND PWL(0.0 0 400u 0 5.4m 3.3)
+V2 net2 GND PWL(0.0 0 300u 0 5.3 1.8)
+V3 io_analog[4] GND PWL(0.0 0 100u 0 5m 3.3)
+**** begin user architecture code
+.lib /usr/share/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /usr/share/pdk/sky130A/libs.ref/sky130_fd_sc_hvl/spice/sky130_fd_sc_hvl.spice
+
+.control
+tran 10u 20m
+plot V("io_out[11]") V("io_out[12]") V("io_out[15]") V("io_out[16]")  V("gpio_analog[3]")
++ V("gpio_analog[7]")
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  user_analog_project_wrapper.sym # of pins=32
+* sym_path: /home/tim/gits/caravel_user_project_analog/xschem/user_analog_project_wrapper.sym
+* sch_path: /home/tim/gits/caravel_user_project_analog/xschem/user_analog_project_wrapper.sch
+.subckt user_analog_project_wrapper  vdda1 vdda2 vssa1 vssa2 vccd1 vccd2 vssd1 vssd2 wb_clk_i
++ wb_rst_i wbs_stb_i wbs_cyc_i wbs_we_i wbs_sel_i[3] wbs_sel_i[2] wbs_sel_i[1] wbs_sel_i[0] wbs_dat_i[31]
++ wbs_dat_i[30] wbs_dat_i[29] wbs_dat_i[28] wbs_dat_i[27] wbs_dat_i[26] wbs_dat_i[25] wbs_dat_i[24] wbs_dat_i[23]
++ wbs_dat_i[22] wbs_dat_i[21] wbs_dat_i[20] wbs_dat_i[19] wbs_dat_i[18] wbs_dat_i[17] wbs_dat_i[16] wbs_dat_i[15]
++ wbs_dat_i[14] wbs_dat_i[13] wbs_dat_i[12] wbs_dat_i[11] wbs_dat_i[10] wbs_dat_i[9] wbs_dat_i[8] wbs_dat_i[7]
++ wbs_dat_i[6] wbs_dat_i[5] wbs_dat_i[4] wbs_dat_i[3] wbs_dat_i[2] wbs_dat_i[1] wbs_dat_i[0] wbs_adr_i[31]
++ wbs_adr_i[30] wbs_adr_i[29] wbs_adr_i[28] wbs_adr_i[27] wbs_adr_i[26] wbs_adr_i[25] wbs_adr_i[24] wbs_adr_i[23]
++ wbs_adr_i[22] wbs_adr_i[21] wbs_adr_i[20] wbs_adr_i[19] wbs_adr_i[18] wbs_adr_i[17] wbs_adr_i[16] wbs_adr_i[15]
++ wbs_adr_i[14] wbs_adr_i[13] wbs_adr_i[12] wbs_adr_i[11] wbs_adr_i[10] wbs_adr_i[9] wbs_adr_i[8] wbs_adr_i[7]
++ wbs_adr_i[6] wbs_adr_i[5] wbs_adr_i[4] wbs_adr_i[3] wbs_adr_i[2] wbs_adr_i[1] wbs_adr_i[0] wbs_ack_o
++ wbs_dat_o[31] wbs_dat_o[30] wbs_dat_o[29] wbs_dat_o[28] wbs_dat_o[27] wbs_dat_o[26] wbs_dat_o[25] wbs_dat_o[24]
++ wbs_dat_o[23] wbs_dat_o[22] wbs_dat_o[21] wbs_dat_o[20] wbs_dat_o[19] wbs_dat_o[18] wbs_dat_o[17] wbs_dat_o[16]
++ wbs_dat_o[15] wbs_dat_o[14] wbs_dat_o[13] wbs_dat_o[12] wbs_dat_o[11] wbs_dat_o[10] wbs_dat_o[9] wbs_dat_o[8]
++ wbs_dat_o[7] wbs_dat_o[6] wbs_dat_o[5] wbs_dat_o[4] wbs_dat_o[3] wbs_dat_o[2] wbs_dat_o[1] wbs_dat_o[0]
++ la_data_in[127] la_data_in[126] la_data_in[125] la_data_in[124] la_data_in[123] la_data_in[122] la_data_in[121]
++ la_data_in[120] la_data_in[119] la_data_in[118] la_data_in[117] la_data_in[116] la_data_in[115] la_data_in[114]
++ la_data_in[113] la_data_in[112] la_data_in[111] la_data_in[110] la_data_in[109] la_data_in[108] la_data_in[107]
++ la_data_in[106] la_data_in[105] la_data_in[104] la_data_in[103] la_data_in[102] la_data_in[101] la_data_in[100]
++ la_data_in[99] la_data_in[98] la_data_in[97] la_data_in[96] la_data_in[95] la_data_in[94] la_data_in[93]
++ la_data_in[92] la_data_in[91] la_data_in[90] la_data_in[89] la_data_in[88] la_data_in[87] la_data_in[86]
++ la_data_in[85] la_data_in[84] la_data_in[83] la_data_in[82] la_data_in[81] la_data_in[80] la_data_in[79]
++ la_data_in[78] la_data_in[77] la_data_in[76] la_data_in[75] la_data_in[74] la_data_in[73] la_data_in[72]
++ la_data_in[71] la_data_in[70] la_data_in[69] la_data_in[68] la_data_in[67] la_data_in[66] la_data_in[65]
++ la_data_in[64] la_data_in[63] la_data_in[62] la_data_in[61] la_data_in[60] la_data_in[59] la_data_in[58]
++ la_data_in[57] la_data_in[56] la_data_in[55] la_data_in[54] la_data_in[53] la_data_in[52] la_data_in[51]
++ la_data_in[50] la_data_in[49] la_data_in[48] la_data_in[47] la_data_in[46] la_data_in[45] la_data_in[44]
++ la_data_in[43] la_data_in[42] la_data_in[41] la_data_in[40] la_data_in[39] la_data_in[38] la_data_in[37]
++ la_data_in[36] la_data_in[35] la_data_in[34] la_data_in[33] la_data_in[32] la_data_in[31] la_data_in[30]
++ la_data_in[29] la_data_in[28] la_data_in[27] la_data_in[26] la_data_in[25] la_data_in[24] la_data_in[23]
++ la_data_in[22] la_data_in[21] la_data_in[20] la_data_in[19] la_data_in[18] la_data_in[17] la_data_in[16]
++ la_data_in[15] la_data_in[14] la_data_in[13] la_data_in[12] la_data_in[11] la_data_in[10] la_data_in[9]
++ la_data_in[8] la_data_in[7] la_data_in[6] la_data_in[5] la_data_in[4] la_data_in[3] la_data_in[2] la_data_in[1]
++ la_data_in[0] la_data_out[127] la_data_out[126] la_data_out[125] la_data_out[124] la_data_out[123]
++ la_data_out[122] la_data_out[121] la_data_out[120] la_data_out[119] la_data_out[118] la_data_out[117]
++ la_data_out[116] la_data_out[115] la_data_out[114] la_data_out[113] la_data_out[112] la_data_out[111]
++ la_data_out[110] la_data_out[109] la_data_out[108] la_data_out[107] la_data_out[106] la_data_out[105]
++ la_data_out[104] la_data_out[103] la_data_out[102] la_data_out[101] la_data_out[100] la_data_out[99] la_data_out[98]
++ la_data_out[97] la_data_out[96] la_data_out[95] la_data_out[94] la_data_out[93] la_data_out[92] la_data_out[91]
++ la_data_out[90] la_data_out[89] la_data_out[88] la_data_out[87] la_data_out[86] la_data_out[85] la_data_out[84]
++ la_data_out[83] la_data_out[82] la_data_out[81] la_data_out[80] la_data_out[79] la_data_out[78] la_data_out[77]
++ la_data_out[76] la_data_out[75] la_data_out[74] la_data_out[73] la_data_out[72] la_data_out[71] la_data_out[70]
++ la_data_out[69] la_data_out[68] la_data_out[67] la_data_out[66] la_data_out[65] la_data_out[64] la_data_out[63]
++ la_data_out[62] la_data_out[61] la_data_out[60] la_data_out[59] la_data_out[58] la_data_out[57] la_data_out[56]
++ la_data_out[55] la_data_out[54] la_data_out[53] la_data_out[52] la_data_out[51] la_data_out[50] la_data_out[49]
++ la_data_out[48] la_data_out[47] la_data_out[46] la_data_out[45] la_data_out[44] la_data_out[43] la_data_out[42]
++ la_data_out[41] la_data_out[40] la_data_out[39] la_data_out[38] la_data_out[37] la_data_out[36] la_data_out[35]
++ la_data_out[34] la_data_out[33] la_data_out[32] la_data_out[31] la_data_out[30] la_data_out[29] la_data_out[28]
++ la_data_out[27] la_data_out[26] la_data_out[25] la_data_out[24] la_data_out[23] la_data_out[22] la_data_out[21]
++ la_data_out[20] la_data_out[19] la_data_out[18] la_data_out[17] la_data_out[16] la_data_out[15] la_data_out[14]
++ la_data_out[13] la_data_out[12] la_data_out[11] la_data_out[10] la_data_out[9] la_data_out[8] la_data_out[7]
++ la_data_out[6] la_data_out[5] la_data_out[4] la_data_out[3] la_data_out[2] la_data_out[1] la_data_out[0]
++ la_oenb[127] la_oenb[126] la_oenb[125] la_oenb[124] la_oenb[123] la_oenb[122] la_oenb[121] la_oenb[120]
++ la_oenb[119] la_oenb[118] la_oenb[117] la_oenb[116] la_oenb[115] la_oenb[114] la_oenb[113] la_oenb[112]
++ la_oenb[111] la_oenb[110] la_oenb[109] la_oenb[108] la_oenb[107] la_oenb[106] la_oenb[105] la_oenb[104]
++ la_oenb[103] la_oenb[102] la_oenb[101] la_oenb[100] la_oenb[99] la_oenb[98] la_oenb[97] la_oenb[96] la_oenb[95]
++ la_oenb[94] la_oenb[93] la_oenb[92] la_oenb[91] la_oenb[90] la_oenb[89] la_oenb[88] la_oenb[87] la_oenb[86]
++ la_oenb[85] la_oenb[84] la_oenb[83] la_oenb[82] la_oenb[81] la_oenb[80] la_oenb[79] la_oenb[78] la_oenb[77]
++ la_oenb[76] la_oenb[75] la_oenb[74] la_oenb[73] la_oenb[72] la_oenb[71] la_oenb[70] la_oenb[69] la_oenb[68]
++ la_oenb[67] la_oenb[66] la_oenb[65] la_oenb[64] la_oenb[63] la_oenb[62] la_oenb[61] la_oenb[60] la_oenb[59]
++ la_oenb[58] la_oenb[57] la_oenb[56] la_oenb[55] la_oenb[54] la_oenb[53] la_oenb[52] la_oenb[51] la_oenb[50]
++ la_oenb[49] la_oenb[48] la_oenb[47] la_oenb[46] la_oenb[45] la_oenb[44] la_oenb[43] la_oenb[42] la_oenb[41]
++ la_oenb[40] la_oenb[39] la_oenb[38] la_oenb[37] la_oenb[36] la_oenb[35] la_oenb[34] la_oenb[33] la_oenb[32]
++ la_oenb[31] la_oenb[30] la_oenb[29] la_oenb[28] la_oenb[27] la_oenb[26] la_oenb[25] la_oenb[24] la_oenb[23]
++ la_oenb[22] la_oenb[21] la_oenb[20] la_oenb[19] la_oenb[18] la_oenb[17] la_oenb[16] la_oenb[15] la_oenb[14]
++ la_oenb[13] la_oenb[12] la_oenb[11] la_oenb[10] la_oenb[9] la_oenb[8] la_oenb[7] la_oenb[6] la_oenb[5]
++ la_oenb[4] la_oenb[3] la_oenb[2] la_oenb[1] la_oenb[0] io_in[26] io_in[25] io_in[24] io_in[23] io_in[22]
++ io_in[21] io_in[20] io_in[19] io_in[18] io_in[17] io_in[16] io_in[15] io_in[14] io_in[13] io_in[12] io_in[11]
++ io_in[10] io_in[9] io_in[8] io_in[7] io_in[6] io_in[5] io_in[4] io_in[3] io_in[2] io_in[1] io_in[0]
++ io_in_3v3[26] io_in_3v3[25] io_in_3v3[24] io_in_3v3[23] io_in_3v3[22] io_in_3v3[21] io_in_3v3[20] io_in_3v3[19]
++ io_in_3v3[18] io_in_3v3[17] io_in_3v3[16] io_in_3v3[15] io_in_3v3[14] io_in_3v3[13] io_in_3v3[12] io_in_3v3[11]
++ io_in_3v3[10] io_in_3v3[9] io_in_3v3[8] io_in_3v3[7] io_in_3v3[6] io_in_3v3[5] io_in_3v3[4] io_in_3v3[3]
++ io_in_3v3[2] io_in_3v3[1] io_in_3v3[0] io_out[26] io_out[25] io_out[24] io_out[23] io_out[22] io_out[21]
++ io_out[20] io_out[19] io_out[18] io_out[17] io_out[16] io_out[15] io_out[14] io_out[13] io_out[12] io_out[11]
++ io_out[10] io_out[9] io_out[8] io_out[7] io_out[6] io_out[5] io_out[4] io_out[3] io_out[2] io_out[1] io_out[0]
++ io_oeb[26] io_oeb[25] io_oeb[24] io_oeb[23] io_oeb[22] io_oeb[21] io_oeb[20] io_oeb[19] io_oeb[18] io_oeb[17]
++ io_oeb[16] io_oeb[15] io_oeb[14] io_oeb[13] io_oeb[12] io_oeb[11] io_oeb[10] io_oeb[9] io_oeb[8] io_oeb[7]
++ io_oeb[6] io_oeb[5] io_oeb[4] io_oeb[3] io_oeb[2] io_oeb[1] io_oeb[0] gpio_analog[17] gpio_analog[16]
++ gpio_analog[15] gpio_analog[14] gpio_analog[13] gpio_analog[12] gpio_analog[11] gpio_analog[10] gpio_analog[9]
++ gpio_analog[8] gpio_analog[7] gpio_analog[6] gpio_analog[5] gpio_analog[4] gpio_analog[3] gpio_analog[2]
++ gpio_analog[1] gpio_analog[0] gpio_noesd[17] gpio_noesd[16] gpio_noesd[15] gpio_noesd[14] gpio_noesd[13]
++ gpio_noesd[12] gpio_noesd[11] gpio_noesd[10] gpio_noesd[9] gpio_noesd[8] gpio_noesd[7] gpio_noesd[6] gpio_noesd[5]
++ gpio_noesd[4] gpio_noesd[3] gpio_noesd[2] gpio_noesd[1] gpio_noesd[0] io_analog[10] io_analog[9] io_analog[8]
++ io_analog[7] io_analog[6] io_analog[5] io_analog[4] io_analog[3] io_analog[2] io_analog[1] io_analog[0]
++ io_clamp_high[2] io_clamp_high[1] io_clamp_high[0] io_clamp_low[2] io_clamp_low[1] io_clamp_low[0] user_clock2
++ user_irq[2] user_irq[1] user_irq[0]
+*.iopin vdda1
+*.iopin vdda2
+*.iopin vssa1
+*.iopin vssa2
+*.iopin vccd1
+*.iopin vccd2
+*.iopin vssd1
+*.iopin vssd2
+*.ipin wb_clk_i
+*.ipin wb_rst_i
+*.ipin wbs_stb_i
+*.ipin wbs_cyc_i
+*.ipin wbs_we_i
+*.ipin wbs_sel_i[3],wbs_sel_i[2],wbs_sel_i[1],wbs_sel_i[0]
+*.ipin
+*+ wbs_dat_i[31],wbs_dat_i[30],wbs_dat_i[29],wbs_dat_i[28],wbs_dat_i[27],wbs_dat_i[26],wbs_dat_i[25],wbs_dat_i[24],wbs_dat_i[23],wbs_dat_i[22],wbs_dat_i[21],wbs_dat_i[20],wbs_dat_i[19],wbs_dat_i[18],wbs_dat_i[17],wbs_dat_i[16],wbs_dat_i[15],wbs_dat_i[14],wbs_dat_i[13],wbs_dat_i[12],wbs_dat_i[11],wbs_dat_i[10],wbs_dat_i[9],wbs_dat_i[8],wbs_dat_i[7],wbs_dat_i[6],wbs_dat_i[5],wbs_dat_i[4],wbs_dat_i[3],wbs_dat_i[2],wbs_dat_i[1],wbs_dat_i[0]
+*.ipin
+*+ wbs_adr_i[31],wbs_adr_i[30],wbs_adr_i[29],wbs_adr_i[28],wbs_adr_i[27],wbs_adr_i[26],wbs_adr_i[25],wbs_adr_i[24],wbs_adr_i[23],wbs_adr_i[22],wbs_adr_i[21],wbs_adr_i[20],wbs_adr_i[19],wbs_adr_i[18],wbs_adr_i[17],wbs_adr_i[16],wbs_adr_i[15],wbs_adr_i[14],wbs_adr_i[13],wbs_adr_i[12],wbs_adr_i[11],wbs_adr_i[10],wbs_adr_i[9],wbs_adr_i[8],wbs_adr_i[7],wbs_adr_i[6],wbs_adr_i[5],wbs_adr_i[4],wbs_adr_i[3],wbs_adr_i[2],wbs_adr_i[1],wbs_adr_i[0]
+*.opin wbs_ack_o
+*.opin
+*+ wbs_dat_o[31],wbs_dat_o[30],wbs_dat_o[29],wbs_dat_o[28],wbs_dat_o[27],wbs_dat_o[26],wbs_dat_o[25],wbs_dat_o[24],wbs_dat_o[23],wbs_dat_o[22],wbs_dat_o[21],wbs_dat_o[20],wbs_dat_o[19],wbs_dat_o[18],wbs_dat_o[17],wbs_dat_o[16],wbs_dat_o[15],wbs_dat_o[14],wbs_dat_o[13],wbs_dat_o[12],wbs_dat_o[11],wbs_dat_o[10],wbs_dat_o[9],wbs_dat_o[8],wbs_dat_o[7],wbs_dat_o[6],wbs_dat_o[5],wbs_dat_o[4],wbs_dat_o[3],wbs_dat_o[2],wbs_dat_o[1],wbs_dat_o[0]
+*.ipin
+*+ la_data_in[127],la_data_in[126],la_data_in[125],la_data_in[124],la_data_in[123],la_data_in[122],la_data_in[121],la_data_in[120],la_data_in[119],la_data_in[118],la_data_in[117],la_data_in[116],la_data_in[115],la_data_in[114],la_data_in[113],la_data_in[112],la_data_in[111],la_data_in[110],la_data_in[109],la_data_in[108],la_data_in[107],la_data_in[106],la_data_in[105],la_data_in[104],la_data_in[103],la_data_in[102],la_data_in[101],la_data_in[100],la_data_in[99],la_data_in[98],la_data_in[97],la_data_in[96],la_data_in[95],la_data_in[94],la_data_in[93],la_data_in[92],la_data_in[91],la_data_in[90],la_data_in[89],la_data_in[88],la_data_in[87],la_data_in[86],la_data_in[85],la_data_in[84],la_data_in[83],la_data_in[82],la_data_in[81],la_data_in[80],la_data_in[79],la_data_in[78],la_data_in[77],la_data_in[76],la_data_in[75],la_data_in[74],la_data_in[73],la_data_in[72],la_data_in[71],la_data_in[70],la_data_in[69],la_data_in[68],la_data_in[67],la_data_in[66],la_data_in[65],la_data_in[64],la_data_in[63],la_data_in[62],la_data_in[61],la_data_in[60],la_data_in[59],la_data_in[58],la_data_in[57],la_data_in[56],la_data_in[55],la_data_in[54],la_data_in[53],la_data_in[52],la_data_in[51],la_data_in[50],la_data_in[49],la_data_in[48],la_data_in[47],la_data_in[46],la_data_in[45],la_data_in[44],la_data_in[43],la_data_in[42],la_data_in[41],la_data_in[40],la_data_in[39],la_data_in[38],la_data_in[37],la_data_in[36],la_data_in[35],la_data_in[34],la_data_in[33],la_data_in[32],la_data_in[31],la_data_in[30],la_data_in[29],la_data_in[28],la_data_in[27],la_data_in[26],la_data_in[25],la_data_in[24],la_data_in[23],la_data_in[22],la_data_in[21],la_data_in[20],la_data_in[19],la_data_in[18],la_data_in[17],la_data_in[16],la_data_in[15],la_data_in[14],la_data_in[13],la_data_in[12],la_data_in[11],la_data_in[10],la_data_in[9],la_data_in[8],la_data_in[7],la_data_in[6],la_data_in[5],la_data_in[4],la_data_in[3],la_data_in[2],la_data_in[1],la_data_in[0]
+*.opin
+*+ la_data_out[127],la_data_out[126],la_data_out[125],la_data_out[124],la_data_out[123],la_data_out[122],la_data_out[121],la_data_out[120],la_data_out[119],la_data_out[118],la_data_out[117],la_data_out[116],la_data_out[115],la_data_out[114],la_data_out[113],la_data_out[112],la_data_out[111],la_data_out[110],la_data_out[109],la_data_out[108],la_data_out[107],la_data_out[106],la_data_out[105],la_data_out[104],la_data_out[103],la_data_out[102],la_data_out[101],la_data_out[100],la_data_out[99],la_data_out[98],la_data_out[97],la_data_out[96],la_data_out[95],la_data_out[94],la_data_out[93],la_data_out[92],la_data_out[91],la_data_out[90],la_data_out[89],la_data_out[88],la_data_out[87],la_data_out[86],la_data_out[85],la_data_out[84],la_data_out[83],la_data_out[82],la_data_out[81],la_data_out[80],la_data_out[79],la_data_out[78],la_data_out[77],la_data_out[76],la_data_out[75],la_data_out[74],la_data_out[73],la_data_out[72],la_data_out[71],la_data_out[70],la_data_out[69],la_data_out[68],la_data_out[67],la_data_out[66],la_data_out[65],la_data_out[64],la_data_out[63],la_data_out[62],la_data_out[61],la_data_out[60],la_data_out[59],la_data_out[58],la_data_out[57],la_data_out[56],la_data_out[55],la_data_out[54],la_data_out[53],la_data_out[52],la_data_out[51],la_data_out[50],la_data_out[49],la_data_out[48],la_data_out[47],la_data_out[46],la_data_out[45],la_data_out[44],la_data_out[43],la_data_out[42],la_data_out[41],la_data_out[40],la_data_out[39],la_data_out[38],la_data_out[37],la_data_out[36],la_data_out[35],la_data_out[34],la_data_out[33],la_data_out[32],la_data_out[31],la_data_out[30],la_data_out[29],la_data_out[28],la_data_out[27],la_data_out[26],la_data_out[25],la_data_out[24],la_data_out[23],la_data_out[22],la_data_out[21],la_data_out[20],la_data_out[19],la_data_out[18],la_data_out[17],la_data_out[16],la_data_out[15],la_data_out[14],la_data_out[13],la_data_out[12],la_data_out[11],la_data_out[10],la_data_out[9],la_data_out[8],la_data_out[7],la_data_out[6],la_data_out[5],la_data_out[4],la_data_out[3],la_data_out[2],la_data_out[1],la_data_out[0]
+*.ipin
+*+ io_in[26],io_in[25],io_in[24],io_in[23],io_in[22],io_in[21],io_in[20],io_in[19],io_in[18],io_in[17],io_in[16],io_in[15],io_in[14],io_in[13],io_in[12],io_in[11],io_in[10],io_in[9],io_in[8],io_in[7],io_in[6],io_in[5],io_in[4],io_in[3],io_in[2],io_in[1],io_in[0]
+*.ipin
+*+ io_in_3v3[26],io_in_3v3[25],io_in_3v3[24],io_in_3v3[23],io_in_3v3[22],io_in_3v3[21],io_in_3v3[20],io_in_3v3[19],io_in_3v3[18],io_in_3v3[17],io_in_3v3[16],io_in_3v3[15],io_in_3v3[14],io_in_3v3[13],io_in_3v3[12],io_in_3v3[11],io_in_3v3[10],io_in_3v3[9],io_in_3v3[8],io_in_3v3[7],io_in_3v3[6],io_in_3v3[5],io_in_3v3[4],io_in_3v3[3],io_in_3v3[2],io_in_3v3[1],io_in_3v3[0]
+*.ipin user_clock2
+*.opin
+*+ io_out[26],io_out[25],io_out[24],io_out[23],io_out[22],io_out[21],io_out[20],io_out[19],io_out[18],io_out[17],io_out[16],io_out[15],io_out[14],io_out[13],io_out[12],io_out[11],io_out[10],io_out[9],io_out[8],io_out[7],io_out[6],io_out[5],io_out[4],io_out[3],io_out[2],io_out[1],io_out[0]
+*.opin
+*+ io_oeb[26],io_oeb[25],io_oeb[24],io_oeb[23],io_oeb[22],io_oeb[21],io_oeb[20],io_oeb[19],io_oeb[18],io_oeb[17],io_oeb[16],io_oeb[15],io_oeb[14],io_oeb[13],io_oeb[12],io_oeb[11],io_oeb[10],io_oeb[9],io_oeb[8],io_oeb[7],io_oeb[6],io_oeb[5],io_oeb[4],io_oeb[3],io_oeb[2],io_oeb[1],io_oeb[0]
+*.iopin
+*+ gpio_analog[17],gpio_analog[16],gpio_analog[15],gpio_analog[14],gpio_analog[13],gpio_analog[12],gpio_analog[11],gpio_analog[10],gpio_analog[9],gpio_analog[8],gpio_analog[7],gpio_analog[6],gpio_analog[5],gpio_analog[4],gpio_analog[3],gpio_analog[2],gpio_analog[1],gpio_analog[0]
+*.iopin
+*+ gpio_noesd[17],gpio_noesd[16],gpio_noesd[15],gpio_noesd[14],gpio_noesd[13],gpio_noesd[12],gpio_noesd[11],gpio_noesd[10],gpio_noesd[9],gpio_noesd[8],gpio_noesd[7],gpio_noesd[6],gpio_noesd[5],gpio_noesd[4],gpio_noesd[3],gpio_noesd[2],gpio_noesd[1],gpio_noesd[0]
+*.iopin
+*+ io_analog[10],io_analog[9],io_analog[8],io_analog[7],io_analog[6],io_analog[5],io_analog[4],io_analog[3],io_analog[2],io_analog[1],io_analog[0]
+*.iopin io_clamp_high[2],io_clamp_high[1],io_clamp_high[0]
+*.iopin io_clamp_low[2],io_clamp_low[1],io_clamp_low[0]
+*.opin user_irq[2],user_irq[1],user_irq[0]
+*.ipin
+*+ la_oenb[127],la_oenb[126],la_oenb[125],la_oenb[124],la_oenb[123],la_oenb[122],la_oenb[121],la_oenb[120],la_oenb[119],la_oenb[118],la_oenb[117],la_oenb[116],la_oenb[115],la_oenb[114],la_oenb[113],la_oenb[112],la_oenb[111],la_oenb[110],la_oenb[109],la_oenb[108],la_oenb[107],la_oenb[106],la_oenb[105],la_oenb[104],la_oenb[103],la_oenb[102],la_oenb[101],la_oenb[100],la_oenb[99],la_oenb[98],la_oenb[97],la_oenb[96],la_oenb[95],la_oenb[94],la_oenb[93],la_oenb[92],la_oenb[91],la_oenb[90],la_oenb[89],la_oenb[88],la_oenb[87],la_oenb[86],la_oenb[85],la_oenb[84],la_oenb[83],la_oenb[82],la_oenb[81],la_oenb[80],la_oenb[79],la_oenb[78],la_oenb[77],la_oenb[76],la_oenb[75],la_oenb[74],la_oenb[73],la_oenb[72],la_oenb[71],la_oenb[70],la_oenb[69],la_oenb[68],la_oenb[67],la_oenb[66],la_oenb[65],la_oenb[64],la_oenb[63],la_oenb[62],la_oenb[61],la_oenb[60],la_oenb[59],la_oenb[58],la_oenb[57],la_oenb[56],la_oenb[55],la_oenb[54],la_oenb[53],la_oenb[52],la_oenb[51],la_oenb[50],la_oenb[49],la_oenb[48],la_oenb[47],la_oenb[46],la_oenb[45],la_oenb[44],la_oenb[43],la_oenb[42],la_oenb[41],la_oenb[40],la_oenb[39],la_oenb[38],la_oenb[37],la_oenb[36],la_oenb[35],la_oenb[34],la_oenb[33],la_oenb[32],la_oenb[31],la_oenb[30],la_oenb[29],la_oenb[28],la_oenb[27],la_oenb[26],la_oenb[25],la_oenb[24],la_oenb[23],la_oenb[22],la_oenb[21],la_oenb[20],la_oenb[19],la_oenb[18],la_oenb[17],la_oenb[16],la_oenb[15],la_oenb[14],la_oenb[13],la_oenb[12],la_oenb[11],la_oenb[10],la_oenb[9],la_oenb[8],la_oenb[7],la_oenb[6],la_oenb[5],la_oenb[4],la_oenb[3],la_oenb[2],la_oenb[1],la_oenb[0]
+x1 vdda1 vccd1 gpio_analog[3] io_out[11] io_out[12] vssa1 example_por
+x2 io_analog[4] vccd1 gpio_analog[7] io_out[15] io_out[16] vssa1 example_por
+R1 vssa1 io_clamp_low[2] sky130_fd_pr__res_generic_m3 W=11 L=0.25 m=1
+R2 vssa1 io_clamp_high[2] sky130_fd_pr__res_generic_m3 W=11 L=0.25 m=1
+R4 vssa1 io_clamp_low[1] sky130_fd_pr__res_generic_m3 W=11 L=0.25 m=1
+R5 vssa1 io_clamp_high[1] sky130_fd_pr__res_generic_m3 W=11 L=0.25 m=1
+R6 vssa1 io_clamp_low[0] sky130_fd_pr__res_generic_m3 W=11 L=0.25 m=1
+R7 io_analog[4] io_clamp_high[0] sky130_fd_pr__res_generic_m3 W=11 L=0.25 m=1
+R8 vssd1 io_oeb[12] sky130_fd_pr__res_generic_m3 W=0.56 L=0.49 m=1
+R9 vssd1 io_oeb[16] sky130_fd_pr__res_generic_m3 W=0.56 L=0.31 m=1
+R11 vssd1 io_oeb[11] sky130_fd_pr__res_generic_m3 W=0.56 L=0.58 m=1
+R12 vssd1 io_oeb[15] sky130_fd_pr__res_generic_m3 W=0.56 L=0.6 m=1
+.ends
+
+
+* expanding   symbol:  example_por.sym # of pins=6
+* sym_path: /home/tim/gits/caravel_user_project_analog/xschem/example_por.sym
+* sch_path: /home/tim/gits/caravel_user_project_analog/xschem/example_por.sch
+.subckt example_por  vdd3v3 vdd1v8 porb_h porb_l por_l vss
+*.iopin vdd3v3
+*.iopin vss
+*.opin porb_h
+*.opin porb_l
+*.opin por_l
+*.iopin vdd1v8
+XC1 net9 vss sky130_fd_pr__cap_mim_m3_1 W=30 L=30 MF=1 m=1
+XC2 vss net9 sky130_fd_pr__cap_mim_m3_2 W=30 L=30 MF=1 m=1
+XM1 net3 net7 net5 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM2 net2 net3 vss vss sky130_fd_pr__nfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+XR1 net4 vdd3v3 vss sky130_fd_pr__res_xhigh_po_0p69 L=500 mult=1 m=1
+XM4 net5 net6 vdd3v3 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM5 net3 net3 vss vss sky130_fd_pr__nfet_g5v0d10v5 L=0.8 W=14 nf=7 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+XR2 vss net4 vss sky130_fd_pr__res_xhigh_po_0p69 L=150 mult=1 m=1
+XM7 net2 net2 net1 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM8 net1 net1 vdd3v3 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=14 nf=7 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM10 net7 net4 vss vss sky130_fd_pr__nfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1 
+XM9 net7 net7 net6 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM11 net6 net6 vdd3v3 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=16 nf=8 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM12 net8 net1 vdd3v3 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XM13 net9 net2 net8 vdd3v3 sky130_fd_pr__pfet_g5v0d10v5 L=0.8 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
++ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)'
++ nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1 
+XR3 vss vss vss sky130_fd_pr__res_xhigh_po_0p69 L=25 mult=2 m=2
+x2 net10 vss vss vdd3v3 vdd3v3 porb_h sky130_fd_sc_hvl__buf_8
+x3 net10 vss vss vdd1v8 vdd1v8 porb_l sky130_fd_sc_hvl__buf_8
+x4 net10 vss vss vdd1v8 vdd1v8 por_l sky130_fd_sc_hvl__inv_8
+x5 net9 vss vss vdd3v3 vdd3v3 net10 sky130_fd_sc_hvl__schmittbuf_1
+.ends
+
+.GLOBAL GND
+** flattened .save nodes
+.end

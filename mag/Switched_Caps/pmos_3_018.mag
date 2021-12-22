@@ -1,0 +1,51 @@
+magic
+tech sky130A
+timestamp 1639190841
+<< nwell >>
+rect -62 -39 79 340
+<< pmos >>
+rect 0 13 18 288
+<< pdiff >>
+rect -44 277 0 288
+rect -44 24 -33 277
+rect -11 24 0 277
+rect -44 13 0 24
+rect 18 277 61 288
+rect 18 24 29 277
+rect 51 24 61 277
+rect 18 13 61 24
+<< pdiffc >>
+rect -33 24 -11 277
+rect 29 24 51 277
+<< poly >>
+rect -9 329 27 337
+rect -9 312 -1 329
+rect 19 312 27 329
+rect -9 303 27 312
+rect 0 288 18 303
+rect 0 -3 18 13
+rect -9 -11 27 -3
+rect -9 -28 -1 -11
+rect 19 -28 27 -11
+rect -9 -36 27 -28
+<< polycont >>
+rect -1 312 19 329
+rect -1 -28 19 -11
+<< locali >>
+rect -9 329 27 337
+rect -9 312 -1 329
+rect 19 312 27 329
+rect -9 303 27 312
+rect -41 277 -3 285
+rect -41 24 -33 277
+rect -11 24 -3 277
+rect -41 16 -3 24
+rect 21 277 59 285
+rect 21 24 29 277
+rect 51 24 59 277
+rect 21 16 59 24
+rect -9 -11 27 -3
+rect -9 -28 -1 -11
+rect 19 -28 27 -11
+rect -9 -36 27 -28
+<< end >>

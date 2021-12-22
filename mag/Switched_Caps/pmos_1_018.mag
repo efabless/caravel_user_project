@@ -1,0 +1,80 @@
+magic
+tech sky130A
+timestamp 1638948956
+<< nwell >>
+rect -16 83 140 301
+<< pmos >>
+rect 53 142 71 242
+<< pdiff >>
+rect 3 229 53 242
+rect 3 211 20 229
+rect 37 211 53 229
+rect 3 173 53 211
+rect 3 155 20 173
+rect 37 155 53 173
+rect 3 142 53 155
+rect 71 229 121 242
+rect 71 211 87 229
+rect 104 211 121 229
+rect 71 173 121 211
+rect 71 155 87 173
+rect 104 155 121 173
+rect 71 142 121 155
+<< pdiffc >>
+rect 20 211 37 229
+rect 20 155 37 173
+rect 87 211 104 229
+rect 87 155 104 173
+<< poly >>
+rect 45 284 79 292
+rect 45 266 53 284
+rect 71 266 79 284
+rect 45 256 79 266
+rect 53 242 71 256
+rect 53 128 71 142
+rect 45 118 79 128
+rect 45 100 53 118
+rect 71 100 79 118
+rect 45 92 79 100
+<< polycont >>
+rect 53 266 71 284
+rect 53 100 71 118
+<< locali >>
+rect 45 284 79 292
+rect 45 266 53 284
+rect 71 266 79 284
+rect 45 256 79 266
+rect 10 229 46 238
+rect 10 211 20 229
+rect 37 211 46 229
+rect 10 202 46 211
+rect 78 229 114 238
+rect 78 211 87 229
+rect 104 211 114 229
+rect 78 202 114 211
+rect 10 173 46 182
+rect 10 155 20 173
+rect 37 155 46 173
+rect 10 146 46 155
+rect 78 173 114 182
+rect 78 155 87 173
+rect 104 155 114 173
+rect 78 146 114 155
+rect 45 118 79 128
+rect 45 100 53 118
+rect 71 100 79 118
+rect 45 92 79 100
+<< labels >>
+rlabel locali 62 290 62 290 1 Gate
+port 1 n
+rlabel locali 62 95 62 95 1 Gate
+port 2 n
+rlabel locali 15 222 15 222 1 Source
+port 3 n
+rlabel locali 14 164 14 164 1 Source
+port 4 n
+rlabel locali 109 219 109 219 1 Drain
+port 5 n
+rlabel locali 110 163 110 163 1 Drain
+port 6 n
+<< end >>

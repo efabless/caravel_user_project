@@ -1,0 +1,271 @@
+* SPICE3 file created from asyn_rst_8_gray_counter.ext - technology: sky130A
+
+*.option scale=5000u
+
+*.subckt asyn_rst_8_gray_counter RSTB EN CLK Q0 Q1 Q2 Q3 Q4 Q5 Q6 Q7 Vdd gnd
+*C0 asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+*C1 Vdd asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B 2.49fF
+*C2 asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B Vdd 2.50fF
+*C3 asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B Vdd 2.50fF
+*C4 Vdd asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B 2.50fF
+*C5 RSTB CLK 11.70fF
+*C6 Vdd asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B 2.50fF
+*C7 Vdd asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B 2.50fF
+*C8 asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+*C9 asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+*C10 asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+*C11 asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+*C12 T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+*C13 Vdd Q7 2.19fF
+*C14 asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+*C15 Vdd RSTB 13.44fF
+*C16 asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+Xasyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd Q0 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_0/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ EN gnd gnd Vdd Vdd asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 EN asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ gnd gnd Vdd Vdd asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 EN asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ gnd gnd Vdd Vdd asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 EN asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ gnd gnd Vdd Vdd asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 EN asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ gnd gnd Vdd Vdd asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd Q1 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd Q2 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd Q3 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd Q5 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd Q4 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0 Q7 asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ gnd gnd Vdd Vdd Q6 sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0 asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B gnd gnd Vdd Vdd T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ sky130_fd_sc_lp__and2_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B
++ asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B gnd gnd Vdd Vdd asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+XT_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 CLK T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd Q7 sky130_fd_sc_lp__dfrtp_1
+XT_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ Q7 gnd gnd Vdd Vdd T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+XT_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ Q7 gnd gnd Vdd Vdd T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+XT_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ Q7 gnd gnd Vdd Vdd T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+XT_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ Q7 gnd gnd Vdd Vdd T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+XT_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 CLK T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd Q7 sky130_fd_sc_lp__dfrtp_1
+XT_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 CLK T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd Q7 sky130_fd_sc_lp__dfrtp_1
+XT_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 CLK T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RSTB gnd gnd Vdd Vdd Q7 sky130_fd_sc_lp__dfrtp_1
+*C17 T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.26fF **FLOATING
+*C18 T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C19 T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C20 T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C21 T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A gnd 3.08fF
+*C22 Q7 gnd 4.53fF
+*C23 T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.01fF **FLOATING
+*C24 CLK gnd 17.62fF
+*C25 Vdd gnd 171.97fF
+*C26 asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.26fF **FLOATING
+*C27 asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C28 asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C29 asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C30 asyn_gr_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B gnd 3.46fF
+*C31 asyn_gr_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B gnd 7.60fF
+*C32 asyn_gr_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*C33 asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.35fF **FLOATING
+*C34 asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C35 asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C36 asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C37 asyn_gr_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B gnd 3.46fF
+*C38 asyn_gr_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B gnd 7.60fF
+*C39 asyn_gr_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*C40 asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.26fF **FLOATING
+*C41 asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C42 asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C43 asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C44 asyn_gr_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B gnd 3.46fF
+*C45 asyn_gr_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B gnd 7.60fF
+*C46 asyn_gr_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*C47 asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.35fF **FLOATING
+*C48 asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C49 asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C50 asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C51 asyn_gr_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B gnd 3.46fF
+*C52 asyn_gr_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B gnd 7.60fF
+*C53 asyn_gr_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*C54 asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.26fF **FLOATING
+*C55 asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C57 asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C58 asyn_gr_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B gnd 3.46fF
+*C59 asyn_gr_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B gnd 7.60fF
+*C60 asyn_gr_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*C61 asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.26fF **FLOATING
+*C62 asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C63 asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C64 asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C65 asyn_gr_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B gnd 3.46fF
+*C66 asyn_gr_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B gnd 7.60fF
+*C67 asyn_gr_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*C68 asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# gnd 2.26fF **FLOATING
+*C69 asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# gnd 2.62fF **FLOATING
+*C70 asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# gnd 7.42fF **FLOATING
+*C71 asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# gnd 4.48fF **FLOATING
+*C72 EN gnd 2.60fF
+*C73 asyn_gr_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B gnd 7.34fF
+*C74 asyn_gr_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# gnd 3.06fF **FLOATING
+*.ends
+.end
