@@ -16,7 +16,7 @@ N 20 210 20 250 { lab=phi_clk}
 C {devices/netlist.sym} -240 -340 0 0 {name=SPICE only_toplevel=false value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .options abstol=1e-14 reltol=1e-4
-.param f=100k
+.param f=2.56M
 .param duty_cycle=0.5
 .param tau=\{(16^2)*1/f\}
 .param tend=\{4*tau\}
