@@ -16,10 +16,12 @@ N 20 210 20 250 { lab=phi_clk}
 C {devices/netlist.sym} -240 -340 0 0 {name=SPICE only_toplevel=false value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .options abstol=1e-14 reltol=1e-4
-.param f=50k
+.param f=100k
 .param duty_cycle=0.3
 .param tau=\{(16^2)*1/f\}
 .param tend=\{4*tau\}
+.param Wcap=5u
+.param Lcap=10u
 
 *start all caps with 0 charge
 .ic v(x1.x1.c1)=0 v(x1.c2)=0 v(x1.x2.c1)=0 v(x1.c4)=0 
