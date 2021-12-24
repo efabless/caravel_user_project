@@ -44,7 +44,7 @@ C {devices/netlist.sym} -320 -460 0 0 {name=SPICE only_toplevel=false value="
 .tran \{1/f/100\} \{tend\}
 .save all
 "}
-C {devices/vsource.sym} -490 110 0 0 {name=Vin value="DC 0 PULSE (0 \{1u * f/1000000\} 1n 1n 1n \{2*duty_cycle*1/f\} \{tend\}"
+C {devices/vsource.sym} -490 110 0 0 {name=Vin value="DC 0 PULSE (0 \{12u * f/1000\} 1n 1n 1n \{2*duty_cycle*1/f\} \{tend\}"
 *SIN (0.6 0.6 1k)"}
 C {devices/gnd.sym} -490 140 0 0 {name=l3 lab=GND}
 C {devices/lab_pin.sym} 180 0 2 0 {name=l1 sig_type=std_logic lab=out}
@@ -59,7 +59,7 @@ C {devices/vsource.sym} -20 310 0 0 {name=Vphi_clk1 value="DC 0 PULSE (0 1.2 1n 
 C {devices/gnd.sym} -20 340 0 0 {name=l10 lab=GND}
 C {devices/lab_pin.sym} -20 110 0 0 {name=l12 sig_type=std_logic lab=phi_clk}
 C {devices/lab_pin.sym} 20 110 2 0 {name=l13 sig_type=std_logic lab=phi_clkb}
-C {Switched_Caps/16switchcaps_2phi.sym} 0 0 0 0 {name=X1 W=20 L=20}
+C {Switched_Caps/16switchcaps_2phi.sym} 0 0 0 0 {name=X1 W=5 L=10}
 C {devices/vsource.sym} 280 310 0 0 {name=Vphi_clk2 value="DC 0 PULSE (0 1.2 1n 1n 1n \{0.2*1/f\} \{1/f\} 90"
 *SIN (0.6 0.6 1k)"}
 C {devices/gnd.sym} 280 340 0 0 {name=l2 lab=GND}
