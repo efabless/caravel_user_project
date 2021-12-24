@@ -5,7 +5,7 @@ V {}
 S {}
 E {}
 T {Filter clk for bank} -170 180 0 0 0.4 0.4 {}
-T {To next bank} 80 150 0 0 0.4 0.4 {}
+T {To next wavelet (octave)} 80 150 0 0 0.4 0.4 {}
 N 50 40 80 40 { lab=phi1b}
 N 50 80 80 80 { lab=phi2b}
 N 50 20 80 20 { lab=phi1}
@@ -14,7 +14,7 @@ N -210 140 -50 140 { lab=fclk}
 N -400 20 -50 20 { lab=rstb}
 N 50 120 80 120 { lab=cclkb}
 N 50 100 80 100 { lab=cclk}
-N 50 140 80 140 { lab=fclk_div2}
+N 50 140 80 140 { lab=fclkdiv2}
 N -290 120 -290 140 { lab=Vnb}
 N -290 120 -50 120 { lab=Vnb}
 N -360 100 -360 140 { lab=Vpb}
@@ -42,7 +42,7 @@ C {devices/lab_pin.sym} -290 140 0 0 {name=l10 sig_type=std_logic lab=Vnb}
 C {devices/lab_pin.sym} 80 80 2 0 {name=l15 sig_type=std_logic lab=phi2b}
 C {devices/lab_pin.sym} 80 20 2 0 {name=l16 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 80 60 2 0 {name=l17 sig_type=std_logic lab=phi2}
-C {devices/lab_pin.sym} 80 140 2 0 {name=l23 sig_type=std_logic lab=fclk_div2}
+C {devices/lab_pin.sym} 80 140 2 0 {name=l23 sig_type=std_logic lab=fclkdiv2}
 C {devices/vsource.sym} -210 170 0 0 {name=Vclk value="DC 0 PULSE(0 1.2 1n 1n 1n \{1/2/f\} \{1/f\})"}
 C {devices/gnd.sym} -210 200 0 0 {name=l24 lab=GND}
 C {devices/lab_pin.sym} -210 140 0 0 {name=l25 sig_type=std_logic lab=fclk}

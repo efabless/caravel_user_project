@@ -2,7 +2,7 @@ v {xschem version=2.9.9 file_version=1.2 }
 G {}
 K {type=subcircuit 
 format="@name @pinlist @symname Wpmos=@Wpmos Lpmos=@Lpmos Wnmos=@Wnmos Lnmos=@Lnmos" 
-template="name=X1 Wpmos=3 Lpmos=0.18 Wnmos=1 Lnmos=0.18"}
+template="name=X1 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18"}
 V {}
 S {}
 E {}
