@@ -1,0 +1,14 @@
+Equate elements:  no current cell.
+
+Subcircuit summary:
+Circuit 1: dlatch_xschem.spice             |Circuit 2: dlatch.spice                    
+-------------------------------------------|-------------------------------------------
+sky130_fd_sc_lp__dfxtp_1 (1)               |sky130_fd_sc_lp__dfxtp_1 (1)               
+Number of devices: 1                       |Number of devices: 1                       
+Number of nets: 7                          |Number of nets: 7                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+Cells have no pins;  pin matching not needed.
+Device classes dlatch_xschem.spice and dlatch.spice are equivalent.
+Circuits match uniquely.

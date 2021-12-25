@@ -1,0 +1,5 @@
+* SPICE3 file created from /home/sky/fossi_cochlea/mag/comparator/dlatch.ext - technology: sky130A
+
+Xsky130_fd_sc_lp__dfxtp_1_0 sky130_fd_sc_lp__dfxtp_1_0/CLK sky130_fd_sc_lp__dfxtp_1_0/D
++ sky130_fd_sc_lp__dfxtp_1_0/VGND SUB sky130_fd_sc_lp__dfxtp_1_0/VPB sky130_fd_sc_lp__dfxtp_1_0/VPWR
++ sky130_fd_sc_lp__dfxtp_1_0/Q sky130_fd_sc_lp__dfxtp_1

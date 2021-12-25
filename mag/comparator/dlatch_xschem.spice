@@ -1,0 +1,8 @@
+**.subckt dlatch_xschem clk D Q
+*.ipin clk
+*.ipin D
+*.opin Q
+x1 clk D VGND VNB VPB VPWR Q sky130_fd_sc_lp__dfxtp_1
+**.ends
+** flattened .save nodes
+.end

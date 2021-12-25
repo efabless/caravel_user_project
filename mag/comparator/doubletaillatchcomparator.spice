@@ -1,0 +1,17 @@
+* SPICE3 file created from doubletaillatchcomparator.ext - technology: sky130A
+
+X0 a_165_275# out1 VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X1 toprightgs vref2 bottomss GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X2 out1 clkbar GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X3 bottomds GND sky130_fd_pr__cap_mim_m3_1 l=4.95e+06u w=6.75e+06u
+X4 bottomss clk bottomds GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X5 a_15_275# topleftgs out1 VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X6 bottomds clkbar GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X7 toprightgs clk VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X8 VDD out2 a_15_275# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X9 GND out2 out1 GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X10 out2 toprightgs a_165_275# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X11 VDD clk topleftgs VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X12 GND clkbar out2 GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X13 bottomss Vref1 topleftgs GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X14 out2 out1 GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
