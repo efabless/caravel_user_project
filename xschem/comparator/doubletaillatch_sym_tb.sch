@@ -184,3 +184,24 @@ C {devices/lab_pin.sym} 750 190 0 0 {name=l47 sig_type=std_logic lab=clkbar}
 C {devices/lab_pin.sym} 700 120 0 0 {name=l53 sig_type=std_logic lab=Vinp}
 C {devices/lab_pin.sym} 700 160 0 0 {name=l54 sig_type=std_logic lab=Vinm}
 C {devices/lab_pin.sym} 800 140 0 1 {name=l55 sig_type=std_logic lab=oo}
+C {devices/vsource.sym} 30 -220 0 0 {name=V6 value=PULSE(0,1,0,1n,1n,10u,20u)}
+C {devices/vsource.sym} 250 -220 0 0 {name=V7 value=PULSE(1,0,0,1n,1n,10u,20u)}
+C {devices/vsource.sym} 30 -120 0 0 {name=V8 value=sin(0.6,0.1,5000)}
+C {devices/vsource.sym} 30 -20 0 0 {name=V9 value=0.6}
+C {devices/vsource.sym} 470 -210 0 0 {name=V10 value=1}
+C {devices/vdd.sym} 470 -240 0 0 {name=l1 lab=VDD}
+C {devices/gnd.sym} 470 -180 0 0 {name=l2 lab=GND}
+C {devices/gnd.sym} 30 10 0 0 {name=l3 lab=GND}
+C {devices/lab_pin.sym} 30 -50 0 0 {name=l4 sig_type=std_logic lab=Vinm}
+C {devices/lab_pin.sym} 30 -150 0 0 {name=l5 sig_type=std_logic lab=Vinp}
+C {devices/lab_pin.sym} 250 -250 0 0 {name=l6 sig_type=std_logic lab=clkbar}
+C {devices/lab_pin.sym} 30 -250 0 0 {name=l7 sig_type=std_logic lab=clk}
+C {devices/gnd.sym} 250 -190 0 0 {name=l8 lab=GND}
+C {devices/gnd.sym} 30 -190 0 0 {name=l9 lab=GND}
+C {devices/gnd.sym} 30 -90 0 0 {name=l10 lab=GND}
+C {devices/lab_pin.sym} 240 -120 0 0 {name=l13 sig_type=std_logic lab=clk}
+C {devices/vsource.sym} 580 -230 0 0 {name=V1 value=PULSE(0,1,3u,10n,10n,15u,30u)}
+C {devices/lab_pin.sym} 580 -260 0 0 {name=l17 sig_type=std_logic lab=D}
+C {devices/gnd.sym} 580 -200 0 0 {name=l18 lab=GND}
+C {devices/lab_pin.sym} 930 -50 0 1 {name=l19 sig_type=std_logic lab=out}
+C {devices/lab_pin.sym} 730 -70 3 1 {name=l23 sig_type=std_logic lab=o2}
