@@ -15,7 +15,7 @@ C {devices/code_shown.sym} 0 -375 0 0 {name=SPICE1 value="
 .tran 10u 5m
 .save all
 "}
-C {/home/sky/cochlea_sky130/xschem/comparator/doubletaillatch.sym} 190 -20 0 0 {name=X2}
+C {comparator/doubletaillatch.sym} 190 -20 0 0 {name=X2}
 C {devices/vsource.sym} 30 -220 0 0 {name=V6 value=PULSE(0,1,0,1n,1n,10u,20u)}
 C {devices/vsource.sym} 250 -220 0 0 {name=V7 value=PULSE(1,0,0,1n,1n,10u,20u)}
 C {devices/vsource.sym} 30 -120 0 0 {name=V8 value=sin(0.6,0.1,5000)}
@@ -38,15 +38,15 @@ C {devices/lab_pin.sym} 240 -20 0 0 {name=l14 sig_type=std_logic lab=clkbar}
 C {devices/vsource.sym} 580 -230 0 0 {name=V1 value=PULSE(0,1,3u,10n,10n,15u,30u)}
 C {devices/lab_pin.sym} 580 -260 0 0 {name=l17 sig_type=std_logic lab=D}
 C {devices/gnd.sym} 580 -200 0 0 {name=l18 lab=GND}
-C {/home/sky/cochlea_sky130/xschem/comparator/latchnorandinv.sym} 290 -10 0 0 {name=x3}
+C {comparator/latchnorandinv.sym} 290 -10 0 0 {name=x3}
 C {devices/lab_pin.sym} 340 -10 0 0 {name=l16 sig_type=std_logic lab=clk}
 C {devices/lab_pin.sym} 930 -50 0 1 {name=l19 sig_type=std_logic lab=out}
-C {/home/sky/cochlea_sky130/xschem/comparator/latchnorandinv.sym} 390 -10 0 0 {name=x1}
+C {comparator/latchnorandinv.sym} 390 -10 0 0 {name=x1}
 C {devices/lab_pin.sym} 440 -10 0 0 {name=l15 sig_type=std_logic lab=clkbar}
 C {sky130_stdcells/xor2_1.sym} 790 -50 0 0 {name=x2 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
-C {/home/sky/cochlea_sky130/xschem/comparator/latchnorandinv.sym} 530 -10 0 0 {name=x4}
+C {comparator/latchnorandinv.sym} 530 -10 0 0 {name=x4}
 C {devices/lab_pin.sym} 580 -10 0 0 {name=l20 sig_type=std_logic lab=clk}
-C {/home/sky/cochlea_sky130/xschem/comparator/latchnorandinv.sym} 630 -10 0 0 {name=x5}
+C {comparator/latchnorandinv.sym} 630 -10 0 0 {name=x5}
 C {devices/lab_pin.sym} 680 -10 0 0 {name=l21 sig_type=std_logic lab=clkbar}
 C {devices/lab_pin.sym} 490 -70 3 1 {name=l22 sig_type=std_logic lab=o1}
 C {devices/lab_pin.sym} 730 -70 3 1 {name=l23 sig_type=std_logic lab=o2}

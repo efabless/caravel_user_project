@@ -8,9 +8,9 @@ N -50 0 0 0 { lab=c1}
 N 0 0 0 20 { lab=c1}
 N 150 0 200 0 { lab=out}
 N 200 0 200 20 { lab=out}
-N 200 0 260 0 { lab=out}
+N 200 0 250 0 { lab=out}
 N 0 0 50 0 { lab=c1}
-N -200 0 -150 0 { lab=in}
+N -240 0 -150 0 { lab=in}
 N 100 -120 100 -40 { lab=phi2_clk_p}
 N 100 40 100 120 { lab=phi2_clk_n}
 N -200 240 -140 240 { lab=thresh1}
@@ -28,16 +28,18 @@ N -110 180 -110 210 { lab=cclk}
 C {devices/gnd.sym} 0 80 0 0 {name=l2 lab=GND}
 C {sky130_fd_pr/cap_mim_m3_1.sym} 0 50 0 0 {name=C1 model=cap_mim_m3_1 W=Wcap L=Lcap MF=1 spiceprefix=X}
 C {sky130_fd_pr/cap_mim_m3_1.sym} 200 50 0 0 {name=C2 model=cap_mim_m3_1 W=Wcap L=Lcap MF=1 spiceprefix=X}
-C {devices/iopin.sym} 260 0 0 0 {name=p1 lab=out}
-C {devices/iopin.sym} -200 0 2 0 {name=p2 lab=in}
+C {devices/iopin.sym} 250 0 0 0 {name=p1 lab=out}
+C {devices/iopin.sym} -240 0 2 0 {name=p2 lab=in}
 C {devices/ipin.sym} -200 60 0 0 {name=p3 lab=phi1_clk_n}
 C {devices/ipin.sym} -200 -60 0 0 {name=p4 lab=phi1_clk_p}
 C {devices/ipin.sym} -200 -120 0 0 {name=p5 lab=phi2_clk_p}
 C {devices/ipin.sym} -200 120 0 0 {name=p6 lab=phi2_clk_n}
 C {devices/lab_pin.sym} 0 0 1 0 {name=l1 sig_type=std_logic lab=c1}
-C {devices/netlist.sym} -200 -180 0 0 {name=s1 value="
+C {devices/netlist.sym} -220 -240 0 0 {name=s1 value="
 *init cap top and bottom plates at 0V:
-.ic v(xc1.a)=0 v(xc1.b1)=0 v(xc2.a)=0 v(xc2.b1)=0
+.ic v(c1)=0 v(out)=0
+*c2 will settle at thresh1
+*.ic v(xc1.a)=0 v(xc1.b1)=0 v(xc2.a)=0 v(xc2.b1)=0
 "
 *v(c2b)=0"}
 C {devices/ipin.sym} -200 240 0 0 {name=p7 lab=thresh1}
