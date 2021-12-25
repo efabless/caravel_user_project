@@ -19,7 +19,7 @@ N -290 120 -290 140 { lab=Vnb}
 N -290 120 -50 120 { lab=Vnb}
 N -360 100 -360 140 { lab=Vpb}
 N -360 100 -50 100 { lab=Vpb}
-C {devices/vsource.sym} -400 50 0 0 {name=Vrstb value="DC 1.2 PULSE(1.2 0 1n 1n 1n \{0.2/f\} \{4/f\})"}
+C {devices/vsource.sym} -400 50 0 0 {name=Vrstb value="DC 0 PWL(0 0 \{0.5/f\} 0 \{0.5/f +1n\} 1.2)"}
 C {devices/vsource.sym} -410 -110 0 0 {name=VDD value=1.2}
 C {devices/vdd.sym} -410 -140 0 0 {name=l1 lab=VDD}
 C {devices/gnd.sym} -410 -80 0 0 {name=l2 lab=GND}
