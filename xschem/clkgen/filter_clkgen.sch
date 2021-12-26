@@ -8,7 +8,7 @@ T {http://diychip.org/sky130/sky130_fd_sc_lp/cells/dfrbp/} -240 360 0 0 0.2 0.2 
 T {Divide by 2} -220 230 0 0 0.4 0.4 {}
 T {Generate 
 threshold
-swapping clk} 10 40 2 0 0.4 0.4 {}
+swapping clk} 10 80 2 0 0.4 0.4 {}
 T {Generate 
 non-overlapping 
 phi1/phi2 clks} 40 -260 2 0 0.4 0.4 {}
@@ -45,20 +45,23 @@ N -340 -160 -340 270 { lab=clk}
 N -340 270 -260 270 { lab=clk}
 N -400 -160 -340 -160 { lab=clk}
 N -400 310 -260 310 { lab=rstb}
-N 310 100 340 100 { lab=cclkb}
-N 310 60 340 60 { lab=cclk}
+N 430 150 460 150 { lab=cclkb}
+N 430 110 460 110 { lab=cclk}
 N -80 270 340 270 { lab=clkdiv2}
-N -50 80 -50 200 { lab=clkdiv2}
-N -50 200 -50 270 { lab=clkdiv2}
-N -50 80 -30 80 { lab=clkdiv2}
-N -30 100 -30 120 { lab=Vnb}
-N 90 100 90 120 { lab=Vnb}
-N 70 80 90 80 { lab=div2d}
-N 190 80 220 80 { lab=div2dd}
+N -50 130 90 130 { lab=#net4}
+N 90 150 90 170 { lab=Vnb}
+N 210 150 210 170 { lab=Vnb}
+N 190 130 210 130 { lab=div2d}
+N 310 130 340 130 { lab=div2dd}
 N -340 -160 -290 -160 { lab=clk}
 N -110 -160 -50 -160 { lab=gclk}
 N -320 -140 -290 -140 { lab=rstb}
 N -320 -140 -320 310 { lab=rstb}
+N -60 200 -60 270 { lab=clkdiv2}
+N -200 200 -60 200 { lab=clkdiv2}
+N -200 150 -200 200 { lab=clkdiv2}
+N -200 150 -170 150 { lab=clkdiv2}
+N -340 110 -170 110 { lab=clk}
 C {devices/lab_pin.sym} 210 -90 1 0 {name=l8 sig_type=std_logic lab=phi1d}
 C {devices/lab_pin.sym} 230 -130 1 0 {name=l12 sig_type=std_logic lab=Vpb}
 C {devices/lab_pin.sym} 90 -50 3 0 {name=l13 sig_type=std_logic lab=Vnb}
@@ -70,28 +73,29 @@ C {inv/inv_weak_pulldown.sym} 140 -250 0 0 {name=X2 Wpmos=1.26 Lpmos=0.18 Wnmos=
 C {devices/lab_pin.sym} 90 -180 3 0 {name=l20 sig_type=std_logic lab=Vnb}
 C {devices/lab_pin.sym} 350 -250 1 0 {name=l21 sig_type=std_logic lab=phi2dd}
 C {sky130_stdcells/dfrbp_1.sym} -170 290 0 0 {name=x11 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} 80 80 1 0 {name=l26 sig_type=std_logic lab=div2d}
+C {devices/lab_pin.sym} 200 130 1 0 {name=l26 sig_type=std_logic lab=div2d}
 C {devices/ipin.sym} -400 -160 0 0 {name=p1 lab=clk}
 C {devices/ipin.sym} -400 310 0 0 {name=p2 lab=rstb}
 C {devices/opin.sym} 490 -270 0 0 {name=p3 lab=phi2}
 C {devices/opin.sym} 490 -230 0 0 {name=p4 lab=phi2b}
 C {devices/opin.sym} 490 -110 0 0 {name=p5 lab=phi1}
 C {devices/opin.sym} 490 -70 0 0 {name=p6 lab=phi1b}
-C {devices/opin.sym} 340 60 0 0 {name=p7 lab=cclk}
-C {devices/opin.sym} 340 100 0 0 {name=p8 lab=cclkb}
+C {devices/opin.sym} 460 110 0 0 {name=p7 lab=cclk}
+C {devices/opin.sym} 460 150 0 0 {name=p8 lab=cclkb}
 C {devices/opin.sym} 340 270 0 0 {name=p9 lab=clkdiv2}
 C {devices/ipin.sym} -400 -260 0 0 {name=p10 lab=Vpb}
 C {devices/ipin.sym} -400 -230 0 0 {name=p11 lab=Vnb}
 C {clkgen/comp_clks.sym} 420 -250 0 0 {name=X4 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
 C {clkgen/comp_clks.sym} 420 -90 0 0 {name=X7 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
-C {clkgen/comp_clks.sym} 270 80 0 0 {name=X10 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
+C {clkgen/comp_clks.sym} 390 130 0 0 {name=X10 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
 C {inv/inv_weak_pulldown.sym} 140 -90 0 0 {name=X5 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
 C {inv/inv_weak_pullup.sym} 280 -90 0 0 {name=X6 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
-C {devices/lab_pin.sym} -30 120 3 0 {name=l1 sig_type=std_logic lab=Vnb}
-C {inv/inv_weak_pulldown.sym} 20 80 0 0 {name=X9 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
-C {devices/lab_pin.sym} 90 120 3 0 {name=l2 sig_type=std_logic lab=Vnb}
-C {inv/inv_weak_pulldown.sym} 140 80 0 0 {name=X8 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
-C {devices/lab_pin.sym} 200 80 1 0 {name=l3 sig_type=std_logic lab=div2dd}
+C {devices/lab_pin.sym} 90 170 3 0 {name=l1 sig_type=std_logic lab=Vnb}
+C {inv/inv_weak_pulldown.sym} 140 130 0 0 {name=X9 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
+C {devices/lab_pin.sym} 210 170 3 0 {name=l2 sig_type=std_logic lab=Vnb}
+C {inv/inv_weak_pulldown.sym} 260 130 0 0 {name=X8 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
+C {devices/lab_pin.sym} 320 130 1 0 {name=l3 sig_type=std_logic lab=div2dd}
 C {sky130_stdcells/dlclkp_1.sym} -200 -150 0 0 {name=x12 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
 C {devices/lab_pin.sym} -90 -160 1 0 {name=l4 sig_type=std_logic lab=gclk}
 C {clkgen/comp_clks_1stage.sym} 0 -160 0 0 {name=X1 Wpmos=1.26 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
+C {sky130_stdcells/and2_0.sym} -110 130 0 0 {name=x2 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
