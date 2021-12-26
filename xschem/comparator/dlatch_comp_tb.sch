@@ -17,7 +17,7 @@ C {devices/code_shown.sym} 30 -425 0 0 {name=SPICE1 value="
 C {devices/vsource.sym} 60 -270 0 0 {name=V6 value=PULSE(0,1,0,1n,1n,2u,4u)}
 C {devices/vsource.sym} 280 -270 0 0 {name=V7 value=PULSE(1,0,0,1n,1n,2u,4u)}
 C {devices/vsource.sym} 60 -170 0 0 {name=V8 value=sin(0.6,0.1,5000)}
-C {devices/vsource.sym} 60 -70 0 0 {name=V9 value=0.55}
+C {devices/vsource.sym} 60 -70 0 0 {name=V9 value=sin(0.55,0.1,5000)}
 C {devices/vsource.sym} 500 -260 0 0 {name=V10 value=1}
 C {devices/vdd.sym} 500 -290 0 0 {name=l1 lab=VDD}
 C {devices/gnd.sym} 500 -230 0 0 {name=l2 lab=GND}
