@@ -9,11 +9,10 @@ N 330 -390 480 -390 { lab=GND}
 N 700 -450 850 -450 { lab=#net1}
 N 700 -390 850 -390 { lab=GND}
 N 660 -570 660 -420 { lab=out}
-N 520 -610 520 -420 { lab=#net1}
+N 530 -610 530 -420 { lab=#net1}
 N 480 -520 480 -450 { lab=out}
 N 700 -520 700 -450 { lab=#net1}
 N 480 -520 660 -520 { lab=out}
-N 520 -450 700 -450 { lab=#net1}
 N 520 -300 660 -300 { lab=clk}
 N 480 -210 590 -210 { lab=#net2}
 N 590 -210 700 -210 { lab=#net2}
@@ -36,6 +35,13 @@ N 290 20 890 20 { lab=clkbar}
 N 890 -420 890 20 { lab=clkbar}
 N 450 -60 450 20 { lab=clkbar}
 N 260 -110 290 -110 { lab=clkbar}
+N 440 -610 530 -610 { lab=#net1}
+N 530 -450 700 -450 { lab=#net1}
+N 440 -420 530 -420 { lab=#net1}
+N 440 -550 520 -550 { lab=#net3}
+N 440 -300 520 -300 { lab=clk}
+N 440 -240 520 -240 { lab=Vinp}
+N 810 -420 890 -420 {}
 C {sky130_fd_pr/pfet3_01v8.sym} 680 -610 0 0 {name=M3
 L=0.15
 W=1
@@ -51,7 +57,7 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet3_01v8.sym} 500 -610 0 1 {name=M4
+C {sky130_fd_pr/pfet3_01v8.sym} 460 -610 2 1 {name=M4
 L=0.15
 W=1
 body=VDD
@@ -66,7 +72,7 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet3_01v8.sym} 460 -550 0 0 {name=M5
+C {sky130_fd_pr/pfet3_01v8.sym} 500 -550 2 0 {name=M5
 L=0.15
 W=1
 body=VDD
@@ -111,7 +117,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet3_01v8.sym} 500 -420 0 1 {name=M8
+C {sky130_fd_pr/nfet3_01v8.sym} 460 -420 2 1 {name=M8
 L=0.15
 W=1
 body=GND
@@ -141,7 +147,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet3_01v8.sym} 870 -420 0 1 {name=M10
+C {sky130_fd_pr/nfet3_01v8.sym} 830 -420 2 1 {name=M10
 L=0.15
 W=1
 body=GND
@@ -171,7 +177,7 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet3_01v8.sym} 500 -300 0 1 {name=M12
+C {sky130_fd_pr/pfet3_01v8.sym} 460 -300 2 1 {name=M12
 L=0.15
 W=1
 body=VDD
@@ -201,7 +207,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/nfet3_01v8.sym} 460 -240 0 0 {name=M14
+C {sky130_fd_pr/nfet3_01v8.sym} 500 -240 2 0 {name=M14
 L=0.15
 W=1
 body=GND

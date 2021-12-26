@@ -1,0 +1,117 @@
+timestamp 1640488860
+version 8.3
+tech sky130A
+style ngspice()
+scale 1000 1 500000
+resistclasses 2200000 3050000 1700000 3050000 120000 197000 114000 191000 120000 197000 114000 191000 48200 319800 2000000 48200 48200 12200 125 125 47 47 29 5
+use sky130_fd_sc_lp__dfxtp_1 sky130_fd_sc_lp__dfxtp_1_1 1 0 3312 0 1 200
+use sky130_fd_sc_lp__dfxtp_1 sky130_fd_sc_lp__dfxtp_1_0 1 0 1680 0 1 200
+use doubletaillatchcomparator doubletaillatchcomparator_0 1 0 488 0 1 202
+node "m1_1598_n18#" 1 274.034 1598 -18 m1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 39344 1212 0 0 0 0 0 0 0 0 0 0
+node "m1_1536_1162#" 1 356.506 1536 1162 m1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 53948 1568 0 0 0 0 0 0 0 0 0 0
+node "li_2030_470#" 17 504.735 2030 470 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2484 200 47464 2040 0 0 0 0 0 0 0 0 0 0
+node "li_1718_432#" 19 763.131 1718 432 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1840 172 67300 3276 0 0 0 0 0 0 0 0 0 0
+node "out" 15 150.579 4876 624 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1748 168 9720 476 0 0 0 0 0 0 0 0 0 0
+node "li_3242_618#" 73 488.722 3242 618 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4140 364 41052 1760 0 0 0 0 0 0 0 0 0 0
+node "a_1178_1028#" 136 1534.89 1178 1028 p 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6300 320 0 0 8276 500 119576 5944 0 0 0 0 0 0 0 0 0 0
+substrate "SUB" 0 0 -1073741817 -1073741817 space 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+cap "a_1178_1028#" "li_1718_432#" 39.4078
+cap "m1_1598_n18#" "li_1718_432#" 21.678
+cap "li_3242_618#" "a_1178_1028#" 146.856
+cap "a_1178_1028#" "li_2030_470#" 843.512
+cap "m1_1536_1162#" "a_1178_1028#" 132.082
+cap "m1_1598_n18#" "li_2030_470#" 2.6087
+cap "li_1718_432#" "li_2030_470#" 109.66
+cap "m1_1536_1162#" "li_2030_470#" 19.1584
+subcap "li_1718_432#" -345.16
+cap "doubletaillatchcomparator_0/clk" "doubletaillatchcomparator_0/out2" 23.5307
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/a_n370_80#" 87.7393
+cap "doubletaillatchcomparator_0/clk" "doubletaillatchcomparator_0/vdd" 114.13
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/gnd" 621.008
+cap "doubletaillatchcomparator_0/a_n370_80#" "sky130_fd_sc_lp__dfxtp_1_0/VGND" 1.46859
+cap "doubletaillatchcomparator_0/gnd" "doubletaillatchcomparator_0/clk" 76.6325
+cap "doubletaillatchcomparator_0/a_n90_550#" "doubletaillatchcomparator_0/gnd" -1.83
+cap "doubletaillatchcomparator_0/gnd" "doubletaillatchcomparator_0/out2" -1.83
+cap "doubletaillatchcomparator_0/gnd" "doubletaillatchcomparator_0/a_n370_80#" -1.56
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/a_590_80#" 86.0811
+cap "doubletaillatchcomparator_0/a_590_80#" "doubletaillatchcomparator_0/gnd" -1.44
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/clk" 17.15
+cap "doubletaillatchcomparator_0/a_n90_550#" "sky130_fd_sc_lp__dfxtp_1_0/CLK" 92.98
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/out2" 185.253
+subcap "li_2030_470#" -139.071
+subcap "li_1718_432#" -120.788
+subcap "a_1178_1028#" -1509.11
+cap "sky130_fd_sc_lp__dfxtp_1_0/VPWR" "doubletaillatchcomparator_0/clk" 1639.42
+cap "sky130_fd_sc_lp__dfxtp_1_0/D" "sky130_fd_sc_lp__dfxtp_1_0/a_440_413#" 2.84217e-14
+cap "sky130_fd_sc_lp__dfxtp_1_0/VNB" "sky130_fd_sc_lp__dfxtp_1_0/CLK" 24.8435
+cap "sky130_fd_sc_lp__dfxtp_1_0/VNB" "sky130_fd_sc_lp__dfxtp_1_0/D" 39.7586
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_217_413#" "doubletaillatchcomparator_0/clk" 221.368
+cap "sky130_fd_sc_lp__dfxtp_1_0/VNB" "doubletaillatchcomparator_0/a_n370_80#" 1.46859
+cap "sky130_fd_sc_lp__dfxtp_1_0/VPWR" "sky130_fd_sc_lp__dfxtp_1_0/D" 328.604
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "sky130_fd_sc_lp__dfxtp_1_0/VPWR" 13.1819
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_957_379#" "doubletaillatchcomparator_0/clk" 45.2961
+cap "sky130_fd_sc_lp__dfxtp_1_0/VNB" "doubletaillatchcomparator_0/a_590_80#" 15.2308
+cap "sky130_fd_sc_lp__dfxtp_1_0/VPB" "doubletaillatchcomparator_0/clk" 11.1
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_526_413#" "doubletaillatchcomparator_0/clk" 15.0662
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/clk" 15.1687
+cap "sky130_fd_sc_lp__dfxtp_1_0/D" "doubletaillatchcomparator_0/clk" 2.67857
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_217_413#" "sky130_fd_sc_lp__dfxtp_1_0/D" 181.591
+cap "doubletaillatchcomparator_0/clk" "doubletaillatchcomparator_0/a_590_80#" 7.41176
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_217_413#" "doubletaillatchcomparator_0/a_590_80#" 17.2897
+cap "sky130_fd_sc_lp__dfxtp_1_0/VPB" "sky130_fd_sc_lp__dfxtp_1_0/D" 4.38295
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_110_70#" "doubletaillatchcomparator_0/clk" 126.813
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "sky130_fd_sc_lp__dfxtp_1_0/D" 16.7544
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/a_n370_80#" 4.71429
+cap "sky130_fd_sc_lp__dfxtp_1_0/VNB" "sky130_fd_sc_lp__dfxtp_1_0/VPWR" 7.10543e-15
+cap "sky130_fd_sc_lp__dfxtp_1_0/CLK" "doubletaillatchcomparator_0/a_590_80#" 324.894
+cap "doubletaillatchcomparator_0/clk" "sky130_fd_sc_lp__dfxtp_1_0/a_668_137#" 14.994
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_110_70#" "sky130_fd_sc_lp__dfxtp_1_0/D" 79.678
+cap "sky130_fd_sc_lp__dfxtp_1_0/VNB" "doubletaillatchcomparator_0/clk" -77.925
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_110_70#" "doubletaillatchcomparator_0/a_590_80#" 39.2351
+subcap "li_3242_618#" -0.5714
+cap "sky130_fd_sc_lp__dfxtp_1_1/a_217_413#" "sky130_fd_sc_lp__dfxtp_1_1/VGND" 4.56484
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_957_379#" "sky130_fd_sc_lp__dfxtp_1_1/CLK" -91.79
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/D" 473.272
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_0/a_1107_536#" 11.0433
+cap "sky130_fd_sc_lp__dfxtp_1_1/a_217_413#" "sky130_fd_sc_lp__dfxtp_1_0/a_1107_536#" 7.32277
+cap "sky130_fd_sc_lp__dfxtp_1_1/a_217_413#" "sky130_fd_sc_lp__dfxtp_1_1/D" 206.036
+cap "sky130_fd_sc_lp__dfxtp_1_1/VGND" "sky130_fd_sc_lp__dfxtp_1_1/D" 141.786
+cap "sky130_fd_sc_lp__dfxtp_1_1/VGND" "sky130_fd_sc_lp__dfxtp_1_0/a_1107_536#" 7.75576
+cap "sky130_fd_sc_lp__dfxtp_1_1/D" "sky130_fd_sc_lp__dfxtp_1_0/a_1107_536#" 31.02
+cap "sky130_fd_sc_lp__dfxtp_1_1/a_526_413#" "sky130_fd_sc_lp__dfxtp_1_1/D" -7.10543e-15
+cap "sky130_fd_sc_lp__dfxtp_1_1/CLK" "sky130_fd_sc_lp__dfxtp_1_1/VPB" 8.2875
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/a_110_70#" 33.4304
+cap "sky130_fd_sc_lp__dfxtp_1_1/CLK" "sky130_fd_sc_lp__dfxtp_1_1/a_440_413#" -3.55271e-15
+cap "sky130_fd_sc_lp__dfxtp_1_1/VGND" "sky130_fd_sc_lp__dfxtp_1_1/a_110_70#" 19.9435
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/CLK" 567.127
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/VPB" -2.13163e-14
+cap "sky130_fd_sc_lp__dfxtp_1_1/CLK" "sky130_fd_sc_lp__dfxtp_1_1/VGND" 89.7601
+cap "sky130_fd_sc_lp__dfxtp_1_0/a_1107_536#" "sky130_fd_sc_lp__dfxtp_1_1/a_110_70#" 69.2011
+cap "sky130_fd_sc_lp__dfxtp_1_1/D" "sky130_fd_sc_lp__dfxtp_1_1/a_110_70#" 190.523
+cap "sky130_fd_sc_lp__dfxtp_1_1/CLK" "sky130_fd_sc_lp__dfxtp_1_1/D" 310.282
+cap "sky130_fd_sc_lp__dfxtp_1_1/CLK" "sky130_fd_sc_lp__dfxtp_1_0/a_1107_536#" 508.198
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/a_217_413#" 18.0032
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPB" "sky130_fd_sc_lp__dfxtp_1_1/D" 4.1392
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/VGND" -7.10543e-15
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/Q" 32.5398
+cap "sky130_fd_sc_lp__dfxtp_1_1/VGND" "sky130_fd_sc_lp__dfxtp_1_1/Q" 8.13084
+cap "sky130_fd_sc_lp__dfxtp_1_1/VPB" "sky130_fd_sc_lp__dfxtp_1_1/Q" 0.8645
+merge "sky130_fd_sc_lp__dfxtp_1_1/CLK" "doubletaillatchcomparator_0/clk" -1236.63 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11800 -320 0 0 9824 -500 84496 -3854 0 0 0 0 0 0 0 0 0 0
+merge "doubletaillatchcomparator_0/clk" "a_1178_1028#"
+merge "sky130_fd_sc_lp__dfxtp_1_1/VNB" "sky130_fd_sc_lp__dfxtp_1_1/VGND" 61.7323 0 0 0 -98 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -68 14110 -598 0 0 0 0 0 0 0 0 0 0
+merge "sky130_fd_sc_lp__dfxtp_1_1/VGND" "sky130_fd_sc_lp__dfxtp_1_0/VGND"
+merge "sky130_fd_sc_lp__dfxtp_1_0/VGND" "doubletaillatchcomparator_0/gnd"
+merge "doubletaillatchcomparator_0/gnd" "m1_1598_n18#"
+merge "m1_1598_n18#" "sky130_fd_sc_lp__dfxtp_1_0/VNB"
+merge "sky130_fd_sc_lp__dfxtp_1_0/VNB" "SUB"
+merge "sky130_fd_sc_lp__dfxtp_1_0/D" "doubletaillatchcomparator_0/out2" -529.407 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2484 -200 -9600 -600 0 0 0 0 0 0 0 0 0 0
+merge "doubletaillatchcomparator_0/out2" "li_2030_470#"
+merge "sky130_fd_sc_lp__dfxtp_1_0/VPB" "sky130_fd_sc_lp__dfxtp_1_1/VPB" -85.044 0 0 0 0 -28348 -898 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+merge "doubletaillatchcomparator_0/clkbar" "sky130_fd_sc_lp__dfxtp_1_0/CLK" -499.281 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1840 -172 -2240 -192 0 0 0 0 0 0 0 0 0 0
+merge "sky130_fd_sc_lp__dfxtp_1_0/CLK" "li_1718_432#"
+merge "sky130_fd_sc_lp__dfxtp_1_0/VPWR" "sky130_fd_sc_lp__dfxtp_1_1/VPWR" -156.658 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -68 6634 -694 0 0 0 0 0 0 0 0 0 0
+merge "sky130_fd_sc_lp__dfxtp_1_1/VPWR" "doubletaillatchcomparator_0/vdd"
+merge "doubletaillatchcomparator_0/vdd" "m1_1536_1162#"
+merge "sky130_fd_sc_lp__dfxtp_1_0/Q" "sky130_fd_sc_lp__dfxtp_1_1/D" -469.884 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -4140 -364 0 0 0 0 0 0 0 0 0 0 0 0
+merge "sky130_fd_sc_lp__dfxtp_1_1/D" "li_3242_618#"
+merge "sky130_fd_sc_lp__dfxtp_1_1/Q" "out" -148.939 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1748 -168 0 0 0 0 0 0 0 0 0 0 0 0

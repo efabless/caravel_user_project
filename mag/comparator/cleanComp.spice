@@ -1,0 +1,22 @@
+* SPICE3 file created from cleanComp.ext - technology: sky130A
+
+X0 sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_sc_lp__dfxtp_1_1/CLK doubletaillatchcomparator_0/a_n490_80# sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X1 doubletaillatchcomparator_0/a_n240_80# sky130_fd_sc_lp__dfxtp_1_1/CLK sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X2 doubletaillatchcomparator_0/a_n370_80# doubletaillatchcomparator_0/Vref1 doubletaillatchcomparator_0/a_n490_80# SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X3 doubletaillatchcomparator_0/a_n370_80# sky130_fd_sc_lp__dfxtp_1_1/CLK doubletaillatchcomparator_0/a_590_80# SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X4 doubletaillatchcomparator_0/a_30_550# doubletaillatchcomparator_0/a_n490_80# doubletaillatchcomparator_0/a_n90_550# sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X5 sky130_fd_sc_lp__dfxtp_1_0/D doubletaillatchcomparator_0/a_n90_550# SUB SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X6 SUB sky130_fd_sc_lp__dfxtp_1_0/D doubletaillatchcomparator_0/a_n90_550# SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X7 sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_sc_lp__dfxtp_1_0/D doubletaillatchcomparator_0/a_30_550# sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X8 sky130_fd_sc_lp__dfxtp_1_0/D doubletaillatchcomparator_0/a_n240_80# doubletaillatchcomparator_0/a_330_550# sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X9 SUB sky130_fd_sc_lp__dfxtp_1_0/CLK sky130_fd_sc_lp__dfxtp_1_0/D SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X10 doubletaillatchcomparator_0/a_330_550# doubletaillatchcomparator_0/a_n90_550# sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X11 doubletaillatchcomparator_0/a_n90_550# sky130_fd_sc_lp__dfxtp_1_0/CLK SUB SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X12 doubletaillatchcomparator_0/a_590_80# SUB sky130_fd_pr__cap_mim_m3_1 l=4.95e+06u w=6.75e+06u
+X13 doubletaillatchcomparator_0/a_n240_80# doubletaillatchcomparator_0/vref2 doubletaillatchcomparator_0/a_n370_80# SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X14 doubletaillatchcomparator_0/a_590_80# sky130_fd_sc_lp__dfxtp_1_0/CLK SUB SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+Xsky130_fd_sc_lp__dfxtp_1_0 sky130_fd_sc_lp__dfxtp_1_0/CLK sky130_fd_sc_lp__dfxtp_1_0/D
++ SUB SUB sky130_fd_sc_lp__dfxtp_1_1/VPB sky130_fd_sc_lp__dfxtp_1_1/VPWR sky130_fd_sc_lp__dfxtp_1_1/D
++ sky130_fd_sc_lp__dfxtp_1
+Xsky130_fd_sc_lp__dfxtp_1_1 sky130_fd_sc_lp__dfxtp_1_1/CLK sky130_fd_sc_lp__dfxtp_1_1/D
++ SUB SUB sky130_fd_sc_lp__dfxtp_1_1/VPB sky130_fd_sc_lp__dfxtp_1_1/VPWR out sky130_fd_sc_lp__dfxtp_1

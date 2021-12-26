@@ -1,0 +1,14 @@
+* SPICE3 file created from sky130_fd_sc_lp__xor2_1.ext - technology: sky130A
+
+.subckt sky130_fd_sc_lp__xor2_1 A B VGND VNB VPB VPWR X
+X0 VPWR B a_293_367# VPB sky130_fd_pr__pfet_01v8_hvt ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=150000u
+X1 a_297_69# A VGND VNB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=840000u l=150000u
+X2 a_125_367# B a_42_367# VPB sky130_fd_pr__pfet_01v8_hvt ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=150000u
+X3 VGND a_42_367# X VNB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=840000u l=150000u
+X4 a_42_367# B VGND VNB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=840000u l=150000u
+X5 X B a_297_69# VNB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=840000u l=150000u
+X6 a_293_367# a_42_367# X VPB sky130_fd_pr__pfet_01v8_hvt ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=150000u
+X7 a_293_367# A VPWR VPB sky130_fd_pr__pfet_01v8_hvt ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=150000u
+X8 VPWR A a_125_367# VPB sky130_fd_pr__pfet_01v8_hvt ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=150000u
+X9 VGND A a_42_367# VNB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=840000u l=150000u
+.ends

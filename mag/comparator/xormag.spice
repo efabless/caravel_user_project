@@ -1,0 +1,5 @@
+* SPICE3 file created from xormag.ext - technology: sky130A
+
+Xsky130_fd_sc_lp__xor2_0_0 sky130_fd_sc_lp__xor2_0_0/A sky130_fd_sc_lp__xor2_0_0/B
++ sky130_fd_sc_lp__xor2_0_0/VGND SUB sky130_fd_sc_lp__xor2_0_0/VPB sky130_fd_sc_lp__xor2_0_0/VPWR
++ sky130_fd_sc_lp__xor2_0_0/X sky130_fd_sc_lp__xor2_0

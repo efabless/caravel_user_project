@@ -1,0 +1,8 @@
+**.subckt xor A B X
+*.ipin A
+*.ipin B
+*.opin X
+x1 A B GND GND VDD VDD X sky130_fd_sc_lp__xor2_1
+**.ends
+** flattened .save nodes
+.end

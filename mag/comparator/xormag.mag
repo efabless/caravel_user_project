@@ -1,0 +1,9 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1640488044
+use sky130_fd_sc_lp__xor2_0  sky130_fd_sc_lp__xor2_0_0 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
+timestamp 1626515395
+transform 1 0 -28 0 1 0
+box -38 -49 710 715
+<< end >>

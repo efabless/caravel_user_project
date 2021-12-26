@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1640424545
+timestamp 1640489172
 << nwell >>
 rect 3389 464 3423 498
 rect 5485 314 5549 448
@@ -106,20 +106,20 @@ rect 3919 220 3947 221
 rect 3919 138 3946 220
 rect 3999 138 4034 221
 rect 3919 98 4034 138
+use doubletaillatchcomparator  doubletaillatchcomparator_0
+timestamp 1640473169
+transform 1 0 530 0 1 220
+box -540 -220 1140 1030
+use sky130_fd_sc_lp__dfxtp_1  sky130_fd_sc_lp__dfxtp_1_0 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
+timestamp 1640415294
+transform 1 0 1826 0 1 -4
+box -38 -49 1670 715
+use sky130_fd_sc_lp__dfxtp_1  sky130_fd_sc_lp__dfxtp_1_1
+timestamp 1640415294
+transform 1 0 3928 0 1 -66
+box -38 -49 1670 715
 use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_0 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
 timestamp 1626515395
 transform 1 0 5629 0 1 -66
 box -38 -49 710 715
-use sky130_fd_sc_lp__dfxtp_1  sky130_fd_sc_lp__dfxtp_1_1 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
-timestamp 1640415294
-transform 1 0 3928 0 1 -66
-box -38 -49 1670 715
-use sky130_fd_sc_lp__dfxtp_1  sky130_fd_sc_lp__dfxtp_1_0
-timestamp 1640415294
-transform 1 0 1826 0 1 -4
-box -38 -49 1670 715
-use doubletaillatchcomparator  doubletaillatchcomparator_0
-timestamp 1640398447
-transform 1 0 530 0 1 220
-box -540 -220 1140 1030
 << end >>

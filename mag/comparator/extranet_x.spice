@@ -1,4 +1,4 @@
-**.subckt dlatch_comp_LVS vref1 out clk clkbar vref2
+**.subckt extranet vref1 out clk clkbar vref2
 *.ipin vref1
 *.opin out
 *.ipin clk
@@ -6,7 +6,8 @@
 *.ipin vref2
 X1 vref1 vref2 o1 clk clkbar doubletaillatch
 x1 clkbar o1 GND GND VDD VDD net1 sky130_fd_sc_lp__dfxtp_1
-x3 clk net1 GND GND VDD VDD out sky130_fd_sc_lp__dfxtp_1
+x2 clk net1 GND GND VDD VDD net2 sky130_fd_sc_lp__dfxtp_1
+x3 net1 net2 GND GND VDD VDD out sky130_fd_sc_lp__xor2_1
 **.ends
 
 * expanding   symbol:  /home/sky/fossi_cochlea/xschem/comparator/doubletaillatch.sym # of pins=5
