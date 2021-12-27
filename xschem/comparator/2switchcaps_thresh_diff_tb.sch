@@ -4,6 +4,7 @@ K {}
 V {}
 S {}
 E {}
+T {dfxtp is a flip flop} 440 40 0 0 0.2 0.2 {}
 N 70 -160 280 -160 { lab=outp}
 N -360 -160 -70 -160 { lab=inp}
 N 20 -240 20 -220 { lab=phi2b}
@@ -32,43 +33,43 @@ N 70 200 280 200 { lab=outm}
 N -360 200 -70 200 { lab=inm}
 N 20 120 20 140 { lab=phi2b}
 N -20 120 -20 140 { lab=phi1b}
-N 70 220 160 220 { lab=thresh1}
-N 70 240 140 240 { lab=thresh2}
 N 20 280 20 300 { lab=phi2}
 N -20 280 -20 300 { lab=phi1}
-N 60 280 60 300 { lab=cclkb}
+N 60 280 60 300 { lab=cclk}
 N -240 0 160 0 { lab=thresh1}
 N -180 40 140 40 { lab=thresh2}
-N 140 50 140 240 { lab=thresh2}
 N 160 -40 160 220 { lab=thresh1}
 N 330 -70 330 -50 { lab=phi1}
 N 330 50 330 70 { lab=phi1b}
 N 280 -160 280 -20 { lab=outp}
 N 280 20 280 200 { lab=outm}
-N 860 60 860 120 { lab=phi2}
 N 380 -0 400 -0 { lab=compout}
-N 580 0 620 0 { lab=latch}
-N 860 20 860 60 { lab=phi2}
-N 1080 40 1080 60 { lab=phi2}
-N 860 60 1080 60 { lab=phi2}
-N 1060 0 1300 0 { lab=o1}
-N 1060 0 1060 20 { lab=o1}
-N 1040 20 1080 20 { lab=o1}
-N 1260 40 1300 40 { lab=o2}
-N 400 20 400 70 { lab=phi1}
 N 60 -240 60 -220 { lab=cclkb}
-N 60 120 60 140 { lab=cclk}
-N 620 0 640 0 { lab=latch}
-N 820 0 860 0 { lab=stable}
-N 640 20 640 70 { lab=phi2}
+N 60 120 60 140 { lab=cclkb}
+N 70 220 140 220 { lab=thresh2}
+N 140 50 140 220 { lab=thresh2}
+N 70 240 160 240 { lab=thresh1}
+N 160 220 160 240 { lab=thresh1}
+N 400 60 400 120 { lab=phi1b}
+N 400 20 400 60 { lab=phi1b}
+N 1120 20 1120 40 { lab=pol}
+N 1120 0 1120 20 { lab=pol}
+N 760 0 760 40 { lab=pol}
+N 760 0 800 0 { lab=pol}
+N 1120 -50 1120 0 { lab=pol}
+N 1120 -50 1230 -50 { lab=pol}
+N 1240 30 1240 60 { lab=event}
+N 1240 -10 1240 30 { lab=event}
+N 1230 -50 1240 -50 { lab=pol}
+N 800 0 1120 -0 { lab=pol}
 C {devices/netlist.sym} -280 -520 0 0 {name=SPICE only_toplevel=false value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
 .options abstol=1e-14 reltol=1e-4
 .param f=2560k
 .param duty_cycle=0.5
-.param thresh1=0.4
-.param thresh2=0.4
+.param thresh1=0.1
+.param thresh2=0.25
 *cap init conditions included in symbol
 *.ac DEC 100 10 20k *doesn't seem to work, get 0s out
 .tran \{1/f/100\} \{150*1/f\}
@@ -122,28 +123,27 @@ C {devices/lab_pin.sym} -20 120 1 0 {name=l31 sig_type=std_logic lab=phi1b}
 C {devices/lab_pin.sym} 20 120 1 0 {name=l32 sig_type=std_logic lab=phi2b}
 C {devices/lab_pin.sym} -20 300 3 0 {name=l35 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 20 300 3 0 {name=l36 sig_type=std_logic lab=phi2}
-C {devices/lab_pin.sym} 60 300 3 0 {name=l37 sig_type=std_logic lab=cclkb}
+C {devices/lab_pin.sym} 60 120 1 0 {name=l37 sig_type=std_logic lab=cclkb}
 C {comparator/doubletaillatch.sym} 280 50 0 0 {name=X4}
 C {devices/lab_pin.sym} 330 -70 1 0 {name=l33 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 330 70 3 0 {name=l34 sig_type=std_logic lab=phi1b}
-C {devices/lab_pin.sym} 1500 20 0 1 {name=l39 sig_type=std_logic lab=out}
-C {sky130_stdcells/xor2_1.sym} 1360 20 0 0 {name=x2 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} 1060 0 3 1 {name=l43 sig_type=std_logic lab=o1}
-C {devices/lab_pin.sym} 1280 40 1 1 {name=l44 sig_type=std_logic lab=o2}
-C {sky130_stdcells/buf_1.sym} 1460 20 0 0 {name=x6 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} 860 120 3 0 {name=l45 sig_type=std_logic lab=phi2}
-C {sky130_stdcells/dlxtp_1.sym} 490 10 0 0 {name=x7 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
-C {sky130_stdcells/dfxtp_1.sym} 950 10 2 1 {name=x8 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
-C {sky130_stdcells/dfxtp_1.sym} 1170 30 2 1 {name=x1 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} 400 70 3 0 {name=l38 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 390 0 3 1 {name=l40 sig_type=std_logic lab=compout}
 C {devices/lab_pin.sym} 60 -240 1 0 {name=l41 sig_type=std_logic lab=cclkb}
-C {devices/lab_pin.sym} 60 120 1 0 {name=l42 sig_type=std_logic lab=cclk}
+C {devices/lab_pin.sym} 60 300 3 0 {name=l42 sig_type=std_logic lab=cclk}
 C {devices/vsource.sym} -360 -70 0 0 {name=Vinp1 value="DC 0 SIN(0.7 0.1 25k)"
 *SIN (0.6 0.6 1k)"}
 C {devices/vsource.sym} -360 290 0 0 {name=Vinm1 value="DC 0 SIN(0.5 -0.1 25k)"
 *SIN (0.6 0.6 1k)"}
-C {devices/lab_pin.sym} 610 0 3 1 {name=l46 sig_type=std_logic lab=latch}
-C {sky130_stdcells/dlxtp_1.sym} 730 10 0 0 {name=x3 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} 640 70 3 0 {name=l47 sig_type=std_logic lab=phi2}
-C {devices/lab_pin.sym} 840 0 3 1 {name=l48 sig_type=std_logic lab=stable}
+C {devices/lab_pin.sym} 1240 60 0 1 {name=l49 sig_type=std_logic lab=event}
+C {sky130_stdcells/xor2_1.sym} 1180 60 0 0 {name=x4 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {devices/lab_pin.sym} 400 120 3 0 {name=l53 sig_type=std_logic lab=phi1b}
+C {sky130_stdcells/dfxtp_1.sym} 850 50 2 1 {name=x11 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
+C {devices/lab_pin.sym} 760 60 3 0 {name=l55 sig_type=std_logic lab=phi1}
+C {sky130_stdcells/dfxtp_1.sym} 1030 70 2 1 {name=x12 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
+C {devices/lab_pin.sym} 940 80 3 0 {name=l56 sig_type=std_logic lab=phi1}
+C {sky130_stdcells/dfxtp_1.sym} 490 10 2 1 {name=x9 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
+C {sky130_stdcells/dfxtp_1.sym} 670 30 2 1 {name=x10 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
+C {devices/lab_pin.sym} 580 40 3 0 {name=l50 sig_type=std_logic lab=phi1}
+C {sky130_stdcells/and2_0.sym} 1300 -30 0 0 {name=x13 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {devices/lab_pin.sym} 1360 -30 0 1 {name=l51 sig_type=std_logic lab=polxevent}
+C {devices/lab_pin.sym} 870 0 3 1 {name=l38 sig_type=std_logic lab=pol}
