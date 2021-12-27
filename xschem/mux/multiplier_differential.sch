@@ -34,3 +34,6 @@ C {devices/ipin.sym} -200 20 0 0 {name=p2 lab=inm}
 C {devices/opin.sym} 80 -60 0 0 {name=p3 lab=outp}
 C {devices/opin.sym} 90 60 0 0 {name=p4 lab=outm}
 C {devices/ipin.sym} -200 140 0 0 {name=p5 lab=ctrl}
+C {devices/ipin.sym} -200 190 0 0 {name=p6 lab=ctrlbar}
+C {devices/lab_pin.sym} 0 -110 0 0 {name=l1 sig_type=std_logic lab=ctrlbar}
+C {devices/lab_pin.sym} 0 10 2 0 {name=l2 sig_type=std_logic lab=ctrlbar}

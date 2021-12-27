@@ -10,8 +10,6 @@ N 535 510 585 510 { lab=opi}
 N 535 530 585 530 { lab=omi}
 N 535 570 585 570 { lab=opq}
 N 535 590 585 590 { lab=omq}
-N -160 530 345 530 { lab=inp}
-N -80 570 345 570 { lab=inm}
 N 405 620 405 750 { lab=loq}
 N -160 1000 325 1000 { lab=fclk}
 N 425 880 435 880 { lab=phi1}
@@ -38,14 +36,15 @@ N 300 960 300 980 { lab=Vmid}
 N 300 980 325 980 { lab=Vmid}
 N 280 960 325 960 { lab=Vmid}
 N 280 880 325 880 { lab=RSTb}
-N 425 960 445 960 { lab=#net3}
-N 425 980 445 980 { lab=#net4}
-N -160 1100 -120 1100 { lab=mclk}
+N 425 960 445 960 { lab=cclk}
+N 425 980 445 980 { lab=cclkb}
 N 167.5 1185 167.5 1305 { lab=mclk}
 N 135 1085 135 1095 { lab=loi}
 N 165 752.5 165 1095 { lab=loq}
 N 165 750 405 750 { lab=loq}
 N 165 750 165 752.5 { lab=loq}
+N 280 530 350 530 { lab=inp}
+N 280 570 350 570 { lab=inm}
 C {devices/netlist.sym} 775 580 0 0 {name=SPICE only_toplevel=false value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
@@ -65,24 +64,18 @@ C {devices/netlist.sym} 775 580 0 0 {name=SPICE only_toplevel=false value="
 .tran \{1/fclk/100\} \{tend\}
 .save all
 "}
-C {devices/vsource.sym} -160 560 0 0 {name=Vinp value="DC 0 SIN(0.6 \{Atest\} \{ftest\})"
-*SIN (0.6 0.6 1k)"}
-C {devices/gnd.sym} -160 590 0 0 {name=l3 lab=GND}
 C {devices/lab_pin.sym} 585 510 2 0 {name=l1 sig_type=std_logic lab=opi}
-C {devices/lab_pin.sym} -160 530 0 0 {name=l5 sig_type=std_logic lab=inp}
-C {devices/vsource.sym} -322.5 817.5 0 0 {name=VDD value="DC 1.2"}
-C {devices/vdd.sym} -322.5 787.5 0 0 {name=l7 lab=VDD}
+C {devices/lab_pin.sym} 280 530 0 0 {name=l5 sig_type=std_logic lab=inp}
+C {devices/vsource.sym} -162.5 597.5 0 0 {name=VDD value="DC 1.2"}
+C {devices/vdd.sym} -162.5 567.5 0 0 {name=l7 lab=VDD}
 C {devices/lab_pin.sym} 585 530 2 0 {name=l2 sig_type=std_logic lab=omi}
 C {devices/lab_pin.sym} 585 570 2 0 {name=l9 sig_type=std_logic lab=opq}
 C {devices/lab_pin.sym} 585 590 2 0 {name=l14 sig_type=std_logic lab=omq}
-C {devices/vsource.sym} -80 600 0 0 {name=Vinm value="DC 0 SIN(0.6 \{-Atest\} \{ftest\})"
-*SIN (0.6 0.6 1k)"}
-C {devices/gnd.sym} -80 630 0 0 {name=l4 lab=GND}
-C {devices/lab_pin.sym} -80 570 0 0 {name=l11 sig_type=std_logic lab=inm}
+C {devices/lab_pin.sym} 280 570 0 0 {name=l11 sig_type=std_logic lab=inm}
 C {devices/vsource.sym} -160 1030 0 0 {name=Vphi value="DC 0 PULSE (0 1.2 1n 1n 1n \{f_dc*1/fclk\} \{1/fclk\} 0"
 *SIN (0.6 0.6 1k)"}
 C {devices/gnd.sym} -160 1060 0 0 {name=l31 lab=GND}
-C {devices/gnd.sym} -322.5 847.5 0 0 {name=l38 lab=GND}
+C {devices/gnd.sym} -162.5 627.5 0 0 {name=l38 lab=GND}
 C {devices/lab_pin.sym} 365 650 0 0 {name=l13 sig_type=std_logic lab=loi}
 C {devices/lab_pin.sym} 405 740 0 0 {name=l15 sig_type=std_logic lab=loq}
 C {devices/lab_pin.sym} 425 880 1 0 {name=l17 sig_type=std_logic lab=phi1}
@@ -110,3 +103,27 @@ C {devices/vsource.sym} -160 1130 0 1 {name=Vmclk value="DC 0 PULSE (0 1.2 \{1/2
 C {devices/gnd.sym} -160 1160 0 0 {name=l50 lab=GND}
 C {devices/lab_pin.sym} -160 1100 0 0 {name=l51 sig_type=std_logic lab=mclk}
 C {Sinusoid_generator/sinusoid_generator.sym} -8890 5040 3 0 {name=X3}
+C {devices/lab_pin.sym} 445 960 2 0 {name=l10 sig_type=std_logic lab=cclk}
+C {devices/lab_pin.sym} 445 980 2 0 {name=l12 sig_type=std_logic lab=cclkb}
+C {devices/lab_pin.sym} 435 470 1 0 {name=l18 sig_type=std_logic lab=cclk}
+C {devices/lab_pin.sym} 455 470 1 0 {name=l19 sig_type=std_logic lab=cclkb}
+C {devices/vsource.sym} -160 440 0 0 {name=Vthresh2 value=0.25}
+C {devices/gnd.sym} -160 470 0 0 {name=l20 lab=GND}
+C {devices/vsource.sym} -160 330 0 0 {name=Vthresh1 value=0.1}
+C {devices/gnd.sym} -160 360 0 0 {name=l21 lab=GND}
+C {devices/vsource.sym} -20 440 0 0 {name=Vinp1 value="DC 0 SIN(0 0.1 50k)"
+*SIN (0.6 0.6 1k)"}
+C {devices/gnd.sym} -20 530 0 0 {name=l22 lab=GND}
+C {devices/lab_pin.sym} -20 410 0 0 {name=l23 sig_type=std_logic lab=inp}
+C {devices/vsource.sym} -20 500 0 0 {name=Vinp2 value="DC 0 SIN(0.7 0.1 25k)"
+*SIN (0.6 0.6 1k)"}
+C {devices/vsource.sym} -20 620 0 0 {name=Vinm1 value="DC 0 SIN(0 -0.1 50k)"
+*SIN (0.6 0.6 1k)"}
+C {devices/gnd.sym} -20 710 0 0 {name=l28 lab=GND}
+C {devices/lab_pin.sym} -20 590 0 0 {name=l30 sig_type=std_logic lab=inm}
+C {devices/vsource.sym} -20 680 0 0 {name=Vinm2 value="DC 0 SIN(0.5 -0.1 25k)"
+*SIN (0.6 0.6 1k)"}
+C {devices/lab_pin.sym} -160 300 0 0 {name=l3 sig_type=std_logic lab=thresh1}
+C {devices/lab_pin.sym} -160 410 0 0 {name=l4 sig_type=std_logic lab=thresh2}
+C {devices/lab_pin.sym} 475 470 1 0 {name=l24 sig_type=std_logic lab=thresh1}
+C {devices/lab_pin.sym} 495 470 1 0 {name=l25 sig_type=std_logic lab=thresh2}

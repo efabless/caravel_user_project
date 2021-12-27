@@ -1,0 +1,4 @@
+* SPICE3 file created from /home/sky/fossi_cochlea/mag/transmissionGate/TG_5_8.ext - technology: sky130A
+
+X0 out clk inp SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=500000u l=200000u
+X1 out clkbar inp w_n60_85# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=800000u l=200000u
