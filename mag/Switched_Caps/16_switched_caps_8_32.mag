@@ -1,0 +1,9 @@
+magic
+tech sky130A
+timestamp 1640675424
+use cap_switch  cap_switch_0
+array 0 15 3431 0 0 828
+timestamp 1640674630
+transform 1 0 252 0 1 226
+box -252 -226 3179 602
+<< end >>

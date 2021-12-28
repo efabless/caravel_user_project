@@ -57,11 +57,11 @@ C {devices/netlist.sym} 775 580 0 0 {name=SPICE only_toplevel=false value="
 .param ratio_fm = 1
 .param f_dc = 0.5
 .param fclk = \{mclk*ratio_fm\}
-.param tau=\{(16^2)*1/fclk\}
-.param tend=\{4*tau\}
+.param tau=0.0001
+.param tend=\{tau\}
 *start all caps with 0 charge:
 *.ic included in cap symbols
-.tran \{1/fclk/100\} \{tend\}
+.tran 1u \{tend\}
 .save all
 "}
 C {devices/lab_pin.sym} 585 510 2 0 {name=l1 sig_type=std_logic lab=opi}

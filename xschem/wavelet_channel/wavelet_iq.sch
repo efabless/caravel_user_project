@@ -68,7 +68,7 @@ C {devices/lab_pin.sym} 420 -410 2 0 {name=l1 sig_type=std_logic lab=cclkb}
 C {devices/lab_pin.sym} 420 -310 2 0 {name=l2 sig_type=std_logic lab=cclk}
 C {devices/lab_pin.sym} 440 -350 2 0 {name=l3 sig_type=std_logic lab=thresh1}
 C {devices/lab_pin.sym} 440 -330 2 0 {name=l4 sig_type=std_logic lab=thresh2}
-C {devices/lab_pin.sym} 440 -170 2 0 {name=l5 sig_type=std_logic lab=thresh1}
+C {devices/lab_pin.sym} 440 -170 2 0 {name=l5 sig_type=std_logic lab=thresh2}
 C {devices/lab_pin.sym} 440 -150 2 0 {name=l7 sig_type=std_logic lab=thresh1}
 C {devices/lab_pin.sym} 420 -230 2 0 {name=l8 sig_type=std_logic lab=cclkb}
 C {devices/lab_pin.sym} 420 -130 2 0 {name=l9 sig_type=std_logic lab=cclk}
@@ -88,7 +88,7 @@ C {devices/lab_pin.sym} 430 -40 2 0 {name=l25 sig_type=std_logic lab=cclkb}
 C {devices/lab_pin.sym} 430 60 2 0 {name=l26 sig_type=std_logic lab=cclk}
 C {devices/lab_pin.sym} 450 20 2 0 {name=l27 sig_type=std_logic lab=thresh1}
 C {devices/lab_pin.sym} 450 40 2 0 {name=l28 sig_type=std_logic lab=thresh2}
-C {devices/lab_pin.sym} 450 200 2 0 {name=l29 sig_type=std_logic lab=thresh1}
+C {devices/lab_pin.sym} 450 200 2 0 {name=l29 sig_type=std_logic lab=thresh2}
 C {devices/lab_pin.sym} 450 220 2 0 {name=l30 sig_type=std_logic lab=thresh1}
 C {devices/lab_pin.sym} 430 140 2 0 {name=l31 sig_type=std_logic lab=cclkb}
 C {devices/lab_pin.sym} 430 240 2 0 {name=l32 sig_type=std_logic lab=cclk}

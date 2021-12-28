@@ -40,3 +40,7 @@ C {devices/ipin.sym} 60 -50 0 0 {name=p6 lab=phi1}
 C {devices/ipin.sym} 60 -20 0 0 {name=p7 lab=phi1b}
 C {devices/lab_pin.sym} 40 -200 0 0 {name=l1 sig_type=std_logic lab=inp}
 C {devices/lab_pin.sym} 40 -160 0 0 {name=l2 sig_type=std_logic lab=inm}
+C {devices/lab_pin.sym} 140 -180 3 1 {name=l3 sig_type=std_logic lab=compout}
+C {devices/lab_pin.sym} 320 -160 3 1 {name=l4 sig_type=std_logic lab=latch}
+C {devices/opin.sym} 1060 -20 0 0 {name=p8 lab=compout}
+C {devices/opin.sym} 1060 10 0 0 {name=p9 lab=latch}

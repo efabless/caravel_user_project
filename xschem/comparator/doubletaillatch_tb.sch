@@ -28,7 +28,7 @@ N 490 -90 670 -90 { lab=#net4}
 N 590 -150 590 -90 { lab=#net4}
 N 440 -490 480 -490 { lab=o1}
 N 700 -490 740 -490 { lab=o2}
-C {devices/vsource.sym} 260 -210 0 0 {name=V1 value=sin(0.6,0.1,5000)}
+C {devices/vsource.sym} 260 -210 0 0 {name=V1 value=sin(0.6,0.01,5000)}
 C {devices/code_shown.sym} 770 -170 0 0 {name=SPICE1 value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
