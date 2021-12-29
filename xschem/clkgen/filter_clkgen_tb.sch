@@ -33,10 +33,10 @@ C {devices/netlist.sym} -320 -140 0 0 {name=SPICE only_toplevel=false value="
 .tran \{1/100/f\} \{4/f\}
 .save all
 "}
-C {devices/vsource.sym} -360 170 0 0 {name=Vpb value=0.6}
+C {devices/vsource.sym} -360 170 0 0 {name=Vpb value=0}
 C {devices/gnd.sym} -360 200 0 0 {name=l6 lab=GND}
 C {devices/lab_pin.sym} -360 140 0 0 {name=l7 sig_type=std_logic lab=Vpb}
-C {devices/vsource.sym} -290 170 0 0 {name=Vnb value=0.6}
+C {devices/vsource.sym} -290 170 0 0 {name=Vnb value=1.2}
 C {devices/gnd.sym} -290 200 0 0 {name=l9 lab=GND}
 C {devices/lab_pin.sym} -290 140 0 0 {name=l10 sig_type=std_logic lab=Vnb}
 C {devices/lab_pin.sym} 80 80 2 0 {name=l15 sig_type=std_logic lab=phi2b}

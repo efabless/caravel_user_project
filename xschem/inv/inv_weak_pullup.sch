@@ -16,12 +16,12 @@ N 0 60 20 60 { lab=GND}
 N 20 60 20 90 { lab=GND}
 N 0 90 20 90 { lab=GND}
 N -0 -30 -0 30 { lab=out}
-N -120 -60 -40 -60 { lab=Vbp}
-N 0 -60 20 -60 {}
-N 20 -120 20 -60 {}
+N -120 -60 -40 -60 { lab=Vpb}
+N 0 -60 20 -60 { lab=VDD}
+N 20 -120 20 -60 { lab=VDD}
 C {sky130_fd_pr/nfet_01v8.sym} -20 60 0 0 {name=M1
-L=Lnmos
-W=Wnmos
+L=Lmin
+W=Wmin
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -34,7 +34,7 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -20 -120 0 0 {name=M2
-L=Lpmos
+L=Lmin
 W=Wpmos
 nf=1
 mult=1

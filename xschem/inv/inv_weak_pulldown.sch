@@ -18,10 +18,10 @@ N 0 150 20 150 { lab=GND}
 N -0 -30 -0 30 { lab=out}
 N 0 60 20 60 { lab=GND}
 N 20 60 20 120 { lab=GND}
-N -120 60 -40 60 { lab=in}
+N -120 60 -40 60 { lab=Vnb}
 C {sky130_fd_pr/nfet_01v8.sym} -20 120 0 0 {name=M1
-L=Lnmos
-W=Wnmos
+L=Lmin
+W=Wmin
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -34,7 +34,7 @@ model=nfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -20 -60 0 0 {name=M2
-L=Lpmos
+L=Lmin
 W=Wpmos
 nf=1
 mult=1
@@ -53,7 +53,7 @@ C {devices/ipin.sym} -120 0 0 0 {name=p1 lab=in}
 C {devices/iopin.sym} 80 0 0 0 {name=p2 lab=out}
 C {sky130_fd_pr/nfet_01v8.sym} -20 60 0 0 {name=M3
 L=Lnmos
-W=Wnmos
+W=Wmin
 nf=1 
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
