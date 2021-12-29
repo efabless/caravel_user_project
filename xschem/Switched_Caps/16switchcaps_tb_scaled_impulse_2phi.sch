@@ -29,7 +29,7 @@ N 20 -60 20 -50 { lab=phi_clkb2}
 C {devices/netlist.sym} -320 -460 0 0 {name=SPICE only_toplevel=false value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .options abstol=1e-14 reltol=1e-4
-.param f=100k
+.param f=2560k
 .param duty_cycle=0.5
 .param tau=\{(16^2)*1/f\}
 .param tend=\{4*tau\}
@@ -41,10 +41,10 @@ C {devices/netlist.sym} -320 -460 0 0 {name=SPICE only_toplevel=false value="
 + v(x1.x7.c1)=0 v(x1.c14)=0 v(x1.x8.c1)=0 v(out)=0
 
 *.ac DEC 100 10 20k *doesn't seem to work, get 0s out
-.tran \{1/f/100\} \{tend\}
+.tran \{1/f\} \{tend\}
 .save all
 "}
-C {devices/vsource.sym} -490 110 0 0 {name=Vin value="DC 0 PULSE (0 \{12u * f/1000\} 1n 1n 1n \{2*duty_cycle*1/f\} \{tend\}"
+C {devices/vsource.sym} -490 110 0 0 {name=Vin value="DC 0 PULSE (0 \{12u * f/1000000\} 1n 1n 1n \{2*duty_cycle*1/f\} \{tend\}"
 *SIN (0.6 0.6 1k)"}
 C {devices/gnd.sym} -490 140 0 0 {name=l3 lab=GND}
 C {devices/lab_pin.sym} 180 0 2 0 {name=l1 sig_type=std_logic lab=out}
