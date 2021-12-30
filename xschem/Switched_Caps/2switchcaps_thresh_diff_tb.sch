@@ -7,9 +7,6 @@ E {}
 N 70 -160 280 -160 { lab=outp}
 N -360 -160 -70 -160 { lab=inp}
 N 20 -240 20 -220 { lab=phi2b}
-N -360 570 -230 570 { lab=bias}
-N -270 590 -230 590 { lab=bias}
-N -270 570 -270 590 { lab=bias}
 N -270 610 -230 610 { lab=fclk}
 N -130 490 -20 490 { lab=phi1}
 N -20 -240 -20 -220 { lab=phi1b}
@@ -141,3 +138,5 @@ C {devices/vsource.sym} -360 -70 0 0 {name=Vinp1 value="DC 0 SIN(0.7 0.1 25k)"
 C {devices/vsource.sym} -360 290 0 0 {name=Vinm1 value="DC 0 SIN(0.5 -0.1 25k)"
 *SIN (0.6 0.6 1k)"}
 C {devices/lab_pin.sym} 600 0 3 1 {name=l46 sig_type=std_logic lab=latch}
+C {devices/vdd.sym} -230 590 3 0 {name=l47 lab=VDD}
+C {devices/gnd.sym} -230 570 2 0 {name=l48 lab=GND}

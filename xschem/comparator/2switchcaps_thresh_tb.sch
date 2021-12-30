@@ -7,9 +7,6 @@ E {}
 T {dfxtp is a flip flop} 440 40 0 0 0.2 0.2 {}
 N 70 -160 280 -160 { lab=outp}
 N 20 -240 20 -220 { lab=phi2b}
-N 140 -540 270 -540 { lab=bias}
-N 230 -520 270 -520 { lab=bias}
-N 230 -540 230 -520 { lab=bias}
 N 230 -500 270 -500 { lab=fclk}
 N 370 -620 480 -620 { lab=phi1}
 N -20 -240 -20 -220 { lab=phi1b}
@@ -133,8 +130,7 @@ C {devices/netlist.sym} -670 -670 0 0 {name=SPICE only_toplevel=false value="
 .tran \{1/f\} \{750*1/f\}
 .save all
 "}
-C {devices/vsource.sym} -1220 -130 0 0 {name=Vinp value="DC 0 SIN(0 0.1 15k)"
-*SIN (0.6 0.6 1k)"}
+C {devices/vsource.sym} -1220 -130 0 0 {name=Vinp value=SIN(0.6,0.2,15000)}
 C {devices/gnd.sym} -1220 -40 0 0 {name=l3 lab=GND}
 C {devices/lab_pin.sym} 280 -160 2 0 {name=l1 sig_type=std_logic lab=outp}
 C {devices/lab_pin.sym} -1220 -160 0 0 {name=l5 sig_type=std_logic lab=inp}
@@ -147,8 +143,6 @@ C {devices/gnd.sym} 230 -440 0 0 {name=l10 lab=GND}
 C {devices/lab_pin.sym} 480 -620 2 0 {name=l12 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 520 -580 2 0 {name=l13 sig_type=std_logic lab=phi2}
 C {clkgen/filter_clkgen.sym} 320 -560 0 0 {name=X2}
-C {devices/vsource.sym} 140 -510 0 0 {name=Vbias value="DC 0.6"}
-C {devices/gnd.sym} 140 -480 0 0 {name=l8 lab=GND}
 C {devices/lab_pin.sym} 400 -600 2 0 {name=l4 sig_type=std_logic lab=phi1b}
 C {devices/lab_pin.sym} 440 -560 2 0 {name=l9 sig_type=std_logic lab=phi2b}
 C {devices/lab_pin.sym} -20 -240 1 0 {name=l11 sig_type=std_logic lab=phi1b}
@@ -163,15 +157,13 @@ C {devices/gnd.sym} 140 -610 0 0 {name=l18 lab=GND}
 C {devices/lab_pin.sym} 230 -500 0 0 {name=l2 sig_type=std_logic lab=fclk}
 C {devices/lab_pin.sym} 130 -120 3 0 {name=l19 sig_type=std_logic lab=thresh2}
 C {devices/lab_pin.sym} 150 -140 3 0 {name=l20 sig_type=std_logic lab=thresh1}
-C {devices/lab_pin.sym} 140 -540 0 0 {name=l21 sig_type=std_logic lab=bias}
 C {devices/lab_pin.sym} 390 -520 2 0 {name=l22 sig_type=std_logic lab=cclkb}
 C {devices/lab_pin.sym} 390 -500 2 0 {name=l23 sig_type=std_logic lab=fclkdiv2}
 C {devices/lab_pin.sym} 560 -540 2 0 {name=l24 sig_type=std_logic lab=cclk}
 C {devices/lab_pin.sym} -20 -60 3 0 {name=l25 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 20 -60 3 0 {name=l26 sig_type=std_logic lab=phi2}
 C {devices/lab_pin.sym} 60 -60 3 0 {name=l27 sig_type=std_logic lab=cclk}
-C {devices/vsource.sym} -1220 230 0 0 {name=Vinm value="DC 0 SIN(0 -0.1 15k)"
-*SIN (0.6 0.6 1k)"}
+C {devices/vsource.sym} -1220 230 0 0 {name=Vinm value=SIN(0.6,-0.2,15000)}
 C {devices/gnd.sym} -1220 320 0 0 {name=l28 lab=GND}
 C {devices/lab_pin.sym} 280 200 2 0 {name=l29 sig_type=std_logic lab=outm}
 C {devices/lab_pin.sym} -1220 200 0 0 {name=l30 sig_type=std_logic lab=inm}
@@ -180,13 +172,10 @@ C {devices/lab_pin.sym} 330 70 3 0 {name=l33 sig_type=std_logic lab=phi1b}
 C {devices/lab_pin.sym} 330 -70 1 0 {name=l34 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} 390 0 3 1 {name=l40 sig_type=std_logic lab=compout}
 C {devices/lab_pin.sym} 60 -240 1 0 {name=l41 sig_type=std_logic lab=cclkb}
-C {devices/vsource.sym} -1220 -70 0 0 {name=Vinp1 value="DC 0 SIN(0.7 0.1 12k)"
-*SIN (0.6 0.6 1k)"}
-C {devices/vsource.sym} -1220 290 0 0 {name=Vinm1 value="DC 0 SIN(0.5 -0.1 12k)"
-*SIN (0.6 0.6 1k)"}
+C {devices/vsource.sym} -1220 -70 0 0 {name=Vinp1 value=SIN(0.7,0.1,12000)}
+C {devices/vsource.sym} -1220 290 0 0 {name=Vinm1 value=SIN(0.5,-0.1,12000)}
 C {devices/lab_pin.sym} 1320 60 0 1 {name=l49 sig_type=std_logic lab=event}
 C {sky130_stdcells/xor2_1.sym} 1180 60 0 0 {name=x4 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} 400 120 3 0 {name=l53 sig_type=std_logic lab=phi1b}
 C {sky130_stdcells/dfxtp_1.sym} 850 50 2 1 {name=x11 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
 C {devices/lab_pin.sym} 760 60 3 0 {name=l55 sig_type=std_logic lab=phi1}
 C {sky130_stdcells/dfxtp_1.sym} 1030 70 2 1 {name=x12 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
@@ -276,3 +265,12 @@ C {devices/lab_pin.sym} -1000 120 1 0 {name=l100 sig_type=std_logic lab=phi1b}
 C {devices/lab_pin.sym} -960 120 1 0 {name=l101 sig_type=std_logic lab=phi2b}
 C {devices/lab_pin.sym} -1000 300 3 0 {name=l102 sig_type=std_logic lab=phi1}
 C {devices/lab_pin.sym} -960 300 3 0 {name=l103 sig_type=std_logic lab=phi2}
+C {devices/lab_pin.sym} 400 120 3 0 {name=l104 sig_type=std_logic lab=phi1b}
+C {devices/vsource.sym} -80 -560 0 0 {name=Vinp2 value=1.1}
+C {devices/gnd.sym} -80 -530 0 0 {name=l53 lab=GND}
+C {devices/lab_pin.sym} -80 -590 0 0 {name=l105 sig_type=std_logic lab=vnb}
+C {devices/vsource.sym} 10 -560 0 0 {name=Vinp3 value=0.1}
+C {devices/gnd.sym} 10 -530 0 0 {name=l106 lab=GND}
+C {devices/lab_pin.sym} 10 -590 0 0 {name=l107 sig_type=std_logic lab=vpb}
+C {devices/lab_pin.sym} 270 -520 0 0 {name=l108 sig_type=std_logic lab=vnb}
+C {devices/lab_pin.sym} 270 -540 0 0 {name=l109 sig_type=std_logic lab=vpb}

@@ -1,0 +1,26 @@
+* SPICE3 file created from comp_event_out.ext - technology: sky130A
+
+X0 comparator_42_18_0/a_84_n150# comparator_42_18_0/out GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X1 comparator_42_18_0/out comparator_42_18_0/clkbar GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X2 GND comparator_42_18_0/a_84_n150# comparator_42_18_0/out GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X3 GND comparator_42_18_0/clkbar comparator_42_18_0/a_84_n150# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X4 comparator_42_18_0/a_482_n124# comparator_42_18_0/clk GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X5 comparator_42_18_0/a_482_n124# comparator_42_18_0/vinm comparator_42_18_0/a_350_54# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X6 comparator_42_18_0/a_26_226# a_71_265# comparator_42_18_0/out VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X7 comparator_42_18_0/a_250_226# comparator_42_18_0/out VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X8 a_71_265# comparator_42_18_0/vinp comparator_42_18_0/a_482_n124# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X9 a_71_265# comparator_42_18_0/clk VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X10 VDD comparator_42_18_0/a_84_n150# comparator_42_18_0/a_26_226# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X11 comparator_42_18_0/a_84_n150# comparator_42_18_0/a_350_54# comparator_42_18_0/a_250_226# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X12 VDD comparator_42_18_0/clk comparator_42_18_0/a_350_54# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+Xsky130_fd_sc_lp__and2_0_0 events polarity GND GND VDD VDD polxevent sky130_fd_sc_lp__and2_0
+Xsky130_fd_sc_lp__xor2_1_0 sky130_fd_sc_lp__xor2_1_0/A polarity GND GND VDD VDD events
++ sky130_fd_sc_lp__xor2_1
+Xsky130_fd_sc_lp__dfxtp_1_0 comparator_42_18_0/clkbar comparator_42_18_0/out GND GND
++ VDD VDD sky130_fd_sc_lp__dfxtp_1_1/D sky130_fd_sc_lp__dfxtp_1
+Xsky130_fd_sc_lp__dfxtp_1_1 comparator_42_18_0/clk sky130_fd_sc_lp__dfxtp_1_1/D GND
++ GND VDD VDD polarity sky130_fd_sc_lp__dfxtp_1
+Xsky130_fd_sc_lp__dfxtp_1_2 comparator_42_18_0/clk polarity GND GND VDD VDD sky130_fd_sc_lp__dfxtp_1_3/D
++ sky130_fd_sc_lp__dfxtp_1
+Xsky130_fd_sc_lp__dfxtp_1_3 comparator_42_18_0/clk sky130_fd_sc_lp__dfxtp_1_3/D GND
++ GND VDD VDD sky130_fd_sc_lp__xor2_1_0/A sky130_fd_sc_lp__dfxtp_1

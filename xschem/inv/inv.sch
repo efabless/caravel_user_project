@@ -5,18 +5,22 @@ V {}
 S {}
 E {}
 N 0 -30 -0 30 { lab=out}
-N -60 -60 -40 -60 { lab=in}
 N -60 -60 -60 60 { lab=in}
-N -60 60 -40 60 { lab=in}
 N -120 0 -60 -0 { lab=in}
 N -0 -0 80 0 { lab=out}
-N -0 -60 20 -60 { lab=VDD}
-N 20 -90 20 -60 { lab=VDD}
-N 0 -90 20 -90 { lab=VDD}
-N 0 60 20 60 { lab=GND}
-N 20 60 20 90 { lab=GND}
-N 0 90 20 90 { lab=GND}
-C {sky130_fd_pr/nfet_01v8.sym} -20 60 0 0 {name=M1
+N 40 60 40 130 { lab=in}
+N -60 130 40 130 { lab=in}
+N -60 60 -60 130 { lab=in}
+N -20 60 0 60 { lab=GND}
+N -20 60 -20 90 { lab=GND}
+N -20 90 -0 90 { lab=GND}
+N -20 -90 0 -90 {}
+N -20 -90 -20 -60 {}
+N -20 -60 -0 -60 {}
+N -60 -130 -60 -60 {}
+N -60 -130 40 -130 {}
+N 40 -130 40 -60 {}
+C {sky130_fd_pr/nfet_01v8.sym} 20 60 2 0 {name=M1
 L=Lnmos
 W=Wnmos
 nf=1 
@@ -30,7 +34,7 @@ sa=0 sb=0 sd=0
 model=nfet_01v8
 spiceprefix=X
 }
-C {sky130_fd_pr/pfet_01v8.sym} -20 -60 0 0 {name=M2
+C {sky130_fd_pr/pfet_01v8.sym} 20 -60 2 0 {name=M2
 L=Lpmos
 W=Wpmos
 nf=1

@@ -21,7 +21,7 @@ C {devices/iopin.sym} -140 0 2 0 {name=p1 lab=in}
 C {devices/iopin.sym} 140 0 0 0 {name=p2 lab=out}
 C {devices/ipin.sym} -140 -40 0 0 {name=p3 lab=ctrl_}
 C {devices/ipin.sym} -140 40 0 0 {name=p4 lab=ctrl}
-C {sky130_fd_pr/nfet_01v8.sym} 0 60 3 1 {name=M1
+C {sky130_fd_pr/nfet_01v8.sym} 0 60 1 0 {name=M1
 L=Lnmos
 W=Wnmos
 nf=1 

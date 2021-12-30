@@ -11,8 +11,8 @@ C {devices/code_shown.sym} 30 -605 0 0 {name=SPICE1 value="
 .tran 10u 1m
 .save all
 "}
-C {devices/vsource.sym} 60 -450 0 0 {name=V6 value=PULSE(0,1,0,1n,1n,8u,20u)}
-C {devices/vsource.sym} 280 -450 0 0 {name=V7 value=PULSE(0,1,0,1n,1n,8u,20u,180)}
+C {devices/vsource.sym} 60 -450 0 0 {name=V6 value=PULSE(0,1,0,1n,1n,50n,110n)}
+C {devices/vsource.sym} 280 -450 0 0 {name=V7 value=PULSE(0,1,0,1n,1n,50n,110n,180)}
 C {devices/vsource.sym} 60 -350 0 0 {name=V8 value=sin(0.6,0.01,5000)}
 C {devices/vsource.sym} 60 -250 0 0 {name=V9 value=0.6}
 C {devices/vsource.sym} 500 -440 0 0 {name=V10 value=1}
