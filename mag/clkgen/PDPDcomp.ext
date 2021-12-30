@@ -1,0 +1,111 @@
+timestamp 1640896088
+version 8.3
+tech sky130A
+style ngspice()
+scale 1000 1 500000
+resistclasses 2200000 3050000 1700000 3050000 120000 197000 114000 191000 120000 197000 114000 191000 48200 319800 2000000 48200 48200 12200 125 125 47 47 29 5
+use comp_clks comp_clks_0 1 0 177 0 1 -537
+use inv_weak_pulldown inv_weak_pulldown_1 1 0 433 0 1 75
+use inv_weak_pulldown inv_weak_pulldown_0 1 0 129 0 1 75
+node "m1_614_530#" 0 67.4752 614 530 m1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5408 312 0 0 0 0 0 0 0 0 0 0
+node "cclkb" 13 109.267 1591 79 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1156 136 5368 332 0 0 0 0 0 0 0 0 0 0
+node "li_367_71#" 12 104.15 367 71 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1156 136 5696 306 0 0 0 0 0 0 0 0 0 0
+node "li_63_71#" 12 104.15 63 71 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1156 136 5696 306 0 0 0 0 0 0 0 0 0 0
+node "li_553_84#" 73 315.846 553 84 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2312 272 18523 1114 0 0 0 0 0 0 0 0 0 0
+node "li_251_71#" 72 230.161 251 71 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2312 272 12224 716 0 0 0 0 0 0 0 0 0 0
+node "li_79_175#" 13 131.129 79 175 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1156 136 6832 434 0 0 0 0 0 0 0 0 0 0
+node "vnb" 73 275.589 257 317 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2312 272 14620 930 0 0 0 0 0 0 0 0 0 0
+node "cclk" 14 220.454 1360 394 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1190 138 14088 844 0 0 0 0 0 0 0 0 0 0
+node "li_367_449#" 12 115.44 367 449 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1156 136 7296 356 0 0 0 0 0 0 0 0 0 0
+node "li_63_449#" 12 116.408 63 449 v0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1156 136 7524 360 0 0 0 0 0 0 0 0 0 0
+substrate "SUB" 0 0 -1073741817 -1073741817 space 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+cap "li_63_449#" "li_79_175#" 15.9139
+cap "m1_614_530#" "li_367_449#" 5.14925
+cap "m1_614_530#" "li_553_84#" 8.29787
+cap "li_251_71#" "li_367_449#" 15.3585
+cap "cclk" "cclkb" 18.5439
+cap "li_251_71#" "li_553_84#" 42.0636
+cap "li_63_449#" "li_63_71#" 11.9625
+cap "li_251_71#" "li_79_175#" 19.8479
+cap "li_367_71#" "li_367_449#" 12.069
+cap "li_251_71#" "li_367_71#" 119.098
+cap "li_367_449#" "vnb" 40.5634
+cap "li_251_71#" "vnb" 72.6134
+cap "li_367_71#" "li_553_84#" 22.6987
+cap "vnb" "li_553_84#" 43.6072
+cap "li_251_71#" "li_63_71#" 25.2857
+cap "li_367_71#" "vnb" 12.6872
+cap "li_367_449#" "li_63_449#" 25.0551
+cap "li_63_71#" "li_79_175#" 57.7165
+cap "li_367_71#" "li_63_71#" 20.6556
+subcap "cclkb" -280.269
+subcap "cclk" -171.61
+cap "comp_clks_0/inv3x_1/a_16_n22#" "comp_clks_0/inv3x_0/a_16_n22#" -2.21053
+cap "comp_clks_0/VDD" "comp_clks_0/a_890_618#" 5.68434e-14
+cap "comp_clks_0/VDD" "inv_weak_pulldown_1/a_n68_90#" 74.6209
+cap "comp_clks_0/a_646_734#" "comp_clks_0/GND" 365.13
+cap "comp_clks_0/VDD" "comp_clks_0/inv3x_0/a_16_n22#" 33.2111
+cap "inv_weak_pulldown_1/a_n68_90#" "comp_clks_0/GND" 171.476
+cap "comp_clks_0/VDD" "inv_weak_pulldown_1/a_74_n54#" 193.85
+cap "comp_clks_0/inv3x_0/a_16_n22#" "comp_clks_0/GND" 2.78638
+cap "inv_weak_pulldown_1/a_74_n54#" "comp_clks_0/GND" 45.1985
+cap "inv_weak_pulldown_1/a_16_n28#" "comp_clks_0/GND" 23.4513
+cap "comp_clks_0/a_646_734#" "inv_weak_pulldown_0/a_n68_90#" 3.47368
+cap "comp_clks_0/inv3x_1/a_16_n22#" "comp_clks_0/GND" 5.53977
+cap "comp_clks_0/a_646_734#" "comp_clks_0/a_594_618#" 246.917
+cap "inv_weak_pulldown_1/a_n68_90#" "inv_weak_pulldown_0/a_n68_90#" 20.0666
+cap "comp_clks_0/a_646_734#" "inv_weak_pulldown_0/a_16_n28#" 8.15294
+cap "inv_weak_pulldown_1/a_n68_90#" "comp_clks_0/a_594_618#" 6.11921
+cap "comp_clks_0/VDD" "comp_clks_0/GND" -6.52326
+cap "inv_weak_pulldown_1/a_74_n54#" "inv_weak_pulldown_0/a_n68_90#" 8.1326
+cap "inv_weak_pulldown_1/a_74_n54#" "comp_clks_0/a_594_618#" 30.7708
+cap "inv_weak_pulldown_1/a_16_n28#" "comp_clks_0/a_594_618#" 7.17391
+cap "inv_weak_pulldown_1/a_16_n28#" "inv_weak_pulldown_0/a_16_n28#" 11.2683
+cap "comp_clks_0/a_646_734#" "inv_weak_pulldown_1/a_n68_90#" 66.6786
+cap "comp_clks_0/VDD" "inv_weak_pulldown_0/a_n68_90#" 28.3121
+cap "comp_clks_0/VDD" "comp_clks_0/a_594_618#" 14.933
+cap "inv_weak_pulldown_1/a_74_n54#" "comp_clks_0/a_646_734#" 137.095
+cap "inv_weak_pulldown_0/a_n68_90#" "comp_clks_0/GND" 30.2812
+cap "comp_clks_0/a_890_618#" "comp_clks_0/inv3x_0/a_16_n22#" 31.9452
+cap "inv_weak_pulldown_1/a_74_n54#" "inv_weak_pulldown_1/a_n68_90#" 62.575
+cap "inv_weak_pulldown_1/a_16_n28#" "inv_weak_pulldown_1/a_n68_90#" 17.7692
+cap "comp_clks_0/a_594_618#" "comp_clks_0/GND" 4.27778
+cap "inv_weak_pulldown_0/a_16_n28#" "comp_clks_0/GND" 17.1781
+cap "comp_clks_0/VDD" "comp_clks_0/a_646_734#" 121.736
+cap "comp_clks_0/inv3x_0/a_n84_182#" "comp_clks_0/a_890_618#" -2.84217e-14
+cap "comp_clks_0/inv3x_0/a_16_n22#" "comp_clks_0/VDD" 2.2464
+cap "comp_clks_0/inv3x_1/a_16_n22#" "comp_clks_0/inv3x_0/a_16_n22#" 74.4896
+cap "comp_clks_0/inv3x_0/a_16_n22#" "comp_clks_0/GND" 44.6811
+cap "comp_clks_0/inv3x_1/a_16_n22#" "comp_clks_0/GND" 182.022
+cap "comp_clks_0/inv3x_0/a_n84_182#" "comp_clks_0/inv3x_0/a_16_n22#" 257.442
+cap "comp_clks_0/inv3x_0/a_16_n22#" "comp_clks_0/a_890_618#" 117.889
+cap "comp_clks_0/inv3x_1/a_16_n22#" "comp_clks_0/inv3x_0/a_n84_182#" 10.7877
+cap "comp_clks_0/inv3x_1/a_16_n22#" "comp_clks_0/a_890_618#" 17.005
+cap "comp_clks_0/inv3x_0/a_16_n22#" "comp_clks_0/a_646_734#" -1.35484
+merge "inv_weak_pulldown_0/SUB" "inv_weak_pulldown_0/GND" -251.698 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2312 -272 -832 -410 0 0 0 0 0 0 0 0 0 0
+merge "inv_weak_pulldown_0/GND" "inv_weak_pulldown_0/a_n84_n28#"
+merge "inv_weak_pulldown_0/a_n84_n28#" "li_63_71#"
+merge "li_63_71#" "inv_weak_pulldown_1/SUB"
+merge "inv_weak_pulldown_1/SUB" "inv_weak_pulldown_1/GND"
+merge "inv_weak_pulldown_1/GND" "comp_clks_0/GND"
+merge "comp_clks_0/GND" "SUB"
+merge "SUB" "inv_weak_pulldown_1/a_n84_n28#"
+merge "inv_weak_pulldown_1/a_n84_n28#" "li_367_71#"
+merge "inv_weak_pulldown_0/VDD" "inv_weak_pulldown_0/a_n84_182#" -340.315 0 0 0 0 0 -1244 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2312 -272 -5980 -798 0 0 0 0 0 0 0 0 0 0
+merge "inv_weak_pulldown_0/a_n84_182#" "li_63_449#"
+merge "li_63_449#" "inv_weak_pulldown_0/w_n122_144#"
+merge "inv_weak_pulldown_0/w_n122_144#" "inv_weak_pulldown_1/VDD"
+merge "inv_weak_pulldown_1/VDD" "inv_weak_pulldown_1/a_n84_182#"
+merge "inv_weak_pulldown_1/a_n84_182#" "li_367_449#"
+merge "li_367_449#" "inv_weak_pulldown_1/w_n122_144#"
+merge "inv_weak_pulldown_1/w_n122_144#" "comp_clks_0/VDD"
+merge "comp_clks_0/VDD" "m1_614_530#"
+merge "inv_weak_pulldown_1/a_16_182#" "comp_clks_0/a_646_734#" -200.804 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2312 -272 0 0 0 0 0 0 0 0 0 0 0 0
+merge "comp_clks_0/a_646_734#" "li_553_84#"
+merge "comp_clks_0/inv3x_1/a_16_n22#" "cclkb" -78.9762 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6358 -136 0 0 0 0 0 0 0 0 0 0 0 0
+merge "inv_weak_pulldown_0/a_n68_90#" "li_79_175#" -60.8361 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1156 -136 0 0 0 0 0 0 0 0 0 0 0 0
+merge "inv_weak_pulldown_0/a_74_n54#" "inv_weak_pulldown_1/a_74_n54#" -198.919 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2312 -272 0 0 0 0 0 0 0 0 0 0 0 0
+merge "inv_weak_pulldown_1/a_74_n54#" "vnb"
+merge "inv_weak_pulldown_0/a_16_182#" "inv_weak_pulldown_1/a_n68_90#" -158.926 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2312 -272 0 0 0 0 0 0 0 0 0 0 0 0
+merge "inv_weak_pulldown_1/a_n68_90#" "li_251_71#"
+merge "comp_clks_0/inv3x_0/a_16_n22#" "cclk" -169.895 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2380 -138 0 0 0 0 0 0 0 0 0 0 0 0

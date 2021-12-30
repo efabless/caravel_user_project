@@ -1,10 +1,10 @@
-* SPICE3 file created from comp_clks.ext - technology: sky130A
+* SPICE3 file created from /home/sky/fossi_cochlea/mag/clkgen/comp_clks.ext - technology: sky130A
 
-X0 inv3x_0/a_8_n11# a_297_309# GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
-X1 inv3x_0/a_8_n11# a_297_309# VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
-X2 inv3x_1/a_8_n11# a_445_309# GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
-X3 inv3x_1/a_8_n11# a_445_309# VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
-X4 GND a_323_367# a_297_309# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
-X5 VDD a_323_367# a_297_309# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
-X6 a_445_309# VDD a_323_367# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
-X7 a_445_309# GND a_323_367# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X0 inv3x_0/a_16_n22# a_594_618# GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X1 inv3x_0/a_16_n22# a_594_618# VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X2 inv3x_1/a_16_n22# a_890_618# GND GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X3 inv3x_1/a_16_n22# a_890_618# VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X4 GND a_646_734# a_594_618# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X5 VDD a_646_734# a_594_618# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X6 a_890_618# VDD a_646_734# GND sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X7 a_890_618# GND a_646_734# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u

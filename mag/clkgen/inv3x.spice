@@ -1,0 +1,4 @@
+* SPICE3 file created from /home/sky/fossi_cochlea/mag/clkgen/inv3x.ext - technology: sky130A
+
+X0 a_8_n11# a_n43_45# a_n42_n11# SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X1 a_8_n11# a_n43_45# a_n42_91# w_n60_73# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u

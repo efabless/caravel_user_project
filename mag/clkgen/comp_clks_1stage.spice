@@ -1,0 +1,6 @@
+* SPICE3 file created from /home/sky/fossi_cochlea/mag/clkgen/comp_clks_1stage.ext - technology: sky130A
+
+X0 a_684_618# a_646_734# a_594_618# a_684_618# sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X1 w_546_790# a_646_734# a_594_618# w_546_790# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X2 a_890_618# w_546_790# a_646_734# a_684_618# sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X3 a_890_618# a_684_618# a_646_734# w_546_790# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u

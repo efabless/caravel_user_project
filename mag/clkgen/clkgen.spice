@@ -1,0 +1,58 @@
+* SPICE3 file created from /home/sky/fossi_cochlea/mag/clkgen/clkgen.ext - technology: sky130A
+
+X0 PDPUcomp_1/SUB sky130_fd_sc_lp__dlclkp_1_0/GCLK PDPUcomp_1/inp PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X1 sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__dlclkp_1_0/GCLK PDPUcomp_1/inp sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X2 PDPUcomp_0/inp sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__dlclkp_1_0/GCLK PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X3 PDPUcomp_0/inp PDPUcomp_1/SUB sky130_fd_sc_lp__dlclkp_1_0/GCLK sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X4 PDPUcomp_0/clka PDPUcomp_0/comp_clks_0/a_594_618# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X5 PDPUcomp_0/clka PDPUcomp_0/comp_clks_0/a_594_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X6 PDPUcomp_0/clkb PDPUcomp_0/comp_clks_0/a_890_618# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X7 PDPUcomp_0/clkb PDPUcomp_0/comp_clks_0/a_890_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X8 PDPUcomp_1/SUB PDPUcomp_0/li_519_324# PDPUcomp_0/comp_clks_0/a_594_618# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X9 sky130_fd_sc_lp__and2_1_0/VPB PDPUcomp_0/li_519_324# PDPUcomp_0/comp_clks_0/a_594_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X10 PDPUcomp_0/comp_clks_0/a_890_618# sky130_fd_sc_lp__and2_1_0/VPB PDPUcomp_0/li_519_324# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X11 PDPUcomp_0/comp_clks_0/a_890_618# PDPUcomp_1/SUB PDPUcomp_0/li_519_324# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X12 PDPUcomp_0/inv_weak_pulldown_0/a_16_n28# PDPUcomp_0/inp PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X13 PDPUcomp_0/out PDPUcomp_0/inp sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X14 PDPUcomp_0/out PDPUcomp_1/vnb PDPUcomp_0/inv_weak_pulldown_0/a_16_n28# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X15 PDPUcomp_0/inv_weak_pullup_0/a_n398_104# PDPUcomp_0/out sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X16 PDPUcomp_0/li_519_324# PDPUcomp_1/vpb PDPUcomp_0/inv_weak_pullup_0/a_n398_104# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X17 PDPUcomp_0/li_519_324# PDPUcomp_0/out PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X18 PDPUcomp_1/clka PDPUcomp_1/comp_clks_0/a_594_618# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X19 PDPUcomp_1/clka PDPUcomp_1/comp_clks_0/a_594_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X20 PDPUcomp_1/clkb PDPUcomp_1/comp_clks_0/a_890_618# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X21 PDPUcomp_1/clkb PDPUcomp_1/comp_clks_0/a_890_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X22 PDPUcomp_1/SUB PDPUcomp_1/li_519_324# PDPUcomp_1/comp_clks_0/a_594_618# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X23 sky130_fd_sc_lp__and2_1_0/VPB PDPUcomp_1/li_519_324# PDPUcomp_1/comp_clks_0/a_594_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X24 PDPUcomp_1/comp_clks_0/a_890_618# sky130_fd_sc_lp__and2_1_0/VPB PDPUcomp_1/li_519_324# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X25 PDPUcomp_1/comp_clks_0/a_890_618# PDPUcomp_1/SUB PDPUcomp_1/li_519_324# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X26 PDPUcomp_1/inv_weak_pulldown_0/a_16_n28# PDPUcomp_1/inp PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X27 PDPUcomp_1/out PDPUcomp_1/inp sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X28 PDPUcomp_1/out PDPUcomp_1/vnb PDPUcomp_1/inv_weak_pulldown_0/a_16_n28# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X29 PDPUcomp_1/inv_weak_pullup_0/a_n398_104# PDPUcomp_1/out sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X30 PDPUcomp_1/li_519_324# PDPUcomp_1/vpb PDPUcomp_1/inv_weak_pullup_0/a_n398_104# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X31 PDPUcomp_1/li_519_324# PDPUcomp_1/out PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X32 PDPDcomp_0/cclk PDPDcomp_0/comp_clks_0/a_594_618# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X33 PDPDcomp_0/cclk PDPDcomp_0/comp_clks_0/a_594_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X34 PDPDcomp_0/cclkb PDPDcomp_0/comp_clks_0/a_890_618# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X35 PDPDcomp_0/cclkb PDPDcomp_0/comp_clks_0/a_890_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X36 PDPUcomp_1/SUB PDPDcomp_0/li_553_84# PDPDcomp_0/comp_clks_0/a_594_618# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X37 sky130_fd_sc_lp__and2_1_0/VPB PDPDcomp_0/li_553_84# PDPDcomp_0/comp_clks_0/a_594_618# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X38 PDPDcomp_0/comp_clks_0/a_890_618# sky130_fd_sc_lp__and2_1_0/VPB PDPDcomp_0/li_553_84# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X39 PDPDcomp_0/comp_clks_0/a_890_618# PDPUcomp_1/SUB PDPDcomp_0/li_553_84# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X40 PDPDcomp_0/inv_weak_pulldown_0/a_16_n28# sky130_fd_sc_lp__and2_1_0/X PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X41 PDPDcomp_0/li_251_71# sky130_fd_sc_lp__and2_1_0/X sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X42 PDPDcomp_0/li_251_71# PDPUcomp_1/vnb PDPDcomp_0/inv_weak_pulldown_0/a_16_n28# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X43 PDPDcomp_0/inv_weak_pulldown_1/a_16_n28# PDPDcomp_0/li_251_71# PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+X44 PDPDcomp_0/li_553_84# PDPDcomp_0/li_251_71# sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1.26e+06u l=180000u
+X45 PDPDcomp_0/li_553_84# PDPUcomp_1/vnb PDPDcomp_0/inv_weak_pulldown_1/a_16_n28# PDPUcomp_1/SUB sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=180000u
+Xsky130_fd_sc_lp__dlclkp_1_0 sky130_fd_sc_lp__and2_1_0/A sky130_fd_sc_lp__dlclkp_1_0/GATE
++ PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB
++ sky130_fd_sc_lp__dlclkp_1_0/GCLK sky130_fd_sc_lp__dlclkp_1
+Xsky130_fd_sc_lp__dfrbp_1_0 sky130_fd_sc_lp__and2_1_0/A sky130_fd_sc_lp__dfrbp_1_0/D
++ sky130_fd_sc_lp__dlclkp_1_0/GATE PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_sc_lp__and2_1_0/VPB
++ sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/B sky130_fd_sc_lp__dfrbp_1_0/D
++ sky130_fd_sc_lp__dfrbp_1
+Xsky130_fd_sc_lp__and2_1_0 sky130_fd_sc_lp__and2_1_0/A sky130_fd_sc_lp__and2_1_0/B
++ PDPUcomp_1/SUB PDPUcomp_1/SUB sky130_fd_sc_lp__and2_1_0/VPB sky130_fd_sc_lp__and2_1_0/VPB
++ sky130_fd_sc_lp__and2_1_0/X sky130_fd_sc_lp__and2_1

@@ -1,6 +1,6 @@
 magic
 tech sky130A
-timestamp 1640750373
+timestamp 1640896088
 << nwell >>
 rect 219 542 490 557
 rect 219 395 531 542
@@ -308,11 +308,11 @@ rect 677 308 683 325
 rect 219 267 518 273
 rect 650 269 683 308
 use inv3x  inv3x_0
-timestamp 1640745770
+timestamp 1640896088
 transform 1 0 578 0 1 307
 box -60 -40 55 244
 use inv3x  inv3x_1
-timestamp 1640745770
+timestamp 1640896088
 transform 1 0 693 0 1 307
 box -60 -40 55 244
 << labels >>

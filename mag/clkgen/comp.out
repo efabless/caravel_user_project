@@ -1,189 +1,937 @@
 Equate elements:  no current cell.
 Equate elements:  no current cell.
+Equate elements:  no current cell.
+Equate elements:  no current cell.
+Equate elements:  no current cell.
+Flattening unmatched subcell comp_clks in circuit clkgen_x.spice (1)(2 instances)
+Flattening unmatched subcell comp_clks_1stage in circuit clkgen_x.spice (1)(1 instance)
+Flattening unmatched subcell inv_weak_pulldown in circuit clkgen_x.spice (1)(3 instances)
+Flattening unmatched subcell inv_weak_pullup in circuit clkgen_x.spice (1)(1 instance)
 
 Subcircuit summary:
-Circuit 1: comp_clks.spice                 |Circuit 2: comp_clks_x.spice               
+Circuit 1: clkgen.spice                    |Circuit 2: clkgen_x.spice                  
 -------------------------------------------|-------------------------------------------
-sky130_fd_pr__nfet_01v8 (4)                |sky130_fd_pr__nfet_01v8 (4)                
-sky130_fd_pr__pfet_01v8 (4)                |sky130_fd_pr__pfet_01v8 (4)                
-Number of devices: 8                       |Number of devices: 8                       
-Number of nets: 7                          |Number of nets: 7                          
+sky130_fd_pr__nfet_01v8 (24)               |sky130_fd_pr__nfet_01v8 (24)               
+sky130_fd_pr__pfet_01v8 (22)               |sky130_fd_pr__pfet_01v8 (22)               
+sky130_fd_sc_lp__dlclkp_1 (1)              |sky130_fd_sc_lp__dlclkp_1 (1)              
+sky130_fd_sc_lp__dfrbp_1 (1)               |sky130_fd_sc_lp__dfrbp_1 (1)               
+sky130_fd_sc_lp__and2_1 (1)                |sky130_fd_sc_lp__and2_1 (1)                
+Number of devices: 49                      |Number of devices: 49                      
+Number of nets: 36                         |Number of nets: 36                         
 ---------------------------------------------------------------------------------------
 Circuits match uniquely.
 Property errors were found.
 Netlists match uniquely.
 There were property errors.
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
- l circuit1: "0.18"   circuit2: "Lpmos"   (exact match req'd)
- w circuit1: "1.26"   circuit2: "Wpmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v83 vs. sky130_fd_pr__pfet_01v8M4:
+sky130_fd_pr__pfet_01v81 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M2:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
- l circuit1: "0.18"   circuit2: "Lpmos"   (exact match req'd)
- w circuit1: "1.26"   circuit2: "Wpmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v81 vs. sky130_fd_pr__pfet_01v8M2:
+sky130_fd_pr__pfet_01v83 vs. comp_clks_1stage1/sky130_fd_pr__pfet_01v8M4:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
- l circuit1: "0.18"   circuit2: "Lpmos"   (exact match req'd)
- w circuit1: "1.26"   circuit2: "Wpmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M6:
+sky130_fd_pr__pfet_01v841 vs. inv_weak_pulldown8/sky130_fd_pr__pfet_01v8M2:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
- l circuit1: "0.18"   circuit2: "Lpmos"   (exact match req'd)
- w circuit1: "1.26"   circuit2: "Wpmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M8:
+sky130_fd_pr__pfet_01v844 vs. inv_weak_pulldown9/sky130_fd_pr__pfet_01v8M2:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
- l circuit1: "0.18"   circuit2: "Lnmos"   (exact match req'd)
- w circuit1: "0.42"   circuit2: "Wnmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v82 vs. sky130_fd_pr__nfet_01v8M3:
+sky130_fd_pr__pfet_01v827 vs. inv_weak_pulldown2/sky130_fd_pr__pfet_01v8M2:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
- l circuit1: "0.18"   circuit2: "Lnmos"   (exact match req'd)
- w circuit1: "0.42"   circuit2: "Wnmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
+ l circuit1: 0.18   "Lmin"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v80 vs. sky130_fd_pr__nfet_01v8M1:
+sky130_fd_pr__pfet_01v813 vs. sky130_fd_pr__pfet_01v8M2:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
- l circuit1: "0.18"   circuit2: "Lnmos"   (exact match req'd)
- w circuit1: "0.42"   circuit2: "Wnmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
+ l circuit1: 0.18   circuit2: 0.54   (delta=100%, cutoff=0%)
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M5:
+sky130_fd_pr__pfet_01v830 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M3:
 Property nf in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
- l circuit1: "0.18"   circuit2: "Lnmos"   (exact match req'd)
- w circuit1: "0.42"   circuit2: "Wnmos"   (exact match req'd)
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
+ l circuit1: 0.18   "Lpmos"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
  ps circuit1: "0"   (unresolved expression)  (property type mismatch)
  as circuit1: "0"   (unresolved expression)  (property type mismatch)
  pd circuit1: "0"   (unresolved expression)  (property type mismatch)
  ad circuit1: "0"   (unresolved expression)  (property type mismatch)
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
 Property mult in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
 Property sd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
 Property sb in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
 Property sa in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
 Property nrs in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
 Property nrd in circuit2 has no matching property in circuit1
-sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M7:
+sky130_fd_pr__pfet_01v816 vs. sky130_fd_pr__pfet_01v8M6:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v837 vs. comp_clks10/sky130_fd_pr__pfet_01v8M2:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v823 vs. comp_clks4/sky130_fd_pr__pfet_01v8M2:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+ l circuit1: 0.18   "Lpmos"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v89 vs. sky130_fd_pr__pfet_01v8M8:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v829 vs. inv_weak_pullup3/sky130_fd_pr__pfet_01v8M2:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+ l circuit1: 0.18   "Lmin"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v815 vs. sky130_fd_pr__pfet_01v8M5:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v835 vs. comp_clks10/sky130_fd_pr__pfet_01v8M6:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v821 vs. comp_clks4/sky130_fd_pr__pfet_01v8M6:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+ l circuit1: 0.18   "Lpmos"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v87 vs. sky130_fd_pr__pfet_01v8M12:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v833 vs. comp_clks10/sky130_fd_pr__pfet_01v8M4:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v819 vs. comp_clks4/sky130_fd_pr__pfet_01v8M4:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+ l circuit1: 0.18   "Lpmos"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v85 vs. sky130_fd_pr__pfet_01v8M10:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v839 vs. comp_clks10/sky130_fd_pr__pfet_01v8M8:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v825 vs. comp_clks4/sky130_fd_pr__pfet_01v8M8:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+ l circuit1: 0.18   "Lpmos"  (property type mismatch)
+ w circuit1: 1.26   "Wpmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__pfet_01v811 vs. sky130_fd_pr__pfet_01v8M14:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v80 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v82 vs. comp_clks_1stage1/sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v840 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+ l circuit1: 0.18   circuit2: 0.54   (delta=100%, cutoff=0%)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v845 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+ l circuit1: 0.18   circuit2: 0.54   (delta=100%, cutoff=0%)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v842 vs. inv_weak_pulldown8/sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+ l circuit1: 0.18   circuit2: 0.54   (delta=100%, cutoff=0%)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v828 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+ l circuit1: 0.18   "Lnmos"  (property type mismatch)
+ w circuit1: 0.42   "Wmin"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v814 vs. sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v831 vs. inv_weak_pullup3/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+ l circuit1: 0.18   "Lmin"  (property type mismatch)
+ w circuit1: 0.42   "Wmin"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v817 vs. sky130_fd_pr__nfet_01v8M4:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v836 vs. comp_clks10/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v822 vs. comp_clks4/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+ l circuit1: 0.18   "Lnmos"  (property type mismatch)
+ w circuit1: 0.42   "Wnmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v88 vs. sky130_fd_pr__nfet_01v8M7:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v843 vs. inv_weak_pulldown9/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v826 vs. inv_weak_pulldown2/sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+ l circuit1: 0.18   "Lmin"  (property type mismatch)
+ w circuit1: 0.42   "Wmin"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v812 vs. sky130_fd_pr__nfet_01v8M1:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v834 vs. comp_clks10/sky130_fd_pr__nfet_01v8M5:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v820 vs. comp_clks4/sky130_fd_pr__nfet_01v8M5:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+ l circuit1: 0.18   "Lnmos"  (property type mismatch)
+ w circuit1: 0.42   "Wnmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v86 vs. sky130_fd_pr__nfet_01v8M11:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v832 vs. comp_clks10/sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v818 vs. comp_clks4/sky130_fd_pr__nfet_01v8M3:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+ l circuit1: 0.18   "Lnmos"  (property type mismatch)
+ w circuit1: 0.42   "Wnmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v84 vs. sky130_fd_pr__nfet_01v8M9:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v838 vs. comp_clks10/sky130_fd_pr__nfet_01v8M7:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v824 vs. comp_clks4/sky130_fd_pr__nfet_01v8M7:
+Property nf in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+ l circuit1: 0.18   "Lnmos"  (property type mismatch)
+ w circuit1: 0.42   "Wnmos"  (property type mismatch)
+ ps circuit1: "0"   (unresolved expression)  (property type mismatch)
+ as circuit1: "0"   (unresolved expression)  (property type mismatch)
+ pd circuit1: "0"   (unresolved expression)  (property type mismatch)
+ ad circuit1: "0"   (unresolved expression)  (property type mismatch)
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+Property mult in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+Property sd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+Property sb in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+Property sa in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+Property nrs in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
+Property nrd in circuit2 has no matching property in circuit1
+sky130_fd_pr__nfet_01v810 vs. sky130_fd_pr__nfet_01v8M13:
 Property nf in circuit2 has no matching property in circuit1
 Cells have no pins;  pin matching not needed.
-Device classes comp_clks.spice and comp_clks_x.spice are equivalent.
+Device classes clkgen.spice and clkgen_x.spice are equivalent.
 Circuits match uniquely.
 Property errors were found.
 The following cells had property errors:
- comp_clks.spice
+ clkgen.spice
