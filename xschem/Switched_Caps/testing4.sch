@@ -33,33 +33,7 @@ N 1060 0 1100 0 { lab=out2}
 N 710 -0 720 -0 { lab=out1}
 N 270 -0 330 -0 { lab=out}
 N 720 -0 780 -0 { lab=out1}
-C {devices/netlist.sym} -610 -710 0 0 {name=SPICE only_toplevel=false value="
-.lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
-.options abstol=1e-14 reltol=1e-4
-.param f=2560k
-.param duty_cycle=0.5
-.param tau=\{(48^2)*1/f\}
-.param tend=\{4*tau\}
-
-*start all caps with 0 charge
-.ic v(x1.x1.c1)=0 v(x1.c2)=0 v(x1.x2.c1)=0 v(x1.c4)=0 
-+ v(x1.x3.c1)=0 v(x1.c6)=0 v(x1.x4.c1)=0 v(x1.c8)=0 
-+ v(x1.x5.c1)=0 v(x1.c10)=0 v(x1.x6.c1)=0 v(x1.c12)=0 
-+ v(x1.x7.c1)=0 v(x1.c14)=0 v(x1.x8.c1)=0 v(out)=0
-+ v(x4.x1.c1)=0 v(x4.c2)=0 v(x4.x2.c1)=0 v(x4.c4)=0 
-+ v(x4.x3.c1)=0 v(x4.c6)=0 v(x4.x4.c1)=0 v(x4.c8)=0 
-+ v(x4.x5.c1)=0 v(x4.c10)=0 v(x4.x6.c1)=0 v(x4.c12)=0 
-+ v(x4.x7.c1)=0 v(x4.c14)=0 v(x4.x8.c1)=0 v(out1)=0
-+ v(x5.x1.c1)=0 v(x5.c2)=0 v(x5.x2.c1)=0 v(x5.c4)=0 
-+ v(x5.x3.c1)=0 v(x5.c6)=0 v(x5.x4.c1)=0 v(x5.c8)=0 
-+ v(x5.x5.c1)=0 v(x5.c10)=0 v(x5.x6.c1)=0 v(x5.c12)=0 
-+ v(x5.x7.c1)=0 v(x5.c14)=0 v(x5.x8.c1)=0 v(out2)=0
-
-
-*.ac DEC 100 10 20k *doesn't seem to work, get 0s out
-.tran \{1/f\} \{tend\}
-.save all
-"}
+N 1380 0 1420 0 { lab=out3}
 C {devices/vsource.sym} -490 110 0 0 {name=Vin value="DC 0 PULSE (0 \{36u * f\} 1n 1n 1n \{2*duty_cycle*1/f\} \{tend\}"
 *SIN (0.6 0.6 1k)"}
 C {devices/gnd.sym} -490 140 0 0 {name=l3 lab=GND}
@@ -94,3 +68,40 @@ C {devices/lab_pin.sym} 890 -50 0 0 {name=l19 sig_type=std_logic lab=phi_clkb}
 C {devices/lab_pin.sym} 930 50 2 0 {name=l20 sig_type=std_logic lab=phi_clk2}
 C {devices/lab_pin.sym} 930 -50 2 0 {name=l21 sig_type=std_logic lab=phi_clkb2}
 C {devices/lab_pin.sym} 1090 0 3 0 {name=l22 sig_type=std_logic lab=out2}
+C {Switched_Caps/16switchcaps_2phi.sym} 1230 0 0 0 {name=X6 W=5 L=10}
+C {devices/lab_pin.sym} 1210 50 0 0 {name=l23 sig_type=std_logic lab=phi_clk}
+C {devices/lab_pin.sym} 1210 -50 0 0 {name=l24 sig_type=std_logic lab=phi_clkb}
+C {devices/lab_pin.sym} 1250 50 2 0 {name=l25 sig_type=std_logic lab=phi_clk2}
+C {devices/lab_pin.sym} 1250 -50 2 0 {name=l26 sig_type=std_logic lab=phi_clkb2}
+C {devices/lab_pin.sym} 1410 0 3 0 {name=l27 sig_type=std_logic lab=out3}
+C {devices/netlist.sym} -630 -620 0 0 {name=SPICE only_toplevel=false value="
+.lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.options abstol=1e-14 reltol=1e-4
+.param f=2560k
+.param duty_cycle=0.5
+.param tau=\{(48^2)*1/f\}
+.param tend=\{4*tau\}
+
+*start all caps with 0 charge
+.ic v(x1.x1.c1)=0 v(x1.c2)=0 v(x1.x2.c1)=0 v(x1.c4)=0 
++ v(x1.x3.c1)=0 v(x1.c6)=0 v(x1.x4.c1)=0 v(x1.c8)=0 
++ v(x1.x5.c1)=0 v(x1.c10)=0 v(x1.x6.c1)=0 v(x1.c12)=0 
++ v(x1.x7.c1)=0 v(x1.c14)=0 v(x1.x8.c1)=0 v(out)=0
++ v(x4.x1.c1)=0 v(x4.c2)=0 v(x4.x2.c1)=0 v(x4.c4)=0 
++ v(x4.x3.c1)=0 v(x4.c6)=0 v(x4.x4.c1)=0 v(x4.c8)=0 
++ v(x4.x5.c1)=0 v(x4.c10)=0 v(x4.x6.c1)=0 v(x4.c12)=0 
++ v(x4.x7.c1)=0 v(x4.c14)=0 v(x4.x8.c1)=0 v(out1)=0
++ v(x5.x1.c1)=0 v(x5.c2)=0 v(x5.x2.c1)=0 v(x5.c4)=0 
++ v(x5.x3.c1)=0 v(x5.c6)=0 v(x5.x4.c1)=0 v(x5.c8)=0 
++ v(x5.x5.c1)=0 v(x5.c10)=0 v(x5.x6.c1)=0 v(x5.c12)=0 
++ v(x5.x7.c1)=0 v(x5.c14)=0 v(x5.x8.c1)=0 v(out2)=0
++ v(x6.x1.c1)=0 v(x6.c2)=0 v(x6.x2.c1)=0 v(x6.c4)=0 
++ v(x6.x3.c1)=0 v(x6.c6)=0 v(x6.x4.c1)=0 v(x6.c8)=0 
++ v(x6.x5.c1)=0 v(x6.c10)=0 v(x6.x6.c1)=0 v(x6.c12)=0 
++ v(x6.x7.c1)=0 v(x6.c14)=0 v(x6.x8.c1)=0 v(out3)=0
+
+
+*.ac DEC 100 10 20k *doesn't seem to work, get 0s out
+.tran \{1/f\} \{tend\}
+.save all
+"}
