@@ -29,6 +29,7 @@ N 20 -60 20 -50 { lab=phi_clkb2}
 N 670 0 710 0 { lab=out1}
 N 180 0 270 -0 { lab=out}
 N 330 -0 390 -0 { lab=#net1}
+N 270 -0 330 -0 {}
 C {devices/netlist.sym} -610 -710 0 0 {name=SPICE only_toplevel=false value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .options abstol=1e-14 reltol=1e-4
@@ -79,9 +80,4 @@ C {devices/lab_pin.sym} 500 -50 0 0 {name=l14 sig_type=std_logic lab=phi_clkb}
 C {devices/lab_pin.sym} 540 50 2 0 {name=l15 sig_type=std_logic lab=phi_clk2}
 C {devices/lab_pin.sym} 540 -50 2 0 {name=l16 sig_type=std_logic lab=phi_clkb2}
 C {devices/lab_pin.sym} 700 0 3 0 {name=l17 sig_type=std_logic lab=out1}
-C {devices/res.sym} 300 0 1 0 {name=R1
-value=10
-footprint=1206
-device=resistor
-m=1}
 C {devices/lab_pin.sym} -160 0 0 0 {name=l4 sig_type=std_logic lab=in}
