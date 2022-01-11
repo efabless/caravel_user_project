@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1640027388
+timestamp 1640838164
 << nwell >>
 rect 787 330 1265 703
 rect 1334 -705 1937 -332
@@ -60,9 +60,9 @@ rect 1931 -300 1965 -266
 rect 2199 -310 2233 -276
 rect 1723 -410 1757 -376
 << metal1 >>
-rect 787 713 1609 714
-rect 679 615 3077 713
-rect 679 -618 777 615
+rect 581 713 1609 714
+rect 519 615 3077 713
+rect 519 -618 617 615
 rect 1852 562 1910 574
 rect 820 528 1864 562
 rect 1898 528 1910 562
@@ -109,8 +109,8 @@ rect 1706 -362 1780 -356
 rect 1706 -416 1712 -362
 rect 1774 -416 1780 -362
 rect 1706 -422 1780 -416
-rect 679 -684 1609 -618
-rect 679 -716 1646 -684
+rect 519 -684 1609 -618
+rect 519 -716 1646 -684
 << via1 >>
 rect 1698 298 1760 350
 rect 2974 294 3030 306
@@ -143,23 +143,11 @@ rect 1706 -362 1780 -356
 rect 1706 -416 1712 -362
 rect 1774 -416 1780 -362
 rect 1706 -422 1780 -416
-use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_3 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
-timestamp 1626515395
-transform -1 0 2274 0 -1 -1
-box -38 -49 710 715
-use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_3 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
+use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_1 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
 timestamp 1626515395
 transform 1 0 930 0 1 -1
 box -38 -49 2150 715
-use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_2
-timestamp 1626515395
-transform -1 0 2274 0 -1 -1
-box -38 -49 710 715
-use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_2
-timestamp 1626515395
-transform 1 0 930 0 1 -1
-box -38 -49 2150 715
-use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_0
+use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_1 ~/sky130A/libs.ref/sky130_fd_sc_lp/mag
 timestamp 1626515395
 transform -1 0 2274 0 -1 -1
 box -38 -49 710 715
@@ -167,12 +155,24 @@ use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_0
 timestamp 1626515395
 transform 1 0 930 0 1 -1
 box -38 -49 2150 715
-use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_1
+use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_0
 timestamp 1626515395
 transform -1 0 2274 0 -1 -1
 box -38 -49 710 715
-use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_1
+use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_2
 timestamp 1626515395
 transform 1 0 930 0 1 -1
 box -38 -49 2150 715
+use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_2
+timestamp 1626515395
+transform -1 0 2274 0 -1 -1
+box -38 -49 710 715
+use sky130_fd_sc_lp__dfrtp_1  sky130_fd_sc_lp__dfrtp_1_3
+timestamp 1626515395
+transform 1 0 930 0 1 -1
+box -38 -49 2150 715
+use sky130_fd_sc_lp__xor2_1  sky130_fd_sc_lp__xor2_1_3
+timestamp 1626515395
+transform -1 0 2274 0 -1 -1
+box -38 -49 710 715
 << end >>

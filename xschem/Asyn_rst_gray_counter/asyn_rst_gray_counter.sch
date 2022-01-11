@@ -102,6 +102,24 @@ N -3770 1090 -3770 1210 { lab=RST_bar}
 N -4130 1090 -4130 1210 { lab=RST_bar}
 N -4490 1090 -4490 1210 { lab=RST_bar}
 N -4800 1090 -4800 1210 { lab=RST_bar}
+N -2190 800 -2190 930 { lab=VDD}
+N -4890 800 -2190 800 { lab=VDD}
+N -2250 760 -2250 930 { lab=#net15}
+N -4890 760 -2250 760 { lab=#net15}
+N -4720 760 -4720 930 { lab=#net15}
+N -4660 800 -4660 930 { lab=VDD}
+N -4410 760 -4410 930 { lab=#net15}
+N -4350 800 -4350 930 { lab=VDD}
+N -4050 760 -4050 930 { lab=#net15}
+N -3990 800 -3990 930 { lab=VDD}
+N -3690 760 -3690 930 { lab=#net15}
+N -3630 800 -3630 930 { lab=VDD}
+N -3330 760 -3330 930 { lab=#net15}
+N -3270 800 -3270 930 { lab=VDD}
+N -2970 760 -2970 930 { lab=#net15}
+N -2910 800 -2910 930 { lab=VDD}
+N -2610 760 -2610 930 { lab=#net15}
+N -2550 800 -2550 930 { lab=VDD}
 C {devices/ipin.sym} -4890 1180 0 0 {name=p11 lab=Clk}
 C {devices/ipin.sym} -4890 990 0 0 {name=p12 lab=EN}
 C {devices/opin.sym} -4390 1380 1 0 {name=p13 lab=Q0}
@@ -135,3 +153,5 @@ C {T_flip_flop/asyn_rst_t_ff.sym} -2000 1410 0 0 {name=X6}
 C {T_flip_flop/asyn_rst_t_ff.sym} -1640 1410 0 0 {name=X7}
 C {T_flip_flop/asyn_rst_t_ff.sym} -1280 1410 0 0 {name=X8}
 C {devices/ipin.sym} -4890 1210 0 0 {name=p22 lab=RST_bar}
+C {devices/iopin.sym} -4880 800 2 0 {name=p2 lab=VDD}
+C {devices/iopin.sym} -4880 760 2 0 {name=p3 lab=GND}

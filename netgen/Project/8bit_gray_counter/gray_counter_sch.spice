@@ -1,4 +1,4 @@
-**.subckt asyn_rst_gray_counter Clk EN Q0 Q1 Q2 Q4 Q5 Q6 Q7 Q3 RST_bar
+**.subckt asyn_rst_gray_counter Clk EN Q0 Q1 Q2 Q4 Q5 Q6 Q7 Q3 RST_bar VDD GND
 *.ipin Clk
 *.ipin EN
 *.opin Q0
@@ -10,6 +10,8 @@
 *.opin Q7
 *.opin Q3
 *.ipin RST_bar
+*.iopin VDD
+*.iopin GND
 x14 net8 net7 GND GND VDD VDD Q0 sky130_fd_sc_lp__xor2_1
 x15 net8 net1 GND GND VDD VDD net2 sky130_fd_sc_lp__and2_1
 x1 net9 net8 GND GND VDD VDD Q1 sky130_fd_sc_lp__xor2_1
@@ -24,24 +26,26 @@ x9 net10 net3 GND GND VDD VDD net4 sky130_fd_sc_lp__and2_1
 x10 net12 net5 GND GND VDD VDD net6 sky130_fd_sc_lp__and2_1
 x11 net13 net6 GND GND VDD VDD net14 sky130_fd_sc_lp__and2_1
 x12 net7 EN GND GND VDD VDD net1 sky130_fd_sc_lp__and2_1
-X1 EN net7 Clk RST_bar asyn_rst_t_ff
-X2 net1 net8 Clk RST_bar asyn_rst_t_ff
-X3 net2 net9 Clk RST_bar asyn_rst_t_ff
-X4 net3 net10 Clk RST_bar asyn_rst_t_ff
-X5 net4 net11 Clk RST_bar asyn_rst_t_ff
-X6 net5 net12 Clk RST_bar asyn_rst_t_ff
-X7 net6 net13 Clk RST_bar asyn_rst_t_ff
-X8 net14 Q7 Clk RST_bar asyn_rst_t_ff
+X1 EN net7 Clk RST_bar GND VDD asyn_rst_t_ff
+X2 net1 net8 Clk RST_bar GND VDD asyn_rst_t_ff
+X3 net2 net9 Clk RST_bar GND VDD asyn_rst_t_ff
+X4 net3 net10 Clk RST_bar GND VDD asyn_rst_t_ff
+X5 net4 net11 Clk RST_bar GND VDD asyn_rst_t_ff
+X6 net5 net12 Clk RST_bar GND VDD asyn_rst_t_ff
+X7 net6 net13 Clk RST_bar GND VDD asyn_rst_t_ff
+X8 net14 Q7 Clk RST_bar GND VDD asyn_rst_t_ff
 **.ends
 
-* expanding   symbol:  T_flip_flop/asyn_rst_t_ff.sym # of pins=4
+* expanding   symbol:  T_flip_flop/asyn_rst_t_ff.sym # of pins=6
 * sym_path: /home/sky/Desktop/beng207_project/cochlea_sky130/xschem/T_flip_flop/asyn_rst_t_ff.sym
 * sch_path: /home/sky/Desktop/beng207_project/cochlea_sky130/xschem/T_flip_flop/asyn_rst_t_ff.sch
-.subckt asyn_rst_t_ff  T Q CLK RST_bar
+.subckt asyn_rst_t_ff  T Q CLK RST_bar GND VDD
 *.ipin T
 *.ipin CLK
 *.opin Q
 *.ipin RST_bar
+*.iopin VDD
+*.iopin GND
 x1 CLK net1 RST_bar GND GND VDD VDD Q sky130_fd_sc_lp__dfrtp_1
 x3 T Q GND GND VDD VDD net1 sky130_fd_sc_lp__xor2_1
 .ends

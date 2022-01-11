@@ -6,6 +6,9 @@ S {}
 E {}
 N 330 -1010 330 -990 { lab=Clk}
 N 210 -1095 210 -1070 { lab=RST_bar}
+N 210 -1260 283.75 -1260 { lab=GND}
+N 383.75 -1281.25 383.75 -1258.75 { lab=VDD}
+N 208.75 -1281.25 383.75 -1281.25 { lab=VDD}
 C {devices/gnd.sym} 330 -930 0 0 {name=l4 lab=GND}
 C {devices/vsource.sym} 330 -960 0 0 {name=V3 value="DC 0 PULSE(1.2 0 \{2/f\} 1n 1n \{duty_cycle*1/f\} \{1/f\})"}
 C {devices/vsource.sym} 210 -1160 0 0 {name=V1 value=1.2}
@@ -38,3 +41,5 @@ C {devices/lab_pin.sym} 210 -1070 0 0 {name=l14 sig_type=std_logic lab=RST_bar}
 C {devices/vsource.sym} 210 -1040 0 1 {name=V4 value="DC 0 PWL(0 0 2u 0 2.01u 1.2 10u 1.2)"
 *DC 0 PWL(0 0 2u 0 2.01u 1.2 10u 1.2)}
 C {devices/gnd.sym} 210 -1010 0 0 {name=l16 lab=GND}
+C {devices/lab_pin.sym} 210 -1260 0 0 {name=l17 sig_type=std_logic lab=GND}
+C {devices/lab_pin.sym} 208.75 -1281.25 0 0 {name=l18 sig_type=std_logic lab=VDD}

@@ -1,0 +1,36 @@
+* SPICE3 file created from /home/sky/counter_cell.ext - technology: sky130A
+
+*.option scale=5000u
+
+*.subckt x/home/sky/counter_cell CLK EN Q0 RST_bar
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3 CLK asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 EN sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__xor2_1_0/VNB
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/VPB
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_1 EN sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__xor2_1_0/VNB
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/VPB
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_2 EN sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__xor2_1_0/VNB
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/VPB
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3 EN sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__xor2_1_0/VNB
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/VPB
++ asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X sky130_fd_sc_lp__xor2_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_0 CLK asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_1 CLK asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_2 CLK asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__dfrtp_1
+Xsky130_fd_sc_lp__xor2_1_0 sky130_fd_sc_lp__xor2_1_0/A sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__xor2_1_0/VPB Q0 sky130_fd_sc_lp__xor2_1
+Xsky130_fd_sc_lp__and2_1_0 sky130_fd_sc_lp__xor2_1_0/B EN sky130_fd_sc_lp__xor2_1_0/VNB
++ sky130_fd_sc_lp__xor2_1_0/VNB sky130_fd_sc_lp__xor2_1_0/VPB sky130_fd_sc_lp__xor2_1_0/VPB
++ sky130_fd_sc_lp__and2_1_0/X sky130_fd_sc_lp__and2_1
+*.ends

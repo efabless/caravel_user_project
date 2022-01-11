@@ -1,0 +1,31 @@
+**.subckt counter_cell Clk T Q0 RST_bar A0 X1 Q VDD GND
+*.ipin Clk
+*.ipin T
+*.opin Q0
+*.ipin RST_bar
+*.opin A0
+*.ipin X1
+*.opin Q
+*.ipin VDD
+*.ipin GND
+x14 X1 Q GND GND VDD VDD Q0 sky130_fd_sc_lp__xor2_1
+x12 Q T GND GND VDD VDD A0 sky130_fd_sc_lp__and2_1
+X1 T Q Clk RST_bar VDD GND asyn_rst_t_ff
+**.ends
+
+* expanding   symbol:  T_flip_flop/asyn_rst_t_ff.sym # of pins=6
+* sym_path: /home/sky/Desktop/beng207_project/cochlea_sky130/xschem/T_flip_flop/asyn_rst_t_ff.sym
+* sch_path: /home/sky/Desktop/beng207_project/cochlea_sky130/xschem/T_flip_flop/asyn_rst_t_ff.sch
+.subckt asyn_rst_t_ff  T Q CLK RST_bar VDD GND
+*.ipin T
+*.ipin CLK
+*.opin Q
+*.ipin RST_bar
+*.iopin VDD
+*.iopin GND
+x1 CLK net1 RST_bar GND GND VDD VDD Q sky130_fd_sc_lp__dfrtp_1
+x3 T Q GND GND VDD VDD net1 sky130_fd_sc_lp__xor2_1
+.ends
+
+** flattened .save nodes
+.end

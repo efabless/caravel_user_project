@@ -17,7 +17,12 @@ N 540 945 660 945 { lab=A5}
 N 540 965 570 965 { lab=#net1}
 N 540 985 570 985 { lab=#net2}
 N 430 1035 430 1055 { lab=Clk}
-C {sparse_decoder/sparse_decoder.sym} -7180 -5925 0 0 {nmae=X1}
+N 310 780 740 780 { lab=GND}
+N 740 780 740 805 { lab=GND}
+N 890 740 890 805 { lab=VDD}
+N 310 740 890 740 { lab=VDD}
+N 383.75 780 383.75 795 { lab=GND}
+N 483.75 740 483.75 795 { lab=VDD}
 C {devices/netlist.sym} 1185 770 0 0 {name=SPICE1 value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
@@ -67,3 +72,6 @@ C {devices/gnd.sym} 430 1115 0 0 {name=l89 lab=GND}
 C {devices/vsource.sym} 430 1085 0 0 {name=V10 value="DC 0 PULSE(0 1.2 \{2/f\} 1n 1n \{duty_cycle*1/f\} \{1/f\})"}
 C {devices/lab_pin.sym} 430 1055 0 0 {name=l90 sig_type=std_logic lab=Clk}
 C {Asyn_rst_gray_counter/asyn_rst_gray_counter.sym} 6203.75 1240 0 0 {name=X1}
+C {sparse_decoder/sparse_decoder_crude.sym} -1910 -2005 0 0 {name=X2}
+C {devices/lab_pin.sym} 310 740 0 0 {name=l1 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} 310 780 0 0 {name=l2 sig_type=std_logic lab=GND}

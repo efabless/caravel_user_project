@@ -1,0 +1,346 @@
+* SPICE3 file created from sparse_decoder_lvs.ext - technology: sky130A
+
+.option scale=10000u
+
+.subckt sparse_decoder_lvs A5 A4 A3 A2 A1 A0 sel2 sel3 sel4 sel9 sel10 sel13 sel17
++ sel21 sel23 sel31 sel32 sel40 sel42 sel46 sel50 sel53 sel54 sel59 sel60 sel61 VDD
++ GND
+X0 m1_1250_153# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X1 decoder_cell_0_0[0]/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X2 m1_1250_153# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X3 decoder_cell_0_0[1]/a_12_n1# li_235_204# decoder_cell_0_0[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X4 m1_1250_153# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X5 decoder_cell_0_0[2]/a_12_n1# li_448_n3912# decoder_cell_0_0[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X6 m1_1250_153# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X7 decoder_cell_0_3[0]/a_12_n1# li_659_202# decoder_cell_0_0[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X8 m1_1233_n96# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X9 decoder_cell_0_1[0]/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X10 m1_1233_n96# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X11 decoder_cell_0_1[1]/a_12_n1# li_235_204# decoder_cell_0_1[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X12 m1_1233_n96# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X13 decoder_cell_0_1[2]/a_12_n1# li_448_n3912# decoder_cell_0_1[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X14 m1_1233_n96# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X15 decoder_cell_0_4/a_12_n1# li_659_202# decoder_cell_0_1[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X16 a_1331_n361# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X17 decoder_cell_0_2[0]/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X18 a_1331_n361# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X19 decoder_cell_0_2[1]/a_12_n1# li_235_204# decoder_cell_0_2[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X20 a_1331_n361# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X21 decoder_cell_0_6[0]/a_12_n1# li_448_n3912# decoder_cell_0_2[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X22 m1_1250_153# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X23 decoder_cell_0_3[0]/a_12_n1# li_981_n3852# decoder_cell_0_3[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X24 m1_1250_153# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X25 decoder_cell_0_3[1]/a_12_n1# li_1189_223# m1_1250_153# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X26 m1_1233_n96# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X27 decoder_cell_0_4/a_12_n1# li_981_n3852# decoder_cell_0_5/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X28 m1_1233_n96# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X29 m1_1233_n96# li_1081_202# decoder_cell_0_5/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X30 a_1331_n361# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X31 decoder_cell_0_6[0]/a_12_n1# li_761_202# decoder_cell_0_6[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X32 a_1331_n361# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X33 decoder_cell_0_6[1]/a_12_n1# li_981_n3852# decoder_cell_0_7/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X34 a_1331_n459# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X35 decoder_cell_0_8[0]/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X36 a_1331_n459# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X37 decoder_cell_0_9[0]/a_12_n1# li_235_204# decoder_cell_0_8[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X38 a_1331_n361# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X39 a_1331_n361# li_1081_202# decoder_cell_0_7/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X40 a_1331_n459# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X41 decoder_cell_0_9[0]/a_12_n1# li_549_n3836# decoder_cell_0_9[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X42 a_1331_n459# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X43 decoder_cell_0_9[1]/a_12_n1# li_761_202# decoder_cell_0_10/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X44 a_1331_n3259# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X45 GND li_131_n3837# decoder_cell_0_60/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X46 a_1331_n2859# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X47 decoder_cell_0_50/a_12_n1# li_235_204# decoder_cell_0_50/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X48 a_1331_n3259# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X49 decoder_cell_0_61[0]/a_12_n1# li_235_204# decoder_cell_0_60/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X50 a_1331_n3259# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X51 decoder_cell_0_61[1]/a_12_n1# li_448_n3912# decoder_cell_0_61[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X52 li_23_n3860# A5 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X53 li_23_n3860# A5 VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X54 li_131_n3837# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X55 li_131_n3837# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X56 a_1331_n2459# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X57 decoder_cell_0_40[0]/a_12_n1# li_659_202# decoder_cell_0_40[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X58 a_1331_n2459# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X59 decoder_cell_0_41/a_12_n1# li_869_n3865# decoder_cell_0_40[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X60 a_1331_n3161# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X61 decoder_cell_0_52/a_12_n1# li_869_n3865# decoder_cell_0_51/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X62 a_1331_n3561# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X63 decoder_cell_0_62/a_12_n1# li_659_202# decoder_cell_0_62/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X64 li_448_n3912# A3 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X65 li_448_n3912# A3 VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X66 li_549_n3836# li_448_n3912# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X67 li_549_n3836# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X68 li_869_n3865# A1 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X69 li_869_n3865# A1 VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X70 li_981_n3852# li_869_n3865# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X71 li_981_n3852# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X72 li_235_204# A4 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X73 li_235_204# A4 VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X74 li_337_196# li_235_204# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X75 li_337_196# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X76 a_1329_n1961# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X77 decoder_cell_0_30[0]/a_12_n1# li_448_n3912# decoder_cell_0_33/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X78 a_1329_n1961# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X79 decoder_cell_0_30[1]/a_12_n1# li_659_202# decoder_cell_0_30[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X80 a_1329_n1961# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X81 decoder_cell_0_30[2]/a_12_n1# li_869_n3865# decoder_cell_0_30[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X82 a_1329_n1961# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X83 a_1329_n1961# li_1081_202# decoder_cell_0_30[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X84 a_1331_n2459# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X85 decoder_cell_0_41/a_12_n1# li_1189_223# a_1331_n2459# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X86 a_1331_n3161# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X87 decoder_cell_0_52/a_12_n1# li_1189_223# a_1331_n3161# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X88 a_1331_n3659# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X89 decoder_cell_0_63/a_12_n1# li_659_202# decoder_cell_0_63/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X90 li_659_202# A2 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X91 li_659_202# A2 VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X92 li_761_202# li_659_202# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X93 li_761_202# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X94 a_1331_n459# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X95 decoder_cell_0_11/a_12_n1# li_869_n3865# decoder_cell_0_10/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X96 a_1330_n1161# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X97 decoder_cell_0_20[0]/a_12_n1# li_659_202# decoder_cell_0_20[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X98 a_1330_n1161# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X99 decoder_cell_0_21/a_12_n1# li_869_n3865# decoder_cell_0_20[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X100 a_1330_n1161# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X101 decoder_cell_0_21/a_12_n1# li_1189_223# a_1330_n1161# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X102 a_1329_n1961# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X103 GND li_131_n3837# decoder_cell_0_33/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X104 a_1329_n2059# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X105 GND li_131_n3837# decoder_cell_0_32/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X106 a_1331_n2761# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X107 decoder_cell_0_44/a_12_n1# li_549_n3836# decoder_cell_0_47/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X108 a_1331_n2859# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X109 decoder_cell_0_50/a_12_n1# li_549_n3836# decoder_cell_0_43[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X110 a_1331_n2859# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X111 decoder_cell_0_43[1]/a_12_n1# li_761_202# decoder_cell_0_43[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X112 a_1331_n2859# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X113 decoder_cell_0_43[2]/a_12_n1# li_981_n3852# decoder_cell_0_43[3]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X114 a_1331_n2859# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X115 decoder_cell_0_43[3]/a_12_n1# li_1189_223# a_1331_n2859# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X116 a_1331_n3259# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X117 decoder_cell_0_61[1]/a_12_n1# li_761_202# decoder_cell_0_53[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X118 a_1331_n3259# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X119 decoder_cell_0_53[1]/a_12_n1# li_981_n3852# decoder_cell_0_54/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X120 a_1331_n3259# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X121 a_1331_n3259# li_1081_202# decoder_cell_0_54/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X122 a_1331_n3659# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X123 decoder_cell_0_65[0]/a_12_n1# li_235_204# decoder_cell_0_64/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X124 a_1331_n3659# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X125 decoder_cell_0_63/a_n31_n1# li_448_n3912# decoder_cell_0_65[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X126 a_1331_n3659# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X127 GND li_131_n3837# decoder_cell_0_64/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X128 li_1081_202# A0 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X129 li_1081_202# A0 VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X130 li_1189_223# li_1081_202# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X131 li_1189_223# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X132 a_1331_n459# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X133 decoder_cell_0_11/a_12_n1# li_1189_223# a_1331_n459# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X134 a_1330_n1259# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X135 decoder_cell_0_22/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X136 a_1329_n1961# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X137 decoder_cell_0_33/a_12_n1# li_337_196# decoder_cell_0_33/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X138 a_1331_n2761# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X139 decoder_cell_0_44/a_12_n1# li_235_204# decoder_cell_0_45/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X140 a_1331_n3161# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X141 GND li_131_n3837# decoder_cell_0_56/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X142 a_1331_n3561# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X143 decoder_cell_0_66[0]/a_12_n1# li_235_204# decoder_cell_0_67/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X144 a_1331_n3561# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X145 decoder_cell_0_62/a_n31_n1# li_448_n3912# decoder_cell_0_66[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X146 sel2 m1_1250_153# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X147 sel2 m1_1250_153# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X148 a_1331_n761# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X149 decoder_cell_0_12[0]/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X150 a_1331_n761# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X151 decoder_cell_0_13[0]/a_12_n1# li_235_204# decoder_cell_0_12[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X152 a_1330_n1259# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X153 decoder_cell_0_22/a_12_n1# li_337_196# decoder_cell_0_23[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X154 a_1330_n1259# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X155 decoder_cell_0_23[1]/a_12_n1# li_549_n3836# decoder_cell_0_23[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X156 a_1330_n1259# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X157 decoder_cell_0_23[2]/a_12_n1# li_761_202# decoder_cell_0_23[3]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X158 a_1330_n1259# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X159 decoder_cell_0_23[3]/a_12_n1# li_981_n3852# decoder_cell_0_23[4]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X160 a_1330_n1259# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X161 decoder_cell_0_23[4]/a_12_n1# li_1189_223# a_1330_n1259# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X162 a_1329_n2059# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X163 decoder_cell_0_32/a_n31_n1# li_337_196# decoder_cell_0_34[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X164 a_1329_n2059# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X165 decoder_cell_0_34[1]/a_12_n1# li_549_n3836# decoder_cell_0_34[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X166 a_1329_n2059# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X167 decoder_cell_0_34[2]/a_12_n1# li_761_202# decoder_cell_0_35[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X168 a_1331_n2761# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X169 GND li_131_n3837# decoder_cell_0_45/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X170 a_1331_n3161# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X171 decoder_cell_0_56/a_12_n1# li_235_204# decoder_cell_0_56/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X172 a_1331_n3561# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X173 GND li_131_n3837# decoder_cell_0_67/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X174 sel3 m1_1233_n96# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X175 sel3 m1_1233_n96# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X176 a_1331_n761# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X177 decoder_cell_0_13[0]/a_12_n1# li_549_n3836# decoder_cell_0_13[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X178 a_1331_n761# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X179 decoder_cell_0_13[1]/a_12_n1# li_761_202# decoder_cell_0_13[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X180 a_1331_n761# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X181 decoder_cell_0_13[2]/a_12_n1# li_981_n3852# decoder_cell_0_13[3]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X182 a_1331_n761# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X183 decoder_cell_0_13[3]/a_12_n1# li_1189_223# a_1331_n761# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X184 a_1331_n1561# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X185 decoder_cell_0_24/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X186 a_1329_n2059# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X187 decoder_cell_0_35[0]/a_12_n1# li_869_n3865# decoder_cell_0_35[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X188 a_1329_n2059# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X189 a_1329_n2059# li_1081_202# decoder_cell_0_35[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X190 a_1331_n2761# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X191 decoder_cell_0_47/a_12_n1# li_981_n3852# decoder_cell_0_46[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X192 a_1331_n2761# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X193 decoder_cell_0_46[1]/a_12_n1# li_1189_223# a_1331_n2761# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X194 a_1331_n3561# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X195 decoder_cell_0_62/a_12_n1# li_981_n3852# decoder_cell_0_58/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X196 a_1331_n859# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X197 decoder_cell_0_14[0]/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X198 a_1331_n859# li_235_204# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X199 decoder_cell_0_15/a_12_n1# li_235_204# decoder_cell_0_14[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X200 a_1331_n1561# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X201 decoder_cell_0_24/a_12_n1# li_337_196# decoder_cell_0_25[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X202 a_1331_n1561# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X203 decoder_cell_0_25[1]/a_12_n1# li_549_n3836# decoder_cell_0_25[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X204 a_1331_n1561# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X205 decoder_cell_0_25[2]/a_12_n1# li_761_202# decoder_cell_0_26[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X206 a_1331_n2361# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X207 decoder_cell_0_37/a_n31_n1# li_337_196# decoder_cell_0_36[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X208 a_1331_n2361# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X209 decoder_cell_0_36[1]/a_12_n1# li_549_n3836# decoder_cell_0_36[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X210 a_1331_n2361# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X211 decoder_cell_0_36[2]/a_12_n1# li_761_202# decoder_cell_0_36[3]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X212 a_1331_n2361# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X213 decoder_cell_0_36[3]/a_12_n1# li_981_n3852# decoder_cell_0_36[4]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X214 a_1331_n2361# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X215 decoder_cell_0_36[4]/a_12_n1# li_1189_223# a_1331_n2361# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X216 a_1331_n2761# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X217 decoder_cell_0_47/a_12_n1# li_659_202# decoder_cell_0_47/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X218 a_1331_n3561# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X219 a_1331_n3561# li_1081_202# decoder_cell_0_58/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X220 a_1331_n859# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X221 decoder_cell_0_15/a_12_n1# li_549_n3836# decoder_cell_0_16/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X222 a_1331_n1561# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X223 decoder_cell_0_26[0]/a_12_n1# li_869_n3865# decoder_cell_0_26[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X224 a_1331_n1561# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X225 a_1331_n1561# li_1081_202# decoder_cell_0_26[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X226 a_1331_n2361# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X227 GND li_131_n3837# decoder_cell_0_37/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X228 a_1331_n3161# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X229 decoder_cell_0_56/a_12_n1# li_549_n3836# decoder_cell_0_48[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X230 a_1331_n3161# li_761_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X231 decoder_cell_0_48[1]/a_12_n1# li_761_202# decoder_cell_0_51/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X232 a_1331_n3659# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X233 decoder_cell_0_63/a_12_n1# li_981_n3852# decoder_cell_0_59[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X234 a_1331_n3659# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X235 decoder_cell_0_59[1]/a_12_n1# li_1189_223# a_1331_n3659# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X236 a_1331_n859# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X237 decoder_cell_0_16/a_12_n1# li_659_202# decoder_cell_0_16/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X238 a_1331_n1659# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X239 decoder_cell_0_28/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X240 a_1331_n2459# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X241 GND li_131_n3837# decoder_cell_0_38/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X242 a_1331_n2859# li_131_n3837# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X243 GND li_131_n3837# decoder_cell_0_50/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X244 a_1330_n1161# li_23_n3860# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X245 decoder_cell_0_18/a_12_n1# li_23_n3860# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X246 a_1331_n859# li_981_n3852# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X247 decoder_cell_0_16/a_12_n1# li_981_n3852# decoder_cell_0_17[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X248 a_1331_n859# li_1189_223# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X249 decoder_cell_0_17[1]/a_12_n1# li_1189_223# a_1331_n859# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X250 a_1331_n1659# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X251 decoder_cell_0_28/a_12_n1# li_337_196# decoder_cell_0_28/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X252 a_1331_n1659# li_448_n3912# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X253 decoder_cell_0_29[0]/a_12_n1# li_448_n3912# decoder_cell_0_28/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X254 a_1331_n1659# li_659_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X255 decoder_cell_0_29[1]/a_12_n1# li_659_202# decoder_cell_0_29[0]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X256 a_1331_n1659# li_869_n3865# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X257 decoder_cell_0_29[2]/a_12_n1# li_869_n3865# decoder_cell_0_29[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X258 a_1331_n1659# li_1081_202# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X259 a_1331_n1659# li_1081_202# decoder_cell_0_29[2]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X260 a_1331_n2459# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X261 decoder_cell_0_38/a_n31_n1# li_337_196# decoder_cell_0_39[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X262 a_1331_n2459# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X263 decoder_cell_0_39[1]/a_12_n1# li_549_n3836# decoder_cell_0_40[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X264 a_1330_n1161# li_337_196# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X265 decoder_cell_0_18/a_12_n1# li_337_196# decoder_cell_0_19[1]/a_12_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X266 a_1330_n1161# li_549_n3836# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X267 decoder_cell_0_19[1]/a_12_n1# li_549_n3836# decoder_cell_0_20[0]/a_n31_n1# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X268 sel4 a_1331_n361# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X269 VDD a_1331_n459# sel9 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X270 sel60 a_1331_n3561# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X271 GND a_1331_n3659# sel61 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X272 sel23 a_1331_n1561# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X273 GND a_1331_n1659# sel31 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X274 sel60 a_1331_n3561# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X275 VDD a_1331_n3659# sel61 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X276 sel23 a_1331_n1561# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X277 VDD a_1331_n1659# sel31 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X278 sel54 a_1331_n3161# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X279 GND a_1331_n3259# sel59 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X280 sel54 a_1331_n3161# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X281 VDD a_1331_n3259# sel59 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X282 sel50 a_1331_n2761# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X283 GND a_1331_n2859# sel53 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X284 sel32 a_1329_n1961# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X285 GND a_1329_n2059# sel40 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X286 sel32 a_1329_n1961# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X287 sel50 a_1331_n2761# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X288 VDD a_1331_n2859# sel53 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X289 sel17 a_1330_n1161# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X290 GND a_1330_n1259# sel21 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X291 VDD a_1329_n2059# sel40 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X292 sel42 a_1331_n2361# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X293 GND a_1331_n2459# sel46 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X294 sel10 a_1331_n761# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X295 sel10 a_1331_n761# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X296 GND a_1331_n859# sel13 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X297 VDD a_1331_n859# sel13 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X298 sel17 a_1330_n1161# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X299 VDD a_1330_n1259# sel21 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X300 sel42 a_1331_n2361# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X301 VDD a_1331_n2459# sel46 VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X302 sel4 a_1331_n361# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+X303 GND a_1331_n459# sel9 GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=42 l=15
+C0 li_1081_202# VDD 2.57fF
+C1 VDD li_337_196# 2.13fF
+C2 VDD li_131_n3837# 2.12fF
+C3 VDD li_448_n3912# 2.62fF
+C4 VDD li_23_n3860# 2.28fF
+C5 li_235_204# VDD 2.47fF
+C6 li_549_n3836# VDD 2.51fF
+C7 li_761_202# VDD 2.51fF
+C8 li_981_n3852# VDD 2.48fF
+C9 li_659_202# VDD 2.90fF
+C10 li_1189_223# VDD 2.40fF
+C11 li_869_n3865# VDD 2.65fF
+C12 a_1331_n1659# GND 2.41fF
+C13 li_1081_202# GND 7.84fF
+C14 a_1331_n3659# GND 2.01fF
+C15 li_1189_223# GND 6.85fF
+C16 a_1331_n2361# GND 2.54fF
+C17 a_1331_n459# GND 2.50fF
+C18 li_337_196# GND 6.59fF
+C19 li_235_204# GND 8.26fF
+C20 a_1331_n3259# GND 2.61fF
+C21 a_1330_n1161# GND 2.32fF
+C22 li_761_202# GND 7.07fF
+C23 li_659_202# GND 8.02fF
+C24 a_1331_n3161# GND 2.53fF
+C25 a_1331_n2459# GND 2.51fF
+C26 li_981_n3852# GND 7.22fF
+C27 li_869_n3865# GND 7.84fF
+C28 li_549_n3836# GND 6.90fF
+C29 li_448_n3912# GND 7.88fF
+C30 VDD GND 86.25fF
+C31 li_131_n3837# GND 7.60fF
+C32 li_23_n3860# GND 10.37fF
+C33 a_1331_n361# GND 2.58fF
+.ends

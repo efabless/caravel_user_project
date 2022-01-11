@@ -90,6 +90,12 @@ N 2890 8800 2915 8800 { lab=EN}
 N 2890 8895 2915 8895 { lab=RST_bar}
 N 2890 8980 3030 8980 { lab=clk}
 N 3030 8980 3035 8980 { lab=clk}
+N 2915 8715 3345 8715 { lab=GND}
+N 3345 8715 3345 8740 { lab=GND}
+N 3495 8675 3495 8740 { lab=#net5}
+N 2915 8675 3495 8675 { lab=#net5}
+N 2988.75 8715 2988.75 8730 { lab=GND}
+N 3088.75 8675 3088.75 8730 { lab=#net5}
 C {devices/lab_pin.sym} 3585 8780 2 0 {name=l21 sig_type=std_logic lab=s2}
 C {devices/lab_pin.sym} 3585 8800 2 0 {name=l22 sig_type=std_logic lab=s3}
 C {devices/lab_pin.sym} 3585 8820 2 0 {name=l23 sig_type=std_logic lab=s4}
@@ -127,3 +133,5 @@ C {devices/opin.sym} 4660 9135 0 0 {name=p2 lab=cos_out}
 C {devices/ipin.sym} 2895 8980 0 0 {name=p3 lab=clk}
 C {devices/ipin.sym} 2900 8895 0 0 {name=p4 lab=RST_bar}
 C {devices/ipin.sym} 2900 8800 0 0 {name=p5 lab=EN}
+C {devices/iopin.sym} 2920 8715 2 0 {name=p6 lab=GND}
+C {devices/iopin.sym} 2920 8675 2 0 {name=p7 lab=VDD}

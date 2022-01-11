@@ -1,0 +1,28 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {type=subcircuit 
+format="@name @pinlist @symname Wpmos=@Wpmos Lpmos=@Lpmos Wnmos=@Wnmos Lnmos=@Lnmos" 
+template="name=X1 Wpmos=0.42 Lpmos=0.15 Wnmos=0.42 Lnmos=0.15"}
+V {}
+S {}
+E {}
+L 4 -130 -70 -110 -70 {}
+L 4 -110 -100 -110 -70 {}
+L 4 -110 -70 -110 -40 {}
+L 4 -40 -70 -30 -70 {}
+L 4 -110 -100 -60 -70 {}
+L 4 -110 -40 -60 -70 {}
+L 4 -90 -100 -90 -90 {}
+L 4 -90 -50 -90 -40 {}
+B 5 -132.5 -72.5 -127.5 -67.5 {name=in
+dir=in}
+B 5 -32.5 -72.5 -27.5 -67.5 {name=out
+dir=inout}
+B 5 -92.5 -102.5 -87.5 -97.5 {name=VDD
+dir=inout}
+B 5 -92.5 -42.5 -87.5 -37.5 {name=GND
+dir=inout}
+A 4 -50 -70 7.071067811865476 315 360 {}
+T {@name} -90 -60 0 0 0.4 0.4 {}
+T {@Wpmos / @Lpmos
+@Wnmos / @Lnmos} -109.75 -79.75 0 0 0.15 0.15 { layer=13}

@@ -1,0 +1,19 @@
+* SPICE3 file created from /home/sky/ROM_cell_lvs.ext - technology: sky130A
+
+.option scale=10000u
+
+.subckt x/home/sky/ROM_cell_lvs out A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 A10
+X0 VDD GND out VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=50 l=15
+X1 GND A7 out GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X2 GND A9 out GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X3 out A4 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X4 out A10 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X5 GND A1 out GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X6 GND A5 out GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X7 GND A3 out GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X8 out A8 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X9 out A2 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X10 out A0 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+X11 out A6 GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=200 l=15
+C0 out GND 11.78fF
+.ends

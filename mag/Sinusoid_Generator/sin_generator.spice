@@ -1,0 +1,764 @@
+* SPICE3 file created from sin_generator.ext - technology: sky130A
+
+.option scale=5000u
+
+.subckt sin_generator sine_out cos_out clk RST_bar EN GND VDD
+X0 VDD GND sky130_fd_sc_lp__xor2_1_1/A VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=100 l=30
+X1 sky130_fd_sc_lp__xor2_1_1/A li_5940_10172# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X2 sky130_fd_sc_lp__xor2_1_1/A li_5946_5220# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X3 sky130_fd_sc_lp__xor2_1_1/A li_5950_8042# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X4 GND li_5948_6824# sky130_fd_sc_lp__xor2_1_1/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X5 GND li_5950_8408# sky130_fd_sc_lp__xor2_1_1/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X6 sky130_fd_sc_lp__xor2_1_1/A li_5950_6432# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X7 GND li_5952_9228# sky130_fd_sc_lp__xor2_1_1/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X8 GND li_5946_5642# sky130_fd_sc_lp__xor2_1_1/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X9 GND li_5950_7618# sky130_fd_sc_lp__xor2_1_1/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X10 sky130_fd_sc_lp__xor2_1_1/A li_5950_8842# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X11 sky130_fd_sc_lp__xor2_1_1/A li_5948_7236# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X12 VDD GND sky130_fd_sc_lp__xor2_1_0/A VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=100 l=30
+X13 sky130_fd_sc_lp__xor2_1_0/A li_5949_1598# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X14 sky130_fd_sc_lp__xor2_1_0/A li_5950_6432# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X15 sky130_fd_sc_lp__xor2_1_0/A li_5950_3624# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X16 GND li_5952_4820# sky130_fd_sc_lp__xor2_1_0/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X17 GND li_5950_3242# sky130_fd_sc_lp__xor2_1_0/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X18 sky130_fd_sc_lp__xor2_1_0/A li_5946_5220# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X19 GND li_5950_2442# sky130_fd_sc_lp__xor2_1_0/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X20 GND li_5950_6046# sky130_fd_sc_lp__xor2_1_0/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X21 GND li_5950_4042# sky130_fd_sc_lp__xor2_1_0/A GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X22 sky130_fd_sc_lp__xor2_1_0/A li_5950_2746# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X23 sky130_fd_sc_lp__xor2_1_0/A li_5950_4438# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=400 l=30
+X24 sparse_decoder_0/decoder_cell_0_0[0]/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X25 sparse_decoder_0/m1_2500_306# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X26 sparse_decoder_0/decoder_cell_0_0[1]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_0[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X27 sparse_decoder_0/m1_2500_306# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X28 sparse_decoder_0/decoder_cell_0_0[2]/a_24_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_0[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X29 sparse_decoder_0/m1_2500_306# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X30 sparse_decoder_0/decoder_cell_0_3[0]/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_0[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X31 sparse_decoder_0/m1_2500_306# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X32 sparse_decoder_0/decoder_cell_0_1[0]/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X33 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X34 sparse_decoder_0/decoder_cell_0_1[1]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_1[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X35 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X36 sparse_decoder_0/decoder_cell_0_1[2]/a_24_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_1[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X37 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X38 sparse_decoder_0/decoder_cell_0_4/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_1[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X39 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X40 sparse_decoder_0/decoder_cell_0_2[0]/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X41 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X42 sparse_decoder_0/decoder_cell_0_2[1]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_2[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X43 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X44 sparse_decoder_0/decoder_cell_0_6[0]/a_24_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_2[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X45 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X46 sparse_decoder_0/decoder_cell_0_3[0]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_3[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X47 sparse_decoder_0/m1_2500_306# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X48 sparse_decoder_0/decoder_cell_0_3[1]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/m1_2500_306# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X49 sparse_decoder_0/m1_2500_306# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X50 sparse_decoder_0/decoder_cell_0_4/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_5/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X51 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X52 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_5/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X53 sparse_decoder_0/m1_2466_n192# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X54 sparse_decoder_0/decoder_cell_0_6[0]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_6[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X55 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X56 sparse_decoder_0/decoder_cell_0_6[1]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_7/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X57 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X58 sparse_decoder_0/decoder_cell_0_8[0]/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X59 sparse_decoder_0/a_2662_n918# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X60 sparse_decoder_0/decoder_cell_0_9[0]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_8[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X61 sparse_decoder_0/a_2662_n918# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X62 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_7/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X63 sparse_decoder_0/a_2662_n722# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X64 sparse_decoder_0/decoder_cell_0_9[0]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_9[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X65 sparse_decoder_0/a_2662_n918# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X66 sparse_decoder_0/decoder_cell_0_9[1]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_10/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X67 sparse_decoder_0/a_2662_n918# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X68 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_60/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X69 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X70 sparse_decoder_0/decoder_cell_0_50/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_50/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X71 sparse_decoder_0/a_2662_n5718# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X72 sparse_decoder_0/decoder_cell_0_61[0]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_60/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X73 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X74 sparse_decoder_0/decoder_cell_0_61[1]/a_24_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_61[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X75 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X76 sparse_decoder_0/li_46_n7720# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/X GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X77 sparse_decoder_0/li_46_n7720# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/X VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X78 sparse_decoder_0/li_262_n7674# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X79 sparse_decoder_0/li_262_n7674# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X80 sparse_decoder_0/decoder_cell_0_40[0]/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_40[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X81 sparse_decoder_0/a_2662_n4918# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X82 sparse_decoder_0/decoder_cell_0_41/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_40[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X83 sparse_decoder_0/a_2662_n4918# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X84 sparse_decoder_0/decoder_cell_0_52/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_51/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X85 sparse_decoder_0/a_2662_n6322# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X86 sparse_decoder_0/decoder_cell_0_62/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_62/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X87 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X88 sparse_decoder_0/li_1738_n7730# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/X GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X89 sparse_decoder_0/li_1738_n7730# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/X VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X90 sparse_decoder_0/li_1962_n7704# sparse_decoder_0/li_1738_n7730# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X91 sparse_decoder_0/li_1962_n7704# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X92 sparse_decoder_0/li_896_n7824# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/X GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X93 sparse_decoder_0/li_896_n7824# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/X VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X94 sparse_decoder_0/li_1098_n7672# sparse_decoder_0/li_896_n7824# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X95 sparse_decoder_0/li_1098_n7672# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X96 sparse_decoder_0/li_470_408# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/X GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X97 sparse_decoder_0/li_470_408# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/X VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X98 sparse_decoder_0/li_674_392# sparse_decoder_0/li_470_408# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X99 sparse_decoder_0/li_674_392# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X100 sparse_decoder_0/decoder_cell_0_30[0]/a_24_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_33/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X101 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X102 sparse_decoder_0/decoder_cell_0_30[1]/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_30[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X103 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X104 sparse_decoder_0/decoder_cell_0_30[2]/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_30[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X105 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X106 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_30[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X107 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X108 sparse_decoder_0/decoder_cell_0_41/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n4918# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X109 sparse_decoder_0/a_2662_n4918# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X110 sparse_decoder_0/decoder_cell_0_52/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n6322# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X111 sparse_decoder_0/a_2662_n6322# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X112 sparse_decoder_0/decoder_cell_0_63/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_63/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X113 sparse_decoder_0/a_2662_n7318# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X114 sparse_decoder_0/li_1318_404# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/X GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X115 sparse_decoder_0/li_1318_404# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/X VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X116 sparse_decoder_0/li_1522_404# sparse_decoder_0/li_1318_404# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X117 sparse_decoder_0/li_1522_404# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X118 sparse_decoder_0/decoder_cell_0_11/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_10/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X119 sparse_decoder_0/a_2662_n918# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X120 sparse_decoder_0/decoder_cell_0_20[0]/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_20[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X121 sparse_decoder_0/a_2660_n2322# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X122 sparse_decoder_0/decoder_cell_0_21/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_20[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X123 sparse_decoder_0/a_2660_n2322# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X124 sparse_decoder_0/decoder_cell_0_21/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2660_n2322# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X125 sparse_decoder_0/a_2660_n2322# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X126 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_33/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X127 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X128 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_32/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X129 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X130 sparse_decoder_0/decoder_cell_0_44/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_47/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X131 sparse_decoder_0/a_2662_n5522# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X132 sparse_decoder_0/decoder_cell_0_50/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_43[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X133 sparse_decoder_0/a_2662_n5718# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X134 sparse_decoder_0/decoder_cell_0_43[1]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_43[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X135 sparse_decoder_0/a_2662_n5718# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X136 sparse_decoder_0/decoder_cell_0_43[2]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_43[3]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X137 sparse_decoder_0/a_2662_n5718# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X138 sparse_decoder_0/decoder_cell_0_43[3]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n5718# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X139 sparse_decoder_0/a_2662_n5718# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X140 sparse_decoder_0/decoder_cell_0_61[1]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_53[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X141 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X142 sparse_decoder_0/decoder_cell_0_53[1]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_54/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X143 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X144 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_54/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X145 sparse_decoder_0/a_2662_n6518# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X146 sparse_decoder_0/decoder_cell_0_65[0]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_64/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X147 sparse_decoder_0/a_2662_n7318# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X148 sparse_decoder_0/decoder_cell_0_63/a_n62_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_65[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X149 sparse_decoder_0/a_2662_n7318# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X150 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_64/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X151 sparse_decoder_0/a_2662_n7318# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X152 sparse_decoder_0/li_2162_404# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/X GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X153 sparse_decoder_0/li_2162_404# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/X VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X154 sparse_decoder_0/li_2378_446# sparse_decoder_0/li_2162_404# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X155 sparse_decoder_0/li_2378_446# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X156 sparse_decoder_0/decoder_cell_0_11/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n918# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X157 sparse_decoder_0/a_2662_n918# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X158 sparse_decoder_0/decoder_cell_0_22/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X159 sparse_decoder_0/a_2660_n2518# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X160 sparse_decoder_0/decoder_cell_0_33/a_24_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_33/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X161 sparse_decoder_0/a_2658_n3922# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X162 sparse_decoder_0/decoder_cell_0_44/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_45/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X163 sparse_decoder_0/a_2662_n5522# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X164 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_56/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X165 sparse_decoder_0/a_2662_n6322# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X166 sparse_decoder_0/decoder_cell_0_66[0]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_67/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X167 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X168 sparse_decoder_0/decoder_cell_0_62/a_n62_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_66[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X169 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X170 li_5940_10172# sparse_decoder_0/m1_2500_306# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X171 li_5940_10172# sparse_decoder_0/m1_2500_306# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X172 sparse_decoder_0/decoder_cell_0_12[0]/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X173 sparse_decoder_0/a_2662_n1522# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X174 sparse_decoder_0/decoder_cell_0_13[0]/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_12[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X175 sparse_decoder_0/a_2662_n1522# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X176 sparse_decoder_0/decoder_cell_0_22/a_24_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_23[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X177 sparse_decoder_0/a_2660_n2518# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X178 sparse_decoder_0/decoder_cell_0_23[1]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_23[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X179 sparse_decoder_0/a_2660_n2518# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X180 sparse_decoder_0/decoder_cell_0_23[2]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_23[3]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X181 sparse_decoder_0/a_2660_n2518# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X182 sparse_decoder_0/decoder_cell_0_23[3]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_23[4]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X183 sparse_decoder_0/a_2660_n2518# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X184 sparse_decoder_0/decoder_cell_0_23[4]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2660_n2518# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X185 sparse_decoder_0/a_2660_n2518# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X186 sparse_decoder_0/decoder_cell_0_32/a_n62_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_34[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X187 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X188 sparse_decoder_0/decoder_cell_0_34[1]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_34[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X189 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X190 sparse_decoder_0/decoder_cell_0_34[2]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_35[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X191 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X192 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_45/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X193 sparse_decoder_0/a_2662_n5522# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X194 sparse_decoder_0/decoder_cell_0_56/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_56/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X195 sparse_decoder_0/a_2662_n6322# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X196 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_67/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X197 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X198 li_5952_9228# sparse_decoder_0/m1_2466_n192# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X199 li_5952_9228# sparse_decoder_0/m1_2466_n192# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X200 sparse_decoder_0/decoder_cell_0_13[0]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_13[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X201 sparse_decoder_0/a_2662_n1522# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X202 sparse_decoder_0/decoder_cell_0_13[1]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_13[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X203 sparse_decoder_0/a_2662_n1522# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X204 sparse_decoder_0/decoder_cell_0_13[2]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_13[3]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X205 sparse_decoder_0/a_2662_n1522# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X206 sparse_decoder_0/decoder_cell_0_13[3]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n1522# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X207 sparse_decoder_0/a_2662_n1522# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X208 sparse_decoder_0/decoder_cell_0_24/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X209 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X210 sparse_decoder_0/decoder_cell_0_35[0]/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_35[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X211 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X212 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_35[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X213 sparse_decoder_0/a_2658_n4118# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X214 sparse_decoder_0/decoder_cell_0_47/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_46[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X215 sparse_decoder_0/a_2662_n5522# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X216 sparse_decoder_0/decoder_cell_0_46[1]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n5522# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X217 sparse_decoder_0/a_2662_n5522# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X218 sparse_decoder_0/decoder_cell_0_62/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_58/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X219 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X220 sparse_decoder_0/decoder_cell_0_14[0]/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X221 sparse_decoder_0/a_2662_n1718# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X222 sparse_decoder_0/decoder_cell_0_15/a_24_n2# sparse_decoder_0/li_470_408# sparse_decoder_0/decoder_cell_0_14[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X223 sparse_decoder_0/a_2662_n1718# sparse_decoder_0/li_470_408# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X224 sparse_decoder_0/decoder_cell_0_24/a_24_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_25[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X225 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X226 sparse_decoder_0/decoder_cell_0_25[1]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_25[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X227 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X228 sparse_decoder_0/decoder_cell_0_25[2]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_26[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X229 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X230 sparse_decoder_0/decoder_cell_0_37/a_n62_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_36[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X231 sparse_decoder_0/a_2662_n4722# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X232 sparse_decoder_0/decoder_cell_0_36[1]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_36[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X233 sparse_decoder_0/a_2662_n4722# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X234 sparse_decoder_0/decoder_cell_0_36[2]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_36[3]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X235 sparse_decoder_0/a_2662_n4722# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X236 sparse_decoder_0/decoder_cell_0_36[3]/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_36[4]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X237 sparse_decoder_0/a_2662_n4722# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X238 sparse_decoder_0/decoder_cell_0_36[4]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n4722# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X239 sparse_decoder_0/a_2662_n4722# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X240 sparse_decoder_0/decoder_cell_0_47/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_47/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X241 sparse_decoder_0/a_2662_n5522# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X242 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_58/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X243 sparse_decoder_0/a_2662_n7122# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X244 sparse_decoder_0/decoder_cell_0_15/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_16/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X245 sparse_decoder_0/a_2662_n1718# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X246 sparse_decoder_0/decoder_cell_0_26[0]/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_26[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X247 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X248 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_26[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X249 sparse_decoder_0/a_2662_n3122# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X250 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_37/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X251 sparse_decoder_0/a_2662_n4722# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X252 sparse_decoder_0/decoder_cell_0_56/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_48[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X253 sparse_decoder_0/a_2662_n6322# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X254 sparse_decoder_0/decoder_cell_0_48[1]/a_24_n2# sparse_decoder_0/li_1522_404# sparse_decoder_0/decoder_cell_0_51/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X255 sparse_decoder_0/a_2662_n6322# sparse_decoder_0/li_1522_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X256 sparse_decoder_0/decoder_cell_0_63/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_59[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X257 sparse_decoder_0/a_2662_n7318# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X258 sparse_decoder_0/decoder_cell_0_59[1]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n7318# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X259 sparse_decoder_0/a_2662_n7318# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X260 sparse_decoder_0/decoder_cell_0_16/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_16/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X261 sparse_decoder_0/a_2662_n1718# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X262 sparse_decoder_0/decoder_cell_0_28/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X263 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X264 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_38/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X265 sparse_decoder_0/a_2662_n4918# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X266 GND sparse_decoder_0/li_262_n7674# sparse_decoder_0/decoder_cell_0_50/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X267 sparse_decoder_0/a_2662_n5718# sparse_decoder_0/li_262_n7674# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X268 sparse_decoder_0/decoder_cell_0_18/a_24_n2# sparse_decoder_0/li_46_n7720# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X269 sparse_decoder_0/a_2660_n2322# sparse_decoder_0/li_46_n7720# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X270 sparse_decoder_0/decoder_cell_0_16/a_24_n2# sparse_decoder_0/li_1962_n7704# sparse_decoder_0/decoder_cell_0_17[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X271 sparse_decoder_0/a_2662_n1718# sparse_decoder_0/li_1962_n7704# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X272 sparse_decoder_0/decoder_cell_0_17[1]/a_24_n2# sparse_decoder_0/li_2378_446# sparse_decoder_0/a_2662_n1718# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X273 sparse_decoder_0/a_2662_n1718# sparse_decoder_0/li_2378_446# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X274 sparse_decoder_0/decoder_cell_0_28/a_24_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_28/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X275 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X276 sparse_decoder_0/decoder_cell_0_29[0]/a_24_n2# sparse_decoder_0/li_896_n7824# sparse_decoder_0/decoder_cell_0_28/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X277 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_896_n7824# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X278 sparse_decoder_0/decoder_cell_0_29[1]/a_24_n2# sparse_decoder_0/li_1318_404# sparse_decoder_0/decoder_cell_0_29[0]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X279 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_1318_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X280 sparse_decoder_0/decoder_cell_0_29[2]/a_24_n2# sparse_decoder_0/li_1738_n7730# sparse_decoder_0/decoder_cell_0_29[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X281 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_1738_n7730# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X282 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_2162_404# sparse_decoder_0/decoder_cell_0_29[2]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X283 sparse_decoder_0/a_2662_n3318# sparse_decoder_0/li_2162_404# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X284 sparse_decoder_0/decoder_cell_0_38/a_n62_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_39[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X285 sparse_decoder_0/a_2662_n4918# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X286 sparse_decoder_0/decoder_cell_0_39[1]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_40[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X287 sparse_decoder_0/a_2662_n4918# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X288 sparse_decoder_0/decoder_cell_0_18/a_24_n2# sparse_decoder_0/li_674_392# sparse_decoder_0/decoder_cell_0_19[1]/a_24_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X289 sparse_decoder_0/a_2660_n2322# sparse_decoder_0/li_674_392# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X290 sparse_decoder_0/decoder_cell_0_19[1]/a_24_n2# sparse_decoder_0/li_1098_n7672# sparse_decoder_0/decoder_cell_0_20[0]/a_n62_n2# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X291 sparse_decoder_0/a_2660_n2322# sparse_decoder_0/li_1098_n7672# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X292 li_5950_4042# sparse_decoder_0/a_2662_n5522# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X293 li_5946_5642# sparse_decoder_0/a_2658_n3922# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X294 VDD sparse_decoder_0/a_2662_n5718# li_5950_3624# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X295 VDD sparse_decoder_0/a_2658_n4118# li_5946_5220# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X296 li_5950_8042# sparse_decoder_0/a_2662_n1522# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X297 VDD sparse_decoder_0/a_2662_n1718# li_5950_7618# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X298 li_5950_2442# sparse_decoder_0/a_2662_n7122# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X299 li_5950_8842# sparse_decoder_0/a_2662_n722# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X300 li_5950_8842# sparse_decoder_0/a_2662_n722# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X301 VDD sparse_decoder_0/a_2662_n7318# li_5949_1598# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X302 VDD sparse_decoder_0/a_2662_n918# li_5950_8408# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X303 GND sparse_decoder_0/a_2662_n918# li_5950_8408# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X304 li_5950_4042# sparse_decoder_0/a_2662_n5522# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X305 li_5946_5642# sparse_decoder_0/a_2658_n3922# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X306 GND sparse_decoder_0/a_2662_n5718# li_5950_3624# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X307 li_5948_7236# sparse_decoder_0/a_2660_n2322# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X308 li_5950_6432# sparse_decoder_0/a_2662_n3122# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X309 VDD sparse_decoder_0/a_2660_n2518# li_5948_6824# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X310 VDD sparse_decoder_0/a_2662_n3318# li_5950_6046# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X311 GND sparse_decoder_0/a_2658_n4118# li_5946_5220# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X312 li_5950_8042# sparse_decoder_0/a_2662_n1522# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X313 GND sparse_decoder_0/a_2662_n1718# li_5950_7618# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X314 li_5952_4820# sparse_decoder_0/a_2662_n4722# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X315 VDD sparse_decoder_0/a_2662_n4918# li_5950_4438# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X316 li_5950_2442# sparse_decoder_0/a_2662_n7122# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X317 GND sparse_decoder_0/a_2662_n7318# li_5949_1598# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X318 li_5950_6432# sparse_decoder_0/a_2662_n3122# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X319 li_5948_7236# sparse_decoder_0/a_2660_n2322# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X320 GND sparse_decoder_0/a_2660_n2518# li_5948_6824# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X321 GND sparse_decoder_0/a_2662_n3318# li_5950_6046# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X322 li_5950_3242# sparse_decoder_0/a_2662_n6322# VDD VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X323 VDD sparse_decoder_0/a_2662_n6518# li_5950_2746# VDD sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X324 li_5952_4820# sparse_decoder_0/a_2662_n4722# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X325 GND sparse_decoder_0/a_2662_n4918# li_5950_4438# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X326 li_5950_3242# sparse_decoder_0/a_2662_n6322# GND GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X327 GND sparse_decoder_0/a_2662_n6518# li_5950_2746# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+C0 li_5946_5220# li_5946_5642# 3.12fF
+C1 VDD sparse_decoder_0/li_674_392# 2.14fF
+C2 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+C3 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+C4 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/X asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/X 5.33fF
+C5 VDD sparse_decoder_0/li_46_n7720# 2.30fF
+C6 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B 2.66fF
+C7 VDD sparse_decoder_0/li_470_408# 2.48fF
+C8 li_5950_6432# li_5946_5642# 3.83fF
+C9 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+C10 clk RST_bar 11.73fF
+C11 VDD sparse_decoder_0/li_262_n7674# 2.12fF
+C12 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+C13 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/X 2.35fF
+C14 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+C15 li_5946_5220# li_5950_6046# 2.02fF
+C16 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/X asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/X 3.41fF
+C17 VDD RST_bar 14.13fF
+C18 sky130_fd_sc_lp__xor2_1_1/B VDD 3.42fF
+C19 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B 2.82fF
+C20 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B VDD 2.83fF
+C21 li_5950_6432# li_5948_6824# 2.81fF
+C22 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+C23 VDD sparse_decoder_0/li_2162_404# 2.57fF
+C24 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/X asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/X 2.55fF
+C25 li_5950_6432# li_5950_6046# 2.84fF
+C26 sparse_decoder_0/li_896_n7824# VDD 2.64fF
+C27 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B 2.75fF
+C28 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/X asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/X 2.99fF
+C29 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# 2.74fF
+C30 VDD sparse_decoder_0/li_1738_n7730# 2.64fF
+C31 VDD sparse_decoder_0/li_1522_404# 2.53fF
+C32 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# 2.74fF
+C33 VDD sparse_decoder_0/li_1962_n7704# 2.48fF
+C34 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B 2.04fF
+C35 VDD sparse_decoder_0/li_1318_404# 2.90fF
+C36 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/X 2.64fF
+C37 VDD sparse_decoder_0/li_1098_n7672# 2.48fF
+C38 VDD sparse_decoder_0/li_2378_446# 2.40fF
+C39 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B 2.75fF
+C40 VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B 2.67fF
+C41 li_5952_4820# li_5946_5220# 2.61fF
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0 sky130_fd_sc_lp__xor2_1_1/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD sky130_fd_sc_lp__xor2_1_0/B sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3 clk asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD sky130_fd_sc_lp__xor2_1_1/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ sky130_fd_sc_lp__xor2_1_1/B GND GND VDD VDD asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ sky130_fd_sc_lp__xor2_1_1/B GND GND VDD VDD asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ sky130_fd_sc_lp__xor2_1_1/B GND GND VDD VDD asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A
++ sky130_fd_sc_lp__xor2_1_1/B GND GND VDD VDD asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0 clk asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD sky130_fd_sc_lp__xor2_1_1/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1 clk asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD sky130_fd_sc_lp__xor2_1_1/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2 clk asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD sky130_fd_sc_lp__xor2_1_1/B sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B
++ asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B GND
++ GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__and2_1_0 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ EN GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B
++ sky130_fd_sc_lp__and2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_0
++ EN asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_1
++ EN asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_2
++ EN asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3
++ EN asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ sky130_fd_sc_lp__xor2_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_0
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_1
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xasyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_2
++ clk asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/X
++ RST_bar GND GND VDD VDD asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B
++ sky130_fd_sc_lp__dfrtp_1
+Xsky130_fd_sc_lp__xor2_1_0 sky130_fd_sc_lp__xor2_1_0/A sky130_fd_sc_lp__xor2_1_0/B
++ GND GND VDD VDD cos_out sky130_fd_sc_lp__xor2_1
+Xsky130_fd_sc_lp__xor2_1_1 sky130_fd_sc_lp__xor2_1_1/A sky130_fd_sc_lp__xor2_1_1/B
++ GND GND VDD VDD sine_out sky130_fd_sc_lp__xor2_1
+C42 sparse_decoder_0/a_2662_n3318# GND 2.19fF
+C43 sparse_decoder_0/li_2162_404# GND 7.93fF
+C44 sparse_decoder_0/a_2662_n7318# GND 2.71fF
+C45 sparse_decoder_0/li_2378_446# GND 6.96fF
+C46 sparse_decoder_0/a_2662_n4722# GND 2.38fF
+C47 sparse_decoder_0/a_2662_n918# GND 2.40fF
+C48 sparse_decoder_0/li_674_392# GND 7.01fF
+C49 sparse_decoder_0/li_470_408# GND 8.40fF
+C50 sparse_decoder_0/a_2660_n2322# GND 2.18fF
+C51 sparse_decoder_0/li_1522_404# GND 7.17fF
+C52 sparse_decoder_0/li_1318_404# GND 8.20fF
+C53 sparse_decoder_0/a_2662_n6322# GND 2.38fF
+C54 sparse_decoder_0/a_2662_n4918# GND 2.37fF
+C55 sparse_decoder_0/a_2658_n3922# GND 2.32fF
+C56 sparse_decoder_0/li_1098_n7672# GND 6.76fF
+C57 sparse_decoder_0/li_896_n7824# GND 8.05fF
+C58 sparse_decoder_0/li_1962_n7704# GND 7.59fF
+C59 sparse_decoder_0/li_1738_n7730# GND 7.94fF
+C60 sparse_decoder_0/li_262_n7674# GND 7.91fF
+C61 sparse_decoder_0/li_46_n7720# GND 8.86fF
+C62 sparse_decoder_0/a_2662_n6518# GND 2.37fF
+C63 sparse_decoder_0/a_2662_n722# GND 2.36fF
+C64 sparse_decoder_0/m1_2466_n192# GND 2.20fF
+C65 sparse_decoder_0/m1_2500_306# GND 3.15fF
+C66 li_5952_4820# GND 2.68fF
+C67 sky130_fd_sc_lp__xor2_1_1/A GND 6.13fF
+C68 cos_out GND 2.52fF
+C69 sky130_fd_sc_lp__xor2_1_0/A GND 10.29fF
+C70 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.35fF **FLOATING
+C71 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C72 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C73 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C74 EN GND 2.58fF
+C75 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/sky130_fd_sc_lp__xor2_1_0/B GND 7.66fF
+C76 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+C77 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.16fF **FLOATING
+C78 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C79 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C80 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C81 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/A GND 2.91fF
+C82 sky130_fd_sc_lp__xor2_1_1/B GND 6.07fF
+C83 asyn_rst_8_gray_counter_0/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.01fF **FLOATING
+C84 clk GND 13.40fF
+C85 VDD GND 235.88fF
+C86 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.17fF **FLOATING
+C87 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C88 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C89 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C90 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__and2_1_0/B GND 3.25fF
+C91 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/sky130_fd_sc_lp__xor2_1_0/B GND 8.71fF
+C92 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_6/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+C93 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.26fF **FLOATING
+C94 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C95 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C96 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C97 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__and2_1_0/B GND 3.25fF
+C98 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/sky130_fd_sc_lp__xor2_1_0/B GND 8.70fF
+C99 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_5/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+C100 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.26fF **FLOATING
+C101 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C102 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C103 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C104 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__and2_1_0/B GND 3.25fF
+C105 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/sky130_fd_sc_lp__xor2_1_0/B GND 8.70fF
+C106 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_4/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+C107 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.26fF **FLOATING
+C108 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C109 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C110 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C111 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__and2_1_0/B GND 3.25fF
+C112 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/sky130_fd_sc_lp__xor2_1_0/B GND 8.70fF
+C113 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_3/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+C114 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.26fF **FLOATING
+C115 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C116 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C117 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C118 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__and2_1_0/B GND 3.25fF
+C119 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/sky130_fd_sc_lp__xor2_1_0/B GND 8.71fF
+C120 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_2/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+C121 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_559_533# GND 2.26fF **FLOATING
+C122 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_695_375# GND 2.62fF **FLOATING
+C123 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_27_114# GND 7.42fF **FLOATING
+C124 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__dfrtp_1_3/a_196_462# GND 4.48fF **FLOATING
+C125 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__and2_1_0/B GND 3.25fF
+C126 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/sky130_fd_sc_lp__xor2_1_0/B GND 8.70fF
+C127 asyn_rst_8_gray_counter_0/asyn_rst_counter_cell_1/T_flip_flop_0/sky130_fd_sc_lp__xor2_1_3/a_42_367# GND 3.03fF **FLOATING
+.ends

@@ -85,6 +85,12 @@ N 4475 8920 4520 8920 { lab=#net2}
 N 4475 8920 4475 9255 { lab=#net2}
 N 4470 9255 4475 9255 { lab=#net2}
 N 4465 9255 4470 9255 { lab=#net2}
+N 2915 8715 3345 8715 { lab=GND}
+N 3345 8715 3345 8740 { lab=GND}
+N 3495 8675 3495 8740 { lab=VDD}
+N 2915 8675 3495 8675 { lab=VDD}
+N 2988.75 8715 2988.75 8730 { lab=GND}
+N 3088.75 8675 3088.75 8730 { lab=VDD}
 C {devices/netlist.sym} 5040 8585 0 0 {name=SPICE1 value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
@@ -141,3 +147,5 @@ C {devices/lab_pin.sym} 4640 9135 2 0 {name=l2 sig_type=std_logic lab=cos_out}
 C {sky130_stdcells/xor2_1.sym} 4580 8900 0 0 {name=x3 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
 C {sky130_stdcells/xor2_1.sym} 4580 9135 0 0 {name=x1 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
 C {sparse_decoder/sparse_decoder_crude.sym} 695 5930 0 0 {name=X4}
+C {devices/lab_pin.sym} 2915 8675 0 0 {name=l3 sig_type=std_logic lab=VDD}
+C {devices/lab_pin.sym} 2915 8715 0 0 {name=l4 sig_type=std_logic lab=GND}

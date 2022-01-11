@@ -1,0 +1,82 @@
+
+Flattening unmatched subcell asyn_rst_t_ff in circuit counter_cell_sch.spice (1)(1 instance)
+Equate elements:  no current cell.
+
+Equate elements:  no current cell.
+
+Equate elements:  no current cell.
+
+Class counter_cell_lay.spice(0):  Merged 6 parallel devices.
+Subcircuit summary:
+Circuit 1: counter_cell_lay.spice          |Circuit 2: counter_cell_sch.spice          
+-------------------------------------------|-------------------------------------------
+sky130_fd_sc_lp__dfrtp_1 (1)               |sky130_fd_sc_lp__dfrtp_1 (1)               
+sky130_fd_sc_lp__xor2_1 (2)                |sky130_fd_sc_lp__xor2_1 (2)                
+sky130_fd_sc_lp__and2_1 (1)                |sky130_fd_sc_lp__and2_1 (1)                
+Number of devices: 4                       |Number of devices: 4                       
+Number of nets: 10                         |Number of nets: 10                         
+---------------------------------------------------------------------------------------
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__xor2_1asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__xor2_1asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__xor2_1asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuits match uniquely.
+Property errors were found.
+Netlists match uniquely.
+There were property errors.
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__xor2_1asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__xor2_1asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__xor2_1asyn_rst_t_ff_0/sky130_fd_sc_lp__xor2_1_0 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__dfrtp_1asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__dfrtp_1asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Circuit 2 parallel/series network does not match Circuit 1
+Circuit 1 instance sky130_fd_sc_lp__dfrtp_1asyn_rst_t_ff_0/sky130_fd_sc_lp__dfrtp_1_3 network:
+  M = 1
+  M = 1
+  M = 1
+  M = 1
+Cells have no pins;  pin matching not needed.
+Device classes counter_cell_lay.spice and counter_cell_sch.spice are equivalent.
+Circuits match uniquely.
+Property errors were found.
+The following cells had property errors:
+ counter_cell_lay.spice

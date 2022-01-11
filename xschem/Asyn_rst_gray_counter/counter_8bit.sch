@@ -86,8 +86,26 @@ N -10490 2650 -10470 2650 { lab=RST_bar}
 N -10490 2650 -10490 2760 { lab=RST_bar}
 N -10510 2620 -10470 2620 { lab=Clk}
 N -10510 2620 -10510 2790 { lab=Clk}
-N -9050 2680 -9050 2780 {}
-N -9050 2780 -8600 2780 {}
+N -9050 2680 -9050 2780 { lab=Q7}
+N -9050 2780 -8600 2780 { lab=Q7}
+N -10590 2500 -8680 2500 { lab=VDD}
+N -8680 2500 -8680 2540 { lab=VDD}
+N -8740 2470 -8740 2540 { lab=VDD}
+N -10590 2470 -8740 2470 { lab=VDD}
+N -10410 2470 -10410 2540 { lab=VDD}
+N -10350 2500 -10350 2540 { lab=VDD}
+N -10170 2470 -10170 2540 { lab=VDD}
+N -10110 2500 -10110 2540 { lab=VDD}
+N -9940 2470 -9940 2540 { lab=VDD}
+N -9880 2500 -9880 2540 { lab=VDD}
+N -9710 2470 -9710 2540 { lab=VDD}
+N -9650 2500 -9650 2540 { lab=VDD}
+N -9450 2470 -9450 2540 { lab=VDD}
+N -9390 2500 -9390 2540 { lab=VDD}
+N -9220 2470 -9220 2540 { lab=VDD}
+N -9160 2500 -9160 2540 { lab=VDD}
+N -8990 2470 -8990 2540 { lab=VDD}
+N -8930 2500 -8930 2540 { lab=VDD}
 C {Asyn_rst_gray_counter/counter_cell.sym} -5670 1740 0 0 {name=X1}
 C {Asyn_rst_gray_counter/counter_cell.sym} -5430 1740 0 0 {name=X2}
 C {Asyn_rst_gray_counter/counter_cell.sym} -5200 1740 0 0 {name=X3}
@@ -107,3 +125,5 @@ C {devices/opin.sym} -9320 2810 1 0 {name=p5 lab=Q4}
 C {devices/opin.sym} -9090 2810 1 0 {name=p6 lab=Q5}
 C {devices/opin.sym} -8850 2810 1 0 {name=p7 lab=Q6}
 C {devices/opin.sym} -8600 2810 1 0 {name=p8 lab=Q7}
+C {devices/iopin.sym} -10580 2470 2 0 {name=p9 lab=GND}
+C {devices/iopin.sym} -10580 2500 2 0 {name=p10 lab=VDD}

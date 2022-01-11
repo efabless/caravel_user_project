@@ -90,9 +90,27 @@ N -10210 2790 -10170 2790 { lab=Clk}
 N -10210 2790 -10210 2960 { lab=Clk}
 N -10350 2930 -10290 2930 { lab=RST_bar}
 N -10350 2930 -10350 2940 { lab=RST_bar}
-N -8750 2850 -8750 2940 {}
-N -8750 2940 -8750 2950 {}
-N -8750 2950 -8300 2950 {}
+N -8750 2850 -8750 2940 { lab=Q7}
+N -8750 2940 -8750 2950 { lab=Q7}
+N -8750 2950 -8300 2950 { lab=Q7}
+N -10290 2670 -8380 2670 { lab=VDD}
+N -8380 2670 -8380 2710 { lab=VDD}
+N -8440 2640 -8440 2710 { lab=VDD}
+N -10290 2640 -8440 2640 { lab=VDD}
+N -10110 2640 -10110 2710 { lab=VDD}
+N -10050 2670 -10050 2710 { lab=VDD}
+N -9870 2640 -9870 2710 { lab=VDD}
+N -9810 2670 -9810 2710 { lab=VDD}
+N -9640 2640 -9640 2710 { lab=VDD}
+N -9580 2670 -9580 2710 { lab=VDD}
+N -9410 2640 -9410 2710 { lab=VDD}
+N -9350 2670 -9350 2710 { lab=VDD}
+N -9150 2640 -9150 2710 { lab=VDD}
+N -9090 2670 -9090 2710 { lab=VDD}
+N -8920 2640 -8920 2710 { lab=VDD}
+N -8860 2670 -8860 2710 { lab=VDD}
+N -8690 2640 -8690 2710 { lab=VDD}
+N -8630 2670 -8630 2710 { lab=VDD}
 C {devices/gnd.sym} -10290 3040 0 0 {name=l4 lab=GND}
 C {devices/vsource.sym} -10290 3010 0 0 {name=V3 value="DC 0 PULSE(1.2 0 \{2/f\} 1n 1n \{duty_cycle*1/f\} \{1/f\})"}
 C {devices/vsource.sym} -10290 2790 0 0 {name=V1 value=1.2}
@@ -110,7 +128,7 @@ C {devices/lab_pin.sym} -8300 2990 3 0 {name=l12 sig_type=std_logic lab=Q7}
 C {devices/vsource.sym} -10820 2800 0 0 {name=V2 value=1.2}
 C {devices/gnd.sym} -10820 2830 0 0 {name=l13 lab=GND}
 C {devices/vdd.sym} -10820 2770 0 0 {name=l15 lab=VDD}
-C {devices/netlist.sym} -10450 2500 0 0 {name=SPICE value="
+C {devices/netlist.sym} -10390 2360 0 0 {name=SPICE value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
 .options abstol=1e-14 reltol=1e-4
@@ -132,3 +150,5 @@ C {Asyn_rst_gray_counter/counter_cell.sym} -4410 1910 0 0 {name=X5}
 C {Asyn_rst_gray_counter/counter_cell.sym} -4180 1910 0 0 {name=X6}
 C {Asyn_rst_gray_counter/counter_cell.sym} -3950 1910 0 0 {name=X7}
 C {T_flip_flop/asyn_rst_t_ff.sym} -7470 3190 0 0 {name=X8}
+C {devices/lab_pin.sym} -10290 2640 0 0 {name=l17 sig_type=std_logic lab=GND}
+C {devices/lab_pin.sym} -10290 2670 0 0 {name=l18 sig_type=std_logic lab=VDD}
