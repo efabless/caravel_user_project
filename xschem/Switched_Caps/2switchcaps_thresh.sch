@@ -28,8 +28,8 @@ N -100 160 -100 170 { lab=cclk}
 N -200 280 -100 280 { lab=cclkb}
 N -100 270 -100 280 { lab=cclkb}
 C {devices/gnd.sym} 0 80 0 0 {name=l2 lab=GND}
-C {sky130_fd_pr/cap_mim_m3_1.sym} 0 50 0 0 {name=C1 model=cap_mim_m3_1 W=Wcap L=Lcap MF=1 spiceprefix=X}
-C {sky130_fd_pr/cap_mim_m3_1.sym} 200 50 0 0 {name=C2 model=cap_mim_m3_1 W=Wcap L=Lcap MF=1 spiceprefix=X}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 0 50 0 0 {name=C1 model=cap_mim_m3_1 W=Wcap1 L=Lcap1 MF=1 spiceprefix=X}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 200 50 0 0 {name=C2 model=cap_mim_m3_1 W=Wcap2 L=Lcap2 MF=1 spiceprefix=X}
 C {devices/iopin.sym} 250 0 0 0 {name=p1 lab=out}
 C {devices/iopin.sym} -240 0 2 0 {name=p2 lab=in}
 C {devices/ipin.sym} -200 60 0 0 {name=p3 lab=phi1_clk_n}
