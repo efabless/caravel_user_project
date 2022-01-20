@@ -2094,6 +2094,8 @@ N 4320 2550 4370 2550 { lab=VDD}
 N 4320 2760 4370 2760 { lab=VDD}
 N 4320 2970 4370 2970 { lab=VDD}
 N 4320 3180 4370 3180 { lab=VDD}
+N 4430 3210 4450 3210 { lab=sel61}
+N 4430 3000 4450 3000 { lab=sel60}
 C {sky130_fd_pr/nfet3_01v8.sym} 3360 -720 1 0 {name=M1
 L=0.15
 W=0.42
@@ -5754,3 +5756,5 @@ C {inv/inv_sparse_decoder2.sym} 4460 1180 0 0 {name=X13 Wpmos=0.42 Lpmos=0.15 Wn
 C {inv/inv_sparse_decoder2.sym} 4460 760 0 0 {name=X15 Wpmos=0.42 Lpmos=0.15 Wnmos=0.42 Lnmos=0.15}
 C {inv/inv_sparse_decoder2.sym} 4460 340 0 0 {name=X17 Wpmos=0.42 Lpmos=0.15 Wnmos=0.42 Lnmos=0.15}
 C {inv/inv_sparse_decoder2.sym} 4460 -80 0 0 {name=X19 Wpmos=0.42 Lpmos=0.15 Wnmos=0.42 Lnmos=0.15}
+C {devices/opin.sym} 4440 3210 0 0 {name=p7 lab=sel61}
+C {devices/opin.sym} 4440 3000 0 0 {name=p8 lab=sel60}

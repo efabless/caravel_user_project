@@ -1,0 +1,37 @@
+v {xschem version=2.9.9 file_version=1.2 }
+G {}
+K {}
+V {}
+S {}
+E {}
+N -1576486300 -284838520 -1576486280 -284838520 { lab=rstb}
+N -1576486370 -284838520 -1576486300 -284838520 { lab=rstb}
+N -1576486100 -284838560 -1576486070 -284838560 { lab=o1}
+N -1576486100 -284838460 -1576486070 -284838460 { lab=o2}
+N -1576486100 -284838360 -1576486070 -284838360 { lab=o3}
+N -1576486300 -284838420 -1576486280 -284838420 { lab=rstb}
+N -1576486300 -284838320 -1576486280 -284838320 { lab=rstb}
+N -1576486320 -284838560 -1576486280 -284838560 { lab=clk1}
+N -1576486320 -284838540 -1576486280 -284838540 { lab=d1}
+N -1576486320 -284838460 -1576486280 -284838460 { lab=clk2}
+N -1576486320 -284838440 -1576486280 -284838440 { lab=d2}
+N -1576486320 -284838360 -1576486280 -284838360 { lab=clk3}
+N -1576486320 -284838340 -1576486280 -284838340 { lab=d3}
+N -1576486570 -284838630 -1576486540 -284838630 { lab=GND}
+N -1576486570 -284838600 -1576486540 -284838600 { lab=VDD}
+N -1576486300 -284838520 -1576486300 -284838320 {}
+C {sky130_stdcells/dfrtp_1.sym} -1576486190 -284838540 0 0 {name=x20 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {sky130_stdcells/dfrtp_1.sym} -1576486190 -284838440 0 0 {name=x3 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {sky130_stdcells/dfrtp_1.sym} -1576486190 -284838340 0 0 {name=x5 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {devices/iopin.sym} -1576486560 -284838600 2 0 {name=p1 lab=VDD}
+C {devices/iopin.sym} -1576486560 -284838630 2 0 {name=p2 lab=GND}
+C {devices/ipin.sym} -1576486360 -284838520 0 0 {name=p3 lab=rstb}
+C {devices/ipin.sym} -1576486310 -284838560 0 0 {name=p4 lab=clk1}
+C {devices/ipin.sym} -1576486310 -284838540 0 0 {name=p5 lab=d1}
+C {devices/ipin.sym} -1576486310 -284838460 0 0 {name=p6 lab=clk2}
+C {devices/ipin.sym} -1576486310 -284838360 0 0 {name=p7 lab=clk3}
+C {devices/ipin.sym} -1576486310 -284838440 0 0 {name=p13 lab=d2}
+C {devices/ipin.sym} -1576486310 -284838340 0 0 {name=p14 lab=d3}
+C {devices/opin.sym} -1576486080 -284838560 0 0 {name=p20 lab=o1}
+C {devices/opin.sym} -1576486080 -284838460 0 0 {name=p21 lab=o2}
+C {devices/opin.sym} -1576486080 -284838360 0 0 {name=p22 lab=o3}
