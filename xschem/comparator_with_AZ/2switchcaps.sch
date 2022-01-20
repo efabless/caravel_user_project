@@ -4,11 +4,6 @@ K {}
 V {}
 S {}
 E {}
-T {pmos and nmos are both
-- min W and min L to minimize cap.
-- matched for charge-injection (same W/L)} 130 -130 0 0 0.4 0.4 {}
-T {This approximates a resistor} -140 270 0 0 0.4 0.4 {}
-T {This cap is bigger} 200 160 0 0 0.4 0.4 {}
 N -50 0 0 0 { lab=c1}
 N 0 0 0 60 { lab=c1}
 N 150 0 200 0 { lab=out}
@@ -21,9 +16,9 @@ N -100 -120 -100 -40 { lab=phi1_clk_p}
 N 100 -120 100 -40 { lab=phi2_clk_p}
 N 100 40 100 120 { lab=phi2_clk_n}
 C {devices/gnd.sym} 0 120 0 0 {name=l2 lab=GND}
-C {sky130_fd_pr/cap_mim_m3_1.sym} 0 90 0 0 {name=C1 model=cap_mim_m3_1 W=Wcap1 L=Lcap1 MF=1 spiceprefix=X}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 0 90 0 0 {name=C1 model=cap_mim_m3_1 W=3 L=3 MF=1 spiceprefix=X}
 C {devices/gnd.sym} 200 120 0 0 {name=l3 lab=GND}
-C {sky130_fd_pr/cap_mim_m3_1.sym} 200 90 0 0 {name=C2 model=cap_mim_m3_1 W=Wcap2 L=Lcap2 MF=1 spiceprefix=X}
+C {sky130_fd_pr/cap_mim_m3_1.sym} 200 90 0 0 {name=C2 model=cap_mim_m3_1 W=Wcap L=Lcap MF=1 spiceprefix=X}
 C {devices/iopin.sym} 250 0 0 0 {name=p1 lab=out}
 C {devices/iopin.sym} -240 0 2 0 {name=p2 lab=in}
 C {devices/ipin.sym} -100 120 3 0 {name=p3 lab=phi1_clk_n}
@@ -31,6 +26,6 @@ C {devices/ipin.sym} -100 -120 1 0 {name=p4 lab=phi1_clk_p}
 C {devices/ipin.sym} 100 -120 1 0 {name=p5 lab=phi2_clk_p}
 C {devices/ipin.sym} 100 120 3 0 {name=p6 lab=phi2_clk_n}
 C {devices/lab_pin.sym} 0 0 1 0 {name=l1 sig_type=std_logic lab=c1}
-C {devices/netlist.sym} -90 -80 0 0 {name=s1 value=".ic v(c1)=0 v(out)=0"}
-C {transmission_gate/transmission_gate.sym} -100 0 0 0 {name=X1 Wpmos=0.42 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
-C {transmission_gate/transmission_gate.sym} 100 0 0 0 {name=X2 Wpmos=0.42 Lpmos=0.18 Wnmos=0.42 Lnmos=0.18}
+C {devices/netlist.sym} -40 -280 0 0 {name=s1 value=".ic v(c1)=0 v(out)=0"}
+C {transmission_gate/transmission_gate.sym} -100 0 0 0 {name=X1 Wpmos=0.42 Lpmos=0.15 Wnmos=0.42 Lnmos=0.15}
+C {transmission_gate/transmission_gate.sym} 100 0 0 0 {name=X2 Wpmos=0.42 Lpmos=0.15 Wnmos=0.42 Lnmos=0.15}

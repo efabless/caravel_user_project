@@ -61,13 +61,7 @@ N 680 40 680 300 { lab=thresh2}
 N -650 300 680 300 { lab=thresh2}
 N 620 -260 620 -60 { lab=cclkb}
 N -730 -260 620 -260 { lab=cclkb}
-C {Switched_Caps/2switchcaps.sym} -560 0 0 0 {name=X1 Wcap=W Lcap=L }
-C {Switched_Caps/2switchcaps.sym} -400 0 0 0 {name=X2 Wcap=W Lcap=L }
-C {Switched_Caps/2switchcaps.sym} -240 0 0 0 {name=X3 Wcap=W Lcap=L }
-C {Switched_Caps/2switchcaps.sym} -80 0 0 0 {name=X4 Wcap=W Lcap=L }
-C {Switched_Caps/2switchcaps.sym} 80 0 0 0 {name=X5 Wcap=W Lcap=L }
-C {Switched_Caps/2switchcaps.sym} 240 0 0 0 {name=X6 Wcap=W Lcap=L }
-C {Switched_Caps/2switchcaps.sym} 400 0 0 0 {name=X7 Wcap=W Lcap=L }
+C {Switched_Caps/2switchcaps.sym} -560 0 0 0 {name=X1 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
 C {devices/iopin.sym} -700 0 2 0 {name=p1 lab=in}
 C {devices/iopin.sym} 700 0 0 0 {name=p2 lab=out}
 C {devices/ipin.sym} -620 -240 0 0 {name=p3 lab=phi2_clkb}
@@ -81,8 +75,14 @@ C {devices/lab_pin.sym} 320 0 1 0 {name=l7 sig_type=std_logic lab=c12}
 C {devices/lab_pin.sym} 480 0 1 0 {name=l8 sig_type=std_logic lab=c14}
 C {devices/ipin.sym} -620 240 0 0 {name=p5 lab=phi2_clk}
 C {devices/ipin.sym} -650 220 0 0 {name=p6 lab=phi1_clk}
-C {Switched_Caps/2switchcaps_thresh.sym} 560 0 0 0 {name=X8 Wcap=W Lcap=L}
 C {devices/ipin.sym} -650 280 0 0 {name=p7 lab=thresh1}
 C {devices/ipin.sym} -680 260 0 0 {name=p9 lab=cclk}
 C {devices/ipin.sym} -650 300 0 0 {name=p8 lab=thresh2}
 C {devices/ipin.sym} -730 -260 0 0 {name=p10 lab=cclkb}
+C {Switched_Caps/2switchcaps.sym} -400 0 0 0 {name=X2 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
+C {Switched_Caps/2switchcaps.sym} -240 0 0 0 {name=X3 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
+C {Switched_Caps/2switchcaps.sym} -80 0 0 0 {name=X4 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
+C {Switched_Caps/2switchcaps.sym} 80 0 0 0 {name=X5 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
+C {Switched_Caps/2switchcaps.sym} 240 0 0 0 {name=X6 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
+C {Switched_Caps/2switchcaps.sym} 400 0 0 0 {name=X7 Wcap1=Wcap1 Lcap1=Lcap1 Lcap1=Lcap1 }
+C {Switched_Caps/2switchcaps_thresh.sym} 560 0 0 0 {name=X8 Wcap1=Wcap1 Lcap1=Lcap1 Wcap2=Wcap2 Lcap2=Lcap2}
