@@ -24,11 +24,11 @@ CARAVEL_LITE?=1
 ifeq ($(CARAVEL_LITE),1) 
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
-	CARAVEL_TAG := 'rc-8'
+	CARAVEL_TAG := 'mpw-3'
 else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel 
-	CARAVEL_TAG := 'rc-8'
+	CARAVEL_TAG := 'mpw-4b'
 endif
 
 
@@ -118,7 +118,7 @@ run-precheck: check-precheck check-pdk check-caravel
 # Install PDK using OL's Docker Image
 .PHONY: pdk-nonnative
 pdk-nonnative: skywater-pdk skywater-library skywater-timing open_pdks
-	docker run --rm -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -e PDK_ROOT=$(PDK_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/openlane:current sh -c "cd $(CARAVEL_ROOT); make build-pdk; make gen-sources"
+	docker run --rm -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -e PDK_ROOT=$(PDK_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/openlane:2021.09.19_20.25.16 sh -c "cd $(CARAVEL_ROOT); make build-pdk; make gen-sources"
 
 # Clean 
 .PHONY: clean
