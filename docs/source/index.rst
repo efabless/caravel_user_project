@@ -63,15 +63,14 @@ Install Caravel
 To setup caravel, run the following:
 
 .. code:: bash
-
-    # If unset, CARAVEL_ROOT will be set to $(pwd)/caravel
-    # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
-    export CARAVEL_ROOT=$(pwd)/caravel
-
-    # Disable submodule installation if needed by, run "export SUBMODULE=0"
     
     git clone https://github.com/efabless/caravel_user_project.git
     cd caravel_user_project
+    
+    # If unset, CARAVEL_ROOT will be set to $(pwd)/caravel
+    # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
+    export CARAVEL_ROOT=$(pwd)/caravel
+    
     make install
 
 To update the installed caravel to the latest, run:
@@ -110,7 +109,7 @@ corresponding files:
 -  `Openlane Makefile <../../openlane/Makefile>`__: This provides an easier
    way for running openlane to harden your macros. Refer to `Hardening
    the User Project Macro using
-   Openlane <#hardening-the-user-project-macro-using-openlane>`__. Also,
+   Openlane <#hardening-the-user-project-using-openlane>`__. Also,
    the makefile retains the openlane summary reports under the signoff
    directory.
 
@@ -266,10 +265,7 @@ Your hardened ``user_project_wrapper`` must match the `golden user_project_wrapp
    <img src="./_static/empty.png" width="40%" height="40%">
    </p>
  
-
-These fixed configurations are specified `here <https://github.com/efabless/caravel/blob/master/openlane/user_project_wrapper_empty/fixed_wrapper_cfgs.tcl>`__ .
-
-However, you are allowed to change the following if you need to: 
+You are allowed to change the following if you need to: 
 
 - PDN Vertical and Horizontal Pitch & Offset
 
