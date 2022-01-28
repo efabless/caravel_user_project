@@ -38,6 +38,7 @@ Table of contents
 -  `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__
 -  `Hardening the User Project using
    Openlane <#hardening-the-user-project-using-openlane>`__
+-  `Complete roundtrip for caravel_user_project <#complete-roundtrip-for-caravel_user_project>`__
 -  `Checklist for Open-MPW
    Submission <#checklist-for-open-mpw-submission>`__
 
@@ -439,6 +440,36 @@ Run XOR check,
 .. code:: bash
 
    make xor-wrapper
+   
+   
+Complete roundtrip for caravel_user_project
+===========================================
+
+.. code:: bash
+
+   git clone https://github.com/efabless/caravel_user_project.git
+   cd caravel_user_project
+   export CARAVEL_ROOT=$(pwd)/caravel
+   # NOTE: if you don't want to use caravel-lite (a smaller/lighter version of caravel) use this command: export CARAVEL_LITE=0
+   make install
+   
+   export PDK_ROOT=<pdk-installation-path>
+   # the next command needs magic preinstalled, if you don't have magic use this command: make pdk-nonnative
+   make pdk
+   
+   # To harden using openlane
+   export OPENLANE_ROOT=<openlane-installation-path>
+   make openlane
+   
+   # THIS IS AN EXAMPLE DESIGN JUST TO TEST THE FLOW
+   make user_proj_example
+   make user_project_wrapper
+   
+   # To run precheck in order to verify that you're ready for the submission
+   make precheck
+   make run-precheck
+   
+   
 
 
 Checklist for Open-MPW Submission
