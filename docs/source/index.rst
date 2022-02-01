@@ -450,34 +450,34 @@ Complete roundtrip for caravel_user_project
 1. To start the project you need to first create an empty Git project on Github and make sure your setup looks like the below image
 
 2. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
-	- In my case, I called it `caravel_tutorial`: `mkdir -p caravel_tutorial; cd caravel_tutorial`
+	- In my case, I called it ``caravel_tutorial``: ``mkdir -p caravel_tutorial; cd caravel_tutorial``
 3. Clone caravel_user_project as follows:
-	- `git clone https://github.com/efabless/caravel_user_project caravel_example`
-		- Please note: The name `caravel_example` must match the one you picked in step one.
-4. Go inside the folder you just cloned: `cd caravel_example`.
-5. Invoke `git remote rename origin upstream`.
-6. Add your new git repository as a remote as follows: `git remote add origin git@github.com:donn/caravel_example`. Please note the URL must also match the one you've extracted in Step 1.
-7. Create a new branch by invoking: `git checkout -b my_branch`. Feel free to call the branch whatever.
-8. `git push -u origin my_branch`. This may take a second.
-9. Invoke `make install` to install caravel into your current repository.
-10. Invoke `make install_mcw` to install the management core into your current repository.
+	- ``git clone https://github.com/efabless/caravel_user_project caravel_example``
+		- Please note: The name ``caravel_example`` must match the one you picked in step one.
+4. Go inside the folder you just cloned: ``cd caravel_example``.
+5. Invoke ``git remote rename origin upstream``.
+6. Add your new git repository as a remote as follows: ``git remote add origin git@github.com:donn/caravel_example``. Please note the URL must also match the one you've extracted in Step 1.
+7. Create a new branch by invoking: ``git checkout -b my_branch``. Feel free to call the branch whatever.
+8. ``git push -u origin my_branch``. This may take a second.
+9. Invoke ``make install`` to install caravel into your current repository.
+10. Invoke ``make install_mcw`` to install the management core into your current repository.
 11. Set your OPENLANE_ROOT environment variable to the folder you created in step 2/openlane, accounting for the full path:
 	- For example, my folder's full path is /home/donn/caravel_tutorial, so I'll have to set the environment variable to /home/donn/caravel_tutorial/openlane:
-		- `export OPENLANE_ROOT=/home/donn/caravel_tutorial/openlane`
+		- ``export OPENLANE_ROOT=/home/donn/caravel_tutorial/openlane``
 		- Please note you'll need to export this variable whenerver you start a new shell.
-12. Build OpenLane by invoking `make openlane`. This may take a second.
+12. Build OpenLane by invoking ``make openlane``. This may take a second.
 13. Build the pdk
-   - `export PDK_ROOT=<pdk-installation-path>`
-   - `make pdk`
-14. To harden the design: `make user_proj_example && make user_project_wrapper`
+	- ``export PDK_ROOT=<pdk-installation-path>``
+	- ``make pdk``
+14. To harden the design: ``make user_proj_example && make user_project_wrapper``
 15. To run the simulation you need to
-   - `make simenv`
-   - You can run RTL/GL simulations by using `export SIM=RTL` OR `export SIM=GL`
-      - You can then run the simulations using `make verify-<testbench-name>
-      - for example: `make verify-io_ports`
+	- ``make simenv``
+	- You can run RTL/GL simulations by using ``export SIM=RTL`` OR ``export SIM=GL``
+		- You can then run the simulations using ``make verify-<testbench-name>``
+		- for example: ``make verify-io_ports``
 16. To run the precheck locally 
-   - use `make precheck`
-   - run all checks using `make run-precheck`
+	- use ``make precheck``
+	- run all checks using ``make run-precheck``
 17. You are done! now go to www.efabless.com to submit your project!
    
    
