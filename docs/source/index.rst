@@ -479,6 +479,8 @@ Complete roundtrip for caravel_user_project
 
 .. code:: bash
 	
+	export CARAVEL_ROOT=$(pwd)/caravel
+	
 	# to install caravel-lite into your caravel_user_project
 	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
 	make install
