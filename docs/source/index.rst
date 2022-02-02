@@ -450,34 +450,82 @@ Complete roundtrip for caravel_user_project
 1. To start the project you need to first create an empty Git project on Github and make sure your setup looks like the below image
 
 2. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
-	- In my case, I called it ``caravel_tutorial``: ``mkdir -p caravel_tutorial; cd caravel_tutorial``
-3. Clone caravel_user_project as follows:
-	- ``git clone https://github.com/efabless/caravel_user_project caravel_example``
-		- Please note: The name ``caravel_example`` must match the one you picked in step one.
-4. Go inside the folder you just cloned: ``cd caravel_example``.
-5. Invoke ``git remote rename origin upstream``.
-6. Add your new git repository as a remote as follows: ``git remote add origin git@github.com:donn/caravel_example``. Please note the URL must also match the one you've extracted in Step 1.
-7. Create a new branch by invoking: ``git checkout -b my_branch``. Feel free to call the branch whatever.
-8. ``git push -u origin my_branch``. This may take a second.
-9. Invoke ``make install`` to install caravel into your current repository.
-10. Invoke ``make install_mcw`` to install the management core into your current repository.
-11. Set your OPENLANE_ROOT environment variable to the folder you created in step 2/openlane, accounting for the full path:
-	- For example, my folder's full path is /home/donn/caravel_tutorial, so I'll have to set the environment variable to /home/donn/caravel_tutorial/openlane:
-		- ``export OPENLANE_ROOT=/home/donn/caravel_tutorial/openlane``
-		- Please note you'll need to export this variable whenerver you start a new shell.
-12. Build OpenLane by invoking ``make openlane``. This may take a second.
-13. Build the pdk
-	- ``export PDK_ROOT=<pdk-installation-path>``
-	- ``make pdk``
-14. To harden the design: ``make user_proj_example && make user_project_wrapper``
-15. To run the simulation you need to
-	- ``make simenv``
-	- You can run RTL/GL simulations by using ``export SIM=RTL`` OR ``export SIM=GL``
-		- You can then run the simulations using ``make verify-<testbench-name>``
-		- for example: ``make verify-io_ports``
-16. To run the precheck locally 
-	- use ``make precheck``
-	- run all checks using ``make run-precheck``
+
+.. code:: bash
+	
+	# Create a directory and call it anything you want
+	mkdir -p caravel_tutorial
+	
+	# navigate into the directory
+	cd caravel_tutorial
+	
+3. Clone caravel_user_project and setup the git environment as follows
+
+.. code:: bash
+	
+	# Make sure that ``caravel_example`` matches the empty github repo name in step 1
+	git clone https://github.com/efabless/caravel_user_project caravel_example
+	cd caravel_example
+	git remote rename origin upstream
+	
+	# You need to put your empty github repo URL from step 1
+	git remote add origin <your github repo URL>
+	
+	# Create a new branch, you can name it anything 
+	git checkout -b <my_branch>
+	git push -u origin <my_branch>
+	
+4. Now that your git environment is setup, it's time to setup your local environment
+
+.. code:: bash
+	
+	# to install caravel-lite into your caravel_user_project
+	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
+	make install
+	
+	# To install the management core for simulation
+	make install_mcw
+	
+	# Install openlane for hardening your project
+	# make sure that you are inside caravel_user_project directory (or the name you chose in step 1)
+	export OPENLANE_ROOT=$(pwd)/openlane # you need to export this whenever you start a new shell
+	make openlane
+	
+	# Build the pdk
+	# There are two options for building the pdk but we recommend this option
+	export PDK_ROOT=$(pwd)/pdks
+	make pdk-nonnative
+	
+5. Now you can start hardening your design, for example
+
+.. code:: bash
+
+	make user_proj_example
+	make user_project_wrapper
+	
+6. To run simulation on your design
+
+.. code:: bash
+
+	make simenv
+	# you can run RTL/GL simulations by using
+	export SIM=RTL
+	# OR
+	export SIM=GL
+	
+	# you can then run the simulations using
+	make verify-<testbench-name>
+	
+	# for example
+	make verify-io_ports
+	
+7. To run the precheck locally 
+
+.. code:: bash
+	
+	make precheck
+	make run-precheck
+	
 17. You are done! now go to www.efabless.com to submit your project!
    
    
