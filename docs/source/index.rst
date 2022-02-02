@@ -447,7 +447,7 @@ Run XOR check,
 Complete roundtrip for caravel_user_project
 ===========================================
 
-1. To start the project you need to first create an empty Git project on Github and make sure your setup looks like the below image
+1. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
 
 2. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
 
@@ -489,14 +489,17 @@ Complete roundtrip for caravel_user_project
 	make install_mcw
 	
 	# Install openlane for hardening your project
-	# make sure that you are inside caravel_user_project directory (or the name you chose in step 1)
-	export OPENLANE_ROOT=$(pwd)/openlane # you need to export this whenever you start a new shell
+	# make sure to change <directory_name> with the directory you created in step 1
+	# in this case it is caravel_tutorial
+	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
 	make openlane
 	
 	# Build the pdk
-	# There are two options for building the pdk but we recommend this option
-	export PDK_ROOT=$(pwd)/pdks
-	make pdk-nonnative
+	# make sure to change <directory_name> with the directory you created in step 1
+	# in this case it is caravel_tutorial
+	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
+	make pdk #if you have magic installed locally
+	make pdk-nonnative # to use openlane's container to build the pdk
 	
 5. Now you can start hardening your design, for example
 
