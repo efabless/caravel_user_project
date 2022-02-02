@@ -26,7 +26,7 @@ CARAVEL_RTL_PATH = $(CARAVEL_VERILOG_PATH)/rtl
 CARAVEL_BEHAVIOURAL_MODELS = $(CARAVEL_VERILOG_PATH)/dv/caravel
 
 ## Management SoC Pointers
-MGMT_SOC_PATH ?= ../../../../caravel_pico
+MGMT_SOC_PATH ?= ../../../caravel_pico
 MGMT_SOC_VERILOG_PATH = $(MGMT_SOC_PATH)/verilog
 MGMT_SOC_RTL_PATH = $(MGMT_SOC_PATH)/verilog/rtl
 
