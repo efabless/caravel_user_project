@@ -25,5 +25,5 @@ cd $MAGIC_ROOT
 sudo ./configure --disable-locking --prefix=/build CFLAGS='-g -O0 -m64 -fPIC'
 sudo make -j4
 sudo make install
-
+sudo ln -s /build/bin/magic /usr/bin/magic
 exit 0
