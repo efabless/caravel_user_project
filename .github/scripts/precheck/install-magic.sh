@@ -22,8 +22,8 @@ sudo apt-get install -y tcl tk tcl-dev tk-dev libglu1-mesa-dev freeglut3-dev mes
 
 git clone --depth=1 --branch 8.3.265 https://github.com/RTimothyEdwards/magic.git ${MAGIC_ROOT}
 cd $MAGIC_ROOT
-sudo ./configure --disable-locking --prefix=/build CFLAGS='-g -O0 -m64 -fPIC'
+sudo ./configure --disable-locking --prefix=/usr CFLAGS='-g -O0 -m64 -fPIC'
 sudo make -j4
 sudo make install
-sudo ln -s /build/bin/magic /usr/bin/magic
+
 exit 0
