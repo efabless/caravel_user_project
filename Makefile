@@ -24,11 +24,11 @@ CARAVEL_LITE?=1
 ifeq ($(CARAVEL_LITE),1) 
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
-	CARAVEL_TAG := 'mpw-5'
+	CARAVEL_TAG := 'mpw-5a'
 else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel 
-	CARAVEL_TAG := 'mpw-5'
+	CARAVEL_TAG := 'mpw-5a'
 endif
 
 
@@ -114,11 +114,6 @@ run-precheck: check-precheck check-pdk check-caravel
 	cd $(PRECHECK_ROOT) && \
 	docker run -e INPUT_DIRECTORY=$(INPUT_DIRECTORY) -e PDK_ROOT=$(PDK_ROOT) -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) -v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) -v $(PDK_ROOT):$(PDK_ROOT) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --pdk_root $(PDK_ROOT) --input_directory $(INPUT_DIRECTORY)"
-
-# Install PDK using OL's Docker Image
-.PHONY: pdk-nonnative
-pdk-nonnative: skywater-pdk skywater-library skywater-timing open_pdks
-	docker run --rm -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -e PDK_ROOT=$(PDK_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/openlane:2021.09.19_20.25.16 sh -c "cd $(CARAVEL_ROOT); make build-pdk; make gen-sources"
 
 # Clean 
 .PHONY: clean
