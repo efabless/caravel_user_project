@@ -1,0 +1,1 @@
+Just a reminder: you should not be running `make` from this directory.
