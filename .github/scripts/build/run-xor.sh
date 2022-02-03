@@ -17,10 +17,10 @@
 export UPRJ_ROOT=$(pwd)
 export CARAVEL_ROOT=$(pwd)/caravel
 cd ..
-export PDK_ROOT=$(pwd)/pdks
 export IMAGE_NAME=efabless/openlane:$OPENLANE_TAG
+export PDK_ROOT=$(pwd)/pdks
 
-cd $UPRJ_ROOT
+cd $UPRJ_ROOT || exit
 
 LOG_FILE=out.log
 docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $UPRJ_ROOT; export USER_ID=$USER_ID; make xor-wrapper | tee $LOG_FILE;"
@@ -29,8 +29,8 @@ cnt=$(grep -oP '(?<=Total XOR differences = )[0-9]+' $LOG_FILE)
 
 echo "Total XOR differences = $cnt"
 
-if [[ $cnt -ne 0 ]]; then 
-    exit 2; 
+if [[ $cnt -ne 0 ]]; then
+  exit 2
 fi
 
 exit 0

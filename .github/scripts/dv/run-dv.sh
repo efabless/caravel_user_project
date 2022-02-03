@@ -3,9 +3,9 @@ DV_PATH=$2
 DV_TEST_ID=$3
 SIM_MODE=$4
 
-cd $DV_PATH
+cd $DV_PATH || exit
 
-## get the name of all subdfolders under verilog/dv 
+## get the name of all subdfolders under verilog/dv
 ALL_DV_TESTS="$(find * -maxdepth 0 -type d)"
 ## convert all ALL_DV_TESTS to an array
 TESTS_ARR=($ALL_DV_TESTS)
@@ -13,10 +13,9 @@ TESTS_ARR=($ALL_DV_TESTS)
 len=${#TESTS_ARR[@]}
 
 ## make sure that the test ID is less than the array length
-if [ $DV_TEST_ID -ge $len ]
-then
-    echo "Error: Invalid Test ID"
-    exit 1
+if [ $DV_TEST_ID -ge $len ]; then
+  echo "Error: Invalid Test ID"
+  exit 1
 fi
 
 ## get the name corresponding to the test ID
@@ -27,10 +26,10 @@ OUT_FILE=$DV_PATH/$DV_TEST_ID.out
 export SIM=$SIM_MODE
 echo "Running $PATTERN $SIM.."
 logFile=$DV_PATH/$PATTERN.$SIM.dv.out
-cd $PATTERN
+cd $PATTERN || exit
 echo $(pwd)
 make 2>&1 | tee $logFile
-grep "Monitor" $logFile >> $OUT_FILE
+grep "Monitor" $logFile >>$OUT_FILE
 make clean
 
 echo "Execution Done on $PATTERN !"

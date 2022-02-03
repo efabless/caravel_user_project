@@ -16,23 +16,23 @@
 
 export UPRJ_ROOT=$(pwd)
 cd ..
-export PDK_ROOT=$(pwd)/pdks
 export CARAVEL_ROOT=$(pwd)/caravel
 export IMAGE_NAME=efabless/openlane:$OPENLANE_TAG
+export PDK_ROOT=$(pwd)/pdks
 export USER_ID=00000001
 
-cd $UPRJ_ROOT
+cd $UPRJ_ROOT || exit
 
 # Install full version of caravel
-git clone https://github.com/efabless/caravel --depth 1 $CARAVEL_ROOT
+git clone --depth=1 https://github.com/efabless/caravel $CARAVEL_ROOT
 
 LOG_FILE=out.log
 docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $CARAVEL_ROOT; make uncompress; cd $UPRJ_ROOT; export USER_ID=$USER_ID; make set_user_id | tee $LOG_FILE;"
 
 cnt=$(grep "Done" $LOG_FILE -s | wc -l)
 
-if [[ $cnt -ne 3 ]]; then 
-        exit 2; 
+if [[ $cnt -ne 3 ]]; then
+  exit 2
 fi
 
 exit 0

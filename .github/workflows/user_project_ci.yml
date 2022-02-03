@@ -21,11 +21,11 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Install Magic
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/precheck/install-magic.sh
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/install-magic.sh
 
       - name: Build PDK
         run: bash ${GITHUB_WORKSPACE}/.github/scripts/build-pdk.sh
-      
+
       - name: Install The Precheck
         run: git clone --depth=1 https://github.com/efabless/mpw_precheck.git ${GITHUB_WORKSPACE}/mpw_precheck
 
@@ -43,10 +43,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Install The PDK
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
-        env:
-          OPENLANE_TAG: 2021.11.25_01.26.14
+      - name: Install Magic
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/install-magic.sh
+
+      - name: Build PDK
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/build-pdk.sh
 
       - name: Install The Dockerized DV Setup
         run: docker pull efabless/dv_setup:latest
@@ -66,10 +67,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Install The PDK
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
-        env:
-          OPENLANE_TAG: 2021.11.25_01.26.14
+      - name: Install Magic
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/install-magic.sh
+
+      - name: Build PDK
+        run: bash ${GITHUB_WORKSPACE}/.github/scripts/build-pdk.sh
 
       - name: Install The Dockerized DV Setup
         run: docker pull efabless/dv_setup:latest
