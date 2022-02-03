@@ -18,7 +18,7 @@
 export SKIP_PDK_BUILD=${1:-0}
 export TARGET_PATH=$(pwd)
 
-apt-get install tcl tk tcl-develop tk-develop
+sudo apt-get install tcl tk tcl-dev tk-dev
 
 export MAGIC_ROOT=./magic
 git clone --depth=1 --branch 8.3.263 https://github.com/RTimothyEdwards/magic.git ${MAGIC_ROOT}
