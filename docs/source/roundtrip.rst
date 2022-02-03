@@ -38,7 +38,7 @@ Complete roundtrip for caravel_user_project
 .. code:: bash
 	
 	# Make sure that ``caravel_example`` matches the empty github repo name in step 1
-	git clone -b mpw-5 https://github.com/efabless/caravel_user_project caravel_example
+	git clone -b mpw-5a https://github.com/efabless/caravel_user_project caravel_example
 	cd caravel_example
 	git remote rename origin upstream
 	
