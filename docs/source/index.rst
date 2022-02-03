@@ -198,7 +198,6 @@ Then, run the RTL simulation by
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    export CARAVEL_ROOT=$(pwd)/caravel
     # specify simulation mode: RTL/GL
     export SIM=RTL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
@@ -211,7 +210,6 @@ Run the gate-level simulation by:
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    export CARAVEL_ROOT=$(pwd)/caravel
     # specify simulation mode: RTL/GL
     export SIM=GL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
@@ -359,7 +357,6 @@ This will clone the precheck repo and pull the latest precheck docker image.
 
 
 Then, you can run the precheck by running
-Specify CARAVEL_ROOT before running any of the following, 
 
 .. code:: bash
 
@@ -410,100 +407,6 @@ Run XOR check,
 .. code:: bash
 
    make xor-wrapper
-   
-   
-Complete roundtrip for caravel_user_project
-===========================================
-
-1. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
-
-2. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
-
-.. code:: bash
-	
-	# Create a directory and call it anything you want
-	mkdir -p caravel_tutorial
-	
-	# navigate into the directory
-	cd caravel_tutorial
-	
-3. Clone caravel_user_project and setup the git environment as follows
-
-.. code:: bash
-	
-	# Make sure that ``caravel_example`` matches the empty github repo name in step 1
-	git clone https://github.com/efabless/caravel_user_project caravel_example
-	cd caravel_example
-	git remote rename origin upstream
-	
-	# You need to put your empty github repo URL from step 1
-	git remote add origin <your github repo URL>
-	
-	# Create a new branch, you can name it anything 
-	git checkout -b <my_branch>
-	git push -u origin <my_branch>
-	
-4. Now that your git environment is setup, it's time to setup your local environment
-
-.. code:: bash
-	
-	# to install caravel-lite into your caravel_user_project
-	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
-	make install
-	
-	# The default for the management core is litex, to install the pico version use
-	export MCW=pico
-	# To install the management core for simulation
-	make install_mcw
-	
-	
-	
-	# To clone the management core pico for simulation
-	git clone git@github.com:efabless/caravel_pico.git
-	
-	# Install openlane for hardening your project
-	# make sure to change <directory_name> with the directory you created in step 1
-	# in this case it is caravel_tutorial
-	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
-	make openlane
-	
-	# Build the pdk
-	# make sure to change <directory_name> with the directory you created in step 1
-	# in this case it is caravel_tutorial
-	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
-	make pdk
-	
-5. Now you can start hardening your design, for example
-
-.. code:: bash
-
-	make user_proj_example
-	make user_project_wrapper
-	
-6. To run simulation on your design
-
-.. code:: bash
-
-	make simenv
-	# you can run RTL/GL simulations by using
-	export SIM=RTL
-	# OR
-	export SIM=GL
-	
-	# you can then run the simulations using
-	make verify-<testbench-name>
-	
-	# for example
-	make verify-io_ports
-	
-7. To run the precheck locally 
-
-.. code:: bash
-	
-	make precheck
-	make run-precheck
-	
-17. You are done! now go to www.efabless.com to submit your project!
    
    
 
