@@ -18,7 +18,7 @@ export PRECHECK_ROOT=$TARGET_PATH/mpw_precheck
 export OUTPUT_DIRECTORY=$TARGET_PATH/mpw_precheck_result
 cd ..
 export PDK_ROOT=$(pwd)/precheck_pdks
-cd mpw_precheck
+cd $PRECHECK_ROOT
 
 docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root $PDK_ROOT --output_directory $OUTPUT_DIRECTORY magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea
 
