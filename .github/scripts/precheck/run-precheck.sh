@@ -20,7 +20,7 @@ cd ..
 export PDK_ROOT=$(pwd)/pdks
 cd $PRECHECK_ROOT || exit
 
-docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $CARAVEL_USER_PROJECT_ROOT:$CARAVEL_USER_PROJECT_ROOT -v $PDK_ROOT:$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root $PDK_ROOT --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
+docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $CARAVEL_USER_PROJECT_ROOT:$CARAVEL_USER_PROJECT_ROOT -v $PDK_ROOT:$PDK_ROOT -e INPUT_DIRECTORY=$INPUT_DIRECTORY -e PDK_ROOT=$PDK_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root $PDK_ROOT --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
 
 output=$OUTPUT_DIRECTORY/logs/precheck.log
 
