@@ -17,7 +17,7 @@
 # By default build pdk since we don't need the other script for the main purpose
 export TARGET_PATH=$(pwd)
 
-sudo apt-get install tcl tk tcl-dev tk-dev
+sudo apt-get install tcl tk tcl-dev tk-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev
 
 export MAGIC_ROOT=./magic
 git clone --depth=1 --branch 8.3.263 https://github.com/RTimothyEdwards/magic.git ${MAGIC_ROOT}
