@@ -16,12 +16,11 @@
 
 # By default build pdk since we don't need the other script for the main purpose
 export SKIP_PDK_BUILD=${1:-0}
-
 export TARGET_PATH=$(pwd)
+
 git clone --depth=1 https://github.com/efabless/caravel-lite.git
 
 docker pull efabless/mpw_precheck:latest
-
 
 if [ $SKIP_PDK_BUILD -eq 0 ]; then
     cd $TARGET_PATH/..
