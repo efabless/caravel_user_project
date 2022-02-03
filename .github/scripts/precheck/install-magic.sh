@@ -16,12 +16,14 @@
 
 # By default build pdk since we don't need the other script for the main purpose
 export TARGET_PATH=$(pwd)
+export MAGIC_ROOT=./magic
 
 sudo apt-get install -y tcl tk tcl-dev tk-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev csh libncurses5-dev libncursesw5-dev libx11-dev
 
-export MAGIC_ROOT=./magic
-git clone --depth=1 --branch 8.3.263 https://github.com/RTimothyEdwards/magic.git ${MAGIC_ROOT}
+git clone --depth=1 --branch 8.3.265 https://github.com/RTimothyEdwards/magic.git ${MAGIC_ROOT}
 cd $MAGIC_ROOT
-./configure --disable-locking --prefix=/build CFLAGS='-g -O0 -m64 -fPIC' && make -j4 && make install
+sudo ./configure --disable-locking --prefix=/build CFLAGS='-g -O0 -m64 -fPIC'
+sudo make -j4
+sudo make install
 
 exit 0
