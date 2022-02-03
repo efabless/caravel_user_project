@@ -173,12 +173,8 @@ To make sure that this integration process goes smoothly without having any DRC 
 Building the PDK 
 ================
 
-You have two options for building the pdk: 
-
-- Build the pdk natively. 
-
 Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
-The pdk build is tested with magic version ``8.3.209``. 
+The pdk build is tested with magic version ``8.3.265``. 
 
 .. code:: bash
 
@@ -190,19 +186,6 @@ The pdk build is tested with magic version ``8.3.209``.
     # if you do not set them, they default to the last verfied commits tested for this project
 
     make pdk
-
-- Build the pdk using openlane's docker image which has magic installed. 
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-
-    # you can optionally specify skywater-pdk and open-pdks commit used
-    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
-    # if you do not set them, they default to the last verfied commits tested for this project
-
-    make pdk-nonnative
 
 Running Full Chip Simulation
 ============================
