@@ -59,7 +59,7 @@ jobs:
        - name: Install The PDK
          run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
          env: 
-          OPENLANE_TAG: 2021.09.16_03.28.21
+          OPENLANE_TAG: 2021.11.25_01.26.14
           
        - name: Install The Dockerized DV Setup
          run:  docker pull efabless/dv_setup:latest
@@ -82,7 +82,7 @@ jobs:
        - name: Install The PDK
          run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
          env: 
-          OPENLANE_TAG: 2021.09.16_03.28.21
+          OPENLANE_TAG: 2021.11.25_01.26.14
           
        - name: Install The Dockerized DV Setup
          run:  docker pull efabless/dv_setup:latest
