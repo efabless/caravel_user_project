@@ -68,17 +68,7 @@ To setup caravel, run the following:
     git clone https://github.com/efabless/caravel_user_project.git
     cd caravel_user_project
     
-    # If unset, CARAVEL_ROOT will be set to $(pwd)/caravel
-    # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
-    export CARAVEL_ROOT=$(pwd)/caravel
-    
     make install
-
-To update the installed caravel to the latest, run:
-
-.. code:: bash
-
-     make update_caravel
 
 To remove caravel, run
 
@@ -191,19 +181,6 @@ The pdk build is tested with magic version ``8.3.209``.
     # if you do not set them, they default to the last verfied commits tested for this project
 
     make pdk
-
-- Build the pdk using openlane's docker image which has magic installed. 
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-
-    # you can optionally specify skywater-pdk and open-pdks commit used
-    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
-    # if you do not set them, they default to the last verfied commits tested for this project
-
-    make pdk-nonnative
 
 Running Full Chip Simulation
 ============================
@@ -386,8 +363,6 @@ Specify CARAVEL_ROOT before running any of the following,
 
 .. code:: bash
 
-   # export CARAVEL_ROOT=$(pwd)/caravel 
-   export CARAVEL_ROOT=<path-to-caravel>
    make run-precheck
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
@@ -399,13 +374,6 @@ Other Miscellaneous Targets
 The makefile provides a number of useful that targets that can run LVS, DRC, and XOR checks on your hardened design outside of openlane's flow. 
 
 Run ``make help`` to display available targets. 
-
-Specify CARAVEL_ROOT before running any of the following, 
-
-.. code:: bash
-
-   # export CARAVEL_ROOT=$(pwd)/caravel 
-   export CARAVEL_ROOT=<path-to-caravel>
 
 Run lvs on the mag view, 
 
@@ -479,8 +447,6 @@ Complete roundtrip for caravel_user_project
 
 .. code:: bash
 	
-	export CARAVEL_ROOT=$(pwd)/caravel
-	
 	# to install caravel-lite into your caravel_user_project
 	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
 	make install
@@ -498,8 +464,7 @@ Complete roundtrip for caravel_user_project
 	# make sure to change <directory_name> with the directory you created in step 1
 	# in this case it is caravel_tutorial
 	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
-	make pdk #if you have magic installed locally
-	make pdk-nonnative # to use openlane's container to build the pdk
+	make pdk
 	
 5. Now you can start hardening your design, for example
 
