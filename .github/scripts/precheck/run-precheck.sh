@@ -14,23 +14,18 @@
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
 export TARGET_PATH=$(pwd)
-export CARAVEL_ROOT=$(pwd)/caravel
+export PRECHECK_ROOT=$TARGET_PATH/mpw_precheck
+export OUTPUT_DIRECTORY=$TARGET_PATH/mpw_precheck_result
 cd ..
 export PDK_ROOT=$(pwd)/precheck_pdks
-export PRECHECK_ROOT=$TARGET_PATH/mpw_precheck/
-export OUTPUT_DIRECTORY=$TARGET_PATH/checks
 cd $TARGET_PATH/mpw_precheck/
 
-docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -e GOLDEN_CARAVEL=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c " cd $PRECHECK_ROOT ; python3 mpw_precheck.py license yaml manifest makefile consistency xor --pdk_root $PDK_ROOT --input_directory $TARGET_PATH --output_directory $OUTPUT_DIRECTORY"
+docker run -v $PRECHECK_ROOT:$PRECHECK_ROOT -v $TARGET_PATH:$TARGET_PATH -v $PDK_ROOT:$PDK_ROOT 
+-u $(id -u $USER):$(id -g $USER) efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py \
+    --input_directory $INPUT_DIRECTORY --pdk_root $PDK_ROOT --output_directory $OUTPUT_DIRECTORY \
+    license makefile consistency xor
+    
 output=$OUTPUT_DIRECTORY/logs/precheck.log
-
-gzipped_file=$OUTPUT_DIRECTORY/logs/precheck.log.gz
-
-if [[ -f $gzipped_file ]]; then
-    gzip -d $gzipped_file
-fi
-
-grep "Violation Message" $output
 
 cnt=$(grep -c "All Checks Passed" $output)
 if ! [[ $cnt ]]; then cnt=0; fi
