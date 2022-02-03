@@ -15,7 +15,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # By default build pdk since we don't need the other script for the main purpose
-export TARGET_PATH=$(pwd)
 export MAGIC_ROOT=./magic
 
 sudo apt-get install -y tcl tk tcl-dev tk-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev csh libncurses5-dev libncursesw5-dev libx11-dev
