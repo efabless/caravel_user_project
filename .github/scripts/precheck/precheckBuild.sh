@@ -18,6 +18,13 @@
 export SKIP_PDK_BUILD=${1:-0}
 export TARGET_PATH=$(pwd)
 
+export MAGIC_ROOT=./magic
+git clone --depth=1 --branch 8.3.263 https://github.com/RTimothyEdwards/magic.git ${MAGIC_ROOT}
+cd $MAGIC_ROOT
+./configure --disable-locking --prefix=/build CFLAGS='-g -O0 -m64 -fPIC' && make -j4 && make install
+
+cd $TARGET_PATH  
+
 git clone --depth=1 https://github.com/efabless/mpw_precheck.git
 git clone --depth=1 https://github.com/efabless/caravel-lite.git
 
