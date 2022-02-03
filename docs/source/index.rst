@@ -38,6 +38,7 @@ Table of contents
 -  `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__
 -  `Hardening the User Project using
    Openlane <#hardening-the-user-project-using-openlane>`__
+-  `Complete roundtrip for caravel_user_project <#complete-roundtrip-for-caravel_user_project>`__
 -  `Checklist for Open-MPW
    Submission <#checklist-for-open-mpw-submission>`__
 
@@ -67,17 +68,7 @@ To setup caravel, run the following:
     git clone https://github.com/efabless/caravel_user_project.git
     cd caravel_user_project
     
-    # If unset, CARAVEL_ROOT will be set to $(pwd)/caravel
-    # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
-    export CARAVEL_ROOT=$(pwd)/caravel
-    
     make install
-
-To update the installed caravel to the latest, run:
-
-.. code:: bash
-
-     make update_caravel
 
 To remove caravel, run
 
@@ -191,19 +182,6 @@ The pdk build is tested with magic version ``8.3.209``.
 
     make pdk
 
-- Build the pdk using openlane's docker image which has magic installed. 
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-
-    # you can optionally specify skywater-pdk and open-pdks commit used
-    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
-    # if you do not set them, they default to the last verfied commits tested for this project
-
-    make pdk-nonnative
-
 Running Full Chip Simulation
 ============================
 
@@ -220,7 +198,6 @@ Then, run the RTL simulation by
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    export CARAVEL_ROOT=$(pwd)/caravel
     # specify simulation mode: RTL/GL
     export SIM=RTL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
@@ -233,7 +210,6 @@ Run the gate-level simulation by:
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    export CARAVEL_ROOT=$(pwd)/caravel
     # specify simulation mode: RTL/GL
     export SIM=GL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
@@ -356,6 +332,8 @@ To reproduce hardening this project, run the following:
 
 .. code:: bash
 
+   # DO NOT cd into openlane
+
    # Run openlane to harden user_proj_example
    make user_proj_example
    # Run openlane to harden user_project_wrapper
@@ -379,12 +357,9 @@ This will clone the precheck repo and pull the latest precheck docker image.
 
 
 Then, you can run the precheck by running
-Specify CARAVEL_ROOT before running any of the following, 
 
 .. code:: bash
 
-   # export CARAVEL_ROOT=$(pwd)/caravel 
-   export CARAVEL_ROOT=<path-to-caravel>
    make run-precheck
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
@@ -396,13 +371,6 @@ Other Miscellaneous Targets
 The makefile provides a number of useful that targets that can run LVS, DRC, and XOR checks on your hardened design outside of openlane's flow. 
 
 Run ``make help`` to display available targets. 
-
-Specify CARAVEL_ROOT before running any of the following, 
-
-.. code:: bash
-
-   # export CARAVEL_ROOT=$(pwd)/caravel 
-   export CARAVEL_ROOT=<path-to-caravel>
 
 Run lvs on the mag view, 
 
@@ -439,6 +407,8 @@ Run XOR check,
 .. code:: bash
 
    make xor-wrapper
+   
+   
 
 
 Checklist for Open-MPW Submission
