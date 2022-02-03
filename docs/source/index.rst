@@ -67,17 +67,7 @@ To setup caravel, run the following:
     git clone https://github.com/efabless/caravel_user_project.git
     cd caravel_user_project
     
-    # If unset, CARAVEL_ROOT will be set to $(pwd)/caravel
-    # If you want to install caravel at a different location, run "export CARAVEL_ROOT=<caravel-path>"
-    export CARAVEL_ROOT=$(pwd)/caravel
-    
     make install
-
-To update the installed caravel to the latest, run:
-
-.. code:: bash
-
-     make update_caravel
 
 To remove caravel, run
 
@@ -173,12 +163,11 @@ To make sure that this integration process goes smoothly without having any DRC 
 Building the PDK 
 ================
 
-You have two options for building the pdk: 
+Please note that the PDK is different from the one used by OpenLane, as we use a version with a number of patches.
 
-- Build the pdk natively. 
+Ensure that you make pdk with caravel and not just use the version from OpenLane.
 
-Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
-The pdk build is tested with magic version ``8.3.209``. 
+You may recieve a warning from OpenLane about a mismatched PDK version. That is OpenLane doing its due diligence and you may just ignore that.
 
 .. code:: bash
 
@@ -190,19 +179,6 @@ The pdk build is tested with magic version ``8.3.209``.
     # if you do not set them, they default to the last verfied commits tested for this project
 
     make pdk
-
-- Build the pdk using openlane's docker image which has magic installed. 
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-
-    # you can optionally specify skywater-pdk and open-pdks commit used
-    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
-    # if you do not set them, they default to the last verfied commits tested for this project
-
-    make pdk-nonnative
 
 Running Full Chip Simulation
 ============================
