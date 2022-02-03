@@ -38,7 +38,6 @@ Table of contents
 -  `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__
 -  `Hardening the User Project using
    Openlane <#hardening-the-user-project-using-openlane>`__
--  `Complete roundtrip for caravel_user_project <#complete-roundtrip-for-caravel_user_project>`__
 -  `Checklist for Open-MPW
    Submission <#checklist-for-open-mpw-submission>`__
 
