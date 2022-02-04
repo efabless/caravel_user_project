@@ -57,8 +57,6 @@ Complete roundtrip for caravel_user_project
 	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
 	make install
 	
-	# The default for the management core is litex, to install the pico version use
-	export MCW=pico
 	# To install the management core for simulation
 	make install_mcw
 	
