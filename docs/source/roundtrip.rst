@@ -60,11 +60,6 @@ Complete roundtrip for caravel_user_project
 	# To install the management core for simulation
 	make install_mcw
 	
-	
-	
-	# To clone the management core pico for simulation
-	git clone git@github.com:efabless/caravel_pico.git
-	
 	# Install openlane for hardening your project
 	# make sure to change <directory_name> with the directory you created in step 1
 	# in this case it is caravel_tutorial
