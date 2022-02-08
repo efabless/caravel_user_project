@@ -13,24 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
+git clone --depth=1 https://github.com/efabless/caravel-lite.git
 
-export UPRJ_ROOT=$(pwd)
-export CARAVEL_ROOT=$(pwd)/caravel
+export HOME=$(pwd)
 cd ..
-export IMAGE_NAME=efabless/openlane:$OPENLANE_TAG
-export PDK_ROOT=$(pwd)/pdks
+export PDK_ROOT=$(pwd)/pdks && mkdir "$PDK_ROOT"
+cd "$HOME"/caravel-lite/ || exit
 
-cd $UPRJ_ROOT || exit
-
-LOG_FILE=out.log
-docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CARAVEL_ROOT -e UPRJ_ROOT=$UPRJ_ROOT -e PDK_ROOT=$PDK_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -u $(id -u $USER):$(id -g $USER) $IMAGE_NAME bash -c "cd $UPRJ_ROOT; export USER_ID=$USER_ID; make xor-wrapper | tee $LOG_FILE;"
-
-cnt=$(grep -oP '(?<=Total XOR differences = )[0-9]+' $LOG_FILE)
-
-echo "Total XOR differences = $cnt"
-
-if [[ $cnt -ne 0 ]]; then
-  exit 2
-fi
+make skywater-pdk skywater-library open_pdks build-pdk gen-sources
 
 exit 0

@@ -32,7 +32,7 @@ docker run -v $UPRJ_ROOT:$UPRJ_ROOT -v $PDK_ROOT:$PDK_ROOT -v $CARAVEL_ROOT:$CAR
 cnt=$(grep "Done" $LOG_FILE -s | wc -l)
 
 if [[ $cnt -ne 3 ]]; then
-  exit 2
+	exit 2
 fi
 
 exit 0
