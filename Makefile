@@ -16,6 +16,7 @@
 
 CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
+MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM ?= RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
@@ -58,6 +59,7 @@ $(DV_PATTERNS): verify-% : ./verilog/dv/%
                 -v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
                 -e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
                 -e CARAVEL_ROOT=${CARAVEL_ROOT} \
+				-e MCW_ROOT=$(MCW_ROOT) \
                 -u $(id -u $$USER):$(id -g $$USER) efabless/dv_setup:latest \
                 sh -c $(VERIFY_COMMAND)
 				

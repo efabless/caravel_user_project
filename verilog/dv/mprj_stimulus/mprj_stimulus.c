@@ -16,7 +16,7 @@
  */
 
 // This include is relative to $CARAVEL_PATH (see Makefile)
-#include "verilog/dv/caravel/defs.h"
+#include <defs.h>
 
 // --------------------------------------------------------
 
@@ -34,7 +34,9 @@ void main()
 
     uint32_t testval;
 
-    reg_hkspi_disable = 1;		// Shut off the housekeeping SPI,
+    reg_spi_enable = 0;
+
+    // reg_spimaster_cs = 0x00000000;		// Shut off the housekeeping SPI,
 					// so we can use the pins.
 
     reg_mprj_datal = 0x00000000;
@@ -94,10 +96,10 @@ void main()
 
     // Configure LA probes [31:0], [127:64] as inputs to the cpu
     // Configure LA probes [63:32] as outputs from the cpu
-    reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-    reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-    reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-    reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
+    reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
+    reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
+    reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+    reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
     // Flag start of the test
     reg_mprj_datal = 0xAB400000;
@@ -106,7 +108,7 @@ void main()
     reg_la1_data = 0x00000000;
 
     // Configure LA probes from [63:32] as inputs to disable counter write
-    reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;
+    reg_la1_oenb = reg_la1_iena = 0x00000000;
 
     reg_mprj_datal = 0xAB410000;
     reg_mprj_datah = 0x00000000;

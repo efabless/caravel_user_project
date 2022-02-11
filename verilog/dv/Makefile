@@ -19,12 +19,19 @@
 .SUFFIXES:
 .SILENT: clean all
 
+export DESIGNS = $(CARAVEL_ROOT)
+export TOOLS = /opt/riscv32i/
+
+echo $TOOLS
+
 PATTERNS = io_ports la_test1 la_test2 wb_port mprj_stimulus
 
 all:  ${PATTERNS}
-	for i in ${PATTERNS}; do \
-		( cd $$i && make -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
-	done
+
+	echo "bla"
+	# for i in ${PATTERNS}; do \
+	# 	( cd $$i && make -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
+	# done
 
 DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
 $(DV_PATTERNS): verify-% : 
