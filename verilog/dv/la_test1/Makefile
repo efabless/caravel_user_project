@@ -21,7 +21,13 @@ BLOCKS := $(shell basename $(PWDD))
 
 # ---- Include Partitioned Makefiles ----
 
-CONFIG = caravel_user_porject
+$(info $(TARGET_PATH))
+
+export DESIGNS = $(TARGET_PATH)
+export TOOLS = /opt/riscv32i/
+
+CONFIG = caravel_user_project
+
 
 include $(MCW_ROOT)/verilog/dv/make/env.makefile
 include $(MCW_ROOT)/verilog/dv/make/var.makefile

@@ -72,23 +72,14 @@ module mprj_stimulus_tb;
         $display("Monitor: mprj_stimulus test started");
         wait(status == 4'ha);
         wait(status == 4'h5);
-
-        $display("Monitor: mprj_stimulus test 1 Passed");
-
+        
 	// Values reflect copying user-controlled outputs to memory and back
 	// to management-controlled outputs.  Note that there is a slight
 	// discrepancy in timing when using gate level simulation;  either
 	// of the specified values is okay.
 
-        wait(checkbits == 16'h0840 || checkbits == 16'h0841);
-
-        $display("Monitor: mprj_stimulus test 2 Passed");
-
-
-        wait(checkbits == 16'h0a00 || checkbits == 16'h0a01);
-
-        $display("Monitor: mprj_stimulus test 3 Passed");
-
+        wait(checkbits == 16'h198F);
+        wait(checkbits == 16'h1DDC);
         wait(checkbits == 16'hAB51);
         $display("Monitor: mprj_stimulus test Passed");
         #10000;
