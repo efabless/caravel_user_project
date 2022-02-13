@@ -74,10 +74,15 @@ Complete roundtrip for caravel_user_project
 	make openlane
 	
 	# Build the pdk
+	# To build the pdk you need to install magic
 	# make sure to change <directory_name> with the directory you created in step 1
 	# in this case it is caravel_tutorial
+
 	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
 	make pdk
+	
+	# To simulate you need the pdk with SRAM, to build the pdk with SRAM use
+	make pdk-with-sram
 	
 5. Now you can start hardening your design, for example
 
