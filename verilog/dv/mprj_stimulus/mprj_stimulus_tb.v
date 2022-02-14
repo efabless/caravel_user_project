@@ -33,14 +33,10 @@ module mprj_stimulus_tb;
     wire [37:0] mprj_io;
     wire [15:0] checkbits;
     wire [3:0] status;
-    wire [1:0] lol;
-    wire [15:0] lol2;
 
     // Signals Assignment
     assign checkbits  = mprj_io[31:16];
     assign status = mprj_io[35:32];
-    assign lol = mprj_io[37:36];
-    assign lol2 = mprj_io[15:0];
 
 
     // Force CSB high until simulation is underway
@@ -88,11 +84,11 @@ module mprj_stimulus_tb;
 
     // Reset Operation
     initial begin
-		RSTB <= 1'b0;
+        RSTB <= 1'b0;
         CSB <= 1'b1;
-		#1000;
-		RSTB <= 1'b1;	    // Release reset
-		#2000;
+        #1000;
+        RSTB <= 1'b1;	    // Release reset
+        #2000;
     end
 
     initial begin		// Power-up sequence

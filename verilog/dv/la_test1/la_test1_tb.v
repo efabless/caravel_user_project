@@ -50,24 +50,11 @@ module la_test1_tb;
 		$dumpvars(0, la_test1_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		// repeat (200) begin
-		// 	repeat (1000) @(posedge clock);
-		// 	$display("+1000 cycles");
-		// end
-		// $display("%c[1;31m",27);
-		// `ifdef GL
-		// 	$display ("Monitor: Timeout, Test LA (GL) Failed");
-		// `else
-		// 	$display ("Monitor: Timeout, Test LA (RTL) Failed");
-		// `endif
-		// $display("%c[0m",27);
-		// $finish;
-		// $display("Wait for UART o/p");
-		repeat (450) begin
+		repeat (200) begin
 			repeat (1000) @(posedge clock);
-			// Diagnostic. . . interrupts output pattern.
+			// $display("+1000 cycles");
 		end
-        $display("%c[1;31m",27);
+		$display("%c[1;31m",27);
 		`ifdef GL
 			$display ("Monitor: Timeout, Test LA (GL) Failed");
 		`else
@@ -77,29 +64,22 @@ module la_test1_tb;
 		$finish;
 	end
 
-	// initial begin
-	// 	wait(checkbits == 16'hAB40);
-	// 	$display("LA Test 1 started");
-	// 	wait(checkbits == 16'hAB41);
-	// 	wait(checkbits == 16'hAB51);
-	// 	#10000;
-	// 	$finish;
-	// end
-
-	// initial begin
-	// 	RSTB <= 1'b0;
-	// 	CSB  <= 1'b1;		// Force CSB high
-	// 	#2000;
-	// 	RSTB <= 1'b1;	    	// Release reset
-	// 	#170000;
-	// 	CSB = 1'b0;		// CSB can be released
-	// end
+	initial begin
+		wait(checkbits == 16'hAB40);
+		$display("LA Test 1 started");
+		wait(checkbits == 16'hAB41);
+		wait(checkbits == 16'hAB51);
+		#10000;
+		$finish;
+	end
 
 	initial begin
 		RSTB <= 1'b0;
-		#1000;
-		RSTB <= 1'b1;	    // Release reset
+		CSB  <= 1'b1;		// Force CSB high
 		#2000;
+		RSTB <= 1'b1;	    	// Release reset
+		#170000;
+		CSB = 1'b0;		// CSB can be released
 	end
 
 	initial begin		// Power-up sequence
@@ -109,23 +89,6 @@ module la_test1_tb;
 		power1 <= 1'b1;
 		#200;
 		power2 <= 1'b1;
-	end
-
-	always @(checkbits) begin
-		if(checkbits == 16'hAB40) begin
-			$display("LA Test 1 started");
-		end
-		else if(checkbits == 16'hAB41) begin
-			$display("First check passed");
-		end
-		else if(checkbits == 16'hAB51) begin
-			`ifdef GL
-				$display("UART Test (GL) passed");
-			`else
-				$display("UART Test (RTL) passed");
-			`endif
-			$finish;
-		end
 	end
 
 	wire flash_csb;

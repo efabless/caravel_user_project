@@ -19,10 +19,6 @@
 .SUFFIXES:
 .SILENT: clean all
 
-export DESIGNS = $(CARAVEL_ROOT)
-export TOOLS = /opt/riscv32i/
-
-echo $TOOLS
 
 PATTERNS = io_ports la_test1 la_test2 wb_port mprj_stimulus
 

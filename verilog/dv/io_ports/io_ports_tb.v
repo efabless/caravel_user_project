@@ -26,6 +26,7 @@ module io_ports_tb;
 	reg RSTB;
 	reg CSB;
 	reg power1, power2;
+	reg power3, power4;
 
 	wire gpio;
 	wire [37:0] mprj_io;
@@ -35,13 +36,13 @@ module io_ports_tb;
 	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
 
 	// assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
-	// assign mprj_io[3] = 1'b1;
+	// assign mprj_io[3] = CSB;
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
 	// would be the fast clock.
 
-	always #10 clock <= (clock === 1'b0);
+	always #12.5 clock <= (clock === 1'b0);
 
 	initial begin
 		clock = 0;
@@ -78,10 +79,6 @@ module io_ports_tb;
 		wait(mprj_io_0 == 8'h08);
 		wait(mprj_io_0 == 8'h09);
 		wait(mprj_io_0 == 8'h0A);   
-		wait(mprj_io_0 == 8'h0A);   
-		wait(mprj_io_0 == 8'h0A);   
-		wait(mprj_io_0 == 8'h0A);   
-		wait(mprj_io_0 == 8'h0A);   
 		wait(mprj_io_0 == 8'hFF);
 		wait(mprj_io_0 == 8'h00);
 		
@@ -95,18 +92,26 @@ module io_ports_tb;
 
 	initial begin
 		RSTB <= 1'b0;
-		#1000;
-		RSTB <= 1'b1;	    // Release reset
+		CSB  <= 1'b1;		// Force CSB high
 		#2000;
+		RSTB <= 1'b1;	    	// Release reset
+		#170000;
+		CSB = 1'b0;		// CSB can be released
 	end
 
 	initial begin		// Power-up sequence
 		power1 <= 1'b0;
 		power2 <= 1'b0;
-		#200;
+		power3 <= 1'b0;
+		power4 <= 1'b0;
+		#100;
 		power1 <= 1'b1;
-		#200;
+		#100;
 		power2 <= 1'b1;
+		#100;
+		power3 <= 1'b1;
+		#100;
+		power4 <= 1'b1;
 	end
 
 	always @(mprj_io) begin
