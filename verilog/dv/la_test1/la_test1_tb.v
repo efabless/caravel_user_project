@@ -69,6 +69,7 @@ module la_test1_tb;
 		$display("LA Test 1 started");
 		wait(checkbits == 16'hAB41);
 		wait(checkbits == 16'hAB51);
+		$display("LA Test 2 passed");
 		#10000;
 		$finish;
 	end
