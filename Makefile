@@ -25,11 +25,11 @@ CARAVEL_LITE?=1
 ifeq ($(CARAVEL_LITE),1) 
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
-	CARAVEL_TAG := 'mpw-5a'
+	CARAVEL_TAG := 'mpw-5b'
 else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel 
-	CARAVEL_TAG := 'mpw-5a'
+	CARAVEL_TAG := 'mpw-5b'
 endif
 
 
