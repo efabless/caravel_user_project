@@ -34,9 +34,11 @@ ENV PATH=${MAGIC_VLSI_INSTALL_DIR}/bin:${PATH}
 
 # Build the PDKS with sram
 # This copy should be removed in the future and volumes should be preferred
-COPY . /caravel_user_project
+ARG CARAVEL_BUILD_DIRECTORY=/tmp/caravel_user_project
+COPY . ${CARAVEL_BUILD_DIRECTORY}
 ENV PDK_ROOT=/tmp/pdks
-WORKDIR /caravel_user_project
+WORKDIR ${CARAVEL_BUILD_DIRECTORY}
 RUN make install && \
     make install_mcw && \
-    make pdk-with-sram
+    make pdk-with-sram && \
+    rm -rf ${CARAVEL_BUILD_DIRECTORY}
