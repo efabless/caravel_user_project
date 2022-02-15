@@ -21,11 +21,6 @@ BLOCKS := $(shell basename $(PWDD))
 
 # ---- Include Partitioned Makefiles ----
 
-$(info $(TARGET_PATH))
-
-export DESIGNS = $(TARGET_PATH)
-export TOOLS = /opt/riscv32i/
-
 CONFIG = caravel_user_project
 
 
