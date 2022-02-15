@@ -49,7 +49,7 @@ Complete roundtrip for caravel_user_project
 	git checkout -b <my_branch>
 	git push -u origin <my_branch>
 	
-4. Now that your git environment is setup, it's time to setup your local environment
+4. Now that your git environment is setup, it's time to setup your local environment. (NOTE: docker is a prerequisite to setting up your environment)
 
 .. code:: bash
 	
@@ -62,8 +62,6 @@ Complete roundtrip for caravel_user_project
 	# To install the management core for simulation
 	make install_mcw
 	
-	
-	
 	# To clone the management core pico for simulation
 	git clone git@github.com:efabless/caravel_pico.git
 	
@@ -74,15 +72,11 @@ Complete roundtrip for caravel_user_project
 	make openlane
 	
 	# Build the pdk
-	# To build the pdk you need to install magic
 	# make sure to change <directory_name> with the directory you created in step 1
 	# in this case it is caravel_tutorial
 
 	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
 	make pdk
-	
-	# To simulate you need the pdk with SRAM, to build the pdk with SRAM use
-	make pdk-with-sram
 	
 5. Now you can start hardening your design, for example
 
