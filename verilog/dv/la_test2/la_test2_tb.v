@@ -17,9 +17,9 @@
 
 `timescale 1 ns / 1 ps
 
-`include "uprj_netlists.v"
-`include "caravel_netlists.v"
-`include "spiflash.v"
+// `include "uprj_netlists.v"
+// `include "caravel_netlists.v"
+// `include "spiflash.v"
 
 module la_test2_tb;
 	reg clock;
@@ -28,12 +28,11 @@ module la_test2_tb;
 
 	reg power1, power2;
 
-    	wire gpio;
-    	wire [37:0] mprj_io;
+	wire gpio;
+	wire [37:0] mprj_io;
 	wire [15:0] checkbits;
 
 	assign checkbits = mprj_io[31:16];
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
 	always #12.5 clock <= (clock === 1'b0);
 
@@ -46,7 +45,7 @@ module la_test2_tb;
 		$dumpvars(0, la_test2_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (30) begin
+		repeat (75) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -61,20 +60,18 @@ module la_test2_tb;
 	end
 
 	initial begin
-		wait(checkbits == 16'h AB60);
+		wait(checkbits == 16'hAB60);
 		$display("Monitor: Test 2 MPRJ-Logic Analyzer Started");
-		wait(checkbits == 16'h AB61);
+		wait(checkbits == 16'hAB61);
 		$display("Monitor: Test 2 MPRJ-Logic Analyzer Passed");
 		$finish;
 	end
 
 	initial begin
 		RSTB <= 1'b0;
-		CSB  <= 1'b1;		// Force CSB high
+		#1000;
+		RSTB <= 1'b1;	    // Release reset
 		#2000;
-		RSTB <= 1'b1;	    	// Release reset
-		#170000;
-		CSB = 1'b0;		// CSB can be released
 	end
 
 	initial begin		// Power-up sequence
@@ -99,24 +96,31 @@ module la_test2_tb;
 	assign VDD1V8 = power2;
 	assign VSS = 1'b0;
 
+	assign mprj_io[3] = 1;  // Force CSB high.
+	assign mprj_io[0] = 0;  // Disable debug mode
+
 	caravel uut (
 		.vddio	  (VDD3V3),
+		.vddio_2  (VDD3V3),
 		.vssio	  (VSS),
+		.vssio_2  (VSS),
 		.vdda	  (VDD3V3),
 		.vssa	  (VSS),
 		.vccd	  (VDD1V8),
 		.vssd	  (VSS),
 		.vdda1    (VDD3V3),
+		.vdda1_2  (VDD3V3),
 		.vdda2    (VDD3V3),
 		.vssa1	  (VSS),
+		.vssa1_2  (VSS),
 		.vssa2	  (VSS),
 		.vccd1	  (VDD1V8),
 		.vccd2	  (VDD1V8),
 		.vssd1	  (VSS),
 		.vssd2	  (VSS),
-		.clock	  (clock),
+		.clock    (clock),
 		.gpio     (gpio),
-        	.mprj_io  (mprj_io),
+		.mprj_io  (mprj_io),
 		.flash_csb(flash_csb),
 		.flash_clk(flash_clk),
 		.flash_io0(flash_io0),
