@@ -13,24 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
+sudo apt-get install -y csh freeglut3-dev libncurses5-dev libncursesw5-dev libglu1-mesa-dev libx11-dev mesa-common-dev tcl tcl-dev tk tk-dev
 
-# By default build pdk since we don't need the other script for the main purpose
-export SKIP_PDK_BUILD=${1:-0}
-
-export TARGET_PATH=$(pwd)
-git clone https://github.com/efabless/mpw_precheck.git
-
-docker pull efabless/mpw_precheck:latest
-
-
-if [ $SKIP_PDK_BUILD -eq 0 ]; then
-    cd $TARGET_PATH/..
-    export PDK_ROOT=$(pwd)/precheck_pdks
-    mkdir $PDK_ROOT
-    cd $TARGET_PATH/mpw_precheck/dependencies
-    sh build-pdk.sh
-    cd $TARGET_DIR
-
-fi
+git clone --depth=1 --branch 8.3.265 https://github.com/RTimothyEdwards/magic.git
+cd magic || exit
+sudo ./configure --disable-locking --prefix=/usr CFLAGS='-g -O0 -m64 -fPIC'
+sudo make -j4
+sudo make install
 
 exit 0

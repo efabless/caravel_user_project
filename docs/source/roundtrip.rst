@@ -57,13 +57,8 @@ Complete roundtrip for caravel_user_project
 	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
 	make install
 	
-	# The default for the management core is litex, to install the pico version use
-	export MCW=pico
 	# To install the management core for simulation
 	make install_mcw
-	
-	# To clone the management core pico for simulation
-	git clone git@github.com:efabless/caravel_pico.git
 	
 	# Install openlane for hardening your project
 	# make sure to change <directory_name> with the directory you created in step 1
