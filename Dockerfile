@@ -20,6 +20,7 @@ RUN git clone https://github.com/riscv/riscv-gnu-toolchain ${RISCV_TOOLCHAIN_DOW
     make -j $(nproc) && \
     rm -rf ${RISCV_TOOLCHAIN_DOWNLOAD_DIR}
 ENV PATH=${RISCV_TOOLCHAIN_INSTALL_DIR}/bin:${PATH}
+ENV GCC_PATH=${RISCV_TOOLCHAIN_INSTALL_DIR}/bin
 
 # Build Magic VLSI
 ENV MAGIC_VLSI_DOWNLOAD_DIR=/tmp/magic_vlsi
