@@ -51,6 +51,15 @@ Complete roundtrip for caravel_user_project
 	
 4. Now that your git environment is setup, it's time to setup your local environment. (NOTE: docker is a prerequisite to setting up your environment)
 
+Some packages need to be installed, here a starting point for a Ubuntu 20.04 setup
+
+.. code:: bash
+
+	sudo apt install tcsh csh tcl-dev tk-dev libcairo2-dev
+	
+The latest version of ```magic``` is needed (8.3.265). You need to install ```magic``` from source
+with the usual ```./configure```, ```make```, and ```sudo make install``` procedure.
+
 .. code:: bash
 	
 	# to install caravel-lite into your caravel_user_project
