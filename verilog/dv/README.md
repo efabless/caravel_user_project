@@ -16,21 +16,21 @@
 # SPDX-License-Identifier: Apache-2.0
 -->
 
-# Table of Content
-* [Quick Start](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#quick-start)
-* [Simulation Environment Setup](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#simulation-environment-setup)
-	* [Docker](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#1-docker)
-	* [Local installation (linux)](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#2-local-installation-linux)
-* [Running Simulation](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#running-simulation)
-	*  [Docker](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#docker)
-	*  [Local](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#local)
-	*  [Both](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#both)
-*  [User Project Example DV](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#user-project-example-dv)
-	*  [IO Ports Test](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#io-ports-test)
-	*  [Logic Analyzer Test 1](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#logic-analyzer-test-1)
-	*  [Logic Analyzer Test 2](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#logic-analyzer-test-2)
-	*  [MPRJ Stimulus](https://github.com/efabless/caravel_user_project/tree/dv-documentation-update/verilog/dv#mprj_stimulus)
-	*  [Wishbone Test](https://github.com/efabless/caravel_user_project/tree/dv-documentation-update/verilog/dv#wishbone-test)
+# Table of Contents
+* [Quick Start](./README.md#quick-start)
+* [Simulation Environment Setup](./README.md#simulation-environment-setup)
+	* [Docker](./README.md#1-docker)
+	* [Local installation (linux)](./README.md#2-local-installation-linux)
+* [Running Simulation](./README.md#running-simulation)
+	*  [Docker](./README.md#docker)
+	*  [Local](./README.md#local)
+	*  [Both](./README.md#both)
+*  [User Project Example DV](./README.md#user-project-example-dv)
+	*  [IO Ports Test](./README.md#io-ports-test)
+	*  [Logic Analyzer Test 1](./README.md#logic-analyzer-test-1)
+	*  [Logic Analyzer Test 2](./README.md#logic-analyzer-test-2)
+	*  [MPRJ Stimulus](./README.md#mprj_stimulus)
+	*  [Wishbone Test](./README.md#wishbone-test)
 
 # Quick start
 
