@@ -58,7 +58,7 @@ VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
 .PHONY: dv_all
 dv_all:$(DV_PATTERNS)
 
-$(DV_PATTERNS): verify-% : ./verilog/dv/% check-env
+$(DV_PATTERNS): verify-% : ./verilog/dv/% check-env simenv
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
