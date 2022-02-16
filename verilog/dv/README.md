@@ -16,6 +16,33 @@
 # SPDX-License-Identifier: Apache-2.0
 -->
 
+# Table of Content
+* [Quick Start](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#quick-start)
+* [Simulation Environment Setup](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#simulation-environment-setup)
+	* [Docker](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#1-docker)
+	* [Local installation (linux)](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#2-local-installation-linux)
+* [Running Simulation](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#running-simulation)
+	*  [Docker](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#docker)
+	*  [Local](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#local)
+	*  [Both](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#both)
+*  [User Project Example DV](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#user-project-example-dv)
+	*  [IO Ports Test](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#io-ports-test)
+	*  [Logic Analyzer Test 1](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#logic-analyzer-test-1)
+	*  [Logic Analyzer Test 2](https://github.com/efabless/caravel_user_project/tree/main/verilog/dv#logic-analyzer-test-2)
+	*  [MPRJ Stimulus](https://github.com/efabless/caravel_user_project/tree/dv-documentation-update/verilog/dv#mprj_stimulus)
+	*  [Wishbone Test](https://github.com/efabless/caravel_user_project/tree/dv-documentation-update/verilog/dv#wishbone-test)
+
+# Quick start
+
+````
+make install_mcw
+make simenv
+export SIM=RTL
+# OR
+export SIM=GL
+make verify-<dv-test>
+````
+
 # Simulation Environment Setup
 
 There are two options for setting up the simulation environment: 
@@ -33,7 +60,7 @@ Run the following to pull the image:
 docker pull efabless/dv_setup:latest
 ```
 
-## 2. Local Installion (Linux)
+## 2. Local Installation (Linux)
 
 You will need to fullfil these dependecies: 
 
@@ -112,18 +139,19 @@ Then, follow the instruction at [Both](#both) to run RTL/GL simulation.
 
 ## Both
 
+To run any simulation, you need to be on the top level or caravel_user_project.
+
 To run RTL simulation for one of the DV tests, 
 
 ```bash
-cd <dv-test>
-make
+make verify-<dv-test>
 ```
 
 To run gate level simulation for one of the DV tests, 
 
 ```bash
-cd <dv-test>
-SIM=GL make
+export SIM=GL 
+make verify-<dv-test>
 ```
 
 # User Project Example DV
