@@ -38,6 +38,14 @@ endif
 %: 
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
+
+# Install caravel
+$(CARAVEL_ROOT):
+	@echo "Installing $(CARAVEL_NAME).."
+	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
+
+$(MCW_ROOT): install install_mcw
+
 # Verify Target for running simulations
 .PHONY: verify
 verify:
@@ -58,7 +66,12 @@ VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
 .PHONY: dv_all
 dv_all:$(DV_PATTERNS)
 
-$(DV_PATTERNS): verify-% : ./verilog/dv/% check-env simenv
+BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
+NETLISTS = $(foreach block,$(BLOCKS), ./verilog/gl/$(block).v)
+$(NETLISTS): ./verilog/gl/%.v : $(CARAVEL_ROOT) $(OPENLANE_ROOT) $(PDK_ROOT)
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
+	
+$(DV_PATTERNS): verify-% : ./verilog/dv/% simenv install openlane $(NETLISTS) install_mcw check-env pdk
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
@@ -72,16 +85,13 @@ $(DV_PATTERNS): verify-% : ./verilog/dv/% check-env simenv
 		sh -c $(VERIFY_COMMAND)
 				
 # Openlane Makefile Targets
-BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
-.PHONY: $(BLOCKS)
-$(BLOCKS): %:
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
-# Install caravel
+.PHONY: $(BLOCKS)
+$(BLOCKS): % : ./verilog/gl/%.v
+
+
 .PHONY: install
-install:
-	@echo "Installing $(CARAVEL_NAME).."
-	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT)
+install: $(CARAVEL_ROOT)
 
 # Create symbolic links to caravel's main files
 .PHONY: simlink
