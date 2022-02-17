@@ -61,7 +61,7 @@ Complete roundtrip for caravel_user_project
 	make install_mcw
 	
 	# Install openlane for hardening your project
-	# make sure to change <directory_name> with the directory you created in step 1
+	# make sure to change <directory_name> with the directory you created in step 2 (In this case it's caravel_tutorial)
 	# in this case it is caravel_tutorial
 	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
 	make openlane
