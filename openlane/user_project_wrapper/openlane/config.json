@@ -1,7 +1,7 @@
 {
     "PDK"                             : "sky130A",
     "STD_CELL_LIBRARY"                : "sky130_fd_sc_hd",
-    "CARAVEL_ROOT"                    : "../../caravel",
+    "CARAVEL_ROOT"                    : "../../../caravel",
     "CLOCK_NET"                       : "mprj.clk",
     "CLOCK_PERIOD"                    : "10",
     "CLOCK_PORT"                      : "user_clock2",
@@ -9,8 +9,8 @@
     "DESIGN_NAME"                     : "user_project_wrapper",
     "DIE_AREA"                        : "0 0 2920 3520",
     "DIODE_INSERTION_STRATEGY"        : "0",
-    "EXTRA_GDS_FILES"                 : "../../gds/user_proj_example.gds",
-    "EXTRA_LEFS"                      : "../../lef/user_proj_example.lef",
+    "EXTRA_GDS_FILES"                 : "../../../gds/user_proj_example.gds",
+    "EXTRA_LEFS"                      : "../../../lef/user_proj_example.lef",
     "FILL_INSERTION"                  : "0",
     "FP_IO_HEXTEND"                   : "4.8",
     "FP_IO_HLENGTH"                   : "2.4",
@@ -36,7 +36,7 @@
     "FP_PDN_VPITCH"                   : "180",
     "FP_PDN_VSPACING"                 : "15.5",
     "FP_PDN_VWIDTH"                   : "3.1",
-    "FP_PIN_ORDER_CFG"                : "../../caravel/openlane/user_project_wrapper_empty/pin_order.cfg",
+    "FP_PIN_ORDER_CFG"                : "../../../caravel/openlane/user_project_wrapper/pin_order.cfg",
     "FP_SIZING"                       : "absolute",
     "GLB_RT_MAXLAYER"                 : "5",
     "GND_NETS"                        : "vssd1 vssd2 vssa1 vssa2",
@@ -52,7 +52,7 @@
     "SYNTH_USE_PG_PINS_DEFINES"       : "USE_POWER_PINS",
     "TAP_DECAP_INSERTION"             : "0",
     "VDD_NETS"                        : "vccd1 vccd2 vdda1 vdda2",
-    "VERILOG_FILES"                   : ["../../caravel/verilog/rtl/defines.v","../../verilog/rtl/user_project_wrapper.v"],  
-    "VERILOG_FILES_BLACKBOX"          : ["../../caravel/verilog/rtl/defines.v","../../verilog/rtl/user_proj_example.v"]  
+    "VERILOG_FILES"                   : ["../../../caravel/verilog/rtl/defines.v","../../../verilog/rtl/user_project_wrapper.v"],
+    "VERILOG_FILES_BLACKBOX"          : ["../../../caravel/verilog/rtl/defines.v","../../../verilog/rtl/user_proj_example.v"]
 }
 
