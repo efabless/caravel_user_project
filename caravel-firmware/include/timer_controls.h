@@ -18,6 +18,8 @@
 #ifndef _TIMER_CONTROLS_H_
 #define _TIMER_CONTROLS_H_
 
+#include <stdint.h>
+
 // Counter-Timer 0 Configuration
 #define reg_timer0_config (*(volatile uint32_t*) CSR_TIMER0_EN_ADDR)
 #define reg_timer0_update  (*(volatile uint32_t*) CSR_TIMER0_UPDATE_VALUE_ADDR)

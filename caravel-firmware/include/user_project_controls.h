@@ -18,6 +18,8 @@
 #ifndef _USER_PROJECT_CONTROLS_H_
 #define _USER_PROJECT_CONTROLS_H_
 
+#include <stdint.h>
+
 // User Project Slaves (0x3000_0000)
 #define reg_mprj_slave (*(volatile uint32_t*)0x30000000)
 #define reg_wb_enable	  (*(volatile uint32_t*)0xf0003800)

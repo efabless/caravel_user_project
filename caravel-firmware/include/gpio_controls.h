@@ -18,6 +18,8 @@
 #ifndef _GPIO_CONTROLS_H_
 #define _GPIO_CONTROLS_H_
 
+#include <stdint.h>
+
 // GPIO (0x2100_0000)
 #define reg_gpio_mode1  (*(volatile uint32_t*) CSR_GPIO_MODE1_ADDR)
 #define reg_gpio_mode0  (*(volatile uint32_t*) CSR_GPIO_MODE0_ADDR)
