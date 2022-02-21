@@ -63,7 +63,7 @@ There is an available docker setup with the needed tools at [efabless/dockerized
 Run the following to pull the image: 
 
 ```
-docker pull efabless/dv:latest
+docker pull efabless/dv_setup:latest
 ```
 
 # Running Simulation
@@ -87,7 +87,7 @@ docker run -it -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-e DESIGNS=$(TARGET_PATH) \
 		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
 		-e MCW_ROOT=$(MCW_ROOT) \
-		efabless/dv:latest
+		efabless/dv_setup:latest
 ```
 
 Then, navigate to the directory where the DV tests reside : 
