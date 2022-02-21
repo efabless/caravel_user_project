@@ -18,8 +18,8 @@
    # SPDX-License-Identifier: Apache-2.0
    -->
    
-Complete roundtrip for caravel_user_project
-===========================================
+Quick start for caravel_user_project
+====================================
 
 1. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
 
