@@ -20,11 +20,7 @@
 * [Quick Start](./README.md#quick-start)
 * [Simulation Environment Setup](./README.md#simulation-environment-setup)
 	* [Docker](./README.md#1-docker)
-	* [Local installation (linux)](./README.md#2-local-installation-linux)
 * [Running Simulation](./README.md#running-simulation)
-	*  [Docker](./README.md#docker)
-	*  [Local](./README.md#local)
-	*  [Both](./README.md#both)
 *  [User Project Example DV](./README.md#user-project-example-dv)
 	*  [IO Ports Test](./README.md#io-ports-test)
 	*  [Logic Analyzer Test 1](./README.md#logic-analyzer-test-1)
@@ -32,15 +28,25 @@
 	*  [MPRJ Stimulus](./README.md#mprj_stimulus)
 	*  [Wishbone Test](./README.md#wishbone-test)
 
-# Quick start
+# Quick Launch for Designers
+
+## Dependencies
+
+* Docker
+
+Download and install Docker for your operating system
+- [Linux](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) ||  [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+
+## Running the simulation
+
+Assuming you already went throught the [quick start](https://github.com/efabless/caravel_user_project/blob/main/docs/source/roundtrip.rst) for setting up your environemnt
 
 ````
 make install_mcw
 make simenv
-export SIM=RTL
+SIM=RTL make verify-<dv-test>
 # OR
-export SIM=GL
-make verify-<dv-test>
+SIM=GL make verify-<dv-test>
 ````
 
 # Simulation Environment Setup
@@ -48,110 +54,60 @@ make verify-<dv-test>
 There are two options for setting up the simulation environment: 
 
 * Pulling a pre-built docker image 
-* Installing the dependecies locally
+* Installing the dependecies locally. Instructions to setting up the environment locally can be found [here](https://github.com/efabless/caravel_user_project/verilog/dv/local-install.md)
 
-## 1. Docker
+## Docker
 
 There is an available docker setup with the needed tools at [efabless/dockerized-verification-setup](https://github.com/efabless/dockerized-verification-setup) 
 
 Run the following to pull the image: 
 
 ```
-docker pull efabless/dv_setup:latest
-```
-
-## 2. Local Installation (Linux)
-
-You will need to fullfil these dependecies: 
-
-* Icarus Verilog (10.2+)
-* RV32I Toolchain
-
-Using apt, you can install Icarus Verilog:
-
-```bash
-sudo apt-get install iverilog
-```
-
-Next, you will need to build the RV32I toolchain. Firstly, export the installation path for the RV32I toolchain, 
-
-```bash
-export GCC_PATH=<gcc-installation-path>
-```
-
-Then, run the following: 
-
-```bash
-# packages needed:
-sudo apt-get install autoconf automake autotools-dev curl libmpc-dev \
-    libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo \
-    gperf libtool patchutils bc zlib1g-dev git libexpat1-dev
-
-sudo mkdir $GCC_PATH
-sudo chown $USER $GCC_PATH
-
-git clone https://github.com/riscv/riscv-gnu-toolchain riscv-gnu-toolchain-rv32i
-cd riscv-gnu-toolchain-rv32i
-git checkout 411d134
-git submodule update --init --recursive
-
-mkdir build; cd build
-../configure --with-arch=rv32i --prefix=$GCC_PATH
-make -j$(nproc)
+docker pull efabless/dv:latest
 ```
 
 # Running Simulation
-
-## Docker
 
 First, you will need to export a number of environment variables: 
 
 ```bash
 export PDK_PATH=<pdk-location/sky130A>
 export CARAVEL_ROOT=<caravel_root>
-export UPRJ_ROOT=<user_project_root>
+export TARGET_PATH=<caravel_user_project>
 ```
 
 Then, run the following command to start the docker container :
 
 ```
-docker run -it -v $CARAVEL_ROOT:$CARAVEL_ROOT -v $PDK_PATH:$PDK_PATH -v $UPRJ_ROOT:$UPRJ_ROOT -e CARAVEL_ROOT=$CARAVEL_ROOT -e PDK_PATH=$PDK_PATH -e UPRJ_ROOT=$UPRJ_ROOT -u $(id -u $USER):$(id -g $USER) efabless/dv_setup:latest
+docker run -it -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
+		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
+		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
+		-e TOOLS=/foss/tools/riscv-gnu-toolchain-rv32i/411d134 \
+		-e DESIGNS=$(TARGET_PATH) \
+		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e MCW_ROOT=$(MCW_ROOT) \
+		efabless/dv:latest
 ```
 
 Then, navigate to the directory where the DV tests reside : 
 
 ```bash
-cd $UPRJ_ROOT/verilog/dv/
+cd $TARGET_PATH/verilog/dv/
 ```
-
-Then, follow the instructions at [Both](#both) to run RTL/GL simulation.
-
-## Local
-
-You will need to export these environment variables: 
-
-```bash
-export GCC_PATH=<gcc-installation-path>
-export PDK_PATH=<pdk-location/sky130A>
-```
-
-Then, follow the instruction at [Both](#both) to run RTL/GL simulation.
-
-## Both
 
 To run any simulation, you need to be on the top level or caravel_user_project.
 
 To run RTL simulation for one of the DV tests, 
 
 ```bash
-make verify-<dv-test>
+SIM=RTL make verify-<dv-test>
 ```
 
 To run gate level simulation for one of the DV tests, 
 
 ```bash
-export SIM=GL 
-make verify-<dv-test>
+SIM=GL make verify-<dv-test>
 ```
 
 # User Project Example DV
