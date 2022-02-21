@@ -18,15 +18,16 @@
 
 # Table of Contents
 * [Quick Start](./README.md#quick-start)
-* [Simulation Environment Setup](./README.md#simulation-environment-setup)
-	* [Docker](./README.md#1-docker)
-* [Running Simulation](./README.md#running-simulation)
-*  [User Project Example DV](./README.md#user-project-example-dv)
-	*  [IO Ports Test](./README.md#io-ports-test)
-	*  [Logic Analyzer Test 1](./README.md#logic-analyzer-test-1)
-	*  [Logic Analyzer Test 2](./README.md#logic-analyzer-test-2)
-	*  [MPRJ Stimulus](./README.md#mprj_stimulus)
-	*  [Wishbone Test](./README.md#wishbone-test)
+* [For advanced users](./README.md#for-advanced-users)
+	* [Simulation Environment Setup](./README.md#simulation-environment-setup)
+		* [Docker](./README.md#1-docker)
+	* [Running Simulation](./README.md#running-simulation)
+	*  [User Project Example DV](./README.md#user-project-example-dv)
+		*  [IO Ports Test](./README.md#io-ports-test)
+		*  [Logic Analyzer Test 1](./README.md#logic-analyzer-test-1)
+		*  [Logic Analyzer Test 2](./README.md#logic-analyzer-test-2)
+		*  [MPRJ Stimulus](./README.md#mprj_stimulus)
+		*  [Wishbone Test](./README.md#wishbone-test)
 
 # Quick Launch for Designers
 
@@ -48,14 +49,17 @@ SIM=RTL make verify-<dv-test>
 SIM=GL make verify-<dv-test>
 ````
 ``<dv-test>``: io_ports, mprj_stimulus, la_test1, la_test2 or wb_port.  
-# Simulation Environment Setup
+
+# For advanced users
+
+## Simulation Environment Setup
 
 There are two options for setting up the simulation environment: 
 
 * Pulling a pre-built docker image 
 * Installing the dependecies locally. Instructions to setting up the environment locally can be found [here](https://github.com/efabless/caravel_user_project/verilog/dv/local-install.md)
 
-## Docker
+### Docker
 
 There is an available docker setup with the needed tools at [efabless/dockerized-verification-setup](https://github.com/efabless/dockerized-verification-setup) 
 
@@ -65,7 +69,7 @@ Run the following to pull the image:
 docker pull efabless/dv_setup:latest
 ```
 
-# Running Simulation
+## Running Simulation
 
 First, you will need to export a number of environment variables: 
 
@@ -110,6 +114,8 @@ SIM=GL make verify-<dv-test>
 ```
 
 # User Project Example DV
+
+A discription of the example testbenches
 
 The directory includes five tests for the counter user-project example: 
 
