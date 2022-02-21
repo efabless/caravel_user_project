@@ -18,20 +18,27 @@
 
 PWDD := $(shell pwd)
 BLOCKS := $(shell basename $(PWDD))
+CARAVEL_USER_PROJECT_ROOT=$(shell readlink -f ../../../)
 
 # ---- Include Partitioned Makefiles ----
 
 CONFIG = caravel_user_project
 
+# Simulation variables
 SIM?=RTL
-CARAVEL_USER_PROJECT_ROOT=$(shell readlink -f ../../../)
+DESIGNS?=${CARAVEL_USER_PROJECT_ROOT}
+CARAVEL_VERILOG_PATH?=${DESIGNS}/caravel/verilog
+CORE_VERILOG_PATH?=${DESIGNS}/varavel_mgmt_soc_litex/verilog
+export USER_PROJECT_VERILOG=${DESIGNS}/verilog
+
+# Firmware variables
+PATH := /opt/riscv32i/bin:${PATH}
 FIRMWARE_SOURCE_DIR=${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
 FIRMWARE_BUILD_DIR=${CARAVEL_USER_PROJECT_ROOT}/build
 TESTCASE=io_ports
 
 .PHONY: configure
 configure:
-	echo ${CARAVEL_USER_PROJECT_ROOT}
 	cmake \
 	-DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
 	-B${FIRMWARE_BUILD_DIR} \
@@ -49,5 +56,11 @@ clean:
 .PHONY: sim
 sim: build
 	cp ${FIRMWARE_BUILD_DIR}/src/testcases/${TESTCASE}/${TESTCASE}.hex .
-	iverilog -Ttyp -DFUNCTIONAL -DSIM -DUSER_POWER_PINS -DUNIT_DELAY=#1 \
-	-f${VERILOG_PATH}/includes/includes.rtl.${CONFIG} -o $@ $<
+	iverilog \
+	-Ttyp \
+	-DFUNCTIONAL \
+	-DSIM \
+	-DUSER_POWER_PINS \
+	-DUNIT_DELAY=#1 \
+	-f${CARAVEL_USER_PROJECT_ROOT}/mgmt_core_wrapper/verilog/includes/includes.rtl.${CONFIG} \
+	-o ${TESTCASE}.vvp ${TESTCASE}_tb.v
