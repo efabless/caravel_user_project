@@ -13,6 +13,7 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+MAKEFLAGS+=--warn-undefined-variables
 
 CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
@@ -38,40 +39,39 @@ endif
 %: 
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
+.PHONY: install
+install: $(CARAVEL_ROOT)
 
 # Install caravel
 $(CARAVEL_ROOT):
 	@echo "Installing $(CARAVEL_NAME).."
 	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
 
-$(MCW_ROOT): install install_mcw
-
-# Verify Target for running simulations
-.PHONY: verify
-verify:
-	cd ./verilog/dv/ && \
-	export SIM=${SIM} && \
-		$(MAKE) -j$(THREADS)
-
 # Install DV setup
 .PHONY: simenv
 simenv:
 	docker pull efabless/dv_setup:latest
 
-PATTERNS=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
-DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
+patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+dv_targets = $(patterns:%=verify-%)
 TARGET_PATH=$(shell pwd)
-VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
+verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
+
+blocks = $(shell cd openlane && find * -maxdepth 0 -type d)
+netlists = $(blocks:%=./verilog/gl/%.v)
+$(netlists): ./verilog/gl/%.v : $(CARAVEL_ROOT) $(OPENLANE_ROOT) $(PDK_ROOT)
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
+
+.PHONY: $(blocks)
+$(blocks): % : ./verilog/gl/%.v
+
+.PHONY: verify
+verify: dv_all
 
 .PHONY: dv_all
-dv_all:$(DV_PATTERNS)
+dv_all:$(dv_targets)
 
-BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
-NETLISTS = $(foreach block,$(BLOCKS), ./verilog/gl/$(block).v)
-$(NETLISTS): ./verilog/gl/%.v : $(CARAVEL_ROOT) $(OPENLANE_ROOT) $(PDK_ROOT)
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
-	
-$(DV_PATTERNS): verify-% : ./verilog/dv/% simenv install openlane $(NETLISTS) install_mcw check-env pdk
+$(dv_targets): verify-% : ./verilog/dv/% simenv install openlane $(netlists) install_mcw check-env pdk
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
@@ -82,16 +82,27 @@ $(DV_PATTERNS): verify-% : ./verilog/dv/% simenv install openlane $(NETLISTS) in
 		-e GCC_PREFIX=riscv32-unknown-elf \
 		-e MCW_ROOT=$(MCW_ROOT) \
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
-		sh -c $(VERIFY_COMMAND)
+		sh -c $(verify_command)
 				
-# Openlane Makefile Targets
 
-.PHONY: $(BLOCKS)
-$(BLOCKS): % : ./verilog/gl/%.v
+clean-targets=$(blocks:%=clean-%)
+.PHONY: $(clean-targets)
+$(clean-targets): clean-%:
+	rm ./verilog/gl/$*.v
+	rm ./spef/$*.spef
+	rm ./sdc/$*.sdc
+	rm ./sdf/$*.sdf
+	rm ./gds/$*.gds
+	rm ./mag/$*.mag
+	rm ./lef/$*.lef
+	rm ./maglef/*.maglef
 
+# Install Openlane
+.PHONY: openlane
+openlane: 
+	cd openlane && $(MAKE) openlane
 
-.PHONY: install
-install: $(CARAVEL_ROOT)
+#### Not sure if the targets following are of any use
 
 # Create symbolic links to caravel's main files
 .PHONY: simlink
@@ -116,10 +127,6 @@ update_caravel: check-caravel
 uninstall: 
 	rm -rf $(CARAVEL_ROOT)
 
-# Install Openlane
-.PHONY: openlane
-openlane: 
-	cd openlane && $(MAKE) openlane
 
 # Install Pre-check
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
@@ -135,12 +142,14 @@ run-precheck: check-pdk check-precheck
 	docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) -v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) -v $(PDK_ROOT):$(PDK_ROOT) -e INPUT_DIRECTORY=$(INPUT_DIRECTORY) -e PDK_ROOT=$(PDK_ROOT) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_root $(PDK_ROOT)"
 
-# Clean 
-.PHONY: clean
-clean:
-	cd ./verilog/dv/ && \
-		$(MAKE) -j$(THREADS) clean
 
+
+# Clean 
+# .PHONY: clean
+# clean:
+# 	cd ./verilog/dv/ && \
+# 		$(MAKE) -j$(THREADS) clean
+# 
 check-caravel:
 	@if [ ! -d "$(CARAVEL_ROOT)" ]; then \
 		echo "Caravel Root: "$(CARAVEL_ROOT)" doesn't exists, please export the correct path before running make. "; \
@@ -163,3 +172,6 @@ check-pdk:
 help:
 	cd $(CARAVEL_ROOT) && $(MAKE) help 
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
+
+
