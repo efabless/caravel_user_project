@@ -17,18 +17,12 @@
 
 `timescale 1 ns / 1 ps
 
-// `include "uprj_netlists.v"
-// `include "caravel_netlists.v"
-// `include "spiflash.v"
-// `include "tbuart.v"
-
 module mprj_stimulus_tb;
     // Signals declaration
     reg clock;
     reg RSTB;
-    reg CSB;
     reg power1, power2;
-
+    reg CSB;
     wire gpio;
     wire [37:0] mprj_io;
     wire [15:0] checkbits;
@@ -38,10 +32,7 @@ module mprj_stimulus_tb;
     assign checkbits  = mprj_io[31:16];
     assign status = mprj_io[35:32];
 
-
-    // Force CSB high until simulation is underway
-    // Note:  The CSB GPIO pin default needs to be set to a pull-up. . .
-    assign mprj_io[3] = CSB;
+    assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
     always #12.5 clock <= (clock === 1'b0);
 
@@ -54,11 +45,15 @@ module mprj_stimulus_tb;
         $dumpvars(0, mprj_stimulus_tb);
 
         // Repeat cycles of 1000 clock edges as needed to complete testbench
-        repeat (70) begin
+        repeat (100) begin
             repeat (1000) @(posedge clock);
         end
         $display("%c[1;31m",27);
-        $display ("Monitor: Timeout, Test Project IO Stimulus (RTL) Failed");
+        `ifdef GL
+			$display ("Monitor: Timeout, Test Project IO Stimulus (GL) Failed");
+		`else
+			$display ("Monitor: Timeout, Test Project IO Stimulus (RTL) Failed");
+		`endif
         $display("%c[0m",27);
         $finish;
     end
@@ -68,14 +63,12 @@ module mprj_stimulus_tb;
         $display("Monitor: mprj_stimulus test started");
         wait(status == 4'ha);
         wait(status == 4'h5);
-        
-	// Values reflect copying user-controlled outputs to memory and back
-	// to management-controlled outputs.  Note that there is a slight
-	// discrepancy in timing when using gate level simulation;  either
-	// of the specified values is okay.
 
-        wait(checkbits == 16'h198F);
-        wait(checkbits == 16'h1DDC);
+	// Values reflect copying user-controlled outputs to memory and back
+	// to management-controlled outputs.
+        wait(checkbits == 16'h1968 || checkbits == 16'h1969); // They're off because the difference between GL and RTL
+        wait(checkbits == 16'h1DCD || checkbits == 16'h1DCE); // They're off because the difference between GL and RTL
+
         wait(checkbits == 16'hAB51);
         $display("Monitor: mprj_stimulus test Passed");
         #10000;
@@ -84,11 +77,12 @@ module mprj_stimulus_tb;
 
     // Reset Operation
     initial begin
+        CSB <= 1'b1;		
         RSTB <= 1'b0;
-        CSB <= 1'b1;
-        #1000;
-        RSTB <= 1'b1;	    // Release reset
         #2000;
+        RSTB <= 1'b1;       	// Release reset
+        #1000000;
+        CSB <= 1'b0;		// Stop driving CSB
     end
 
     initial begin		// Power-up sequence
@@ -110,7 +104,7 @@ module mprj_stimulus_tb;
     wire VSS = 1'b0;
 
     caravel uut (
-		.vddio	  (VDD3V3),
+        .vddio	  (VDD3V3),
 		.vddio_2  (VDD3V3),
 		.vssio	  (VSS),
 		.vssio_2  (VSS),
