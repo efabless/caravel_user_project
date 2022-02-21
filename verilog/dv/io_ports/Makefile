@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
- 
+
 PWDD := $(shell pwd)
 BLOCKS := $(shell basename $(PWDD))
 
@@ -23,10 +23,31 @@ BLOCKS := $(shell basename $(PWDD))
 
 CONFIG = caravel_user_project
 
+SIM?=RTL
+CARAVEL_USER_PROJECT_ROOT=$(shell readlink -f ../../../)
+FIRMWARE_SOURCE_DIR=${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
+FIRMWARE_BUILD_DIR=${CARAVEL_USER_PROJECT_ROOT}/build
+TESTCASE=io_ports
 
-include $(MCW_ROOT)/verilog/dv/make/env.makefile
-include $(MCW_ROOT)/verilog/dv/make/var.makefile
-include $(MCW_ROOT)/verilog/dv/make/cpu.makefile
-include $(MCW_ROOT)/verilog/dv/make/sim.makefile
+.PHONY: configure
+configure:
+	echo ${CARAVEL_USER_PROJECT_ROOT}
+	cmake \
+	-DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
+	-B${FIRMWARE_BUILD_DIR} \
+	${FIRMWARE_SOURCE_DIR}
 
+.PHONY: build
+build: configure
+	cmake --build ${FIRMWARE_BUILD_DIR}
 
+.PHONY: clean
+clean:
+	rm -rf ${FIRMWARE_BUILD_DIR}
+	rm *.hex
+
+.PHONY: sim
+sim: build
+	cp ${FIRMWARE_BUILD_DIR}/src/testcases/${TESTCASE}/${TESTCASE}.hex .
+	iverilog -Ttyp -DFUNCTIONAL -DSIM -DUSER_POWER_PINS -DUNIT_DELAY=#1 \
+	-f${VERILOG_PATH}/includes/includes.rtl.${CONFIG} -o $@ $<
