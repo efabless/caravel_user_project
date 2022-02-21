@@ -9,7 +9,7 @@
     "DESIGN_NAME"              : "user_proj_example",
     "DIE_AREA"                 : "0 0 900 600",
     "DIODE_INSERTION_STRATEGY" : "4",
-    "FP_PIN_ORDER_CFG"         : "pin_order.cfg",
+    "FP_PIN_ORDER_CFG"         : "../pin_order.cfg",
     "FP_SIZING"                : "absolute",
     "GLB_RT_MAXLAYER"          : "5",
     "GND_NETS"                 : "vssd1",
