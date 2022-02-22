@@ -108,7 +108,7 @@ To start hardening you project you need to have a RTL verilog model for your des
 
 	make user_project_wrapper
 	
-6. To run simulation on your design
+8. To run simulation on your design
 
 You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``. Then run the simulation using these commands
 
@@ -128,14 +128,14 @@ You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf
 	# for example
 	make verify-io_ports
 	
-7. To run the precheck locally 
+9. To run the precheck locally 
 
 .. code:: bash
 	
 	make precheck
 	make run-precheck
 	
-17. You are done! now go to www.efabless.com to submit your project!
+10. You are done! now go to www.efabless.com to submit your project!
    
    
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
