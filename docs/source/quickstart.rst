@@ -117,16 +117,15 @@ You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf
 .. code:: bash
 
 	make simenv
-	# you can run RTL/GL simulations by using
-	export SIM=RTL
-	# OR
-	export SIM=GL
 	
-	# you can then run the simulations using
-	make verify-<testbench-name>
+	# you can then run RTL simulations using
+	SIM=RTL make verify-<testbench-name>
+	
+	# OR GL simulation using
+	SIM=GL make verify-<testbench-name>
 	
 	# for example
-	make verify-io_ports
+	SIM=RTL make verify-io_ports
 	
 9. To run the precheck locally 
 
