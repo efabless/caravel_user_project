@@ -23,20 +23,19 @@ SIM ?= RTL
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-ifeq ($(CARAVEL_LITE),1) 
+ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
-	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
+	CARAVEL_REPO := https://github.com/efabless/caravel-lite
 	CARAVEL_TAG := 'mpw-5b'
 else
 	CARAVEL_NAME := caravel
-	CARAVEL_REPO := https://github.com/efabless/caravel 
+	CARAVEL_REPO := https://github.com/efabless/caravel
 	CARAVEL_TAG := 'mpw-5b'
 endif
 
-
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
-%: 
+%:
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 .PHONY: install
@@ -59,11 +58,14 @@ verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
 
 blocks = $(shell cd openlane && find * -maxdepth 0 -type d)
 netlists = $(blocks:%=./verilog/gl/%.v)
-$(netlists): ./verilog/gl/%.v : $(CARAVEL_ROOT) $(OPENLANE_ROOT) $(PDK_ROOT)
+$(netlists): ./verilog/gl/%.v :
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
 .PHONY: $(blocks)
-$(blocks): % : ./verilog/gl/%.v
+$(blocks): % : install install_mcw openlane pdk ./verilog/gl/%.v
+
+.PHONY: harden
+harden: $(blocks)
 
 .PHONY: verify
 verify: dv_all
@@ -71,7 +73,7 @@ verify: dv_all
 .PHONY: dv_all
 dv_all:$(dv_targets)
 
-$(dv_targets): verify-% : ./verilog/dv/% simenv install openlane $(netlists) install_mcw check-env pdk
+$(dv_targets): verify-% : ./verilog/dv/% install simenv check-env pdk install_mcw openlane harden
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
@@ -83,7 +85,6 @@ $(dv_targets): verify-% : ./verilog/dv/% simenv install openlane $(netlists) ins
 		-e MCW_ROOT=$(MCW_ROOT) \
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
 		sh -c $(verify_command)
-				
 
 clean-targets=$(blocks:%=clean-%)
 .PHONY: $(clean-targets)
@@ -99,7 +100,7 @@ $(clean-targets): clean-%:
 
 # Install Openlane
 .PHONY: openlane
-openlane: 
+openlane:
 	cd openlane && $(MAKE) openlane
 
 #### Not sure if the targets following are of any use
@@ -107,7 +108,7 @@ openlane:
 # Create symbolic links to caravel's main files
 .PHONY: simlink
 simlink: check-caravel
-### Symbolic links relative path to $CARAVEL_ROOT 
+### Symbolic links relative path to $CARAVEL_ROOT
 	$(eval MAKEFILE_PATH := $(shell realpath --relative-to=openlane $(CARAVEL_ROOT)/openlane/Makefile))
 	$(eval PIN_CFG_PATH  := $(shell realpath --relative-to=openlane/user_project_wrapper $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg))
 	mkdir -p openlane
@@ -124,7 +125,7 @@ update_caravel: check-caravel
 
 # Uninstall Caravel
 .PHONY: uninstall
-uninstall: 
+uninstall:
 	rm -rf $(CARAVEL_ROOT)
 
 
@@ -144,12 +145,12 @@ run-precheck: check-pdk check-precheck
 
 
 
-# Clean 
+# Clean
 # .PHONY: clean
 # clean:
 # 	cd ./verilog/dv/ && \
 # 		$(MAKE) -j$(THREADS) clean
-# 
+#
 check-caravel:
 	@if [ ! -d "$(CARAVEL_ROOT)" ]; then \
 		echo "Caravel Root: "$(CARAVEL_ROOT)" doesn't exists, please export the correct path before running make. "; \
@@ -170,7 +171,7 @@ check-pdk:
 
 .PHONY: help
 help:
-	cd $(CARAVEL_ROOT) && $(MAKE) help 
+	cd $(CARAVEL_ROOT) && $(MAKE) help
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 
