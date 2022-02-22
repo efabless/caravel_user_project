@@ -6,6 +6,8 @@ add_executable(${TESTCASE}
 target_include_directories(${TESTCASE} PRIVATE
     ${CMAKE_SOURCE_DIR}/include)
 
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T ${CMAKE_SOURCE_DIR}/linker_scripts/sections.lds")
+
 add_custom_command(
     TARGET ${TESTCASE}
     POST_BUILD
