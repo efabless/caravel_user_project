@@ -1,0 +1,30 @@
+# Requirements to install with apt
+
+# Shell tools
+bash-completion
+git
+vim
+
+# RISC-V toolchain dependencies
+autoconf
+automake
+autotools-dev
+bc
+bison
+build-essential
+curl
+flex
+gawk
+gperf
+libexpat-dev
+libgmp-dev
+libmpc-dev
+libmpfr-dev
+libtool
+patchutils
+python3
+texinfo
+zlib1g-dev
+
+# Verification tools
+iverilog
