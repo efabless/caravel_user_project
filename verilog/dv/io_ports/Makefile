@@ -34,10 +34,10 @@ export VERILOG_PATH=${CARAVEL_USER_PROJECT_ROOT}/mgmt_core_wrapper/verilog
 export USER_PROJECT_VERILOG=${CARAVEL_USER_PROJECT_ROOT}/verilog
 
 # Firmware variables
+TESTCASE=io_ports
 PATH := /opt/riscv32i/bin:${PATH}
 FIRMWARE_SOURCE_DIR=${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
 FIRMWARE_BUILD_DIR=${CARAVEL_USER_PROJECT_ROOT}/build
-TESTCASE=io_ports
 
 .PHONY: configure
 configure:
@@ -79,4 +79,4 @@ clean-build:
 
 .PHONY: clean-hex
 clean-hex:
-	rm *.hex
+	rm *.hex *.hexe
