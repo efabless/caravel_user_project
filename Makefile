@@ -18,7 +18,7 @@ MAKEFLAGS+=--warn-undefined-variables
 CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
 MCW_ROOT?=$(PWD)/mgmt_core_wrapper
-SIM ?= RTL
+SIM?=RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
@@ -51,29 +51,32 @@ $(CARAVEL_ROOT):
 simenv:
 	docker pull efabless/dv_setup:latest
 
-patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
-dv_targets = $(patterns:%=verify-%)
+.PHONY: setup
+setup: install check-env install_mcw pdk openlane
+
+dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+dv-targets=$(dv_patterns:%=verify-%)
 TARGET_PATH=$(shell pwd)
 verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
+dv_base_dependencies=simenv install check-env pdk install_mcw
 
-blocks = $(shell cd openlane && find * -maxdepth 0 -type d)
-netlists = $(blocks:%=./verilog/gl/%.v)
-$(netlists): ./verilog/gl/%.v :
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+netlists=$(blocks:%=./verilog/gl/%.v)
+block-gds=$(blocks:%=./gds/%.gds)
+
+$(block-gds): ./gds/%.gds :
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
 .PHONY: $(blocks)
-$(blocks): % : install install_mcw openlane pdk ./verilog/gl/%.v
+$(blocks): % : install install_mcw openlane pdk ./gds/%.gds
 
 .PHONY: harden
 harden: $(blocks)
 
-.PHONY: verify
-verify: dv_all
+.PHONY: verify-all
+verify-all: $(dv-targets)
 
-.PHONY: dv_all
-dv_all:$(dv_targets)
-
-$(dv_targets): verify-% : ./verilog/dv/% install simenv check-env pdk install_mcw openlane harden
+$(dv-targets): verify-% : $(dv_base_dependencies)
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
@@ -88,7 +91,7 @@ $(dv_targets): verify-% : ./verilog/dv/% install simenv check-env pdk install_mc
 
 clean-targets=$(blocks:%=clean-%)
 .PHONY: $(clean-targets)
-$(clean-targets): clean-%:
+$(clean-targets): clean-% :
 	rm ./verilog/gl/$*.v
 	rm ./spef/$*.spef
 	rm ./sdc/$*.sdc
