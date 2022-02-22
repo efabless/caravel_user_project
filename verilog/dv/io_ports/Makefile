@@ -27,9 +27,11 @@ CONFIG = caravel_user_project
 # Simulation variables
 SIM?=RTL
 DESIGNS?=${CARAVEL_USER_PROJECT_ROOT}
-CARAVEL_VERILOG_PATH?=${DESIGNS}/caravel/verilog
-CORE_VERILOG_PATH?=${DESIGNS}/varavel_mgmt_soc_litex/verilog
-export USER_PROJECT_VERILOG=${DESIGNS}/verilog
+CARAVEL_VERILOG_PATH?=${CARAVEL_USER_PROJECT_ROOT}/caravel/verilog
+CORE_VERILOG_PATH?=${CARAVEL_USER_PROJECT_ROOT}/caravel_mgmt_soc_litex/verilog
+export CARAVEL_PATH=${CARAVEL_USER_PROJECT_ROOT}/caravel/verilog
+export VERILOG_PATH=${CARAVEL_USER_PROJECT_ROOT}/mgmt_core_wrapper/verilog
+export USER_PROJECT_VERILOG=${CARAVEL_USER_PROJECT_ROOT}/verilog
 
 # Firmware variables
 PATH := /opt/riscv32i/bin:${PATH}
@@ -42,25 +44,39 @@ configure:
 	cmake \
 	-DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
 	-B${FIRMWARE_BUILD_DIR} \
+	-GNinja \
 	${FIRMWARE_SOURCE_DIR}
 
 .PHONY: build
 build: configure
 	cmake --build ${FIRMWARE_BUILD_DIR}
 
-.PHONY: clean
-clean:
-	rm -rf ${FIRMWARE_BUILD_DIR}
-	rm *.hex
+.PHONY: rebuild
+rebuild: configure
+	cmake --build ${FIRMWARE_BUILD_DIR} --clean-first
 
 .PHONY: sim
 sim: build
 	cp ${FIRMWARE_BUILD_DIR}/src/testcases/${TESTCASE}/${TESTCASE}.hex .
+	sed -ie 's/@10/@00/g' ${TESTCASE}.hex
 	iverilog \
 	-Ttyp \
 	-DFUNCTIONAL \
 	-DSIM \
-	-DUSER_POWER_PINS \
+	-DUSE_POWER_PINS \
 	-DUNIT_DELAY=#1 \
 	-f${CARAVEL_USER_PROJECT_ROOT}/mgmt_core_wrapper/verilog/includes/includes.rtl.${CONFIG} \
 	-o ${TESTCASE}.vvp ${TESTCASE}_tb.v
+	vvp ${TESTCASE}.vvp
+	mv ${TESTCASE}.vcd RTL-${TESTCASE}.vcd
+
+.PHONY: clean
+clean: clean-build clean-hex
+
+.PHONY: clean-build
+clean-build:
+	cmake --build ${FIRMWARE_BUILD_DIR} --target clean
+
+.PHONY: clean-hex
+clean-hex:
+	rm *.hex
