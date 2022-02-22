@@ -20,6 +20,9 @@
    
 Quick start for caravel_user_project
 ====================================
+## Dependencies
+
+- Docker: [Linux](https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) ||  [Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Intel Chip](https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) || [Mac with Apple Chip](https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
 
 1. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
 
@@ -49,7 +52,7 @@ Quick start for caravel_user_project
 	git checkout -b <my_branch>
 	git push -u origin <my_branch>
 	
-4. Now that your git environment is setup, it's time to setup your local environment. (NOTE: docker is a prerequisite to setting up your environment)
+4. Now that your git environment is setup, it's time to setup your local environment.
 
 .. code:: bash
 	
