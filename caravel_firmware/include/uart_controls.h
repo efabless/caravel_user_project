@@ -27,4 +27,7 @@
 #define reg_uart_txfull   (*(volatile uint32_t*) CSR_UART_TXFULL_ADDR)
 #define reg_uart_enable (*(volatile uint32_t*) CSR_UART_ENABLED_OUT_ADDR)
 
+void writeSingleCharacterToUart(const char);
+void writeToUart(const char*);
+
 #endif
