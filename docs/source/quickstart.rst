@@ -86,14 +86,33 @@ Starting your project
 	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
 	make pdk
 	
-5. Now you can start hardening your design, for example
+5. Now you can start hardening your design
+
+To start hardening you project you need to have a RTL verilog model for your design for OpenLane to harden. You should then have a subdirectory for each module in your project under ``openlane/`` directory, this subdirectory should include your configuration files. Then you can harden using this command
+
+.. code:: bash
+	
+	make <module_name>
+
+6. Example of a user project can be found by the name of ``user_proj_example``, the RTL can be found at ``verilog/rtl/user_proj_example.v`` and the configuration files can be found at ``openlane/user_proj_example``. And can be hardened using this command
+
+**THIS IS JUST AN EXAMPLE**
 
 .. code:: bash
 
 	make user_proj_example
+	
+7. You then need to integrate your modules into the user_project_wrapper. Then you can harden user_project_wrapper using this command
+
+.. code:: bash
+
 	make user_project_wrapper
 	
 6. To run simulation on your design
+
+You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``. Then run the simulation using these commands
+
+**NOTE:** You shouldn't include the files inside the verilog code
 
 .. code:: bash
 
