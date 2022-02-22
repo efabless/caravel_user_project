@@ -1,4 +1,4 @@
 add_subdirectory(crt)
 add_subdirectory(isr)
-add_subdirectory(stub)
+add_subdirectory(uart_controls)
 add_subdirectory(testcases)
