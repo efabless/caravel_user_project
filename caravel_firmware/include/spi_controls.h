@@ -19,6 +19,7 @@
 #define _SPI_CONTROLS_H_
 
 #include <stdint.h>
+#include "csr.h"
 
 // Flash Control SPI Configuration (2D00_0000)
 #define reg_spictrl (*(volatile uint32_t*)0x2d000000)

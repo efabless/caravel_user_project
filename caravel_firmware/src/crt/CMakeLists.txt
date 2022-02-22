@@ -1,3 +1,3 @@
-add_library(CRT0 SHARED crt0_vex.s)
+add_library(CRT0 STATIC crt0_vex.s)
 
 target_link_libraries(CRT0 PRIVATE ISR)
