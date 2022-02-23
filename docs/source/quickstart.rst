@@ -25,7 +25,7 @@ Quick start for caravel_user_project
 Dependencies
 ------------
 
-- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Apple Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
+- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
 
 ===============================================================================================================================================================
 
@@ -34,91 +34,98 @@ Starting your project
 ---------------------
 
 
-1. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
+#. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
 
-2. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
+#. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
 
-.. code:: bash
-	
-	# Create a directory and call it anything you want
-	mkdir -p caravel_tutorial
-	
-	# navigate into the directory
-	cd caravel_tutorial
-	
-3. Clone caravel_user_project and setup the git environment as follows
+	.. code:: bash
 
-.. code:: bash
-	
-	# Make sure that ``caravel_example`` matches the empty github repo name in step 1
-	git clone -b mpw-5b https://github.com/efabless/caravel_user_project caravel_example
-	cd caravel_example
-	git remote rename origin upstream
-	
-	# You need to put your empty github repo URL from step 1
-	git remote add origin <your github repo URL>
-	
-	# Create a new branch, you can name it anything 
-	git checkout -b <my_branch>
-	git push -u origin <my_branch>
-	
-4. Now that your git environment is setup, it's time to setup your local environment.
+		# Create a directory and call it anything you want
+		mkdir -p caravel_tutorial
 
-This command will install caravel_lite (a lite version of caravel), management core for simulation, openlane to harden your design and the pdk.
-
-.. code:: bash
+		# navigate into the directory
+		cd caravel_tutorial
 	
-	make setup
+#. Clone caravel_user_project and setup the git environment as follows
+
+	.. code:: bash
+
+		# Make sure that "caravel_example" matches the empty github repo name in step 1
+		git clone -b mpw-5b https://github.com/efabless/caravel_user_project caravel_example
+		cd caravel_example
+		git remote rename origin upstream
+
+		# You need to put your empty github repo URL from step 1
+		git remote add origin <your github repo URL>
+
+		# Create a new branch, you can name it anything 
+		git checkout -b <my_branch>
+		git push -u origin <my_branch>
 	
-5. Now you can start hardening your design
+#. Now that your git environment is setup, it's time to setup your local environment.
 
-To start hardening you project you need to have a RTL verilog model for your design for OpenLane to harden. You should then have a subdirectory for each module in your project under ``openlane/`` directory, this subdirectory should include your configuration files. Then you can harden using this command
+	* This command will install 
+		- caravel_lite (a lite version of caravel)
+		- management core for simulation
+		- openlane to harden your design 
+		- pdk
 
-.. code:: bash
+	.. code:: bash
+
+		make setup
 	
-	make <module_name>
+#. Now you can start hardening your design
 
-Example of a user project can be found by the name of ``user_proj_example``, the RTL can be found at ``verilog/rtl/user_proj_example.v`` and the configuration files can be found at ``openlane/user_proj_example``. And can be hardened using this command
+	* To start hardening you project you need 
+		- RTL verilog model for your design for OpenLane to harden
+		- A subdirectory for each module in your project under ``openlane/`` directory, this subdirectory should include your configuration files
 
-**THIS IS JUST AN EXAMPLE**
+	.. code:: bash
 
-.. code:: bash
+		make <module_name>	
+	..
 
-	make user_proj_example
+		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/dv-documentation-update/docs/source/index.rst#running-openlane>`_
 	
-6. You then need to integrate your modules into the user_project_wrapper. Then you can harden user_project_wrapper using this command
+#. Integrate modules into the user_project_wrapper
 
-.. code:: bash
+	- Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
 
-	make user_project_wrapper
-	
-7. To run simulation on your design
+	- Instantiate your module in ``verilog/rtl/user_project_wrapper.v``
 
-You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``. Then run the simulation using these commands
+	- Harden the user_project_wrapper including your modules, using this command
 
-**NOTE:** You shouldn't include the files inside the verilog code
+	.. code:: bash
 
-.. code:: bash
+		make user_project_wrapper
 
-	make simenv
-	
-	# you can then run RTL simulations using
-	SIM=RTL make verify-<testbench-name>
-	
-	# OR GL simulation using
-	SIM=GL make verify-<testbench-name>
-	
-	# for example
-	SIM=RTL make verify-io_ports
-	
-8. To run the precheck locally 
+#. Run simulation on your design
 
-.. code:: bash
+	* You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
+
+	**NOTE:** You shouldn't include the files inside the verilog code
 	
-	make precheck
-	make run-precheck
+	.. code:: bash
+
+		make simenv
+
+		# you can then run RTL simulations using
+		make verify-<testbench-name>-rtl
+
+		# OR GL simulation using
+		make verify-<testbench-name>-gl
+
+		# for example
+		make verify-io_ports-rtl
 	
-9. You are done! now go to www.efabless.com to submit your project!
+#. Run the precheck locally 
+
+	.. code:: bash
+
+		make precheck
+		make run-precheck
+	
+#. You are done! now go to www.efabless.com to submit your project!
    
    
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
