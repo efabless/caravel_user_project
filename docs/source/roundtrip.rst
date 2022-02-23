@@ -49,7 +49,7 @@ Complete roundtrip for caravel_user_project
 	git checkout -b <my_branch>
 	git push -u origin <my_branch>
 	
-4. Now that your git environment is setup, it's time to setup your local environment
+4. Now that your git environment is setup, it's time to setup your local environment. (NOTE: docker is a prerequisite to setting up your environment)
 
 .. code:: bash
 	
@@ -69,6 +69,7 @@ Complete roundtrip for caravel_user_project
 	# Build the pdk
 	# make sure to change <directory_name> with the directory you created in step 1
 	# in this case it is caravel_tutorial
+
 	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
 	make pdk
 	

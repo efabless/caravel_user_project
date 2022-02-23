@@ -16,6 +16,7 @@
 
 CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
+MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM ?= RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
@@ -23,12 +24,12 @@ CARAVEL_LITE?=1
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
-	CARAVEL_REPO := https://github.com/efabless/caravel-lite
-	CARAVEL_TAG := 'mpw-5a'
+	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
+	CARAVEL_TAG := 'mpw-5b'
 else
 	CARAVEL_NAME := caravel
-	CARAVEL_REPO := https://github.com/efabless/caravel
-	CARAVEL_TAG := 'mpw-5a'
+	CARAVEL_REPO := https://github.com/efabless/caravel 
+	CARAVEL_TAG := 'mpw-5b'
 endif
 
 
@@ -53,9 +54,22 @@ PATTERNS=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
 TARGET_PATH=$(shell pwd)
 VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
-$(DV_PATTERNS): verify-% : ./verilog/dv/%
-	sh -c $(VERIFY_COMMAND)
+.PHONY: dv_all
+dv_all:$(DV_PATTERNS)
 
+$(DV_PATTERNS): verify-% : ./verilog/dv/% check-env
+	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
+		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
+		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
+		-e TOOLS=/opt/riscv32i \
+		-e DESIGNS=$(TARGET_PATH) \
+		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e GCC_PREFIX=riscv32-unknown-elf \
+		-e MCW_ROOT=$(MCW_ROOT) \
+		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
+		sh -c $(VERIFY_COMMAND
+    
 # Openlane Makefile Targets
 BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(BLOCKS)

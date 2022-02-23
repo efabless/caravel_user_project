@@ -17,10 +17,10 @@
 
 `timescale 1 ns / 1 ps
 
-`include "uprj_netlists.v"
-`include "caravel_netlists.v"
-`include "spiflash.v"
-`include "tbuart.v"
+// `include "uprj_netlists.v"
+// `include "caravel_netlists.v"
+// `include "spiflash.v"
+// `include "tbuart.v"
 
 module mprj_stimulus_tb;
     // Signals declaration
@@ -38,6 +38,7 @@ module mprj_stimulus_tb;
     assign checkbits  = mprj_io[31:16];
     assign status = mprj_io[35:32];
 
+
     // Force CSB high until simulation is underway
     // Note:  The CSB GPIO pin default needs to be set to a pull-up. . .
     assign mprj_io[3] = CSB;
@@ -53,7 +54,7 @@ module mprj_stimulus_tb;
         $dumpvars(0, mprj_stimulus_tb);
 
         // Repeat cycles of 1000 clock edges as needed to complete testbench
-        repeat (150) begin
+        repeat (70) begin
             repeat (1000) @(posedge clock);
         end
         $display("%c[1;31m",27);
@@ -67,15 +68,14 @@ module mprj_stimulus_tb;
         $display("Monitor: mprj_stimulus test started");
         wait(status == 4'ha);
         wait(status == 4'h5);
-
+        
 	// Values reflect copying user-controlled outputs to memory and back
 	// to management-controlled outputs.  Note that there is a slight
 	// discrepancy in timing when using gate level simulation;  either
 	// of the specified values is okay.
 
-        wait(checkbits == 16'h0840 || checkbits == 16'h0841);
-        wait(checkbits == 16'h0a00 || checkbits == 16'h0a01);
-
+        wait(checkbits == 16'h198F);
+        wait(checkbits == 16'h1DDC);
         wait(checkbits == 16'hAB51);
         $display("Monitor: mprj_stimulus test Passed");
         #10000;
@@ -85,11 +85,10 @@ module mprj_stimulus_tb;
     // Reset Operation
     initial begin
         RSTB <= 1'b0;
-	CSB <= 1'b1;
+        CSB <= 1'b1;
+        #1000;
+        RSTB <= 1'b1;	    // Release reset
         #2000;
-        RSTB <= 1'b1;       	// Release reset
-	#200000;
-	CSB <= 1'bz;		// Stop driving CSB
     end
 
     initial begin		// Power-up sequence
@@ -111,28 +110,32 @@ module mprj_stimulus_tb;
     wire VSS = 1'b0;
 
     caravel uut (
-        .vddio	  (VDD3V3),
-        .vssio	  (VSS),
-        .vdda	  (VDD3V3),
-        .vssa	  (VSS),
-        .vccd	  (VDD1V8),
-        .vssd	  (VSS),
-        .vdda1    (VDD3V3),
-        .vdda2    (VDD3V3),
-        .vssa1	  (VSS),
-        .vssa2	  (VSS),
-        .vccd1	  (VDD1V8),
-        .vccd2	  (VDD1V8),
-        .vssd1	  (VSS),
-        .vssd2	  (VSS),
-        .clock	  (clock),
-        .gpio     (gpio),
-        .mprj_io  (mprj_io),
-        .flash_csb(flash_csb),
-        .flash_clk(flash_clk),
-        .flash_io0(flash_io0),
-        .flash_io1(flash_io1),
-        .resetb	  (RSTB)
+		.vddio	  (VDD3V3),
+		.vddio_2  (VDD3V3),
+		.vssio	  (VSS),
+		.vssio_2  (VSS),
+		.vdda	  (VDD3V3),
+		.vssa	  (VSS),
+		.vccd	  (VDD1V8),
+		.vssd	  (VSS),
+		.vdda1    (VDD3V3),
+		.vdda1_2  (VDD3V3),
+		.vdda2    (VDD3V3),
+		.vssa1	  (VSS),
+		.vssa1_2  (VSS),
+		.vssa2	  (VSS),
+		.vccd1	  (VDD1V8),
+		.vccd2	  (VDD1V8),
+		.vssd1	  (VSS),
+		.vssd2	  (VSS),
+		.clock    (clock),
+		.gpio     (gpio),
+		.mprj_io  (mprj_io),
+		.flash_csb(flash_csb),
+		.flash_clk(flash_clk),
+		.flash_io0(flash_io0),
+		.flash_io1(flash_io1),
+		.resetb	  (RSTB)
     );
 
 

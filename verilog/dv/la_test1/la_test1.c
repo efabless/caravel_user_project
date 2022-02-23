@@ -16,8 +16,8 @@
  */
 
 // This include is relative to $CARAVEL_PATH (see Makefile)
-#include "verilog/dv/caravel/defs.h"
-#include "verilog/dv/caravel/stub.c"
+#include <defs.h>
+#include <stub.c>
 
 // --------------------------------------------------------
 
@@ -31,11 +31,17 @@
 
 void main()
 {
+	int j;
 
 	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
 
-	reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
+	// reg_spi_enable = 1;
+	// reg_spimaster_cs = 0x00000;
+
+	// reg_spimaster_control = 0x0801;
+
+	// reg_spimaster_control = 0xa002;	// Enable, prescaler = 2,
                                         // connect to housekeeping SPI
 
 	// Connect the housekeeping SPI to the SPI master
@@ -88,19 +94,19 @@ void main()
         reg_mprj_io_6  = GPIO_MODE_MGMT_STD_OUTPUT;
 
 	// Set UART clock to 64 kbaud (enable before I/O configuration)
-	reg_uart_clkdiv = 625;
+	// reg_uart_clkdiv = 625;
 	reg_uart_enable = 1;
 
-        /* Apply configuration */
-        reg_mprj_xfer = 1;
-        while (reg_mprj_xfer == 1);
+    // Now, apply the configuration
+    reg_mprj_xfer = 1;
+    while (reg_mprj_xfer == 1);
 
-	// Configure LA probes [31:0], [127:64] as inputs to the cpu 
+    // Configure LA probes [31:0], [127:64] as inputs to the cpu 
 	// Configure LA probes [63:32] as outputs from the cpu
-	reg_la0_oenb = reg_la0_iena = 0xFFFFFFFF;    // [31:0]
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
-	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
-	reg_la3_oenb = reg_la3_iena = 0xFFFFFFFF;    // [127:96]
+	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
+	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
+	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
 	// Flag start of the test 
 	reg_mprj_datal = 0xAB400000;
@@ -109,10 +115,10 @@ void main()
 	reg_la1_data = 0x00000000;
 
 	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    
+	reg_la1_oenb = reg_la1_iena = 0x00000000;    
 
 	while (1) {
-		if (reg_la0_data > 0x1F4) {
+		if (reg_la0_data_in > 0x1F4) {
 			reg_mprj_datal = 0xAB410000;
 			break;
 		}
