@@ -36,15 +36,14 @@ export USER_PROJECT_VERILOG=${CARAVEL_USER_PROJECT_ROOT}/verilog
 # Firmware variables
 TESTCASE=io_ports
 PATH := /opt/riscv32i/bin:${PATH}
-FIRMWARE_SOURCE_DIR=${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
-FIRMWARE_BUILD_DIR=${CARAVEL_USER_PROJECT_ROOT}/build
+FIRMWARE_SOURCE_DIR := ${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
+FIRMWARE_BUILD_DIR := ${CARAVEL_USER_PROJECT_ROOT}/build
 
 .PHONY: configure
 configure:
 	cmake \
 	-DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
 	-B${FIRMWARE_BUILD_DIR} \
-	-GNinja \
 	${FIRMWARE_SOURCE_DIR}
 
 .PHONY: build
@@ -56,8 +55,8 @@ rebuild: configure
 	cmake --build ${FIRMWARE_BUILD_DIR} --clean-first
 
 .PHONY: sim
-sim: build
-	cp ${FIRMWARE_BUILD_DIR}/src/testcases/${TESTCASE}/${TESTCASE}.hex .
+sim: rebuild
+	cp -f ${FIRMWARE_BUILD_DIR}/src/testcases/${TESTCASE}/${TESTCASE}.hex .
 	sed -ie 's/@10/@00/g' ${TESTCASE}.hex
 	iverilog \
 	-Ttyp \

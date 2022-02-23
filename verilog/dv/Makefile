@@ -25,11 +25,11 @@ PATTERNS = io_ports la_test1 la_test2 wb_port mprj_stimulus
 all:  ${PATTERNS}
 
 	for i in ${PATTERNS}; do \
-		( cd $$i && make -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
+		( cd $$i && make sim -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
 	done
 
 DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
-$(DV_PATTERNS): verify-% : 
+$(DV_PATTERNS): verify-% :
 	cd $* && make
 
 clean:  ${PATTERNS}
@@ -37,5 +37,5 @@ clean:  ${PATTERNS}
 		( cd $$i && make clean ) ; \
 	done
 	rm -rf *.log
-	
+
 .PHONY: clean all

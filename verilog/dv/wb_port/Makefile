@@ -44,7 +44,6 @@ configure:
 	cmake \
 	-DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
 	-B${FIRMWARE_BUILD_DIR} \
-	-GNinja \
 	${FIRMWARE_SOURCE_DIR}
 
 .PHONY: build
