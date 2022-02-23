@@ -55,6 +55,7 @@ simenv:
 setup: install check-env install_mcw pdk openlane
 
 # Openlane
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
 $(blocks): % : install install_mcw openlane pdk
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
@@ -82,7 +83,6 @@ docker_run_verify=\
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
 		sh -c $(verify_command)
 
-blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 
 .PHONY: what
 what:
