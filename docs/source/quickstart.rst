@@ -64,7 +64,7 @@ Starting your project
 	
 #. Now that your git environment is setup, it's time to setup your local environment.
 
-	* This command will install 
+	* This command will setup your environment by installing the following 
 		- caravel_lite (a lite version of caravel)
 		- management core for simulation
 		- openlane to harden your design 
@@ -78,7 +78,7 @@ Starting your project
 
 	* To start hardening you project you need 
 		- RTL verilog model for your design for OpenLane to harden
-		- A subdirectory for each module in your project under ``openlane/`` directory, this subdirectory should include your configuration files
+		- A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
 
 	.. code:: bash
 
@@ -91,9 +91,9 @@ Starting your project
 
 	- Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
 
-	- Instantiate your module in ``verilog/rtl/user_project_wrapper.v``
+	- Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
 
-	- Harden the user_project_wrapper including your modules, using this command
+	- Harden the user_project_wrapper including your module(s), using this command
 
 	.. code:: bash
 
@@ -101,7 +101,7 @@ Starting your project
 
 #. Run simulation on your design
 
-	* You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
+	* You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
 
 	**NOTE:** You shouldn't include the files inside the verilog code
 	
