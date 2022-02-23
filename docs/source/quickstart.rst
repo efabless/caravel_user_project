@@ -36,49 +36,51 @@ Starting your project
 
 #. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
 
-#. Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
+#.  Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
 
-	.. code:: bash
+    .. code:: bash
 
-		# Create a directory and call it anything you want
-		mkdir -p caravel_tutorial
+        # Create a directory and call it anything you want
+        mkdir -p caravel_tutorial
 
-		# navigate into the directory
-		cd caravel_tutorial
+        # navigate into the directory
+        cd caravel_tutorial
 	
-#. Clone caravel_user_project and setup the git environment as follows
+#.  Clone caravel_user_project and setup the git environment as follows
 
-	.. code:: bash
+    .. code:: bash
 
-		# Make sure that "caravel_example" matches the empty github repo name in step 1
-		git clone -b mpw-5b https://github.com/efabless/caravel_user_project caravel_example
-		cd caravel_example
-		git remote rename origin upstream
+        # Make sure that "caravel_example" matches the empty github repo name in step 1
+        git clone -b mpw-5b https://github.com/efabless/caravel_user_project caravel_example
+        cd caravel_example
+        git remote rename origin upstream
 
-		# You need to put your empty github repo URL from step 1
-		git remote add origin <your github repo URL>
+        # You need to put your empty github repo URL from step 1
+        git remote add origin <your github repo URL>
 
-		# Create a new branch, you can name it anything 
-		git checkout -b <my_branch>
-		git push -u origin <my_branch>
+        # Create a new branch, you can name it anything 
+        git checkout -b <my_branch>
+        git push -u origin <my_branch>
 	
-#. Now that your git environment is setup, it's time to setup your local environment.
+#.  Now that your git environment is setup, it's time to setup your local environment by running.
 
-	* This command will setup your environment by installing the following 
-		- caravel_lite (a lite version of caravel)
-		- management core for simulation
-		- openlane to harden your design 
-		- pdk
+    .. code:: bash
 
-	.. code:: bash
+        make setup
 
-		make setup
+    *   This command will setup your environment by installing the following:
+    
+        - caravel_lite (a lite version of caravel)
+        - management core for simulation
+        - openlane to harden your design 
+        - pdk
+
 	
-#. Now you can start hardening your design
+#.  Now you can start hardening your design
 
-	* To start hardening you project you need 
-		- RTL verilog model for your design for OpenLane to harden
-		- A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
+    *   To start hardening you project you need 
+        - RTL verilog model for your design for OpenLane to harden
+        - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
 
 	.. code:: bash
 
@@ -87,44 +89,40 @@ Starting your project
 
 		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/dv-documentation-update/docs/source/index.rst#running-openlane>`_
 	
-#. Integrate modules into the user_project_wrapper
+#.  Integrate modules into the user_project_wrapper
 
-	- Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
+    *   Harden the user_project_wrapper including your module(s), using this command:
 
-	- Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
+        .. code:: bash
 
-	- Harden the user_project_wrapper including your module(s), using this command
+            make user_project_wrapper
 
-	.. code:: bash
+#.  Run simulation on your design
 
-		make user_project_wrapper
+    *   You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
 
-#. Run simulation on your design
+        **NOTE:** You shouldn't include the files inside the verilog code
 
-	* You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
+        .. code:: bash
 
-	**NOTE:** You shouldn't include the files inside the verilog code
+            # you can then run RTL simulations using
+            make verify-<testbench-name>-rtl
+
+            # OR GL simulation using
+            make verify-<testbench-name>-gl
+
+            # for example
+            make verify-io_ports-rtl
 	
-	.. code:: bash
+#.  Run the precheck locally 
 
-		make simenv
+    .. code:: bash
 
-		# you can then run RTL simulations using
-		make verify-<testbench-name>-rtl
+        make precheck
+        make run-precheck
 
-		# OR GL simulation using
-		make verify-<testbench-name>-gl
-
-		# for example
-		make verify-io_ports-rtl
-	
-#. Run the precheck locally 
-
-	.. code:: bash
-
-		make precheck
-		make run-precheck
-	
 #. You are done! now go to www.efabless.com to submit your project!
    
    
