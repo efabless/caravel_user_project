@@ -5,6 +5,9 @@ bash-completion
 git
 vim
 
+# Firmware build dependencies
+ninja-build
+
 # RISC-V toolchain dependencies
 autoconf
 automake
@@ -25,6 +28,3 @@ patchutils
 python3
 texinfo
 zlib1g-dev
-
-# Verification tools
-iverilog
