@@ -54,29 +54,22 @@ simenv:
 .PHONY: setup
 setup: install check-env install_mcw pdk openlane
 
+# Openlane
+.PHONY: $(blocks)
+$(blocks): % : install install_mcw openlane pdk
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
+
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
-dv-targets=$(dv_patterns:%=verify-%)
+dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
+dv-targets-gl=$(dv_patterns:%=verify-%-gl)
+dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
+
+make_what=setup $(blocks) $(dv-targets-rtl) $(dv-targets-gl) $(dv-targets-gl-sdf)
+
 TARGET_PATH=$(shell pwd)
 verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
 dv_base_dependencies=simenv install check-env pdk install_mcw
-
-blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
-netlists=$(blocks:%=./verilog/gl/%.v)
-block-gds=$(blocks:%=./gds/%.gds)
-
-$(block-gds): ./gds/%.gds :
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
-
-.PHONY: $(blocks)
-$(blocks): % : install install_mcw openlane pdk ./gds/%.gds
-
-.PHONY: harden
-harden: $(blocks)
-
-.PHONY: verify-all
-verify-all: $(dv-targets)
-
-$(dv-targets): verify-% : $(dv_base_dependencies)
+docker_run_verify=\
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
@@ -88,6 +81,30 @@ $(dv-targets): verify-% : $(dv_base_dependencies)
 		-e MCW_ROOT=$(MCW_ROOT) \
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
 		sh -c $(verify_command)
+
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+
+.PHONY: what
+what:
+	# $(make_what)
+
+.PHONY: harden
+harden: $(blocks)
+
+.PHONY: verify-all
+verify-all: $(dv-targets)
+
+$(dv-targets-rtl): SIM=RTL
+$(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
+	$(docker_run_verify)
+
+$(dv-targets-gl): SIM=GL
+$(dv-targets-gl): verify-%-gl: $(dv_base_dependencies)
+	$(docker_run_verify)
+
+$(dv-targets-gl-sdf): SIM=GL_SDF
+$(dv-targets-gl-sdf): verify-%-gl-sdf: $(dv_base_dependencies)
+	$(docker_run_verify)
 
 clean-targets=$(blocks:%=clean-%)
 .PHONY: $(clean-targets)
