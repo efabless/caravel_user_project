@@ -64,27 +64,11 @@ Starting your project
 	
 4. Now that your git environment is setup, it's time to setup your local environment.
 
+This command will install caravel_lite (a lite version of caravel), management core for simulation, openlane to harden your design and the pdk.
+
 .. code:: bash
 	
-	# to install caravel-lite into your caravel_user_project
-	# you can install full caravel (not recommended) use ``export CARAVEL_LITE=0``
-	make install
-	
-	# To install the management core for simulation
-	make install_mcw
-	
-	# Install openlane for hardening your project
-	# make sure to change <directory_name> with the directory you created in step 2 (In this case it's caravel_tutorial)
-	# in this case it is caravel_tutorial
-	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
-	make openlane
-	
-	# Build the pdk
-	# make sure to change <directory_name> with the directory you created in step 1
-	# in this case it is caravel_tutorial
-
-	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
-	make pdk
+	make setup
 	
 5. Now you can start hardening your design
 
@@ -94,7 +78,7 @@ To start hardening you project you need to have a RTL verilog model for your des
 	
 	make <module_name>
 
-6. Example of a user project can be found by the name of ``user_proj_example``, the RTL can be found at ``verilog/rtl/user_proj_example.v`` and the configuration files can be found at ``openlane/user_proj_example``. And can be hardened using this command
+Example of a user project can be found by the name of ``user_proj_example``, the RTL can be found at ``verilog/rtl/user_proj_example.v`` and the configuration files can be found at ``openlane/user_proj_example``. And can be hardened using this command
 
 **THIS IS JUST AN EXAMPLE**
 
@@ -102,13 +86,13 @@ To start hardening you project you need to have a RTL verilog model for your des
 
 	make user_proj_example
 	
-7. You then need to integrate your modules into the user_project_wrapper. Then you can harden user_project_wrapper using this command
+6. You then need to integrate your modules into the user_project_wrapper. Then you can harden user_project_wrapper using this command
 
 .. code:: bash
 
 	make user_project_wrapper
 	
-8. To run simulation on your design
+7. To run simulation on your design
 
 You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``. Then run the simulation using these commands
 
@@ -127,14 +111,14 @@ You need to include your rtl files in ``verilog/includes/includes.<rtl/gl/gl+sdf
 	# for example
 	SIM=RTL make verify-io_ports
 	
-9. To run the precheck locally 
+8. To run the precheck locally 
 
 .. code:: bash
 	
 	make precheck
 	make run-precheck
 	
-10. You are done! now go to www.efabless.com to submit your project!
+9. You are done! now go to www.efabless.com to submit your project!
    
    
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
