@@ -31,11 +31,11 @@ CARAVEL_LITE?=1
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite
-	CARAVEL_TAG := 'mpw-5b'
+	CARAVEL_TAG := mpw-5c
 else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel
-	CARAVEL_TAG := 'mpw-5b'
+	CARAVEL_TAG := mpw-5c
 endif
 
 # Include Caravel Makefile Targets
@@ -44,10 +44,10 @@ endif
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 .PHONY: install
-install: $(CARAVEL_ROOT)
-
-# Install caravel
-$(CARAVEL_ROOT):
+install:
+	[ -d "$(CARAVEL_ROOT)" ] && \
+		echo "Deleting exisiting $(CARAVEL_ROOT)" && \
+		rm -rf $(CARAVEL_ROOT) && sleep 2
 	@echo "Installing $(CARAVEL_NAME).."
 	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
 
@@ -62,7 +62,7 @@ setup: install check-env install_mcw pdk openlane
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
-$(blocks): % : install install_mcw openlane pdk
+$(blocks):
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
@@ -70,10 +70,9 @@ dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
 dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
 
-
 TARGET_PATH=$(shell pwd)
 verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
-dv_base_dependencies=simenv install check-env pdk install_mcw
+dv_base_dependencies=simenv
 docker_run_verify=\
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
@@ -86,8 +85,6 @@ docker_run_verify=\
 		-e MCW_ROOT=$(MCW_ROOT) \
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
 		sh -c $(verify_command)
-
-
 
 .PHONY: harden
 harden: $(blocks)
