@@ -45,11 +45,12 @@ endif
 
 .PHONY: install
 install:
-	[ -d "$(CARAVEL_ROOT)" ] && \
+	if [ -d "$(CARAVEL_ROOT)" ]; then\
 		echo "Deleting exisiting $(CARAVEL_ROOT)" && \
-		rm -rf $(CARAVEL_ROOT) && sleep 2
-	@echo "Installing $(CARAVEL_NAME).."
-	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
+		rm -rf $(CARAVEL_ROOT) && sleep 2;\
+	fi
+	echo "Installing $(CARAVEL_NAME).."
+	git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
 
 # Install DV setup
 .PHONY: simenv
