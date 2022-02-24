@@ -65,7 +65,6 @@ dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
 dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
 
-make_what=setup $(blocks) $(dv-targets-rtl) $(dv-targets-gl) $(dv-targets-gl-sdf)
 
 TARGET_PATH=$(shell pwd)
 verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
@@ -84,15 +83,12 @@ docker_run_verify=\
 		sh -c $(verify_command)
 
 
-.PHONY: what
-what:
-	# $(make_what)
 
 .PHONY: harden
 harden: $(blocks)
 
 .PHONY: verify-all
-verify-all: $(dv-targets)
+verify: $(dv-targets)
 
 $(dv-targets-rtl): SIM=RTL
 $(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
@@ -109,14 +105,19 @@ $(dv-targets-gl-sdf): verify-%-gl-sdf: $(dv_base_dependencies)
 clean-targets=$(blocks:%=clean-%)
 .PHONY: $(clean-targets)
 $(clean-targets): clean-% :
-	rm ./verilog/gl/$*.v
-	rm ./spef/$*.spef
-	rm ./sdc/$*.sdc
-	rm ./sdf/$*.sdf
-	rm ./gds/$*.gds
-	rm ./mag/$*.mag
-	rm ./lef/$*.lef
-	rm ./maglef/*.maglef
+	rm -f ./verilog/gl/$*.v
+	rm -f ./spef/$*.spef
+	rm -f ./sdc/$*.sdc
+	rm -f ./sdf/$*.sdf
+	rm -f ./gds/$*.gds
+	rm -f ./mag/$*.mag
+	rm -f ./lef/$*.lef
+	rm -f ./maglef/*.maglef
+
+make_what=setup $(blocks) $(dv-targets-rtl) $(dv-targets-gl) $(dv-targets-gl-sdf) $(clean-targets)
+.PHONY: what
+what:
+	# $(make_what)
 
 # Install Openlane
 .PHONY: openlane
