@@ -56,15 +56,16 @@ TARGET_PATH=$(shell pwd)
 VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && \
 	export SIM=${SIM} && ${MAKE} sim"
 
-CARAVEL_USER_PROJECT_ROOT := $(shell readlink .)
+CARAVEL_USER_PROJECT_ROOT := $(shell readlink -f .)
 FIRMWARE_SOURCE_DIR := ${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
 FIRMWARE_BUILD_DIR := ${CARAVEL_USER_PROJECT_ROOT}/build
+FIRMWARE_GENERATOR ?= 'Unix Makefiles'
 
 .PHONY: configure-firmware
 configure_firmware:
 	cmake -DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
 	-B${FIRMWARE_BUILD_DIR} \
-	-G${FIRMWARE_GENERATOR}
+	-G${FIRMWARE_GENERATOR} \
 	${FIRMWARE_SOURCE_DIR}
 
 .PHONY: firmware
