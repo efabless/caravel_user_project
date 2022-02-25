@@ -34,7 +34,7 @@ $(DV_PATTERNS): verify-% :
 
 clean:  ${PATTERNS}
 	for i in ${PATTERNS}; do \
-		( cd $$i && make clean ) ; \
+		( cd $$i && \rm  -f *.elf *.hex *.bin *.vvp *.log *.vcd *.lst *.hexe ) ; \
 	done
 	rm -rf *.log
 	

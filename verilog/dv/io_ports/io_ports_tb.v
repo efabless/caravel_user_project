@@ -17,10 +17,6 @@
 
 `timescale 1 ns / 1 ps
 
-// `include "uprj_netlists.v"
-// `include "caravel_netlists.v"
-// `include "spiflash.v"
-
 module io_ports_tb;
 	reg clock;
 	reg RSTB;
@@ -35,8 +31,8 @@ module io_ports_tb;
 	assign mprj_io_0 = mprj_io[7:0];
 	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
 
-	// assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
-	// assign mprj_io[3] = CSB;
+	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+	// assign mprj_io[3] = 1'b1;
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -95,7 +91,7 @@ module io_ports_tb;
 		CSB  <= 1'b1;		// Force CSB high
 		#2000;
 		RSTB <= 1'b1;	    	// Release reset
-		#170000;
+		#300000;
 		CSB = 1'b0;		// CSB can be released
 	end
 
