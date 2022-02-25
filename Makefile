@@ -169,12 +169,11 @@ run-precheck: check-pdk check-precheck
 
 
 
-# Clean
-# .PHONY: clean
-# clean:
-# 	cd ./verilog/dv/ && \
-# 		$(MAKE) -j$(THREADS) clean
-#
+.PHONY: clean
+clean:
+	cd ./verilog/dv/ && \
+		$(MAKE) -j$(THREADS) clean
+
 check-caravel:
 	@if [ ! -d "$(CARAVEL_ROOT)" ]; then \
 		echo "Caravel Root: "$(CARAVEL_ROOT)" doesn't exists, please export the correct path before running make. "; \
