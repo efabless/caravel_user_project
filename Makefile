@@ -28,14 +28,16 @@ export OPENLANE_TAG=2022.02.23_02.50.41
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
+MPW_TAG ?= mpw-5c
+
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite
-	CARAVEL_TAG := mpw-5c
+	CARAVEL_TAG := $(MPW_TAG)
 else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel
-	CARAVEL_TAG := mpw-5c
+	CARAVEL_TAG := $(MPW_TAG)
 endif
 
 # Include Caravel Makefile Targets
