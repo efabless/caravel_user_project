@@ -42,7 +42,10 @@ set ::env(PL_TARGET_DENSITY) 0.05
 # This is because this macro will be inserted in a top level (user_project_wrapper) 
 # where the PDN is planned on metal 5. So, to avoid having shorts between routes
 # in this macro and the top level metal 5 stripes, we have to restrict routes to metal4.  
-set ::env(GLB_RT_MAXLAYER) 5
+# 
+# set ::env(GLB_RT_MAXLAYER) 5
+
+set ::env(RT_MAX_LAYER) {met4}
 
 # You can draw more power domains if you need to 
 set ::env(VDD_NETS) [list {vccd1}]
