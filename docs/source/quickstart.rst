@@ -93,7 +93,7 @@ Starting your project
 		make <module_name>	
 	..
 
-		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/dv-documentation-update/docs/source/index.rst#running-openlane>`_
+		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/main/docs/source/index.rst#hardening-the-user-project-using-openlane>`_
 	
 #.  Integrate modules into the user_project_wrapper
 
