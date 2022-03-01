@@ -16,7 +16,7 @@
 # Base Configurations. Don't Touch
 # section begin
 
-set ::env(PDK) "sky130A"
+set ::env(PDK) $::env(PDK_VARIENT)
 set ::env(STD_CELL_LIBRARY) "sky130_fd_sc_hd"
 
 # YOU ARE NOT ALLOWED TO CHANGE ANY VARIABLES DEFINED IN THE FIXED WRAPPER CFGS 

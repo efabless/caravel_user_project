@@ -28,6 +28,9 @@ export OPENLANE_TAG=2022.02.23_02.50.41
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
+# PDK switch varient
+export PDK_VARIENT?=sky130B
+
 MPW_TAG ?= mpw-5c
 
 ifeq ($(CARAVEL_LITE),1)
@@ -83,6 +86,7 @@ docker_run_verify=\
 		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
 		-e TOOLS=/opt/riscv32i \
 		-e DESIGNS=$(TARGET_PATH) \
+		-e PDK_VARIENT=$(PDK_VARIENT) \
 		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
 		-e GCC_PREFIX=riscv32-unknown-elf \
 		-e MCW_ROOT=$(MCW_ROOT) \
