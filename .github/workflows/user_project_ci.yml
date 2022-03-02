@@ -32,50 +32,47 @@ jobs:
       - name: Run The Precheck
         run: bash ${GITHUB_WORKSPACE}/.github/scripts/run_precheck.sh
 
-  # dv_rtl:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
+  user_project_flow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v1
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
 
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-  #     - name: Install Magic
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+      - name: Export PDK ROOT
+        run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
 
-  #     - name: Build PDK
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/build_pdk.sh
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
-  #     - name: Install The Dockerized DV Setup
-  #       run: docker pull efabless/dv_setup:latest
+      - name: install dependencies
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          make setup
+          make simenv
 
-  #     - name: Run DV tests
-  #       # Run test number 0,1,2,3,4 in one job                            <test-ids>   <sim-mode>
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      RTL
+      - name: hardening using openlane
+        run: |
+          make user_proj_example
+          make user_project_wrapper
 
-  # dv_gl:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
+      - name: Run DV RTL tests
+        run: |
+          make verify-io_ports-rtl 
+          make verify-la_test1-rtl 
+          make verify-la_test2-rtl 
+          make verify-mprj_stimulus-rtl 
+          make verify-wb_port-rtl 
 
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v1
-
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v1
-
-  #     - name: Install Magic
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
-
-  #     - name: Build PDK
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/build_pdk.sh
-
-  #     - name: Install The Dockerized DV Setup
-  #       run: docker pull efabless/dv_setup:latest
-
-  #     - name: Run DV tests
-  #       # Run test number 0,1,2,3,4 in one job                             <test-ids>   <sim-mode>
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      GL
+      - name: Run DV GL tests
+        run: |
+          make verify-io_ports-gl 
+          make verify-la_test1-gl 
+          make verify-la_test2-gl 
+          make verify-mprj_stimulus-gl 
+          make verify-wb_port-gl 
