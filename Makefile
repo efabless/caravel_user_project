@@ -29,7 +29,7 @@ export OPENLANE_TAG=2022.02.23_02.50.41
 CARAVEL_LITE?=1
 
 # PDK switch varient
-export PDK_VARIENT?=sky130B
+export PDK?=sky130B
 
 MPW_TAG ?= mpw-5c
 
@@ -86,7 +86,7 @@ docker_run_verify=\
 		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
 		-e TOOLS=/opt/riscv32i \
 		-e DESIGNS=$(TARGET_PATH) \
-		-e PDK_VARIENT=$(PDK_VARIENT) \
+		-e PDK=$(PDK) \
 		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
 		-e GCC_PREFIX=riscv32-unknown-elf \
 		-e MCW_ROOT=$(MCW_ROOT) \
