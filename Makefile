@@ -99,7 +99,7 @@ verify-all-rtl: $(dv-targets-rtl)
 verify-all-gl: $(dv-targets-gl)
 
 .PHONY: verify-all-gl-sdf
-verify-all-gl-sdf: dv-targets-gl-sdf
+verify-all-gl-sdf: $(dv-targets-gl-sdf)
 
 $(dv-targets-rtl): SIM=RTL
 $(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
