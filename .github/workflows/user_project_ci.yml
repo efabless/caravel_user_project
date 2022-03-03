@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_pdk:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,11 +22,12 @@ jobs:
       - name: Export PDK ROOT
         run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
 
-      - name: Build PDK
+      - name: Install dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make -j 1 NPROC=1 pdk
+          make install
+          make pdk
 
       - name: Tarball PDK
         run: |
@@ -42,6 +43,7 @@ jobs:
   mpw_precheck:
     timeout-minutes: 720
     runs-on: ubuntu-latest
+    needs: [setup]
     steps:
       - uses: actions/checkout@v2
 
@@ -86,6 +88,7 @@ jobs:
   user_project_flow:
     timeout-minutes: 720
     runs-on: ubuntu-latest
+    needs: [setup]
     steps:
       - uses: actions/checkout@v2
 
