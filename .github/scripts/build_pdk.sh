@@ -13,13 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # SPDX-License-Identifier: Apache-2.0
-git clone --depth=1 https://github.com/efabless/caravel-lite.git
+git clone --depth=1 --branch mpw-5c https://github.com/efabless/caravel-lite.git
 
 export HOME=$(pwd)
 cd ..
 export PDK_ROOT=$(pwd)/pdks && mkdir "$PDK_ROOT"
 cd "$HOME"/caravel-lite/ || exit
 
-make skywater-pdk skywater-library open_pdks build-pdk gen-sources
+make skywater-pdk open-pdks sky130 gen-sources
 
 exit 0
