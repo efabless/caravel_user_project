@@ -8,6 +8,37 @@ on:
   workflow_dispatch:
 
 jobs:
+  Build PDK:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Export PDK ROOT
+        run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+
+      - name: Build PDK
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          make -j 1 NPROC=1 pdk
+
+      - name: Tarball PDK
+        run: |
+          tar -cf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
+
+      - name: Upload PDK Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp/sky130A.tar
+
+
   mpw_precheck:
     timeout-minutes: 720
     runs-on: ubuntu-latest
@@ -23,25 +54,18 @@ jobs:
       - name: Export PDK ROOT
         run: |
           echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
-          export PDK_ROOT=/usr/local/pdk
 
-      - name: Install Magic
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
 
-      - name: Build SKY130 PDK
+      - name: Unpack PDK Tarball
         run: |
-          git clone --depth=1 --branch mpw-5c https://github.com/efabless/caravel-lite.git
-          sudo mkdir -p ${{ env.PDK_ROOT }}
-          sudo make -f caravel-lite/Makefile skywater-pdk open-pdks
-          cd ${{ env.PDK_ROOT }}/open_pdks && \
-          ./configure --enable-sky130-pdk=${{ env.PDK_ROOT }}/skywater-pdk/libraries --enable-sram-sky130 && \
-          cd sky130 && \
-          make veryclean && \
-          make prerequisites && \
-          make && \
-          make SHARED_PDKS_PATH=${{ env.PDK_ROOT }} install && \
-          make clean
-          suod make -f gen-sources
+          sudo mkdir -p ${{ env.PDK_ROOT }}/sky130A
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
 
       - name: Run MPW-Precheck
         run: |
@@ -77,11 +101,23 @@ jobs:
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
+
+      - name: Unpack PDK Tarball
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}/sky130A
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
+
       - name: Install dependencies
         run: |
-          sudo mkdir -p ${{ env.PDK_ROOT }}
-          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make setup
+          make install
+          make install_mcw
+          make openlane
           make simenv
 
       - name: Harden using Openlane
