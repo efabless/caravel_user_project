@@ -15,10 +15,10 @@
 # SPDX-License-Identifier: Apache-2.0
 sudo apt-get install -y csh freeglut3-dev libncurses5-dev libncursesw5-dev libglu1-mesa-dev libx11-dev mesa-common-dev tcl tcl-dev tk tk-dev
 
-git clone --depth=1 --branch 8.3.265 https://github.com/RTimothyEdwards/magic.git
+git clone --depth=1 --branch 8.3.274 https://github.com/RTimothyEdwards/magic.git
 cd magic || exit
 sudo ./configure --disable-locking --prefix=/usr CFLAGS='-g -O0 -m64 -fPIC'
-sudo make -j4
+sudo make -j
 sudo make install
 
 exit 0

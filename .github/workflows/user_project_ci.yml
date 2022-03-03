@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  precheck:
+  mpw_precheck:
     timeout-minutes: 720
     runs-on: ubuntu-latest
     steps:
@@ -20,19 +20,46 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+      - name: Export PDK ROOT
+        run: |
+          echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+
       - name: Install Magic
         run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
 
-      - name: Build PDK
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/build_pdk.sh
+      - name: Build SKY130 PDK
+        run: |
+          git clone --depth=1 --branch mpw-5c https://github.com/efabless/caravel-lite.git
+          sudo mkdir -p ${{ env.PDK_ROOT }}
+          sudo make -f caravel-lite/Makefile skywater-pdk open-pdks
+          cd ${{ env.PDK_ROOT }}/open_pdks && \
+          ./configure --enable-sky130-pdk=${{ env.PDK_ROOT }}/skywater-pdk/libraries --enable-sram-sky130 && \
+          cd sky130 && \
+          make veryclean && \
+          make prerequisites && \
+          make && \
+          make SHARED_PDKS_PATH=${{ env.PDK_ROOT }} install && \
+          make clean
+          suod make -f gen-sources
 
-      - name: Install The Precheck
-        run: git clone --depth=1 https://github.com/efabless/mpw_precheck.git ${GITHUB_WORKSPACE}/mpw_precheck
+      - name: Run MPW-Precheck
+        run: |
+          export INPUT_DIRECTORY=$(pwd)
+          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
+          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
+          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
 
-      - name: Run The Precheck
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/run_precheck.sh
+          git clone --depth=1 mpw-5b https://github.com/efabless/mpw_precheck.git
+
+          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root ${{ env.PDK_ROOT }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
+
+          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
+          if ! [[ $cnt ]]; then cnt=0; fi
+          if [[ $cnt -eq 1 ]]; then exit 0; fi
+          exit 2
 
   user_project_flow:
+    timeout-minutes: 720
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -49,14 +76,14 @@ jobs:
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
-      - name: install dependencies
+      - name: Install dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make setup
           make simenv
 
-      - name: hardening using openlane
+      - name: Harden using Openlane
         run: |
           make user_proj_example
           make user_project_wrapper
@@ -67,7 +94,7 @@ jobs:
           make verify-la_test1-rtl 
           make verify-la_test2-rtl 
           make verify-mprj_stimulus-rtl 
-          make verify-wb_port-rtl 
+          make verify-wb_port-rtl
 
       - name: Run DV GL tests
         run: |
@@ -75,4 +102,4 @@ jobs:
           make verify-la_test1-gl 
           make verify-la_test2-gl 
           make verify-mprj_stimulus-gl 
-          make verify-wb_port-gl 
+          make verify-wb_port-gl
