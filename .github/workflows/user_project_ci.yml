@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup:
+  pdk:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -76,7 +76,7 @@ jobs:
           export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
           export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
 
-          git clone --depth=1 mpw-5b https://github.com/efabless/mpw_precheck.git
+          git clone --depth=1 -b mpw-5b https://github.com/efabless/mpw_precheck.git
 
           docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root ${{ env.PDK_ROOT }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
 
