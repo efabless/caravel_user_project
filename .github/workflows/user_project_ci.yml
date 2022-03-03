@@ -23,6 +23,7 @@ jobs:
       - name: Export PDK ROOT
         run: |
           echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+          export PDK_ROOT=/usr/local/pdk
 
       - name: Install Magic
         run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
