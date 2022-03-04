@@ -164,13 +164,10 @@ C {devices/lab_pin.sym} -1576485375 -284838030 0 0 {name=l17 sig_type=std_logic 
 C {devices/lab_pin.sym} -1576485375 -284838050 0 0 {name=l18 sig_type=std_logic lab=A2}
 C {devices/lab_pin.sym} -1576485375 -284838070 0 0 {name=l19 sig_type=std_logic lab=A1}
 C {devices/lab_pin.sym} -1576485375 -284838090 0 0 {name=l20 sig_type=std_logic lab=A0}
-C {sparse_nor/sparse_nor.sym} -1576483835 -284843975 0 0 {name=X2}
-C {sparse_nor/sparse_nor.sym} -1576483835 -284844210 0 0 {name=X4}
 C {devices/lab_pin.sym} -1576484000 -284837970 2 0 {name=l1 sig_type=std_logic lab=sin_out}
 C {devices/lab_pin.sym} -1576484000 -284837735 2 0 {name=l2 sig_type=std_logic lab=cos_out}
 C {sky130_stdcells/xor2_1.sym} -1576484060 -284837970 0 0 {name=x3 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
 C {sky130_stdcells/xor2_1.sym} -1576484060 -284837735 0 0 {name=x1 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
-C {sparse_decoder/sparse_decoder_crude.sym} -1576487945 -284840940 0 0 {name=X5}
 C {devices/lab_pin.sym} -1576486140 -284838080 0 0 {name=l3 sig_type=std_logic lab=clk}
 C {devices/lab_pin.sym} -1576486135 -284838220 0 0 {name=l6 sig_type=std_logic lab=rstb}
 C {devices/vsource.sym} -1576486245 -284838335 0 0 {name=V2 value=1.2}
