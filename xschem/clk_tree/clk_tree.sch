@@ -4,6 +4,11 @@ K {}
 V {}
 S {}
 E {}
+T {Beware!!
+Potential case of Hold Violation. 
+Might as well need to add buffers in between the input lines to prevent hold violation
+If buffers added, recheck for setup violation too, though very less chances given low
+clock frequency } -141605 -31680 0 0 0.4 0.4 {}
 N -142200 -31880 -142170 -31880 { lab=#net1}
 N -142200 -31940 -142200 -31880 { lab=#net1}
 N -142200 -31940 -141960 -31940 { lab=#net1}
