@@ -92,8 +92,14 @@ docker_run_verify=\
 .PHONY: harden
 harden: $(blocks)
 
-.PHONY: verify
-verify: $(dv-targets)
+.PHONY: verify-all-rtl
+verify-all-rtl: $(dv-targets-rtl)
+
+.PHONY: verify-all-gl
+verify-all-gl: $(dv-targets-gl)
+
+.PHONY: verify-all-gl-sdf
+verify-all-gl-sdf: $(dv-targets-gl-sdf)
 
 $(dv-targets-rtl): SIM=RTL
 $(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
