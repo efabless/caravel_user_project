@@ -65,7 +65,7 @@ setup: install check-env install_mcw pdk openlane
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
-$(blocks):
+$(blocks): % :
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
@@ -92,8 +92,14 @@ docker_run_verify=\
 .PHONY: harden
 harden: $(blocks)
 
-.PHONY: verify
-verify: $(dv-targets)
+.PHONY: verify-all-rtl
+verify-all-rtl: $(dv-targets-rtl)
+
+.PHONY: verify-all-gl
+verify-all-gl: $(dv-targets-gl)
+
+.PHONY: verify-all-gl-sdf
+verify-all-gl-sdf: $(dv-targets-gl-sdf)
 
 $(dv-targets-rtl): SIM=RTL
 $(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
