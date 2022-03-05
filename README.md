@@ -7,11 +7,7 @@
 This project implements a wavelet filterbank using switched capacitor techniques, as an extension of Tim Edwards's [dissertation work](http://opencircuitdesign.com/~tim/dissertation.html) (1999). 
 The filterbank will be embedded inside efabless's Caravel frame in the nearest tapeout, and is derived from the [cochlea_sky130 repo](https://github.com/3x10e8/cochlea_sky130), so that this design can be embedded into Caravel (and not Caravan).
 
-<<<<<<< HEAD
 This work began as a class project for UCSD's [BENG 207](https://isn.ucsd.edu/courses/beng207/index.html) Integrated Neuromorphic Bioelectronics (fall 2021).
-=======
-Refer to [README](docs/source/quickstart.rst) for a quick start of how to use caravel_user_project
->>>>>>> b3ac77dd3737f2aa461199484538fd91c363deed
 
 All design and simulation was done using the sky1 virtual machine made by Karthi Srinivasan, shared during Telluride 2021.
 
