@@ -19,9 +19,11 @@
 .SUFFIXES:
 .SILENT: clean all
 
+
 PATTERNS = io_ports la_test1 la_test2 wb_port mprj_stimulus
 
 all:  ${PATTERNS}
+
 	for i in ${PATTERNS}; do \
 		( cd $$i && make -f Makefile $${i}.vcd &> verify.log && grep Monitor verify.log) ; \
 	done
@@ -32,7 +34,7 @@ $(DV_PATTERNS): verify-% :
 
 clean:  ${PATTERNS}
 	for i in ${PATTERNS}; do \
-		( cd $$i && make clean ) ; \
+		( cd $$i && \rm  -f *.elf *.hex *.bin *.vvp *.log *.vcd *.lst *.hexe ) ; \
 	done
 	rm -rf *.log
 	

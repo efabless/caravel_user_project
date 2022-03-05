@@ -17,11 +17,6 @@
 
 `timescale 1 ns / 1 ps
 
-`include "uprj_netlists.v"
-`include "caravel_netlists.v"
-`include "spiflash.v"
-`include "tbuart.v"
-
 module la_test1_tb;
 	reg clock;
     reg RSTB;
@@ -29,9 +24,9 @@ module la_test1_tb;
 
 	reg power1, power2;
 
-    	wire gpio;
+	wire gpio;
 	wire uart_tx;
-    	wire [37:0] mprj_io;
+	wire [37:0] mprj_io;
 	wire [15:0] checkbits;
 
 	assign checkbits  = mprj_io[31:16];
@@ -43,14 +38,14 @@ module la_test1_tb;
 		clock = 0;
 	end
 
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+	// assign mprj_io[3] = 1'b1;
 
 	initial begin
-		// $dumpfile("la_test1.vcd");
-		// $dumpvars(0, la_test1_tb);
+		$dumpfile("la_test1.vcd");
+		$dumpvars(0, la_test1_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (200) begin
+		repeat (250) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -69,6 +64,7 @@ module la_test1_tb;
 		$display("LA Test 1 started");
 		wait(checkbits == 16'hAB41);
 		wait(checkbits == 16'hAB51);
+		$display("LA Test 2 passed");
 		#10000;
 		$finish;
 	end
@@ -91,37 +87,44 @@ module la_test1_tb;
 		power2 <= 1'b1;
 	end
 
-    	wire flash_csb;
+	wire flash_csb;
 	wire flash_clk;
 	wire flash_io0;
 	wire flash_io1;
 
 	wire VDD1V8;
-    	wire VDD3V3;
+	wire VDD3V3;
 	wire VSS;
     
 	assign VDD3V3 = power1;
 	assign VDD1V8 = power2;
 	assign VSS = 1'b0;
 
+	assign mprj_io[3] = 1;  // Force CSB high.
+	assign mprj_io[0] = 0;  // Disable debug mode
+
 	caravel uut (
 		.vddio	  (VDD3V3),
+		.vddio_2  (VDD3V3),
 		.vssio	  (VSS),
+		.vssio_2  (VSS),
 		.vdda	  (VDD3V3),
 		.vssa	  (VSS),
 		.vccd	  (VDD1V8),
 		.vssd	  (VSS),
 		.vdda1    (VDD3V3),
+		.vdda1_2  (VDD3V3),
 		.vdda2    (VDD3V3),
 		.vssa1	  (VSS),
+		.vssa1_2  (VSS),
 		.vssa2	  (VSS),
 		.vccd1	  (VDD1V8),
 		.vccd2	  (VDD1V8),
 		.vssd1	  (VSS),
 		.vssd2	  (VSS),
-		.clock	  (clock),
+		.clock    (clock),
 		.gpio     (gpio),
-        	.mprj_io  (mprj_io),
+		.mprj_io  (mprj_io),
 		.flash_csb(flash_csb),
 		.flash_clk(flash_clk),
 		.flash_io0(flash_io0),

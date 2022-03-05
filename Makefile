@@ -13,70 +13,128 @@
 # limitations under the License.
 #
 # SPDX-License-Identifier: Apache-2.0
+MAKEFLAGS+=--warn-undefined-variables
 
 CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
-SIM ?= RTL
+MCW_ROOT?=$(PWD)/mgmt_core_wrapper
+SIM?=RTL
+
+export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
+export OPEN_PDKS_COMMIT=7519dfb04400f224f140749cda44ee7de6f5e095
+export PDK_MAGIC_COMMIT=7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
+export OPENLANE_TAG=2022.02.23_02.50.41
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-ifeq ($(CARAVEL_LITE),1) 
+MPW_TAG ?= mpw-5c
+
+ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
-	CARAVEL_REPO := https://github.com/efabless/caravel-lite 
-	CARAVEL_TAG := 'rc-8'
+	CARAVEL_REPO := https://github.com/efabless/caravel-lite
+	CARAVEL_TAG := $(MPW_TAG)
 else
 	CARAVEL_NAME := caravel
-	CARAVEL_REPO := https://github.com/efabless/caravel 
-	CARAVEL_TAG := 'rc-8'
+	CARAVEL_REPO := https://github.com/efabless/caravel
+	CARAVEL_TAG := $(MPW_TAG)
 endif
-
 
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
-%: 
+%:
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
-# Verify Target for running simulations
-.PHONY: verify
-verify:
-	cd ./verilog/dv/ && \
-	export SIM=${SIM} && \
-		$(MAKE) -j$(THREADS)
+.PHONY: install
+install:
+	if [ -d "$(CARAVEL_ROOT)" ]; then\
+		echo "Deleting exisiting $(CARAVEL_ROOT)" && \
+		rm -rf $(CARAVEL_ROOT) && sleep 2;\
+	fi
+	echo "Installing $(CARAVEL_NAME).."
+	git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
 
 # Install DV setup
 .PHONY: simenv
 simenv:
 	docker pull efabless/dv_setup:latest
 
-PATTERNS=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
-DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
-TARGET_PATH=$(shell pwd)
-VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
-$(DV_PATTERNS): verify-% : ./verilog/dv/% 
-	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
-                -v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
-                -e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
-                -e CARAVEL_ROOT=${CARAVEL_ROOT} \
-                -u $(id -u $$USER):$(id -g $$USER) efabless/dv_setup:latest \
-                sh -c $(VERIFY_COMMAND)
-				
-# Openlane Makefile Targets
-BLOCKS = $(shell cd openlane && find * -maxdepth 0 -type d)
-.PHONY: $(BLOCKS)
-$(BLOCKS): %:
+.PHONY: setup
+setup: install check-env install_mcw pdk openlane
+
+# Openlane
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+.PHONY: $(blocks)
+$(blocks):
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
-# Install caravel
-.PHONY: install
-install:
-	@echo "Installing $(CARAVEL_NAME).."
-	@git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT)
+dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
+dv-targets-gl=$(dv_patterns:%=verify-%-gl)
+dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
+
+TARGET_PATH=$(shell pwd)
+verify_command="cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
+dv_base_dependencies=simenv
+docker_run_verify=\
+	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
+		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
+		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
+		-e TOOLS=/opt/riscv32i \
+		-e DESIGNS=$(TARGET_PATH) \
+		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e GCC_PREFIX=riscv32-unknown-elf \
+		-e MCW_ROOT=$(MCW_ROOT) \
+		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
+		sh -c $(verify_command)
+
+.PHONY: harden
+harden: $(blocks)
+
+.PHONY: verify
+verify: $(dv-targets)
+
+$(dv-targets-rtl): SIM=RTL
+$(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
+	$(docker_run_verify)
+
+$(dv-targets-gl): SIM=GL
+$(dv-targets-gl): verify-%-gl: $(dv_base_dependencies)
+	$(docker_run_verify)
+
+$(dv-targets-gl-sdf): SIM=GL_SDF
+$(dv-targets-gl-sdf): verify-%-gl-sdf: $(dv_base_dependencies)
+	$(docker_run_verify)
+
+clean-targets=$(blocks:%=clean-%)
+.PHONY: $(clean-targets)
+$(clean-targets): clean-% :
+	rm -f ./verilog/gl/$*.v
+	rm -f ./spef/$*.spef
+	rm -f ./sdc/$*.sdc
+	rm -f ./sdf/$*.sdf
+	rm -f ./gds/$*.gds
+	rm -f ./mag/$*.mag
+	rm -f ./lef/$*.lef
+	rm -f ./maglef/*.maglef
+
+make_what=setup $(blocks) $(dv-targets-rtl) $(dv-targets-gl) $(dv-targets-gl-sdf) $(clean-targets)
+.PHONY: what
+what:
+	# $(make_what)
+
+# Install Openlane
+.PHONY: openlane
+openlane:
+	cd openlane && $(MAKE) openlane
+
+#### Not sure if the targets following are of any use
 
 # Create symbolic links to caravel's main files
 .PHONY: simlink
 simlink: check-caravel
-### Symbolic links relative path to $CARAVEL_ROOT 
+### Symbolic links relative path to $CARAVEL_ROOT
 	$(eval MAKEFILE_PATH := $(shell realpath --relative-to=openlane $(CARAVEL_ROOT)/openlane/Makefile))
 	$(eval PIN_CFG_PATH  := $(shell realpath --relative-to=openlane/user_project_wrapper $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg))
 	mkdir -p openlane
@@ -93,34 +151,26 @@ update_caravel: check-caravel
 
 # Uninstall Caravel
 .PHONY: uninstall
-uninstall: 
+uninstall:
 	rm -rf $(CARAVEL_ROOT)
 
-# Install Openlane
-.PHONY: openlane
-openlane: 
-	cd openlane && $(MAKE) openlane
 
 # Install Pre-check
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
 .PHONY: precheck
 precheck:
-	@git clone https://github.com/efabless/mpw_precheck.git --depth=1 $(PRECHECK_ROOT)
+	@git clone --depth=1 --branch mpw-5a https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
 	@docker pull efabless/mpw_precheck:latest
 
 .PHONY: run-precheck
-run-precheck: check-precheck check-pdk check-caravel
+run-precheck: check-pdk check-precheck
 	$(eval INPUT_DIRECTORY := $(shell pwd))
 	cd $(PRECHECK_ROOT) && \
-	docker run -e INPUT_DIRECTORY=$(INPUT_DIRECTORY) -e PDK_ROOT=$(PDK_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) -v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
-	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --pdk_root $(PDK_ROOT) --input_directory $(INPUT_DIRECTORY) --caravel_root $(CARAVEL_ROOT)"
+	docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) -v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) -v $(PDK_ROOT):$(PDK_ROOT) -e INPUT_DIRECTORY=$(INPUT_DIRECTORY) -e PDK_ROOT=$(PDK_ROOT) \
+	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_root $(PDK_ROOT)"
 
-# Install PDK using OL's Docker Image
-.PHONY: pdk-nonnative
-pdk-nonnative: skywater-pdk skywater-library skywater-timing open_pdks
-	docker run --rm -v $(PDK_ROOT):$(PDK_ROOT) -v $(CARAVEL_ROOT):$(CARAVEL_ROOT) -e CARAVEL_ROOT=$(CARAVEL_ROOT) -e PDK_ROOT=$(PDK_ROOT) -u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/openlane:current sh -c "cd $(CARAVEL_ROOT); make build-pdk; make gen-sources"
 
-# Clean 
+
 .PHONY: clean
 clean:
 	cd ./verilog/dv/ && \
@@ -146,5 +196,8 @@ check-pdk:
 
 .PHONY: help
 help:
-	cd $(CARAVEL_ROOT) && $(MAKE) help 
+	cd $(CARAVEL_ROOT) && $(MAKE) help
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
+
+
