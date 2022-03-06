@@ -16,14 +16,16 @@
  */
 
 // This include is relative to $CARAVEL_PATH (see Makefile)
-#include <defs.h>
-#include <stub.c>
+#include "verilog/dv/caravel/defs.h"
+#include "verilog/dv/caravel/stub.c"
 
 /*
 	Wishbone Test:
 		- Configures MPRJ lower 8-IO pins as outputs
 		- Checks counter value through the wishbone port
 */
+int i = 0; 
+int clk = 0;
 
 void main()
 {
@@ -45,9 +47,7 @@ void main()
 	/* Set up the housekeeping SPI to be connected internally so	*/
 	/* that external pin changes don't affect it.			*/
 
-    reg_spi_enable = 1;
-    reg_wb_enable = 1;
-	// reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
+	reg_spimaster_config = 0xa002;	// Enable, prescaler = 2,
                                         // connect to housekeeping SPI
 
 	// Connect the housekeeping SPI to the SPI master
@@ -75,13 +75,15 @@ void main()
     reg_mprj_xfer = 1;
     while (reg_mprj_xfer == 1);
 
-	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
+	reg_la2_oenb = reg_la2_iena = 0xFFFFFFFF;    // [95:64]
 
     // Flag start of the test
 	reg_mprj_datal = 0xAB600000;
 
     reg_mprj_slave = 0x00002710;
-    if (reg_mprj_slave == 0x2B3D) {
+    if (reg_mprj_slave == 0x2752) {
         reg_mprj_datal = 0xAB610000;
+    } else {
+        reg_mprj_datal = 0xAB600000;
     }
 }

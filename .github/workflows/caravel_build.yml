@@ -1,0 +1,73 @@
+name: Caravel Build
+
+
+on:
+    # Runs on Every Push
+    push:
+    # Runs on Pull Requests
+    pull_request:
+    workflow_dispatch:
+
+jobs:
+  make_ship:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+      
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v1
+
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v1
+        
+       - name: Install The PDK
+         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         env: 
+          OPENLANE_TAG:  2021.12.17_05.07.41
+
+       - name: Run make ship
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/build/run-ship.sh 
+         env: 
+          OPENLANE_TAG:  2021.12.17_05.07.41
+          
+  set_user_id:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+      
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v1
+
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v1
+        
+       - name: Install The PDK
+         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         env: 
+          OPENLANE_TAG:  2021.09.16_03.28.21
+
+       - name: Run Set User ID
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/build/run-set-id.sh 
+         env: 
+          OPENLANE_TAG:  2021.09.16_03.28.21
+
+  xor_wrapper:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+      
+       - name: Set up QEMU
+         uses: docker/setup-qemu-action@v1
+
+       - name: Set up Docker Buildx
+         uses: docker/setup-buildx-action@v1
+        
+       - name: Install The PDK
+         run:  bash ${GITHUB_WORKSPACE}/.github/scripts/dv/pdkBuild.sh
+         env: 
+          OPENLANE_TAG: 2021.09.16_03.28.21
+
+       - name: Run XOR Check
+         run: bash ${GITHUB_WORKSPACE}/.github/scripts/build/run-xor.sh 
+         env: 
+          OPENLANE_TAG:  2021.09.16_03.28.21
