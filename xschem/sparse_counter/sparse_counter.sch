@@ -4,6 +4,8 @@ K {}
 V {}
 S {}
 E {}
+T {Setup Violation chances are meagre as the clock period is very large, so enough margin for setup violations to occur.
+However, chances of hold violation are still there, though less than that of the clock tree.} -141070 -31930 0 0 0.4 0.4 {}
 N -141620 -32070 -141600 -32070 { lab=rstb}
 N -141620 -32070 -141620 -31370 { lab=rstb}
 N -141620 -31370 -141600 -31370 { lab=rstb}
@@ -15,7 +17,7 @@ N -141420 -31810 -141390 -31810 { lab=o4}
 N -141420 -31710 -141390 -31710 { lab=o5}
 N -141420 -31610 -141390 -31610 { lab=o6}
 N -141420 -31510 -141390 -31510 { lab=o7}
-N -141420 -31410 -141390 -31410 { lab=#net1}
+N -141420 -31410 -141390 -31410 { lab=o8}
 N -141620 -31970 -141600 -31970 { lab=rstb}
 N -141620 -31870 -141600 -31870 { lab=rstb}
 N -141620 -31770 -141600 -31770 { lab=rstb}

@@ -5702,8 +5702,6 @@ C {devices/ipin.sym} 3620 3590 3 0 {name=p11 lab=A3}
 C {devices/ipin.sym} 3800 3590 3 0 {name=p12 lab=A2}
 C {devices/ipin.sym} 3980 3590 3 0 {name=p13 lab=A1}
 C {devices/ipin.sym} 4160 3590 3 0 {name=p14 lab=A0}
-C {devices/opin.sym} 4440 3210 0 0 {name=p2 lab=sel61}
-C {devices/opin.sym} 4440 3000 0 0 {name=p3 lab=sel60}
 C {devices/opin.sym} 4440 2790 0 0 {name=p4 lab=sel59}
 C {devices/opin.sym} 4440 2580 0 0 {name=p18 lab=sel54}
 C {devices/opin.sym} 4440 2370 0 0 {name=p19 lab=sel53}
