@@ -15,9 +15,10 @@
 # SPDX-License-Identifier: Apache-2.0
 MAKEFLAGS+=--warn-undefined-variables
 
-CARAVEL_ROOT?=$(PWD)/caravel
+CARAVEL_USER_PROJECT_ROOT:=$(shell readlink -f .)
+CARAVEL_ROOT?=${CARAVEL_USER_PROJECT_ROOT}/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
-MCW_ROOT?=$(PWD)/mgmt_core_wrapper
+MCW_ROOT?=${CARAVEL_USER_PROJECT_ROOT}/mgmt_core_wrapper
 SIM?=RTL
 
 export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
@@ -59,6 +60,27 @@ install:
 simenv:
 	docker pull efabless/dv_setup:latest
 
+PATTERNS=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+DV_PATTERNS = $(foreach dv, $(PATTERNS), verify-$(dv))
+TARGET_PATH=$(shell pwd)
+VERIFY_COMMAND="cd ${TARGET_PATH}/verilog/dv/$* && \
+	export SIM=${SIM} && ${MAKE} sim"
+
+FIRMWARE_SOURCE_DIR := ${CARAVEL_USER_PROJECT_ROOT}/caravel_firmware
+FIRMWARE_BUILD_DIR := ${CARAVEL_USER_PROJECT_ROOT}/build
+FIRMWARE_GENERATOR ?= 'Unix Makefiles'
+
+.PHONY: configure-firmware
+configure_firmware:
+	cmake -DCMAKE_TOOLCHAIN_FILE=${FIRMWARE_SOURCE_DIR}/cmake/vexriscv_toolchain.cmake \
+	-B${FIRMWARE_BUILD_DIR} \
+	-G${FIRMWARE_GENERATOR} \
+	${FIRMWARE_SOURCE_DIR}
+
+.PHONY: firmware
+firmware: configure_firmware
+	cmake --build ${FIRMWARE_BUILD_DIR}
+
 .PHONY: setup
 setup: install check-env install_mcw pdk openlane
 
@@ -82,12 +104,12 @@ docker_run_verify=\
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
 		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
 		-e TOOLS=/opt/riscv32i \
-		-e DESIGNS=$(TARGET_PATH) \
-		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e DESIGNS=${TARGET_PATH} \
+		-e CORE_VERILOG_PATH=${TARGET_PATH}/mgmt_core_wrapper/verilog \
 		-e GCC_PREFIX=riscv32-unknown-elf \
-		-e MCW_ROOT=$(MCW_ROOT) \
-		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv_setup:latest \
-		sh -c $(verify_command)
+		-e MCW_ROOT=${MCW_ROOT} \
+		efabless/dv_setup:latest \
+		sh -c ${VERIFY_COMMAND}
 
 .PHONY: harden
 harden: $(blocks)
@@ -204,6 +226,3 @@ check-pdk:
 help:
 	cd $(CARAVEL_ROOT) && $(MAKE) help
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
-
-
-

@@ -15,14 +15,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// This include is relative to $CARAVEL_PATH (see Makefile)
-#include <defs.h>
-#include <stub.c>
+#include "user_project_controls.h"
+#include "gpio_controls.h"
+#include "spi_controls.h"
+#include "logic_analyser_controls.h"
 
 /*
 	MPRJ LA Test:
 		- Sets counter clk through LA[64]
-		- Sets counter rst through LA[65] 
+		- Sets counter rst through LA[65]
 		- Observes count value for five clk cycle through LA[31:0]
 */
 
@@ -44,7 +45,7 @@ void main()
 
 
 	// All GPIO pins are configured to be output
-	// Used to flad the start/end of a test 
+	// Used to flad the start/end of a test
 
         reg_mprj_io_31 = GPIO_MODE_MGMT_STD_OUTPUT;
         reg_mprj_io_30 = GPIO_MODE_MGMT_STD_OUTPUT;
@@ -83,7 +84,7 @@ void main()
         reg_mprj_xfer = 1;
         while (reg_mprj_xfer == 1);
 
-	// Configure All LA probes as inputs to the cpu 
+	// Configure All LA probes as inputs to the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
 	reg_la1_oenb = reg_la1_iena = 0x00000000;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
@@ -93,7 +94,7 @@ void main()
 	reg_mprj_datal = 0xAB600000;
 
 	// Configure LA[64] LA[65] as outputs from the cpu
-	reg_la2_oenb = reg_la2_iena = 0x00000003; 
+	reg_la2_oenb = reg_la2_iena = 0x00000003;
 
 	// Set clk & reset to one
 	reg_la2_data = 0x00000003;
@@ -114,7 +115,7 @@ void main()
                         reg_mprj_datal = 0xAB610000;
                         break;
                 }
-                
+
         }
 
 }

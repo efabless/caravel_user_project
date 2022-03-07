@@ -3,3 +3,6 @@ precheck_results
 *.lst
 *.vcd
 *.gtkw
+*.vvp
+*.log
+build

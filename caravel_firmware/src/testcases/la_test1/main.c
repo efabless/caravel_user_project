@@ -15,15 +15,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// This include is relative to $CARAVEL_PATH (see Makefile)
-#include <defs.h>
-#include <stub.c>
+#include "user_project_controls.h"
+#include "gpio_controls.h"
+#include "uart_controls.h"
+#include "logic_analyser_controls.h"
 
 // --------------------------------------------------------
 
 /*
 	MPRJ Logic Analyzer Test:
-		- Observes counter value through LA probes [31:0] 
+		- Observes counter value through LA probes [31:0]
 		- Sets counter initial value through LA probes [63:32]
 		- Flags when counter value exceeds 500 through the management SoC gpio
 		- Outputs message to the UART when the test concludes successfuly
@@ -50,7 +51,7 @@ void main()
 
 	// The upper GPIO pins are configured to be output
 	// and accessble to the management SoC.
-	// Used to flad the start/end of a test 
+	// Used to flad the start/end of a test
 	// The lower GPIO pins are configured to be output
 	// and accessible to the user project.  They show
 	// the project count value, although this test is
@@ -101,21 +102,21 @@ void main()
     reg_mprj_xfer = 1;
     while (reg_mprj_xfer == 1);
 
-    // Configure LA probes [31:0], [127:64] as inputs to the cpu 
+    // Configure LA probes [31:0], [127:64] as inputs to the cpu
 	// Configure LA probes [63:32] as outputs from the cpu
 	reg_la0_oenb = reg_la0_iena = 0x00000000;    // [31:0]
 	reg_la1_oenb = reg_la1_iena = 0xFFFFFFFF;    // [63:32]
 	reg_la2_oenb = reg_la2_iena = 0x00000000;    // [95:64]
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 
-	// Flag start of the test 
+	// Flag start of the test
 	reg_mprj_datal = 0xAB400000;
 
 	// Set Counter value to zero through LA probes [63:32]
 	reg_la1_data = 0x00000000;
 
 	// Configure LA probes from [63:32] as inputs to disable counter write
-	reg_la1_oenb = reg_la1_iena = 0x00000000;    
+	reg_la1_oenb = reg_la1_iena = 0x00000000;
 
 	while (1) {
 		if (reg_la0_data_in > 0x1F4) {
@@ -127,4 +128,3 @@ void main()
 	print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
 	reg_mprj_datal = 0xAB510000;
 }
-
