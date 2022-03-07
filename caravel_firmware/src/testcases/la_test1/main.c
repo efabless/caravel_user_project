@@ -124,6 +124,7 @@ void main()
 			break;
 		}
 	}
-	writeToUart("Monitor: Test 2 Passed\n\n");	// Makes simulation very long!
+	print("\n");
+	print("Monitor: Test 1 Passed\n\n");	// Makes simulation very long!
 	reg_mprj_datal = 0xAB510000;
 }
