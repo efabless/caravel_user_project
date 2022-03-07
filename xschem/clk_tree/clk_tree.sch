@@ -9,6 +9,11 @@ Potential case of Hold Violation.
 Might as well need to add buffers in between the input lines to prevent hold violation
 If buffers added, recheck for setup violation too, though very less chances given low
 clock frequency } -141605 -31680 0 0 0.4 0.4 {}
+T {Beware!!
+Setup violation in the generation of 'f' clock signal.
+} -141605 -31820 0 0 0.4 0.4 {}
+T {The first block is being added to remove the 1 cycle delay between all the subsequent div-2 clocks
+} -141605 -31995 0 0 0.4 0.4 {}
 N -142200 -31880 -142170 -31880 { lab=#net1}
 N -142200 -31940 -142200 -31880 { lab=#net1}
 N -142200 -31940 -141960 -31940 { lab=#net1}
@@ -100,8 +105,8 @@ N -141990 -31210 -141930 -31210 { lab=f_128}
 N -141990 -31080 -141930 -31080 { lab=f_256}
 N -141990 -30970 -141930 -30970 { lab=f_512}
 N -142240 -31900 -142230 -31900 { lab=f_clk}
-N -142460 -32010 -142430 -32010 { lab=VDD}
-N -142460 -32030 -142430 -32030 { lab=GND}
+N -142445 -32130 -142415 -32130 { lab=VDD}
+N -142445 -32150 -142415 -32150 { lab=GND}
 N -141930 -31550 -141920 -31550 { lab=f_16}
 N -141930 -31210 -141920 -31210 { lab=f_128}
 C {sky130_stdcells/dfrbp_1.sym} -142080 -31880 0 0 {name=x2 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
@@ -114,8 +119,8 @@ C {sky130_stdcells/dfrbp_1.sym} -142080 -31190 0 0 {name=x9 VGND=gnd VNB=gnd VPB
 C {sky130_stdcells/dfrbp_1.sym} -142080 -31060 0 0 {name=x14 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
 C {sky130_stdcells/dfrbp_1.sym} -142080 -30950 0 0 {name=x15 VGND=gnd VNB=gnd VPB=vdd VPWR=vdd prefix=sky130_fd_sc_lp__ }
 C {devices/ipin.sym} -142310 -31860 0 0 {name=p2 lab=rstb}
-C {devices/iopin.sym} -142450 -32010 2 0 {name=p3 lab=VDD}
-C {devices/iopin.sym} -142450 -32030 2 0 {name=p4 lab=GND}
+C {devices/iopin.sym} -142435 -32130 2 0 {name=p3 lab=VDD}
+C {devices/iopin.sym} -142435 -32150 2 0 {name=p4 lab=GND}
 C {devices/opin.sym} -141940 -31900 0 0 {name=p6 lab=f_2}
 C {devices/opin.sym} -141940 -31800 0 0 {name=p7 lab=f_4}
 C {devices/opin.sym} -141940 -31680 0 0 {name=p8 lab=f_8}

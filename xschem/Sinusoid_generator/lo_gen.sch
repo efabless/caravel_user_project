@@ -136,11 +136,7 @@ N -1576485435 -284837990 -1576485375 -284837990 { lab=A5}
 N -1576485435 -284837970 -1576485380 -284837970 { lab=#net12}
 N -1576485435 -284837950 -1576485405 -284837950 { lab=#net13}
 N -1576486140 -284838080 -1576486080 -284838080 { lab=clk}
-N -1576486140 -284838080 -1576486140 -284838060 { lab=clk}
 N -1576486225 -284838220 -1576486135 -284838220 { lab=rstb}
-N -1576486080 -284838120 -1576486080 -284838080 { lab=clk}
-N -1576486080 -284838120 -1576485730 -284838120 { lab=clk}
-N -1576485730 -284838120 -1576485730 -284838080 { lab=clk}
 N -1576484000 -284837780 -1576484000 -284837735 { lab=#net14}
 N -1576484000 -284837780 -1576483875 -284837780 { lab=#net14}
 N -1576484000 -284838010 -1576484000 -284837970 { lab=#net15}
@@ -150,6 +146,10 @@ N -1576483900 -284838050 -1576483900 -284837820 { lab=rstb}
 N -1576483900 -284838050 -1576483875 -284838050 { lab=rstb}
 N -1576485705 -284838220 -1576483900 -284838220 { lab=rstb}
 N -1576483900 -284838220 -1576483900 -284838050 { lab=rstb}
+N -1576485850 -284838080 -1576485730 -284838080 { lab=clk}
+N -1576486080 -284838115 -1576486080 -284838080 { lab=clk}
+N -1576486080 -284838115 -1576485850 -284838115 { lab=clk}
+N -1576485850 -284838115 -1576485850 -284838080 { lab=clk}
 C {clk_tree/clk_tree.sym} -1576347310 -284811960 0 0 {name=X1}
 C {sparse_counter/sparse_counter.sym} -1576345215 -284806810 0 0 {name=X3}
 C {devices/lab_pin.sym} -1576485055 -284838090 2 0 {name=l21 sig_type=std_logic lab=s2}
@@ -182,19 +182,19 @@ C {devices/lab_pin.sym} -1576483755 -284838030 2 0 {name=l1 sig_type=std_logic l
 C {devices/lab_pin.sym} -1576483755 -284837800 2 0 {name=l2 sig_type=std_logic lab=cos_out}
 C {sky130_stdcells/xor2_1.sym} -1576484060 -284837970 0 0 {name=x3 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
 C {sky130_stdcells/xor2_1.sym} -1576484060 -284837735 0 0 {name=x1 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
-C {devices/lab_pin.sym} -1576486140 -284838080 0 0 {name=l3 sig_type=std_logic lab=clk}
+C {devices/lab_pin.sym} -1576486140 -284838080 3 0 {name=l3 sig_type=std_logic lab=clk}
 C {devices/lab_pin.sym} -1576486135 -284838220 0 0 {name=l6 sig_type=std_logic lab=rstb}
 C {devices/vsource.sym} -1576486245 -284838335 0 0 {name=V2 value=1.2}
 C {devices/gnd.sym} -1576486245 -284838305 0 0 {name=l13 lab=GND}
 C {devices/vdd.sym} -1576486245 -284838365 0 0 {name=l15 lab=VDD}
-C {devices/vsource.sym} -1576486225 -284838190 0 1 {name=V9 value="DC 0 PWL(0 0 6u 0 6.01u 1.2 10u 1.2)"}
+C {devices/vsource.sym} -1576486225 -284838190 0 1 {name=V9 value="DC 0 PWL(0 0 6u 0 6.01u 1.2 10u 1.2 10.01u 0 15u 0 15.01u 1.2)"}
 C {devices/gnd.sym} -1576486225 -284838160 0 0 {name=l88 lab=GND}
-C {devices/gnd.sym} -1576486140 -284838000 0 0 {name=l89 lab=GND}
-C {devices/vsource.sym} -1576486140 -284838030 0 1 {name=V10 value="DC 0 PULSE(0 1.2 \{2/f\} 1n 1n \{duty_cycle*1/f\} \{1/f\})"}
+C {devices/gnd.sym} -1576486260 -284838000 0 0 {name=l89 lab=GND}
+C {devices/vsource.sym} -1576486260 -284838030 0 1 {name=V10 value="DC 0 PULSE(0 1.2 \{2/f\} 1n 1n \{duty_cycle*1/f\} \{1/f\})"}
 C {devices/netlist.sym} -1576483830 -284838250 0 0 {name=s1 value="
 .lib /home/sky/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include /home/sky/sky130A/libs.ref/sky130_fd_sc_lp/spice/sky130_fd_sc_lp.spice
-.options abstol=1e-18 reltol=1e-4
+.options abstol=1e-14 reltol=1e-4
 .param f=2560k
 .param duty_cycle=0.5
 .tran \{(1/100)*(1/f)\} \{256/f\}
@@ -207,3 +207,6 @@ C {sparse_nor/sparse_nor.sym} -1576483835 -284844210 0 0 {name=X4}
 C {sparse_nor/sparse_nor.sym} -1576483835 -284843975 0 0 {name=X5}
 C {sky130_stdcells/and2_0.sym} -1576483815 -284838030 0 0 {name=x2 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
 C {sky130_stdcells/and2_0.sym} -1576483815 -284837800 0 0 {name=x4 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {sky130_stdcells/and2_0.sym} -1576486200 -284838080 0 0 {name=x5 VGND=GND VNB=GND VPB=VDD VPWR=VDD prefix=sky130_fd_sc_lp__ }
+C {devices/lab_pin.sym} -1576486260 -284838100 0 0 {name=l7 sig_type=std_logic lab=rstb}
+C {devices/lab_pin.sym} -1576486260 -284838060 0 0 {name=l8 sig_type=std_logic lab=sinusoid}
