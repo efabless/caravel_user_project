@@ -165,7 +165,7 @@ uninstall:
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
 .PHONY: precheck
 precheck:
-	@git clone --depth=1 --branch mpw-5c https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
+	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
 	@docker pull efabless/mpw_precheck:latest
 
 .PHONY: run-precheck
