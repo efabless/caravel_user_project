@@ -215,7 +215,7 @@ OpenLane Installation
 
 You will need to install openlane by running the following
 
-   **NOTE:** This is the openlane tool, you don't need to worry about it after doing this step, the openlane directory you should 
+   **NOTE:** This is the openlane tool, you don't need to worry about it after doing this step
 
 .. code:: bash
 
