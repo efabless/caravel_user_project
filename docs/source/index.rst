@@ -92,7 +92,7 @@ Repo Integration
 
 Caravel files are kept separate from the user project by having caravel
 as submodule. The submodule commit should point to the latest of
-caravel/caravel-lite master/main branch. The following files should have a symbolic
+caravel/caravel-lite tags. The following files should have a symbolic
 link to `caravel's <https://github.com/efabless/caravel.git>`__
 corresponding files:
 
@@ -116,7 +116,7 @@ Verilog Integration
 
 You need to create a wrapper around your macro that adheres to the
 template at
-`user\_project\_wrapper <https://github.com/efabless/caravel/blob/master/verilog/rtl/__user_project_wrapper.v>`__.
+`user\_project\_wrapper <https://github.com/efabless/caravel_user_project/blob/main/verilog/rtl/user_project_wrapper.v>`__.
 The wrapper top module must be named ``user_project_wrapper`` and must
 have the same input and output ports as the golden wrapper `template <https://github.com/efabless/caravel/blob/master/verilog/rtl/__user_project_wrapper.v>`__. The wrapper gives access to the
 user space utilities provided by caravel like IO ports, logic analyzer
@@ -163,9 +163,6 @@ To make sure that this integration process goes smoothly without having any DRC 
 Building the PDK 
 ================
 
-Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
-The pdk build is tested with magic version ``8.3.265``. 
-
 .. code:: bash
 
     # set PDK_ROOT to the path you wish to use for the pdk
@@ -176,45 +173,6 @@ The pdk build is tested with magic version ``8.3.265``.
     # if you do not set them, they default to the last verfied commits tested for this project
 
     make pdk
-
-Running Full Chip Simulation
-============================
-
-First, you will need to install the simulation environment, by
-
-.. code:: bash
-
-    make simenv
-
-This will pull a docker image with the needed tools installed.
-
-Then, run the RTL simulation by
-
-.. code:: bash
-
-    export PDK_ROOT=<pdk-installation-path>
-    # specify simulation mode: RTL/GL
-    export SIM=RTL
-    # Run RTL simulation on IO ports testbench, make verify-io_ports
-    make verify-<testbench-name>
-
-Once you have the physical implementation done and you have the gate-level netlists ready, it is crucial to run full gate-level simulations to make sure that your design works as intended after running the physical implementation. 
-
-Run the gate-level simulation by: 
-
-.. code:: bash
-
-    export PDK_ROOT=<pdk-installation-path>
-    # specify simulation mode: RTL/GL
-    export SIM=GL
-    # Run RTL simulation on IO ports testbench, make verify-io_ports
-    make verify-<testbench-name>
-
-
-This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
-`verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__ directory. For more information on setting up the
-simulation environment and the available testbenches for this sample
-project, refer to `README <https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md>`__.
 
 
 User Project Wrapper Requirements
@@ -256,6 +214,8 @@ OpenLane Installation
 ---------------------
 
 You will need to install openlane by running the following
+
+   **NOTE:** This is the openlane tool, you don't need to worry about it after doing this step, the openlane directory you should 
 
 .. code:: bash
 
@@ -336,6 +296,46 @@ To reproduce hardening this project, run the following:
 
 
 For more information on the openlane flow, check `README <https://github.com/The-OpenROAD-Project/OpenLane#readme>`__.
+
+Running Full Chip Simulation
+============================
+
+First, you will need to install the simulation environment, by
+
+.. code:: bash
+
+    make simenv
+
+This will pull a docker image with the needed tools installed.
+
+Then, run the RTL simulation by
+
+.. code:: bash
+
+    export PDK_ROOT=<pdk-installation-path>
+    # specify simulation mode: RTL/GL
+    export SIM=RTL
+    # Run RTL simulation on IO ports testbench, make verify-io_ports
+    make verify-<testbench-name>
+
+Once you have the physical implementation done and you have the gate-level netlists ready, it is crucial to run full gate-level simulations to make sure that your design works as intended after running the physical implementation. 
+
+Run the gate-level simulation by: 
+
+.. code:: bash
+
+    export PDK_ROOT=<pdk-installation-path>
+    # specify simulation mode: RTL/GL
+    export SIM=GL
+    # Run RTL simulation on IO ports testbench, make verify-io_ports
+    make verify-<testbench-name>
+
+
+This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
+`verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__ directory. For more information on setting up the
+simulation environment and the available testbenches for this sample
+project, refer to `README <https://github.com/efabless/caravel_user_project/blob/main/verilog/dv/README.md>`__.
+
 
 Running MPW Precheck Locally
 =================================
