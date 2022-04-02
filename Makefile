@@ -40,6 +40,26 @@ else
 	CARAVEL_TAG := $(MPW_TAG)
 endif
 
+pdk-with-sram: pdk
+.PHONY: pdk
+pdk: check-env run_volare gen-sources
+
+.PHONY: clean-pdk
+clean-pdk:
+	rm -rf $(PDK_ROOT)
+
+.PHONY: run_volare
+run_volare:
+	@volare enable -f $(OPENLANE_ROOT)/dependencies/tool_metadata.yml
+
+.PHONY: gen-sources
+gen-sources:
+	@touch $(PDK_ROOT)/sky130A/SOURCES
+	@printf "skywater-pdk " >> $(PDK_ROOT)/sky130A/SOURCES
+	@echo $(SKYWATER_COMMIT) >> $(PDK_ROOT)/sky130A/SOURCES
+	@printf "open_pdks " >> $(PDK_ROOT)/sky130A/SOURCES
+	@echo $(OPEN_PDKS_COMMIT) >> $(PDK_ROOT)/sky130A/SOURCES
+
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
@@ -197,11 +217,15 @@ check-precheck:
 		exit 1; \
 	fi
 
-check-pdk:
-	@if [ ! -d "$(PDK_ROOT)" ]; then \
-		echo "PDK Root: "$(PDK_ROOT)" doesn't exists, please export the correct path before running make. "; \
-		exit 1; \
-	fi
+.PHONY: check-env
+check-env:
+ifndef PDK_ROOT
+	$(error PDK_ROOT is undefined, please export it before running make)
+endif
+ifeq ($(shell which volare),)
+	echo "volare is not found, Installing it..."
+	python3 -m pip install volare
+endif
 
 .PHONY: help
 help:
