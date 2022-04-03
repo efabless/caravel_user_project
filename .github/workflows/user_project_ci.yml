@@ -31,7 +31,7 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
           make openlane
-          make pdk
+          make pdk-with-volare
 
       - name: Tarball PDK
         run: |
