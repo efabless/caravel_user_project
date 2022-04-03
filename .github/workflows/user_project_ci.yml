@@ -21,12 +21,16 @@ jobs:
 
       - name: Export PDK ROOT
         run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+      
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
+          make openlane
           make pdk
 
       - name: Tarball PDK
