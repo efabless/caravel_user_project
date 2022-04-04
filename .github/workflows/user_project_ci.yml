@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make install
+          CARAVEL_LITE=0 MPW_TAG=volare_integration make install
           make openlane
           make pdk-with-volare
 
