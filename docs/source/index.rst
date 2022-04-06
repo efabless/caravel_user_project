@@ -55,7 +55,9 @@ shuttle projects.
 Prerequisites
 =============
 
-- Docker
+- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
+
+- Python 3.6+ with PIP
 
 Install Caravel
 ===============
@@ -189,10 +191,8 @@ Then, run the RTL simulation by
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    # specify simulation mode: RTL/GL
-    export SIM=RTL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
-    make verify-<testbench-name>
+    make verify-<testbench-name>-rtl
 
 Once you have the physical implementation done and you have the gate-level netlists ready, it is crucial to run full gate-level simulations to make sure that your design works as intended after running the physical implementation. 
 
@@ -201,10 +201,8 @@ Run the gate-level simulation by:
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    # specify simulation mode: RTL/GL
-    export SIM=GL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
-    make verify-<testbench-name>
+    make verify-<testbench-name>-gl
 
 
 This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
