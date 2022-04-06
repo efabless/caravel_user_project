@@ -98,6 +98,13 @@ jobs:
           if ! [[ $cnt ]]; then cnt=0; fi
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
+      - name: upload failure logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: error
+          path: |
+            /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 
   user_project_flow:
     timeout-minutes: 720
