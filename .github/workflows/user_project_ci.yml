@@ -62,7 +62,7 @@ jobs:
           echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
       
       - name: Export PDKPATH
-         run: echo "PDKPATH=/usr/local/pdk/sky130A" >> $GITHUB_ENV
+        run: echo "PDKPATH=/usr/local/pdk/sky130A" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
