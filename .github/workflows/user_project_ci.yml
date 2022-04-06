@@ -82,6 +82,8 @@ jobs:
           export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
           export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
           export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
+          export PDKPATH=$PDK_ROOT/sky130A
+          ls $PDKPATH
 
           git clone --depth=1 -b mpw-5b https://github.com/efabless/mpw_precheck.git
 
