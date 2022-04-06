@@ -75,13 +75,6 @@ jobs:
           sudo mkdir -p ${{ env.PDK_ROOT }}/sky130A
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
-      - name: PDK PATH
-        run: |
-            export PDKPATH=$PDK_ROOT/sky130A
-
-            ls $PDKPATH
-
-            echo $PDKPATH
       - name: Run MPW-Precheck
         run: |
           export INPUT_DIRECTORY=$(pwd)
