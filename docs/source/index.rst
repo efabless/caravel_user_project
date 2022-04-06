@@ -173,7 +173,7 @@ For more information about volare click `here <https://github.com/efabless/volar
     export PDK_ROOT=<pdk-installation-path>
 
     # use volare to download the pdk
-    make pdk-with-volare
+    make pdk-with-volare -f $(OPENLANE_ROOT)/dependencies/tool_metadata.yml
 
 Running Full Chip Simulation
 ============================
