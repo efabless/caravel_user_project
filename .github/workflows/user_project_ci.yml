@@ -20,7 +20,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Export PDK ROOT
-        run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
       
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
@@ -59,10 +59,10 @@ jobs:
 
       - name: Export PDK ROOT
         run: |
-          echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+          echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
       
       - name: Export PDKPATH
-        run: echo "PDKPATH=/usr/local/pdk/sky130A" >> $GITHUB_ENV
+        run: echo "PDKPATH=/home/runner/work/pdk/sky130A" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -113,7 +113,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Export PDK ROOT
-        run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
 
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
