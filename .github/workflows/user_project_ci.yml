@@ -8,8 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  precheck:
-    timeout-minutes: 720
+  pdk:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,62 +19,141 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Install Magic
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+      - name: Export PDK ROOT
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+      
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
-      - name: Build PDK
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/build_pdk.sh
+      - name: Install dependencies
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          make install
+          make openlane
+          make pdk-with-volare
 
-      - name: Install The Precheck
-        run: git clone --depth=1 https://github.com/efabless/mpw_precheck.git ${GITHUB_WORKSPACE}/mpw_precheck
+      - name: Tarball PDK
+        run: |
+          tar -cf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
 
-      - name: Run The Precheck
-        run: bash ${GITHUB_WORKSPACE}/.github/scripts/run_precheck.sh
+      - name: Upload PDK Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp/sky130A.tar
 
-  # dv_rtl:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
 
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v1
+  mpw_precheck:
+    timeout-minutes: 720
+    runs-on: ubuntu-latest
+    needs: [pdk]
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v1
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
 
-  #     - name: Install Magic
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-  #     - name: Build PDK
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/build_pdk.sh
+      - name: Export PDK ROOT
+        run: |
+          echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+      
+      - name: Export PDKPATH
+        run: echo "PDKPATH=/home/runner/work/pdk/sky130A" >> $GITHUB_ENV
 
-  #     - name: Install The Dockerized DV Setup
-  #       run: docker pull efabless/dv_setup:latest
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
 
-  #     - name: Run DV tests
-  #       # Run test number 0,1,2,3,4 in one job                            <test-ids>   <sim-mode>
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      RTL
+      - name: Unpack PDK Tarball
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}/sky130A
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
+      - name: Run MPW-Precheck
+        run: |
+          export INPUT_DIRECTORY=$(pwd)
+          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
+          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
+          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
+          export PDKPATH=$PDK_ROOT/sky130A
 
-  # dv_gl:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
+          git clone --depth=1 -b mpw-5b https://github.com/efabless/mpw_precheck.git
 
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v1
+          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root ${{ env.PDK_ROOT }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
 
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v1
+          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
+          if ! [[ $cnt ]]; then cnt=0; fi
+          if [[ $cnt -eq 1 ]]; then exit 0; fi
+          exit 2
+      - name: upload failure logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: error
+          path: |
+            /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 
-  #     - name: Install Magic
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/install_magic.sh
+  user_project_flow:
+    timeout-minutes: 720
+    runs-on: ubuntu-latest
+    needs: [pdk]
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Build PDK
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/build_pdk.sh
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
 
-  #     - name: Install The Dockerized DV Setup
-  #       run: docker pull efabless/dv_setup:latest
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-  #     - name: Run DV tests
-  #       # Run test number 0,1,2,3,4 in one job                             <test-ids>   <sim-mode>
-  #       run: bash ${GITHUB_WORKSPACE}/.github/scripts/dv/run-dv-wrapper.sh 0,1,2,3,4      GL
+      - name: Export PDK ROOT
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
+
+      - name: Unpack PDK Tarball
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}/sky130A
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
+
+      - name: Install dependencies
+        run: |
+          make install
+          make install_mcw
+          make openlane
+          make simenv
+
+      - name: Harden using Openlane
+        run: |
+          make user_proj_example
+          make user_project_wrapper
+
+      - name: Run DV RTL tests
+        run: |
+          make verify-io_ports-rtl 
+          make verify-la_test1-rtl 
+          make verify-la_test2-rtl 
+          make verify-mprj_stimulus-rtl 
+          make verify-wb_port-rtl
+
+      - name: Run DV GL tests
+        run: |
+          make verify-io_ports-gl 
+          make verify-la_test1-gl 
+          make verify-la_test2-gl 
+          make verify-mprj_stimulus-gl 
+          make verify-wb_port-gl

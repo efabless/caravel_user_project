@@ -27,6 +27,8 @@ Dependencies
 
 - Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
 
+- Python 3.6+ with PIP
+
 ===============================================================================================================================================================
 
 ---------------------
@@ -51,7 +53,7 @@ Starting your project
     .. code:: bash
 
         # Make sure that "caravel_example" matches the empty github repo name in step 1
-        git clone -b mpw-5c https://github.com/efabless/caravel_user_project caravel_example
+        git clone -b mpw-6a https://github.com/efabless/caravel_user_project caravel_example
         cd caravel_example
         git remote rename origin upstream
 
@@ -93,7 +95,7 @@ Starting your project
 		make <module_name>	
 	..
 
-		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/dv-documentation-update/docs/source/index.rst#running-openlane>`_
+		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/main/docs/source/index.rst#hardening-the-user-project-using-openlane>`_
 	
 #.  Integrate modules into the user_project_wrapper
 
