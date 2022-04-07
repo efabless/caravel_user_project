@@ -171,11 +171,9 @@ For more information about volare click `here <https://github.com/efabless/volar
 
     # set PDK_ROOT to the path you wish to use for the pdk
     export PDK_ROOT=<pdk-installation-path>
-    
-    # set the OPENLANE_ROOT to the openlane installation path
-    export OPENLANE_ROOT=<openlane-installation-path>
 
     # use volare to download the pdk
+    # To change the default pdk version you can export OPEN_PDKS_COMMIT=<pdk_commit>
     make pdk-with-volare 
 
 Running Full Chip Simulation
