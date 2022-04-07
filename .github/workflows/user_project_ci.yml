@@ -29,6 +29,7 @@ jobs:
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          export MPW_TAG=switch_pdk
           make install
           make openlane
           make pdk-with-volare
@@ -132,6 +133,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export MPW_TAG=switch_pdk
           make install
           make install_mcw
           make openlane
