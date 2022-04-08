@@ -65,7 +65,7 @@ setup: install check-env install_mcw pdk openlane
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
-$(blocks):
+$(blocks): % :
 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
@@ -92,7 +92,16 @@ docker_run_verify=\
 harden: $(blocks)
 
 .PHONY: verify
-verify: $(dv-targets)
+verify: $(dv-targets-rtl)
+
+.PHONY: verify-all-rtl
+verify-all-rtl: $(dv-targets-rtl)
+
+.PHONY: verify-all-gl
+verify-all-gl: $(dv-targets-gl)
+
+.PHONY: verify-all-gl-sdf
+verify-all-gl-sdf: $(dv-targets-gl-sdf)
 
 $(dv-targets-rtl): SIM=RTL
 $(dv-targets-rtl): verify-%-rtl: $(dv_base_dependencies)
@@ -158,7 +167,7 @@ uninstall:
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
 .PHONY: precheck
 precheck:
-	@git clone --depth=1 --branch mpw-5a https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
+	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
 	@docker pull efabless/mpw_precheck:latest
 
 .PHONY: run-precheck
