@@ -31,7 +31,7 @@ CARAVEL_LITE?=1
 # PDK switch varient
 export PDK?=sky130B
 
-MPW_TAG ?= mpw-5c
+MPW_TAG ?= test-6a
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
