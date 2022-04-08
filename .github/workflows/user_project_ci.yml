@@ -20,14 +20,18 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Export PDK ROOT
-        run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+      
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
-          make pdk
+          make openlane
+          make pdk-with-volare
 
       - name: Tarball PDK
         run: |
@@ -55,7 +59,10 @@ jobs:
 
       - name: Export PDK ROOT
         run: |
-          echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+          echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+      
+      - name: Export PDKPATH
+        run: echo "PDKPATH=/home/runner/work/pdk/sky130A" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -68,22 +75,29 @@ jobs:
           sudo mkdir -p ${{ env.PDK_ROOT }}/sky130A
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/sky130A.tar -C $PDK_ROOT/sky130A .
-
       - name: Run MPW-Precheck
         run: |
           export INPUT_DIRECTORY=$(pwd)
           export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
           export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
           export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
+          export PDKPATH=$PDK_ROOT/sky130A
 
           git clone --depth=1 -b mpw-5b https://github.com/efabless/mpw_precheck.git
 
-          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root ${{ env.PDK_ROOT }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
+          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_root ${{ env.PDK_ROOT }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
 
           cnt=$(grep -c "All Checks Passed" "$OUTPUT")
           if ! [[ $cnt ]]; then cnt=0; fi
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
+      - name: upload failure logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: error
+          path: |
+            /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 
   user_project_flow:
     timeout-minutes: 720
@@ -99,7 +113,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Export PDK ROOT
-        run: echo "PDK_ROOT=/usr/local/pdk" >> $GITHUB_ENV
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
 
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
@@ -118,6 +132,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export CARAVEL_LITE=0
           make install
           make install_mcw
           make openlane

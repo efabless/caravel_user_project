@@ -28,7 +28,10 @@ export OPENLANE_TAG=2022.02.23_02.50.41
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-5c
+# PDK switch varient
+export PDK?=sky130B
+
+MPW_TAG ?= test-6a
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -60,7 +63,7 @@ simenv:
 	docker pull efabless/dv_setup:latest
 
 .PHONY: setup
-setup: install check-env install_mcw pdk openlane
+setup: install check-env install_mcw openlane pdk-with-volare
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -83,6 +86,7 @@ docker_run_verify=\
 		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
 		-e TOOLS=/foss/tools/riscv-gnu-toolchain-rv32i/217e7f3debe424d61374d31e33a091a630535937 \
 		-e DESIGNS=$(TARGET_PATH) \
+		-e PDK=$(PDK) \
 		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
 		-e MCW_ROOT=$(MCW_ROOT) \
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv:latest \
@@ -206,6 +210,5 @@ check-pdk:
 help:
 	cd $(CARAVEL_ROOT) && $(MAKE) help
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
-
 
 
