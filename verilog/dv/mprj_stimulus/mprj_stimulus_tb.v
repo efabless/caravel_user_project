@@ -175,7 +175,7 @@ module mprj_stimulus_tb;
         RSTB <= 1'b0;
         #2000;
         RSTB <= 1'b1;       	// Release reset
-        #1_100_000;
+        #1_300_000;
         CSB <= 1'b0;		// Stop driving CSB
     end
 

@@ -38,7 +38,7 @@ module la_test1_tb;
 		clock = 0;
 	end
 
-	``ifdef ENABLE_SDF
+	`ifdef ENABLE_SDF
 		initial begin
 			$sdf_annotate("../../../sdf/user_proj_example.sdf", uut.mprj) ;
 			$sdf_annotate("../../../sdf/user_project_wrapper.sdf", uut.mprj.mprj) ;
