@@ -28,7 +28,7 @@ export OPENLANE_TAG=7891c2c8859e8c800226920c181fa039ad298e79
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-6a
+MPW_TAG ?= mpw-6b
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
