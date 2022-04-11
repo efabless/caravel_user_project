@@ -96,11 +96,11 @@ module wb_port_tb;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_in_2[13] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_in_2[14] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_in_2[15] ) ;
-			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block_1803.sdf", uut.gpio_defaults_block_0) ;
-			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block_1803.sdf", uut.gpio_defaults_block_1) ;
-			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block_0403.sdf", uut.gpio_defaults_block_2) ;
-			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block_0403.sdf", uut.gpio_defaults_block_3) ;
-			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block_0403.sdf", uut.gpio_defaults_block_4) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.\gpio_defaults_block_0[0] ) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.\gpio_defaults_block_0[1] ) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.\gpio_defaults_block_2[0] ) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.\gpio_defaults_block_2[1] ) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.\gpio_defaults_block_2[2] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.gpio_defaults_block_5) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.gpio_defaults_block_6) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.gpio_defaults_block_7) ;
@@ -142,7 +142,7 @@ module wb_port_tb;
 		$dumpvars(0, wb_port_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (50) begin
+		repeat (40) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
