@@ -55,7 +55,9 @@ shuttle projects.
 Prerequisites
 =============
 
-- Docker
+- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
+
+- Python 3.6+ with PIP
 
 Install Caravel
 ===============
@@ -163,19 +165,16 @@ To make sure that this integration process goes smoothly without having any DRC 
 Building the PDK 
 ================
 
-Make sure you have `Magic VLSI Layout Tool <http://opencircuitdesign.com/magic/index.html>`__ installed on your machine before building the pdk. 
-The pdk build is tested with magic version ``8.3.265``. 
+For more information about volare click `here <https://github.com/efabless/volare>`__
 
 .. code:: bash
 
     # set PDK_ROOT to the path you wish to use for the pdk
     export PDK_ROOT=<pdk-installation-path>
 
-    # you can optionally specify skywater-pdk and open-pdks commit used
-    # by setting and exporting SKYWATER_COMMIT and OPEN_PDKS_COMMIT
-    # if you do not set them, they default to the last verfied commits tested for this project
-
-    make pdk
+    # use volare to download the pdk
+    # To change the default pdk version you can export OPEN_PDKS_COMMIT=<pdk_commit>
+    make pdk-with-volare 
 
 Running Full Chip Simulation
 ============================
@@ -193,10 +192,8 @@ Then, run the RTL simulation by
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    # specify simulation mode: RTL/GL
-    export SIM=RTL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
-    make verify-<testbench-name>
+    make verify-<testbench-name>-rtl
 
 Once you have the physical implementation done and you have the gate-level netlists ready, it is crucial to run full gate-level simulations to make sure that your design works as intended after running the physical implementation. 
 
@@ -205,10 +202,8 @@ Run the gate-level simulation by:
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    # specify simulation mode: RTL/GL
-    export SIM=GL
     # Run RTL simulation on IO ports testbench, make verify-io_ports
-    make verify-<testbench-name>
+    make verify-<testbench-name>-gl
 
 
 This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
