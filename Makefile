@@ -23,12 +23,12 @@ SIM?=RTL
 export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
 export OPEN_PDKS_COMMIT?=7519dfb04400f224f140749cda44ee7de6f5e095
 export PDK_MAGIC_COMMIT=7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
-export OPENLANE_TAG=2022.02.23_02.50.41
+export OPENLANE_TAG=mpw-6b
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-6a
+MPW_TAG ?= mpw-6b
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
