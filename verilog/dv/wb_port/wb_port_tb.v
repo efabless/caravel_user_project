@@ -31,7 +31,7 @@ module wb_port_tb;
 
 	assign checkbits = mprj_io[31:16];
 
-	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
+	assign mprj_io[3] = 1'b1;
 
 	// External clock is used by default.  Make this artificially fast for the
 	// simulation.  Normally this would be a slow clock and the digital PLL
@@ -61,6 +61,7 @@ module wb_port_tb;
 			$sdf_annotate("../../../caravel/sdf/user_id_programming.sdf", uut.user_id_value) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_1[0] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_1[1] ) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_2[0] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_2[1] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_2[2] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_in_1[0] ) ;
@@ -142,7 +143,7 @@ module wb_port_tb;
 		$dumpvars(0, wb_port_tb);
 
 		// Repeat cycles of 1000 clock edges as needed to complete testbench
-		repeat (40) begin
+		repeat (70) begin
 			repeat (1000) @(posedge clock);
 			// $display("+1000 cycles");
 		end
@@ -173,7 +174,7 @@ module wb_port_tb;
 		CSB  <= 1'b1;		// Force CSB high
 		#2000;
 		RSTB <= 1'b1;	    	// Release reset
-		#1_000_000;
+		#100000;
 		CSB = 1'b0;		// CSB can be released
 	end
 

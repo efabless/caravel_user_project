@@ -35,7 +35,7 @@ module mprj_stimulus_tb;
 
     assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
 
-    always #16 clock <= (clock === 1'b0);
+    always #12.5 clock <= (clock === 1'b0);
 
     initial begin
         clock = 0;
@@ -43,8 +43,7 @@ module mprj_stimulus_tb;
 
     `ifdef ENABLE_SDF
 		initial begin
-			$sdf_annotate("../../../sdf/user_proj_example.sdf", uut.mprj) ;
-			$sdf_annotate("../../../sdf/user_project_wrapper.sdf", uut.mprj.mprj) ;
+			$sdf_annotate("../../../sdf/user_proj_example.sdf", uut.mprj.mprj) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/DFFRAM.sdf", uut.soc.DFFRAM_0) ;
 			$sdf_annotate("../../../mgmt_core_wrapper/sdf/mgmt_core.sdf", uut.soc.core) ;
 			$sdf_annotate("../../../caravel/sdf/housekeeping.sdf", uut.housekeeping) ;
@@ -59,6 +58,7 @@ module mprj_stimulus_tb;
 			$sdf_annotate("../../../caravel/sdf/user_id_programming.sdf", uut.user_id_value) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_1[0] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_1[1] ) ;
+			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_2[0] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_2[1] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_bidir_2[2] ) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_control_block.sdf", uut.\gpio_control_in_1[0] ) ;
@@ -175,7 +175,7 @@ module mprj_stimulus_tb;
         RSTB <= 1'b0;
         #2000;
         RSTB <= 1'b1;       	// Release reset
-        #1_300_000;
+        #900_000;
         CSB <= 1'b0;		// Stop driving CSB
     end
 
