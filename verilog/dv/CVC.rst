@@ -36,7 +36,7 @@ you need to update your testbench to add a line similar to the following line (i
     
 Unfortunately, popular open-source Verilog simulators don’t have support for SDF (verilator) or have limited unuseful support (iverilog).
 However, a less popular open-source Verilog simulator (`CVC <https://github.com/cambridgehackers/open-src-cvc>`__) has a decent support for timing simulation using SDF files. 
-CVC is a proprietary “shared source”:sup:`1`:sup:`2` commercial open-source simulator, but its license allows using it freely for non-commercial designs.
+CVC is a proprietary “shared source”:sup:`1,2` commercial open-source simulator, but its license allows using it freely for non-commercial designs.
 To run timing simulation using CVC, make sure that use the flags approprate to your usecase, which can be found `here  <https://github.com/cambridgehackers/open-src-cvc/blob/master/doc/cvc_help.txt>`__. We used:
 
 .. code:: bash
