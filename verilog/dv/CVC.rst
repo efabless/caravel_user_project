@@ -36,7 +36,7 @@ you need to update your testbench to add a line similar to the following line (i
     
 Unfortunately, popular open-source Verilog simulators don’t have support for SDF (verilator) or have limited unuseful support (iverilog).
 However, a less popular open-source Verilog simulator (`CVC <https://github.com/cambridgehackers/open-src-cvc>`__) has a decent support for timing simulation using SDF files. 
-CVC is a proprietary “shared source” commercial open-source simulator, but its license allows using it freely for non-commercial designs.
+CVC is a proprietary “shared source” [1]_ [2]_ commercial open-source simulator, but its license allows using it freely for non-commercial designs.
 To run timing simulation using CVC, make sure that use the flags approprate to your usecase, which can be found `here  <https://github.com/cambridgehackers/open-src-cvc/blob/master/doc/cvc_help.txt>`__. We used:
 
 .. code:: bash
@@ -55,6 +55,5 @@ for example, you specified a false path which is not. After identifying and anal
 
 The verilog model files for sky130 libraries contain issues. The corrected files can be found `here  <https://github.com/efabless/caravel_mgmt_soc_litex/tree/main/verilog/cvc-pdk>`__
 
-    1. The CVC website claims that the product is open source but it uses a custom license3 which is not OSI approved and does not meet either the OSI’s “Open Source Definition” nor the Debian Free Software Guidelines.
-
-    2. The CVC license is derived from Perl’s “Artistic License” ; it adds new terms and clauses.
+   .. [1] The CVC website claims that the product is open source but it uses a custom license3 which is not OSI approved and does not meet either the OSI’s “Open Source Definition” nor the Debian Free Software Guidelines.
+   .. [2] The CVC license is derived from Perl’s “Artistic License” ; it adds new terms and clauses.
