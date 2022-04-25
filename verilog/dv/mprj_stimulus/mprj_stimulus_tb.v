@@ -13,7 +13,7 @@
 // limitations under the License.
 // SPDX-License-Identifier: Apache-2.0
 
-`default_nettype none
+`default_nettype wire
 
 `timescale 1 ns / 1 ps
 
@@ -21,9 +21,8 @@ module mprj_stimulus_tb;
     // Signals declaration
     reg clock;
     reg RSTB;
+    reg power1, power2;
     reg CSB;
-	reg power1, power2;
-	
     wire gpio;
     wire [37:0] mprj_io;
     wire [15:0] checkbits;
@@ -133,7 +132,7 @@ module mprj_stimulus_tb;
 			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.gpio_defaults_block_36) ;
 			$sdf_annotate("../../../caravel/sdf/gpio_defaults_block.sdf", uut.gpio_defaults_block_37) ;
 		end
-	`endif 
+	`endif
 
     initial begin
         $dumpfile("mprj_stimulus.vcd");
@@ -161,8 +160,8 @@ module mprj_stimulus_tb;
 
 	// Values reflect copying user-controlled outputs to memory and back
 	// to management-controlled outputs.
-        wait(checkbits == 16'h1968 || checkbits == 16'h1969); // They're off because the difference between GL and RTL
-        wait(checkbits == 16'h1DCD || checkbits == 16'h1DCE); // They're off because the difference between GL and RTL
+        wait(checkbits == 16'h1968 || checkbits == 16'h1969 || checkbits == 16'h198B); // They're off because the difference between GL and RTL
+        wait(checkbits == 16'h1DCD || checkbits == 16'h1DCE || checkbits == 16'h1DE8); // They're off because the difference between GL and RTL
 
         wait(checkbits == 16'hAB51);
         $display("Monitor: mprj_stimulus test Passed");
@@ -170,12 +169,13 @@ module mprj_stimulus_tb;
         $finish;
     end
 
+    // Reset Operation
     initial begin
         CSB <= 1'b1;		
         RSTB <= 1'b0;
         #2000;
         RSTB <= 1'b1;       	// Release reset
-        #900_000;
+        #1_300_000;
         CSB <= 1'b0;		// Stop driving CSB
     end
 
@@ -193,13 +193,9 @@ module mprj_stimulus_tb;
     wire flash_io0;
     wire flash_io1;
 
-    wire VDD3V3;
-	wire VDD1V8;
-	wire VSS;
-	
-	assign VDD3V3 = power1;
-	assign VDD1V8 = power2;
-	assign VSS = 1'b0;
+    wire VDD3V3 = power1;
+    wire VDD1V8 = power2;
+    wire VSS = 1'b0;
 
     caravel uut (
         .vddio	  (VDD3V3),
@@ -229,6 +225,7 @@ module mprj_stimulus_tb;
 		.flash_io1(flash_io1),
 		.resetb	  (RSTB)
     );
+
 
     spiflash #(
         .FILENAME("mprj_stimulus.hex")
