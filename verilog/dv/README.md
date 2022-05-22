@@ -189,7 +189,7 @@ The directory includes five tests for the counter user-project example:
 	reg_la3_oenb = reg_la3_iena = 0x00000000;    // [127:96]
 	```
 
-* Then, the firmware writes an initial value to the counter through the LA1 data register. Afte writing the counter value, the LA probes are disabled to prevent the counter write signal from being always set to one. 
+* Then, the firmware writes an initial value to the counter through the LA1 data register. After writing the counter value, the LA probes are disabled to prevent the counter write signal from being always set to one. 
 
 	```c
 	reg_la1_data = 0x00000000;     // Write zero to count register
