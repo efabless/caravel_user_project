@@ -36,38 +36,21 @@ Starting your project
 ---------------------
 
 
-#. To start the project you need to first create an empty Git project on Github and make sure your repo is public and includes a README
+#. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
 
-#.  Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
-
-    .. code:: bash
-
-        # Create a directory and call it anything you want
-        mkdir -p caravel_tutorial
-
-        # navigate into the directory
-        cd caravel_tutorial
-	
-#.  Clone caravel_user_project and setup the git environment as follows
+   *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
+   *   Clone the reposity using the following command:
 
     .. code:: bash
 
-        # Make sure that "caravel_example" matches the empty github repo name in step 1
-        git clone -b mpw-6b https://github.com/efabless/caravel_user_project caravel_example
-        cd caravel_example
-        git remote rename origin upstream
-
-        # You need to put your empty github repo URL from step 1
-        git remote add origin <your github repo URL>
-
-        # Create a new branch, you can name it anything 
-        git checkout -b <my_branch>
-        git push -u origin <my_branch>
+        git clone -b mpw-6c  <your github repo URL> caravel_example
 	
 #.  Now that your git environment is setup, it's time to setup your local environment by running.
 
     .. code:: bash
     
+	cd caravel_example
+
     	# make sure to change <directory_name> with the directory you created in step 2
 	# in this case it is caravel_tutorial
 	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
@@ -131,7 +114,7 @@ Starting your project
         make precheck
         make run-precheck
 
-#. You are done! now go to www.efabless.com to submit your project!
+#. You are done! now go to https://efabless.com/open_shuttle_program/ to submit your project!
    
    
 .. |License| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
