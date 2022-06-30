@@ -8,9 +8,46 @@ on:
   workflow_dispatch:
 
 jobs:
+  pdk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Export PDK ROOT
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+      
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          make install
+          make openlane
+          make pdk-with-volare
+
+      - name: Tarball PDK
+        run: |
+          tar -cf /tmp/pdk.tar -C $PDK_ROOT .
+
+      - name: Upload PDK Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp/pdk.tar
+
+
   mpw_precheck:
     timeout-minutes: 720
     runs-on: ubuntu-latest
+    needs: [pdk]
     steps:
       - uses: actions/checkout@v2
 
@@ -25,20 +62,25 @@ jobs:
           echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
       
       - name: Export PDKPATH
-        run: echo "PDKPATH=/home/runner/work/pdk/sky130B" >> $GITHUB_ENV
+        run: echo "PDKPATH=/home/runner/work/pdk/sky130A" >> $GITHUB_ENV
 
-      - name: Dependancies pdk
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
+
+      - name: Unpack PDK Tarball
         run: |
-          make install
-          make pdk-with-volare
-
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/pdk.tar -C $PDK_ROOT .
       - name: Run MPW-Precheck
         run: |
           export INPUT_DIRECTORY=$(pwd)
           export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
           export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
           export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
-          export PDKPATH=$PDK_ROOT/sky130B
+          export PDKPATH=$PDK_ROOT/sky130A
 
           git clone --depth=1 -b mpw-5b https://github.com/efabless/mpw_precheck.git
 
@@ -56,9 +98,10 @@ jobs:
           path: |
             /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 
-  user_project_flow:
+  user_project_flow_sky130A:
     timeout-minutes: 720
     runs-on: ubuntu-latest
+    needs: [pdk]
     steps:
       - uses: actions/checkout@v2
 
@@ -71,19 +114,89 @@ jobs:
       - name: Export PDK ROOT
         run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
 
+      - name: Export PDK
+        run: echo "PDK=sky130A" >> $GITHUB_ENV
+
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
-      
-      - name: Export PDKPATH
-        run: echo "PDKPATH=/home/runner/work/pdk/sky130B" >> $GITHUB_ENV
+
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
+
+      - name: Unpack PDK Tarball
+        run: |
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/pdk.tar -C $PDK_ROOT .
 
       - name: Install dependencies
         run: |
-          export CARAVEL_LITE=0
           make install
           make install_mcw
           make openlane
-          make pdk-with-volare
+          make simenv
+
+      - name: Harden using Openlane
+        run: |
+          make user_proj_example
+          make user_project_wrapper
+
+      - name: Run DV RTL tests
+        run: |
+          make verify-io_ports-rtl 
+          make verify-la_test1-rtl 
+          make verify-la_test2-rtl 
+          make verify-mprj_stimulus-rtl 
+          make verify-wb_port-rtl
+
+      - name: Run DV GL tests
+        run: |
+          make verify-io_ports-gl 
+          make verify-la_test1-gl 
+          make verify-la_test2-gl 
+          make verify-mprj_stimulus-gl 
+          make verify-wb_port-gl
+
+  user_project_flow_sky130B:
+    timeout-minutes: 720
+    runs-on: ubuntu-latest
+    needs: [pdk]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Export PDK ROOT
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+
+      - name: Export PDK
+        run: echo "PDK=sky130B" >> $GITHUB_ENV
+
+      - name: Export OPENLANE ROOT
+        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+
+      - name: Download PDK Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp
+
+      - name: Unpack PDK Tarball
+        run: |
+          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+          tar -xf /tmp/pdk.tar -C $PDK_ROOT .
+
+      - name: Install dependencies
+        run: |
+          make install
+          make install_mcw
+          make openlane
           make simenv
 
       - name: Harden using Openlane
