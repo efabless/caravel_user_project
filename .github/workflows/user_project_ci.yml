@@ -128,6 +128,7 @@ jobs:
 
       - name: Unpack PDK Tarball
         run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/pdk.tar -C $PDK_ROOT .
 
@@ -189,6 +190,7 @@ jobs:
 
       - name: Unpack PDK Tarball
         run: |
+          sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/pdk.tar -C $PDK_ROOT .
 
