@@ -43,7 +43,7 @@ Starting your project
 
     .. code:: bash
 
-        git clone -b mpw-6c  <your github repo URL> caravel_example
+        git clone -b mpw-7a  <your github repo URL> caravel_example
 	
 #.  Now that your git environment is setup, it's time to setup your local environment by running.
 
