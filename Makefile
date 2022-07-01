@@ -142,6 +142,11 @@ what:
 # Install Openlane
 .PHONY: openlane
 openlane:
+	@if [ "$$(realpath $${OPENLANE_ROOT})" = "$$(realpath $$(pwd)/openlane)" ]; then\
+		echo "OPENLANE_ROOT is set to '$$(pwd)/openlane' which contains openlane config files"; \
+		echo "Please set it to a different directory"; \
+		exit 1; \
+	fi
 	cd openlane && $(MAKE) openlane
 
 #### Not sure if the targets following are of any use
