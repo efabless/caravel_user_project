@@ -53,9 +53,12 @@ Starting your project
 
     	# make sure to change <directory_name> with the directory you created in step 2
 	# in this case it is caravel_tutorial
-	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
 	
+	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
 	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
+	
+	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
+	export PDK=sky130B
 
         make setup
 
