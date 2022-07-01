@@ -31,7 +31,7 @@ export PDK?=sky130A
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-MPW_TAG ?= mpw-6c
+MPW_TAG ?= mpw-7a
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -183,10 +183,10 @@ run-precheck: check-pdk check-precheck
 	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
 	-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
-	-e PDK_ROOT=$(PDK_ROOT) \
+	-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
 	-e PDKPATH=$(PDKPATH) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_root $(PDK_ROOT)"
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $($PDK_PATH)"
 
 
 
