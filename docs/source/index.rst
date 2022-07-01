@@ -171,6 +171,9 @@ For more information about volare click `here <https://github.com/efabless/volar
 
     # set PDK_ROOT to the path you wish to use for the pdk
     export PDK_ROOT=<pdk-installation-path>
+    
+    # set the PDK variant depending on your shuttle, if you don't know leave it as default
+    export PDK=sky130B
 
     # use volare to download the pdk
     # To change the default pdk version you can export OPEN_PDKS_COMMIT=<pdk_commit>
