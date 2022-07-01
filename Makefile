@@ -21,17 +21,17 @@ MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
 export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
-export OPEN_PDKS_COMMIT=7519dfb04400f224f140749cda44ee7de6f5e095
+export OPEN_PDKS_COMMIT?=7519dfb04400f224f140749cda44ee7de6f5e095
 export PDK_MAGIC_COMMIT=7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
 export OPENLANE_TAG=2022.02.23_02.50.41
+export MISMATCHES_OK=1
+export PDKPATH?=$(PDK_ROOT)/sky130A
+export PDK?=sky130A
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
-# PDK switch varient
-export PDK?=sky130B
-
-MPW_TAG ?= test-6a
+MPW_TAG ?= mpw-6c
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -178,8 +178,14 @@ precheck:
 run-precheck: check-pdk check-precheck
 	$(eval INPUT_DIRECTORY := $(shell pwd))
 	cd $(PRECHECK_ROOT) && \
-	docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) -v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) -v $(PDK_ROOT):$(PDK_ROOT) -e INPUT_DIRECTORY=$(INPUT_DIRECTORY) -e PDK_ROOT=$(PDK_ROOT) \
-	-u $(shell id -u $(USER)):$(shell id -g $(USER)) efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_root $(PDK_ROOT)"
+	docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
+	-v $(PDK_ROOT):$(PDK_ROOT) \
+	-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
+	-e PDK_ROOT=$(PDK_ROOT) \
+	-e PDKPATH=$(PDKPATH) \
+	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_root $(PDK_ROOT)"
 
 
 
