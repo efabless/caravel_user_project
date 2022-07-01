@@ -25,11 +25,13 @@ export OPEN_PDKS_COMMIT?=7519dfb04400f224f140749cda44ee7de6f5e095
 export PDK_MAGIC_COMMIT=7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
 export OPENLANE_TAG=2022.02.23_02.50.41
 export MISMATCHES_OK=1
-export PDKPATH?=$(PDK_ROOT)/sky130A
-export PDK?=sky130A
+export PDKPATH?=$(PDK_ROOT)/sky130B
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
+
+# PDK switch varient
+export PDK?=sky130B
 
 MPW_TAG ?= mpw-6c
 
@@ -140,6 +142,11 @@ what:
 # Install Openlane
 .PHONY: openlane
 openlane:
+	@if [ "$$(realpath $${OPENLANE_ROOT})" = "$$(realpath $$(pwd)/openlane)" ]; then\
+		echo "OPENLANE_ROOT is set to '$$(pwd)/openlane' which contains openlane config files"; \
+		echo "Please set it to a different directory"; \
+		exit 1; \
+	fi
 	cd openlane && $(MAKE) openlane
 
 #### Not sure if the targets following are of any use
