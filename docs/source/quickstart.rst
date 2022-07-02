@@ -107,6 +107,10 @@ Starting your project
             # OR GL simulation using
             make verify-<testbench-name>-gl
 
+            # OR for GL+SDF simulation using 
+            # sdf annotated simulation is slow
+            make verify-<testbench-name>-gl-sdf
+
             # for example
             make verify-io_ports-rtl
 	

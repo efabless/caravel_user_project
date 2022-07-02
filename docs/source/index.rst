@@ -195,8 +195,10 @@ Then, run the RTL simulation by
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    # Run RTL simulation on IO ports testbench, make verify-io_ports
     make verify-<testbench-name>-rtl
+    
+    # For example
+    make verify-io_ports-rtl
 
 Once you have the physical implementation done and you have the gate-level netlists ready, it is crucial to run full gate-level simulations to make sure that your design works as intended after running the physical implementation. 
 
@@ -205,9 +207,21 @@ Run the gate-level simulation by:
 .. code:: bash
 
     export PDK_ROOT=<pdk-installation-path>
-    # Run RTL simulation on IO ports testbench, make verify-io_ports
     make verify-<testbench-name>-gl
 
+    # For example
+    make verify-io_ports-gl
+
+To make sure that your design is timing clean, one way is running sdf annotated gate-level simulation
+Run the sdf annotated gate-level simulation by: 
+
+.. code:: bash
+
+    export PDK_ROOT=<pdk-installation-path>
+    make verify-<testbench-name>-gl-sdf
+
+    # For example
+    make verify-io_ports-gl-sdf
 
 This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
 `verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__ directory. For more information on setting up the
