@@ -1,4 +1,4 @@
-* NGSPICE file created from user_project_wrapper.ext - technology: sky130A
+* NGSPICE file created from user_project_wrapper.ext - technology: sky130B
 
 * Black-box entry subcircuit for user_proj_example abstract view
 .subckt user_proj_example io_in[0] io_in[10] io_in[11] io_in[12] io_in[13] io_in[14]

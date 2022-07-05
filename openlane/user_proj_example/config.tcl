@@ -35,7 +35,7 @@ set ::env(DIE_AREA) "0 0 900 600"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-set ::env(PL_BASIC_PLACEMENT) 1
+set ::env(PL_BASIC_PLACEMENT) 0
 set ::env(PL_TARGET_DENSITY) 0.05
 
 # Maximum layer used for routing is metal 4.
@@ -44,8 +44,6 @@ set ::env(PL_TARGET_DENSITY) 0.05
 # in this macro and the top level metal 5 stripes, we have to restrict routes to metal4.  
 # 
 # set ::env(GLB_RT_MAXLAYER) 5
-
-set ::env(RT_MAX_LAYER) {met4}
 
 # You can draw more power domains if you need to 
 set ::env(VDD_NETS) [list {vccd1}]
