@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1657050495
+timestamp 1657065162
 << obsli1 >>
 rect 236104 340159 413848 455521
 << obsm1 >>
@@ -3790,8 +3790,8 @@ port 645 nsew signal input
 string FIXED_BBOX 0 0 584000 704000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 9571554
+string GDS_END 9575458
 string GDS_FILE /home/kareem_farid/cup_5-7-22/openlane/user_project_wrapper/runs/user_project_wrapper/results/signoff/user_project_wrapper.magic.gds
-string GDS_START 7759710
+string GDS_START 7763614
 << end >>
 
