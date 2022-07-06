@@ -15,7 +15,7 @@
 # SPDX-License-Identifier: Apache-2.0
 MAKEFLAGS+=--warn-undefined-variables
 
-CARAVEL_ROOT?=$(PWD)/caravel
+export CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
 MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
@@ -65,20 +65,14 @@ install:
 simenv:
 	docker pull efabless/dv_setup:latest
 
-# this is a tmp workaround
-# [WARN] please remove in the future
-.PHONY: tmp-workaround
-tmp-workaround:
-	@sed 's%final_summary_report%*%' $(CARAVEL_ROOT)/openlane/Makefile  -i
-
 .PHONY: setup
-setup: install check-env install_mcw openlane pdk-with-volare tmp-workaround
+setup: install check-env install_mcw openlane pdk-with-volare
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
 $(blocks): % :
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
+	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
