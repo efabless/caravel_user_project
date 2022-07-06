@@ -22,9 +22,7 @@ SIM?=RTL
 
 export SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 export OPEN_PDKS_COMMIT?=41c0908b47130d5675ff8484255b43f66463a7d6
-export PDK_MAGIC_COMMIT=7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
 export OPENLANE_TAG=2022.07.02_01.38.08
-export MISMATCHES_OK=1
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
