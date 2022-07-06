@@ -91,7 +91,7 @@ openlane: check-openlane-env
 
 .PHONY: check-openlane-env
 check-openlane-env:
-	ifeq ($(OPENLANE_ROOT),)
+ifeq ($(OPENLANE_ROOT),)
 	@echo "Please export OPENLANE_ROOT"
 	@exit 1
 endif
