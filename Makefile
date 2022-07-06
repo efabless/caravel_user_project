@@ -63,7 +63,7 @@ install:
 # Install DV setup
 .PHONY: simenv
 simenv:
-	docker pull efabless/dv_setup:latest
+	docker pull efabless/dv:latest
 
 .PHONY: setup
 setup: install check-env install_mcw openlane pdk-with-volare
@@ -193,7 +193,7 @@ run-precheck: check-pdk check-precheck
 	-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
 	-e PDKPATH=$(PDKPATH) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $($PDK_PATH)"
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $PDK_PATH"
 
 
 
