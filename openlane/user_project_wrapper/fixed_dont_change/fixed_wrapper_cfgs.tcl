@@ -54,4 +54,4 @@ set ::env(GND_NETS) [list {vssd1} {vssd2} {vssa1} {vssa2}]
 set ::env(SYNTH_USE_PG_PINS_DEFINES) "USE_POWER_PINS"
 
 # Pin placement template
-set ::env(FP_DEF_TEMPLATE) $::env(DESIGN_DIR)/user_project_wrapper.def
+set ::env(FP_DEF_TEMPLATE) $::env(DESIGN_DIR)/fixed_dont_change/user_project_wrapper.def
