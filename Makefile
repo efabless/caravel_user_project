@@ -15,16 +15,14 @@
 # SPDX-License-Identifier: Apache-2.0
 MAKEFLAGS+=--warn-undefined-variables
 
-CARAVEL_ROOT?=$(PWD)/caravel
+export CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
 MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
-export SKYWATER_COMMIT=c094b6e83a4f9298e47f696ec5a7fd53535ec5eb
-export OPEN_PDKS_COMMIT?=7519dfb04400f224f140749cda44ee7de6f5e095
-export PDK_MAGIC_COMMIT=7d601628e4e05fd17fcb80c3552dacb64e9f6e7b
+export SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+export OPEN_PDKS_COMMIT?=41c0908b47130d5675ff8484255b43f66463a7d6
 export OPENLANE_TAG=2022.07.02_01.38.08
-export MISMATCHES_OK=1
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
@@ -72,7 +70,7 @@ setup: install check-env install_mcw openlane pdk-with-volare
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
 $(blocks): % :
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && cd openlane && $(MAKE) $*
+	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
