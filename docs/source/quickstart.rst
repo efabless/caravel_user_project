@@ -35,34 +35,43 @@ Dependencies
 Starting your project
 ---------------------
 
+#.  Open your Terminal. Create an empty folder to use as your Caravel workspace, and navigate to it.
+
+    .. code:: bash
+
+        # Create a directory and call it anything you want
+        mkdir -p caravel_tutorial
+
+        # navigate into the directory
+        cd caravel_tutorial
 
 #. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
 
    *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
-   *   Clone the reposity using the following command:
-
-    .. code:: bash
-
-        git clone -b mpw-7a  <your github repo URL> caravel_example
+   *   Create a directory and clone the reposity inside using the following command:
+   
+   .. code:: bash
+    
+	git clone <your github repo URL>
 	
 #.  Now that your git environment is setup, it's time to setup your local environment by running.
 
     .. code:: bash
     
-	cd caravel_example
-
-  # make sure to change <directory_name> with the directory you created in step 2
+    	# make sure to change <directory_name> with the directory you created in step 1
 	# in this case it is caravel_tutorial
-
-	export OPENLANE_ROOT=~/<directory_name>/openlane_src # you need to export this whenever you start a new shell
-	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
+	export OPENLANE_ROOT=~/<directory_name>/openlane # you need to export this whenever you start a new shell
 	
+	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
+
 	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
 	export PDK=sky130B
+	
+	cd <project_name> # project_name is the name of your repo
 
         make setup
 
-    *   This command will setup your environment by installing the following:
+*   This command will setup your environment by installing the following:
     
         - caravel_lite (a lite version of caravel)
         - management core for simulation
