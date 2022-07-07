@@ -35,34 +35,33 @@ Dependencies
 Starting your project
 ---------------------
 
-
 #. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
 
    *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
    *   Clone the reposity using the following command:
-
-    .. code:: bash
-
-        git clone -b mpw-7a  <your github repo URL> caravel_example
+   
+   .. code:: bash
+    
+	git clone <your github repo URL>
 	
-#.  Now that your git environment is setup, it's time to setup your local environment by running.
+#.  To setup your local environment run:
 
     .. code:: bash
     
-	cd caravel_example
-
-  # make sure to change <directory_name> with the directory you created in step 2
-	# in this case it is caravel_tutorial
-
-	export OPENLANE_ROOT=~/<directory_name>/openlane_src # you need to export this whenever you start a new shell
-	export PDK_ROOT=~/<directory_name>/pdks # you need to export this whenever you start a new shell
+    	cd <project_name> # project_name is the name of your repo
 	
+    	mkdir dependencies
+	
+	export OPENLANE_ROOT=$(pwd)/dependencies/openlane_src # you need to export this whenever you start a new shell
+	
+	export PDK_ROOT=$(pwd)/dependencies/pdks # you need to export this whenever you start a new shell
+
 	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
 	export PDK=sky130B
 
         make setup
 
-    *   This command will setup your environment by installing the following:
+*   This command will setup your environment by installing the following:
     
         - caravel_lite (a lite version of caravel)
         - management core for simulation
