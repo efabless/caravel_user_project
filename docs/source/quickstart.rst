@@ -48,6 +48,8 @@ Starting your project
 
     .. code:: bash
     
+    	cd <project_name> # project_name is the name of your repo
+	
     	mkdir dependencies
 	
 	export OPENLANE_ROOT=$(pwd)/dependencies/openlane_src # you need to export this whenever you start a new shell
@@ -56,8 +58,6 @@ Starting your project
 
 	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
 	export PDK=sky130B
-	
-	cd <project_name> # project_name is the name of your repo
 
         make setup
 
