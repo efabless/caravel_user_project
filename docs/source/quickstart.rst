@@ -38,7 +38,7 @@ Starting your project
 #. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
 
    *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
-   *   Create a directory and clone the reposity inside using the following command:
+   *   Clone the reposity using the following command:
    
    .. code:: bash
     
