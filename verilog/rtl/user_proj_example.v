@@ -77,7 +77,7 @@ module user_proj_example #(
 
     wire [31:0] rdata; 
     wire [31:0] wdata;
-    wire [BITS-1:0] count;
+    wire [`MPRJ_IO_PADS-1:0] count;
 
     wire valid;
     wire [3:0] wstrb;
@@ -133,33 +133,67 @@ module counter #(
     input [BITS-1:0] la_input,
     output ready,
     output [BITS-1:0] rdata,
-    output [BITS-1:0] count
+    output [`MPRJ_IO_PADS-1:0] count
 );
     reg ready;
-    reg [BITS-1:0] count;
+    reg [`MPRJ_IO_PADS:0] count_int;
     reg [BITS-1:0] rdata;
+    reg [$clog2(`MPRJ_IO_PADS)-1:0] level;
+    reg [$clog2(`MPRJ_IO_PADS)-1:0] position;
+    reg newbit;
+
+    assign count = count_int[`MPRJ_IO_PADS-1:0];
 
     always @(posedge clk) begin
         if (reset) begin
-            count <= 0;
+            count_int[`MPRJ_IO_PADS] <= 1'b1;
+            count_int[`MPRJ_IO_PADS-1:0] <= '0;
             ready <= 0;
+            level <= `MPRJ_IO_PADS;
+            position <= 0;
+            newbit <= 1'b1;
         end else begin
             ready <= 1'b0;
             if (~|la_write) begin
-                count <= count + 1;
+                if (newbit) begin
+                    count_int[0] <= 1'b1;
+                    position <= 1;
+                    newbit <= 1'b0;
+                end
+                else begin
+                    if (count_int[position]) begin
+                        newbit <= 1'b1;
+                        position <= 0;
+                        if (&count_int) begin
+                            level <= `MPRJ_IO_PADS;
+                            count_int[`MPRJ_IO_PADS] <= 1'b1;
+                            count_int[`MPRJ_IO_PADS-1:0] <= '0;
+                        end
+                        else begin
+                            level <= position-1;
+                        end
+                    end
+                    else begin
+                        count_int[position-1] <= 1'b0;
+                        count_int[position] <= 1'b1;
+                        position <= position + 1;
+                    end
+                end
+                //count <= count + 1;
             end
             if (valid && !ready) begin
                 ready <= 1'b1;
-                rdata <= count;
-                if (wstrb[0]) count[7:0]   <= wdata[7:0];
-                if (wstrb[1]) count[15:8]  <= wdata[15:8];
-                if (wstrb[2]) count[23:16] <= wdata[23:16];
-                if (wstrb[3]) count[31:24] <= wdata[31:24];
+                rdata <= count[BITS-1:0];
+                if (wstrb[0]) count_int[7:0]   <= wdata[7:0];
+                if (wstrb[1]) count_int[15:8]  <= wdata[15:8];
+                if (wstrb[2]) count_int[23:16] <= wdata[23:16];
+                if (wstrb[3]) count_int[31:24] <= wdata[31:24];
             end else if (|la_write) begin
-                count <= la_write & la_input;
+                count_int[BITS-1:0] <= la_write & la_input;
             end
         end
     end
 
 endmodule
+
 `default_nettype wire

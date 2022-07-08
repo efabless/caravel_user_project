@@ -26,9 +26,9 @@ module io_ports_tb;
 
 	wire gpio;
 	wire [37:0] mprj_io;
-	wire [7:0] mprj_io_0;
+	wire [37:0] mprj_io_0;
 
-	assign mprj_io_0 = mprj_io[7:0];
+	assign mprj_io_0 = mprj_io[37:0];
 	// assign mprj_io_0 = {mprj_io[8:4],mprj_io[2:0]};
 
 	assign mprj_io[3] = (CSB == 1'b1) ? 1'b1 : 1'bz;
@@ -144,10 +144,10 @@ module io_ports_tb;
 		$dumpfile("io_ports.vcd");
 		$dumpvars(0, io_ports_tb);
 
-		// Repeat cycles of 1000 clock edges as needed to complete testbench
+		// Repeat cycles of 10000 clock edges as needed to complete testbench
 		repeat (25) begin
-			repeat (1000) @(posedge clock);
-			// $display("+1000 cycles");
+			repeat (10000	) @(posedge clock);
+			// $display("+10000 cycles");
 		end
 		$display("%c[1;31m",27);
 		`ifdef GL
@@ -160,19 +160,47 @@ module io_ports_tb;
 	end
 
 	initial begin
-	    // Observe Output pins [7:0]
-		wait(mprj_io_0 == 8'h01);
-		wait(mprj_io_0 == 8'h02);
-		wait(mprj_io_0 == 8'h03);
-		wait(mprj_io_0 == 8'h04);
-		wait(mprj_io_0 == 8'h05);
-		wait(mprj_io_0 == 8'h06);
-		wait(mprj_io_0 == 8'h07);
-		wait(mprj_io_0 == 8'h08);
-		wait(mprj_io_0 == 8'h09);
-		wait(mprj_io_0 == 8'h0A);   
-		wait(mprj_io_0 == 8'hFF);
-		wait(mprj_io_0 == 8'h00);
+	    // Observe Output pins
+		wait(mprj_io_0 == 38'h0000000001);
+		wait(mprj_io_0 == 38'h2000000000);
+		wait(mprj_io_0 == 38'h3000000000);
+		wait(mprj_io_0 == 38'h3800000000);
+		wait(mprj_io_0 == 38'h3C00000000);
+		wait(mprj_io_0 == 38'h3E00000000);
+		wait(mprj_io_0 == 38'h3F00000000);
+		wait(mprj_io_0 == 38'h3F80000000);
+		wait(mprj_io_0 == 38'h3FC0000000);
+		wait(mprj_io_0 == 38'h3FE0000000);
+		wait(mprj_io_0 == 38'h3FF0000000);
+		wait(mprj_io_0 == 38'h3FF8000000);
+		wait(mprj_io_0 == 38'h3FFC000000);
+		wait(mprj_io_0 == 38'h3FFE000000);
+		wait(mprj_io_0 == 38'h3FFF000000);
+		wait(mprj_io_0 == 38'h3FFF800000);
+		wait(mprj_io_0 == 38'h3FFFC00000);
+		wait(mprj_io_0 == 38'h3FFFE00000);
+		wait(mprj_io_0 == 38'h3FFFF00000);
+		wait(mprj_io_0 == 38'h3FFFF80000);
+		wait(mprj_io_0 == 38'h3FFFFC0000);
+		wait(mprj_io_0 == 38'h3FFFFE0000);
+		wait(mprj_io_0 == 38'h3FFFFF0000);
+		wait(mprj_io_0 == 38'h3FFFFF8000);
+		wait(mprj_io_0 == 38'h3FFFFFC000);
+		wait(mprj_io_0 == 38'h3FFFFFE000);
+		wait(mprj_io_0 == 38'h3FFFFFF000);
+		wait(mprj_io_0 == 38'h3FFFFFF800);
+		wait(mprj_io_0 == 38'h3FFFFFFC00);
+		wait(mprj_io_0 == 38'h3FFFFFFE00);
+		wait(mprj_io_0 == 38'h3FFFFFFF00);
+		wait(mprj_io_0 == 38'h3FFFFFFF80);
+		wait(mprj_io_0 == 38'h3FFFFFFFC0);
+		wait(mprj_io_0 == 38'h3FFFFFFFE0);
+		wait(mprj_io_0 == 38'h3FFFFFFFF0);
+		wait(mprj_io_0 == 38'h3FFFFFFFF8);
+		wait(mprj_io_0 == 38'h3FFFFFFFFC);
+		wait(mprj_io_0 == 38'h3FFFFFFFFE);
+		wait(mprj_io_0 == 38'h3FFFFFFFFF);
+		wait(mprj_io_0 == 38'h0000000000);
 		
 		`ifdef GL
 	    	$display("Monitor: Test 1 Mega-Project IO (GL) Passed");
@@ -207,7 +235,7 @@ module io_ports_tb;
 	end
 
 	always @(mprj_io) begin
-		#1 $display("MPRJ-IO state = %b ", mprj_io[7:0]);
+		#1 $display("MPRJ-IO state = %b ", mprj_io[37:0]);
 	end
 
 	wire flash_csb;
