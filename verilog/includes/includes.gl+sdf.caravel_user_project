@@ -1,3 +1,3 @@
 // Caravel user project includes		
 $USER_PROJECT_VERILOG/gl/user_project_wrapper.v	     
-$USER_PROJECT_VERILOG/gl/user_proj_example.v
+$USER_PROJECT_VERILOG/gl/counter_option1.v

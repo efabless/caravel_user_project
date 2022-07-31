@@ -63,19 +63,44 @@ install:
 simenv:
 	docker pull efabless/dv:latest
 
+# Install Sandpiper 
+.PHONY: sandpiper
+sandpiper:
+	python3 -m pip install --upgrade sandpiper-saas
+
+# Install Makerchip 
+.PHONY: makerchip
+makerchip:
+	python3 -m pip install --upgrade makerchip-app
+
 .PHONY: setup
-setup: install check-env install_mcw openlane pdk-with-volare
+setup: install check-env install_mcw openlane pdk-with-volare sandpiper makerchip
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+rtl_path=$(shell cd verilog/rtl && pwd)
+tlv_path=$(shell cd verilog/tlv && pwd)
 .PHONY: $(blocks)
 $(blocks): % :
+	@if [ -v ${CI} ]; then\
+		if [ -f $(tlv_path)/$@.tlv ]; then\
+				if [ -f $(rtl_path)/$@.sv ]; then\
+					if [ $(tlv_path)/$@.tlv -nt  $(rtl_path)/$@.sv ]; then\
+						sandpiper-saas -o $@.sv -i $(tlv_path)/$@.tlv --outdir $(rtl_path) --sv_url_inc;\
+					fi;\
+				else \
+					sandpiper-saas -o $@.sv -i $(tlv_path)/$@.tlv --outdir $(rtl_path) --sv_url_inc;\
+				fi;\
+			fi;\
+	else \
+		echo "Skipping Sandpiper Execution in CI";\
+	fi
 	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
-dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
+dv-targets-gl-sdf=$(dv_patterns	q:%=verify-%-gl-sdf)
 
 TARGET_PATH=$(shell pwd)
 verify_command="source ~/.bashrc && cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
