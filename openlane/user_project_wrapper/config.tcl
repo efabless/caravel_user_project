@@ -54,13 +54,13 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+	$script_dir/../../verilog/rtl/counter_option1.sv"
 
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/user_proj_example.lef"
+	$script_dir/../../lef/counter_option1.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/user_proj_example.gds"
+	$script_dir/../../gds/counter_option1.gds"
 
 # set ::env(GLB_RT_MAXLAYER) 5
 set ::env(RT_MAX_LAYER) {met4}
@@ -70,7 +70,7 @@ set ::env(RT_MAX_LAYER) {met4}
 set ::env(FP_PDN_CHECK_NODES) 0
 
 # The following is because there are no std cells in the example wrapper project.
-set ::env(SYNTH_TOP_LEVEL) 1
+set ::env(SYNTH_TOP_LEVEL) 0
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1
 
 set ::env(PL_RESIZER_DESIGN_OPTIMIZATIONS) 0
