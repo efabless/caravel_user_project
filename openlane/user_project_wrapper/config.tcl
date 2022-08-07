@@ -54,7 +54,7 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/counter_option1.sv"
+	$script_dir/../../verilog/rtl/counter_option1.v"
 
 set ::env(EXTRA_LEFS) "\
 	$script_dir/../../lef/counter_option1.lef"
