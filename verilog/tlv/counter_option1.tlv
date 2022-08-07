@@ -43,7 +43,7 @@
     output [2:0] irq
     );
    
-   logic clk;
+   wire clk;
 
 \TLV
    // WB MI A

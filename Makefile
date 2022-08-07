@@ -84,12 +84,12 @@ tlv_path=$(shell cd verilog/tlv && pwd)
 $(blocks): % :
 	@if [ -v ${CI} ]; then\
 		if [ -f $(tlv_path)/$@.tlv ]; then\
-				if [ -f $(rtl_path)/$@.sv ]; then\
-					if [ $(tlv_path)/$@.tlv -nt  $(rtl_path)/$@.sv ]; then\
-						sandpiper-saas -o $@.sv -i $(tlv_path)/$@.tlv --outdir $(rtl_path) --sv_url_inc;\
+				if [ -f $(rtl_path)/$@.v ]; then\
+					if [ $(tlv_path)/$@.tlv -nt  $(rtl_path)/$@.v ]; then\
+						sandpiper-saas -o $@.v -i $(tlv_path)/$@.tlv -pverilog --outdir $(rtl_path) --sv_url_inc;\
 					fi;\
 				else \
-					sandpiper-saas -o $@.sv -i $(tlv_path)/$@.tlv --outdir $(rtl_path) --sv_url_inc;\
+					sandpiper-saas -o $@.v -i $(tlv_path)/$@.tlv -pverilog --outdir $(rtl_path) --sv_url_inc;\
 				fi;\
 			fi;\
 	else \

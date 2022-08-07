@@ -22,7 +22,7 @@ set ::env(DESIGN_NAME) counter_option2
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/counter_option2.sv"
+	$script_dir/../../verilog/rtl/counter_option2.v"
 
 set ::env(DESIGN_IS_CORE) 0
 

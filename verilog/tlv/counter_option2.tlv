@@ -141,11 +141,8 @@
        input [BITS-1:0] la_input,
        output reg ready,
        output reg [BITS-1:0] rdata,
-       output [BITS-1:0] count
+       output reg [BITS-1:0] count
    );
-       reg ready;
-       reg [BITS-1:0] count;
-       reg [BITS-1:0] rdata;
    
        always @(posedge clk) begin
            if (reset) begin
