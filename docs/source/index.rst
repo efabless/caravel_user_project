@@ -234,7 +234,7 @@ User Project Wrapper Requirements
 
 Your hardened ``user_project_wrapper`` must match the `golden user_project_wrapper <https://github.com/efabless/caravel/blob/master/gds/user_project_wrapper_empty.gds.gz>`__ in the following: 
 
-- Area ``(2.920um x 3.520um)``
+- Area ``(2.920mm x 3.520mm)``
 - Top module name ``"user_project_wrapper"``
 - Pin Placement
 - Pin Sizes 
