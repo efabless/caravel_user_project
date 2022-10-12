@@ -60,7 +60,7 @@ list:
 
 .PHONY: $(designs)
 $(designs) : export current_design=$@
-$(designs) : % : ./%/config.tcl
+$(designs) : % : ./%/config.json
 ifneq (,$(wildcard ./$(current_design)/interactive.tcl))
 	$(docker_run) \
 		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive)
