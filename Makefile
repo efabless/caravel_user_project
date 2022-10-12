@@ -20,19 +20,25 @@ PRECHECK_ROOT?=${HOME}/mpw_precheck
 MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
-export SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-export OPEN_PDKS_COMMIT?=41c0908b47130d5675ff8484255b43f66463a7d6
-export OPENLANE_TAG=2022.07.02_01.38.08
+#export SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+#export OPEN_PDKS_COMMIT?=41c0908b47130d5675ff8484255b43f66463a7d6
+#export OPENLANE_TAG=2022.07.02_01.38.08
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
 # PDK switch varient
 export PDK?=sky130B
+#export PDK?=gf180mcu
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
+
 
 MPW_TAG ?= mpw-7a
 
+ifeq ($(PDK),sky130B)
+	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+	OPEN_PDKS_COMMIT?=41c0908b47130d5675ff8484255b43f66463a7d6
+	OPENLANE_TAG=2022.07.02_01.38.08
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -42,6 +48,8 @@ else
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel
 	CARAVEL_TAG := $(MPW_TAG)
+endif
+
 endif
 
 # Include Caravel Makefile Targets

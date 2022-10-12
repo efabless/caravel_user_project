@@ -1,0 +1,39 @@
+{
+    "DESIGN_NAME": "user_proj_example",
+    "VERILOG_FILES": "::env(CARAVEL_ROOT)/verilog/rtl/defines.v \\\n\t$script_dir/../../verilog/rtl/user_proj_example.v",
+
+    "CLOCK_PERIOD": 10,
+    "CLOCK_PORT": "wb_clk_i",
+    "CLOCK_NET": "counter.clk",
+    "FP_SIZING": "absolute",
+    "DIE_AREA": "0 0 900 600",
+    "FP_PIN_ORDER_CFG": "pin_order.cfg",
+    "PL_BASIC_PLACEMENT": 0,
+    "PL_TARGET_DENSITY": 0.55,
+    "RT_MAX_LAYER": "{met4}",
+    "pdk::sky130*": {
+        "FP_CORE_UTIL": 45,
+        "scl::sky130_fd_sc_hd": {
+            "CLOCK_PERIOD": 10
+        },
+        "scl::sky130_fd_sc_hdll": {
+            "CLOCK_PERIOD": 10
+        },
+        "scl::sky130_fd_sc_hs": {
+            "CLOCK_PERIOD": 8
+        },
+        "scl::sky130_fd_sc_ls": {
+            "CLOCK_PERIOD": 10,
+            "SYNTH_MAX_FANOUT": 5
+        },
+        "scl::sky130_fd_sc_ms": {
+            "CLOCK_PERIOD": 10
+        }
+    },
+    "pdk::gf180mcuC": {
+        "CLOCK_PERIOD": 24.0,
+        "FP_CORE_UTIL": 40,
+        "SYNTH_MAX_FANOUT": 4,
+        "PL_TARGET_DENSITY": 0.45
+    }
+}
