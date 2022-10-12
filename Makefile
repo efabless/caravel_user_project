@@ -50,6 +50,10 @@ else
 	CARAVEL_TAG := $(MPW_TAG)
 endif
 
+else
+
+	OPENLANE_TAG=2022.10.10
+
 endif
 
 # Include Caravel Makefile Targets
