@@ -31,6 +31,7 @@
         }
     },
     "pdk::gf180mcuC": {
+        "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
         "CLOCK_PERIOD": 24.0,
         "FP_CORE_UTIL": 40,
         "SYNTH_MAX_FANOUT": 4,
