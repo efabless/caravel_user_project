@@ -10,7 +10,7 @@
     "EXTRA_LEFS": "/home/jeffdi/caravel_user_project_gf/lef/user_proj_example.lef",
     "EXTRA_GDS_FILES": "/home/jeffdi/caravel_user_project_gf/gds/user_proj_example.gds",
     "FP_PDN_CHECK_NODES": 0,
-    "SYNTH_TOP_LEVEL": 1,
+    "SYNTH_ELABORATE_ONLY": 1,
     "PL_RANDOM_GLB_PLACEMENT": 1,
     "PL_RESIZER_DESIGN_OPTIMIZATIONS": 0,
     "PL_RESIZER_TIMING_OPTIMIZATIONS": 0,
