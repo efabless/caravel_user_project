@@ -6,7 +6,7 @@
     "CLOCK_NET": "mprj.clk",
     "FP_PDN_MACRO_HOOKS": "mprj vccd1 vssd1 vccd1 vssd1",
     "MACRO_PLACEMENT_CFG": "/home/jeffdi/caravel_user_project_gf/openlane/user_proj_example/macro.cfg",
-    "VERILOG_FILES_BLACKBOX": "/home/jeffdi/caravel-gf180mcu/verilog/rtl/defines.v /home/jeffdi/caravel_user_project_gf/verilog/rtl/user_project_wrapper.v",
+    "VERILOG_FILES_BLACKBOX": "/home/jeffdi/caravel-gf180mcu/verilog/rtl/defines.v /home/jeffdi/caravel_user_project_gf/verilog/rtl/user_proj_example.v",
     "EXTRA_LEFS": "/home/jeffdi/caravel_user_project_gf/lef/user_proj_example.lef",
     "EXTRA_GDS_FILES": "/home/jeffdi/caravel_user_project_gf/gds/user_proj_example.gds",
     "FP_PDN_CHECK_NODES": 0,
