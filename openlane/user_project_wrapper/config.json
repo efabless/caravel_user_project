@@ -49,7 +49,6 @@
     "VDD_NETS": ["vccd1", "vccd2","vdda1","vdda2"],
     "GND_NETS": ["vssd1", "vssd2","vssa1","vssa2"],
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
-    "FP_DEF_TEMPLATE": "/home/jeffdi/caravel_user_project_gf/openlane/user_project_wrapper/fixed_dont_change/user_project_wrapper_gf180mcu.def",
     "pdk::sky130*": {
         "RT_MAX_LAYER": "met4",
         "scl::sky130_fd_sc_hd": {
@@ -68,9 +67,19 @@
         "scl::sky130_fd_sc_ms": {
             "CLOCK_PERIOD": 10
         }
-    },
+     },
     "pdk::gf180mcuC": {
         "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
-        "RT_MAX_LAYER": "Metal4"
-    }
+        "FP_PDN_CHECK_NODES": 0,
+        "FP_PDN_ENABLE_RAILS": 0,
+        "RT_MAX_LAYER": "Metal4",
+        "DIE_AREA": "0 0 3000 3000",
+        "FP_PIN_ORDER_CFG": "/home/jeffdi/caravel_user_project_gf/openlane/user_project_wrapper/pin_order.cfg",
+        "PL_OPENPHYSYN_OPTIMIZATIONS": 0,
+        "DIODE_INSERTION_STRATEGY": 0,
+        "FP_PDN_CHECK_NODES": 0,
+        "MAGIC_WRITE_FULL_LEF": 0,
+        "FP_PDN_ENABLE_RAILS": 0,
+        "GLB_RT_OBS": "Metal1 0 0 ref::$DIE_AREA, Metal2 0 0 ref::$DIE_AREA, Metal3 0 0 ref::$DIE_AREA, Metal4 0 0 ref::$DIE_AREA, Metal5 0 0 ref::$DIE_AREA"
+   }
 }
