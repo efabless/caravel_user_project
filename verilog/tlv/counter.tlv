@@ -6,7 +6,7 @@
    // Including the top level wrapper
    m4_sv_include_url(['https://raw.githubusercontent.com/ALI11-2000/caravel_user_project_tlv/TL-Verilog-v0/verilog/rtl/user_project_wrapper.v'])
    // Including the top level makerchip testbench
-   m4_sv_include_url(['https://raw.githubusercontent.com/ALI11-2000/caravel_user_project_tlv/TL-Verilog-v0/verilog/dv/makerchip/counter_tb.sv'])
+   m4_sv_include_url(['https://raw.githubusercontent.com/ALI11-2000/caravel_user_project_tlv/TL-Verilog-v0/verilog/dv/makerchip/makerchip_tb.sv'])
    '])                            
    
    module counter #(

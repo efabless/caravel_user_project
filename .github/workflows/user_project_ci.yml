@@ -139,10 +139,13 @@ jobs:
           make install_mcw
           make openlane
           make simenv
+          make sandpiper
+          touch ~/.makerchip_accepted
 
       - name: Harden using Openlane
         run: |
           make user_proj_example
+          make counter
           make user_project_wrapper
 
       - name: Run DV RTL tests
@@ -201,10 +204,13 @@ jobs:
           make install_mcw
           make openlane
           make simenv
+          make sandpiper
+          touch ~/.makerchip_accepted
 
       - name: Harden using Openlane
         run: |
           make user_proj_example
+          make counter
           make user_project_wrapper
 
       - name: Run DV RTL tests
