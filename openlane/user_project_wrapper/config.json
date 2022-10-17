@@ -80,6 +80,6 @@
         "FP_PDN_CHECK_NODES": 0,
         "MAGIC_WRITE_FULL_LEF": 0,
         "FP_PDN_ENABLE_RAILS": 0,
-        "GRT_OBS": "Metal1 0 0 $DIE_AREA, Metal2 0 0 $DIE_AREA, Metal3 0 0 $DIE_AREA, Metal4 0 0 $DIE_AREA, Metal5 0 0 $DIE_AREA"
+        "GRT_OBS": "Metal1 0 0 3000 3000, Metal2 0 0 3000 3000, Metal3 0 0 3000 3000, Metal4 0 0 3000 3000, Metal5 0 0 3000 3000"
    }
 }
