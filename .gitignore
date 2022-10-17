@@ -6,3 +6,5 @@
 *.lst
 *.vcd
 *.gtkw
+*.bak
+*/*/gen/*

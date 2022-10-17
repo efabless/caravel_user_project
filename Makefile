@@ -63,13 +63,33 @@ install:
 simenv:
 	docker pull efabless/dv:latest
 
+# Install Sandpiper 
+.PHONY: sandpiper
+sandpiper:
+	python3 -m pip install --upgrade sandpiper-saas
+
+# Install Makerchip 
+.PHONY: makerchip
+makerchip:
+	python3 -m pip install --upgrade makerchip-app
+
 .PHONY: setup
-setup: install check-env install_mcw openlane pdk-with-volare
+setup: install check-env install_mcw openlane pdk-with-volare sandpiper makerchip
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+tlv_path=$(shell cd verilog/tlv && pwd)
 .PHONY: $(blocks)
 $(blocks): % :
+	@if [ -f $(tlv_path)/$@.tlv ]; then\
+		if [ -f $(tlv_path)/gen/$@.v ]; then\
+			if [ $(tlv_path)/$@.tlv -nt  $(tlv_path)/gen/$@.v ]; then\
+				sandpiper-saas -o $@.v -i $(tlv_path)/$@.tlv  --outdir $(tlv_path)/gen/ --sv_url_inc --inlineGen --noline --hdl verilog;\
+			fi;\
+		else \
+			sandpiper-saas -o $@.v -i $(tlv_path)/$@.tlv  --outdir $(tlv_path)/gen/ --sv_url_inc --inlineGen --noline --hdl verilog ;\
+		fi;\
+	fi
 	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
@@ -88,7 +108,7 @@ docker_run_verify=\
 		-e TOOLS=/foss/tools/riscv-gnu-toolchain-rv32i/217e7f3debe424d61374d31e33a091a630535937 \
 		-e DESIGNS=$(TARGET_PATH) \
 		-e PDK=$(PDK) \
-		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e CORE_VERILOG_PATH=$(MCW_ROOT)/verilog \
 		-e MCW_ROOT=$(MCW_ROOT) \
 		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv:latest \
 		sh -c $(verify_command)

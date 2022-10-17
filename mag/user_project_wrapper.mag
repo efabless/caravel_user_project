@@ -1,7 +1,7 @@
 magic
 tech sky130B
 magscale 1 2
-timestamp 1657065155
+timestamp 1665911750
 << metal1 >>
 rect 71774 702992 71780 703044
 rect 71832 703032 71838 703044
@@ -67510,7 +67510,7 @@ rect 573882 -7622 592062 -7386
 rect 592298 -7622 592382 -7386
 rect 592618 -7622 592650 -7386
 rect -8726 -7654 592650 -7622
-use user_proj_example  mprj
+use counter  mprj
 timestamp 0
 transform 1 0 235000 0 1 338000
 box 1066 0 178886 120000
