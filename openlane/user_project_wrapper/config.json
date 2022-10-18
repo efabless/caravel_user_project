@@ -1,6 +1,6 @@
 {
     "DESIGN_NAME": "user_project_wrapper",
-    "VERILOG_FILES": ["dir::project_root/verilog/rtl/defines.v", "dir::project_root/verilog/rtl/user_project_wrapper.v"],
+    "VERILOG_FILES": ["dir::../../verilog/rtl/defines.v", "dir::../../verilog/rtl/user_project_wrapper.v"],
     "CLOCK_PERIOD": 10,
     "CLOCK_PORT": "user_clock2",
     "CLOCK_NET": "mprj.clk",
