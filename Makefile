@@ -52,7 +52,8 @@ endif
 
 else
 
-	OPENLANE_TAG=2022.10.10
+	OPENLANE_TAG=ddfeab57e3e8769ea3d40dda12be0460e09bb6d9
+	#OPENLANE_TAG=2022.10.10
 
 endif
 
