@@ -87,7 +87,7 @@ openlane: check-openlane-env
 		fi
 	git clone https://github.com/The-OpenROAD-Project/OpenLane $(OPENLANE_ROOT) && \
 		cd $(OPENLANE_ROOT) && \
-		git checkout --branch=$(OPENLANE_TAG) && \
+		git checkout $(OPENLANE_TAG) && \
 		export OPENLANE_IMAGE_NAME=efabless/openlane:$(OPENLANE_TAG) && \
 		export IMAGE_NAME=efabless/openlane:$(OPENLANE_TAG) && \
 		$(MAKE) pull-openlane
