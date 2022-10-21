@@ -54,7 +54,7 @@ module user_project_wrapper (user_clock2,
  input [3:0] wbs_sel_i;
 
 
- counter mprj (.vccd1(vccd1),
+ user_proj_example_tlv mprj (.vccd1(vccd1),
     .vssd1(vssd1),
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
