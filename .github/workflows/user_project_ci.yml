@@ -145,7 +145,7 @@ jobs:
       - name: Harden using Openlane
         run: |
           make user_proj_example
-          make counter
+          make user_proj_example_tlv
           make user_project_wrapper
 
       - name: Run DV RTL tests
@@ -210,7 +210,7 @@ jobs:
       - name: Harden using Openlane
         run: |
           make user_proj_example
-          make counter
+          make user_proj_example_tlv
           make user_project_wrapper
 
       - name: Run DV RTL tests
