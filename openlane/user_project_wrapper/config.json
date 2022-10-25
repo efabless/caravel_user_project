@@ -51,6 +51,7 @@
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "pdk::sky130*": {
         "RT_MAX_LAYER": "met4",
+        "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
         "scl::sky130_fd_sc_hd": {
             "CLOCK_PERIOD": 10
         },
