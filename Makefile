@@ -17,7 +17,7 @@ MAKEFLAGS+=--warn-undefined-variables
 
 export CARAVEL_ROOT?=$(PWD)/caravel
 PRECHECK_ROOT?=${HOME}/mpw_precheck
-MCW_ROOT?=$(PWD)/mgmt_core_wrapper
+export MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
