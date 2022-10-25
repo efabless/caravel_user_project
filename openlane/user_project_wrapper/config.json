@@ -75,7 +75,7 @@
         "FP_PDN_ENABLE_RAILS": 0,
         "RT_MAX_LAYER": "Metal4",
         "DIE_AREA": "0 0 3000 3000",
-        "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+        "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper_gf180mcu.def",
         "PL_OPENPHYSYN_OPTIMIZATIONS": 0,
         "DIODE_INSERTION_STRATEGY": 0,
         "FP_PDN_CHECK_NODES": 0,
