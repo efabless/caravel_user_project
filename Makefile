@@ -20,10 +20,6 @@ PRECHECK_ROOT?=${HOME}/mpw_precheck
 MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
-#export SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-#export OPEN_PDKS_COMMIT?=41c0908b47130d5675ff8484255b43f66463a7d6
-#export OPENLANE_TAG=2022.07.02_01.38.08
-
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
