@@ -1,7 +1,7 @@
 {
     "DESIGN_NAME": "user_proj_example",
     "DESIGN_IS_CORE": 0,
-    "VERILOG_FILES": ["dir::project_root/verilog/rtl/defines.v", "dir::project_root/verilog/rtl/user_proj_example.v"],
+    "VERILOG_FILES": ["dir::../../verilog/rtl/defines.v", "dir::../../verilog/rtl/user_proj_example.v"],
     "CLOCK_PERIOD": 10,
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_NET": "counter.clk",
