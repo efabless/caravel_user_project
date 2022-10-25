@@ -48,13 +48,13 @@ endif
 
 else
 
+	MPW_TAG ?= gfmpw-0a
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel-gf180mcu
 	CARAVEL_TAG := $(MPW_TAG)
 	#OPENLANE_TAG=ddfeab57e3e8769ea3d40dda12be0460e09bb6d9
 	export OPEN_PDKS_COMMIT?=0059588eebfc704681dc2368bd1d33d96281d10f
 	export OPENLANE_TAG?=2022.10.20
-	MPW_TAG ?= gfmpw-0a
 
 endif
 
