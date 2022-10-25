@@ -26,7 +26,6 @@
     "FP_PDN_HOFFSET": 5,
     "MAGIC_ZEROIZE_ORIGIN": 0,
     "FP_SIZING": "absolute",
-    "DIE_AREA": "0 0 2920 3520",
     "RUN_CVC": 0,
     "UNIT": 2.4,
     "FP_IO_VEXTEND": "expr::2 * $UNIT",
@@ -51,6 +50,7 @@
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "pdk::sky130*": {
         "RT_MAX_LAYER": "met4",
+        "DIE_AREA": "0 0 2920 3520",
         "FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
         "scl::sky130_fd_sc_hd": {
             "CLOCK_PERIOD": 10
