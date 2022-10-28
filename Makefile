@@ -30,6 +30,22 @@ export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
 
 
+ifeq ($(PDK),sky130A)
+	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+	export OPEN_PDKS_COMMIT?=0059588eebfc704681dc2368bd1d33d96281d10f
+	export OPENLANE_TAG?=2022.10.20
+	MPW_TAG ?= mpw-7d
+
+ifeq ($(CARAVEL_LITE),1)
+	CARAVEL_NAME := caravel-lite
+	CARAVEL_REPO := https://github.com/efabless/caravel-lite
+	CARAVEL_TAG := $(MPW_TAG)
+else
+	CARAVEL_NAME := caravel
+	CARAVEL_REPO := https://github.com/efabless/caravel
+	CARAVEL_TAG := $(MPW_TAG)
+endif
+
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=0059588eebfc704681dc2368bd1d33d96281d10f
