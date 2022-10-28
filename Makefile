@@ -25,7 +25,7 @@ CARAVEL_LITE?=1
 
 # PDK switch varient
 export PDK?=sky130B
-#export PDK?=gf180mcu
+#export PDK?=gf180mcuC
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
 
@@ -46,6 +46,8 @@ else
 	CARAVEL_TAG := $(MPW_TAG)
 endif
 
+endif
+
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=0059588eebfc704681dc2368bd1d33d96281d10f
@@ -62,7 +64,9 @@ else
 	CARAVEL_TAG := $(MPW_TAG)
 endif
 
-else
+endif
+
+ifeq ($(PDK),gf180mcuC)
 
 	MPW_TAG ?= gfmpw-0a
 	CARAVEL_NAME := caravel
