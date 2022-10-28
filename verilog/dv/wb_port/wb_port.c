@@ -19,6 +19,8 @@
 #include <defs.h>
 #include <stub.c>
 
+#define reg_mprj_slave (*(volatile uint32_t*)0x30000000)
+
 /*
 	Wishbone Test:
 		- Configures MPRJ lower 8-IO pins as outputs
