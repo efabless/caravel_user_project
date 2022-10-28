@@ -28,7 +28,6 @@ Table of contents
 
 -  `Overview <#overview>`__
 -  `Quickstart <#quickstart>`__
--  `Install Caravel <#install-caravel>`__
 -  `Caravel Integration <#caravel-integration>`__
 
    -  `Repo Integration <#repo-integration>`__
@@ -155,33 +154,6 @@ Starting your project
 
 #. You are done! now go to https://efabless.com/open_shuttle_program/ to submit your project!
 
-
-Install Caravel
-===============
-
-To setup caravel, run the following:
-
-.. code:: bash
-    
-    git clone https://github.com/efabless/caravel_user_project.git
-    cd caravel_user_project
-    
-    make install
-
-To remove caravel, run
-
-.. code:: bash
-
-    make uninstall
-
-By default
-`caravel-lite <https://github.com/efabless/caravel-lite.git>`__ is
-installed. To install the full version of caravel, run this prior to
-calling make install.
-
-.. code:: bash
-
-    export CARAVEL_LITE=0
 
 Caravel Integration
 ===================
