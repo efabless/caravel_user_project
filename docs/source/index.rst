@@ -89,7 +89,14 @@ Starting your project
 	export PDK_ROOT=$(pwd)/dependencies/pdks # you need to export this whenever you start a new shell
 
 	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
+	
+	# for sky130 MPW shuttles....
 	export PDK=sky130B
+	
+	# for the gf180 GFMPW shuttles...
+	export PDK=gf180mcuC
+
+
 
         make setup
 
@@ -230,23 +237,6 @@ The caravel layout is pre-designed with an empty golden wrapper in the user spac
    
 To make sure that this integration process goes smoothly without having any DRC or LVS issues, your hardened ``user_project_wrapper`` must adhere to a number of requirements listed at `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__ .
 
-
-Building the PDK 
-================
-
-For more information about volare click `here <https://github.com/efabless/volare>`__
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-    
-    # set the PDK variant depending on your shuttle, if you don't know leave it as default
-    export PDK=sky130B
-
-    # use volare to download the pdk
-    # To change the default pdk version you can export OPEN_PDKS_COMMIT=<pdk_commit>
-    make pdk-with-volare 
 
 Running Full Chip Simulation
 ============================
