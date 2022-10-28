@@ -27,7 +27,7 @@ Table of contents
 =================
 
 -  `Overview <#overview>`__
--  `Install Caravel <#install-caravel>`__
+-  `Quickstart <#quickstart>`__
 -  `Caravel Integration <#caravel-integration>`__
 
    -  `Repo Integration <#repo-integration>`__
@@ -59,32 +59,108 @@ Prerequisites
 
 - Python 3.6+ with PIP
 
-Install Caravel
-===============
 
-To setup caravel, run the following:
+Quickstart 
+===========
 
-.. code:: bash
+---------------------
+Starting your project
+---------------------
+
+#. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
+
+   *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
+   *   Clone the reposity using the following command:
+   
+   .. code:: bash
     
-    git clone https://github.com/efabless/caravel_user_project.git
-    cd caravel_user_project
+	git clone <your github repo URL>
+	
+#.  To setup your local environment run:
+
+    .. code:: bash
     
-    make install
+    	cd <project_name> # project_name is the name of your repo
+	
+    	mkdir dependencies
+	
+	export OPENLANE_ROOT=$(pwd)/dependencies/openlane_src # you need to export this whenever you start a new shell
+	
+	export PDK_ROOT=$(pwd)/dependencies/pdks # you need to export this whenever you start a new shell
 
-To remove caravel, run
+	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
+	
+	# for sky130 MPW shuttles....
+	export PDK=sky130B
+	
+	# for the gf180 GFMPW shuttles...
+	export PDK=gf180mcuC
 
-.. code:: bash
 
-    make uninstall
 
-By default
-`caravel-lite <https://github.com/efabless/caravel-lite.git>`__ is
-installed. To install the full version of caravel, run this prior to
-calling make install.
+        make setup
 
-.. code:: bash
+*   This command will setup your environment by installing the following:
+    
+        - caravel_lite (a lite version of caravel)
+        - management core for simulation
+        - openlane to harden your design 
+        - pdk
 
-    export CARAVEL_LITE=0
+	
+#.  Now you can start hardening your design
+
+    *   To start hardening you project you need 
+        - RTL verilog model for your design for OpenLane to harden
+        - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
+
+	.. code:: bash
+
+		make <module_name>	
+	..
+
+		For an example of hardening a project please refer to `user_project_example <https://github.com/efabless/caravel_user_project/blob/main/docs/source/index.rst#hardening-the-user-project-using-openlane>`_
+	
+#.  Integrate modules into the user_project_wrapper
+
+    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
+    *   Harden the user_project_wrapper including your module(s), using this command:
+
+        .. code:: bash
+
+            make user_project_wrapper
+
+#.  Run simulation on your design
+
+    *   You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
+
+        **NOTE:** You shouldn't include the files inside the verilog code
+
+        .. code:: bash
+
+            # you can then run RTL simulations using
+            make verify-<testbench-name>-rtl
+
+            # OR GL simulation using
+            make verify-<testbench-name>-gl
+
+            # OR for GL+SDF simulation using 
+            # sdf annotated simulation is slow
+            make verify-<testbench-name>-gl-sdf
+
+            # for example
+            make verify-io_ports-rtl
+	
+#.  Run the precheck locally 
+
+    .. code:: bash
+
+        make precheck
+        make run-precheck
+
+#. You are done! now go to https://efabless.com/open_shuttle_program/ to submit your project!
+
 
 Caravel Integration
 ===================
@@ -161,23 +237,6 @@ The caravel layout is pre-designed with an empty golden wrapper in the user spac
    
 To make sure that this integration process goes smoothly without having any DRC or LVS issues, your hardened ``user_project_wrapper`` must adhere to a number of requirements listed at `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__ .
 
-
-Building the PDK 
-================
-
-For more information about volare click `here <https://github.com/efabless/volare>`__
-
-.. code:: bash
-
-    # set PDK_ROOT to the path you wish to use for the pdk
-    export PDK_ROOT=<pdk-installation-path>
-    
-    # set the PDK variant depending on your shuttle, if you don't know leave it as default
-    export PDK=sky130B
-
-    # use volare to download the pdk
-    # To change the default pdk version you can export OPEN_PDKS_COMMIT=<pdk_commit>
-    make pdk-with-volare 
 
 Running Full Chip Simulation
 ============================

@@ -59,6 +59,9 @@ Starting your project
 	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
 	export PDK=sky130B
 
+    # for the GFMPW shuttles...
+	export PDK=gf180mcu
+
         make setup
 
 *   This command will setup your environment by installing the following:
