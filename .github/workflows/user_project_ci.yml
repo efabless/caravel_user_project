@@ -47,7 +47,7 @@ jobs:
   mpw_precheck:
     timeout-minutes: 720
     runs-on: ubuntu-latest
-    needs: [pdk]
+    needs: [pdk, user_project_flow_sky130A]
     steps:
       - uses: actions/checkout@v2
 
