@@ -113,9 +113,10 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Export PDK ROOT
-        run: |
-        echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
-        echo "PDKPATH=/home/runner/work/pdk/sky130A" >> $GITHUB_ENV
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+
+      - name: Export PDK PATH
+        run: echo "PDKPATH=/home/runner/work/pdk/sky130A" >> $GITHUB_ENV
 
       - name: Export PDK
         run: echo "PDK=sky130A" >> $GITHUB_ENV
@@ -194,9 +195,10 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Export PDK ROOT
-        run: |
-        echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
-        echo "PDKPATH=/home/runner/work/pdk/sky130B" >> $GITHUB_ENV
+        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+        
+      - name: Export PDK PATH
+        run: echo "PDKPATH=/home/runner/work/pdk/sky130B" >> $GITHUB_ENV
 
       - name: Export PDK
         run: echo "PDK=sky130B" >> $GITHUB_ENV
