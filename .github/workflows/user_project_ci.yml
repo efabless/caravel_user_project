@@ -153,6 +153,8 @@ jobs:
           export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
           export PDKPATH=$PDK_ROOT/sky130A
 
+          git clone --depth=1 -b mpw-7d https://github.com/efabless/mpw_precheck.git
+
           docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_path ${{ env.PDKPATH }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
 
           cnt=$(grep -c "All Checks Passed" "$OUTPUT")
@@ -221,6 +223,23 @@ jobs:
         run: |
           make user_proj_example
           make user_project_wrapper
+
+      - name: run precheck
+        run: |
+          export INPUT_DIRECTORY=$(pwd)
+          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
+          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
+          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
+          export PDKPATH=$PDK_ROOT/sky130B
+
+          git clone --depth=1 -b mpw-7d https://github.com/efabless/mpw_precheck.git
+
+          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_path ${{ env.PDKPATH }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"
+
+          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
+          if ! [[ $cnt ]]; then cnt=0; fi
+          if [[ $cnt -eq 1 ]]; then exit 0; fi
+          exit 2
 
       - name: Run DV RTL tests
         run: |
