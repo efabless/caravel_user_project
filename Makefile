@@ -261,3 +261,37 @@ help:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 
+export CUP_ROOT=$(shell pwd)
+export TIMING_ROOT=$(shell pwd)/deps/timing-scripts
+export CURRENT_PROJECT=$(CUP_ROOT)
+timing-scripts-repo=git@github.com:efabless/timing-scripts.git
+
+$(TIMING_ROOT):
+	git clone $(timing-scripts-repo) $(TIMING_ROOT)
+
+.PHONY: setup-timing-scripts
+setup-timing-scripts: $(TIMING_ROOT)
+	( cd $(TIMING_ROOT) && git pull )
+	#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+	python3 -m venv ./venv 
+	. ./venv/bin/activate && \
+	python3 -m pip install --upgrade pip && \
+	python3 -m pip install -r $(TIMING_ROOT)/requirements.txt && \
+	deactivate
+
+./verilog/gl/user_project_wrapper.v:
+	$(error you don't have $@)
+
+./env/spef-mapping.tcl: $(setup-timing-scripts) ./verilog/gl/user_project_wrapper.v
+	. ./venv/bin/activate && \
+	python3 $(TIMING_ROOT)/scripts/generate_spef_mapping.py \
+		-i ./verilog/gl/user_project_wrapper.v \
+		-o ./env/spef-mapping.tcl \
+		--pdk $(PDK) \
+		--pdk-root $(PDK_ROOT) \
+		--project-root '$$::env(CUP_ROOT)' && \
+	deactivate
+
+.PHONY: caravel-sta
+caravel-sta: ./env/spef-mapping.tcl
+	$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ-nom
