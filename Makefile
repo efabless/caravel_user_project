@@ -262,36 +262,50 @@ help:
 
 
 export CUP_ROOT=$(shell pwd)
-export TIMING_ROOT=$(shell pwd)/deps/timing-scripts
-export CURRENT_PROJECT=$(CUP_ROOT)
+export TIMING_ROOT?=$(shell pwd)/deps/timing-scripts
+export PROJECT_ROOT=$(CUP_ROOT)
 timing-scripts-repo=git@github.com:efabless/timing-scripts.git
 
 $(TIMING_ROOT):
-	git clone $(timing-scripts-repo) $(TIMING_ROOT)
+	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
 
 .PHONY: setup-timing-scripts
 setup-timing-scripts: $(TIMING_ROOT)
-	( cd $(TIMING_ROOT) && git pull )
+	@( cd $(TIMING_ROOT) && git pull )
 	#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
-	python3 -m venv ./venv 
-	. ./venv/bin/activate && \
-	python3 -m pip install --upgrade pip && \
-	python3 -m pip install -r $(TIMING_ROOT)/requirements.txt && \
-	deactivate
+	@python3 -m venv ./venv 
+		. ./venv/bin/activate && \
+		python3 -m pip install --upgrade pip && \
+		python3 -m pip install -r $(TIMING_ROOT)/requirements.txt && \
+		deactivate
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)
 
-./env/spef-mapping.tcl: $(setup-timing-scripts) ./verilog/gl/user_project_wrapper.v
-	. ./venv/bin/activate && \
-	python3 $(TIMING_ROOT)/scripts/generate_spef_mapping.py \
-		-i ./verilog/gl/user_project_wrapper.v \
-		-o ./env/spef-mapping.tcl \
-		--pdk $(PDK) \
-		--pdk-root $(PDK_ROOT) \
-		--project-root '$$::env(CUP_ROOT)' && \
+./env/spef-mapping.tcl: $(TIMING_ROOT) ./verilog/gl/user_project_wrapper.v
+	@. ./venv/bin/activate && \
+		python3 $(TIMING_ROOT)/scripts/generate_spef_mapping.py \
+			-i ./verilog/gl/user_project_wrapper.v \
+			-o ./env/spef-mapping.tcl \
+			--pdk-path $(PDK_ROOT)/$(PDK) \
+			--project-root "$(CUP_ROOT)" && \
+		deactivate
+
+.PHONY: extract-parasitics
+extract-parasitics: $(TIMING_ROOT) ./verilog/gl/user_project_wrapper.v
+	@. ./venv/bin/activate && \
+	python3 $(TIMING_ROOT)/scripts/get_macros.py \
+	-i ./verilog/gl/user_project_wrapper.v \
+	-o ./tmp-macros-list \
+	--pdk-path $(PDK_ROOT)/$(PDK) && \
 	deactivate
+	@cat ./tmp-macros-list | cut -d " " -f2 \
+		| xargs -I % bash -c "$(MAKE) -C $(TIMING_ROOT) \
+			-f $(TIMING_ROOT)/timing.mk rcx-% || echo 'Cannot extract %. Probably no def for this macro'"
+	
 
 .PHONY: caravel-sta
 caravel-sta: ./env/spef-mapping.tcl
-	$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ-nom
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-nom
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow
