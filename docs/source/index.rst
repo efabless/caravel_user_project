@@ -119,7 +119,7 @@ Starting your project
            make <module_name>	
         ..
 
-		For an example of hardening a project please refer to :ref:`Hardening the User Project using OpenLane` .
+		For an example of hardening a project please refer to `Hardening the User Project using OpenLane`_. .
 	
 #.  Integrate modules into the user_project_wrapper
 
