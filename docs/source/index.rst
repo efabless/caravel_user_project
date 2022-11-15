@@ -72,9 +72,9 @@ Starting your project
    *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
    *   Clone the reposity using the following command:
    
-   .. code:: bash
-    
-	git clone <your github repo URL>
+       .. code:: bash
+        
+    	git clone <your github repo URL>
 	
 #.  To setup your local environment run:
 
@@ -100,12 +100,12 @@ Starting your project
 
         make setup
 
-*   This command will setup your environment by installing the following:
+*   This command will setup your environment by installing the following
     
-        - caravel_lite (a lite version of caravel)
-        - management core for simulation
-        - openlane to harden your design 
-        - pdk
+    - caravel_lite (a lite version of caravel)
+    - management core for simulation
+    - openlane to harden your design 
+    - pdk
 
 	
 #.  Now you can start hardening your design
@@ -114,12 +114,12 @@ Starting your project
         - RTL verilog model for your design for OpenLane to harden
         - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
 
-	.. code:: bash
+        .. code:: bash
 
-		make <module_name>	
-	..
+           make <module_name>	
+        ..
 
-		For an example of hardening a project please refer to :ref:`Hardening the User Project using OpenLane`.
+		For an example of hardening a project please refer to :ref:`Hardening the User Project using OpenLane` .
 	
 #.  Integrate modules into the user_project_wrapper
 
