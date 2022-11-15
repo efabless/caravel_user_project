@@ -165,6 +165,7 @@ Starting your project
 Caravel Integration
 ===================
 
+----------------
 Repo Integration
 ----------------
 
@@ -189,6 +190,7 @@ corresponding files:
 
 The symbolic links are automatically set when you run ``make install``.
 
+-------------------
 Verilog Integration
 -------------------
 
@@ -224,6 +226,7 @@ for more information.
    </p>
 
 
+-------------------
 Layout Integration
 -------------------
 
@@ -323,6 +326,7 @@ To make sure that you adhere to these requirements, we run an exclusive-or (XOR)
 Hardening the User Project using OpenLane
 ==========================================
 
+---------------------
 OpenLane Installation 
 ---------------------
 
@@ -342,6 +346,7 @@ For detailed instructions on the openlane and the pdk installation refer
 to
 `README <https://github.com/The-OpenROAD-Project/OpenLane#setting-up-openlane>`__.
 
+-----------------
 Hardening Options 
 -----------------
 
@@ -376,7 +381,7 @@ openlane:
 
 For more details on hardening macros using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
 
-
+-----------------
 Running OpenLane 
 -----------------
 
