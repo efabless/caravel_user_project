@@ -294,16 +294,15 @@ setup-timing-scripts: $(TIMING_ROOT)
 .PHONY: extract-parasitics
 extract-parasitics: $(TIMING_ROOT) ./verilog/gl/user_project_wrapper.v
 	@. ./venv/bin/activate && \
-	python3 $(TIMING_ROOT)/scripts/get_macros.py \
-	-i ./verilog/gl/user_project_wrapper.v \
-	-o ./tmp-macros-list \
-	--pdk-path $(PDK_ROOT)/$(PDK) && \
-	deactivate
-	@cat ./tmp-macros-list | cut -d " " -f2 \
-		| xargs -I % bash -c "$(MAKE) -C $(TIMING_ROOT) \
-			-f $(TIMING_ROOT)/timing.mk rcx-% || echo 'Cannot extract %. Probably no def for this macro'"
+		python3 $(TIMING_ROOT)/scripts/get_macros.py \
+		-i ./verilog/gl/user_project_wrapper.v \
+		-o ./tmp-macros-list \
+		--pdk-path $(PDK_ROOT)/$(PDK) && \
+		deactivate
+		@cat ./tmp-macros-list | cut -d " " -f2 \
+			| xargs -I % bash -c "$(MAKE) -C $(TIMING_ROOT) \
+				-f $(TIMING_ROOT)/timing.mk rcx-% || echo 'Cannot extract %. Probably no def for this macro'"
 	
-
 .PHONY: caravel-sta
 caravel-sta: ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-nom
