@@ -24,7 +24,7 @@ SIM?=RTL
 CARAVEL_LITE?=1
 
 # PDK switch varient
-export PDK?=sky130B
+export PDK?=sky130A
 #export PDK?=gf180mcuC
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
@@ -98,7 +98,7 @@ simenv:
 	docker pull efabless/dv:latest
 
 .PHONY: setup
-setup: install check-env install_mcw openlane pdk-with-volare
+setup: install check-env install_mcw openlane pdk-with-volare setup-timing-scripts
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -261,3 +261,64 @@ help:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 
+export CUP_ROOT=$(shell pwd)
+export TIMING_ROOT?=$(shell pwd)/deps/timing-scripts
+export PROJECT_ROOT=$(CUP_ROOT)
+timing-scripts-repo=git@github.com:efabless/timing-scripts.git
+
+$(TIMING_ROOT):
+	@mkdir -p $(CUP_ROOT)/deps
+	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
+
+.PHONY: setup-timing-scripts
+setup-timing-scripts: $(TIMING_ROOT)
+	@( cd $(TIMING_ROOT) && git pull )
+	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+	@python3 -m venv ./venv 
+		. ./venv/bin/activate && \
+		python3 -m pip install --upgrade pip && \
+		python3 -m pip install -r $(TIMING_ROOT)/requirements.txt && \
+		deactivate
+
+./verilog/gl/user_project_wrapper.v:
+	$(error you don't have $@)
+
+./env/spef-mapping.tcl: 
+	@echo "run the following:"
+	@echo "make extract-parasitics"
+	@echo "make create-spef-mapping"
+	exit 1
+
+.PHONY: create-spef-mapping
+create-spef-mapping: ./verilog/gl/user_project_wrapper.v
+	@. ./venv/bin/activate && \
+		python3 $(TIMING_ROOT)/scripts/generate_spef_mapping.py \
+			-i ./verilog/gl/user_project_wrapper.v \
+			-o ./env/spef-mapping.tcl \
+			--pdk-path $(PDK_ROOT)/$(PDK) \
+			--macro-parent mprj \
+			--project-root "$(CUP_ROOT)" && \
+		deactivate
+
+.PHONY: extract-parasitics
+extract-parasitics: ./verilog/gl/user_project_wrapper.v
+	@. ./venv/bin/activate && \
+		python3 $(TIMING_ROOT)/scripts/get_macros.py \
+		-i ./verilog/gl/user_project_wrapper.v \
+		-o ./tmp-macros-list \
+		--project-root "$(CUP_ROOT)" \
+		--pdk-path $(PDK_ROOT)/$(PDK) && \
+		deactivate
+		@cat ./tmp-macros-list | cut -d " " -f2 \
+			| xargs -I % bash -c "$(MAKE) -C $(TIMING_ROOT) \
+				-f $(TIMING_ROOT)/timing.mk rcx-% || echo 'Cannot extract %. Probably no def for this macro'"
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk rcx-user_project_wrapper
+	@cat ./tmp-macros-list
+	@rm ./tmp-macros-list
+	
+.PHONY: caravel-sta
+caravel-sta: ./env/spef-mapping.tcl
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow
+	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"

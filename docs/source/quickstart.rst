@@ -117,6 +117,28 @@ Starting your project
 
             # for example
             make verify-io_ports-rtl
+
+#.  Run opensta on your design
+
+    *   Extract spefs for ``user_project_wrapper`` and macros inside it:
+
+        .. code:: bash
+
+            make extract-parasitics
+
+    *   Create spef mapping file that maps instance names to spef files:
+
+        .. code:: bash
+
+            make create-spef-mapping
+
+    *   Run opensta:
+
+        .. code:: bash
+
+            make caravel-sta
+
+	
 	
 #.  Run the precheck locally 
 

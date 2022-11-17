@@ -72,9 +72,9 @@ Starting your project
    *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
    *   Clone the reposity using the following command:
    
-   .. code:: bash
-    
-	git clone <your github repo URL>
+       .. code:: bash
+        
+    	git clone <your github repo URL>
 	
 #.  To setup your local environment run:
 
@@ -100,12 +100,12 @@ Starting your project
 
         make setup
 
-*   This command will setup your environment by installing the following:
+*   This command will setup your environment by installing the following
     
-        - caravel_lite (a lite version of caravel)
-        - management core for simulation
-        - openlane to harden your design 
-        - pdk
+    - caravel_lite (a lite version of caravel)
+    - management core for simulation
+    - openlane to harden your design 
+    - pdk
 
 	
 #.  Now you can start hardening your design
@@ -114,12 +114,12 @@ Starting your project
         - RTL verilog model for your design for OpenLane to harden
         - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
 
-	.. code:: bash
+        .. code:: bash
 
-		make <module_name>	
-	..
+           make <module_name>	
+        ..
 
-		For an example of hardening a project please refer to :ref:`Hardening the User Project using OpenLane`.
+		For an example of hardening a project please refer to `Hardening the User Project using OpenLane`_. .
 	
 #.  Integrate modules into the user_project_wrapper
 
@@ -151,6 +151,28 @@ Starting your project
 
             # for example
             make verify-io_ports-rtl
+
+#.  Run opensta on your design
+
+    *   Extract spefs for ``user_project_wrapper`` and macros inside it:
+
+        .. code:: bash
+
+            make extract-parasitics
+
+    *   Create spef mapping file that maps instance names to spef files:
+
+        .. code:: bash
+
+            make create-spef-mapping
+
+    *   Run opensta:
+
+        .. code:: bash
+
+            make caravel-sta
+
+        **NOTE:** To update timing scripts run ``make setup-timing-scripts``
 	
 #.  Run the precheck locally 
 
@@ -165,6 +187,7 @@ Starting your project
 Caravel Integration
 ===================
 
+----------------
 Repo Integration
 ----------------
 
@@ -189,6 +212,7 @@ corresponding files:
 
 The symbolic links are automatically set when you run ``make install``.
 
+-------------------
 Verilog Integration
 -------------------
 
@@ -224,6 +248,7 @@ for more information.
    </p>
 
 
+-------------------
 Layout Integration
 -------------------
 
@@ -323,6 +348,7 @@ To make sure that you adhere to these requirements, we run an exclusive-or (XOR)
 Hardening the User Project using OpenLane
 ==========================================
 
+---------------------
 OpenLane Installation 
 ---------------------
 
@@ -342,6 +368,7 @@ For detailed instructions on the openlane and the pdk installation refer
 to
 `README <https://github.com/The-OpenROAD-Project/OpenLane#setting-up-openlane>`__.
 
+-----------------
 Hardening Options 
 -----------------
 
@@ -376,7 +403,7 @@ openlane:
 
 For more details on hardening macros using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
 
-
+-----------------
 Running OpenLane 
 -----------------
 
