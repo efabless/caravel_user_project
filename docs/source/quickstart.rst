@@ -120,6 +120,12 @@ Starting your project
 
 #.  Run opensta on your design
 
+    *   Setup timing scripts:
+    
+        .. code:: bash
+	
+	    make setup-timing-scripts
+	    
     *   Extract spefs for ``user_project_wrapper`` and macros inside it:
 
         .. code:: bash
