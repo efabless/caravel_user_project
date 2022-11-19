@@ -39,6 +39,7 @@ Table of contents
 -  `User Project Wrapper Requirements <#user-project-wrapper-requirements>`__
 -  `Hardening the User Project using
    Openlane <#hardening-the-user-project-using-openlane>`__
+-  `Running Timing Analysis on Existing Projects <#running-timing-analysis-on-existing-projects>`__
 -  `Checklist for Open-MPW
    Submission <#checklist-for-open-mpw-submission>`__
 
@@ -491,6 +492,38 @@ Then, you can run the precheck by running
    make run-precheck
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
+
+Running Timing Analysis on Existing Projects
+========================================================
+
+Start by updating the Makefile for your project.  Starting in the project root...
+
+.. code:: bash
+  
+   curl -k https://raw.githubusercontent.com/efabless/caravel_user_project/main/Makefile > Makefile
+   
+   make setup-timing-scripts
+   
+   make install
+   
+   make install_mcw
+   
+
+This will update Caravel design files and install the scripts for running timing. 
+
+
+Then, you can run then run timing by the following...
+
+.. code:: bash
+
+   make extract-parasitics
+   
+   make create-spef-mapping
+   
+   make caravel-sta
+   
+
+A summary of timing results is provided at the end of the flow. 
 
 
 Other Miscellaneous Targets
