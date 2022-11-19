@@ -32,6 +32,7 @@ Table of contents
 
    -  `Repo Integration <#repo-integration>`__
    -  `Verilog Integration <#verilog-integration>`__
+   -  `GPIO Configuration <#gpio-configuration>`__
    -  `Layout Integration <#layout-integration>`__
 
 -  `Running Full Chip Simulation <#running-full-chip-simulation>`__
