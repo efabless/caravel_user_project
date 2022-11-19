@@ -32,6 +32,7 @@ Table of contents
 
    -  `Repo Integration <#repo-integration>`__
    -  `Verilog Integration <#verilog-integration>`__
+   -  `GPIO Configuration <#gpio-configuration>`__
    -  `Layout Integration <#layout-integration>`__
 
 -  `Running Full Chip Simulation <#running-full-chip-simulation>`__
@@ -247,6 +248,40 @@ for more information.
 
    </p>
 
+-------------------
+GPIO Configuration
+-------------------
+
+You are required to specify the power-on default configuration for each GPIO in Caravel.  The default configuration provide the state the GPIO will come up on power up.  The configuration can be changed by the management SoC during firmware execution.
+
+Configuration settings define whether the GPIO is configured to connect to the user project area or the managment SoC.  They also determine whether IOs are inputs or outputs, digital or analog, as well as whether pull-up or pull-down resistors are configured for inputs.
+
+GPIOs are configured by assigning predefined values for each IO in the file `verilog/rtl/user_defines.v <https://github.com/efabless/caravel_user_project/blob/main/verilog/rtl/user_defines.v>`_ in your project.
+
+You need to assigned configuration values for GPIO[5] thru GPIO[37]. 
+
+GPIO[0] thru GPIO[4] are preset and cannot be changed.
+
+The following values are redefined for assigning to GPIOs.
+
+
+- GPIO_MODE_MGMT_STD_INPUT_NOPULL
+- GPIO_MODE_MGMT_STD_INPUT_PULLDOWN
+- GPIO_MODE_MGMT_STD_INPUT_PULLUP
+- GPIO_MODE_MGMT_STD_OUTPUT
+- GPIO_MODE_MGMT_STD_BIDIRECTIONAL
+- GPIO_MODE_MGMT_STD_ANALOG
+
+- GPIO_MODE_USER_STD_INPUT_NOPULL
+- GPIO_MODE_USER_STD_INPUT_PULLDOWN
+- GPIO_MODE_USER_STD_INPUT_PULLUP
+- GPIO_MODE_USER_STD_OUTPUT
+- GPIO_MODE_USER_STD_BIDIRECTIONAL
+- GPIO_MODE_USER_STD_OUT_MONITORED 
+- GPIO_MODE_USER_STD_ANALOG
+
+
+MPW_Prececk includes a check to confirm each GPIO is assigned a valid value.
 
 -------------------
 Layout Integration
