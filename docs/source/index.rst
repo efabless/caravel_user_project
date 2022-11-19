@@ -263,22 +263,22 @@ GPIO[0] thru GPIO[4] are preset and cannot be changed.
 
 The following values are redefined for assigning to GPIOs.
 
-|                                    |
-|------------------------------------|
-|GPIO_MODE_MGMT_STD_INPUT_NOPULL     |
-|GPIO_MODE_MGMT_STD_INPUT_PULLDOWN   |
-|GPIO_MODE_MGMT_STD_INPUT_PULLUP     |
-|GPIO_MODE_MGMT_STD_OUTPUT           |
-|GPIO_MODE_MGMT_STD_BIDIRECTIONAL    |
-|GPIO_MODE_MGMT_STD_ANALOG           |
-|                                    |
-|GPIO_MODE_USER_STD_INPUT_NOPULL     |
-|GPIO_MODE_USER_STD_INPUT_PULLDOWN   |
-|GPIO_MODE_USER_STD_INPUT_PULLUP     |
-|GPIO_MODE_USER_STD_OUTPUT           |
-|GPIO_MODE_USER_STD_BIDIRECTIONAL    |
-|GPIO_MODE_USER_STD_OUT_MONITORED    | 
-|GPIO_MODE_USER_STD_ANALOG           |
++-------------------------------------+
+| GPIO_MODE_MGMT_STD_INPUT_NOPULL     |
+| GPIO_MODE_MGMT_STD_INPUT_PULLDOWN   |
+| GPIO_MODE_MGMT_STD_INPUT_PULLUP     |
+| GPIO_MODE_MGMT_STD_OUTPUT           |
+| GPIO_MODE_MGMT_STD_BIDIRECTIONAL    |
+| GPIO_MODE_MGMT_STD_ANALOG           |
++-------------------------------------+
+| GPIO_MODE_USER_STD_INPUT_NOPULL     |
+| GPIO_MODE_USER_STD_INPUT_PULLDOWN   |
+| GPIO_MODE_USER_STD_INPUT_PULLUP     |
+| GPIO_MODE_USER_STD_OUTPUT           |
+| GPIO_MODE_USER_STD_BIDIRECTIONAL    |
+| GPIO_MODE_USER_STD_OUT_MONITORED    | 
+| GPIO_MODE_USER_STD_ANALOG           |
++-------------------------------------+
 
 MPW_Prececk includes a check to confirm each GPIO is assigned a valid value.
 
