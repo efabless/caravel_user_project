@@ -86,7 +86,7 @@ endif
 .PHONY: install
 install:
 	if [ -d "$(CARAVEL_ROOT)" ]; then\
-		echo "Deleting exisiting $(CARAVEL_ROOT)" && \
+		echo "Deleting existing $(CARAVEL_ROOT)" && \
 		rm -rf $(CARAVEL_ROOT) && sleep 2;\
 	fi
 	echo "Installing $(CARAVEL_NAME).."
