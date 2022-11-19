@@ -264,7 +264,7 @@ help:
 export CUP_ROOT=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/deps/timing-scripts
 export PROJECT_ROOT=$(CUP_ROOT)
-timing-scripts-repo=git@github.com:efabless/timing-scripts.git
+timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):
 	@mkdir -p $(CUP_ROOT)/deps
