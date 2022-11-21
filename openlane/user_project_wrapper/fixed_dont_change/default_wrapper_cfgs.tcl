@@ -15,10 +15,14 @@
 
 # THE FOLLOWING SECTIONS CAN BE CHANGED IF NEEDED
 
-# PDN Pitch
-set ::env(FP_PDN_VPITCH) 180
-set ::env(FP_PDN_HPITCH) $::env(FP_PDN_VPITCH)
+# PDN Horizontal Pitch as mutliples of 30. Horizontal Pitch = 60 + FP_PDN_HPITCH_MULT * 30. 
+# FP_PDN_HPITCH_MULT is an integer. Minimum value is 0.
+set ::env(FP_PDN_HPITCH_MULT) 1
 
-# PDN Offset 
+##
+# PDN Vertical Pitch. Can be changed to any value.
+set ::env(FP_PDN_VPITCH) 90
+
+##
+# PDN vertical Offset. Can be changed to any value.
 set ::env(FP_PDN_VOFFSET) 5
-set ::env(FP_PDN_HOFFSET) $::env(FP_PDN_VOFFSET)
