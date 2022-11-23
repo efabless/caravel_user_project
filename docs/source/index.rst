@@ -79,7 +79,7 @@ Starting your project
    
        .. code:: bash
         
-    	git clone https://github.com/efabless/caravel_user_project.git <my_project>
+    	git clone -b gfmpw-0b https://github.com/efabless/caravel_user_project.git <my_project>
 	
 	cd <my_project>
 	
