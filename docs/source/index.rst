@@ -69,20 +69,27 @@ Quickstart
 Starting your project
 ---------------------
 
-#. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
+#. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ and make sure your repo is public and includes a README.
 
-   *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
+# NOTE:  You cannoty use the create from template feature as this points to main branch based on SKY130.
+
+   *   Create a blank repo for your project on github.  Copy the URL for the new project from github.
+   
    *   Clone the reposity using the following command:
    
        .. code:: bash
         
-    	git clone <your github repo URL>
+    	git clone https://github.com/efabless/caravel_user_project.git <my_project>
+	
+	cd <my_project>
+	
+	git remote add MYREPO <repo URL for your project>
+	
+	git push MYREPO
 	
 #.  To setup your local environment run:
 
     .. code:: bash
-    
-    	cd <project_name> # project_name is the name of your repo
 	
     	mkdir dependencies
 	
@@ -90,15 +97,7 @@ Starting your project
 	
 	export PDK_ROOT=$(pwd)/dependencies/pdks # you need to export this whenever you start a new shell
 
-	# export the PDK variant depending on your shuttle, if you don't know leave it to the default
-	
-	# for sky130 MPW shuttles....
-	export PDK=sky130B
-	
-	# for the gf180 GFMPW shuttles...
 	export PDK=gf180mcuC
-
-
 
         make setup
 
