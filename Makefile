@@ -274,11 +274,6 @@ $(TIMING_ROOT):
 setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
-	@python3 -m venv ./venv 
-		. ./venv/bin/activate && \
-		python3 -m pip install --upgrade pip && \
-		python3 -m pip install -r $(TIMING_ROOT)/requirements.txt && \
-		deactivate
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)
@@ -291,27 +286,43 @@ setup-timing-scripts: $(TIMING_ROOT)
 
 .PHONY: create-spef-mapping
 create-spef-mapping: ./verilog/gl/user_project_wrapper.v
-	@. ./venv/bin/activate && \
+	docker run \
+		--rm \
+		-u $$(id -u $$USER):$$(id -g $$USER) \
+		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(CUP_ROOT):$(CUP_ROOT) \
+		-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
+		-v $(MCW_ROOT):$(MCW_ROOT) \
+		-v $(TIMING_ROOT):$(TIMING_ROOT) \
+		-w $(shell pwd) \
+		efabless/timing-scripts:latest \
 		python3 $(TIMING_ROOT)/scripts/generate_spef_mapping.py \
 			-i ./verilog/gl/user_project_wrapper.v \
 			-o ./env/spef-mapping.tcl \
 			--pdk-path $(PDK_ROOT)/$(PDK) \
 			--macro-parent mprj \
-			--project-root "$(CUP_ROOT)" && \
-		deactivate
+			--project-root "$(CUP_ROOT)"
 
 .PHONY: extract-parasitics
 extract-parasitics: ./verilog/gl/user_project_wrapper.v
-	@. ./venv/bin/activate && \
+	docker run \
+		--rm \
+		-u $$(id -u $$USER):$$(id -g $$USER) \
+		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(CUP_ROOT):$(CUP_ROOT) \
+		-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
+		-v $(MCW_ROOT):$(MCW_ROOT) \
+		-v $(TIMING_ROOT):$(TIMING_ROOT) \
+		-w $(shell pwd) \
+		efabless/timing-scripts:latest \
 		python3 $(TIMING_ROOT)/scripts/get_macros.py \
-		-i ./verilog/gl/user_project_wrapper.v \
-		-o ./tmp-macros-list \
-		--project-root "$(CUP_ROOT)" \
-		--pdk-path $(PDK_ROOT)/$(PDK) && \
-		deactivate
-		@cat ./tmp-macros-list | cut -d " " -f2 \
-			| xargs -I % bash -c "$(MAKE) -C $(TIMING_ROOT) \
-				-f $(TIMING_ROOT)/timing.mk rcx-% || echo 'Cannot extract %. Probably no def for this macro'"
+			-i ./verilog/gl/user_project_wrapper.v \
+			-o ./tmp-macros-list \
+			--project-root "$(CUP_ROOT)" \
+			--pdk-path $(PDK_ROOT)/$(PDK)
+	@cat ./tmp-macros-list | cut -d " " -f2 \
+		| xargs -I % bash -c "$(MAKE) -C $(TIMING_ROOT) \
+			-f $(TIMING_ROOT)/timing.mk rcx-% || echo 'Cannot extract %. Probably no def for this macro'"
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk rcx-user_project_wrapper
 	@cat ./tmp-macros-list
 	@rm ./tmp-macros-list
