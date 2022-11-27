@@ -321,4 +321,10 @@ caravel-sta: ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow
+	@echo =================================================Summary=================================================
+	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff -name "*-summary.rpt" | head -n1 \
+		| xargs tail -n2 | head -n1
+	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff -name "*-summary.rpt" \
+		| xargs -I {} tail -n1 "{}"
+	@echo =========================================================================================================
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
