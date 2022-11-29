@@ -19,7 +19,7 @@ set ::env(STD_CELL_LIBRARY) "gf180mcu_fd_sc_mcu7t5v0"
 set ::env(DESIGN_NAME) user_proj_example
 
 set ::env(VERILOG_FILES) "\
-	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+	$::env(DESIGN_DIR)/../../verilog/rtl/defines.v \
 	$::env(DESIGN_DIR)/../../verilog/rtl/user_proj_example.v"
 
 set ::env(DESIGN_IS_CORE) 0
