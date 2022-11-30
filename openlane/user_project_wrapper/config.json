@@ -73,7 +73,8 @@
     "pdk::gf180mcuC": {
         "FP_PDN_HPITCH_MULT": 1,
         "FP_PDN_VPITCH": 90,
-        "FP_PDN_HPITCH": "exp::(($FP_PDN_HPITCH_MULT + 60) * 30)",
+        "TMP": "exp::($FP_PDN_HPITCH_MULT + 60)",
+        "FP_PDN_HPITCH": "exp::($TMP * 30)",
         "FP_PDN_VSPACING": "exp::(5 * $FP_PDN_CORE_RING_VWIDTH)",
         "FP_PDN_HSPACING": 26.9,
         "FP_PDN_CORE_RING_VOFFSET": 14,
