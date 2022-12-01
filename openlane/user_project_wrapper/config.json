@@ -77,8 +77,6 @@
         "FP_PDN_HSPACING": 26.9,
         "FP_PDN_CORE_RING_VOFFSET": 14,
         "FP_PDN_CORE_RING_HOFFSET": 14,
-        "VDD_NETS": ["vdd"],
-        "GND_NETS": ["vss"],
         "FP_PDN_MACRO_HOOKS": "mprj vdd vss vdd vss",
         "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
         "FP_PDN_CHECK_NODES": 0,
