@@ -27,6 +27,7 @@ set ::env(CORE_AREA) "12 12 2968.2 2968.2"
 set ::env(RUN_CVC) 0
 
 # Pin Configurations. DON'T TOUCH
+set script_dir [file dirname [file normalize [info script]]]
 set ::env(FP_PIN_ORDER_CFG) $script_dir/../../pin_order.cfg
 
 set ::unit 2.4
