@@ -71,7 +71,7 @@ Starting your project
 
 #. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ and make sure your repo is public and includes a README.
 
-# NOTE:  You cannoty use the create from template feature as this points to main branch based on SKY130.
+# NOTE:  You cannot use the create from template feature as this points to main branch based on SKY130.
 
    *   Create a blank repo for your project on github.  Copy the URL for the new project from github.
    
@@ -79,7 +79,7 @@ Starting your project
    
        .. code:: bash
         
-    	git clone -b gfmpw-0b https://github.com/efabless/caravel_user_project.git <my_project>
+    	git clone -b gfmpw-0d https://github.com/efabless/caravel_user_project.git <my_project>
 	
 	cd <my_project>
 	
