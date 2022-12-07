@@ -329,13 +329,13 @@ extract-parasitics: ./verilog/gl/user_project_wrapper.v
 	
 .PHONY: caravel-sta
 caravel-sta: ./env/spef-mapping.tcl
-	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ
-	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast
-	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow
-	@echo =================================================Summary=================================================
-	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff -name "*-summary.rpt" | head -n1 \
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast -j3
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow -j3
+	@echo ===================================================Summary===================================================
+	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
 		| xargs tail -n2 | head -n1
-	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff -name "*-summary.rpt" \
+	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" \
 		| xargs -I {} tail -n1 "{}"
-	@echo =========================================================================================================
+	@echo =============================================================================================================
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
