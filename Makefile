@@ -334,8 +334,10 @@ caravel-sta: ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow -j3
 	@echo =============================================Summary=============================================
 	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
-		| xargs tail -n3 | head -n2
+		| xargs head -n5 | tail -n1
 	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" \
-		| xargs -I {} tail -n1 "{}"
+		| xargs -I {} bash -c "head -n7 {} | tail -n1"
 	@echo =================================================================================================
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
+	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" 
+	@echo "Cap and slew violations are inside summary.log file itself"
