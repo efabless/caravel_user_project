@@ -36,7 +36,7 @@ set ::env(VERILOG_FILES) "\
 set ::env(CLOCK_PORT) "user_clock2"
 set ::env(CLOCK_NET) "mprj.clk"
 
-set ::env(CLOCK_PERIOD) "10"
+set ::env(CLOCK_PERIOD) "24"
 
 ## Internal Macros
 ### Macro PDN Connections
@@ -48,7 +48,7 @@ set ::env(MACRO_PLACEMENT_CFG) $::env(DESIGN_DIR)/macro.cfg
 
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
-	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+	$::env(DESIGN_DIR)/../../verilog/rtl/defines.v \
 	$::env(DESIGN_DIR)/../../verilog/rtl/user_proj_example.v"
 
 set ::env(EXTRA_LEFS) "\
