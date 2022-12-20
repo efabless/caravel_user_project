@@ -262,12 +262,12 @@ help:
 
 
 export CUP_ROOT=$(shell pwd)
-export TIMING_ROOT?=$(shell pwd)/deps/timing-scripts
+export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
 export PROJECT_ROOT=$(CUP_ROOT)
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):
-	@mkdir -p $(CUP_ROOT)/deps
+	@mkdir -p $(CUP_ROOT)/dependencies
 	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
 
 .PHONY: setup-timing-scripts
@@ -329,13 +329,15 @@ extract-parasitics: ./verilog/gl/user_project_wrapper.v
 	
 .PHONY: caravel-sta
 caravel-sta: ./env/spef-mapping.tcl
-	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ
-	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast
-	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow
-	@echo =================================================Summary=================================================
-	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff -name "*-summary.rpt" | head -n1 \
-		| xargs tail -n2 | head -n1
-	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff -name "*-summary.rpt" \
-		| xargs -I {} tail -n1 "{}"
-	@echo =========================================================================================================
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast -j3
+	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow -j3
+	@echo =============================================Summary=============================================
+	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
+		| xargs head -n5 | tail -n1
+	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" \
+		| xargs -I {} bash -c "head -n7 {} | tail -n1"
+	@echo =================================================================================================
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
+	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" 
+	@echo "Cap and slew violations are inside summary.log file itself"
