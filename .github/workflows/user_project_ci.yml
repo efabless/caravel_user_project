@@ -86,6 +86,18 @@ jobs:
           make install_mcw
           make openlane
           make simenv
+      
+      - name: remove existing generated files
+        run: |
+          rm -rf /home/runner/work/caravel_user_project/gds
+          rm -rf /home/runner/work/caravel_user_project/verilog/gl
+          rm -rf /home/runner/work/caravel_user_project/mag
+          rm -rf /home/runner/work/caravel_user_project/maglef
+          rm -rf /home/runner/work/caravel_user_project/lef
+          rm -rf /home/runner/work/caravel_user_project/lib
+          rm -rf /home/runner/work/caravel_user_project/sdf
+          rm -rf /home/runner/work/caravel_user_project/sdc
+          rm -rf /home/runner/work/caravel_user_project/spef
 
       - name: Harden using Openlane
         run: |
