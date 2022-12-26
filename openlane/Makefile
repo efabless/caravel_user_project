@@ -15,7 +15,7 @@
 
 MAKEFLAGS+=--warn-undefined-variables
 
-export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
+export OPENLANE_RUN_TAG ?= $(shell date '+%y_%m_%d_%H_%M')
 OPENLANE_TAG ?= 2022.10.20
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
 designs = $(shell find * -maxdepth 0 -type d)
@@ -74,9 +74,9 @@ else
 		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd)
 endif
 	@mkdir -p ../signoff/$*/
-	@cp ./$*/runs/$*/OPENLANE_VERSION ../signoff/$*/
-	@cp ./$*/runs/$*/PDK_SOURCES ../signoff/$*/
-	@cp ./$*/runs/$*/reports/*.csv ../signoff/$*/
+	@cp ./$*/runs/$(OPENLANE_RUN_TAG)/OPENLANE_VERSION ../signoff/$*/
+	@cp ./$*/runs/$(OPENLANE_RUN_TAG)/PDK_SOURCES ../signoff/$*/
+	@cp ./$*/runs/$(OPENLANE_RUN_TAG)/reports/*.csv ../signoff/$*/
 
 .PHONY: openlane
 openlane: check-openlane-env
