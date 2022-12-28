@@ -89,7 +89,7 @@ Starting your project
 	
 #.  Integrate modules into the user_project_wrapper
 
-    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.json`` to point to your module
     *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
     *   Harden the user_project_wrapper including your module(s), using this command:
 
