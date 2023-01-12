@@ -267,7 +267,7 @@ export PROJECT_ROOT=$(CUP_ROOT)
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):
-	@mkdir -p $(CUP_ROOT)/dependencies
+	@mkdir -p $(TIMING_ROOT)
 	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
 
 .PHONY: setup-timing-scripts
