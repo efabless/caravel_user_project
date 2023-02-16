@@ -18,7 +18,7 @@ void main(){
     mgmt_gpio_wr(1); // configuration finished 
 
     // writing to any address inside user project address space would reload the counter value
-    (*(volatile unsigned int*) (USER_SPACE_ADDR +0x88 )) =7;
+    write_user_word(0x7,0x88);
     mgmt_gpio_wr(0); // start counting from 0
 
     return;
