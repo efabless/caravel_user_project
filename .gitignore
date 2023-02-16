@@ -6,3 +6,4 @@
 *.lst
 *.vcd
 *.gtkw
+*.pyc
