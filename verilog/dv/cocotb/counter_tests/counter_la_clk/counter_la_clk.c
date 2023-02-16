@@ -27,8 +27,5 @@ void main(){
         set_la_reg(2,0);// clk pose edge
         mgmt_gpio_wr(1); 
         }
-    
-
-
     return;
 }
