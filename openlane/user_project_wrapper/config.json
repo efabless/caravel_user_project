@@ -5,6 +5,7 @@
         "dir::../../verilog/rtl/user_project_wrapper.v",
         "dir::../../verilog/rtl/user_proj_example.v"
     ],
+    "ROUTING_CORES": 1,
     "CLOCK_PERIOD": 25,
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_NET": "mprj.clk",
