@@ -1,4 +1,4 @@
-#include <common.c>
+#include <common.h>
 
 void main(){
     // Enable managment gpio as output to use as indicator for finishing configuration  
@@ -18,7 +18,7 @@ void main(){
     // writing 1 in bit 64(first bit in reg 2) to reset 
     set_la_reg(2,0);
     set_la_ien(2,0x1);
-    set_la_oenb(2,0x1);
+    set_la_oen(2,0xFFFFFFFE);
     mgmt_gpio_wr(1); // configuration finished 
 
     for (int i = 0; i < 7; i++){

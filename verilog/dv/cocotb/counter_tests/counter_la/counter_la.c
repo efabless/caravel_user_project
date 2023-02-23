@@ -1,4 +1,4 @@
-#include <common.c>
+#include <common.h>
 
 void main(){
     // Enable managment gpio as output to use as indicator for finishing configuration  
@@ -18,9 +18,9 @@ void main(){
     // configure la [63:32] as output from cpu
     set_la_reg(1,7);
     set_la_ien(1,0xFFFFFFF);
-    set_la_oenb(1,0xFFFFFFF);
+    set_la_oen(1,0);
     set_la_ien(1,0);
-    set_la_oenb(1,0);
+    set_la_oen(1,0xFFFFFFF);
 
     return;
 }

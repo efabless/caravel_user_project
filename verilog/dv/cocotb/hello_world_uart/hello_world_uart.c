@@ -1,4 +1,4 @@
-#include <common.c>
+#include <common.h>
 
 void main(){
     mgmt_gpio_wr(0);

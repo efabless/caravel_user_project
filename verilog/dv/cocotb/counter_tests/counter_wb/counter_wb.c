@@ -1,4 +1,4 @@
-#include <common.c>
+#include <common.h>
 
 void main(){
     // Enable managment gpio as output to use as indicator for finishing configuration  
@@ -18,7 +18,7 @@ void main(){
     mgmt_gpio_wr(1); // configuration finished 
 
     // writing to any address inside user project address space would reload the counter value
-    write_user_word(0x7,0x88);
+    write_user_double_word(0x7,0x88);
     mgmt_gpio_wr(0); // start counting from 0
 
     return;
