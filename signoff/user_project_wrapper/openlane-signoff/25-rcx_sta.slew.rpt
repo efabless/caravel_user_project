@@ -1,0 +1,23 @@
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+max fanout
+
+Pin                                   Limit Fanout  Slack
+---------------------------------------------------------
+_311_/X                                  18     47    -29 (VIOLATED)
+input101/X                               18     47    -29 (VIOLATED)
+wire428/X                                18     28    -10 (VIOLATED)
+input102/X                               18     23     -5 (VIOLATED)
+input74/X                                18     23     -5 (VIOLATED)
+input77/X                                18     21     -3 (VIOLATED)
+wire349/X                                18     21     -3 (VIOLATED)
+wire347/X                                18     19        (VIOLATED)
+
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 8
+max cap violation count 0
+============================================================================

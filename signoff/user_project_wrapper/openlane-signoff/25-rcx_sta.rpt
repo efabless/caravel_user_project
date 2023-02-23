@@ -1,0 +1,66 @@
+
+===========================================================================
+report_checks -unconstrained
+============================================================================
+Startpoint: _506_ (rising edge-triggered flip-flop clocked by clk)
+Endpoint: wbs_ack_o (output port clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00   clock clk (rise edge)
+                          7.25    7.25   clock source latency
+                  1.16    0.00    7.25 ^ wb_clk_i (in)
+     1    0.01                           wb_clk_i (net)
+                  1.16    0.00    7.25 ^ _280_/A1 (sky130_fd_sc_hd__mux2_2)
+                  0.10    0.37    7.62 ^ _280_/X (sky130_fd_sc_hd__mux2_2)
+     1    0.01                           mprj.clk (net)
+                  0.10    0.00    7.62 ^ wire2/A (sky130_fd_sc_hd__buf_12)
+                  0.13    0.17    7.79 ^ wire2/X (sky130_fd_sc_hd__buf_12)
+     2    0.12                           net537 (net)
+                  0.17    0.06    7.85 ^ wire1/A (sky130_fd_sc_hd__buf_12)
+                  0.15    0.19    8.05 ^ wire1/X (sky130_fd_sc_hd__buf_12)
+     2    0.13                           net536 (net)
+                  0.20    0.07    8.12 ^ clkbuf_0_mprj.clk/A (sky130_fd_sc_hd__clkbuf_16)
+                  0.12    0.25    8.37 ^ clkbuf_0_mprj.clk/X (sky130_fd_sc_hd__clkbuf_16)
+     2    0.11                           clknet_0_mprj.clk (net)
+                  0.12    0.01    8.38 ^ clkbuf_1_0_0_mprj.clk/A (sky130_fd_sc_hd__clkbuf_8)
+                  0.08    0.19    8.56 ^ clkbuf_1_0_0_mprj.clk/X (sky130_fd_sc_hd__clkbuf_8)
+     2    0.04                           clknet_1_0_0_mprj.clk (net)
+                  0.08    0.01    8.57 ^ clkbuf_2_0_0_mprj.clk/A (sky130_fd_sc_hd__clkbuf_8)
+                  0.09    0.18    8.75 ^ clkbuf_2_0_0_mprj.clk/X (sky130_fd_sc_hd__clkbuf_8)
+     1    0.04                           clknet_2_0_0_mprj.clk (net)
+                  0.09    0.01    8.76 ^ clkbuf_2_0_1_mprj.clk/A (sky130_fd_sc_hd__clkbuf_8)
+                  0.09    0.18    8.94 ^ clkbuf_2_0_1_mprj.clk/X (sky130_fd_sc_hd__clkbuf_8)
+     2    0.04                           clknet_2_0_1_mprj.clk (net)
+                  0.09    0.01    8.94 ^ clkbuf_3_1_0_mprj.clk/A (sky130_fd_sc_hd__clkbuf_8)
+                  0.32    0.31    9.25 ^ clkbuf_3_1_0_mprj.clk/X (sky130_fd_sc_hd__clkbuf_8)
+    14    0.18                           clknet_3_1_0_mprj.clk (net)
+                  0.34    0.07    9.32 ^ _506_/CLK (sky130_fd_sc_hd__dfxtp_4)
+                  0.24    0.59    9.91 ^ _506_/Q (sky130_fd_sc_hd__dfxtp_4)
+     2    0.08                           net210 (net)
+                  0.24    0.02    9.92 ^ output210/A (sky130_fd_sc_hd__buf_12)
+                  0.19    0.27   10.19 ^ output210/X (sky130_fd_sc_hd__buf_12)
+     1    0.16                           wbs_ack_o (net)
+                  0.19    0.00   10.20 ^ wbs_ack_o (out)
+                                 10.20   data arrival time
+
+                         25.00   25.00   clock clk (rise edge)
+                          6.00   31.00   clock network delay (propagated)
+                         -0.10   30.90   clock uncertainty
+                          0.00   30.90   clock reconvergence pessimism
+                         -8.21   22.69   output external delay
+                                 22.69   data required time
+-----------------------------------------------------------------------------
+                                 22.69   data required time
+                                -10.20   data arrival time
+-----------------------------------------------------------------------------
+                                 12.49   slack (MET)
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+No paths found.

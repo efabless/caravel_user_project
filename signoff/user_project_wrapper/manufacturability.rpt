@@ -1,0 +1,17 @@
+Design Name: user_project_wrapper
+Run Directory: /home/passant/caravel_user_project/openlane/user_project_wrapper/runs/23_02_16_15_02
+----------------------------------------
+
+Magic DRC Summary:
+Source: /home/passant/caravel_user_project/openlane/user_project_wrapper/runs/23_02_16_15_02/reports/signoff/drc.rpt
+Total Magic DRC violations is 0
+----------------------------------------
+
+LVS Summary:
+Source: /home/passant/caravel_user_project/openlane/user_project_wrapper/runs/23_02_16_15_02/logs/signoff/33-user_project_wrapper.lef.lvs.log
+Number of nets: 2147                       |Number of nets: 2147                       
+Design is LVS clean.
+----------------------------------------
+
+Antenna Summary:
+No antenna report found.
