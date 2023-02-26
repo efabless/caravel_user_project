@@ -117,6 +117,7 @@ dv_base_dependencies=simenv
 docker_run_verify=\
 	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+		-v ${MCW_ROOT}:${MCW_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
 		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
 		-e TOOLS=/foss/tools/riscv-gnu-toolchain-rv32i/217e7f3debe424d61374d31e33a091a630535937 \

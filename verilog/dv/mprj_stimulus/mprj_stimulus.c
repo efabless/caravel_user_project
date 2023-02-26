@@ -126,8 +126,10 @@ void main()
 
     testval = reg_mprj_datal;
     reg_mprj_datal = (testval << 16);
+    reg_mprj_datah = 0x0000000a;
     testval = reg_mprj_datal;
     reg_mprj_datal = (testval << 16);
+    reg_mprj_datah = 0x00000005;
 
     // Flag end of the test
     reg_mprj_datal = 0xAB510000;
