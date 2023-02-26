@@ -33,7 +33,7 @@ export PDKPATH?=$(PDK_ROOT)/$(PDK)
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2023.02.14
+	export OPENLANE_TAG?=2023.02.23
 	MPW_TAG ?= mpw-8c
 
 ifeq ($(CARAVEL_LITE),1)
@@ -51,7 +51,7 @@ endif
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2023.02.14
+	export OPENLANE_TAG?=2023.02.23
 	MPW_TAG ?= mpw-8c
 
 ifeq ($(CARAVEL_LITE),1)
@@ -74,7 +74,7 @@ ifeq ($(PDK),gf180mcuC)
 	CARAVEL_TAG := $(MPW_TAG)
 	#OPENLANE_TAG=ddfeab57e3e8769ea3d40dda12be0460e09bb6d9
 	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2023.02.14
+	export OPENLANE_TAG?=2023.02.23
 
 endif
 
@@ -300,8 +300,9 @@ create-spef-mapping: ./verilog/gl/user_project_wrapper.v
 			-i ./verilog/gl/user_project_wrapper.v \
 			-o ./env/spef-mapping.tcl \
 			--pdk-path $(PDK_ROOT)/$(PDK) \
-			--macro-parent mprj \
+			--macro-parent chip_core/mprj \
 			--project-root "$(CUP_ROOT)"
+
 
 .PHONY: extract-parasitics
 extract-parasitics: ./verilog/gl/user_project_wrapper.v

@@ -89,6 +89,7 @@ jobs:
 
       - name: Harden using Openlane
         run: |
+          make user_proj_example
           make user_project_wrapper
 
       - name: run precheck
@@ -178,6 +179,7 @@ jobs:
 
       - name: Harden using Openlane
         run: |
+          make user_proj_example
           make user_project_wrapper
 
       - name: run precheck
