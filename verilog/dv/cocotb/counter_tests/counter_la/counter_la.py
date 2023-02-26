@@ -11,33 +11,23 @@ async def counter_la(dut):
     cocotb.log.info(f"[TEST] finish configuration") 
     overwrite_val = 7 # value will be written to the counter by la 
     # expect value bigger than 7 
-    received_val = caravelEnv.monitor_gpio(31,0).integer 
-    counter = received_val
-    if received_val <= overwrite_val :
-        cocotb.log.error(f"counter started late and value captured after configuration is smaller than overwrite value: {overwrite_val} receieved: {received_val}")
+    await caravelEnv.wait_mgmt_gpio(0) # wait until writing 7 through la 
+    received_val = int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2) 
+    counter = overwrite_val
+
+    if received_val != counter :
+        cocotb.log.fatal(f"LA writing is in correct: {overwrite_val} receieved: {received_val}")
     await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
 
-    while True: # wait until the value 1 start counting after the initial
-        received_val = caravelEnv.monitor_gpio(31,0).integer 
-        counter +=1
-        if received_val != counter: 
-            if received_val == overwrite_val: 
-                counter = received_val +1
-                cocotb.log.info(f"counter value has been overwritten by la to be {received_val}")
-                while True: #wait until the la writing finished and the counter start running again
-                    received_val = caravelEnv.monitor_gpio(31,0).integer 
-                    if counter == received_val: 
-                        break
-                    await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
-                cocotb.log.info(f"counter value has been overwritten by la to be {received_val}")
-                break
-            else: 
-                cocotb.log.error(f"counter has wrong value before overwrite happened expected: {counter} received: {received_val}")
+    # wait until the LA writing is disabled 
+    while (received_val == counter): 
         await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
+        received_val = int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2) 
 
+    counter = received_val
     for i in range(100):
-        if counter != caravelEnv.monitor_gpio(31,0).integer:
-            cocotb.log.error(f"counter have wrong value expected = {counter} recieved = {caravelEnv.monitor_gpio(31,0).integer}")
+        if counter != int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2) :
+            cocotb.log.error(f"counter have wrong value expected = {counter} recieved = {int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2) }")
         await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
         counter +=1
     
