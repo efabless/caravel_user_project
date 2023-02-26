@@ -13,6 +13,10 @@
     "FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
     "PL_BASIC_PLACEMENT": 0,
     "PL_TARGET_DENSITY": 0.15,
+    "PL_RESIZER_MAX_SLEW_MARGIN": 50,
+    "GLB_RESIZER_MAX_SLEW_MARGIN": 50,
+    "GRT_MAX_DIODE_INS_ITERS": 5,
+    "GRT_ANT_ITERS": 5,
     "MAGIC_DEF_LABELS": 0,
     "VDD_NETS": [
         "vccd1"

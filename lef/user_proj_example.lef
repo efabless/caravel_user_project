@@ -5041,7 +5041,7 @@ MACRO user_proj_example
         RECT 4.400 115.240 2795.600 116.640 ;
         RECT 4.000 43.880 2796.000 115.240 ;
         RECT 4.400 42.480 2795.600 43.880 ;
-        RECT 4.000 9.015 2796.000 42.480 ;
+        RECT 4.000 9.695 2796.000 42.480 ;
   END
 END user_proj_example
 END LIBRARY
