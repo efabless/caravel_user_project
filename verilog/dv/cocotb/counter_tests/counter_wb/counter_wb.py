@@ -23,7 +23,6 @@ async def counter_wb(dut):
             counter = 0
         else: 
             counter +=1
-        cocotb.log.info(f"123 Counter {counter} ({counter}) received_val: {received_val}")
         if received_val != counter: 
             if received_val == overwrite_val: 
                 counter = received_val +1
