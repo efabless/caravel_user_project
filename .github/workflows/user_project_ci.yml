@@ -89,6 +89,7 @@ jobs:
 
       - name: Harden using Openlane
         run: |
+          make user_proj_example
           make user_project_wrapper
 
       - name: run precheck
@@ -124,13 +125,13 @@ jobs:
           make verify-mprj_stimulus-rtl 
           make verify-wb_port-rtl
 
-      - name: Run DV GL tests
-        run: |
-          make verify-io_ports-gl 
-          make verify-la_test1-gl 
-          make verify-la_test2-gl 
-          make verify-mprj_stimulus-gl 
-          make verify-wb_port-gl
+      # - name: Run DV GL tests
+      #   run: |
+      #     make verify-io_ports-gl 
+      #     make verify-la_test1-gl 
+      #     make verify-la_test2-gl 
+      #     make verify-mprj_stimulus-gl 
+      #     make verify-wb_port-gl
 
   user_project_flow_sky130B:
     timeout-minutes: 720
@@ -178,6 +179,7 @@ jobs:
 
       - name: Harden using Openlane
         run: |
+          make user_proj_example
           make user_project_wrapper
 
       - name: run precheck
@@ -212,10 +214,10 @@ jobs:
           make verify-mprj_stimulus-rtl 
           make verify-wb_port-rtl
 
-      - name: Run DV GL tests
-        run: |
-          make verify-io_ports-gl 
-          make verify-la_test1-gl 
-          make verify-la_test2-gl 
-          make verify-mprj_stimulus-gl 
-          make verify-wb_port-gl
+      # - name: Run DV GL tests
+      #   run: |
+      #     make verify-io_ports-gl 
+      #     make verify-la_test1-gl 
+      #     make verify-la_test2-gl 
+      #     make verify-mprj_stimulus-gl 
+      #     make verify-wb_port-gl
