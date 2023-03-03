@@ -1,0 +1,499 @@
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 402 unannotated drivers.
+ io_in[0]
+ io_in[10]
+ io_in[11]
+ io_in[12]
+ io_in[13]
+ io_in[14]
+ io_in[15]
+ io_in[1]
+ io_in[2]
+ io_in[3]
+ io_in[4]
+ io_in[5]
+ io_in[6]
+ io_in[7]
+ io_in[8]
+ io_in[9]
+ la_data_in[0]
+ la_data_in[100]
+ la_data_in[101]
+ la_data_in[102]
+ la_data_in[103]
+ la_data_in[104]
+ la_data_in[105]
+ la_data_in[106]
+ la_data_in[107]
+ la_data_in[108]
+ la_data_in[109]
+ la_data_in[10]
+ la_data_in[110]
+ la_data_in[111]
+ la_data_in[112]
+ la_data_in[113]
+ la_data_in[114]
+ la_data_in[115]
+ la_data_in[116]
+ la_data_in[117]
+ la_data_in[118]
+ la_data_in[119]
+ la_data_in[11]
+ la_data_in[120]
+ la_data_in[121]
+ la_data_in[122]
+ la_data_in[123]
+ la_data_in[124]
+ la_data_in[125]
+ la_data_in[126]
+ la_data_in[127]
+ la_data_in[12]
+ la_data_in[13]
+ la_data_in[14]
+ la_data_in[15]
+ la_data_in[16]
+ la_data_in[17]
+ la_data_in[18]
+ la_data_in[19]
+ la_data_in[1]
+ la_data_in[20]
+ la_data_in[21]
+ la_data_in[22]
+ la_data_in[23]
+ la_data_in[24]
+ la_data_in[25]
+ la_data_in[26]
+ la_data_in[27]
+ la_data_in[28]
+ la_data_in[29]
+ la_data_in[2]
+ la_data_in[30]
+ la_data_in[31]
+ la_data_in[3]
+ la_data_in[48]
+ la_data_in[49]
+ la_data_in[4]
+ la_data_in[50]
+ la_data_in[51]
+ la_data_in[52]
+ la_data_in[53]
+ la_data_in[54]
+ la_data_in[55]
+ la_data_in[56]
+ la_data_in[57]
+ la_data_in[58]
+ la_data_in[59]
+ la_data_in[5]
+ la_data_in[60]
+ la_data_in[61]
+ la_data_in[62]
+ la_data_in[63]
+ la_data_in[66]
+ la_data_in[67]
+ la_data_in[68]
+ la_data_in[69]
+ la_data_in[6]
+ la_data_in[70]
+ la_data_in[71]
+ la_data_in[72]
+ la_data_in[73]
+ la_data_in[74]
+ la_data_in[75]
+ la_data_in[76]
+ la_data_in[77]
+ la_data_in[78]
+ la_data_in[79]
+ la_data_in[7]
+ la_data_in[80]
+ la_data_in[81]
+ la_data_in[82]
+ la_data_in[83]
+ la_data_in[84]
+ la_data_in[85]
+ la_data_in[86]
+ la_data_in[87]
+ la_data_in[88]
+ la_data_in[89]
+ la_data_in[8]
+ la_data_in[90]
+ la_data_in[91]
+ la_data_in[92]
+ la_data_in[93]
+ la_data_in[94]
+ la_data_in[95]
+ la_data_in[96]
+ la_data_in[97]
+ la_data_in[98]
+ la_data_in[99]
+ la_data_in[9]
+ la_oenb[0]
+ la_oenb[100]
+ la_oenb[101]
+ la_oenb[102]
+ la_oenb[103]
+ la_oenb[104]
+ la_oenb[105]
+ la_oenb[106]
+ la_oenb[107]
+ la_oenb[108]
+ la_oenb[109]
+ la_oenb[10]
+ la_oenb[110]
+ la_oenb[111]
+ la_oenb[112]
+ la_oenb[113]
+ la_oenb[114]
+ la_oenb[115]
+ la_oenb[116]
+ la_oenb[117]
+ la_oenb[118]
+ la_oenb[119]
+ la_oenb[11]
+ la_oenb[120]
+ la_oenb[121]
+ la_oenb[122]
+ la_oenb[123]
+ la_oenb[124]
+ la_oenb[125]
+ la_oenb[126]
+ la_oenb[127]
+ la_oenb[12]
+ la_oenb[13]
+ la_oenb[14]
+ la_oenb[15]
+ la_oenb[16]
+ la_oenb[17]
+ la_oenb[18]
+ la_oenb[19]
+ la_oenb[1]
+ la_oenb[20]
+ la_oenb[21]
+ la_oenb[22]
+ la_oenb[23]
+ la_oenb[24]
+ la_oenb[25]
+ la_oenb[26]
+ la_oenb[27]
+ la_oenb[28]
+ la_oenb[29]
+ la_oenb[2]
+ la_oenb[30]
+ la_oenb[31]
+ la_oenb[3]
+ la_oenb[4]
+ la_oenb[5]
+ la_oenb[66]
+ la_oenb[67]
+ la_oenb[68]
+ la_oenb[69]
+ la_oenb[6]
+ la_oenb[70]
+ la_oenb[71]
+ la_oenb[72]
+ la_oenb[73]
+ la_oenb[74]
+ la_oenb[75]
+ la_oenb[76]
+ la_oenb[77]
+ la_oenb[78]
+ la_oenb[79]
+ la_oenb[7]
+ la_oenb[80]
+ la_oenb[81]
+ la_oenb[82]
+ la_oenb[83]
+ la_oenb[84]
+ la_oenb[85]
+ la_oenb[86]
+ la_oenb[87]
+ la_oenb[88]
+ la_oenb[89]
+ la_oenb[8]
+ la_oenb[90]
+ la_oenb[91]
+ la_oenb[92]
+ la_oenb[93]
+ la_oenb[94]
+ la_oenb[95]
+ la_oenb[96]
+ la_oenb[97]
+ la_oenb[98]
+ la_oenb[99]
+ la_oenb[9]
+ wbs_adr_i[0]
+ wbs_adr_i[10]
+ wbs_adr_i[11]
+ wbs_adr_i[12]
+ wbs_adr_i[13]
+ wbs_adr_i[14]
+ wbs_adr_i[15]
+ wbs_adr_i[16]
+ wbs_adr_i[17]
+ wbs_adr_i[18]
+ wbs_adr_i[19]
+ wbs_adr_i[1]
+ wbs_adr_i[20]
+ wbs_adr_i[21]
+ wbs_adr_i[22]
+ wbs_adr_i[23]
+ wbs_adr_i[24]
+ wbs_adr_i[25]
+ wbs_adr_i[26]
+ wbs_adr_i[27]
+ wbs_adr_i[28]
+ wbs_adr_i[29]
+ wbs_adr_i[2]
+ wbs_adr_i[30]
+ wbs_adr_i[31]
+ wbs_adr_i[3]
+ wbs_adr_i[4]
+ wbs_adr_i[5]
+ wbs_adr_i[6]
+ wbs_adr_i[7]
+ wbs_adr_i[8]
+ wbs_adr_i[9]
+ wbs_dat_i[16]
+ wbs_dat_i[17]
+ wbs_dat_i[18]
+ wbs_dat_i[19]
+ wbs_dat_i[20]
+ wbs_dat_i[21]
+ wbs_dat_i[22]
+ wbs_dat_i[23]
+ wbs_dat_i[24]
+ wbs_dat_i[25]
+ wbs_dat_i[26]
+ wbs_dat_i[27]
+ wbs_dat_i[28]
+ wbs_dat_i[29]
+ wbs_dat_i[30]
+ wbs_dat_i[31]
+ wbs_sel_i[2]
+ wbs_sel_i[3]
+ user_proj_example_172/HI
+ user_proj_example_173/HI
+ user_proj_example_174/HI
+ user_proj_example_175/HI
+ user_proj_example_176/HI
+ user_proj_example_177/HI
+ user_proj_example_178/HI
+ user_proj_example_179/HI
+ user_proj_example_180/HI
+ user_proj_example_181/HI
+ user_proj_example_182/HI
+ user_proj_example_183/HI
+ user_proj_example_184/HI
+ user_proj_example_185/HI
+ user_proj_example_186/HI
+ user_proj_example_187/HI
+ user_proj_example_188/HI
+ user_proj_example_189/HI
+ user_proj_example_190/HI
+ user_proj_example_191/HI
+ user_proj_example_192/HI
+ user_proj_example_193/HI
+ user_proj_example_194/HI
+ user_proj_example_195/HI
+ user_proj_example_196/HI
+ user_proj_example_197/HI
+ user_proj_example_198/HI
+ user_proj_example_199/HI
+ user_proj_example_200/HI
+ user_proj_example_201/HI
+ user_proj_example_202/HI
+ user_proj_example_203/HI
+ user_proj_example_204/HI
+ user_proj_example_205/HI
+ user_proj_example_206/HI
+ user_proj_example_207/HI
+ user_proj_example_208/HI
+ user_proj_example_209/HI
+ user_proj_example_210/HI
+ user_proj_example_211/HI
+ user_proj_example_212/HI
+ user_proj_example_213/HI
+ user_proj_example_214/HI
+ user_proj_example_215/HI
+ user_proj_example_216/HI
+ user_proj_example_217/HI
+ user_proj_example_218/HI
+ user_proj_example_219/HI
+ user_proj_example_220/HI
+ user_proj_example_221/HI
+ user_proj_example_222/HI
+ user_proj_example_223/HI
+ user_proj_example_224/HI
+ user_proj_example_225/HI
+ user_proj_example_226/HI
+ user_proj_example_227/HI
+ user_proj_example_228/HI
+ user_proj_example_229/HI
+ user_proj_example_230/HI
+ user_proj_example_231/HI
+ user_proj_example_232/HI
+ user_proj_example_233/HI
+ user_proj_example_234/HI
+ user_proj_example_235/HI
+ user_proj_example_236/HI
+ user_proj_example_237/HI
+ user_proj_example_238/HI
+ user_proj_example_239/HI
+ user_proj_example_240/HI
+ user_proj_example_241/HI
+ user_proj_example_242/HI
+ user_proj_example_243/HI
+ user_proj_example_244/HI
+ user_proj_example_245/HI
+ user_proj_example_246/HI
+ user_proj_example_247/HI
+ user_proj_example_248/HI
+ user_proj_example_249/HI
+ user_proj_example_250/HI
+ user_proj_example_251/HI
+ user_proj_example_252/HI
+ user_proj_example_253/HI
+ user_proj_example_254/HI
+ user_proj_example_255/HI
+ user_proj_example_256/HI
+ user_proj_example_257/HI
+ user_proj_example_258/HI
+ user_proj_example_259/HI
+ user_proj_example_260/HI
+ user_proj_example_261/HI
+ user_proj_example_262/HI
+ user_proj_example_263/HI
+ user_proj_example_264/HI
+ user_proj_example_265/HI
+ user_proj_example_266/HI
+ user_proj_example_267/HI
+ user_proj_example_268/HI
+ user_proj_example_269/HI
+ user_proj_example_270/HI
+ user_proj_example_271/HI
+ user_proj_example_272/HI
+ user_proj_example_273/HI
+ user_proj_example_274/HI
+ user_proj_example_275/HI
+ user_proj_example_276/HI
+ user_proj_example_277/HI
+ user_proj_example_278/HI
+ user_proj_example_279/HI
+ user_proj_example_280/HI
+ user_proj_example_281/HI
+ user_proj_example_282/HI
+ user_proj_example_283/HI
+ user_proj_example_284/HI
+ user_proj_example_285/HI
+ user_proj_example_286/HI
+ user_proj_example_287/HI
+ user_proj_example_288/HI
+ user_proj_example_289/HI
+ user_proj_example_290/HI
+ user_proj_example_291/HI
+ user_proj_example_292/HI
+ user_proj_example_293/HI
+ user_proj_example_294/HI
+ user_proj_example_295/HI
+ user_proj_example_296/HI
+ user_proj_example_297/HI
+ user_proj_example_298/HI
+ user_proj_example_299/HI
+ user_proj_example_300/HI
+ user_proj_example_301/HI
+ user_proj_example_302/HI
+ user_proj_example_303/HI
+Found 0 partially unannotated drivers.
+parastic_annotation_check
+check_slew
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+max fanout
+
+Pin                                   Limit Fanout  Slack
+---------------------------------------------------------
+wire142/X                                10     33    -23 (VIOLATED)
+input17/X                                10     23    -13 (VIOLATED)
+input51/X                                10     13     -3 (VIOLATED)
+max_cap162/X                             10     12     -2 (VIOLATED)
+_288_/Q                                  10     11        (VIOLATED)
+hold106/X                                10     11        (VIOLATED)
+
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 6
+max cap violation count 0
+============================================================================
+check_slew_end
+tns_report
+
+===========================================================================
+ report_tns
+============================================================================
+tns 0.00
+tns_report_end
+wns_report
+
+===========================================================================
+ report_wns
+============================================================================
+wns 0.00
+wns_report_end
+worst_slack
+
+===========================================================================
+ report_worst_slack -max (Setup)
+============================================================================
+worst slack 5.37
+
+===========================================================================
+ report_worst_slack -min (Hold)
+============================================================================
+worst slack 0.24
+worst_slack_end
+clock_skew
+
+===========================================================================
+ report_clock_skew
+============================================================================
+Clock clk
+Latency      CRPR       Skew
+_286_/CLK ^
+  17.35
+_303_/CLK ^
+   5.31      0.00      12.04
+
+clock_skew_end
+power_report
+
+===========================================================================
+ report_power
+============================================================================
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             2.74e-05   1.80e-05   2.85e-10   4.54e-05  10.3%
+Combinational          1.40e-04   2.56e-04   2.38e-07   3.96e-04  89.7%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  1.67e-04   2.74e-04   2.38e-07   4.41e-04 100.0%
+                          37.9%      62.0%       0.1%
+power_report_end
+area_report
+
+===========================================================================
+ report_design_area
+============================================================================
+Design area 97058 u^2 2% utilization.
+area_report_end
+Setting global connections for newly added cells...
+[WARNING] Did not save OpenROAD database!
+Writing SDF to /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_03_03_14_26/results/routing/mca/process_corner_nom/user_proj_example.sdf...
+Writing timing model to /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_03_03_14_26/results/routing/mca/process_corner_nom/user_proj_example.lib...
+
