@@ -69,8 +69,9 @@ module user_project_wrapper #(
     // Note that analog I/O is not available on the 7 lowest-numbered
     // GPIO pads, and so the analog_io indexing is offset from the
     // GPIO indexing by 7 (also upper 2 GPIOs do not have analog_io).
+`ifndef FPGA
     inout [`MPRJ_IO_PADS-10:0] analog_io,
-
+`endif
     // Independent clock (on independent integer divider)
     input   user_clock2,
 
@@ -82,7 +83,7 @@ module user_project_wrapper #(
 /* User project is instantiated  here   */
 /*--------------------------------------*/
 
-user_proj_example mprj (
+button mprj (
 `ifdef USE_POWER_PINS
 	.vccd1(vccd1),	// User area 1 1.8V power
 	.vssd1(vssd1),	// User area 1 digital ground
@@ -110,14 +111,12 @@ user_proj_example mprj (
 
     // IO Pads
 
-    .io_in ({io_in[37:30],io_in[7:0]}),
-    .io_out({io_out[37:30],io_out[7:0]}),
-    .io_oeb({io_oeb[37:30],io_oeb[7:0]}),
+    .io_in ({io_in[`MPRJ_IO_PADS-1:0]}),
+    .io_out({io_out[`MPRJ_IO_PADS-1:0]}),
+    .io_oeb({io_oeb[`MPRJ_IO_PADS-1:0]}),
 
     // IRQ
     .irq(user_irq)
 );
 
 endmodule	// user_project_wrapper
-
-`default_nettype wire
