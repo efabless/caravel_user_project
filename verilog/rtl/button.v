@@ -38,23 +38,32 @@ module button(
     input  [127:0] la_oenb,
 
     // IOs
-    input  [4:0] io_in,
-    output [4:0] io_out,
-    output [4:0] io_oeb,
+    input  [`MPRJ_IO_PADS-1:0] io_in,
+    output reg [`MPRJ_IO_PADS-1:0] io_out,
+    output reg [`MPRJ_IO_PADS-1:0] io_oeb,
 
     // IRQ
     output [2:0] irq
 );
+    localparam configurable = `MPRJ_IO_PADS - 2;
+
     wire clk;
     wire rst;
 
-    assign io_oeb = 4'b1000;
 
     // Unused
     assign la_data_out = 128'b0;
     assign irq = 3'b000;
     assign wbs_ack_o = 1'b0;
-    assign wbs_dat_o = 32'b0;
+    assign wbs_dat_o = 32'b0
+    ;
 
-    assign io_out = { 1'b0, io_in[3], io_in[3], io_in[3]};
+    always @ * begin
+        io_out = {
+            1'b0,
+            io_in[`MPRJ_IO_PADS-1],
+            {configurable{1'b1}}
+        };
+        io_oeb = { `MPRJ_IO_PADS{1'b1} };
+    end
 endmodule

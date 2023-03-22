@@ -6,7 +6,7 @@ module emulator (
     // IOs
     input  [`MPRJ_IO_PADS-1:0] io_in,
     output [`MPRJ_IO_PADS-1:0] io_out,
-    output [`MPRJ_IO_PADS-1:0] io_oeb,
+    output [`MPRJ_IO_PADS-1:0] io_oeb
 );
     user_project_wrapper upw(
         .wb_clk_i(wb_clk_i),

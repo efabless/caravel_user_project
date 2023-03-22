@@ -24,6 +24,17 @@ $(BUILD_FOLDER)/top.config: $(BUILD_FOLDER)/top.json
 $(BUILD_FOLDER)/top.bit: $(BUILD_FOLDER)/top.config
 	sh $(BOARD_FOLDER)/scripts/bitstream.sh $@ $<
 
+
+.PHONY: lint
+lint: $(VERILOG_FILES) $(BOARD_FOLDER)/sim/models.v
+	iverilog -Wall $^ -o /dev/null
+
+.PHONY: sim
+sim: $(BOARD_FOLDER)/sim/tb.v $(VERILOG_FILES) $(BOARD_FOLDER)/sim/models.v
+	iverilog -Wall $^ -o /tmp/sim.out
+	vvp /tmp/sim.out
+	rm -f /tmp/sim.out
+
 .PHONY: prog
 prog: $(BUILD_FOLDER)/top.bit
 	sh $(BOARD_FOLDER)/scripts/prog.sh $<
