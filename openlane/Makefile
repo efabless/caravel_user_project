@@ -33,12 +33,12 @@ openlane_cmd_interactive = "flow.tcl -it -file $$(realpath ./$*/interactive.tcl)
 
 docker_mounts = \
 	-v $$(realpath $(PWD)/..):$$(realpath $(PWD)/..) \
-	-v $(PDK_ROOT):$(PDK_ROOT) \
+	-v $(PDK_ROOT):/pdk \
 	-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
 	-v $(OPENLANE_ROOT):/openlane
 
 docker_env = \
-	-e PDK_ROOT=$(PDK_ROOT) \
+	-e PDK_ROOT=/pdk \
 	-e PDK=$(PDK) \
 	-e MISMATCHES_OK=1 \
 	-e CARAVEL_ROOT=$(CARAVEL_ROOT) \
