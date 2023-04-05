@@ -175,6 +175,12 @@ Starting your project
             make caravel-sta
 
         **NOTE:** To update timing scripts run ``make setup-timing-scripts``
+
+#.  Run standalone LVS
+
+    .. code:: bash
+
+        DESIGN=<macro> make lvs # macro is the macro you want to run LVS on
 	
 #.  Run the precheck locally 
 
