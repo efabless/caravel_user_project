@@ -112,7 +112,7 @@ module user_proj_example #(
         .ready(wbs_ack_o),
         .valid(valid),
         .rdata(rdata),
-        .wdata(wbs_dat_i),
+        .wdata(wdata),
         .wstrb(wstrb),
         .la_write(la_write),
         .la_input(la_data_in[63:32]),
