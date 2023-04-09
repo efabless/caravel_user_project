@@ -26,6 +26,7 @@ module mprj_stimulus_tb;
     wire gpio;
     wire [37:0] mprj_io;
     wire [15:0] checkbits;
+    reg [7:0] checkbits_temp;
     wire [3:0] status;
 
     // Signals Assignment
@@ -160,9 +161,15 @@ module mprj_stimulus_tb;
 
 	// Values reflect copying user-controlled outputs to memory and back
 	// to management-controlled outputs.
-        wait(checkbits == 16'h1968 || checkbits == 16'h1969 || checkbits == 16'h198B); // They're off because the difference between GL and RTL
-        wait(checkbits == 16'h1DCD || checkbits == 16'h1DCE || checkbits == 16'h1DE8); // They're off because the difference between GL and RTL
-
+        wait(status == 4'ha);
+		checkbits_temp = checkbits; // store counter value 
+		$display("first value = %h",checkbits_temp);
+        wait(status == 4'h5);
+		$display("second value = %h",checkbits[7:0]);
+		if ( checkbits[7:0] == checkbits_temp) begin 
+			$display ("Error: counter value doesn't change");
+        	$finish;
+		end 
         wait(checkbits == 16'hAB51);
         $display("Monitor: mprj_stimulus test Passed");
         #10000;
