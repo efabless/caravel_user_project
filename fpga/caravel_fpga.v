@@ -1,4 +1,4 @@
-module emulator (
+module caravel_fpga (
     // Wishbone Slave ports (WB MI A)
     input wb_clk_i,
     input wb_rst_i,
@@ -8,9 +8,15 @@ module emulator (
     output [`MPRJ_IO_PADS-1:0] io_out,
     output [`MPRJ_IO_PADS-1:0] io_oeb
 );
+
+    reg wb_rst_i_sync;
+    always @ (posedge wb_clk_i) begin
+        wb_rst_i_sync <= wb_rst_i; 
+    end
+
     user_project_wrapper upw(
         .wb_clk_i(wb_clk_i),
-        .wb_rst_i(wb_rst_i),
+        .wb_rst_i(wb_rst_i_sync),
 
         .io_in(io_in),
         .io_out(io_out),

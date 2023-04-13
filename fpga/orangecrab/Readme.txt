@@ -1,12 +1,12 @@
 IO Layout
 =========
 
-Four most significant IO/bits:
+    - 15 un-used user project pads 
     - FIXED INPUT, user button
     - FIXED OUTPUT, red led
     - FIXED OUTPUT, green led
     - FIXED OUTPUT, blue led
-    - 13 user-configurable GPIO pins:
+    - 20 user-configurable GPIO pins:
         From most to least significant:
             gpio_0,
             gpio_1,
@@ -17,10 +17,14 @@ Four most significant IO/bits:
             gpio_11,
             gpio_12,
             gpio_13,
-
             gpio_a0,
             gpio_a1,
             gpio_a2,
-            gpio_a3
-    
-    The four most significant io_oeb ports are ignored.
+            gpio_a3,
+            gpio_a4,
+            gpio_a5,
+            gpio_sck,
+            gpio_mosi,
+            gpio_miso,
+            gpio_scl,
+            gpio_sda,

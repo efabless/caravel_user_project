@@ -1,11 +1,12 @@
 module BB(
     input I,
-    output O,
     input T,
+    output O,
     inout B
 );
-    assign B = T ? I : 1'bz;
-    assign O = T ? 1'bx: B;
+
+    assign O = B;
+    assign B = T ? 1'bz: I;
 
 endmodule
 

@@ -1,4 +1,4 @@
 `default_nettype none
 `define FPGA
-`define MPRJ_IO_PADS 15
+`define FPGA_AVAILABLE_IO 22
 `undef USE_POWER_PINS

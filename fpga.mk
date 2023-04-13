@@ -5,9 +5,9 @@ export BOARD_FOLDER=fpga/$(BOARD)
 
 export VERILOG_FILES = verilog/rtl/defines.v\
 	$(BOARD_FOLDER)/defines.v\
-	verilog/rtl/button.v\
+	verilog/rtl/user_proj_example.v\
 	verilog/rtl/user_project_wrapper.v\
-	fpga/emulator.v\
+	fpga/caravel_fpga.v\
 	$(BOARD_FOLDER)/top.v
 
 BUILD_FOLDER=$(BOARD_FOLDER)/build
