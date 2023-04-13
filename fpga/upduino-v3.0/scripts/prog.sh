@@ -1,0 +1,2 @@
+#!/bin/sh
+iceprog -d i:0x0403:0x6014 $1

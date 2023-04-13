@@ -1,13 +1,11 @@
 IO Layout
 =========
 
-    - 15 un-used user project pads 
     - FIXED INPUT, user button
-    - FIXED OUTPUT, red led
-    - FIXED OUTPUT, green led
-    - FIXED OUTPUT, blue led
+    - FIXED OUTPUT, led (shared signal, combine to white)
+    - 16 un-used user project pads 
     - 20 user-configurable GPIO pins:
-        From most to least significant:
+        From least to most significant:
             gpio_0,
             gpio_1,
             gpio_5,
