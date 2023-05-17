@@ -2,7 +2,7 @@ from cocotb_includes import *
 
 
 @cocotb.test()
-@repot_test
+@report_test
 async def hello_world_uart(dut):
     caravelEnv = await test_configure(dut,timeout_cycles=3346140)
 
