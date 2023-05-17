@@ -1,6 +1,6 @@
 from cocotb_includes import *
 @cocotb.test()
-@report_test
+@repot_test
 async def counter_la_clk(dut):
     caravelEnv = await test_configure(dut,timeout_cycles=1346140)
 

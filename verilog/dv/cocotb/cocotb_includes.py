@@ -1,10 +1,8 @@
 from os import path
 import sys
-
-sys.path.append(path.abspath('/home/nouran/caravel-sim-infrastructure/cocotb'))
-
-from interfaces.common_functions.test_functions import report_test
-from interfaces.common_functions.test_functions import test_configure
+sys.path.append(path.abspath('/home/rady/caravel/swift/caravel-dynamic-sims/cocotb'))
+from tests.common_functions.test_functions import repot_test
+from tests.common_functions.test_functions import test_configure
 from interfaces.UART import UART
 
 import cocotb
