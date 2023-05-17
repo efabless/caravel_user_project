@@ -1,5 +1,7 @@
-from cocotb_includes import *
-
+from cocotb_includes import test_configure
+from cocotb_includes import report_test
+import cocotb
+from cocotb_includes import UART
 
 @cocotb.test()
 @report_test
