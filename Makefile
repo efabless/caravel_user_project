@@ -28,7 +28,13 @@ export PDK?=sky130A
 #export PDK?=gf180mcuC
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
+ROOTLESS ?= 0
+USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
+ifeq ($(ROOTLESS), 1)
+	USER_ARGS =
+endif
 
+export ROOTLESS
 
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
@@ -115,7 +121,9 @@ TARGET_PATH=$(shell pwd)
 verify_command="source ~/.bashrc && cd ${TARGET_PATH}/verilog/dv/$* && export SIM=${SIM} && make"
 dv_base_dependencies=simenv
 docker_run_verify=\
-	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
+	docker run \
+		$(USER_ARGS) \
+		-v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
 		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
 		-v ${MCW_ROOT}:${MCW_ROOT} \
 		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
@@ -127,7 +135,7 @@ docker_run_verify=\
 		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
 		-e CARAVEL_VERILOG_PATH=$(TARGET_PATH)/caravel/verilog \
 		-e MCW_ROOT=$(MCW_ROOT) \
-		-u $$(id -u $$USER):$$(id -g $$USER) efabless/dv:latest \
+		efabless/dv:latest \
 		sh -c $(verify_command)
 
 .PHONY: harden
@@ -289,7 +297,7 @@ setup-timing-scripts: $(TIMING_ROOT)
 create-spef-mapping: ./verilog/gl/user_project_wrapper.v
 	docker run \
 		--rm \
-		-u $$(id -u $$USER):$$(id -g $$USER) \
+		$(USER_ARGS) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
 		-v $(CUP_ROOT):$(CUP_ROOT) \
 		-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
@@ -309,7 +317,7 @@ create-spef-mapping: ./verilog/gl/user_project_wrapper.v
 extract-parasitics: ./verilog/gl/user_project_wrapper.v
 	docker run \
 		--rm \
-		-u $$(id -u $$USER):$$(id -g $$USER) \
+		$(USER_ARGS) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
 		-v $(CUP_ROOT):$(CUP_ROOT) \
 		-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
