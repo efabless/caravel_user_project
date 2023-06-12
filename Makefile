@@ -260,7 +260,7 @@ lvs: check-pdk check-precheck
 	-e PDK_ROOT=$(PDK_ROOT) \
 	-e PDKPATH=$(PDKPATH) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(CUP_ROOT) --output_directory $(CUP_ROOT)/lvs --design_name $(DESIGN) --config_file $(CUP_ROOT)/lvs/$(DESIGN)/sky130A.lvs_config.sh"
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(CUP_ROOT) --output_directory $(CUP_ROOT)/lvs --design_name $(DESIGN) --config_file $(CUP_ROOT)/lvs/$(DESIGN)/lvs_config.json"
 
 .PHONY: clean
 clean:
