@@ -232,7 +232,7 @@ run-precheck: check-pdk check-precheck
 		-e PDK_ROOT=$(PDK_ROOT) \
 		-e PDKPATH=$(PDKPATH) \
 		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) --disable-lvs"; \
+		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) license makefile default documentation consistency gpio_defines xor magic_drc klayout_feol klayout_beol klayout_offgrid klayout_met_min_ca_density klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"; \
 	else \
 		$(eval INPUT_DIRECTORY := $(shell pwd)) \
 		cd $(PRECHECK_ROOT) && \
