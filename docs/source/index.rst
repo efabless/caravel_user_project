@@ -137,7 +137,7 @@ Starting your project
 
     *   You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
 
-        **NOTE:** You shouldn't include the files inside the verilog code
+      **NOTE:** You shouldn't include the files inside the verilog code
 
         .. code:: bash
 
@@ -174,13 +174,15 @@ Starting your project
 
             make caravel-sta
 
-        **NOTE:** To update timing scripts run ``make setup-timing-scripts``
+      **NOTE:** To update timing scripts run ``make setup-timing-scripts``
 
 #.  Run standalone LVS
 
     .. code:: bash
 
-        DESIGN=<macro> make lvs # macro is the macro you want to run LVS on
+        make lvs-<macro_name> # macro is the name of the macro you want to run LVS on
+
+   **NOTE:** You have to create a new config file for each macro under ``lvs/<macro_name>/lvs_config.json``
 	
 #.  Run the precheck locally 
 
