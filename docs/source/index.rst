@@ -137,7 +137,7 @@ Starting your project
 
     *   You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
 
-        **NOTE:** You shouldn't include the files inside the verilog code
+      **NOTE:** You shouldn't include the files inside the verilog code
 
         .. code:: bash
 
@@ -174,7 +174,15 @@ Starting your project
 
             make caravel-sta
 
-        **NOTE:** To update timing scripts run ``make setup-timing-scripts``
+      **NOTE:** To update timing scripts run ``make setup-timing-scripts``
+
+#.  Run standalone LVS
+
+    .. code:: bash
+
+        make lvs-<macro_name> # macro is the name of the macro you want to run LVS on
+
+   **NOTE:** You have to create a new config file for each macro under ``lvs/<macro_name>/lvs_config.json``
 	
 #.  Run the precheck locally 
 
@@ -471,6 +479,50 @@ To reproduce hardening this project, run the following:
 
 For more information on the openlane flow, check `README <https://github.com/The-OpenROAD-Project/OpenLane#readme>`__.
 
+Runing transistor level LVS
+============================
+
+For the design to pass precheck, a custom lvs configuration file for your design is needed, config file can be found under `lvs/<design_name>/lvs_config.json`
+
+The `lvs_config.json` files are a possibly hierarchical set of files to set parameters for device level LVS
+
+Required variables:
+- **TOP_SOURCE** : Top source cell name.
+- **TOP_LAYOUT** : Top layout cell name.
+- **LAYOUT_FILE** : Layout gds data file. 
+- **LVS_SPICE_FILES** : A list of spice files.
+- **LVS_VERILOG_FILES** : A list of verilog files. Note: files with child modules should be listed before parent modules. Not needed for purely analog designs.
+
+Files must be defined as a absolute path beginning with a shell variable such as `$PDK_ROOT` or `$UPRJ_ROOT`.
+
+Optional variable lists: 
+Hierarchical config files:
+- **INCLUDE_CONFIGS** : List of configuration files to read recursively.
+
+Extraction related. `*` may be used as a wild card character.
+- **EXTRACT_FLATGLOB** : List of cell names to flatten before extraction. 
+  Cells without text tend to work better if flattened.
+  Note: it is necessary to flatten all sub cells of any cells listed.
+- **EXTRACT_ABSTRACT** : List of cells to extract as abstract devices.
+  Normally, cells that do not contain any devices will be flattened during netlisting.
+  Using this variable can prevent unwanted flattening of empty cells.
+  This has no effect of cells that are flattened because of a small number of layers.
+  Internal connectivity is maintained (at least at the top level).
+
+LVS related. `*` may be used as a wild card character.
+- **LVS_FLATTEN** : List of cells to flatten before comparing,
+        Sometimes matching topologies with mismatched pins cause errors at a higher level.
+        Flattening these cells can yield a match.
+- **LVS_NOFLATTEN** : List of cells not to be flattened in case of a mismatch.
+        Lower level errors can propagate to the top of the chip resulting in long run times.
+        Specify cells here to prevent flattening. May still cause higher level problems if there are pin mismatches.
+- **LVS_IGNORE** : List of cells to ignore during LVS.
+        Cells ignored result in LVS ending with a warning.
+        Generally, should only be used when debugging and not on the final netlist.
+        Ignoring cells results in a non-zero return code.
+
+**NOTE**: Missing files and undefined variables result in fatal errors.
+
 Running MPW Precheck Locally
 =================================
 
@@ -492,6 +544,12 @@ Then, you can run the precheck by running
    make run-precheck
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
+
+To disable running LVS/Soft/ERC connection checks:
+
+.. code:: bash
+
+   DISABLE_LVS=1 make run-precheck
 
 Running Timing Analysis on Existing Projects
 ========================================================
