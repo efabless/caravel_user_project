@@ -501,7 +501,7 @@ Then, you can run the precheck by running
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
 
-To disable running LVS/Soft connection checks/ERC:
+To disable running LVS/Soft/ERC connection checks:
 
 .. code:: bash
 
