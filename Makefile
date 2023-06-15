@@ -33,6 +33,7 @@ USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
 	USER_ARGS =
 endif
+export DISABLE_LVS?=0
 
 export ROOTLESS
 
@@ -40,7 +41,7 @@ ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
 	export OPENLANE_TAG?=2023.02.23
-	MPW_TAG ?= mpw-9c
+	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -58,7 +59,7 @@ ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
 	export OPENLANE_TAG?=2023.02.23
-	MPW_TAG ?= mpw-9c
+	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -227,19 +228,43 @@ precheck:
 
 .PHONY: run-precheck
 run-precheck: check-pdk check-precheck
-	$(eval INPUT_DIRECTORY := $(shell pwd))
-	cd $(PRECHECK_ROOT) && \
+	@if [ "$$DISABLE_LVS" = "1" ]; then\
+		$(eval INPUT_DIRECTORY := $(shell pwd)) \
+		cd $(PRECHECK_ROOT) && \
+		docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
+		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
+		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
+		-e PDK_ROOT=$(PDK_ROOT) \
+		-e PDKPATH=$(PDKPATH) \
+		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) license makefile default documentation consistency gpio_defines xor magic_drc klayout_feol klayout_beol klayout_offgrid klayout_met_min_ca_density klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"; \
+	else \
+		$(eval INPUT_DIRECTORY := $(shell pwd)) \
+		cd $(PRECHECK_ROOT) && \
+		docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
+		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
+		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
+		-e PDK_ROOT=$(PDK_ROOT) \
+		-e PDKPATH=$(PDKPATH) \
+		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"; \
+	fi
+
+
+BLOCKS = $(shell cd lvs && find * -maxdepth 0 -type d)
+LVS_BLOCKS = $(foreach block, $(BLOCKS), lvs-$(block))
+$(LVS_BLOCKS): lvs-% : ./lvs/%/lvs_config.json check-pdk check-precheck
+	@$(eval INPUT_DIRECTORY := $(shell pwd))
+	@cd $(PRECHECK_ROOT) && \
 	docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
-	-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
-	-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
-	-e PDK_ROOT=$(PDK_ROOT) \
-	-e PDKPATH=$(PDKPATH) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"
-
-
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(INPUT_DIRECTORY) --output_directory $(INPUT_DIRECTORY)/lvs --design_name $* --config_file $(INPUT_DIRECTORY)/lvs/$*/lvs_config.json"
 
 .PHONY: clean
 clean:
