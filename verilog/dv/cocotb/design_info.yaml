@@ -2,18 +2,18 @@
 
 #eg CARAVEL_ROOT: "/usr/Desktop/caravel_project/caravel/" 
 #like repo https://github.com/efabless/caravel
-# CARAVEL_ROOT: "/home/rady/caravel/swift/swift2"
-CARAVEL_ROOT: /home/rady/caravel/package/caravel
+# CARAVEL_ROOT: "/home/usr/caravel/swift/swift2"
+CARAVEL_ROOT: /home/usr/caravel/caravel
 
 #eg MCW_ROOT: "/usr/Desktop/caravel_project/caravel_mgmt_soc_litex/" 
 #like repo https://github.com/efabless/caravel_mgmt_soc_litex 
-# MCW_ROOT: "/home/rady/caravel/swift/swift2"
-MCW_ROOT: "/home/rady/caravel/package/caravel_mgmt_soc_litex/"
+# MCW_ROOT: "/home/usr/caravel/swift/swift2"
+MCW_ROOT: /home/usr/caravel/caravel_mgmt_soc_litex/
 
 #eg USER_PROJECT_ROOT: "/usr/Desktop/caravel_project/caravel_user_project/" 
 #like repo https://github.com/efabless/caravel_user_project
-USER_PROJECT_ROOT: /home/rady/caravel/package/caravel_user_project/
-# USER_PROJECT_ROOT: "/home/rady/caravel/swift/caravel_user_project"
+USER_PROJECT_ROOT: /home/usr/caravel/caravel_user_project/
+# USER_PROJECT_ROOT: "/home/usr/caravel/swift/caravel_user_project"
 # USER_PROJECT_ROOT: None
 # USER_PROJECT_ROOT: None
 
@@ -21,7 +21,7 @@ USER_PROJECT_ROOT: /home/rady/caravel/package/caravel_user_project/
 
 #eg PDK_ROOT: "/usr/Desktop/caravel_project/pdk/" 
 #exported by volare
-PDK_ROOT: "/home/rady/caravel/files4vcs/pdk"
+PDK_ROOT: /home/usr/pdk
 
 #eg PDK: "sky130A"
 PDK: sky130A
@@ -34,4 +34,4 @@ clk: 25
 caravan: false
 
 # optional email address to send the results to 
-emailto: [mostafa.rady@efabless.com,None]
+emailto: [None]
