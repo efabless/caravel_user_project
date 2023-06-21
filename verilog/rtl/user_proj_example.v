@@ -36,7 +36,7 @@
  */
 
 module user_proj_example #(
-    parameter BITS = 32
+    parameter BITS = 16
 )(
 `ifdef USE_POWER_PINS
     inout vccd1,	// User area 1 1.8V supply
@@ -61,9 +61,9 @@ module user_proj_example #(
     input  [127:0] la_oenb,
 
     // IOs
-    input  [15:0] io_in,
-    output [15:0] io_out,
-    output [15:0] io_oeb,
+    input  [BITS-1:0] io_in,
+    output [BITS-1:0] io_out,
+    output [BITS-1:0] io_oeb,
 
     // IRQ
     output [2:0] irq
@@ -71,35 +71,31 @@ module user_proj_example #(
     wire clk;
     wire rst;
 
-    wire [15:0] io_in;
-    wire [15:0] io_out;
-    wire [15:0] io_oeb;
-
-    wire [15:0] rdata; 
-    wire [15:0] wdata;
-    wire [15:0] count;
+    wire [BITS-1:0] rdata; 
+    wire [BITS-1:0] wdata;
+    wire [BITS-1:0] count;
 
     wire valid;
     wire [3:0] wstrb;
-    wire [31:0] la_write;
+    wire [BITS-1:0] la_write;
 
     // WB MI A
     assign valid = wbs_cyc_i && wbs_stb_i; 
     assign wstrb = wbs_sel_i & {4{wbs_we_i}};
-    assign wbs_dat_o = rdata;
-    assign wdata = wbs_dat_i[15:0];
+    assign wbs_dat_o = {{(32-BITS){1'b0}}, rdata};
+    assign wdata = wbs_dat_i[BITS-1:0];
 
     // IO
     assign io_out = count;
-    assign io_oeb = {(15){rst}};
+    assign io_oeb = {(BITS){rst}};
 
     // IRQ
     assign irq = 3'b000;	// Unused
 
     // LA
-    assign la_data_out = {{(127-BITS){1'b0}}, count};
+    assign la_data_out = {{(128-BITS){1'b0}}, count};
     // Assuming LA probes [63:32] are for controlling the count register  
-    assign la_write = ~la_oenb[63:32] & ~{BITS{valid}};
+    assign la_write = ~la_oenb[63:64-BITS] & ~{BITS{valid}};
     // Assuming LA probes [65:64] are for controlling the count clk & reset  
     assign clk = (~la_oenb[64]) ? la_data_in[64]: wb_clk_i;
     assign rst = (~la_oenb[65]) ? la_data_in[65]: wb_rst_i;
@@ -112,10 +108,10 @@ module user_proj_example #(
         .ready(wbs_ack_o),
         .valid(valid),
         .rdata(rdata),
-        .wdata(wbs_dat_i),
+        .wdata(wbs_dat_i[BITS-1:0]),
         .wstrb(wstrb),
         .la_write(la_write),
-        .la_input(la_data_in[63:32]),
+        .la_input(la_data_in[63:64-BITS]),
         .count(count)
     );
 
@@ -128,16 +124,13 @@ module counter #(
     input reset,
     input valid,
     input [3:0] wstrb,
-    input [15:0] wdata,
+    input [BITS-1:0] wdata,
     input [BITS-1:0] la_write,
     input [BITS-1:0] la_input,
-    output ready,
-    output [15:0] rdata,
-    output [15:0] count
+    output reg ready,
+    output reg [BITS-1:0] rdata,
+    output reg [BITS-1:0] count
 );
-    reg ready;
-    reg [15:0] count;
-    reg [15:0] rdata;
 
     always @(posedge clk) begin
         if (reset) begin
