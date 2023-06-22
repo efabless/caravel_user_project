@@ -118,7 +118,7 @@ module user_proj_example #(
 endmodule
 
 module counter #(
-    parameter BITS = 32
+    parameter BITS = 16
 )(
     input clk,
     input reset,
