@@ -100,7 +100,7 @@ simenv:
 	docker pull efabless/dv:latest
 
 .PHONY: setup
-setup: install check-env install_mcw openlane pdk-with-volare setup-timing-scripts
+setup: install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -301,6 +301,20 @@ $(TIMING_ROOT):
 setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+
+.PHONY: setup-cocotb
+setup-cocotb: 
+	@git clone https://github.com/efabless/caravel-sim-infrastructure.git --depth=1 
+	@(cd caravel-sim-infrastructure/cocotb && pip install .)
+	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+
+.PHONY: cocotb-verify-rtl
+cocotb-verify-rtl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests.yaml -v )
+	
+.PHONY: cocotb-verify-gl
+cocotb-verify-gl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests_gl.yaml -v -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)
