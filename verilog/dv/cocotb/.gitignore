@@ -1,0 +1,4 @@
+sim/ 
+*.log
+*.vcd 
+*.pyc
