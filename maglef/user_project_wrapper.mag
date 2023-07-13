@@ -1,11 +1,11 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1687437967
+timestamp 1689245290
 << obsli1 >>
 rect 13104 5159 570808 352809
 << obsm1 >>
-rect 9030 76 581242 352840
+rect 9582 76 581242 352840
 << metal2 >>
 rect 8086 703520 8198 704960
 rect 24278 703520 24390 704960
@@ -1332,7 +1332,7 @@ rect 276114 -7654 276734 711590
 rect 279834 -7654 280454 711590
 rect 289794 -7654 290414 711590
 rect 293514 -7654 294134 711590
-rect 297234 8097 297854 711590
+rect 297234 -7654 297854 711590
 rect 300954 -7654 301574 711590
 rect 304674 -7654 305294 711590
 rect 308394 354980 309014 711590
@@ -1475,9 +1475,8 @@ rect 273094 2755 276034 371381
 rect 276814 2755 279754 371381
 rect 280534 2755 289714 371381
 rect 290494 2755 293434 371381
-rect 294214 8017 297154 371381
-rect 297934 8017 300874 371381
-rect 294214 2755 300874 8017
+rect 294214 2755 297154 371381
+rect 297934 2755 300874 371381
 rect 301654 2755 304594 371381
 rect 305374 354900 308314 371381
 rect 309094 354900 312034 371381
@@ -2886,7 +2885,7 @@ rlabel metal4 s 225234 -7654 225854 711590 6 vccd2
 port 533 nsew power bidirectional
 rlabel metal4 s 261234 354980 261854 711590 6 vccd2
 port 533 nsew power bidirectional
-rlabel metal4 s 297234 8097 297854 711590 6 vccd2
+rlabel metal4 s 297234 -7654 297854 711590 6 vccd2
 port 533 nsew power bidirectional
 rlabel metal4 s 333234 -7654 333854 711590 6 vccd2
 port 533 nsew power bidirectional
@@ -3632,8 +3631,8 @@ port 645 nsew signal input
 string FIXED_BBOX 0 0 584000 704000
 string LEFclass BLOCK
 string LEFview TRUE
-string GDS_END 54720946
-string GDS_FILE /home/passant/efabless/caravel_user_project/openlane/user_project_wrapper/runs/23_06_22_15_41/results/signoff/user_project_wrapper.magic.gds
-string GDS_START 53244588
+string GDS_END 54887290
+string GDS_FILE /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_project_wrapper/runs/23_07_13_03_40/results/signoff/user_project_wrapper.magic.gds
+string GDS_START 53408820
 << end >>
 

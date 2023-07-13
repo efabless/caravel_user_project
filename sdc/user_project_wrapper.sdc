@@ -1,6 +1,6 @@
 ###############################################################################
 # Created by write_sdc
-# Thu Jun 22 12:43:05 2023
+# Thu Jul 13 10:42:35 2023
 ###############################################################################
 current_design user_project_wrapper
 ###############################################################################
@@ -9,7 +9,6 @@ current_design user_project_wrapper
 create_clock -name clk -period 25.0000 [get_ports {wb_clk_i}]
 set_clock_transition 0.1500 [get_clocks {clk}]
 set_clock_uncertainty 0.2500 clk
-set_propagated_clock [get_clocks {clk}]
 set_clock_latency -source -min 4.6500 [get_clocks {clk}]
 set_clock_latency -source -max 5.5700 [get_clocks {clk}]
 set_input_delay 0.1800 -clock [get_clocks {clk}] -min -add_delay [get_ports {la_data_in[0]}]
