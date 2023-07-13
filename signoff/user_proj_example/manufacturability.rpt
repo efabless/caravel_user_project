@@ -1,19 +1,19 @@
 Design Name: user_proj_example
-Run Directory: /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_06_22_14_46
+Run Directory: /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24
 ----------------------------------------
 
 Magic DRC Summary:
-Source: /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_06_22_14_46/reports/signoff/drc.rpt
+Source: /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/reports/signoff/drc.rpt
 Total Magic DRC violations is 0
 ----------------------------------------
 
 LVS Summary:
-Source: /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_06_22_14_46/logs/signoff/41-user_proj_example.lef.lvs.log
-Number of nets: 883                        |Number of nets: 883                        
+Source: /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/logs/signoff/41-user_proj_example.lef.lvs.log
+Number of nets: 889                        |Number of nets: 889                        
 Design is LVS clean.
 ----------------------------------------
 
 Antenna Summary:
-Source: /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_06_22_14_46/logs/signoff/43-antenna.log
-Pin violations: 3
-Net violations: 3
+Source: /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/logs/signoff/43-arc.log
+Pin violations: 6
+Net violations: 6

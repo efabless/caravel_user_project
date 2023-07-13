@@ -1,3 +1,6 @@
-wb_clk_i 
-net77 
-clknet_2_2__leaf_counter.clk 
+Partial/Required:  7.22, Required:    400.0, Partial:  2887.78, Net: net82, Pin: hold210/A, Layer: met1
+Partial/Required:  5.62, Required:    400.0, Partial:  2249.22, Net: net87, Pin: _266_/A0, Layer: met1
+Partial/Required:  1.97, Required:   8685.8, Partial:  17116.7, Net: wb_clk_i, Pin: _155_/A1, Layer: met3
+Partial/Required:  1.77, Required:    400.0, Partial:   709.56, Net: net83, Pin: hold209/A, Layer: met1
+Partial/Required:  1.63, Required:  2773.88, Partial:  4518.44, Net: net76, Pin: hold208/A, Layer: met1
+Partial/Required:  1.04, Required:  2773.88, Partial:  2886.67, Net: net115, Pin: hold104/A, Layer: met1

@@ -4,4 +4,4 @@
 [WARNING]: Module sky130_fd_sc_hd__fill_1 blackboxed during sta
 [WARNING]: Module sky130_fd_sc_hd__fill_2 blackboxed during sta
 [WARNING]: VSRC_LOC_FILES is not defined. The IR drop analysis will run, but the values may be inaccurate.
-[WARNING]: There are max fanout violations in the design at the typical corner. Please refer to 'openlane/user_proj_example/runs/23_06_22_14_46/reports/signoff/33-rcx_sta.checks.rpt'.
+[WARNING]: There are max fanout violations in the design at the typical corner. Please refer to '../home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/reports/signoff/33-rcx_sta.checks.rpt'.

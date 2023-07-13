@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <report-database>
- <description>XOR /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_06_22_14_46/results/signoff/user_proj_example.gds vs. /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_06_22_14_46/results/signoff/user_proj_example.klayout.gds</description>
+ <description>XOR /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/results/signoff/user_proj_example.gds vs. /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/results/signoff/user_proj_example.klayout.gds</description>
  <original-file/>
  <generator>drc: script='/openlane/scripts/klayout/xor.drc'</generator>
  <top-cell>user_proj_example</top-cell>
