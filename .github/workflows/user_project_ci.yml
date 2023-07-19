@@ -86,11 +86,18 @@ jobs:
           make install_mcw
           make openlane
           make simenv
+          make setup-timing-scripts
 
       - name: Harden using Openlane
         run: |
           make user_proj_example
           make user_project_wrapper
+
+      - name: run sta
+        run: |
+          make extract-parasitics
+          make create-spef-mapping
+          make caravel-sta
 
       - name: run precheck
         run: |
