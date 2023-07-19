@@ -36,12 +36,12 @@ set_clock_transition $::env(SYNTH_CLOCK_TRANSITION) [get_clocks {clk}]
 puts "\[INFO\]: Setting clock transition to: $::env(SYNTH_CLOCK_TRANSITION)"
 
 # Maximum transition time for the design nets
-set_max_transition $::env(SYNTH_MAX_TRAN) [current_design]
-puts "\[INFO\]: Setting maximum transition to: $::env(SYNTH_MAX_TRAN)"
+set_max_transition $::env(MAX_TRANSITION_CONSTRAINT) [current_design]
+puts "\[INFO\]: Setting maximum transition to: $::env(MAX_TRANSITION_CONSTRAINT)"
 
 # Maximum fanout
-set_max_fanout $::env(SYNTH_MAX_FANOUT) [current_design]
-puts "\[INFO\]: Setting maximum fanout to: $::env(SYNTH_MAX_FANOUT)"
+set_max_fanout $::env(MAX_FANOUT_CONSTRAINT) [current_design]
+puts "\[INFO\]: Setting maximum fanout to: $::env(MAX_FANOUT_CONSTRAINT)"
 
 # Timing paths delays derate
 set_timing_derate -early [expr {1-$::env(SYNTH_TIMING_DERATE)}]

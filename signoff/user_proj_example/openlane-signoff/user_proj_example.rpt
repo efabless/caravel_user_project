@@ -1,17 +1,17 @@
-CVC: Log output to /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/reports/signoff/user_proj_example.rpt
-CVC: Error output to /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/reports/signoff/user_proj_example.rpt.error.gz
-CVC: Debug output to /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/reports/signoff/user_proj_example.rpt.debug.gz
+CVC: Log output to /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/reports/signoff/user_proj_example.rpt
+CVC: Error output to /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/reports/signoff/user_proj_example.rpt.error.gz
+CVC: Debug output to /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/reports/signoff/user_proj_example.rpt.debug.gz
 CVC: Circuit Validation Check  Version 1.1.4
-CVC: Start: Thu Jul 13 10:02:27 2023
+CVC: Start: Wed Jul 19 15:38:44 2023
 
 Using the following parameters for CVC (Circuit Validation Check) from /pdk/sky130A/libs.tech/openlane/cvc/cvcrc
 CVC_TOP = 'user_proj_example'
-CVC_NETLIST = '/home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/tmp/signoff/user_proj_example.cdl'
+CVC_NETLIST = '/home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/tmp/signoff/user_proj_example.cdl'
 CVC_MODE = 'user_proj_example'
 CVC_MODEL_FILE = '/pdk/sky130A/libs.tech/openlane/cvc/models'
-CVC_POWER_FILE = '/home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/tmp/signoff/user_proj_example.power'
+CVC_POWER_FILE = '/home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/tmp/signoff/user_proj_example.power'
 CVC_FUSE_FILE = ''
-CVC_REPORT_FILE = '/home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/reports/signoff/user_proj_example.rpt'
+CVC_REPORT_FILE = '/home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/reports/signoff/user_proj_example.rpt'
 CVC_REPORT_TITLE = 'CVC $CVC_TOP'
 CVC_CIRCUIT_ERROR_LIMIT = '100'
 CVC_SEARCH_LIMIT = '100'
@@ -45,7 +45,7 @@ End of parameters
 
 CVC: Reading device model settings...
 CVC: Reading power settings...
-CVC: Parsing netlist /home/hosni/caravel_user_project_update/caravel_user_project/openlane/user_proj_example/runs/23_07_13_02_24/tmp/signoff/user_proj_example.cdl
-Cdl fixed data size 8558931
-Usage CDL: Time: 2  Memory: 247144  I/O: 4312  Swap: 0
+CVC: Parsing netlist /home/passant/efabless/caravel_user_project/openlane/user_proj_example/runs/23_07_19_18_14/tmp/signoff/user_proj_example.cdl
+Cdl fixed data size 8556843
+Usage CDL: Time: 1  Memory: 246996  I/O: 8  Swap: 0
 CVC: Counting and linking...
