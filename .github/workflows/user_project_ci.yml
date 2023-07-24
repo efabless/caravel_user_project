@@ -98,6 +98,24 @@ jobs:
           make extract-parasitics
           make create-spef-mapping
           make caravel-sta
+          vio=$(grep -c "vio(" /home/runner/work/caravel_user_project/caravel_user_project/signoff/caravel/openlane-signoff/timing/all-summary.rpt)
+          if [[ $vio -gt 0 ]]
+          then 
+            echo "STA violation count: $vio"
+            tar -cf /tmp/timing.tar /home/runner/work/caravel_user_project/caravel_user_project/signoff/caravel/openlane-signoff/timing
+            exit 2 
+          else
+            echo "STA run passed"
+            exit 0
+          fi
+
+      - name: upload sta failure logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: sta-error
+          path: |
+            /tmp/timing.tar
 
       - name: run precheck
         run: |
@@ -116,11 +134,11 @@ jobs:
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
       
-      - name: upload failure logs
+      - name: upload precheck failure logs
         if: failure()
         uses: actions/upload-artifact@v2
         with:
-          name: error
+          name: precheck-error
           path: |
             /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 

@@ -384,12 +384,12 @@ caravel-sta: ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast -j3
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow -j3
-	@echo =============================================Summary=============================================
+	@echo =============================================Summary============================================= | tee $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
 	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
-		| xargs head -n5 | tail -n1
+		| xargs head -n5 | tail -n1 | tee -a $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
 	@find $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" \
-		| xargs -I {} bash -c "head -n7 {} | tail -n1"
-	@echo =================================================================================================
-	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
-	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" 
-	@echo "Cap and slew violations are inside summary.log file itself"
+		| xargs -I {} bash -c "head -n7 {} | tail -n1" | tee -a $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+	@echo ================================================================================================= | tee -a $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/" | tee -a $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" | tee -a $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+	@echo "Cap and slew violations are inside summary.log file itself" | tee -a $(PROJECT_ROOT)/signoff/caravel/openlane-signoff/timing/all-summary.rpt
