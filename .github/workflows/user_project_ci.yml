@@ -100,8 +100,7 @@ jobs:
           make create-spef-mapping
           make caravel-sta
           tar -cf /tmp/timing.tar /home/runner/work/caravel_user_project/caravel_user_project/signoff/caravel/openlane-signoff/timing
-          vio=$(grep -c "vio(" /home/runner/work/caravel_user_project/caravel_user_project/signoff/caravel/openlane-signoff/timing/all-summary.rpt)
-          echo "vio count $vio"
+          vio=$(grep -c "vio(" /home/runner/work/caravel_user_project/caravel_user_project/signoff/caravel/openlane-signoff/timing/all-summary.rpt || true)
           if [[ $vio -gt 0 ]];
           then 
             echo "STA violation count: $vio"
@@ -111,11 +110,10 @@ jobs:
             exit 0
           fi
 
-      - name: upload sta failure logs
-        if: failure()
+      - name: upload sta reports
         uses: actions/upload-artifact@v2
         with:
-          name: sta-error
+          name: sta-reports
           path: |
             /tmp/timing.tar
 
