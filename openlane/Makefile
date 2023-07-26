@@ -21,6 +21,12 @@ OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
 designs = $(shell find * -maxdepth 0 -type d)
 current_design = null
 
+ROOTLESS ?= 0
+USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
+ifeq ($(ROOTLESS), 1)
+	USER_ARGS =
+endif
+
 openlane_cmd = \
 	"flow.tcl \
 	-design $$(realpath ./$*) \
@@ -52,9 +58,9 @@ endif
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
 docker_run = \
 	docker run $(docker_startup_mode) \
+	$(USER_ARGS) \
 	$(docker_mounts) \
 	$(docker_env) \
-	-u $(shell id -u $(USER)):$(shell id -g $(USER))
 
 list:
 	@echo $(designs)
