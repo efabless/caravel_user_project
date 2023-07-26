@@ -33,14 +33,16 @@ USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
 	USER_ARGS =
 endif
+export OPENLANE_ROOT?=$(PWD)/dependencies/openlane_src
+export PDK_ROOT?=$(PWD)/dependencies/pdks
 export DISABLE_LVS?=0
 
 export ROOTLESS
 
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2023.02.23
+	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPENLANE_TAG?=2023.07.19
 	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
@@ -57,8 +59,8 @@ endif
 
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2023.02.23
+	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPENLANE_TAG?=2023.07.19
 	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
@@ -105,7 +107,7 @@ simenv:
 	docker pull efabless/dv:latest
 
 .PHONY: setup
-setup: install check-env install_mcw openlane pdk-with-volare setup-timing-scripts
+setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -294,6 +296,12 @@ help:
 	cd $(CARAVEL_ROOT) && $(MAKE) help
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
+.PHONY: check_dependencies
+check_dependencies:
+	@if [ ! -d "$(PWD)/dependencies" ]; then \
+		mkdir $(PWD)/dependencies; \
+	fi
+
 
 export CUP_ROOT=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
@@ -308,6 +316,21 @@ $(TIMING_ROOT):
 setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+
+.PHONY: setup-cocotb
+setup-cocotb: 
+	@pip install caravel-cocotb==1.0.0 
+	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+	@docker pull efabless/dv:latest
+	@docker pull efabless/dv:cocotb
+
+.PHONY: cocotb-verify-rtl
+cocotb-verify-rtl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests.yaml -v )
+	
+.PHONY: cocotb-verify-gl
+cocotb-verify-gl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests_gl.yaml -v -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)

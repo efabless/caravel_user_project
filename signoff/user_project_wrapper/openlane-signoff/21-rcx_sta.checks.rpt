@@ -1,0 +1,628 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= Typical Corner ===================================
+
+Startpoint: wb_rst_i (input port clocked by clk)
+Endpoint: mprj/_277_ (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.15    0.00    0.00   clock clk (rise edge)
+                          5.57    5.57   clock network delay (ideal)
+                         12.50   18.07 v input external delay
+                  0.00    0.00   18.07 v wb_rst_i (in)
+     1    0.03                           wb_rst_i (net)
+                  0.00    0.00   18.07 v mprj/input37/A (sky130_fd_sc_hd__buf_8)
+                  0.11    0.16   18.23 v mprj/input37/X (sky130_fd_sc_hd__buf_8)
+    35    0.20                           mprj/net37 (net)
+                  0.27    0.13   18.36 v mprj/_152_/A_N (sky130_fd_sc_hd__nand2b_1)
+                  0.07    0.25   18.61 v mprj/_152_/Y (sky130_fd_sc_hd__nand2b_1)
+     1    0.00                           mprj/_048_ (net)
+                  0.07    0.00   18.61 v mprj/_153_/B1 (sky130_fd_sc_hd__o21ai_1)
+                  0.10    0.08   18.69 ^ mprj/_153_/Y (sky130_fd_sc_hd__o21ai_1)
+     1    0.00                           mprj/_049_ (net)
+                  0.10    0.00   18.69 ^ mprj/hold77/A (sky130_fd_sc_hd__dlygate4sd3_1)
+                  0.05    0.57   19.26 ^ mprj/hold77/X (sky130_fd_sc_hd__dlygate4sd3_1)
+     1    0.00                           mprj/net350 (net)
+                  0.05    0.00   19.26 ^ mprj/hold7/A (sky130_fd_sc_hd__dlygate4sd3_1)
+                  0.08    0.59   19.85 ^ mprj/hold7/X (sky130_fd_sc_hd__dlygate4sd3_1)
+     1    0.01                           mprj/net280 (net)
+                  0.08    0.00   19.85 ^ mprj/hold78/A (sky130_fd_sc_hd__dlymetal6s2s_1)
+                  0.19    0.21   20.07 ^ mprj/hold78/X (sky130_fd_sc_hd__dlymetal6s2s_1)
+     3    0.02                           mprj/net351 (net)
+                  0.19    0.00   20.07 ^ mprj/fanout142/A (sky130_fd_sc_hd__buf_8)
+                  0.23    0.28   20.34 ^ mprj/fanout142/X (sky130_fd_sc_hd__buf_8)
+    32    0.14                           mprj/net142 (net)
+                  0.23    0.00   20.35 ^ mprj/_175_/B1 (sky130_fd_sc_hd__o21a_1)
+                  0.04    0.16   20.51 ^ mprj/_175_/X (sky130_fd_sc_hd__o21a_1)
+     1    0.00                           mprj/_001_ (net)
+                  0.04    0.00   20.51 ^ mprj/hold143/A (sky130_fd_sc_hd__dlygate4sd3_1)
+                  0.06    0.57   21.08 ^ mprj/hold143/X (sky130_fd_sc_hd__dlygate4sd3_1)
+     1    0.00                           mprj/net416 (net)
+                  0.06    0.00   21.08 ^ mprj/hold20/A (sky130_fd_sc_hd__dlygate4sd3_1)
+                  0.05    0.56   21.64 ^ mprj/hold20/X (sky130_fd_sc_hd__dlygate4sd3_1)
+     1    0.00                           mprj/net293 (net)
+                  0.05    0.00   21.64 ^ mprj/hold144/A (sky130_fd_sc_hd__dlygate4sd3_1)
+                  0.05    0.56   22.20 ^ mprj/hold144/X (sky130_fd_sc_hd__dlygate4sd3_1)
+     1    0.00                           mprj/net417 (net)
+                  0.05    0.00   22.20 ^ mprj/_277_/D (sky130_fd_sc_hd__dfxtp_4)
+                                 22.20   data arrival time
+
+                  0.15   25.00   25.00   clock clk (rise edge)
+                          4.65   29.65   clock network delay (ideal)
+                         -0.25   29.40   clock uncertainty
+                          0.00   29.40   clock reconvergence pessimism
+                                 29.40 ^ mprj/_277_/CLK (sky130_fd_sc_hd__dfxtp_4)
+                         -0.05   29.35   library setup time
+                                 29.35   data required time
+-----------------------------------------------------------------------------
+                                 29.35   data required time
+                                -22.20   data arrival time
+-----------------------------------------------------------------------------
+                                  7.16   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= Typical Corner ===================================
+
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= Typical Corner ===================================
+
+max fanout
+
+Pin                                   Limit Fanout  Slack
+---------------------------------------------------------
+mprj/input37/X                           10     35    -25 (VIOLATED)
+mprj/input39/X                           10     35    -25 (VIOLATED)
+mprj/input40/X                           10     35    -25 (VIOLATED)
+mprj/_157_/Y                             10     32    -22 (VIOLATED)
+mprj/fanout1/X                           10     32    -22 (VIOLATED)
+mprj/fanout142/X                         10     32    -22 (VIOLATED)
+mprj/input46/X                           10     32    -22 (VIOLATED)
+mprj/input47/X                           10     32    -22 (VIOLATED)
+mprj/input48/X                           10     32    -22 (VIOLATED)
+mprj/input49/X                           10     29    -19 (VIOLATED)
+mprj/input50/X                           10     26    -16 (VIOLATED)
+mprj/input51/X                           10     26    -16 (VIOLATED)
+mprj/input52/X                           10     26    -16 (VIOLATED)
+mprj/input41/X                           10     23    -13 (VIOLATED)
+mprj/input53/X                           10     23    -13 (VIOLATED)
+mprj/input54/X                           10     23    -13 (VIOLATED)
+mprj/_277_/Q                             10     20    -10 (VIOLATED)
+mprj/_289_/Q                             10     20    -10 (VIOLATED)
+mprj/input43/X                           10     20    -10 (VIOLATED)
+mprj/input45/X                           10     20    -10 (VIOLATED)
+mprj/input55/X                           10     19     -9 (VIOLATED)
+mprj/input56/X                           10     19     -9 (VIOLATED)
+mprj/_278_/Q                             10     18     -8 (VIOLATED)
+mprj/wire124/X                           10     16     -6 (VIOLATED)
+mprj/wire125/X                           10     16     -6 (VIOLATED)
+mprj/_279_/Q                             10     14     -4 (VIOLATED)
+mprj/_281_/Q                             10     14     -4 (VIOLATED)
+mprj/_287_/Q                             10     14     -4 (VIOLATED)
+mprj/_290_/Q                             10     14     -4 (VIOLATED)
+mprj/input38/X                           10     14     -4 (VIOLATED)
+mprj/input57/X                           10     14     -4 (VIOLATED)
+mprj/_158_/Y                             10     12     -2 (VIOLATED)
+mprj/_283_/Q                             10     12     -2 (VIOLATED)
+mprj/_285_/Q                             10     12     -2 (VIOLATED)
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 183 unannotated drivers.
+ analog_io[0]
+ analog_io[10]
+ analog_io[11]
+ analog_io[12]
+ analog_io[13]
+ analog_io[14]
+ analog_io[15]
+ analog_io[16]
+ analog_io[17]
+ analog_io[18]
+ analog_io[19]
+ analog_io[1]
+ analog_io[20]
+ analog_io[21]
+ analog_io[22]
+ analog_io[23]
+ analog_io[24]
+ analog_io[25]
+ analog_io[26]
+ analog_io[27]
+ analog_io[28]
+ analog_io[2]
+ analog_io[3]
+ analog_io[4]
+ analog_io[5]
+ analog_io[6]
+ analog_io[7]
+ analog_io[8]
+ analog_io[9]
+ io_in[10]
+ io_in[11]
+ io_in[12]
+ io_in[13]
+ io_in[14]
+ io_in[15]
+ io_in[16]
+ io_in[17]
+ io_in[18]
+ io_in[19]
+ io_in[20]
+ io_in[21]
+ io_in[22]
+ io_in[23]
+ io_in[24]
+ io_in[25]
+ io_in[26]
+ io_in[27]
+ io_in[28]
+ io_in[29]
+ io_in[8]
+ io_in[9]
+ user_clock2
+ mprj/user_proj_example_143/HI
+ mprj/user_proj_example_144/HI
+ mprj/user_proj_example_145/HI
+ mprj/user_proj_example_146/HI
+ mprj/user_proj_example_147/HI
+ mprj/user_proj_example_148/HI
+ mprj/user_proj_example_149/HI
+ mprj/user_proj_example_150/HI
+ mprj/user_proj_example_151/HI
+ mprj/user_proj_example_152/HI
+ mprj/user_proj_example_153/HI
+ mprj/user_proj_example_154/HI
+ mprj/user_proj_example_155/HI
+ mprj/user_proj_example_156/HI
+ mprj/user_proj_example_157/HI
+ mprj/user_proj_example_158/HI
+ mprj/user_proj_example_159/HI
+ mprj/user_proj_example_160/HI
+ mprj/user_proj_example_161/HI
+ mprj/user_proj_example_162/HI
+ mprj/user_proj_example_163/HI
+ mprj/user_proj_example_164/HI
+ mprj/user_proj_example_165/HI
+ mprj/user_proj_example_166/HI
+ mprj/user_proj_example_167/HI
+ mprj/user_proj_example_168/HI
+ mprj/user_proj_example_169/HI
+ mprj/user_proj_example_170/HI
+ mprj/user_proj_example_171/HI
+ mprj/user_proj_example_172/HI
+ mprj/user_proj_example_173/HI
+ mprj/user_proj_example_174/HI
+ mprj/user_proj_example_175/HI
+ mprj/user_proj_example_176/HI
+ mprj/user_proj_example_177/HI
+ mprj/user_proj_example_178/HI
+ mprj/user_proj_example_179/HI
+ mprj/user_proj_example_180/HI
+ mprj/user_proj_example_181/HI
+ mprj/user_proj_example_182/HI
+ mprj/user_proj_example_183/HI
+ mprj/user_proj_example_184/HI
+ mprj/user_proj_example_185/HI
+ mprj/user_proj_example_186/HI
+ mprj/user_proj_example_187/HI
+ mprj/user_proj_example_188/HI
+ mprj/user_proj_example_189/HI
+ mprj/user_proj_example_190/HI
+ mprj/user_proj_example_191/HI
+ mprj/user_proj_example_192/HI
+ mprj/user_proj_example_193/HI
+ mprj/user_proj_example_194/HI
+ mprj/user_proj_example_195/HI
+ mprj/user_proj_example_196/HI
+ mprj/user_proj_example_197/HI
+ mprj/user_proj_example_198/HI
+ mprj/user_proj_example_199/HI
+ mprj/user_proj_example_200/HI
+ mprj/user_proj_example_201/HI
+ mprj/user_proj_example_202/HI
+ mprj/user_proj_example_203/HI
+ mprj/user_proj_example_204/HI
+ mprj/user_proj_example_205/HI
+ mprj/user_proj_example_206/HI
+ mprj/user_proj_example_207/HI
+ mprj/user_proj_example_208/HI
+ mprj/user_proj_example_209/HI
+ mprj/user_proj_example_210/HI
+ mprj/user_proj_example_211/HI
+ mprj/user_proj_example_212/HI
+ mprj/user_proj_example_213/HI
+ mprj/user_proj_example_214/HI
+ mprj/user_proj_example_215/HI
+ mprj/user_proj_example_216/HI
+ mprj/user_proj_example_217/HI
+ mprj/user_proj_example_218/HI
+ mprj/user_proj_example_219/HI
+ mprj/user_proj_example_220/HI
+ mprj/user_proj_example_221/HI
+ mprj/user_proj_example_222/HI
+ mprj/user_proj_example_223/HI
+ mprj/user_proj_example_224/HI
+ mprj/user_proj_example_225/HI
+ mprj/user_proj_example_226/HI
+ mprj/user_proj_example_227/HI
+ mprj/user_proj_example_228/HI
+ mprj/user_proj_example_229/HI
+ mprj/user_proj_example_230/HI
+ mprj/user_proj_example_231/HI
+ mprj/user_proj_example_232/HI
+ mprj/user_proj_example_233/HI
+ mprj/user_proj_example_234/HI
+ mprj/user_proj_example_235/HI
+ mprj/user_proj_example_236/HI
+ mprj/user_proj_example_237/HI
+ mprj/user_proj_example_238/HI
+ mprj/user_proj_example_239/HI
+ mprj/user_proj_example_240/HI
+ mprj/user_proj_example_241/HI
+ mprj/user_proj_example_242/HI
+ mprj/user_proj_example_243/HI
+ mprj/user_proj_example_244/HI
+ mprj/user_proj_example_245/HI
+ mprj/user_proj_example_246/HI
+ mprj/user_proj_example_247/HI
+ mprj/user_proj_example_248/HI
+ mprj/user_proj_example_249/HI
+ mprj/user_proj_example_250/HI
+ mprj/user_proj_example_251/HI
+ mprj/user_proj_example_252/HI
+ mprj/user_proj_example_253/HI
+ mprj/user_proj_example_254/HI
+ mprj/user_proj_example_255/HI
+ mprj/user_proj_example_256/HI
+ mprj/user_proj_example_257/HI
+ mprj/user_proj_example_258/HI
+ mprj/user_proj_example_259/HI
+ mprj/user_proj_example_260/HI
+ mprj/user_proj_example_261/HI
+ mprj/user_proj_example_262/HI
+ mprj/user_proj_example_263/HI
+ mprj/user_proj_example_264/HI
+ mprj/user_proj_example_265/HI
+ mprj/user_proj_example_266/HI
+ mprj/user_proj_example_267/HI
+ mprj/user_proj_example_268/HI
+ mprj/user_proj_example_269/HI
+ mprj/user_proj_example_270/HI
+ mprj/user_proj_example_271/HI
+ mprj/user_proj_example_272/HI
+ mprj/user_proj_example_273/HI
+Found 0 partially unannotated drivers.
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 34
+max cap violation count 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+Warning: There are 68 input ports missing set_input_delay.
+  analog_io[0]
+  analog_io[10]
+  analog_io[11]
+  analog_io[12]
+  analog_io[13]
+  analog_io[14]
+  analog_io[15]
+  analog_io[16]
+  analog_io[17]
+  analog_io[18]
+  analog_io[19]
+  analog_io[1]
+  analog_io[20]
+  analog_io[21]
+  analog_io[22]
+  analog_io[23]
+  analog_io[24]
+  analog_io[25]
+  analog_io[26]
+  analog_io[27]
+  analog_io[28]
+  analog_io[2]
+  analog_io[3]
+  analog_io[4]
+  analog_io[5]
+  analog_io[6]
+  analog_io[7]
+  analog_io[8]
+  analog_io[9]
+  io_in[0]
+  io_in[10]
+  io_in[11]
+  io_in[12]
+  io_in[13]
+  io_in[14]
+  io_in[15]
+  io_in[16]
+  io_in[17]
+  io_in[18]
+  io_in[19]
+  io_in[1]
+  io_in[20]
+  io_in[21]
+  io_in[22]
+  io_in[23]
+  io_in[24]
+  io_in[25]
+  io_in[26]
+  io_in[27]
+  io_in[28]
+  io_in[29]
+  io_in[2]
+  io_in[30]
+  io_in[31]
+  io_in[32]
+  io_in[33]
+  io_in[34]
+  io_in[35]
+  io_in[36]
+  io_in[37]
+  io_in[3]
+  io_in[4]
+  io_in[5]
+  io_in[6]
+  io_in[7]
+  io_in[8]
+  io_in[9]
+  user_clock2
+Warning: There are 236 unconstrained endpoints.
+  analog_io[0]
+  analog_io[10]
+  analog_io[11]
+  analog_io[12]
+  analog_io[13]
+  analog_io[14]
+  analog_io[15]
+  analog_io[16]
+  analog_io[17]
+  analog_io[18]
+  analog_io[19]
+  analog_io[1]
+  analog_io[20]
+  analog_io[21]
+  analog_io[22]
+  analog_io[23]
+  analog_io[24]
+  analog_io[25]
+  analog_io[26]
+  analog_io[27]
+  analog_io[28]
+  analog_io[2]
+  analog_io[3]
+  analog_io[4]
+  analog_io[5]
+  analog_io[6]
+  analog_io[7]
+  analog_io[8]
+  analog_io[9]
+  io_oeb[0]
+  io_oeb[10]
+  io_oeb[11]
+  io_oeb[12]
+  io_oeb[13]
+  io_oeb[14]
+  io_oeb[15]
+  io_oeb[16]
+  io_oeb[17]
+  io_oeb[18]
+  io_oeb[19]
+  io_oeb[1]
+  io_oeb[20]
+  io_oeb[21]
+  io_oeb[22]
+  io_oeb[23]
+  io_oeb[24]
+  io_oeb[25]
+  io_oeb[26]
+  io_oeb[27]
+  io_oeb[28]
+  io_oeb[29]
+  io_oeb[2]
+  io_oeb[30]
+  io_oeb[31]
+  io_oeb[32]
+  io_oeb[33]
+  io_oeb[34]
+  io_oeb[35]
+  io_oeb[36]
+  io_oeb[37]
+  io_oeb[3]
+  io_oeb[4]
+  io_oeb[5]
+  io_oeb[6]
+  io_oeb[7]
+  io_oeb[8]
+  io_oeb[9]
+  io_out[0]
+  io_out[10]
+  io_out[11]
+  io_out[12]
+  io_out[13]
+  io_out[14]
+  io_out[15]
+  io_out[16]
+  io_out[17]
+  io_out[18]
+  io_out[19]
+  io_out[1]
+  io_out[20]
+  io_out[21]
+  io_out[22]
+  io_out[23]
+  io_out[24]
+  io_out[25]
+  io_out[26]
+  io_out[27]
+  io_out[28]
+  io_out[29]
+  io_out[2]
+  io_out[30]
+  io_out[31]
+  io_out[32]
+  io_out[33]
+  io_out[34]
+  io_out[35]
+  io_out[36]
+  io_out[37]
+  io_out[3]
+  io_out[4]
+  io_out[5]
+  io_out[6]
+  io_out[7]
+  io_out[8]
+  io_out[9]
+  la_data_out[100]
+  la_data_out[101]
+  la_data_out[102]
+  la_data_out[103]
+  la_data_out[104]
+  la_data_out[105]
+  la_data_out[106]
+  la_data_out[107]
+  la_data_out[108]
+  la_data_out[109]
+  la_data_out[110]
+  la_data_out[111]
+  la_data_out[112]
+  la_data_out[113]
+  la_data_out[114]
+  la_data_out[115]
+  la_data_out[116]
+  la_data_out[117]
+  la_data_out[118]
+  la_data_out[119]
+  la_data_out[120]
+  la_data_out[121]
+  la_data_out[122]
+  la_data_out[123]
+  la_data_out[124]
+  la_data_out[125]
+  la_data_out[126]
+  la_data_out[127]
+  la_data_out[16]
+  la_data_out[17]
+  la_data_out[18]
+  la_data_out[19]
+  la_data_out[20]
+  la_data_out[21]
+  la_data_out[22]
+  la_data_out[23]
+  la_data_out[24]
+  la_data_out[25]
+  la_data_out[26]
+  la_data_out[27]
+  la_data_out[28]
+  la_data_out[29]
+  la_data_out[30]
+  la_data_out[31]
+  la_data_out[32]
+  la_data_out[33]
+  la_data_out[34]
+  la_data_out[35]
+  la_data_out[36]
+  la_data_out[37]
+  la_data_out[38]
+  la_data_out[39]
+  la_data_out[40]
+  la_data_out[41]
+  la_data_out[42]
+  la_data_out[43]
+  la_data_out[44]
+  la_data_out[45]
+  la_data_out[46]
+  la_data_out[47]
+  la_data_out[48]
+  la_data_out[49]
+  la_data_out[50]
+  la_data_out[51]
+  la_data_out[52]
+  la_data_out[53]
+  la_data_out[54]
+  la_data_out[55]
+  la_data_out[56]
+  la_data_out[57]
+  la_data_out[58]
+  la_data_out[59]
+  la_data_out[60]
+  la_data_out[61]
+  la_data_out[62]
+  la_data_out[63]
+  la_data_out[64]
+  la_data_out[65]
+  la_data_out[66]
+  la_data_out[67]
+  la_data_out[68]
+  la_data_out[69]
+  la_data_out[70]
+  la_data_out[71]
+  la_data_out[72]
+  la_data_out[73]
+  la_data_out[74]
+  la_data_out[75]
+  la_data_out[76]
+  la_data_out[77]
+  la_data_out[78]
+  la_data_out[79]
+  la_data_out[80]
+  la_data_out[81]
+  la_data_out[82]
+  la_data_out[83]
+  la_data_out[84]
+  la_data_out[85]
+  la_data_out[86]
+  la_data_out[87]
+  la_data_out[88]
+  la_data_out[89]
+  la_data_out[90]
+  la_data_out[91]
+  la_data_out[92]
+  la_data_out[93]
+  la_data_out[94]
+  la_data_out[95]
+  la_data_out[96]
+  la_data_out[97]
+  la_data_out[98]
+  la_data_out[99]
+  user_irq[0]
+  user_irq[1]
+  user_irq[2]
+  wbs_dat_o[16]
+  wbs_dat_o[17]
+  wbs_dat_o[18]
+  wbs_dat_o[19]
+  wbs_dat_o[20]
+  wbs_dat_o[21]
+  wbs_dat_o[22]
+  wbs_dat_o[23]
+  wbs_dat_o[24]
+  wbs_dat_o[25]
+  wbs_dat_o[26]
+  wbs_dat_o[27]
+  wbs_dat_o[28]
+  wbs_dat_o[29]
+  wbs_dat_o[30]
+  wbs_dat_o[31]
