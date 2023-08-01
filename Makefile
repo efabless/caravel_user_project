@@ -23,6 +23,8 @@ SIM?=RTL
 # Install lite version of caravel, (1): caravel-lite, (0): caravel
 CARAVEL_LITE?=1
 
+PYTHON_BIN ?= python3
+
 # PDK switch varient
 export PDK?=sky130A
 #export PDK?=gf180mcuC
@@ -319,7 +321,7 @@ setup-timing-scripts: $(TIMING_ROOT)
 
 .PHONY: setup-cocotb
 setup-cocotb: 
-	@pip install caravel-cocotb==1.0.0 
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 	@docker pull efabless/dv:latest
 	@docker pull efabless/dv:cocotb
