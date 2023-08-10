@@ -96,12 +96,12 @@ Starting your project
 
         make setup
 
-*   This command will setup your environment by installing the following
+    *   This command will setup your environment by installing the following
     
-    - caravel_lite (a lite version of caravel)
-    - management core for simulation
-    - openlane to harden your design 
-    - pdk
+        - caravel_lite (a lite version of caravel)
+        - management core for simulation
+        - openlane to harden your design 
+        - pdk
 
 	
 #.  Now you can start hardening your design
@@ -168,7 +168,7 @@ Starting your project
 
             make caravel-sta
 
-      **NOTE:** To update timing scripts run ``make setup-timing-scripts``
+    **NOTE:** To update timing scripts run ``make setup-timing-scripts``
 
 #.  Run standalone LVS
 
@@ -176,7 +176,7 @@ Starting your project
 
         make lvs-<macro_name> # macro is the name of the macro you want to run LVS on
 
-   **NOTE:** You have to create a new config file for each macro under ``lvs/<macro_name>/lvs_config.json``
+    **NOTE:** You have to create a new config file for each macro under ``lvs/<macro_name>/lvs_config.json``
 	
 #.  Run the precheck locally 
 
