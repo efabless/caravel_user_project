@@ -155,12 +155,19 @@ Starting your project
     * To make sure the cocotb flow works, run the following commands for testing the counter example
 
         .. code:: bash
+            # To run all tests in user_project_tests list found at ``verilog/dv/cocotb/user_project_tests/user_project_tests.yaml``
+               # RTL tests
+               make cocotb-verify-all-rtl
 
-            # RTL tests
-            make cocotb-verify-rtl
+               # OR GL simulation using
+               make  cocotb-verify-all-gl
 
-            # OR GL simulation using
-            make cocotb-verify-gl
+            # To run any test under ``verilog/dv/cocotb/*``
+               # RTL
+               make cocotb-verify-<test_name>-rtl
+               # GL
+               make cocotb-verify-<test_name>-gl
+
     * To run cocotb tests on your design, Follow the steps below
         * Add cocotb tests under ``verilog/dv/cocotb`` follow steps at `Adding_cocotb_test <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#adding-a-test>`_
         * Run cocotb tests using ``caravel_cocotb`` command steps at `Running_cocotb_tests <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#running-a-test>`_

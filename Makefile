@@ -116,8 +116,12 @@ $(blocks): % :
 	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+cocotb-dv_patterns=$(shell cd verilog/dv/cocotb && find . -name "*.c"  | sed -e 's|^.*/||' -e 's/.c//')
+$(info VAR1 is $(cocotb-dv_patterns))
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
+cocotb-dv-targets-rtl=$(cocotb-dv_patterns:%=cocotb-verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
+cocotb-dv-targets-gl=$(cocotb-dv_patterns:%=cocotb-verify-%-gl)
 dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
 
 TARGET_PATH=$(shell pwd)
@@ -324,13 +328,19 @@ setup-cocotb:
 	@docker pull efabless/dv:latest
 	@docker pull efabless/dv:cocotb
 
-.PHONY: cocotb-verify-rtl
-cocotb-verify-rtl: 
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests.yaml )
+.PHONY: cocotb-verify-all-rtl
+cocotb-verify-all-rtl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl user_proj_tests/user_proj_tests.yaml )
 	
-.PHONY: cocotb-verify-gl
-cocotb-verify-gl: 
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests_gl.yaml -verbosity quiet)
+.PHONY: cocotb-verify-all-gl
+cocotb-verify-all-gl:
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity quiet)
+
+$(cocotb-dv-targets-rtl): cocotb-verify-%-rtl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -t $*  )
+	
+$(cocotb-dv-targets-gl): cocotb-verify-%-gl:
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -t $* -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)

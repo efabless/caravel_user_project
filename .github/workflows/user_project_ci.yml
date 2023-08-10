@@ -119,16 +119,8 @@ jobs:
 
       - name: Run DV RTL tests
         run: |
-          make verify-io_ports-rtl 
-          make verify-la_test1-rtl 
-          make verify-la_test2-rtl 
-          make verify-mprj_stimulus-rtl 
-          make verify-wb_port-rtl
+          make cocotb-verify-all-rtl
 
-      # - name: Run DV GL tests
-      #   run: |
-      #     make verify-io_ports-gl 
-      #     make verify-la_test1-gl 
-      #     make verify-la_test2-gl 
-      #     make verify-mprj_stimulus-gl 
-      #     make verify-wb_port-gl
+      -name : Run DV GL tests
+        run: |
+          make cocotb-verify-all-gl

@@ -18,10 +18,8 @@
 
 
 # yaml file contain general design information that would mostly need to be updated in the first run only 
-includes: 
-    - counter_la/counter_la.yaml
-    - counter_wb/counter_wb.yaml
-    - counter_la_reset/counter_la_reset.yaml
-    - counter_la_clk/counter_la_clk.yaml
-
-
+Tests: 
+    - {name: counter_wb, sim: RTL}
+    - {name: counter_la, sim: RTL}
+    - {name: counter_la_reset, sim: RTL}
+    - {name: counter_la_clk, sim: RTL}
