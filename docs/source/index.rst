@@ -148,6 +148,23 @@ Starting your project
             # for example
             make verify-io_ports-rtl
 
+#.  Run cocotb simulation on your design
+
+    *   You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
+
+    * To make sure the cocotb flow works, run the following commands for testing the counter example
+
+        .. code:: bash
+
+            # RTL tests
+            make cocotb-verify-rtl
+
+            # OR GL simulation using
+            make cocotb-verify-gl
+    * To run cocotb tests on your design, Follow the steps below
+        * Add cocotb tests under ``verilog/dv/cocotb`` follow steps at `Adding_cocotb_test <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#adding-a-test>`_
+        * Run cocotb tests using ``caravel_cocotb`` command steps at `Running_cocotb_tests <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#running-a-test>`_
+
 #.  Run opensta on your design
 
     *   Extract spefs for ``user_project_wrapper`` and macros inside it:
