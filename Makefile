@@ -306,11 +306,11 @@ check_dependencies:
 export CUP_ROOT=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
 export PROJECT_ROOT=$(CUP_ROOT)
-timing-scripts-repo=https://github.com/efabless/timing-scripts.git
+export TIMING_SCRIPTS_REPO?=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):
 	@mkdir -p $(CUP_ROOT)/dependencies
-	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
+	@git clone $(TIMING_SCRIPTS_REPO) $(TIMING_ROOT)
 
 .PHONY: setup-timing-scripts
 setup-timing-scripts: $(TIMING_ROOT)
