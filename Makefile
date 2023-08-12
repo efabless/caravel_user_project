@@ -39,6 +39,8 @@ export DISABLE_LVS?=0
 
 export ROOTLESS
 
+export EFABLESS_DOCKER_BASE ?= efabless
+
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
@@ -104,7 +106,7 @@ install:
 # Install DV setup
 .PHONY: simenv
 simenv:
-	docker pull efabless/dv:latest
+	docker pull $(EFABLESS_DOCKER_BASE)/dv:latest
 
 .PHONY: setup
 setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
@@ -138,7 +140,7 @@ docker_run_verify=\
 		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
 		-e CARAVEL_VERILOG_PATH=$(TARGET_PATH)/caravel/verilog \
 		-e MCW_ROOT=$(MCW_ROOT) \
-		efabless/dv:latest \
+		$(EFABLESS_DOCKER_BASE)/dv:latest \
 		sh -c $(verify_command)
 
 .PHONY: harden
@@ -226,7 +228,7 @@ uninstall:
 .PHONY: precheck
 precheck:
 	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
-	@docker pull efabless/mpw_precheck:latest
+	@docker pull $(EFABLESS_DOCKER_BASE)/mpw_precheck:latest
 
 .PHONY: run-precheck
 run-precheck: check-pdk check-precheck
@@ -241,7 +243,7 @@ run-precheck: check-pdk check-precheck
 		-e PDK_ROOT=$(PDK_ROOT) \
 		-e PDKPATH=$(PDKPATH) \
 		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) license makefile default documentation consistency gpio_defines xor magic_drc klayout_feol klayout_beol klayout_offgrid klayout_met_min_ca_density klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"; \
+		$(EFABLESS_DOCKER_BASE)/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) license makefile default documentation consistency gpio_defines xor magic_drc klayout_feol klayout_beol klayout_offgrid klayout_met_min_ca_density klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"; \
 	else \
 		$(eval INPUT_DIRECTORY := $(shell pwd)) \
 		cd $(PRECHECK_ROOT) && \
@@ -253,7 +255,7 @@ run-precheck: check-pdk check-precheck
 		-e PDK_ROOT=$(PDK_ROOT) \
 		-e PDKPATH=$(PDKPATH) \
 		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"; \
+		$(EFABLESS_DOCKER_BASE)/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"; \
 	fi
 
 
@@ -266,7 +268,7 @@ $(LVS_BLOCKS): lvs-% : ./lvs/%/lvs_config.json check-pdk check-precheck
 	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(INPUT_DIRECTORY) --output_directory $(INPUT_DIRECTORY)/lvs --design_name $* --config_file $(INPUT_DIRECTORY)/lvs/$*/lvs_config.json"
+	$(EFABLESS_DOCKER_BASE)/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(INPUT_DIRECTORY) --output_directory $(INPUT_DIRECTORY)/lvs --design_name $* --config_file $(INPUT_DIRECTORY)/lvs/$*/lvs_config.json"
 
 .PHONY: clean
 clean:
@@ -321,8 +323,8 @@ setup-timing-scripts: $(TIMING_ROOT)
 setup-cocotb: 
 	@pip install caravel-cocotb==1.0.0 
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
-	@docker pull efabless/dv:latest
-	@docker pull efabless/dv:cocotb
+	@docker pull $(EFABLESS_DOCKER_BASE)/dv:latest
+	@docker pull $(EFABLESS_DOCKER_BASE)/dv:cocotb
 
 .PHONY: cocotb-verify-rtl
 cocotb-verify-rtl: 
@@ -352,7 +354,7 @@ create-spef-mapping: ./verilog/gl/user_project_wrapper.v
 		-v $(MCW_ROOT):$(MCW_ROOT) \
 		-v $(TIMING_ROOT):$(TIMING_ROOT) \
 		-w $(shell pwd) \
-		efabless/timing-scripts:latest \
+		$(EFABLESS_DOCKER_BASE)/timing-scripts:latest \
 		python3 $(TIMING_ROOT)/scripts/generate_spef_mapping.py \
 			-i ./verilog/gl/user_project_wrapper.v \
 			-o ./env/spef-mapping.tcl \
@@ -372,7 +374,7 @@ extract-parasitics: ./verilog/gl/user_project_wrapper.v
 		-v $(MCW_ROOT):$(MCW_ROOT) \
 		-v $(TIMING_ROOT):$(TIMING_ROOT) \
 		-w $(shell pwd) \
-		efabless/timing-scripts:latest \
+		$(EFABLESS_DOCKER_BASE)/timing-scripts:latest \
 		python3 $(TIMING_ROOT)/scripts/get_macros.py \
 			-i ./verilog/gl/user_project_wrapper.v \
 			-o ./tmp-macros-list \

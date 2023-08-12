@@ -18,7 +18,8 @@ MAKEFLAGS+=--warn-undefined-variables
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
 export OPENLANE_REPO ?= https://github.com/The-OpenROAD-Project/OpenLane
 OPENLANE_TAG ?= 2023.07.19
-OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
+EFABLESS_DOCKER_BASE ?=  efabless
+OPENLANE_IMAGE_NAME ?= $(EFABLESS_DOCKER_BASE)/openlane:$(OPENLANE_TAG)
 designs = $(shell find * -maxdepth 0 -type d)
 current_design = null
 
