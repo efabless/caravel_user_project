@@ -105,6 +105,7 @@ install:
 .PHONY: simenv
 simenv:
 	docker pull efabless/dv:latest
+	docker pull efabless/dv:cocotb
 
 .PHONY: setup
 setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
@@ -321,12 +322,16 @@ setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
-.PHONY: setup-cocotb
-setup-cocotb: 
+.PHONY: install-cocotb
+install-cocotb:
 	@pip install caravel-cocotb==1.0.0 
+
+.PHONY: setup-cocotb-env
+setup-cocotb-env:
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
-	@docker pull efabless/dv:latest
-	@docker pull efabless/dv:cocotb
+
+.PHONY: setup-cocotb
+setup-cocotb: install-cocotb setup-cocotb-env simenv
 
 .PHONY: cocotb-verify-all-rtl
 cocotb-verify-all-rtl: 
