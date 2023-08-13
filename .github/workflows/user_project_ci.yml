@@ -85,7 +85,6 @@ jobs:
           make install
           make install_mcw
           make openlane
-          make simenv
           make setup-cocotb
 
       - name: Harden using Openlane
