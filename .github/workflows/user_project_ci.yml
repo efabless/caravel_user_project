@@ -121,10 +121,6 @@ jobs:
         run: |
           make cocotb-verify-all-rtl
 
-      # - name: Run DV RTL tests
-      #   run: |
-      #     make cocotb-verify-all-rtl
-
-      # -name : Run DV GL tests
-      #   run: |
-      #     make cocotb-verify-all-gl
+      - name: Run DV GL tests
+        run: |
+          make cocotb-verify-all-gl
