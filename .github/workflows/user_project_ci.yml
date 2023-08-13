@@ -117,6 +117,10 @@ jobs:
           path: |
             /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 
+      - name: Run DV RTL tests
+        run: |
+          make cocotb-verify-all-rtl
+
       # - name: Run DV RTL tests
       #   run: |
       #     make cocotb-verify-all-rtl
