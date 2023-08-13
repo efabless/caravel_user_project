@@ -119,8 +119,8 @@ jobs:
 
       - name: Run DV RTL tests
         run: |
-          make cocotb-verify-all-rtl
+            make cocotb-verify-all-rtl
 
       -name : Run DV GL tests
         run: |
-          make cocotb-verify-all-gl
+            make cocotb-verify-all-gl
