@@ -196,8 +196,8 @@ openlane-docker-container:
 	docker pull ghcr.io/efabless/openlane2:$(OPENLANE_TAG_DOCKER)
 
 .PHONY: openlane-venv
-openlane-venv: venv/manifest.txt
-venv/manifest.txt:
+openlane-venv: openlane-venv/manifest.txt
+openlane-venv/manifest.txt:
 	rm -rf openlane-venv
 	python3 -m venv ./openlane-venv
 	PYTHONPATH= ./openlane-venv/bin/python3 -m pip install openlane==$(OPENLANE_TAG)
