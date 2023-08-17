@@ -80,9 +80,9 @@ endif
 	rm -rf ./$*/runs/$*
 	ln -s $$(realpath ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
 	@mkdir -p ../signoff/$*/
-	@cp ./$*/runs/$*/OPENLANE_VERSION ../signoff/$*/
-	@cp ./$*/runs/$*/PDK_SOURCES ../signoff/$*/
-	@cp ./$*/runs/$*/reports/*.csv ../signoff/$*/
+	cat  $(OPENLANE_TAG) > ../signoff/$*/OPENLANE_VERSION
+	@cp $(PDK_ROOT)/$(PDK)/SOURCES ../signoff/$*/PDK_SOURCES
+	@cp ./$*/runs/$*/final/*.csv ../signoff/$*/
 
 .PHONY: openlane
 openlane: check-openlane-env
