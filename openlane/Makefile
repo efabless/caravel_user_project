@@ -16,43 +16,44 @@
 MAKEFLAGS+=--warn-undefined-variables
 
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
+export CARAVEL_ROOT:=$(CARAVEL_ROOT)
+export PDK:=$(PDK)
+export PDK_ROOT:=$(PDK_ROOT)
 OPENLANE_TAG ?= 2023.07.19
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
 designs = $(shell find * -maxdepth 0 -type d)
 current_design = null
-
+OPENLANE_USE_NIX ?= 0
 ROOTLESS ?= 0
 USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
 	USER_ARGS =
 endif
 
-openlane_cmd = \
-	"flow.tcl \
-	-design $$(realpath ./$*) \
-	-save_path $$(realpath ..) \
-	-save \
-	-tag $(OPENLANE_RUN_TAG) \
-	-overwrite \
-	-ignore_mismatches"
-openlane_cmd_interactive = "flow.tcl -it -file $$(realpath ./$*/interactive.tcl)"
+openlane_args = \
+	--run-tag $(OPENLANE_RUN_TAG) \
+	--manual-pdk \
+	--pdk-root $(PDK_ROOT) \
+	$$(realpath ./$*)/config.json
 
 docker_mounts = \
-	-v $$(realpath $(PWD)/..):$$(realpath $(PWD)/..) \
-	-v $(PDK_ROOT):$(PDK_ROOT) \
-	-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
-	-v $(OPENLANE_ROOT):/openlane
+	-m $$(realpath $(PWD)/..) \
+	-m $(PDK_ROOT) \
+	-m $(CARAVEL_ROOT)
 
 docker_env = \
 	-e PDK_ROOT=$(PDK_ROOT) \
 	-e PDK=$(PDK) \
-	-e MISMATCHES_OK=1 \
 	-e CARAVEL_ROOT=$(CARAVEL_ROOT) \
 	-e OPENLANE_RUN_TAG=$(OPENLANE_RUN_TAG)
 
 ifneq ($(MCW_ROOT),)
 docker_env += -e MCW_ROOT=$(MCW_ROOT)
-docker_mounts += -v $(MCW_ROOT):$(MCW_ROOT)
+export MCW_ROOT:=$(MCW_ROOT)
+docker_mounts += -m $(MCW_ROOT)
+endif
+
+ifeq ($(OPENLANE_USE_NIX),0)
 endif
 
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
@@ -68,17 +69,16 @@ list:
 .PHONY: $(designs)
 $(designs) : export current_design=$@
 $(designs) : % : ./%/config.json
-ifneq (,$(wildcard ./$(current_design)/interactive.tcl))
-	$(docker_run) \
-		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive)
-else
 	# $(current_design)
-	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG) 
+	rm -rf ./$*/runs/$(OPENLANE_RUN_TAG)
+ifeq ($(OPENLANE_USE_NIX),1)
+	nix-shell --pure --command "openlane $(openlane_args)"
+else
+	../openlane-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args)
+endif
+	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG)
 	rm -rf ./$*/runs/$*
 	ln -s $$(realpath ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
-	$(docker_run) \
-		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd)
-endif
 	@mkdir -p ../signoff/$*/
 	@cp ./$*/runs/$*/OPENLANE_VERSION ../signoff/$*/
 	@cp ./$*/runs/$*/PDK_SOURCES ../signoff/$*/

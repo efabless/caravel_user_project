@@ -42,7 +42,7 @@ export ROOTLESS
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2023.07.19
+	export OPENLANE_TAG?=2.0.0-b4
 	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
@@ -187,13 +187,21 @@ what:
 
 # Install Openlane
 .PHONY: openlane
-openlane:
-	@if [ "$$(realpath $${OPENLANE_ROOT})" = "$$(realpath $$(pwd)/openlane)" ]; then\
-		echo "OPENLANE_ROOT is set to '$$(pwd)/openlane' which contains openlane config files"; \
-		echo "Please set it to a different directory"; \
-		exit 1; \
-	fi
-	cd openlane && $(MAKE) openlane
+openlane: openlane-venv openlane-docker-container
+	# openlane installed
+
+OPENLANE_TAG_DOCKER=$(subst -,,$(OPENLANE_TAG))
+.PHONY: openlane-docker-container
+openlane-docker-container:
+	docker pull ghcr.io/efabless/openlane2:$(OPENLANE_TAG_DOCKER)
+
+.PHONY: openlane-venv
+openlane-venv: venv/manifest.txt
+venv/manifest.txt:
+	rm -rf openlane-venv
+	python3 -m venv ./openlane-venv
+	PYTHONPATH= ./openlane-venv/bin/python3 -m pip install openlane==$(OPENLANE_TAG)
+	PYTHONPATH= ./openlane-venv/bin/python3 -m pip freeze > $@
 
 #### Not sure if the targets following are of any use
 
