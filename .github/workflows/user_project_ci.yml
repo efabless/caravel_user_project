@@ -61,7 +61,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Export PDK VARIABLES
+      - name: Export PDK Variables
         run: |
           echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
           echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
@@ -88,13 +88,14 @@ jobs:
           make install_mcw
           make openlane
           make simenv
+          sudo apt install -y python3-tk
 
       - name: Harden using Openlane
         run: |
           make user_proj_example
           make user_project_wrapper
 
-      - name: run precheck
+      - name: Run Precheck
         run: |
           export INPUT_DIRECTORY=$(pwd)
           export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
@@ -111,7 +112,7 @@ jobs:
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
       
-      - name: upload failure logs
+      - name: Upload Failure Logs
         if: failure()
         uses: actions/upload-artifact@v2
         with:
@@ -126,11 +127,3 @@ jobs:
           make verify-la_test2-rtl 
           make verify-mprj_stimulus-rtl 
           make verify-wb_port-rtl
-
-      # - name: Run DV GL tests
-      #   run: |
-      #     make verify-io_ports-gl 
-      #     make verify-la_test1-gl 
-      #     make verify-la_test2-gl 
-      #     make verify-mprj_stimulus-gl 
-      #     make verify-wb_port-gl
