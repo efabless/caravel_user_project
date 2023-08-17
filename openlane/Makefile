@@ -57,6 +57,7 @@ ifeq ($(OPENLANE_USE_NIX),0)
 endif
 
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
+openlane_extra_args = $(shell test -t 0 && echo "--log-level WARN")
 docker_run = \
 	docker run $(docker_startup_mode) \
 	$(USER_ARGS) \
@@ -72,9 +73,9 @@ $(designs) : % : ./%/config.json
 	# $(current_design)
 	rm -rf ./$*/runs/$(OPENLANE_RUN_TAG)
 ifeq ($(OPENLANE_USE_NIX),1)
-	nix-shell --pure --command "openlane $(openlane_args)"
+	nix-shell --pure --command "openlane $(openlane_args) $(openlane_extra_args)"
 else
-	../openlane-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args)
+	../openlane-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args) $(openlane_extra_args)
 endif
 	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG)
 	rm -rf ./$*/runs/$*
