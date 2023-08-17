@@ -105,6 +105,10 @@ install:
 .PHONY: simenv
 simenv:
 	docker pull efabless/dv:latest
+
+# Install cocotb docker
+.PHONY: simenv-cocotb
+simenv-cocotb:
 	docker pull efabless/dv:cocotb
 
 .PHONY: setup
@@ -322,16 +326,16 @@ setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
-.PHONY: install-cocotb
-install-cocotb:
-	@pip install caravel-cocotb==1.0.0 
+.PHONY: install-caravel-cocotb
+install-caravel-cocotb:
+	@pip install caravel-cocotb
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 
 .PHONY: setup-cocotb
-setup-cocotb: install-cocotb setup-cocotb-env simenv
+setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
 
 .PHONY: cocotb-verify-all-rtl
 cocotb-verify-all-rtl: 
