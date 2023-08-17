@@ -10,7 +10,7 @@ on:
 jobs:
   build-pdk:
     runs-on: ubuntu-latest
-    name: Build PDK and Cache PDK
+    name: Build and Cache PDK
     steps:
       - uses: actions/checkout@v2
 
