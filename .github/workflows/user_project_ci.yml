@@ -8,8 +8,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  pdk:
+  build-pdk:
     runs-on: ubuntu-latest
+    name: Build PDK and Cache PDK
     steps:
       - uses: actions/checkout@v2
 
@@ -49,7 +50,7 @@ jobs:
     strategy:
       matrix:
         pdk: ["sky130A", "sky130B"]
-    needs: [pdk]
+    needs: [build-pdk]
     steps:
       - uses: actions/checkout@v2
 
