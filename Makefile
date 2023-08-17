@@ -28,6 +28,8 @@ export PDK?=sky130A
 #export PDK?=gf180mcuC
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
+PYTHON_BIN ?= python3
+
 ROOTLESS ?= 0
 USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
@@ -328,7 +330,7 @@ setup-timing-scripts: $(TIMING_ROOT)
 
 .PHONY: install-caravel-cocotb
 install-caravel-cocotb:
-	@pip install caravel-cocotb
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
