@@ -28,6 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt install -y python3-tk
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
