@@ -57,7 +57,7 @@ ifeq ($(OPENLANE_USE_NIX),0)
 endif
 
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
-openlane_extra_args = $(shell test -t 0 && echo "--log-level WARN")
+openlane_extra_args = $(shell test -t 0 || echo "--log-level WARN")
 docker_run = \
 	docker run $(docker_startup_mode) \
 	$(USER_ARGS) \
@@ -81,7 +81,7 @@ endif
 	rm -rf ./$*/runs/$*
 	ln -s $$(realpath ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
 	@mkdir -p ../signoff/$*/
-	cat  $(OPENLANE_TAG) > ../signoff/$*/OPENLANE_VERSION
+	@echo $(OPENLANE_TAG) > ../signoff/$*/OPENLANE_VERSION
 	@cp $(PDK_ROOT)/$(PDK)/SOURCES ../signoff/$*/PDK_SOURCES
 	@cp ./$*/runs/$*/final/*.csv ../signoff/$*/
 
