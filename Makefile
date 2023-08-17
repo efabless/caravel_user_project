@@ -90,7 +90,7 @@ endif
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export MPW_TAG=$(MPW_TAG) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 .PHONY: install
 install:
