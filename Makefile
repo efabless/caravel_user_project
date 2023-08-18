@@ -89,7 +89,7 @@ endif
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export PROJECT_ROOT=$(PROJECT_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 .PHONY: install
 install:
@@ -109,7 +109,7 @@ simenv:
 setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
 
 # Openlane
-blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+blocks=$(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
 $(blocks): % :
 	$(MAKE) -C openlane $*
@@ -186,7 +186,7 @@ what:
 
 # Install Openlane
 .PHONY: openlane
-openlane: openlane-venv openlane-docker-container
+openlane: openlane-venv
 	# openlane installed
 
 OPENLANE_TAG_DOCKER=$(subst -,,$(OPENLANE_TAG))
@@ -194,12 +194,12 @@ OPENLANE_TAG_DOCKER=$(subst -,,$(OPENLANE_TAG))
 openlane-docker-container:
 	docker pull ghcr.io/efabless/openlane2:$(OPENLANE_TAG_DOCKER)
 
-openlane-venv: openlane-venv/manifest.txt
-openlane-venv/manifest.txt:
+openlane-venv: $(PROJECT_ROOT)/openlane-venv/manifest.txt
+$(PROJECT_ROOT)/openlane-venv/manifest.txt:
 	rm -rf openlane-venv
-	python3 -m venv ./openlane-venv
-	PYTHONPATH= ./openlane-venv/bin/python3 -m pip install openlane==$(OPENLANE_TAG)
-	PYTHONPATH= ./openlane-venv/bin/python3 -m pip freeze > $@
+	python3 -m venv $(PROJECT_ROOT)/openlane-venv
+	PYTHONPATH= $(PROJECT_ROOT)/openlane-venv/bin/python3 -m pip install openlane==$(OPENLANE_TAG)
+	PYTHONPATH= $(PROJECT_ROOT)/openlane-venv/bin/python3 -m pip freeze > $(PROJECT_ROOT)/openlane-venv/manifest.txt
 
 #### Not sure if the targets following are of any use
 
@@ -309,9 +309,9 @@ check_dependencies:
 	fi
 
 
-export CUP_ROOT=$(shell pwd)
+export CUP_ROOT?=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
-export PROJECT_ROOT=$(CUP_ROOT)
+export PROJECT_ROOT?=$(CUP_ROOT)
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):

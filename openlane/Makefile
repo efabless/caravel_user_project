@@ -21,7 +21,7 @@ export PDK:=$(PDK)
 export PDK_ROOT:=$(PDK_ROOT)
 OPENLANE_TAG ?= 2023.07.19
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
-designs = $(shell find * -maxdepth 0 -type d)
+designs = $(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
 current_design = null
 OPENLANE_USE_NIX ?= 0
 ROOTLESS ?= 0
@@ -34,10 +34,10 @@ openlane_args = \
 	--run-tag $(OPENLANE_RUN_TAG) \
 	--manual-pdk \
 	--pdk-root $(PDK_ROOT) \
-	$$(realpath ./$*)/config.json
+	$(PROJECT_ROOT)/openlane/$*/config.json
 
 docker_mounts = \
-	-m $$(realpath $(PWD)/..) \
+	-m $(PROJECT_ROOT)\
 	-m $(PDK_ROOT) \
 	-m $(CARAVEL_ROOT)
 
@@ -53,9 +53,6 @@ export MCW_ROOT:=$(MCW_ROOT)
 docker_mounts += -m $(MCW_ROOT)
 endif
 
-ifeq ($(OPENLANE_USE_NIX),0)
-endif
-
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
 openlane_extra_args = $(shell test -t 0 || echo "--log-level WARN")
 docker_run = \
@@ -69,21 +66,21 @@ list:
 
 .PHONY: $(designs)
 $(designs) : export current_design=$@
-$(designs) : % : ./%/config.json
+$(designs) : % : $(PROJECT_ROOT)/openlane/%/config.json
 	# $(current_design)
-	rm -rf ./$*/runs/$(OPENLANE_RUN_TAG)
+	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE_RUN_TAG)
 ifeq ($(OPENLANE_USE_NIX),1)
 	nix-shell --pure --command "openlane $(openlane_args) $(openlane_extra_args)"
 else
-	../openlane-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args) $(openlane_extra_args)
+	$(PROJECT_ROOT)/openlane-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args) $(openlane_extra_args)
 endif
-	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG)
-	rm -rf ./$*/runs/$*
-	ln -s $$(realpath ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
-	@mkdir -p ../signoff/$*/
-	@echo $(OPENLANE_TAG) > ../signoff/$*/OPENLANE_VERSION
-	@cp $(PDK_ROOT)/$(PDK)/SOURCES ../signoff/$*/PDK_SOURCES
-	@cp ./$*/runs/$*/final/*.csv ../signoff/$*/
+	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$*
+	@ln -s $$(realpath $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE_RUN_TAG)) $(PROJECT_ROOT)/openlane/$*/runs/$*
+	@mkdir -p $(PROJECT_ROOT)/signoff/$*/
+	@echo $(OPENLANE_TAG) > $(PROJECT_ROOT)/signoff/$*/OPENLANE_VERSION
+	@cp $(PDK_ROOT)/$(PDK)/SOURCES $(PROJECT_ROOT)/signoff/$*/PDK_SOURCES
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/*.csv $(PROJECT_ROOT)/signoff/$*/
+	@rsync -a $(PROJECT_ROOT)/openlane/$*/runs/$*/final/ $(PROJECT_ROOT)/ --exclude "metrics.csv" --exclude "metrics.json"
 
 .PHONY: openlane
 openlane: check-openlane-env
