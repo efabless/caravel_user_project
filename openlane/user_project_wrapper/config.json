@@ -100,6 +100,7 @@
             "CLOCK_PERIOD": 10
         }
     },
+    "RUN_KLAYOUT_STREAMOUT": 0,
     "pdk::gf180mcuC": {
         "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
         "FP_PDN_CHECK_NODES": 0,
