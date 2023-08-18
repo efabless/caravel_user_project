@@ -54,6 +54,7 @@
         }
     },
     "RUN_KLAYOUT_STREAMOUT": 0,
+    "RUN_KLAYOUT_XOR": 0,
     "pdk::gf180mcuC": {
         "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
         "CLOCK_PERIOD": 24.0,
