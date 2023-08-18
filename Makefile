@@ -109,10 +109,6 @@ simenv:
 setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
 
 # Openlane
-blocks=$(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
-.PHONY: $(blocks)
-$(blocks): % :
-	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
@@ -312,6 +308,8 @@ check_dependencies:
 export CUP_ROOT?=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
 export PROJECT_ROOT?=$(CUP_ROOT)
+$(info project_root $(PROJECT_ROOT))
+$(info cup_root $(CUP_ROOT))
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):
@@ -405,3 +403,8 @@ caravel-sta: ./env/spef-mapping.tcl
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
 	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" 
 	@echo "Cap and slew violations are inside summary.log file itself"
+
+blocks=$(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
+.PHONY: $(blocks)
+$(blocks): % :
+	$(MAKE) -C openlane $*
