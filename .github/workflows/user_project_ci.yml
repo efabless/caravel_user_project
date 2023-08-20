@@ -74,7 +74,7 @@ jobs:
         run: |
           make install
           make install_mcw
-          make install-cocotb
+          make install-caravel-cocotb
           make simenv
 
       - name: Tarball caravel
