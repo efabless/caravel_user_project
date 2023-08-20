@@ -330,7 +330,10 @@ setup-timing-scripts: $(TIMING_ROOT)
 
 .PHONY: install-caravel-cocotb
 install-caravel-cocotb:
-	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
+	rm -rf ./venv
+	$(PYTHON_BIN) -m venv ./venv
+	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
+	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
