@@ -23,7 +23,7 @@ import cocotb
 async def counter_la(dut):
     caravelEnv = await test_configure(dut,timeout_cycles=1346140)
 
-    cocotb.log.info(f"[TEST] Start counter_wb test")  
+    cocotb.log.info(f"[TEST] Start counter_la test")  
     # wait for start of sending
     await caravelEnv.release_csb()
     await caravelEnv.wait_mgmt_gpio(1)
