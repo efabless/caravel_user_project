@@ -15,6 +15,8 @@
 
 MAKEFLAGS+=--warn-undefined-variables
 
+# set shell bash to the do while loop below
+SHELL := /usr/bin/env bash
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
 export CARAVEL_ROOT:=$(CARAVEL_ROOT)
 export PDK:=$(PDK)
@@ -34,6 +36,7 @@ openlane_args = \
 	--run-tag $(OPENLANE_RUN_TAG) \
 	--manual-pdk \
 	--pdk-root $(PDK_ROOT) \
+	--pdk $(PDK) \
 	$(PROJECT_ROOT)/openlane/$*/config.json
 
 docker_mounts = \
@@ -80,7 +83,27 @@ endif
 	@echo $(OPENLANE_TAG) > $(PROJECT_ROOT)/signoff/$*/OPENLANE_VERSION
 	@cp $(PDK_ROOT)/$(PDK)/SOURCES $(PROJECT_ROOT)/signoff/$*/PDK_SOURCES
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/*.csv $(PROJECT_ROOT)/signoff/$*/
-	@rsync -a $(PROJECT_ROOT)/openlane/$*/runs/$*/final/ $(PROJECT_ROOT)/ --exclude "metrics.csv" --exclude "metrics.json"
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/def/* $(PROJECT_ROOT)/def/$*.def
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/gds/* $(PROJECT_ROOT)/gds/$*.gds
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/lef/* $(PROJECT_ROOT)/lef/$*.lef
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*magic-streamout/*.mag $(PROJECT_ROOT)/mag/$*.mag
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/pnl/* $(PROJECT_ROOT)/verilog/$*.v
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spice/* $(PROJECT_ROOT)/spi/lvs/$*.spice
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spef/nom_/* $(PROJECT_ROOT)/spef/multicorner/$*.nom.spef
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spef/nom_/* $(PROJECT_ROOT)/spef/$*.spef
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spef/min_/* $(PROJECT_ROOT)/spef/multicorner/$*.min.spef
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spef/max_/* $(PROJECT_ROOT)/spef/multicorner/$*.max.spef
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/lib/nom*tt*/* $(PROJECT_ROOT)/lib/$*.lib
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/resolved.json $(PROJECT_ROOT)/signoff/$*/
+	@mkdir -p $(PROJECT_ROOT)/signoff/$*/openlane-signoff/timing-reports
+	@cp -r $(PROJECT_ROOT)/openlane/$*/runs/$*/*openroad-stapostpnr/* $(PROJECT_ROOT)/signoff/$*/openlane-signoff/timing-reports
+	# https://github.com/koalaman/shellcheck/wiki/SC2044
+	@while IFS= read -r -d '' file ; \
+	do \
+		target_dir=$(PROJECT_ROOT)/signoff/$*/sdf/$$(basename $$(dirname $$file)); \
+		mkdir -p $$target_dir; \
+		cp $$file $$target_dir/$*.sdf; \
+	done < <(find $(PROJECT_ROOT)/openlane/$*/runs/$*/final/sdf -type 'f' -print0)
 
 .PHONY: openlane
 openlane: check-openlane-env
