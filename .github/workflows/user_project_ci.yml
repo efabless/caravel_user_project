@@ -23,7 +23,7 @@ jobs:
       - name: Export Env Variables
         run: |
           echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
-          echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+          echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/dependencies/openlane_src" >> $GITHUB_ENV
 
       - name: Install Dependencies
         run: |
@@ -64,7 +64,7 @@ jobs:
           echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
           echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
           echo "PDKPATH=/home/runner/work/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
-          echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+          echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/dependencies/openlane_src" >> $GITHUB_ENV
 
 
       - name: Download PDK Tarball
