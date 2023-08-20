@@ -308,8 +308,6 @@ check_dependencies:
 export CUP_ROOT?=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
 export PROJECT_ROOT?=$(CUP_ROOT)
-$(info project_root $(PROJECT_ROOT))
-$(info cup_root $(CUP_ROOT))
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
 $(TIMING_ROOT):
@@ -322,24 +320,24 @@ setup-timing-scripts: $(TIMING_ROOT)
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
 .PHONY: setup-cocotb
-setup-cocotb: 
-	@pip install caravel-cocotb==1.0.0 
+setup-cocotb:
+	@pip install caravel-cocotb==1.0.0
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 	@docker pull efabless/dv:latest
 	@docker pull efabless/dv:cocotb
 
 .PHONY: cocotb-verify-rtl
-cocotb-verify-rtl: 
+cocotb-verify-rtl:
 	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests.yaml -v )
-	
+
 .PHONY: cocotb-verify-gl
-cocotb-verify-gl: 
+cocotb-verify-gl:
 	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests_gl.yaml -v -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)
 
-./env/spef-mapping.tcl: 
+./env/spef-mapping.tcl:
 	@echo "run the following:"
 	@echo "make extract-parasitics"
 	@echo "make create-spef-mapping"
@@ -388,7 +386,7 @@ extract-parasitics: ./verilog/gl/user_project_wrapper.v
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk rcx-user_project_wrapper
 	@cat ./tmp-macros-list
 	@rm ./tmp-macros-list
-	
+
 .PHONY: caravel-sta
 caravel-sta: ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
@@ -401,7 +399,7 @@ caravel-sta: ./env/spef-mapping.tcl
 		| xargs -I {} bash -c "head -n7 {} | tail -n1"
 	@echo =================================================================================================
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
-	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" 
+	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations"
 	@echo "Cap and slew violations are inside summary.log file itself"
 
 blocks=$(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
