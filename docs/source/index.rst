@@ -46,13 +46,9 @@ Table of contents
 Overview
 ========
 
-This repo contains a sample user project that utilizes the
+This repo contains a skeleton user project that utilizes the
 `caravel <https://github.com/efabless/caravel.git>`__ chip user space.
-The user project is a simple counter that showcases how to make use of
-`caravel's <https://github.com/efabless/caravel.git>`__ user space
-utilities like IO pads, logic analyzer probes, and wishbone port. The
-repo also demonstrates the recommended structure for the open-mpw
-shuttle projects.
+Users should fill the skeleton with their design
 
 Prerequisites
 =============
@@ -103,7 +99,11 @@ Starting your project
     - openlane to harden your design 
     - pdk
 
-	
+#.  Create your design verilog file(s)
+
+    *   To start creating your design
+        - Put your RTL verilog model inside ``verilog/rtl/<module_name>.v``
+
 #.  Now you can start hardening your design
 
     *   To start hardening you project you need 
@@ -119,7 +119,7 @@ Starting your project
 	
 #.  Integrate modules into the user_project_wrapper
 
-    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Change the variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS``, ``EXTRA_GDS_FILES``, ``EXTRA_LIBS`` and ``EXTRA_SPEFS`` in ``openlane/user_project_wrapper/config.json`` to point to your module
     *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
     *   Harden the user_project_wrapper including your module(s), using this command:
 

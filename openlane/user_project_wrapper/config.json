@@ -12,16 +12,13 @@
     "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "MAGIC_DEF_LABELS": 0,
     "VERILOG_FILES_BLACKBOX": [
-        "dir::../../verilog/gl/user_proj_example.v"
+        ""
     ],
-    "EXTRA_LEFS": "dir::../../lef/user_proj_example.lef",
-    "EXTRA_GDS_FILES": "dir::../../gds/user_proj_example.gds",
-    "EXTRA_LIBS": "dir::../../lib/user_proj_example.lib",
+    "EXTRA_LEFS": "",
+    "EXTRA_GDS_FILES": "",
+    "EXTRA_LIBS": "",
     "EXTRA_SPEFS": [
-        "user_proj_example", 
-        "dir::../../spef/multicorner/user_proj_example.min.spef", 
-        "dir::../../spef/multicorner/user_proj_example.nom.spef", 
-        "dir::../../spef/multicorner/user_proj_example.max.spef"
+        ""
     ],
     "BASE_SDC_FILE": "dir::base_user_project_wrapper.sdc",
     "IO_SYNC": 0,
