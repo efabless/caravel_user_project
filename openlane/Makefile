@@ -87,7 +87,7 @@ endif
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/gds/* $(PROJECT_ROOT)/gds/$*.gds
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/lef/* $(PROJECT_ROOT)/lef/$*.lef
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*magic-streamout/*.mag $(PROJECT_ROOT)/mag/$*.mag
-	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/pnl/* $(PROJECT_ROOT)/verilog/$*.v
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/pnl/* $(PROJECT_ROOT)/verilog/gl/$*.v
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spice/* $(PROJECT_ROOT)/spi/lvs/$*.spice
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spef/nom_/* $(PROJECT_ROOT)/spef/multicorner/$*.nom.spef
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/spef/nom_/* $(PROJECT_ROOT)/spef/$*.spef
