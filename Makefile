@@ -42,7 +42,8 @@ export ROOTLESS
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2.0.0-b8
+	export OPENLANE_TAG=2023.07.19
+	export OPENLANE2_TAG?=2.0.0-b8
 	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
@@ -60,7 +61,8 @@ endif
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2.0.0-b8
+	export OPENLANE_TAG=2023.07.19
+	export OPENLANE2_TAG?=2.0.0-b8
 	MPW_TAG ?= mpw-9d
 
 ifeq ($(CARAVEL_LITE),1)
@@ -82,14 +84,15 @@ ifeq ($(PDK),gf180mcuC)
 	CARAVEL_REPO := https://github.com/efabless/caravel-gf180mcu
 	CARAVEL_TAG := $(MPW_TAG)
 	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2.0.0-b8
+	export OPENLANE_TAG=2023.07.19
+	export OPENLANE2_TAG?=2.0.0-b8
 
 endif
 
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export PROJECT_ROOT=$(PROJECT_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 .PHONY: install
 install:
@@ -182,20 +185,20 @@ what:
 
 # Install Openlane
 .PHONY: openlane
-openlane: openlane-venv
+openlane: openlane2-venv openlane2-docker-container
 	# openlane installed
 
-OPENLANE_TAG_DOCKER=$(subst -,,$(OPENLANE_TAG))
-.PHONY: openlane-docker-container
-openlane-docker-container:
-	docker pull ghcr.io/efabless/openlane2:$(OPENLANE_TAG_DOCKER)
+OPENLANE2_TAG_DOCKER=$(subst -,,$(OPENLANE2_TAG))
+.PHONY: openlane2-docker-container
+openlane2-docker-container:
+	docker pull ghcr.io/efabless/openlane2:$(OPENLANE2_TAG_DOCKER)
 
-openlane-venv: $(PROJECT_ROOT)/openlane-venv/manifest.txt
-$(PROJECT_ROOT)/openlane-venv/manifest.txt:
-	rm -rf openlane-venv
-	python3 -m venv $(PROJECT_ROOT)/openlane-venv
-	PYTHONPATH= $(PROJECT_ROOT)/openlane-venv/bin/python3 -m pip install openlane==$(OPENLANE_TAG)
-	PYTHONPATH= $(PROJECT_ROOT)/openlane-venv/bin/python3 -m pip freeze > $(PROJECT_ROOT)/openlane-venv/manifest.txt
+openlane2-venv: $(PROJECT_ROOT)/openlane2-venv/manifest.txt
+$(PROJECT_ROOT)/openlane2-venv/manifest.txt:
+	rm -rf openlane2-venv
+	python3 -m venv $(PROJECT_ROOT)/openlane2-venv
+	PYTHONPATH= $(PROJECT_ROOT)/openlane2-venv/bin/python3 -m pip install openlane==$(OPENLANE2_TAG)
+	PYTHONPATH= $(PROJECT_ROOT)/openlane2-venv/bin/python3 -m pip freeze > $(PROJECT_ROOT)/openlane2-venv/manifest.txt
 
 #### Not sure if the targets following are of any use
 

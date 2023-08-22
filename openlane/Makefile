@@ -17,15 +17,15 @@ MAKEFLAGS+=--warn-undefined-variables
 
 # set shell bash to the do while loop below
 SHELL := /usr/bin/env bash
-export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
+export OPENLANE2_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
 export CARAVEL_ROOT:=$(CARAVEL_ROOT)
 export PDK:=$(PDK)
 export PDK_ROOT:=$(PDK_ROOT)
-OPENLANE_TAG ?= 2023.07.19
-OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
+OPENLANE2_TAG ?= 2023.07.19
+OPENLANE2_IMAGE_NAME ?= efabless/openlane:$(OPENLANE2_TAG)
 designs = $(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
 current_design = null
-OPENLANE_USE_NIX ?= 0
+OPENLANE2_USE_NIX ?= 0
 ROOTLESS ?= 0
 USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
@@ -33,7 +33,7 @@ ifeq ($(ROOTLESS), 1)
 endif
 
 openlane_args = \
-	--run-tag $(OPENLANE_RUN_TAG) \
+	--run-tag $(OPENLANE2_RUN_TAG) \
 	--manual-pdk \
 	--pdk-root $(PDK_ROOT) \
 	--pdk $(PDK) \
@@ -48,7 +48,7 @@ docker_env = \
 	-e PDK_ROOT=$(PDK_ROOT) \
 	-e PDK=$(PDK) \
 	-e CARAVEL_ROOT=$(CARAVEL_ROOT) \
-	-e OPENLANE_RUN_TAG=$(OPENLANE_RUN_TAG)
+	-e OPENLANE2_RUN_TAG=$(OPENLANE2_RUN_TAG)
 
 ifneq ($(MCW_ROOT),)
 docker_env += -e MCW_ROOT=$(MCW_ROOT)
@@ -71,16 +71,16 @@ list:
 $(designs) : export current_design=$@
 $(designs) : % : $(PROJECT_ROOT)/openlane/%/config.json
 	# $(current_design)
-	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE_RUN_TAG)
-ifeq ($(OPENLANE_USE_NIX),1)
+	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE2_RUN_TAG)
+ifeq ($(OPENLANE2_USE_NIX),1)
 	nix-shell --pure --command "openlane $(openlane_args) $(openlane_extra_args)"
 else
 	$(PROJECT_ROOT)/openlane-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args) $(openlane_extra_args)
 endif
 	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$*
-	@ln -s $$(realpath $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE_RUN_TAG)) $(PROJECT_ROOT)/openlane/$*/runs/$*
+	@ln -s $$(realpath $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE2_RUN_TAG)) $(PROJECT_ROOT)/openlane/$*/runs/$*
 	@mkdir -p $(PROJECT_ROOT)/signoff/$*/
-	@echo $(OPENLANE_TAG) > $(PROJECT_ROOT)/signoff/$*/OPENLANE_VERSION
+	@echo $(OPENLANE2_TAG) > $(PROJECT_ROOT)/signoff/$*/OPENLANE_VERSION
 	@cp $(PDK_ROOT)/$(PDK)/SOURCES $(PROJECT_ROOT)/signoff/$*/PDK_SOURCES
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/*.csv $(PROJECT_ROOT)/signoff/$*/
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/def/* $(PROJECT_ROOT)/def/$*.def
@@ -104,22 +104,3 @@ endif
 		mkdir -p $$target_dir; \
 		cp $$file $$target_dir/$*.sdf; \
 	done < <(find $(PROJECT_ROOT)/openlane/$*/runs/$*/final/sdf -type 'f' -print0)
-
-.PHONY: openlane
-openlane: check-openlane-env
-	if [ -d "$(OPENLANE_ROOT)" ]; then\
-		echo "Deleting exisiting $(OPENLANE_ROOT)" && \
-		rm -rf $(OPENLANE_ROOT) && sleep 2; \
-		fi
-	git clone https://github.com/The-OpenROAD-Project/OpenLane -b $(OPENLANE_TAG) --depth=1 $(OPENLANE_ROOT) && \
-		cd $(OPENLANE_ROOT) && \
-		export OPENLANE_IMAGE_NAME=efabless/openlane:$(OPENLANE_TAG) && \
-		export IMAGE_NAME=efabless/openlane:$(OPENLANE_TAG) && \
-		$(MAKE) pull-openlane
-
-.PHONY: check-openlane-env
-check-openlane-env:
-ifeq ($(OPENLANE_ROOT),)
-	@echo "Please export OPENLANE_ROOT"
-	@exit 1
-endif
