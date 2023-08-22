@@ -22,7 +22,7 @@
     "SYNTH_BUFFERING": 0,
     "MAGIC_DRC_USE_GDS": 0,
     "RUN_HEURISTIC_DIODE_INSERTION": 1,
-    "HEURISTIC_ANTENNA_THRESHOLD": 110,    
+    "HEURISTIC_ANTENNA_THRESHOLD": 110,
     "GRT_REPAIR_ANTENNAS": 1,
     "VDD_NETS": [
         "vccd1"
@@ -53,8 +53,6 @@
             "CLOCK_PERIOD": 10
         }
     },
-    "RUN_KLAYOUT_STREAMOUT": 0,
-    "RUN_KLAYOUT_XOR": 0,
     "pdk::gf180mcuC": {
         "STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
         "CLOCK_PERIOD": 24.0,
