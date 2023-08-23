@@ -119,7 +119,7 @@ Starting your project
 	
 #.  Integrate modules into the user_project_wrapper
 
-    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Change the variable `MACROS` in ``openlane/user_project_wrapper/config.json`` to point to your module
     *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
     *   Harden the user_project_wrapper including your module(s), using this command:
 
@@ -394,17 +394,16 @@ You will need to install openlane by running the following
 
 .. code:: bash
 
-   export OPENLANE_ROOT=<openlane-installation-path>
 
    # you can optionally specify the openlane tag to use
-   # by running: export OPENLANE_TAG=<openlane-tag>
+   # by running: export OPENLANE2_TAG=<openlane-tag>
    # if you do not set the tag, it defaults to the last verfied tag tested for this project
 
    make openlane
 
 For detailed instructions on the openlane and the pdk installation refer
 to
-`README <https://github.com/The-OpenROAD-Project/OpenLane#setting-up-openlane>`__.
+`ReadtheDocs <https://openlane2.readthedocs.io/en/latest/>`__.
 
 -----------------
 Hardening Options 
