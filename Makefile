@@ -92,7 +92,7 @@ endif
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export MPW_TAG=$(MPW_TAG) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 .PHONY: install
 install:
@@ -238,7 +238,7 @@ run-precheck: check-pdk check-precheck
 	@if [ "$$DISABLE_LVS" = "1" ]; then\
 		$(eval INPUT_DIRECTORY := $(shell pwd)) \
 		cd $(PRECHECK_ROOT) && \
-		docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
 		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
@@ -250,7 +250,7 @@ run-precheck: check-pdk check-precheck
 	else \
 		$(eval INPUT_DIRECTORY := $(shell pwd)) \
 		cd $(PRECHECK_ROOT) && \
-		docker run -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
 		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
@@ -271,7 +271,7 @@ $(LVS_BLOCKS): lvs-% : ./lvs/%/lvs_config.json check-pdk check-precheck
 	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
 	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(INPUT_DIRECTORY) --output_directory $(INPUT_DIRECTORY)/lvs --design_name $* --config_file $(INPUT_DIRECTORY)/lvs/$*/lvs_config.json"
+	efabless/mpw_precheck:latest bash -c "export PYTHONPATH=$(PRECHECK_ROOT) ; cd $(PRECHECK_ROOT) ; python3 checks/lvs_check/lvs.py --pdk_path $(PDK_ROOT)/$(PDK) --design_directory $(INPUT_DIRECTORY) --output_directory $(INPUT_DIRECTORY)/lvs --design_name $* --config_file $(INPUT_DIRECTORY)/lvs/$*/lvs_config.json"
 
 .PHONY: clean
 clean:
