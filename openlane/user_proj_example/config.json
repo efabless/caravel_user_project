@@ -33,6 +33,9 @@
     "IO_SYNC": 0,
     "BASE_SDC_FILE": "dir::base_user_proj_example.sdc",
     "RUN_CVC": 1,
+    "MAGIC_DRC_USE_GDS": true,
+    "DPL_CELL_PADDING": 2,
+    "GPL_CELL_PADDING": 2,
     "pdk::sky130*": {
         "FP_CORE_UTIL": 45,
         "RT_MAX_LAYER": "met4",

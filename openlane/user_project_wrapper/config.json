@@ -79,6 +79,7 @@
         "vssa2"
     ],
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
+    "MAGIC_DRC_USE_GDS": true,
     "pdk::sky130*": {
         "RT_MAX_LAYER": "met4",
         "DIE_AREA": "0 0 2920 3520",
