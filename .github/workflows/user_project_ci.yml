@@ -87,10 +87,18 @@ jobs:
           make simenv
           sudo apt install -y python3-tk
 
+      - name: Echo Disk Usage
+        run: |
+          df -h
+
       - name: Harden using Openlane
         run: |
           make user_proj_example
           make user_project_wrapper
+
+      - name: Echo Disk Usage
+        run: |
+          df -h
 
       - name: Run Precheck
         run: |
