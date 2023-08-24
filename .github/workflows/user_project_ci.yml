@@ -95,6 +95,8 @@ jobs:
         run: |
           make user_proj_example
           make user_project_wrapper
+          rm -rf ./openlane/user_proj_example/runs -rf
+          rm -rf ./openlane/user_project_wrapper/runs -rf
 
       - name: Echo Disk Usage
         run: |
