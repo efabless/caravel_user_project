@@ -57,7 +57,7 @@ docker_mounts += -m $(MCW_ROOT)
 endif
 
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
-openlane_extra_args = $(shell test -t 0 || echo "--log-level WARN")
+openlane_extra_args = $(shell test -t 0 || echo "--docker-no-tty")
 docker_run = \
 	docker run $(docker_startup_mode) \
 	$(USER_ARGS) \
@@ -75,7 +75,7 @@ $(designs) : % : $(PROJECT_ROOT)/openlane/%/config.json
 ifeq ($(OPENLANE2_USE_NIX),1)
 	nix-shell --pure --command "openlane $(openlane_args) $(openlane_extra_args)"
 else
-	$(PROJECT_ROOT)/openlane2-venv/bin/python3 -m openlane $(docker_mounts) --dockerized $(openlane_args) $(openlane_extra_args)
+	$(PROJECT_ROOT)/openlane2-venv/bin/python3 -m openlane $(docker_mounts) $(openlane_extra_args) --dockerized $(openlane_args) $(openlane_extra_args)
 endif
 	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$*
 	@ln -s $$(realpath $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE2_RUN_TAG)) $(PROJECT_ROOT)/openlane/$*/runs/$*
