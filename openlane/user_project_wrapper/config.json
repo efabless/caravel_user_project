@@ -98,7 +98,6 @@
             }
         }
     },
-    "RUN_MAGIC_DRC": false,
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "MAGIC_DRC_USE_GDS": true,
     "pdk::sky130*": {
