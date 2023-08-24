@@ -9,20 +9,7 @@
     "CLOCK_PORT": "wb_clk_i",
     "CLOCK_NET": "mprj.clk",
     "PDN_MACRO_CONNECTIONS": ["mprj vccd1 vssd1 vccd1 vssd1"],
-    "MACRO_PLACEMENT_CFG": "dir::macro.cfg",
     "MAGIC_DEF_LABELS": 0,
-    "VERILOG_FILES_BLACKBOX": [
-        "dir::../../verilog/gl/user_proj_example.v"
-    ],
-    "EXTRA_LEFS": "dir::../../lef/user_proj_example.lef",
-    "EXTRA_GDS_FILES": "dir::../../gds/user_proj_example.gds",
-    "EXTRA_LIBS": "dir::../../lib/user_proj_example.lib",
-    "EXTRA_SPEFS": [
-        "user_proj_example",
-        "dir::../../spef/multicorner/user_proj_example.min.spef",
-        "dir::../../spef/multicorner/user_proj_example.nom.spef",
-        "dir::../../spef/multicorner/user_proj_example.max.spef"
-    ],
     "BASE_SDC_FILE": "dir::base_user_project_wrapper.sdc",
     "IO_SYNC": 0,
     "MAX_TRANSITION_CONSTRAINT": 1.5,
@@ -78,6 +65,40 @@
         "vssa1",
         "vssa2"
     ],
+    "MACROS": {
+        "user_proj_example": {
+            "gds": [
+                "dir::../../gds/user_proj_example.gds"
+            ],
+            "lef": [
+                "dir::../../lef/user_proj_example.lef"
+            ],
+            "instances": {
+                "mprj": {
+                    "location": [60, 15],
+                    "orientation": "N"
+                }
+            },
+            "nl": [
+                "dir::../../verilog/gl/user_proj_example.v"
+            ],
+            "spef": {
+                "min_*": [
+                    "dir::../../spef/multicorner/user_proj_example.min.spef"
+                ],
+                "nom_*": [
+                    "dir::../../spef/multicorner/user_proj_example.nom.spef"
+                ],
+                "max_*": [
+                    "dir::../../spef/multicorner/user_proj_example.max.spef"
+                ]
+            },
+            "libs": {
+                "*": "dir::../../lib/user_proj_example.lib"
+            }
+        }
+    },
+    "RUN_MAGIC_DRC": false,
     "SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
     "MAGIC_DRC_USE_GDS": true,
     "pdk::sky130*": {
