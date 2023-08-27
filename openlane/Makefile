@@ -85,6 +85,7 @@ endif
 	@cp $(PDK_ROOT)/$(PDK)/SOURCES $(PROJECT_ROOT)/signoff/$*/PDK_SOURCES
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/*.csv $(PROJECT_ROOT)/signoff/$*/
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/def/* $(PROJECT_ROOT)/def/$*.def
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/sdc/* $(PROJECT_ROOT)/sdc/$*.sdc
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/gds/* $(PROJECT_ROOT)/gds/$*.gds
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/lef/* $(PROJECT_ROOT)/lef/$*.lef
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*magic-streamout/*.mag $(PROJECT_ROOT)/mag/$*.mag
@@ -97,6 +98,10 @@ endif
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/lib/nom*tt*/* $(PROJECT_ROOT)/lib/$*.lib
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/resolved.json $(PROJECT_ROOT)/signoff/$*/
 	@mkdir -p $(PROJECT_ROOT)/signoff/$*/openlane-signoff/timing-reports
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*magic-drc/reports/* $(PROJECT_ROOT)/signoff/$*/openlane-signoff/
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*netgen-lvs/lvs.rpt $(PROJECT_ROOT)/signoff/$*/openlane-signoff/
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*netgen-lvs/lvs.rpt $(PROJECT_ROOT)/signoff/$*/openlane-signoff/
+	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/*netgen-lvs/netgen-lvs.log $(PROJECT_ROOT)/signoff/$*/openlane-signoff/
 	@cp -r $(PROJECT_ROOT)/openlane/$*/runs/$*/*openroad-stapostpnr/* $(PROJECT_ROOT)/signoff/$*/openlane-signoff/timing-reports
 	# https://github.com/koalaman/shellcheck/wiki/SC2044
 	@while IFS= read -r -d '' file ; \
