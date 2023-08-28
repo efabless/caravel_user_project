@@ -401,7 +401,7 @@ You will need to install openlane by running the following
 
    make openlane
 
-For detailed instructions on the openlane and the pdk installation refer
+For detailed instructions on openlane and the pdk installation refer
 to
 `ReadtheDocs <https://openlane2.readthedocs.io/en/latest/>`__.
 
