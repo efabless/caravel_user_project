@@ -1,15 +1,10 @@
+## This is a repository that demonstrates the use of Caravel User Project with OpenLane 2 BETA. It is ***not*** recommended for shuttle use.
+
+Please re-read the documentation carefully, as some requirements have changed. For example, Python 3.8 is needed instead of 3.6.
+
 # Caravel User Project
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![UPRJ_CI](https://github.com/efabless/caravel_project_example/actions/workflows/user_project_ci.yml/badge.svg)](https://github.com/efabless/caravel_project_example/actions/workflows/user_project_ci.yml) [![Caravel Build](https://github.com/efabless/caravel_project_example/actions/workflows/caravel_build.yml/badge.svg)](https://github.com/efabless/caravel_project_example/actions/workflows/caravel_build.yml)
-
-| :exclamation: Important Note            |
-|-----------------------------------------|
-
-## THIS IS A TEMPORARY REPO for using openlane2 with the caravel user project
-
-Some changes were made to the documentation. Please follow the instructions carefully.
-
-For example, python3.8 is needed. 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![UPRJ_CI](https://github.com/efabless/caravel_user_project_ol2/actions/workflows/user_project_ci.yml/badge.svg)](https://github.com/efabless/caravel_user_project_ol2/actions/workflows/user_project_ci.yml) [![Caravel Build](https://github.com/efabless/caravel_user_project_ol2/actions/workflows/caravel_build.yml/badge.svg)](https://github.com/efabless/caravel_user_project_ol2/actions/workflows/caravel_build.yml)
 
 ## Please fill in your project documentation in this README.md file 
 
