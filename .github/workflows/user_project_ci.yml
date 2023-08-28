@@ -8,8 +8,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  pdk:
+  build-pdk:
     runs-on: ubuntu-latest
+    name: Build and Cache PDK
     steps:
       - uses: actions/checkout@v2
 
@@ -19,13 +20,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Export PDK ROOT
-        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
-      
-      - name: Export OPENLANE ROOT
-        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+      - name: Export Env Variables
+        run: |
+          echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
+          echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/dependencies/openlane_src" >> $GITHUB_ENV
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
@@ -49,7 +49,7 @@ jobs:
     strategy:
       matrix:
         pdk: ["sky130A", "sky130B"]
-    needs: [pdk]
+    needs: [build-pdk]
     steps:
       - uses: actions/checkout@v2
 
@@ -59,14 +59,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Export PDK VARIABLES
+      - name: Export Env Variables
         run: |
           echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
           echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
           echo "PDKPATH=/home/runner/work/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
+          echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/dependencies/openlane_src" >> $GITHUB_ENV
 
-      - name: Export OPENLANE ROOT
-        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+      - name: Echo Disk Usage
+        run: |
+          df -h
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -80,19 +82,34 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/pdk.tar -C $PDK_ROOT .
 
-      - name: Install dependencies
+      - name: Echo Disk Usage
+        run: |
+          df -h
+
+      - name: Install Dependencies
         run: |
           make install
           make install_mcw
           make openlane
           make simenv
+          sudo apt install -y python3-tk
+
+      - name: Echo Disk Usage
+        run: |
+          df -h
 
       - name: Harden using Openlane
         run: |
           make user_proj_example
           make user_project_wrapper
+          rm -rf ./openlane/user_proj_example/runs -rf
+          rm -rf ./openlane/user_project_wrapper/runs -rf
 
-      - name: run precheck
+      - name: Echo Disk Usage
+        run: |
+          df -h
+
+      - name: Run Precheck
         run: |
           export INPUT_DIRECTORY=$(pwd)
           export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
@@ -108,8 +125,8 @@ jobs:
           if ! [[ $cnt ]]; then cnt=0; fi
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
-      
-      - name: upload failure logs
+
+      - name: Upload Failure Logs
         if: failure()
         uses: actions/upload-artifact@v2
         with:
@@ -119,16 +136,8 @@ jobs:
 
       - name: Run DV RTL tests
         run: |
-          make verify-io_ports-rtl 
-          make verify-la_test1-rtl 
-          make verify-la_test2-rtl 
-          make verify-mprj_stimulus-rtl 
+          make verify-io_ports-rtl
+          make verify-la_test1-rtl
+          make verify-la_test2-rtl
+          make verify-mprj_stimulus-rtl
           make verify-wb_port-rtl
-
-      # - name: Run DV GL tests
-      #   run: |
-      #     make verify-io_ports-gl 
-      #     make verify-la_test1-gl 
-      #     make verify-la_test2-gl 
-      #     make verify-mprj_stimulus-gl 
-      #     make verify-wb_port-gl
