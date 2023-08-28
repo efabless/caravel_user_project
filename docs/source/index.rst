@@ -59,7 +59,7 @@ Prerequisites
 
 - Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
 
-- Python 3.6+ with PIP
+- Python 3.8 or higher with PIP, Venv and Tkinter
 
 
 Quickstart 
@@ -71,7 +71,7 @@ Starting your project
 
 #. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
 
-   *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
+   *   Follow https://github.com/efabless/caravel_user_project_ol2/generate to create a new repository.
    *   Clone the reposity using the following command:
    
        .. code:: bash
@@ -119,7 +119,7 @@ Starting your project
 	
 #.  Integrate modules into the user_project_wrapper
 
-    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Change the variable `MACROS` in ``openlane/user_project_wrapper/config.json`` to point to your module
     *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
     *   Harden the user_project_wrapper including your module(s), using this command:
 
@@ -394,17 +394,16 @@ You will need to install openlane by running the following
 
 .. code:: bash
 
-   export OPENLANE_ROOT=<openlane-installation-path>
 
    # you can optionally specify the openlane tag to use
-   # by running: export OPENLANE_TAG=<openlane-tag>
+   # by running: export OPENLANE2_TAG=<openlane-tag>
    # if you do not set the tag, it defaults to the last verfied tag tested for this project
 
    make openlane
 
-For detailed instructions on the openlane and the pdk installation refer
+For detailed instructions on openlane and the pdk installation refer
 to
-`README <https://github.com/The-OpenROAD-Project/OpenLane#setting-up-openlane>`__.
+`ReadtheDocs <https://openlane2.readthedocs.io/en/latest/>`__.
 
 -----------------
 Hardening Options 
@@ -439,7 +438,7 @@ openlane:
 .. |pic3| image:: ./_static/option3.png
    :width: 72%
 
-For more details on hardening macros using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
+For more details on hardening macros using openlane, refer to `ReadtheDocs https://openlane2.readthedocs.io/en/latest/usage/hardening_macros.html`__.
 
 -----------------
 Running OpenLane 
@@ -471,7 +470,7 @@ To reproduce hardening this project, run the following:
    make user_project_wrapper
 
 
-For more information on the openlane flow, check `README <https://github.com/The-OpenROAD-Project/OpenLane#readme>`__.
+For more information on the openlane flow, check `ReadtheDocs <https://openlane2.readthedocs.io/en/latest/>`__.
 
 Runing transistor level LVS
 ============================

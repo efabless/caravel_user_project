@@ -11,6 +11,7 @@
 # Pre-defined Constraints
 #------------------------------------------#
 
+set ::env(IO_SYNC) 0
 # Clock network
 if {[info exists ::env(CLOCK_PORT)] && $::env(CLOCK_PORT) != ""} {
 	set clk_input $::env(CLOCK_PORT)

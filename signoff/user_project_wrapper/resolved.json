@@ -1,0 +1,407 @@
+{
+    "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+    "VDD_PIN": "VPWR",
+    "GND_PIN": "VGND",
+    "WIRE_LENGTH_THRESHOLD": null,
+    "TECH_LEFS": {
+        "nom_*": "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef",
+        "min_*": "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__min.tlef",
+        "max_*": "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef"
+    },
+    "GPIO_PADS_LEF": [
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_io/lef/sky130_fd_io.lef",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_io/lef/sky130_ef_io.lef"
+    ],
+    "GPIO_PADS_LEF_CORE_SIDE": [
+        "/home/karim/work/pdk/sky130A/libs.tech/openlane/custom_cells/lef/sky130_fd_io_core.lef",
+        "/home/karim/work/pdk/sky130A/libs.tech/openlane/custom_cells/lef/sky130_ef_io_core.lef"
+    ],
+    "GPIO_PADS_VERILOG": [
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_io/verilog/sky130_ef_io.v"
+    ],
+    "GPIO_PADS_PREFIX": [
+        "sky130_fd_io",
+        "sky130_ef_io"
+    ],
+    "PRIMARY_SIGNOFF_TOOL": "magic",
+    "DEFAULT_MAX_TRAN": null,
+    "DATA_WIRE_RC_LAYER": "met2",
+    "CLOCK_WIRE_RC_LAYER": "met5",
+    "DEFAULT_CORNER": "nom_tt_025C_1v80",
+    "STA_CORNERS": [
+        "nom_tt_025C_1v80",
+        "nom_ss_100C_1v60",
+        "nom_ff_n40C_1v95",
+        "min_tt_025C_1v80",
+        "min_ss_100C_1v60",
+        "min_ff_n40C_1v95",
+        "max_tt_025C_1v80",
+        "max_ss_100C_1v60",
+        "max_ff_n40C_1v95"
+    ],
+    "FP_TRACKS_INFO": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info",
+    "FP_TAPCELL_DIST": 13,
+    "FP_PDN_RAIL_OFFSET": 0,
+    "FP_PDN_VWIDTH": 3.1,
+    "FP_PDN_VSPACING": 15.5,
+    "FP_PDN_HSPACING": 15.5,
+    "FP_PDN_HWIDTH": 3.1,
+    "FP_PDN_CORE_RING_VWIDTH": 3.1,
+    "FP_PDN_CORE_RING_HWIDTH": 3.1,
+    "FP_PDN_CORE_RING_VSPACING": 1.7,
+    "FP_PDN_CORE_RING_HSPACING": 1.7,
+    "FP_PDN_CORE_RING_VOFFSET": 12.45,
+    "FP_PDN_CORE_RING_HOFFSET": 12.45,
+    "FP_IO_HLAYER": "met3",
+    "FP_IO_VLAYER": "met2",
+    "RT_MIN_LAYER": "met1",
+    "RT_MAX_LAYER": "met4",
+    "SCL_GROUND_PINS": [
+        "VGND",
+        "VNB"
+    ],
+    "SCL_POWER_PINS": [
+        "VPWR",
+        "VPB"
+    ],
+    "FILL_CELL": [
+        "sky130_fd_sc_hd__fill*"
+    ],
+    "DECAP_CELL": [
+        "sky130_ef_sc_hd__decap_12",
+        "sky130_fd_sc_hd__decap_8",
+        "sky130_fd_sc_hd__decap_6",
+        "sky130_fd_sc_hd__decap_4",
+        "sky130_fd_sc_hd__decap_3"
+    ],
+    "LIB": {
+        "*_tt_025C_1v80": [
+            "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib"
+        ],
+        "*_ss_100C_1v60": [
+            "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib"
+        ],
+        "*_ff_n40C_1v95": [
+            "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib"
+        ]
+    },
+    "CELL_LEFS": [
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef"
+    ],
+    "CELL_GDS": [
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/gds/sky130_fd_sc_hd.gds"
+    ],
+    "CELL_SPICE_MODELS": [
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fakediode_2.spice",
+        "/home/karim/work/pdk/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice"
+    ],
+    "SYNTH_EXCLUSION_CELL_LIST": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/no_synth.cells",
+    "PNR_EXCLUSION_CELL_LIST": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/drc_exclude.cells",
+    "OUTPUT_CAP_LOAD": 33.442,
+    "MAX_FANOUT_CONSTRAINT": 10,
+    "MAX_TRANSITION_CONSTRAINT": 1.5,
+    "CLOCK_UNCERTAINTY_CONSTRAINT": 0.25,
+    "CLOCK_TRANSITION_CONSTRAINT": 0.15,
+    "TIME_DERATING_CONSTRAINT": 5,
+    "IO_DELAY_CONSTRAINT": 20,
+    "SYNTH_DRIVING_CELL": "sky130_fd_sc_hd__inv_2/Y",
+    "SYNTH_CLK_DRIVING_CELL": null,
+    "SYNTH_TIEHI_CELL": "sky130_fd_sc_hd__conb_1/HI",
+    "SYNTH_TIELO_CELL": "sky130_fd_sc_hd__conb_1/LO",
+    "SYNTH_BUFFER_CELL": "sky130_fd_sc_hd__buf_2/A/X",
+    "CTS_ROOT_BUFFER": "sky130_fd_sc_hd__clkbuf_16",
+    "CTS_CLK_BUFFERS": [
+        "sky130_fd_sc_hd__clkbuf_8",
+        "sky130_fd_sc_hd__clkbuf_4",
+        "sky130_fd_sc_hd__clkbuf_2"
+    ],
+    "CTS_MAX_CAP": 1.53169,
+    "FP_WELLTAP_CELL": "sky130_fd_sc_hd__tapvpwrvgnd_1",
+    "FP_ENDCAP_CELL": "sky130_fd_sc_hd__decap_3",
+    "FP_PDN_RAIL_LAYER": "met1",
+    "FP_PDN_RAIL_WIDTH": 0.48,
+    "FP_PDN_HORIZONTAL_LAYER": "met5",
+    "FP_PDN_VERTICAL_LAYER": "met4",
+    "IGNORE_DISCONNECTED_MODULES": [
+        "sky130_fd_sc_hd__conb_1"
+    ],
+    "PLACE_SITE": "unithd",
+    "PLACE_SITE_WIDTH": 0.46,
+    "PLACE_SITE_HEIGHT": 2.72,
+    "GPL_CELL_PADDING": 0,
+    "DPL_CELL_PADDING": 0,
+    "CELL_PAD_EXCLUDE": [
+        "sky130_fd_sc_hd__tap*",
+        "sky130_fd_sc_hd__decap*",
+        "sky130_ef_sc_hd__decap*",
+        "sky130_fd_sc_hd__fill*"
+    ],
+    "DIODE_CELL": "sky130_fd_sc_hd__diode_2/DIODE",
+    "GRT_LAYER_ADJUSTMENTS": [
+        0.99,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "CVC_SCRIPTS_DIR": "/home/karim/work/pdk/sky130A/libs.tech/openlane/cvc",
+    "DESIGN_DIR": "/home/karim/work/caravel_user_project/openlane/user_project_wrapper",
+    "DESIGN_NAME": "user_project_wrapper",
+    "PDK_ROOT": "/home/karim/work/pdk",
+    "PDK": "sky130A",
+    "CLOCK_PERIOD": 25,
+    "CLOCK_PORT": "wb_clk_i",
+    "CLOCK_NET": "mprj.clk",
+    "VDD_NETS": [
+        "vccd1",
+        "vccd2",
+        "vdda1",
+        "vdda2"
+    ],
+    "GND_NETS": [
+        "vssd1",
+        "vssd2",
+        "vssa1",
+        "vssa2"
+    ],
+    "DIE_AREA": "0 0 2920 3520",
+    "MACROS": {
+        "user_proj_example": {
+            "gds": [
+                "/home/karim/work/caravel_user_project/gds/user_proj_example.gds"
+            ],
+            "lef": [
+                "/home/karim/work/caravel_user_project/lef/user_proj_example.lef"
+            ],
+            "instances": {
+                "mprj": {
+                    "location": [
+                        60,
+                        15
+                    ],
+                    "orientation": "N"
+                }
+            },
+            "nl": [
+                "/home/karim/work/caravel_user_project/verilog/gl/user_proj_example.v"
+            ],
+            "spef": {
+                "min_*": [
+                    "/home/karim/work/caravel_user_project/spef/multicorner/user_proj_example.min.spef"
+                ],
+                "nom_*": [
+                    "/home/karim/work/caravel_user_project/spef/multicorner/user_proj_example.nom.spef"
+                ],
+                "max_*": [
+                    "/home/karim/work/caravel_user_project/spef/multicorner/user_proj_example.max.spef"
+                ]
+            },
+            "lib": {},
+            "spice": [],
+            "sdf": {},
+            "json_h": null
+        }
+    },
+    "EXTRA_LEFS": null,
+    "EXTRA_VERILOG_MODELS": null,
+    "EXTRA_SPICE_MODELS": null,
+    "EXTRA_LIBS": null,
+    "EXTRA_GDS_FILES": null,
+    "FP_CONTEXT_DEF": null,
+    "FP_CONTEXT_LEF": null,
+    "FP_PADFRAME_CFG": null,
+    "GRT_OBS": null,
+    "LVS_INSERT_POWER_PINS": true,
+    "RUN_CVC": false,
+    "LEC_ENABLE": false,
+    "CHECK_ASSIGN_STATEMENTS": false,
+    "VERILOG_FILES": [
+        "/home/karim/work/caravel_user_project/verilog/rtl/defines.v",
+        "/home/karim/work/caravel_user_project/verilog/rtl/user_project_wrapper.v"
+    ],
+    "SYNTH_DEFINES": null,
+    "VERILOG_INCLUDE_DIRS": null,
+    "SYNTH_READ_BLACKBOX_LIB": false,
+    "SYNTH_LATCH_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v",
+    "SYNTH_TRISTATE_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v",
+    "SYNTH_CSA_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/csa_map.v",
+    "SYNTH_RCA_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/rca_map.v",
+    "SYNTH_FA_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/fa_map.v",
+    "SYNTH_MUX_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/mux2_map.v",
+    "SYNTH_MUX4_MAP": "/home/karim/work/pdk/sky130A/libs.tech/openlane/sky130_fd_sc_hd/mux4_map.v",
+    "SYNTH_POWER_DEFINE": "USE_POWER_PINS",
+    "SYNTH_CHECKS_ALLOW_TRISTATE": true,
+    "SYNTH_AUTONAME": false,
+    "SYNTH_STRATEGY": "AREA 0",
+    "SYNTH_ABC_BUFFERING": true,
+    "SYNTH_DIRECT_WIRE_BUFFERING": true,
+    "SYNTH_SPLITNETS": true,
+    "SYNTH_SIZING": false,
+    "SYNTH_NO_FLAT": false,
+    "SYNTH_SHARE_RESOURCES": true,
+    "SYNTH_ADDER_TYPE": "YOSYS",
+    "SYNTH_EXTRA_MAPPING_FILE": null,
+    "SYNTH_PARAMETERS": null,
+    "SYNTH_ELABORATE_ONLY": true,
+    "SYNTH_ELABORATE_FLATTEN": true,
+    "QUIT_ON_UNMAPPED_CELLS": true,
+    "QUIT_ON_SYNTH_CHECKS": false,
+    "BASE_SDC_FILE": "/home/karim/work/caravel_user_project/openlane/user_project_wrapper/base_user_project_wrapper.sdc",
+    "PDN_CONNECT_MACROS_TO_GRID": true,
+    "PDN_MACRO_CONNECTIONS": [
+        "mprj vccd1 vssd1 vccd1 vssd1"
+    ],
+    "PDN_ENABLE_GLOBAL_CONNECTIONS": true,
+    "STA_MACRO_PRIORITIZE_NL": true,
+    "FP_SIZING": "absolute",
+    "FP_ASPECT_RATIO": 1,
+    "FP_CORE_UTIL": 50,
+    "CORE_AREA": null,
+    "BOTTOM_MARGIN_MULT": 4,
+    "TOP_MARGIN_MULT": 4,
+    "LEFT_MARGIN_MULT": 12,
+    "RIGHT_MARGIN_MULT": 12,
+    "MACRO_PLACEMENT_CFG": null,
+    "RUN_TAP_ENDCAP_INSERTION": false,
+    "FP_TAP_HORIZONTAL_HALO": 10,
+    "FP_TAP_VERTICAL_HALO": 10,
+    "FP_IO_VEXTEND": 4.8,
+    "FP_IO_HEXTEND": 4.8,
+    "FP_IO_VLENGTH": 2.4,
+    "FP_IO_HLENGTH": 2.4,
+    "FP_IO_VTHICKNESS_MULT": 4,
+    "FP_IO_HTHICKNESS_MULT": 4,
+    "FP_IO_MODE": "random_equidistant",
+    "FP_IO_MIN_DISTANCE": 3,
+    "FP_PIN_ORDER_CFG": null,
+    "QUIT_ON_UNMATCHED_IO": true,
+    "FP_DEF_TEMPLATE": "/home/karim/work/caravel_user_project/openlane/user_project_wrapper/fixed_dont_change/user_project_wrapper.def",
+    "FP_PDN_VOFFSET": 5,
+    "FP_PDN_VPITCH": 180,
+    "FP_PDN_HOFFSET": 5,
+    "FP_PDN_HPITCH": 180,
+    "FP_PDN_AUTO_ADJUST": true,
+    "FP_PDN_SKIPTRIM": true,
+    "FP_PDN_CORE_RING": true,
+    "FP_PDN_ENABLE_RAILS": false,
+    "FP_PDN_CHECK_NODES": false,
+    "FP_PDN_HORIZONTAL_HALO": 10,
+    "FP_PDN_VERTICAL_HALO": 10,
+    "DESIGN_IS_CORE": true,
+    "FP_PDN_CFG": null,
+    "RT_CLOCK_MIN_LAYER": null,
+    "RT_CLOCK_MAX_LAYER": null,
+    "GRT_ADJUSTMENT": 0.3,
+    "GRT_MACRO_EXTENSION": 0,
+    "PL_TARGET_DENSITY_PCT": null,
+    "PL_TIME_DRIVEN": true,
+    "PL_SKIP_INITIAL_PLACEMENT": false,
+    "PL_ROUTABILITY_DRIVEN": true,
+    "DIODE_ON_PORTS": "none",
+    "RUN_HEURISTIC_DIODE_INSERTION": false,
+    "HEURISTIC_ANTENNA_THRESHOLD": null,
+    "DIODE_PADDING": 2,
+    "GRT_ALLOW_CONGESTION": false,
+    "GRT_REPAIR_ANTENNAS": false,
+    "GRT_ANTENNA_ITERS": 3,
+    "GRT_OVERFLOW_ITERS": 50,
+    "PL_OPTIMIZE_MIRRORING": true,
+    "PL_MAX_DISPLACEMENT_X": 500,
+    "PL_MAX_DISPLACEMENT_Y": 100,
+    "RSZ_DONT_TOUCH_RX": "$^",
+    "RSZ_DONT_TOUCH_LIST": null,
+    "RSZ_DONT_USE_CELLS": null,
+    "RSZ_CORNERS": null,
+    "RUN_REPAIR_DESIGN": false,
+    "DESIGN_REPAIR_BUFFER_INPUT_PORTS": false,
+    "DESIGN_REPAIR_BUFFER_OUTPUT_PORTS": true,
+    "DESIGN_REPAIR_TIE_FANOUT": true,
+    "DESIGN_REPAIR_TIE_SEPARATION": false,
+    "DESIGN_REPAIR_MAX_WIRE_LENGTH": 0,
+    "DESIGN_REPAIR_MAX_SLEW_PCT": 20,
+    "DESIGN_REPAIR_MAX_CAP_PCT": 20,
+    "RUN_CTS": false,
+    "CTS_TOLERANCE": 100,
+    "CTS_SINK_CLUSTERING_SIZE": 25,
+    "CTS_SINK_CLUSTERING_MAX_DIAMETER": 50,
+    "CTS_CLK_MAX_WIRE_LENGTH": 0,
+    "CTS_DISABLE_POST_PROCESSING": false,
+    "CTS_DISTANCE_BETWEEN_BUFFERS": 0,
+    "CTS_CORNERS": null,
+    "RUN_POST_CTS_RESIZER_TIMING": false,
+    "PL_RESIZER_HOLD_SLACK_MARGIN": 0.1,
+    "PL_RESIZER_SETUP_SLACK_MARGIN": 0.05,
+    "PL_RESIZER_HOLD_MAX_BUFFER_PCT": 50,
+    "PL_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
+    "PL_RESIZER_ALLOW_SETUP_VIOS": false,
+    "RUN_POST_GRT_RESIZER_TIMING": false,
+    "GRT_RESIZER_HOLD_SLACK_MARGIN": 0.05,
+    "GRT_RESIZER_SETUP_SLACK_MARGIN": 0.025,
+    "GRT_RESIZER_HOLD_MAX_BUFFER_PCT": 50,
+    "GRT_RESIZER_SETUP_MAX_BUFFER_PCT": 50,
+    "GRT_RESIZER_ALLOW_SETUP_VIOS": false,
+    "RUN_DRT": true,
+    "DRT_THREADS": 1,
+    "DRT_MIN_LAYER": null,
+    "DRT_MAX_LAYER": null,
+    "DRT_OPT_ITERS": 64,
+    "QUIT_ON_TR_DRC": true,
+    "QUIT_ON_DISCONNECTED_PINS": true,
+    "QUIT_ON_LONG_WIRE": false,
+    "RUN_FILL_INSERTION": false,
+    "RUN_SPEF_EXTRACTION": true,
+    "RCX_MERGE_VIA_WIRE_RES": true,
+    "RCX_SDC_FILE": null,
+    "RCX_RULESETS": {
+        "nom_*": "/home/karim/work/pdk/sky130A/libs.tech/openlane/rules.openrcx.sky130A.nom.calibre",
+        "min_*": "/home/karim/work/pdk/sky130A/libs.tech/openlane/rules.openrcx.sky130A.min.calibre",
+        "max_*": "/home/karim/work/pdk/sky130A/libs.tech/openlane/rules.openrcx.sky130A.max.calibre"
+    },
+    "RUN_MCSTA": true,
+    "RUN_IRDROP_REPORT": true,
+    "MAGIC_DEF_LABELS": false,
+    "MAGIC_GDS_POLYGON_SUBCELLS": false,
+    "MAGIC_GDS_ALLOW_ABSTRACT": false,
+    "MAGIC_DEF_NO_BLOCKAGES": true,
+    "MAGIC_INCLUDE_GDS_POINTERS": false,
+    "MAGICRC": "/home/karim/work/pdk/sky130A/libs.tech/magic/sky130A.magicrc",
+    "MAGIC_TECH": "/home/karim/work/pdk/sky130A/libs.tech/magic/sky130A.tech",
+    "RUN_MAGIC_STREAMOUT": true,
+    "MAGIC_ZEROIZE_ORIGIN": false,
+    "MAGIC_DISABLE_CIF_INFO": true,
+    "KLAYOUT_TECH": "/home/karim/work/pdk/sky130A/libs.tech/klayout/tech/sky130A.lyt",
+    "KLAYOUT_PROPERTIES": "/home/karim/work/pdk/sky130A/libs.tech/klayout/tech/sky130A.lyp",
+    "KLAYOUT_DEF_LAYER_MAP": "/home/karim/work/pdk/sky130A/libs.tech/klayout/tech/sky130A.map",
+    "RUN_KLAYOUT_STREAMOUT": true,
+    "RUN_MAGIC_WRITE_LEF": true,
+    "MAGIC_LEF_WRITE_USE_GDS": false,
+    "MAGIC_WRITE_FULL_LEF": false,
+    "RUN_KLAYOUT_XOR": true,
+    "KLAYOUT_XOR_THREADS": 1,
+    "KLAYOUT_XOR_IGNORE_LAYERS": [
+        "81/14"
+    ],
+    "QUIT_ON_XOR_ERROR": true,
+    "RUN_MAGIC_DRC": true,
+    "MAGIC_DRC_USE_GDS": true,
+    "QUIT_ON_MAGIC_DRC": true,
+    "MAGIC_EXT_USE_GDS": false,
+    "MAGIC_NO_EXT_UNIQUE": false,
+    "MAGIC_EXT_SHORT_RESISTOR": false,
+    "QUIT_ON_ILLEGAL_OVERLAPS": true,
+    "NETGEN_SETUP": "/home/karim/work/pdk/sky130A/libs.tech/netgen/sky130A_setup.tcl",
+    "RUN_LVS": true,
+    "QUIT_ON_LVS_ERROR": true,
+    "meta": {
+        "version": 1,
+        "flow": null,
+        "step": null,
+        "openlane_version": "2.0.0b10"
+    }
+}
