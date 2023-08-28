@@ -5,7 +5,7 @@
 | :exclamation: Important Note            |
 |-----------------------------------------|
 
-This is a temporary repo for using openlane2 with the caravel user project
+THIS IS A TEMPORARY REPO for using openlane2 with the caravel user project
 
 Some changes were made to the documentation. Please follow the instructions carefully.
 
