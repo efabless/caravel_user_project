@@ -438,7 +438,7 @@ openlane:
 .. |pic3| image:: ./_static/option3.png
    :width: 72%
 
-For more details on hardening macros using openlane, refer to `README <https://github.com/The-OpenROAD-Project/OpenLane/blob/master/docs/source/hardening_macros.md>`__.
+For more details on hardening macros using openlane, refer to `ReadtheDocs https://openlane2.readthedocs.io/en/latest/usage/hardening_macros.html`__.
 
 -----------------
 Running OpenLane 
@@ -470,7 +470,7 @@ To reproduce hardening this project, run the following:
    make user_project_wrapper
 
 
-For more information on the openlane flow, check `README <https://github.com/The-OpenROAD-Project/OpenLane#readme>`__.
+For more information on the openlane flow, check `ReadtheDocs <https://openlane2.readthedocs.io/en/latest/>`__.
 
 Runing transistor level LVS
 ============================
