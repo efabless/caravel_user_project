@@ -107,7 +107,7 @@ simenv:
 	docker pull efabless/dv:latest
 
 .PHONY: setup
-setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
+setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -225,6 +225,11 @@ uninstall:
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
 .PHONY: precheck
 precheck:
+	if [ -d "$(PRECHECK_ROOT)" ]; then\
+		echo "Deleting exisiting $(PRECHECK_ROOT)" && \
+		rm -rf $(PRECHECK_ROOT) && sleep 2;\
+	fi
+	@echo "Installing Precheck.."
 	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
 	@docker pull efabless/mpw_precheck:latest
 
