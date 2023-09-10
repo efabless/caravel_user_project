@@ -333,7 +333,7 @@ install-caravel-cocotb:
 	rm -rf ./venv
 	$(PYTHON_BIN) -m venv ./venv
 	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
-	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
+	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb==1.0.0
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
@@ -344,17 +344,17 @@ setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
 
 .PHONY: cocotb-verify-all-rtl
 cocotb-verify-all-rtl: 
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl user_proj_tests/user_proj_tests.yaml )
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && ./venv/bin/$(PYTHON_BIN) -m caravel_cocotb -tl user_proj_tests/user_proj_tests.yaml )
 	
 .PHONY: cocotb-verify-all-gl
 cocotb-verify-all-gl:
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity quiet)
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && ./venv/bin/$(PYTHON_BIN) -m caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity quiet)
 
 $(cocotb-dv-targets-rtl): cocotb-verify-%-rtl: 
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -t $*  )
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && ./venv/bin/$(PYTHON_BIN) -m caravel_cocotb -t $*  )
 	
 $(cocotb-dv-targets-gl): cocotb-verify-%-gl:
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -t $* -verbosity quiet)
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && ./venv/bin/$(PYTHON_BIN) -m caravel_cocotb -t $* -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)
