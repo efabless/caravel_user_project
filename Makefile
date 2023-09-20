@@ -45,7 +45,7 @@ ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19
-	MPW_TAG ?= mpw-9d
+	MPW_TAG ?= mpw-9e
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -63,7 +63,7 @@ ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19
-	MPW_TAG ?= mpw-9d
+	MPW_TAG ?= mpw-9e
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -114,7 +114,7 @@ simenv-cocotb:
 	docker pull efabless/dv:cocotb
 
 .PHONY: setup
-setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb
+setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -236,6 +236,11 @@ uninstall:
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
 .PHONY: precheck
 precheck:
+	if [ -d "$(PRECHECK_ROOT)" ]; then\
+		echo "Deleting exisiting $(PRECHECK_ROOT)" && \
+		rm -rf $(PRECHECK_ROOT) && sleep 2;\
+	fi
+	@echo "Installing Precheck.."
 	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
 	@docker pull efabless/mpw_precheck:latest
 
