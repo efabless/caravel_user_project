@@ -43,13 +43,67 @@ jobs:
           name: pdk-tarball
           path: /tmp/pdk.tar
 
+      - name: Tarball OpenLane
+        run: |
+          tar -cf /tmp/openlane.tar -C $OPENLANE_ROOT .
+
+      - name: Upload OpenLane Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: openlane-tarball
+          path: /tmp/openlane.tar
+
+  dependencies:
+    timeout-minutes: 720
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Export env variables
+        run: |
+          echo "CARAVEL_ROOT=/home/runner/work/caravel_user_project/caravel" >> $GITHUB_ENV
+          echo "MCW_ROOT=/home/runner/work/caravel_user_project/mgmt_core_wrapper" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          make install
+          make install_mcw
+          make install-caravel-cocotb
+          make simenv
+
+      - name: Tarball caravel
+        run: |
+          tar -cf /tmp/caravel.tar -C $CARAVEL_ROOT .
+
+      - name: Upload caravel Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: caravel-tarball
+          path: /tmp/caravel.tar
+
+      - name: Tarball mgmt_core_wrapper
+        run: |
+          tar -cf /tmp/mgmt_core_wrapper.tar -C $MCW_ROOT .
+
+      - name: Upload mgmt_core_wrapper Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: mgmt_core_wrapper-tarball
+          path: /tmp/mgmt_core_wrapper.tar
+
   user_project_flow:
     timeout-minutes: 720
     runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A", "sky130B"]
-    needs: [pdk]
+    needs: [pdk, dependencies]
     steps:
       - uses: actions/checkout@v2
 
@@ -68,6 +122,11 @@ jobs:
       - name: Export OPENLANE ROOT
         run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
 
+      - name: Export env variables
+        run: |
+          echo "CARAVEL_ROOT=/home/runner/work/caravel_user_project/caravel" >> $GITHUB_ENV
+          echo "MCW_ROOT=/home/runner/work/caravel_user_project/mgmt_core_wrapper" >> $GITHUB_ENV
+
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
         with:
@@ -80,12 +139,41 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/pdk.tar -C $PDK_ROOT .
 
-      - name: Install dependencies
+      - name: Download OpenLane Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: openlane-tarball
+          path: /tmp
+
+      - name: Unpack OpenLane Tarball
         run: |
-          make install
-          make install_mcw
-          make openlane
-          make simenv
+          sudo mkdir -p ${{ env.OPENLANE_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.OPENLANE_ROOT }}
+          tar -xf /tmp/openlane.tar -C $OPENLANE_ROOT .
+
+      - name: Download caravel Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: caravel-tarball
+          path: /tmp
+
+      - name: Unpack caravel Tarball
+        run: |
+          sudo mkdir -p ${{ env.CARAVEL_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.CARAVEL_ROOT }}
+          tar -xf /tmp/caravel.tar -C $CARAVEL_ROOT .
+
+      - name: Download mgmt_core_wrapper Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: mgmt_core_wrapper-tarball
+          path: /tmp
+
+      - name: Unpack mgmt_core_wrapper Tarball
+        run: |
+          sudo mkdir -p ${{ env.MCW_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.MCW_ROOT }}
+          tar -xf /tmp/mgmt_core_wrapper.tar -C $MCW_ROOT .
 
       - name: Harden using Openlane
         run: |
@@ -117,18 +205,14 @@ jobs:
           path: |
             /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
 
+      - name: setup cocotb environment
+        run: |
+          make setup-cocotb-env
+
       - name: Run DV RTL tests
         run: |
-          make verify-io_ports-rtl 
-          make verify-la_test1-rtl 
-          make verify-la_test2-rtl 
-          make verify-mprj_stimulus-rtl 
-          make verify-wb_port-rtl
+          make cocotb-verify-all-rtl
 
-      # - name: Run DV GL tests
-      #   run: |
-      #     make verify-io_ports-gl 
-      #     make verify-la_test1-gl 
-      #     make verify-la_test2-gl 
-      #     make verify-mprj_stimulus-gl 
-      #     make verify-wb_port-gl
+      - name: Run DV GL tests
+        run: |
+          make cocotb-verify-all-gl
