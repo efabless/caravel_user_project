@@ -324,7 +324,7 @@ setup-timing-scripts: $(TIMING_ROOT)
 
 .PHONY: setup-cocotb
 setup-cocotb: 
-	@pip install caravel-cocotb==1.0.0 
+	@pip install caravel-cocotb==1.1.1
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 	@docker pull efabless/dv:latest
 	@docker pull efabless/dv:cocotb
