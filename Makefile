@@ -28,6 +28,8 @@ export PDK?=sky130A
 #export PDK?=gf180mcuC
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
+PYTHON_BIN ?= python3
+
 ROOTLESS ?= 0
 USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
@@ -106,6 +108,11 @@ install:
 simenv:
 	docker pull efabless/dv:latest
 
+# Install cocotb docker
+.PHONY: simenv-cocotb
+simenv-cocotb:
+	docker pull efabless/dv:cocotb
+
 .PHONY: setup
 setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
 
@@ -116,8 +123,11 @@ $(blocks): % :
 	$(MAKE) -C openlane $*
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+cocotb-dv_patterns=$(shell cd verilog/dv/cocotb && find . -name "*.c"  | sed -e 's|^.*/||' -e 's/.c//')
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
+cocotb-dv-targets-rtl=$(cocotb-dv_patterns:%=cocotb-verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
+cocotb-dv-targets-gl=$(cocotb-dv_patterns:%=cocotb-verify-%-gl)
 dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
 
 TARGET_PATH=$(shell pwd)
@@ -322,20 +332,33 @@ setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
-.PHONY: setup-cocotb
-setup-cocotb: 
-	@pip install caravel-cocotb==1.0.0 
-	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
-	@docker pull efabless/dv:latest
-	@docker pull efabless/dv:cocotb
+.PHONY: install-caravel-cocotb
+install-caravel-cocotb:
+	rm -rf ./venv-cocotb
+	$(PYTHON_BIN) -m venv ./venv-cocotb
+	./venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
+	./venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
 
-.PHONY: cocotb-verify-rtl
-cocotb-verify-rtl: 
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests.yaml -v )
+.PHONY: setup-cocotb-env
+setup-cocotb-env:
+	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+
+.PHONY: setup-cocotb
+setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
+
+.PHONY: cocotb-verify-all-rtl
+cocotb-verify-all-rtl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && $(PROJECT_ROOT)/venv-cocotb/bin/caravel_cocotb -tl user_proj_tests/user_proj_tests.yaml )
 	
-.PHONY: cocotb-verify-gl
-cocotb-verify-gl: 
-	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests_gl.yaml -v -verbosity quiet)
+.PHONY: cocotb-verify-all-gl
+cocotb-verify-all-gl:
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && $(PROJECT_ROOT)/venv-cocotb/bin/caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity quiet)
+
+$(cocotb-dv-targets-rtl): cocotb-verify-%-rtl: 
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && $(PROJECT_ROOT)/venv-cocotb/bin/caravel_cocotb -t $*  )
+	
+$(cocotb-dv-targets-gl): cocotb-verify-%-gl:
+	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && $(PROJECT_ROOT)/venv-cocotb/bin/caravel_cocotb -t $* -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:
 	$(error you don't have $@)

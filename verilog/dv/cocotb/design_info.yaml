@@ -1,37 +1,9 @@
-# yaml file contain general design information that would mostly need to be updated in the first run only 
-
-#eg CARAVEL_ROOT: "/usr/Desktop/caravel_project/caravel/" 
-#like repo https://github.com/efabless/caravel
-# CARAVEL_ROOT: "/home/usr/caravel/swift/swift2"
-CARAVEL_ROOT: /home/usr/caravel/caravel
-
-#eg MCW_ROOT: "/usr/Desktop/caravel_project/caravel_mgmt_soc_litex/" 
-#like repo https://github.com/efabless/caravel_mgmt_soc_litex 
-# MCW_ROOT: "/home/usr/caravel/swift/swift2"
-MCW_ROOT: /home/usr/caravel/caravel_mgmt_soc_litex/
-
-#eg USER_PROJECT_ROOT: "/usr/Desktop/caravel_project/caravel_user_project/" 
-#like repo https://github.com/efabless/caravel_user_project
-USER_PROJECT_ROOT: /home/usr/caravel/caravel_user_project/
-# USER_PROJECT_ROOT: "/home/usr/caravel/swift/caravel_user_project"
-# USER_PROJECT_ROOT: None
-# USER_PROJECT_ROOT: None
-
-
-
-#eg PDK_ROOT: "/usr/Desktop/caravel_project/pdk/" 
-#exported by volare
-PDK_ROOT: /home/usr/pdk
-
-#eg PDK: "sky130A"
+CARAVEL_ROOT: /usr/caravel_user_project/caravel
+MCW_ROOT: /usr/caravel_user_project/mgmt_core_wrapper
 PDK: sky130A
-#PDK: gf180mcuC
-
-#clock in ns
-clk: 25  
-
-# true when caravan are simulated instead of caravel
+PDK_ROOT: /usr/pdk
+USER_PROJECT_ROOT: /usr/caravel_user_project
 caravan: false
-
-# optional email address to send the results to 
-emailto: [None]
+clk: 25
+emailto:
+- null
