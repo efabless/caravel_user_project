@@ -124,7 +124,6 @@ $(blocks): % :
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 cocotb-dv_patterns=$(shell cd verilog/dv/cocotb && find . -name "*.c"  | sed -e 's|^.*/||' -e 's/.c//')
-$(info VAR1 is $(cocotb-dv_patterns))
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
 cocotb-dv-targets-rtl=$(cocotb-dv_patterns:%=cocotb-verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
