@@ -29,16 +29,16 @@ endif
 
 openlane_cmd = \
 	"flow.tcl \
-	-design $$(readlink -f ./$*) \
-	-save_path $$(readlink -f ..) \
+	-design $(shell python3 -c "import os; print(os.path.abspath(\"$(PWD)/openlane/$*\"))") \
+	-save_path $(shell python3 -c "import os; print(os.path.dirname(\"$(PWD)\"))") \
 	-save \
 	-tag $(OPENLANE_RUN_TAG) \
 	-overwrite \
 	-ignore_mismatches"
-openlane_cmd_interactive = "flow.tcl -it -file $$(readlink -f ./$*/interactive.tcl)"
+openlane_cmd_interactive = "flow.tcl -it -file $(shell python3 -c "import os; print(os.path.abspath(\"$(PWD)/openlane/$*/interactive.tcl\"))")"
 
 docker_mounts = \
-	-v $$(readlink -f $(PWD)/..):$$(readlink -f $(PWD)/..) \
+	-v $(shell python3 -c "import os; print(os.path.dirname(\"$(PWD)\"))"):$(shell python3 -c "import os; print(os.path.dirname(\"$(PWD)\"))") \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
 	-v $(CARAVEL_ROOT):$(CARAVEL_ROOT) \
 	-v $(OPENLANE_ROOT):/openlane
@@ -75,7 +75,7 @@ else
 	# $(current_design)
 	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG) 
 	rm -rf ./$*/runs/$*
-	ln -s $$(readlink -f ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
+	ln -s $(shell python3 -c "import os; print(os.path.dirname(\"$(PWD)/openlane/$*/runs/$(OPENLANE_RUN_TAG)\"))") ./$*/runs/$*
 	$(docker_run) \
 		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd)
 endif
