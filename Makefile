@@ -188,7 +188,7 @@ what:
 # Install Openlane
 .PHONY: openlane
 openlane:
-	@if [ "$(shell python3 -c "import os; print(os.path.abspath(\"$(OPENLANE_RUN_TAG)\"))")" = "$(shell python3 -c "import os; print(os.path.abspath(\"$(PWD)/openlane\"))")" ]; then\
+	@if [ "$$(readlink -f $${OPENLANE_ROOT})" = "$$(readlink -f $$(pwd)/openlane)" ]; then\
 		echo "OPENLANE_ROOT is set to '$$(pwd)/openlane' which contains openlane config files"; \
 		echo "Please set it to a different directory"; \
 		exit 1; \
@@ -201,8 +201,8 @@ openlane:
 .PHONY: simlink
 simlink: check-caravel
 ### Symbolic links relative path to $CARAVEL_ROOT
-	$(eval MAKEFILE_PATH := $(shell readlink --relative-to=openlane $(CARAVEL_ROOT)/openlane/Makefile))
-	$(eval PIN_CFG_PATH  := $(shell readlink --relative-to=openlane/user_project_wrapper $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg))
+	$(eval MAKEFILE_PATH := $(shell readlink -f --relative-to=openlane $(CARAVEL_ROOT)/openlane/Makefile))
+	$(eval PIN_CFG_PATH  := $(shell readlink -f --relative-to=openlane/user_project_wrapper $(CARAVEL_ROOT)/openlane/user_project_wrapper_empty/pin_order.cfg))
 	mkdir -p openlane
 	mkdir -p openlane/user_project_wrapper
 	cd openlane &&\
