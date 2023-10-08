@@ -150,7 +150,8 @@ Starting your project
 
 #.  Run cocotb simulation on your design
 
-    *   You need to include your rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project``
+    * rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project`` should be updated
+    * To run GL simulation script ``<caravel>/scripts/gen_gpio_defaults.py`` should be run to generate ``caravel_core.v``
 
     * To make sure the cocotb flow works, run the following commands for testing the counter example
 
