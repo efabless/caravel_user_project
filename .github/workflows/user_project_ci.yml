@@ -23,7 +23,7 @@ jobs:
         run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
       
       - name: Export OPENLANE ROOT
-        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+        run: echo "OPENLANE_ROOT=/home/runner/work/tapeout-ci-2311/openlane" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
@@ -66,7 +66,7 @@ jobs:
           echo "PDKPATH=/home/runner/work/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
 
       - name: Export OPENLANE ROOT
-        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+        run: echo "OPENLANE_ROOT=/home/runner/work/tapeout-ci-2311/openlane" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -115,7 +115,7 @@ jobs:
         with:
           name: error
           path: |
-            /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
+            /home/runner/work/tapeout-ci-2311/tapeout-ci-2311/mpw_precheck_result/logs/*
 
       - name: Run DV RTL tests
         run: |
