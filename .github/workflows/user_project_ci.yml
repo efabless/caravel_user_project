@@ -6,6 +6,10 @@ on:
   # Runs on Pull Requests
   pull_request:
   workflow_dispatch:
+  # Runs nightly at 2AM PST
+  schedule:
+    # For Standard Time (UTC-8)
+    - cron: '0 10 * * *'
 
 jobs:
   pdk:
@@ -45,7 +49,7 @@ jobs:
 
   user_project_flow:
     timeout-minutes: 720
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         pdk: ["sky130A", "sky130B"]
