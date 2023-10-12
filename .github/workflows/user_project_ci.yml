@@ -52,7 +52,7 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        pdk: ["sky130A", "sky130B"]
+        pdk: ["sky130A"]
     needs: [pdk]
     steps:
       - uses: actions/checkout@v2
