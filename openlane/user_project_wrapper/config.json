@@ -75,5 +75,6 @@
 	],
 	"SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
 	"RUN_LINTER": 0,
-	"QUIT_ON_TIMING_VIOLATIONS": 0
+	"QUIT_ON_TIMING_VIOLATIONS": 0,
+	"FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def"
 }
