@@ -16,10 +16,16 @@
 MAKEFLAGS+=--warn-undefined-variables
 
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
-OPENLANE_TAG ?= 2022.11.29
+OPENLANE_TAG ?= 2023.07.19
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
 designs = $(shell find * -maxdepth 0 -type d)
 current_design = null
+
+ROOTLESS ?= 0
+USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
+ifeq ($(ROOTLESS), 1)
+	USER_ARGS =
+endif
 
 openlane_cmd = \
 	"flow.tcl \
@@ -52,16 +58,16 @@ endif
 docker_startup_mode = $(shell test -t 0 && echo "-it" || echo "--rm" )
 docker_run = \
 	docker run $(docker_startup_mode) \
+	$(USER_ARGS) \
 	$(docker_mounts) \
 	$(docker_env) \
-	-u $(shell id -u $(USER)):$(shell id -g $(USER))
 
 list:
 	@echo $(designs)
 
 .PHONY: $(designs)
 $(designs) : export current_design=$@
-$(designs) : % : ./%/config.tcl
+$(designs) : % : ./%/config.json
 ifneq (,$(wildcard ./$(current_design)/interactive.tcl))
 	$(docker_run) \
 		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive)
