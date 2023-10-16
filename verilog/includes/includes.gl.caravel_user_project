@@ -19,7 +19,7 @@
 
 -v $(USER_PROJECT_VERILOG)/gl/caravel_core.v
 
-# default should be added accoding to the defaults used
+# default should be added according to the defaults used
 
 #-v $(USER_PROJECT_VERILOG)/gl/gpio_defaults_block_0403.v     
 #-v $(USER_PROJECT_VERILOG)/gl/gpio_defaults_block_0801.v     
