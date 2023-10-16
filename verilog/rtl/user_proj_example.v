@@ -94,11 +94,11 @@ module user_proj_example #(
 
     // LA
     assign la_data_out = {{(64-BITS){1'b0}}, count};
-    // Assuming LA probes [32:16] are for controlling the count register  
-    assign la_write = ~la_oenb[32:16] & ~{BITS{valid}};
-    // Assuming LA probes [34:33] are for controlling the count clk & reset  
-    assign clk = (~la_oenb[33]) ? la_data_in[33]: wb_clk_i;
-    assign rst = (~la_oenb[34]) ? la_data_in[34]: wb_rst_i;
+    // Assuming LA probes [61:46] are for controlling the count register  
+    assign la_write = ~la_oenb[61:62-BITS] & ~{BITS{valid}};
+    // Assuming LA probes [63:62] are for controlling the count clk & reset  
+    assign clk = (~la_oenb[62]) ? la_data_in[62]: wb_clk_i;
+    assign rst = (~la_oenb[63]) ? la_data_in[63]: wb_rst_i;
 
     counter #(
         .BITS(BITS)
@@ -111,7 +111,7 @@ module user_proj_example #(
         .wdata(wbs_dat_i[BITS-1:0]),
         .wstrb(wstrb),
         .la_write(la_write),
-        .la_input(la_data_in[31:32-BITS]),
+        .la_input(la_data_in[61:62-BITS]),
         .count(count)
     );
 

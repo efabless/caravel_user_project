@@ -6,9 +6,9 @@
 		"dir::../../verilog/rtl/defines.v",
 		"dir::../../verilog/rtl/user_project_wrapper.v"
 	],
-	"CLOCK_PORT": "user_clock2",
+	"CLOCK_PORT": "wb_clk_i",
 	"CLOCK_NET": "mprj.clk",
-	"CLOCK_PERIOD": "10",
+	"CLOCK_PERIOD": 25,
 	"MACRO_PLACEMENT_CFG": "dir::macro.cfg",
 	"VERILOG_FILES_BLACKBOX": [
 		"dir::../../verilog/gl/user_proj_example.v"
@@ -75,6 +75,5 @@
 	],
 	"SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
 	"RUN_LINTER": 0,
-	"QUIT_ON_TIMING_VIOLATIONS": 0,
 	"FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def"
 }
