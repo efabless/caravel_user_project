@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  pdk:
+  setup_env:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,19 +19,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Export PDK ROOT
-        run: echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
-      
-      - name: Export OPENLANE ROOT
-        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+      - name: Setup Environment Variables
+        run: |
+          echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
+          echo "OPENLANE_ROOT=$GITHUB_WORKSPACE/openlane_src" >> $GITHUB_ENV
+          echo "CARAVEL_ROOT=$GITHUB_WORKSPACE/caravel" >> $GITHUB_ENV
+          echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
+          echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
+          echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make install
-          make openlane
-          make pdk-with-volare
+          make setup
 
       - name: Tarball PDK
         run: |
@@ -43,13 +44,63 @@ jobs:
           name: pdk-tarball
           path: /tmp/pdk.tar
 
-  user_project_flow:
+      - name: Tarball Caravel
+        run: |
+          tar -cf /tmp/caravel.tar -C $CARAVEL_ROOT .
+
+      - name: Upload Caravel Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: caravel-tarball
+          path: /tmp/caravel.tar
+
+      - name: Tarball MCW
+        run: |
+          tar -cf /tmp/mgmt_core_wrapper.tar -C $MCW_ROOT .
+
+      - name: Upload MCW Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: mgmt_core_wrapper-tarball
+          path: /tmp/mgmt_core_wrapper.tar
+
+      - name: Tarball openlane
+        run: |
+          tar -cf /tmp/openlane.tar -C $OPENLANE_ROOT .
+
+      - name: Upload openlane Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: openlane-tarball
+          path: /tmp/openlane.tar
+
+      - name: Tarball timing scripts
+        run: |
+          tar -cf /tmp/timing-scripts.tar -C $TIMING_ROOT .
+
+      - name: Upload timing scripts Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: timing-scripts-tarball
+          path: /tmp/timing-scripts.tar
+
+      - name: Tarball mpw_precheck
+        run: |
+          tar -cf /tmp/mpw_precheck.tar -C $PRECHECK_ROOT .
+
+      - name: Upload mpw_precheck scripts Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: mpw_precheck-tarball
+          path: /tmp/mpw_precheck.tar
+
+  hardening:
     timeout-minutes: 720
     runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A", "sky130B"]
-    needs: [pdk]
+    needs: [setup_env]
     steps:
       - uses: actions/checkout@v2
 
@@ -59,14 +110,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Export PDK VARIABLES
+      - name: Export ENVIRONMENT VARIABLES
         run: |
-          echo "PDK_ROOT=/home/runner/work/pdk" >> $GITHUB_ENV
           echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
-          echo "PDKPATH=/home/runner/work/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
-
-      - name: Export OPENLANE ROOT
-        run: echo "OPENLANE_ROOT=/home/runner/work/caravel_user_project/openlane" >> $GITHUB_ENV
+          echo "PDKPATH=$GITHUB_WORKSPACE/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
+          echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
+          echo "OPENLANE_ROOT=$GITHUB_WORKSPACE/openlane_src" >> $GITHUB_ENV
+          echo "CARAVEL_ROOT=$GITHUB_WORKSPACE/caravel" >> $GITHUB_ENV
+          echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
+          echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
+          echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -80,55 +133,19 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           tar -xf /tmp/pdk.tar -C $PDK_ROOT .
 
-      - name: Install dependencies
+      - name: Download openlane Tarball
+        uses: actions/download-artifact@v2
+        with:
+          name: openlane-tarball
+          path: /tmp
+
+      - name: Unpack openlane Tarball
         run: |
-          make install
-          make install_mcw
-          make openlane
-          make simenv
+          sudo mkdir -p ${{ env.OPENLANE_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.OPENLANE_ROOT }}
+          tar -xf /tmp/openlane.tar -C $OPENLANE_ROOT .
 
       - name: Harden using Openlane
         run: |
           make user_proj_example
           make user_project_wrapper
-
-      - name: run precheck
-        run: |
-          export INPUT_DIRECTORY=$(pwd)
-          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
-          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
-          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
-          export PDKPATH=$PDK_ROOT/sky130A
-
-          git clone --depth=1 https://github.com/efabless/mpw_precheck.git
-
-          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_path ${{ env.PDKPATH }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea lvs"
-
-          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
-          if ! [[ $cnt ]]; then cnt=0; fi
-          if [[ $cnt -eq 1 ]]; then exit 0; fi
-          exit 2
-      
-      - name: upload failure logs
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: error
-          path: |
-            /home/runner/work/caravel_user_project/caravel_user_project/mpw_precheck_result/logs/*
-
-      - name: Run DV RTL tests
-        run: |
-          make verify-io_ports-rtl 
-          make verify-la_test1-rtl 
-          make verify-la_test2-rtl 
-          make verify-mprj_stimulus-rtl 
-          make verify-wb_port-rtl
-
-      # - name: Run DV GL tests
-      #   run: |
-      #     make verify-io_ports-gl 
-      #     make verify-la_test1-gl 
-      #     make verify-la_test2-gl 
-      #     make verify-mprj_stimulus-gl 
-      #     make verify-wb_port-gl
