@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup_env:
+  download_caravel:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -32,17 +32,7 @@ jobs:
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make setup
-
-      - name: Tarball PDK
-        run: |
-          tar -cf /tmp/pdk.tar -C $PDK_ROOT .
-
-      - name: Upload PDK Tarball
-        uses: actions/upload-artifact@v2
-        with:
-          name: pdk-tarball
-          path: /tmp/pdk.tar
+          make install
 
       - name: Tarball Caravel
         run: |
@@ -53,54 +43,13 @@ jobs:
         with:
           name: caravel-tarball
           path: /tmp/caravel.tar
-
-      - name: Tarball MCW
-        run: |
-          tar -cf /tmp/mgmt_core_wrapper.tar -C $MCW_ROOT .
-
-      - name: Upload MCW Tarball
-        uses: actions/upload-artifact@v2
-        with:
-          name: mgmt_core_wrapper-tarball
-          path: /tmp/mgmt_core_wrapper.tar
-
-      - name: Tarball openlane
-        run: |
-          tar -cf /tmp/openlane.tar -C $OPENLANE_ROOT .
-
-      - name: Upload openlane Tarball
-        uses: actions/upload-artifact@v2
-        with:
-          name: openlane-tarball
-          path: /tmp/openlane.tar
-
-      - name: Tarball timing scripts
-        run: |
-          tar -cf /tmp/timing-scripts.tar -C $TIMING_ROOT .
-
-      - name: Upload timing scripts Tarball
-        uses: actions/upload-artifact@v2
-        with:
-          name: timing-scripts-tarball
-          path: /tmp/timing-scripts.tar
-
-      - name: Tarball mpw_precheck
-        run: |
-          tar -cf /tmp/mpw_precheck.tar -C $PRECHECK_ROOT .
-
-      - name: Upload mpw_precheck scripts Tarball
-        uses: actions/upload-artifact@v2
-        with:
-          name: mpw_precheck-tarball
-          path: /tmp/mpw_precheck.tar
-
-  hardening:
-    timeout-minutes: 720
+  
+  download_mcw:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pdk: ["sky130A", "sky130B"]
-    needs: [setup_env]
+        targets: ["install_mcw", "openlane", "pdk-with-volare", "setup-timing-scripts", "precheck"]
+    needs: [download_caravel]
     steps:
       - uses: actions/checkout@v2
 
@@ -110,42 +59,114 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Export ENVIRONMENT VARIABLES
+      - name: Setup Environment Variables
         run: |
-          echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
-          echo "PDKPATH=$GITHUB_WORKSPACE/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
           echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
           echo "OPENLANE_ROOT=$GITHUB_WORKSPACE/openlane_src" >> $GITHUB_ENV
           echo "CARAVEL_ROOT=$GITHUB_WORKSPACE/caravel" >> $GITHUB_ENV
           echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+      
+      - name: Get dependencies name
+        run: |
+          if [[ "${{ matrix.targets }}" == "install_mcw" ]]; then
+            dep_name = "mgmt_core_wrapper"
+            dep_root = $MCW_ROOT
+          elif [[ "${{ matrix.targets }}" == "openlane" ]]; then
+            dep_name = "openlane"
+            dep_root = $OPENLANE_ROOT
+          elif [[ "${{ matrix.targets }}" == "pdk-with-volare" ]]; then
+            dep_name = "pdk"
+            dep_root = $PDK_ROOT
+          elif [[ "${{ matrix.targets }}" == "setup-timing-scripts" ]]; then
+            dep_name = "timing-scripts"
+            dep_root = $TIMING_ROOT
+          elif [[ "${{ matrix.targets }}" == "precheck" ]]; then
+            dep_name = "precheck"
+            dep_root = $PRECHECK_ROOT
+          fi
 
-      - name: Download PDK Tarball
+      - name: Download caravel Tarball
         uses: actions/download-artifact@v2
         with:
-          name: pdk-tarball
+          name: caravel-tarball
           path: /tmp
 
-      - name: Unpack PDK Tarball
+      - name: Unpack caravel Tarball
+        run: |
+          sudo mkdir -p ${{ env.CARAVEL_ROOT }}
+          sudo chown -R $USER:$USER ${{ env.CARAVEL_ROOT }}
+          tar -xf /tmp/caravel.tar -C $CARAVEL_ROOT .
+
+      - name: Install dependencies
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          tar -xf /tmp/pdk.tar -C $PDK_ROOT .
+          make ${{ matrix.targets }}
 
-      - name: Download openlane Tarball
-        uses: actions/download-artifact@v2
+      - name: Tarball Dependencies
+        run: |
+          tar -cf /tmp/$dep_name.tar -C $dep_root .
+
+      - name: Upload Dependencies Tarball
+        uses: actions/upload-artifact@v2
         with:
-          name: openlane-tarball
-          path: /tmp
+          name: $dep_name-tarball
+          path: /tmp/$dep_name.tar
 
-      - name: Unpack openlane Tarball
-        run: |
-          sudo mkdir -p ${{ env.OPENLANE_ROOT }}
-          sudo chown -R $USER:$USER ${{ env.OPENLANE_ROOT }}
-          tar -xf /tmp/openlane.tar -C $OPENLANE_ROOT .
+  # hardening:
+  #   timeout-minutes: 720
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       pdk: ["sky130A", "sky130B"]
+  #   needs: [setup_env]
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Harden using Openlane
-        run: |
-          make user_proj_example
-          make user_project_wrapper
+  #     - name: Set up QEMU
+  #       uses: docker/setup-qemu-action@v1
+
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v1
+
+  #     - name: Export ENVIRONMENT VARIABLES
+  #       run: |
+  #         echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
+  #         echo "PDKPATH=$GITHUB_WORKSPACE/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
+  #         echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
+  #         echo "OPENLANE_ROOT=$GITHUB_WORKSPACE/openlane_src" >> $GITHUB_ENV
+  #         echo "CARAVEL_ROOT=$GITHUB_WORKSPACE/caravel" >> $GITHUB_ENV
+  #         echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
+  #         echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
+  #         echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+
+  #     - name: Download PDK Tarball
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: pdk-tarball
+  #         path: /tmp
+
+  #     - name: Unpack PDK Tarball
+  #       run: |
+  #         sudo mkdir -p ${{ env.PDK_ROOT }}
+  #         sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
+  #         tar -xf /tmp/pdk.tar -C $PDK_ROOT .
+
+  #     - name: Download openlane Tarball
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: openlane-tarball
+  #         path: /tmp
+
+  #     - name: Unpack openlane Tarball
+  #       run: |
+  #         sudo mkdir -p ${{ env.OPENLANE_ROOT }}
+  #         sudo chown -R $USER:$USER ${{ env.OPENLANE_ROOT }}
+  #         tar -xf /tmp/openlane.tar -C $OPENLANE_ROOT .
+
+  #     - name: Harden using Openlane
+  #       run: |
+  #         make user_proj_example
+  #         make user_project_wrapper
