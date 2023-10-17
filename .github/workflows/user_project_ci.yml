@@ -44,11 +44,11 @@ jobs:
           name: caravel-tarball
           path: /tmp/caravel.tar
   
-  download_mcw:
+  download_deps:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        targets: ["install_mcw", "openlane", "pdk-with-volare", "setup-timing-scripts", "precheck"]
+        targets: ["pdk-with-volare"]
     needs: [download_caravel]
     steps:
       - uses: actions/checkout@v2
