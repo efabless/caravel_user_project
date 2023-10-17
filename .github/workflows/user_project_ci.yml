@@ -11,6 +11,14 @@ jobs:
   download_caravel:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
       - name: Setup Environment Variables
         run: |
           echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
@@ -43,6 +51,14 @@ jobs:
         targets: ["install_mcw", "openlane", "pdk-with-volare", "setup-timing-scripts", "precheck"]
     needs: [download_caravel]
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
       - name: Setup Environment Variables
         run: |
           echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
