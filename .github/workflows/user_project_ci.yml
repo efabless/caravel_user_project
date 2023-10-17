@@ -71,20 +71,20 @@ jobs:
       - name: Get dependencies name
         run: |
           if [[ "${{ matrix.targets }}" == "install_mcw" ]]; then
-            dep_name = "mgmt_core_wrapper"
-            dep_root = ${{ env.MCW_ROOT }}
+            dep_name="mgmt_core_wrapper"
+            dep_root=${{ env.MCW_ROOT }}
           elif [[ "${{ matrix.targets }}" == "openlane" ]]; then
-            dep_name = "openlane"
-            dep_root = ${{ env.OPENLANE_ROOT }}
+            dep_name="openlane"
+            dep_root=${{ env.OPENLANE_ROOT }}
           elif [[ "${{ matrix.targets }}" == "pdk-with-volare" ]]; then
-            dep_name = "pdk"
-            dep_root = ${{ env.PDK_ROOT }}
+            dep_name="pdk"
+            dep_root=${{ env.PDK_ROOT }}
           elif [[ "${{ matrix.targets }}" == "setup-timing-scripts" ]]; then
-            dep_name = "timing-scripts"
-            dep_root = ${{ env.TIMING_ROOT }}
+            dep_name="timing-scripts"
+            dep_root=${{ env.TIMING_ROOT }}
           elif [[ "${{ matrix.targets }}" == "precheck" ]]; then
-            dep_name = "precheck"
-            dep_root = ${{ env.PRECHECK_ROOT }}
+            dep_name="precheck"
+            dep_root=${{ env.PRECHECK_ROOT }}
           fi
 
       - name: Download caravel Tarball
