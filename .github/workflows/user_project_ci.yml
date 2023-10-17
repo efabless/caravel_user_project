@@ -11,14 +11,6 @@ jobs:
   download_caravel:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Setup Environment Variables
         run: |
           echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
@@ -51,14 +43,6 @@ jobs:
         targets: ["install_mcw", "openlane", "pdk-with-volare", "setup-timing-scripts", "precheck"]
     needs: [download_caravel]
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Setup Environment Variables
         run: |
           echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
@@ -72,19 +56,19 @@ jobs:
         run: |
           if [[ "${{ matrix.targets }}" == "install_mcw" ]]; then
             dep_name = "mgmt_core_wrapper"
-            dep_root = $MCW_ROOT
+            dep_root = ${{ env.MCW_ROOT }}
           elif [[ "${{ matrix.targets }}" == "openlane" ]]; then
             dep_name = "openlane"
-            dep_root = $OPENLANE_ROOT
+            dep_root = ${{ env.OPENLANE_ROOT }}
           elif [[ "${{ matrix.targets }}" == "pdk-with-volare" ]]; then
             dep_name = "pdk"
-            dep_root = $PDK_ROOT
+            dep_root = ${{ env.PDK_ROOT }}
           elif [[ "${{ matrix.targets }}" == "setup-timing-scripts" ]]; then
             dep_name = "timing-scripts"
-            dep_root = $TIMING_ROOT
+            dep_root = ${{ env.TIMING_ROOT }}
           elif [[ "${{ matrix.targets }}" == "precheck" ]]; then
             dep_name = "precheck"
-            dep_root = $PRECHECK_ROOT
+            dep_root = ${{ env.PRECHECK_ROOT }}
           fi
 
       - name: Download caravel Tarball
