@@ -1,0 +1,190 @@
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{/openlane/scripts/mergeLef.py -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef -i /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/techlef/gf180mcu_fd_sc_mcu7t5v0__nom.tlef /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lef/gf180mcu_fd_sc_mcu7t5v0.lef |& tee /dev/null}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{/openlane/scripts/mergeLef.py -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef -i /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/../../lef/user_proj_example.lef |& tee /dev/null}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{/openlane/scripts/mergeLef.py -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.min.lef -i /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/techlef/gf180mcu_fd_sc_mcu7t5v0__min.tlef /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lef/gf180mcu_fd_sc_mcu7t5v0.lef |& tee /dev/null}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{/openlane/scripts/mergeLef.py -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.min.lef -i /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.min.lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/../../lef/user_proj_example.lef |& tee /dev/null}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{/openlane/scripts/mergeLef.py -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.max.lef -i /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/techlef/gf180mcu_fd_sc_mcu7t5v0__max.tlef /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/lef/gf180mcu_fd_sc_mcu7t5v0.lef |& tee /dev/null}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{/openlane/scripts/mergeLef.py -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.max.lef -i /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.max.lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/../../lef/user_proj_example.lef |& tee /dev/null}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{python3 /openlane/scripts/mergeLib.py --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/merged.lib --name gf180mcuD_merged /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/liberty/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib}"
+
+Tue Oct 17 13:00:45 UTC 2023 - Executing "{python3 /openlane/scripts/libtrim.py --cell-file /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/trimmed.lib.exclude.list --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/trimmed.lib /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/merged.lib}"
+
+Tue Oct 17 13:00:46 UTC 2023 - Executing "{python3 /openlane/scripts/libtrim.py --cell-file /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/cts/cts.lib.exclude.list --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/cts/cts.lib /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/liberty/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib}"
+
+Tue Oct 17 13:00:46 UTC 2023 - Executing "{python3 /openlane/scripts/libtrim.py --cell-file /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/cts/cts-fastest.lib.exclude.list --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/cts/cts-fastest.lib /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/liberty/gf180mcu_fd_sc_mcu7t5v0__ff_n40C_5v50.lib}"
+
+Tue Oct 17 13:00:47 UTC 2023 - Executing "{python3 /openlane/scripts/libtrim.py --cell-file /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/cts/cts-slowest.lib.exclude.list --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/cts/cts-slowest.lib /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/liberty/gf180mcu_fd_sc_mcu7t5v0__ss_125C_4v50.lib}"
+
+Tue Oct 17 13:00:47 UTC 2023 - Executing "{python3 /openlane/scripts/new_tracks.py -i /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/openlane/gf180mcu_fd_sc_mcu7t5v0/tracks.info -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/routing/config.tracks}"
+
+Tue Oct 17 13:00:47 UTC 2023 - Executing "{echo {OpenLane 7ea7a2aeef4bea5445d133c26ca2b3e9f0d0c78f} > /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/OPENLANE_VERSION}"
+
+Tue Oct 17 13:00:47 UTC 2023 - Executing "{sed -E {s/^([[:space:]]+)pg_pin(.*)/\1pin\2\n\1    direction : "inout";/g} /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/liberty/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib > /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/1-gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.no_pg.lib}"
+
+Tue Oct 17 13:00:48 UTC 2023 - Executing "{sed -E {s/^([[:space:]]+)pg_pin(.*)/\1pin\2\n\1    direction : "inout";/g} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/trimmed.lib > /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/1-trimmed.no_pg.lib}"
+
+Tue Oct 17 13:00:48 UTC 2023 - Executing "yosys -c /openlane/scripts/yosys/elaborate.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/synthesis/1-synthesis.log"
+
+Tue Oct 17 13:00:48 UTC 2023 - Executing "{yosys -c /openlane/scripts/yosys/elaborate.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/synthesis/1-synthesis.log}"
+
+Tue Oct 17 13:00:58 UTC 2023 - Executing "{sed -i.bak -e {s/\(set ::env(CURRENT_NETLIST)\).*/\1 \/home\/passant\/efabless\/gf180_upw\/openlane\/user_project_wrapper\/runs\/23_10_17_16_00\/results\/synthesis\/user_project_wrapper.v/} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/config.tcl}"
+
+Tue Oct 17 13:00:58 UTC 2023 - Executing "{sed -i.bak /defparam/d /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/synthesis/user_project_wrapper.v}"
+
+Tue Oct 17 13:00:58 UTC 2023 - Executing "sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/synthesis/2-sta.log"
+
+Tue Oct 17 13:00:58 UTC 2023 - Executing "{sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/synthesis/2-sta.log}"
+
+Tue Oct 17 13:01:00 UTC 2023 - Executing "{sed -E {s/^([[:space:]]+)pg_pin(.*)/\1pin\2\n\1    direction : "inout";/g} /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/liberty/gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.lib > /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/2-gf180mcu_fd_sc_mcu7t5v0__tt_025C_5v00.no_pg.lib}"
+
+Tue Oct 17 13:01:01 UTC 2023 - Executing "{sed -E {s/^([[:space:]]+)pg_pin(.*)/\1pin\2\n\1    direction : "inout";/g} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/trimmed.lib > /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/2-trimmed.no_pg.lib}"
+
+Tue Oct 17 13:01:01 UTC 2023 - Executing "yosys -c /openlane/scripts/yosys/elaborate.tcl |& tee /dev/null /dev/null"
+
+Tue Oct 17 13:01:01 UTC 2023 - Executing "{yosys -c /openlane/scripts/yosys/elaborate.tcl |& tee /dev/null /dev/null}"
+
+Tue Oct 17 13:01:10 UTC 2023 - Executing "{sed -i.bak /defparam/d /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/pg_define.v}"
+
+Tue Oct 17 13:01:10 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/floorplan.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/floorplan/3-initial_fp.log"
+
+Tue Oct 17 13:01:10 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/floorplan.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/floorplan/3-initial_fp.log}"
+
+Tue Oct 17 13:01:11 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/defutil.py extract_core_dims --output-data /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/dimensions.txt --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/3-initial_fp.def}"
+
+Tue Oct 17 13:01:11 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/io_place.py --config /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/pin_order.cfg --hor-layer Metal3 --ver-layer Metal2 --ver-width-mult 4 --hor-width-mult 4 --hor-extension 4.8 --ver-extension 4.8 --length 2.4 --unmatched-error --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef --output-def /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.def --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.odb /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/3-initial_fp.odb |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/floorplan/4-place_io.log}"
+
+Tue Oct 17 13:01:11 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/apply_def_template.py --def-template /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/fixed_dont_change/user_project_wrapper.def --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef --output-def /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.def --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.odb /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.odb |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/floorplan/4-apply_def_template.log}"
+
+Tue Oct 17 13:01:12 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/manual_macro_place.py --config /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/placement/macro_placement.cfg --fixed --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef --output-def /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.macro_placement.def --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.macro_placement.odb /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/floorplan/4-io.odb |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/placement/5-macro_placement.log}"
+
+Tue Oct 17 13:01:12 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/pdn.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/floorplan/6-pdn.log"
+
+Tue Oct 17 13:01:12 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/pdn.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/floorplan/6-pdn.log}"
+
+Tue Oct 17 13:01:13 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/random_place.py --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef --output-def /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/placement/7-global.def --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/placement/7-global.odb /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/floorplan/user_project_wrapper.odb |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/placement/7-global.log}"
+
+Tue Oct 17 13:01:13 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/dpl.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/placement/8-detailed.log"
+
+Tue Oct 17 13:01:13 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/dpl.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/placement/8-detailed.log}"
+
+Tue Oct 17 13:01:14 UTC 2023 - Executing "{sed -i.bak -e {s/\(set ::env(CURRENT_NETLIST)\).*/\1 \/home\/passant\/efabless\/gf180_upw\/openlane\/user_project_wrapper\/runs\/23_10_17_16_00\/results\/placement\/user_project_wrapper.nl.v/} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/config.tcl}"
+
+Tue Oct 17 13:01:14 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/placement/9-dpl_sta.log"
+
+Tue Oct 17 13:01:14 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/placement/9-dpl_sta.log}"
+
+Tue Oct 17 13:01:15 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/groute.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/10-global.log"
+
+Tue Oct 17 13:01:15 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/groute.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/10-global.log}"
+
+Tue Oct 17 13:01:15 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/write_views.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/10-global_write_netlist.log"
+
+Tue Oct 17 13:01:15 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/write_views.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/10-global_write_netlist.log}"
+
+Tue Oct 17 13:01:16 UTC 2023 - Executing "{sed -i.bak -e {s/\(set ::env(CURRENT_NETLIST)\).*/\1 \/home\/passant\/efabless\/gf180_upw\/openlane\/user_project_wrapper\/runs\/23_10_17_16_00\/tmp\/routing\/global.nl.v/} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/config.tcl}"
+
+Tue Oct 17 13:01:16 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/12-grt_sta.log"
+
+Tue Oct 17 13:01:16 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/12-grt_sta.log}"
+
+Tue Oct 17 13:01:17 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/droute.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/13-detailed.log"
+
+Tue Oct 17 13:01:17 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/droute.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/13-detailed.log}"
+
+Tue Oct 17 13:01:23 UTC 2023 - Executing "{sed -i.bak -e {s/\(set ::env(CURRENT_NETLIST)\).*/\1 \/home\/passant\/efabless\/gf180_upw\/openlane\/user_project_wrapper\/runs\/23_10_17_16_00\/results\/routing\/user_project_wrapper.nl.v/} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/config.tcl}"
+
+Tue Oct 17 13:01:23 UTC 2023 - Executing "{python3 /openlane/scripts/drc_rosetta.py tr to_klayout -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/routing/drt.klayout.xml --design-name user_project_wrapper /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/routing/drt.drc}"
+
+Tue Oct 17 13:01:23 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/wire_lengths.py --report-out /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/routing/14-wire_lengths.csv --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef --output-def /dev/null --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/routing/user_project_wrapper.odb /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/routing/user_project_wrapper.odb |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/routing/14-wire_lengths.log}"
+
+Tue Oct 17 13:01:24 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/rcx.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/15-parasitics_extraction.min.log"
+
+Tue Oct 17 13:01:24 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/rcx.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/15-parasitics_extraction.min.log}"
+
+Tue Oct 17 13:01:25 UTC 2023 - Executing "sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/16-rcx_mcsta.min.log"
+
+Tue Oct 17 13:01:25 UTC 2023 - Executing "{sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/16-rcx_mcsta.min.log}"
+
+Tue Oct 17 13:01:29 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/rcx.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/17-parasitics_extraction.max.log"
+
+Tue Oct 17 13:01:29 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/rcx.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/17-parasitics_extraction.max.log}"
+
+Tue Oct 17 13:01:30 UTC 2023 - Executing "sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/18-rcx_mcsta.max.log"
+
+Tue Oct 17 13:01:30 UTC 2023 - Executing "{sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/18-rcx_mcsta.max.log}"
+
+Tue Oct 17 13:01:34 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/rcx.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/19-parasitics_extraction.nom.log"
+
+Tue Oct 17 13:01:34 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/rcx.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/19-parasitics_extraction.nom.log}"
+
+Tue Oct 17 13:01:35 UTC 2023 - Executing "sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/20-rcx_mcsta.nom.log"
+
+Tue Oct 17 13:01:35 UTC 2023 - Executing "{sta -exit -no_init /openlane/scripts/openroad/sta/multi_corner.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/20-rcx_mcsta.nom.log}"
+
+Tue Oct 17 13:01:40 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/irdrop.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/21-irdrop.log"
+
+Tue Oct 17 13:01:40 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/irdrop.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/21-irdrop.log}"
+
+Tue Oct 17 13:01:41 UTC 2023 - Executing "magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-gdsii.log"
+
+Tue Oct 17 13:01:41 UTC 2023 - Executing "{magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-gdsii.log}"
+
+Tue Oct 17 13:01:46 UTC 2023 - Executing "magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-gds_ptrs.log"
+
+Tue Oct 17 13:01:46 UTC 2023 - Executing "{magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-gds_ptrs.log}"
+
+Tue Oct 17 13:01:53 UTC 2023 - Executing "{sed -i.bak -n {/^<< properties >>/,/^<< end >>/p} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/signoff/gds_ptrs.mag}"
+
+Tue Oct 17 13:01:53 UTC 2023 - Executing "magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-lef.log"
+
+Tue Oct 17 13:01:53 UTC 2023 - Executing "{magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-lef.log}"
+
+Tue Oct 17 13:01:54 UTC 2023 - Executing "magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-maglef.log"
+
+Tue Oct 17 13:01:54 UTC 2023 - Executing "{magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/22-maglef.log}"
+
+Tue Oct 17 13:01:54 UTC 2023 - Executing "{python3 /openlane/scripts/klayout/stream_out.py --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/signoff/user_project_wrapper.klayout.gds --lyt /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/klayout/tech/gf180mcu.lyt --lym /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/klayout/tech/gf180mcu.map --lyp /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/klayout/tech/gf180mcu.lyp --top user_project_wrapper --with-gds-file /home/passant/OpenLane/pdks/gf180mcuD/libs.ref/gf180mcu_fd_sc_mcu7t5v0/gds/gf180mcu_fd_sc_mcu7t5v0.gds --with-gds-file /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/../../gds/user_proj_example.gds --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/routing/user_project_wrapper.def |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/23-gdsii-klayout.log}"
+
+Tue Oct 17 13:01:55 UTC 2023 - Executing "{klayout -b -r /openlane/scripts/klayout/xor.drc -rd a=/home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/signoff/user_project_wrapper.gds -rd b=/home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/signoff/user_project_wrapper.klayout.gds -rd jobs=1 -rd rdb_out=/home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/24-xor.xml -rd ignore= -rd rpt_out=/home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/24-xor.rpt |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/24-xor.log}"
+
+Tue Oct 17 13:03:22 UTC 2023 - Executing "magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/25-spice.log"
+
+Tue Oct 17 13:03:22 UTC 2023 - Executing "{magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/25-spice.log}"
+
+Tue Oct 17 13:03:27 UTC 2023 - Executing "{openroad -exit -no_init -python /openlane/scripts/odbpy/power_utils.py write_powered_def --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/signoff/25-user_project_wrapper.p.def --input-lef /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/merged.nom.lef --power-port vdd --ground-port vss --powered-netlist /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/synthesis/pg_define.v /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/results/routing/user_project_wrapper.def |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/26-write_powered_def.log}"
+
+Tue Oct 17 13:03:29 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/write_views.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/26-write_powered_verilog.log"
+
+Tue Oct 17 13:03:29 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/write_views.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/26-write_powered_verilog.log}"
+
+Tue Oct 17 13:03:29 UTC 2023 - Executing "{sed -i.bak -e {s/\(set ::env(CURRENT_NETLIST)\).*/\1 \/home\/passant\/efabless\/gf180_upw\/openlane\/user_project_wrapper\/runs\/23_10_17_16_00\/tmp\/signoff\/25-user_project_wrapper.nl.v/} /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/config.tcl}"
+
+Tue Oct 17 13:03:29 UTC 2023 - Executing "{netgen -batch source /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/tmp/signoff/28-setup_file.lef.lvs |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/28-lvs.lef.log}"
+
+Tue Oct 17 13:03:29 UTC 2023 - Executing "magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/29-drc.log"
+
+Tue Oct 17 13:03:29 UTC 2023 - Executing "{magic -noconsole -dnull -rcfile /home/passant/OpenLane/pdks/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc < /openlane/scripts/magic/wrapper.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/29-drc.log}"
+
+Tue Oct 17 13:08:01 UTC 2023 - Executing "{python3 /openlane/scripts/drc_rosetta.py magic to_tcl -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.tcl /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.rpt}"
+
+Tue Oct 17 13:08:01 UTC 2023 - Executing "{python3 /openlane/scripts/drc_rosetta.py magic to_tr -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.tr /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.rpt}"
+
+Tue Oct 17 13:08:01 UTC 2023 - Executing "{python3 /openlane/scripts/drc_rosetta.py tr to_klayout -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.klayout.xml --design-name user_project_wrapper /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.tr}"
+
+Tue Oct 17 13:08:01 UTC 2023 - Executing "{python3 /openlane/scripts/drc_rosetta.py magic to_rdb -o /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.rdb /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.rpt}"
+
+Tue Oct 17 13:08:01 UTC 2023 - Executing "openroad -exit /openlane/scripts/openroad/antenna_check.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/30-arc.log"
+
+Tue Oct 17 13:08:01 UTC 2023 - Executing "{openroad -exit /openlane/scripts/openroad/antenna_check.tcl |& tee /dev/null /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/30-arc.log}"
+
+Tue Oct 17 13:08:02 UTC 2023 - Executing "{python3 /openlane/scripts/extract_antenna_violators.py --output /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/30-antenna_violators.rpt --plain-out /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/30-antenna_violators_pins.txt /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/30-arc.log}"
+
+Tue Oct 17 13:08:02 UTC 2023 - Executing "{python3 /openlane/scripts/write_runtime.py --conclude --seconds --time-in 1697548082 {flow completed}}"
+
+Tue Oct 17 13:08:02 UTC 2023 - Executing "{python3 /openlane/scripts/generate_reports.py -d /home/passant/efabless/gf180_upw/openlane/user_project_wrapper --design_name user_project_wrapper --tag 23_10_17_16_00 --output_file /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/metrics.csv --man_report /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/manufacturability.rpt --run_path /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00}"
+

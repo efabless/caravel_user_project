@@ -1,0 +1,19 @@
+Design Name: user_project_wrapper
+Run Directory: /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00
+----------------------------------------
+
+Magic DRC Summary:
+Source: /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/drc.rpt
+Total Magic DRC violations is 0
+----------------------------------------
+
+LVS Summary:
+Source: /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/28-user_project_wrapper.lef.lvs.log
+Number of nets: 351                        |Number of nets: 351                        
+Design is LVS clean.
+----------------------------------------
+
+Antenna Summary:
+Source: /home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/logs/signoff/30-arc.log
+Pin violations: 0
+Net violations: 0

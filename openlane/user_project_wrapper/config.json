@@ -75,5 +75,7 @@
 	],
 	"SYNTH_USE_PG_PINS_DEFINES": "USE_POWER_PINS",
 	"RUN_LINTER": 0,
-	"FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def"
+	"FP_DEF_TEMPLATE": "dir::fixed_dont_change/user_project_wrapper.def",
+    "BASE_SDC_FILE": "dir::base_user_project_wrapper.sdc",
+    "SIGNOFF_SDC_FILE": "dir::signoff.sdc"
 }

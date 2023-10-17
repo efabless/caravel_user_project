@@ -1,0 +1,2 @@
+[WARNING]: VSRC_LOC_FILES is not defined. The IR drop analysis will run, but the values may be inaccurate.
+[WARNING]: There are max fanout violations in the design at the Typical corner. Please refer to '../home/passant/efabless/gf180_upw/openlane/user_project_wrapper/runs/23_10_17_16_00/reports/signoff/20-sta-rcx_nom/multi_corner_sta.checks.rpt'.
