@@ -16,7 +16,7 @@
 	"PL_BASIC_PLACEMENT": 0,
 	"PL_TARGET_DENSITY": 0.45,
 	"FP_CORE_UTIL": 40,
-	"SYNTH_MAX_FANOUT": 4,
+	"MAX_FANOUT_CONSTRAINT": 4,
 	"RT_MAX_LAYER": "Metal4",
 	"VDD_NETS": [
 		"vdd"
@@ -24,7 +24,8 @@
 	"GND_NETS": [
 		"vss"
 	],
-	"DIODE_INSERTION_STRATEGY": 4,
+    "BASE_SDC_FILE": "dir::base_user_proj_example.sdc",
+	"RUN_HEURISTIC_DIODE_INSERTION": 1,
 	"RUN_CVC": 1,
 	"QUIT_ON_LINTER_ERRORS": 0
 }

@@ -1,0 +1,5 @@
+Partial/Required:  2.23, Required:    400.0, Partial:   892.67, Net: wb_clk_i, Pin: _172_/I1, Layer: Metal3
+Partial/Required:  1.81, Required:    400.0, Partial:   724.35, Net: net142, Pin: _451_/I, Layer: Metal2
+Partial/Required:  1.81, Required:    400.0, Partial:   724.35, Net: net142, Pin: _450_/I, Layer: Metal2
+Partial/Required:  1.68, Required:    400.0, Partial:   673.26, Net: net89, Pin: _261_/I, Layer: Metal2
+Partial/Required:  1.01, Required:    400.0, Partial:   402.15, Net: net77, Pin: _281_/I, Layer: Metal2
