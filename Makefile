@@ -114,7 +114,7 @@ simenv-cocotb:
 	docker pull efabless/dv:cocotb
 
 .PHONY: setup
-setup: check_dependencies install check-env install_mcw openlane pdk-with-volare precheck
+setup: check_dependencies install check-env install_mcw openlane pdk-with-volare precheck setup-timing-scripts
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -330,7 +330,7 @@ $(TIMING_ROOT):
 .PHONY: setup-timing-scripts
 setup-timing-scripts: $(TIMING_ROOT)
 	@( cd $(TIMING_ROOT) && git pull )
-	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
+	@( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
 .PHONY: install-caravel-cocotb
 install-caravel-cocotb:
