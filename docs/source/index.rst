@@ -510,8 +510,14 @@ Start by updating the Makefile for your project.  Starting in the project root..
 
 This will update Caravel design files and install the scripts for running timing. 
 
+Then, you need to extract the caravel macros parasitics if they are not available. this step is only required once. run the following...
 
-Then, you can run then run timing by the following...
+.. code:: bash
+
+   make caravel-extract-parasitics
+
+
+Then, you can run timing by the following...
 
 .. code:: bash
 
