@@ -107,13 +107,13 @@ jobs:
 
       - name: Tarball Dependencies
         run: |
-          tar -cf /tmp/$dep_name.tar -C $dep_root .
+          tar -cf /tmp/${dep_name}.tar -C ${dep_root} .
 
       - name: Upload Dependencies Tarball
         uses: actions/upload-artifact@v2
         with:
-          name: $dep_name-tarball
-          path: /tmp/$dep_name.tar
+          name: ${dep_name}-tarball
+          path: /tmp/${dep_name}.tar
 
   # hardening:
   #   timeout-minutes: 720
