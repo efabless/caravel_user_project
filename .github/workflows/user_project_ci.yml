@@ -71,20 +71,20 @@ jobs:
       - name: Get dependencies name
         run: |
           if [[ "${{ matrix.targets }}" == "install_mcw" ]]; then
-            dep_name="mgmt_core_wrapper"
-            dep_root=${{ env.MCW_ROOT }}
+            echo "dep_name=mgmt_core_wrapper" >> $GITHUB_ENV
+            echo "dep_root=${{ env.MCW_ROOT }}" >> $GITHUB_ENV
           elif [[ "${{ matrix.targets }}" == "openlane" ]]; then
-            dep_name="openlane"
-            dep_root=${{ env.OPENLANE_ROOT }}
+            echo "dep_name=openlane" >> $GITHUB_ENV
+            echo "dep_root=${{ env.OPENLANE_ROOT }}" >> $GITHUB_ENV
           elif [[ "${{ matrix.targets }}" == "pdk-with-volare" ]]; then
-            dep_name="pdk"
-            dep_root=${{ env.PDK_ROOT }}
+            echo "dep_name=pdk" >> $GITHUB_ENV
+            echo "dep_root=${{ env.PDK_ROOT }}" >> $GITHUB_ENV
           elif [[ "${{ matrix.targets }}" == "setup-timing-scripts" ]]; then
-            dep_name="timing-scripts"
-            dep_root=${{ env.TIMING_ROOT }}
+            echo "dep_name=timing-scripts" >> $GITHUB_ENV
+            echo "dep_root=${{ env.TIMING_ROOT }}" >> $GITHUB_ENV
           elif [[ "${{ matrix.targets }}" == "precheck" ]]; then
-            dep_name="precheck"
-            dep_root=${{ env.PRECHECK_ROOT }}
+            echo "dep_name=precheck" >> $GITHUB_ENV
+            echo "dep_root=${{ env.PRECHECK_ROOT }}" >> $GITHUB_ENV
           fi
 
       - name: Download caravel Tarball
@@ -107,13 +107,13 @@ jobs:
 
       - name: Tarball Dependencies
         run: |
-          tar -cf /tmp/${dep_name}.tar -C ${dep_root} .
+          tar -cf /tmp/${{ env.dep_name }}.tar -C ${{ env.dep_root }} .
 
       - name: Upload Dependencies Tarball
         uses: actions/upload-artifact@v2
         with:
-          name: ${dep_name}-tarball
-          path: /tmp/${dep_name}.tar
+          name: ${{ env.dep_name }}-tarball
+          path: /tmp/${{ env.dep_name }}.tar
 
   # hardening:
   #   timeout-minutes: 720
