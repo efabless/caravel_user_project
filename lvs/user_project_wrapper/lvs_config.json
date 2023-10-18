@@ -19,8 +19,7 @@
         ""
     ],
     "LVS_SPICE_FILES": [
-        "$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice",
-        "$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
+        "$PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_sc_mcu7t5v0/spice/gf180mcu_fd_sc_mcu7t5v0.spice"
     ],
     "LVS_VERILOG_FILES": [
         "$UPRJ_ROOT/verilog/gl/user_proj_example.v",
