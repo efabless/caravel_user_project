@@ -495,11 +495,9 @@ This will run all the precheck checks on your project and will produce the logs 
 Running Timing Analysis on Existing Projects
 ========================================================
 
-Start by updating the Makefile for your project.  Starting in the project root...
+Starting in the project root...
 
 .. code:: bash
-  
-   curl -k https://raw.githubusercontent.com/efabless/caravel_user_project/main/Makefile > Makefile
    
    make setup-timing-scripts
    
@@ -526,7 +524,7 @@ Then, you can run timing by the following...
    make create-spef-mapping
    
    make caravel-sta
-   
+
 
 A summary of timing results is provided at the end of the flow. 
 
