@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>XOR /home/passant/efabless/gf180_upw/openlane/user_proj_example/runs/23_10_17_14_33/results/signoff/user_proj_example.gds vs. /home/passant/efabless/gf180_upw/openlane/user_proj_example/runs/23_10_17_14_33/results/signoff/user_proj_example.klayout.gds</description>
+ <original-file/>
+ <generator>drc: script='/openlane/scripts/klayout/xor.drc'</generator>
+ <top-cell>user_proj_example</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>0/0</name>
+   <description>XOR data for layer 0/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>112/1</name>
+   <description>XOR data for layer 112/1</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>115/5</name>
+   <description>XOR data for layer 115/5</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>204/0</name>
+   <description>XOR data for layer 204/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>204/10</name>
+   <description>XOR data for layer 204/10</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>21/0</name>
+   <description>XOR data for layer 21/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>21/10</name>
+   <description>XOR data for layer 21/10</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>22/0</name>
+   <description>XOR data for layer 22/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>30/0</name>
+   <description>XOR data for layer 30/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>31/0</name>
+   <description>XOR data for layer 31/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>32/0</name>
+   <description>XOR data for layer 32/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>33/0</name>
+   <description>XOR data for layer 33/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>34/0</name>
+   <description>XOR data for layer 34/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>34/10</name>
+   <description>XOR data for layer 34/10</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>35/0</name>
+   <description>XOR data for layer 35/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>36/0</name>
+   <description>XOR data for layer 36/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>36/10</name>
+   <description>XOR data for layer 36/10</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>38/0</name>
+   <description>XOR data for layer 38/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>40/0</name>
+   <description>XOR data for layer 40/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>42/0</name>
+   <description>XOR data for layer 42/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>42/10</name>
+   <description>XOR data for layer 42/10</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>46/0</name>
+   <description>XOR data for layer 46/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>46/10</name>
+   <description>XOR data for layer 46/10</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>55/0</name>
+   <description>XOR data for layer 55/0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>63/63</name>
+   <description>XOR data for layer 63/63</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>user_proj_example</name>
+   <variant/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+ </items>
+</report-database>

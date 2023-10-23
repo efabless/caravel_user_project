@@ -1,0 +1,31 @@
+{
+	"PDK": "gf180mcuD",
+	"STD_CELL_LIBRARY": "gf180mcu_fd_sc_mcu7t5v0",
+	"DESIGN_NAME": "user_proj_example",
+	"VERILOG_FILES": [
+		"dir::../../verilog/rtl/defines.v",
+		"dir::../../verilog/rtl/user_proj_example.v"
+	],
+	"DESIGN_IS_CORE": 0,
+	"CLOCK_PORT": "wb_clk_i",
+	"CLOCK_NET": "counter.clk",
+	"CLOCK_PERIOD": "24.0",
+	"FP_SIZING": "absolute",
+	"DIE_AREA": "0 0 2800 1760",
+	"FP_PIN_ORDER_CFG": "dir::pin_order.cfg",
+	"PL_BASIC_PLACEMENT": 0,
+	"PL_TARGET_DENSITY": 0.45,
+	"FP_CORE_UTIL": 40,
+	"MAX_FANOUT_CONSTRAINT": 4,
+	"RT_MAX_LAYER": "Metal4",
+	"VDD_NETS": [
+		"vdd"
+	],
+	"GND_NETS": [
+		"vss"
+	],
+    "BASE_SDC_FILE": "dir::base_user_proj_example.sdc",
+	"RUN_HEURISTIC_DIODE_INSERTION": 1,
+	"RUN_CVC": 1,
+	"QUIT_ON_LINTER_ERRORS": 0
+}

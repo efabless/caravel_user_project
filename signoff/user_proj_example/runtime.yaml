@@ -1,0 +1,145 @@
+- status: 0 - openlane design prep
+  runtime_s: 1.79
+  runtime_ts: 0h0m1s792ms
+- status: 1 - synthesis - yosys
+  runtime_s: 1.29
+  runtime_ts: 0h0m1s288ms
+- status: 2 - sta - openroad
+  runtime_s: 0.41
+  runtime_ts: 0h0m0s409ms
+- status: 3 - floorplan initialization - openroad
+  runtime_s: 0.5
+  runtime_ts: 0h0m0s497ms
+- status: 4 - io_place - openlane
+  runtime_s: 0.23
+  runtime_ts: 0h0m0s231ms
+- status: 5 - tap/decap insertion - openroad
+  runtime_s: 0.64
+  runtime_ts: 0h0m0s636ms
+- status: 6 - pdn generation - openroad
+  runtime_s: 2.52
+  runtime_ts: 0h0m2s520ms
+- status: 7 - global placement - openroad
+  runtime_s: 10.04
+  runtime_ts: 0h0m10s38ms
+- status: 8 - sta - openroad
+  runtime_s: 0.65
+  runtime_ts: 0h0m0s654ms
+- status: 9 - resizer design optimizations - openroad
+  runtime_s: 1.89
+  runtime_ts: 0h0m1s887ms
+- status: 10 - detailed placement - openroad
+  runtime_s: 0.85
+  runtime_ts: 0h0m0s846ms
+- status: 11 - sta - openroad
+  runtime_s: 0.65
+  runtime_ts: 0h0m0s646ms
+- status: 12 - cts - openroad
+  runtime_s: 20.96
+  runtime_ts: 0h0m20s963ms
+- status: 13 - sta - openroad
+  runtime_s: 0.77
+  runtime_ts: 0h0m0s767ms
+- status: 14 - resizer timing optimizations - openroad
+  runtime_s: 1.9
+  runtime_ts: 0h0m1s899ms
+- status: 15 - resizer design optimizations - openroad
+  runtime_s: 3.74
+  runtime_ts: 0h0m3s740ms
+- status: 16 - sta - openroad
+  runtime_s: 0.85
+  runtime_ts: 0h0m0s852ms
+- status: 17 - resizer timing optimizations - openroad
+  runtime_s: 2.5
+  runtime_ts: 0h0m2s503ms
+- status: 18 - sta - openroad
+  runtime_s: 0.89
+  runtime_ts: 0h0m0s887ms
+- status: 20 - detailed placement - openroad
+  runtime_s: 0.84
+  runtime_ts: 0h0m0s840ms
+- status: 20 - io diode insertion - openlane
+  runtime_s: 0.9
+  runtime_ts: 0h0m0s896ms
+- status: 22 - detailed placement - openroad
+  runtime_s: 0.87
+  runtime_ts: 0h0m0s868ms
+- status: 22 - heuristic diode insertion - openlane
+  runtime_s: 0.93
+  runtime_ts: 0h0m0s925ms
+- status: 24 - write verilog - openroad
+  runtime_s: 0.61
+  runtime_ts: 0h0m0s608ms
+- status: 25 - sta - openroad
+  runtime_s: 0.65
+  runtime_ts: 0h0m0s648ms
+- status: 25 - global routing - openroad
+  runtime_s: 0.65
+  runtime_ts: 0h0m0s648ms
+- status: 26 - fill insertion - openroad
+  runtime_s: 1.45
+  runtime_ts: 0h0m1s447ms
+- status: 27 - detailed_routing - openroad
+  runtime_s: 24.87
+  runtime_ts: 0h0m24s870ms
+- status: 28 - wire lengths - openlane
+  runtime_s: 0.72
+  runtime_ts: 0h0m0s723ms
+- status: 29 - parasitics extraction - openroad
+  runtime_s: 0.91
+  runtime_ts: 0h0m0s911ms
+- status: 30 - sta - openroad
+  runtime_s: 2.78
+  runtime_ts: 0h0m2s775ms
+- status: 31 - parasitics extraction - openroad
+  runtime_s: 1.19
+  runtime_ts: 0h0m1s187ms
+- status: 32 - sta - openroad
+  runtime_s: 2.77
+  runtime_ts: 0h0m2s774ms
+- status: 33 - parasitics extraction - openroad
+  runtime_s: 0.9
+  runtime_ts: 0h0m0s895ms
+- status: 34 - sta - openroad
+  runtime_s: 2.76
+  runtime_ts: 0h0m2s761ms
+- status: 35 - ir drop report - openroad
+  runtime_s: 3.91
+  runtime_ts: 0h0m3s913ms
+- status: 36 - gdsii - magic
+  runtime_s: 6.02
+  runtime_ts: 0h0m6s24ms
+- status: 36 - lef - magic
+  runtime_s: 20.36
+  runtime_ts: 0h0m20s358ms
+- status: 37 - gdsii - klayout
+  runtime_s: 1.17
+  runtime_ts: 0h0m1s167ms
+- status: 38 - xor - klayout
+  runtime_s: 48.0
+  runtime_ts: 0h0m47s996ms
+- status: 39 - spice extraction - magic
+  runtime_s: 19.05
+  runtime_ts: 0h0m19s48ms
+- status: 41 - write verilog - openroad
+  runtime_s: 1.27
+  runtime_ts: 0h0m1s270ms
+- status: 41 - write powered verilog - openlane
+  runtime_s: 1.36
+  runtime_ts: 0h0m1s355ms
+- status: 42 - lvs - netgen
+  runtime_s: 3.7
+  runtime_ts: 0h0m3s698ms
+- status: 43 - drc - magic
+  runtime_s: 221.9
+  runtime_ts: 0h3m41s901ms
+- status: 44 - antenna check - openroad
+  runtime_s: 1.45
+  runtime_ts: 0h0m1s453ms
+---
+- status: routed
+  runtime_s: 88.0
+  runtime_ts: 0h1m28s0ms
+- status: flow completed
+  runtime_s: 429.0
+  runtime_ts: 0h7m9s0ms
