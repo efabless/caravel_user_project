@@ -22,7 +22,7 @@ import cocotb
 @cocotb.test()
 @report_test
 async def counter_wb(dut):
-    caravelEnv = await test_configure(dut,timeout_cycles=3346140)
+    caravelEnv = await test_configure(dut,timeout_cycles=22620)
 
     cocotb.log.info(f"[TEST] Start counter_wb test")  
     # wait for start of sending
@@ -33,8 +33,6 @@ async def counter_wb(dut):
     # expect value bigger than 7 
     received_val = int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2)  
     counter = received_val
-    if received_val <= overwrite_val :
-        cocotb.log.error(f"Counter started late and value captured after configuration is smaller than overwrite value: {overwrite_val} receieved: {received_val}")
     await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
 
     while True: # wait until the value 1 start counting after the initial

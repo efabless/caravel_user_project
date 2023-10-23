@@ -29,12 +29,19 @@ void main(){
     GPIOs_configure(36,GPIO_MODE_MGMT_STD_OUTPUT);
     GPIOs_configure(37,GPIO_MODE_MGMT_STD_OUTPUT);
     GPIOs_loadConfigs(); // load the configuration 
+    // reset counter
+    LogicAnalyzer_outputEnable(2,0xFFFFFFFD);
+    LogicAnalyzer_write(2,2);
+    LogicAnalyzer_write(2,0);
+
     ManagmentGpio_write(1); // configuration finished 
     // configure la 65 (reset enable by la) as output from cpu
     // writing 1 in bit 65(second bit in reg 2) to reset 
+    // asset reset
     LogicAnalyzer_write(2,2);
     LogicAnalyzer_inputEnable(2,0x2);
     LogicAnalyzer_outputEnable(2,0xFFFFFFFD);
+    // deassert reset
     LogicAnalyzer_inputEnable(2,0);
     LogicAnalyzer_outputEnable(2,0xFFFFFFFF);
 

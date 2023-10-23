@@ -32,8 +32,16 @@ void main(){
     // configure la 64 (clk enable by la) as output from cpu
     // writing 1 in bit 64(first bit in reg 2) to reset 
     LogicAnalyzer_write(2,0);
-    LogicAnalyzer_inputEnable(2,0x1);
-    LogicAnalyzer_outputEnable(2,0xFFFFFFFE);
+    // LogicAnalyzer_inputEnable(2,0x1);
+    LogicAnalyzer_outputEnable(2,0xFFFFFFFC);
+    // reset counter 
+    // reset 1
+    LogicAnalyzer_write(2,3); // clk pose edge
+    LogicAnalyzer_write(2,2);// clk pose edge
+    // reset 0
+    LogicAnalyzer_write(2,1); // clk pose edge
+    LogicAnalyzer_write(2,0);// clk pose edge
+
     ManagmentGpio_write(1); // configuration finished 
 
     for (int i = 0; i < 7; i++){
