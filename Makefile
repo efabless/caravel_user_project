@@ -84,7 +84,7 @@ ifeq ($(PDK),gf180mcuD)
 	CARAVEL_REPO := https://github.com/efabless/caravel-gf180mcu
 	CARAVEL_TAG := $(MPW_TAG)
 	#OPENLANE_TAG=ddfeab57e3e8769ea3d40dda12be0460e09bb6d9
-	export OPEN_PDKS_COMMIT?=dd7771c384ed36b91a25e9f8b314355fc26561be
+	export OPEN_PDKS_COMMIT?=559a117b163cef2f920f33f30f6f690aa0b47e4c
 	export OPENLANE_TAG?=2023.10.16
 
 endif
