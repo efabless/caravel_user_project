@@ -252,7 +252,7 @@ jobs:
       - name: Run Precheck
         run: make run-precheck
   
-precheck:
+  STA:
     timeout-minutes: 720
     runs-on: ubuntu-latest
     strategy:
