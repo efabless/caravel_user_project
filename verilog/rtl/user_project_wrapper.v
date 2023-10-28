@@ -43,7 +43,7 @@ module user_project_wrapper #(
     inout vssd2,	// User area 2 digital ground
 `endif
 
-    // Wishbone Slave ports (WB MI A)
+    // Wishbone Secondary ports (WB MI A)
     input wb_clk_i,
     input wb_rst_i,
     input wbs_stb_i,
@@ -91,7 +91,7 @@ user_proj_example mprj (
     .wb_clk_i(wb_clk_i),
     .wb_rst_i(wb_rst_i),
 
-    // MGMT SoC Wishbone Slave
+    // MGMT SoC Wishbone Secondary
 
     .wbs_cyc_i(wbs_cyc_i),
     .wbs_stb_i(wbs_stb_i),
