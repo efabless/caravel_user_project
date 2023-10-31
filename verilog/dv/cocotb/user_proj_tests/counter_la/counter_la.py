@@ -22,7 +22,7 @@ import cocotb
 @cocotb.test()
 @report_test
 async def counter_la(dut):
-    caravelEnv = await test_configure(dut,timeout_cycles=1346140)
+    caravelEnv = await test_configure(dut, timeout_cycles=59844)
 
     cocotb.log.info(f"[TEST] Start counter_la test")  
     # wait for start of sending
@@ -36,7 +36,7 @@ async def counter_la(dut):
     counter = overwrite_val
 
     if received_val != counter :
-        cocotb.log.fatal(f"LA writing is in correct: {overwrite_val} receieved: {received_val}")
+        cocotb.log.fatal(f"LA writing is incorrect: {overwrite_val} receieved: {received_val}")
     await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
 
     # wait until the LA writing is disabled 

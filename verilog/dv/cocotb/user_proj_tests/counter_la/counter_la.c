@@ -31,7 +31,7 @@ void main(){
     GPIOs_loadConfigs(); // load the configuration 
     ManagmentGpio_write(1); // configuration finished 
     // configure la [63:32] as output from cpu
-    LogicAnalyzer_write(1,7);
+    LogicAnalyzer_write(1,7<<16);
     LogicAnalyzer_outputEnable(1,0);
     ManagmentGpio_write(0); // configuration finished 
     LogicAnalyzer_outputEnable(1,0xFFFFFFFF);
