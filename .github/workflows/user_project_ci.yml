@@ -177,9 +177,24 @@ jobs:
 
       - name: Harden using Openlane
         run: |
-          make user_proj_example
-          make user_project_wrapper
+          python3 $GITHUB_WORKSPACE/.github/scripts/get_designs.py --design $GITHUB_WORKSPACE
+          for word in $(cat harden_sequence.txt); do
+            echo "CURRENT_DESIGN=${word}" >> $GITHUB_ENV
+            make $word
+          done
           rm -rf openlane/user_proj_example/runs openlane/user_project_wrapper/runs pdk openlane_src caravel mgmt_core_wrapper timing-scripts mpw_precheck
+
+      - name: Create reproducible
+        if: failure()
+        run: tar -cf $GITHUB_WORKSPACE/issue_reproducible.tar -C $GITHUB_WORKSPACE/openlane/${{ env.CURRENT_DESIGN }}/runs/${{ env.CURRENT_DESIGN }}/issue_reproducible .
+      
+      - name: upload failure logs
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: openlane-issue-reproducible
+          path: |
+            $GITHUB_WORKSPACE/issue_reproducible.tar
       
       - name: Tarball Design
         run: |
