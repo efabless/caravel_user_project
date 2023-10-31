@@ -345,7 +345,21 @@ jobs:
           tar -xf /tmp/design.tar -C $GITHUB_WORKSPACE .
       
       - name: Run Precheck
-        run: make run-precheck
+        run: |
+          export INPUT_DIRECTORY=$GITHUB_WORKSPACE
+          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
+          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
+          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
+          export PDKPATH=$PDK_ROOT/sky130A
+
+          git clone --depth=1 https://github.com/efabless/mpw_precheck.git
+
+          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_path ${{ env.PDKPATH }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea lvs"
+
+          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
+          if ! [[ $cnt ]]; then cnt=0; fi
+          if [[ $cnt -eq 1 ]]; then exit 0; fi
+          exit 2
   
   STA:
     timeout-minutes: 720
@@ -435,9 +449,26 @@ jobs:
       
       - name: Run STA
         run: |
+          export CUP_ROOT=$GITHUB_WORKSPACE
+          export PROJECT_ROOT=$GITHUB_WORKSPACE
+          cd $CUP_ROOT
           make extract-parasitics
           make create-spef-mapping
           make caravel-sta
+          tar -cf /tmp/timing.tar $CUP_ROOT/signoff/caravel/openlane-signoff/timing
+          find $CUP_ROOT/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
+            | xargs head -n5 | tail -n1 > $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+          find $CUP_ROOT/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" \
+            | xargs -I {} bash -c "head -n7 {} | tail -n1" >> $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+          vio=$(grep -c "vio(" $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt || true)
+          if [[ $vio -gt 0 ]];
+          then 
+            echo "STA violation count: $vio"
+            exit 2 
+          else
+            echo "STA run passed"
+            exit 0
+          fi
   
   GL-verification:
     timeout-minutes: 720
@@ -522,7 +553,7 @@ jobs:
       - name: run RTL verification
         run: |
           cd $GITHUB_WORKSPACE/verilog/dv/cocotb && $GITHUB_WORKSPACE/venv-cocotb/bin/caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity debug --CI  -tag gl_verification
-          cnt=$(grep -c "failed" "$GITHUB_WORKSPACE/verilog/dv/cocotb/sim/gl_verification/runs.log")
+          cnt=$(grep -c "failed" "$GITHUB_WORKSPACE/verilog/dv/cocotb/sim/gzl_verification/runs.log")
           if ! [[ $cnt ]]; then cnt=0; fi
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
