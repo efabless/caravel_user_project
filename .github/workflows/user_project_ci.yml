@@ -35,7 +35,7 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
           cd ${{ env.CARAVEL_ROOT }}
-          rm -rf gds mag maglef def lef openlane scripts signoff spi LICENSE manifest .git
+          rm -rf gds mag maglef def openlane signoff spi LICENSE manifest .git
 
       - name: Tarball Caravel
         run: |
@@ -553,7 +553,7 @@ jobs:
       - name: run RTL verification
         run: |
           cd $GITHUB_WORKSPACE/verilog/dv/cocotb && $GITHUB_WORKSPACE/venv-cocotb/bin/caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity debug --CI  -tag gl_verification
-          cnt=$(grep -c "failed" "$GITHUB_WORKSPACE/verilog/dv/cocotb/sim/gzl_verification/runs.log")
+          cnt=$(grep -c "failed" "$GITHUB_WORKSPACE/verilog/dv/cocotb/sim/gl_verification/runs.log")
           if ! [[ $cnt ]]; then cnt=0; fi
           if [[ $cnt -eq 1 ]]; then exit 0; fi
           exit 2
