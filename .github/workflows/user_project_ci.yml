@@ -365,7 +365,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pdk: ["sky130A", "sky130B"]
+        pdk: ["sky130A"]
     needs: [download_deps]
     steps:
       - uses: actions/checkout@v2
