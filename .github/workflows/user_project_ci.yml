@@ -28,6 +28,7 @@ jobs:
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
           echo "MPW_TAG=main" >> $GITHUB_ENV
+          echo "CARAVEL_LITE=0" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
