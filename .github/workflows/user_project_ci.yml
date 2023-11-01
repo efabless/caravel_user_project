@@ -35,7 +35,7 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
           cd ${{ env.CARAVEL_ROOT }}
-          rm -rf gds mag maglef def openlane signoff spi LICENSE manifest .git
+          rm -rf gds maglef openlane spi LICENSE manifest .git
 
       - name: Tarball Caravel
         run: |
@@ -110,7 +110,7 @@ jobs:
           make ${{ matrix.targets }}
           if [[ "${{ env.dep_name }}" == "mgmt_core_wrapper" ]]; then
             cd ${{ env.dep_root }}
-            rm -rf gds mag maglef def openlane signoff spi LICENSE manifest docs lib litex lvs .git
+            rm -rf gds maglef openlane spi LICENSE manifest docs litex lvs .git
           fi
 
       - name: Tarball Dependencies
