@@ -110,7 +110,7 @@ jobs:
           make ${{ matrix.targets }}
           if [[ "${{ env.dep_name }}" == "mgmt_core_wrapper" ]]; then
             cd ${{ env.dep_root }}
-            rm -rf gds mag maglef def lef openlane scripts signoff spi LICENSE manifest docs lib litex lvs .git
+            rm -rf gds mag maglef def openlane signoff spi LICENSE manifest docs lib litex lvs .git
           fi
 
       - name: Tarball Dependencies
