@@ -196,15 +196,15 @@ jobs:
           path: |
             $GITHUB_WORKSPACE/issue_reproducible.tar
       
-      - name: Tarball Design
+      - name: Tarball Design_${{ matrix.pdk }}
         run: |
-          tar -cf /tmp/design.tar -C $GITHUB_WORKSPACE .
+          tar -cf /tmp/design_${{ matrix.pdk }}.tar -C $GITHUB_WORKSPACE .
 
-      - name: Upload Design Tarball
+      - name: Upload Design_${{ matrix.pdk }} Tarball
         uses: actions/upload-artifact@v2
         with:
-          name: design-tarball
-          path: /tmp/design.tar
+          name: design_${{ matrix.pdk }}-tarball
+          path: /tmp/design_${{ matrix.pdk }}.tar
   
   RTL-verification:
     timeout-minutes: 720
@@ -333,17 +333,17 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PRECHECK_ROOT }}
           tar -xf /tmp/precheck.tar -C $PRECHECK_ROOT .
 
-      - name: Download Design Tarball
+      - name: Download Design_${{ matrix.pdk }} Tarball
         uses: actions/download-artifact@v2
         with:
-          name: design-tarball
+          name: design_${{ matrix.pdk }}-tarball
           path: /tmp
 
-      - name: Unpack Design Tarball
+      - name: Unpack Design_${{ matrix.pdk }} Tarball
         run: |
           sudo mkdir -p $GITHUB_WORKSPACE
           sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-          tar -xf /tmp/design.tar -C $GITHUB_WORKSPACE .
+          tar -xf /tmp/design_${{ matrix.pdk }}.tar -C $GITHUB_WORKSPACE .
       
       - name: Run Precheck
         run: |
@@ -411,17 +411,17 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.TIMING_ROOT }}
           tar -xf /tmp/timing-scripts.tar -C $TIMING_ROOT .
 
-      - name: Download Design Tarball
+      - name: Download Design_${{ matrix.pdk }} Tarball
         uses: actions/download-artifact@v2
         with:
-          name: design-tarball
+          name: design_${{ matrix.pdk }}-tarball
           path: /tmp
 
-      - name: Unpack Design Tarball
+      - name: Unpack Design_${{ matrix.pdk }} Tarball
         run: |
           sudo mkdir -p $GITHUB_WORKSPACE
           sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-          tar -xf /tmp/design.tar -C $GITHUB_WORKSPACE .
+          tar -xf /tmp/design_${{ matrix.pdk }}.tar -C $GITHUB_WORKSPACE .
 
       - name: Download Caravel Tarball
         uses: actions/download-artifact@v2
