@@ -334,14 +334,14 @@ setup-timing-scripts: $(TIMING_ROOT)
 
 .PHONY: install-caravel-cocotb
 install-caravel-cocotb:
-	rm -rf ./venv-cocotb
+	rm -rf $(PROJECT_ROOT)/venv-cocotb
 	$(PYTHON_BIN) -m venv ./venv-cocotb
-	./venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
-	./venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
+	$(PROJECT_ROOT)/venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
+	$(PROJECT_ROOT)/venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
-	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+	@($(PROJECT_ROOT)/venv-cocotb/bin/$(PYTHON_BIN) $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 
 .PHONY: setup-cocotb
 setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
