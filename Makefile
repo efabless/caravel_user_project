@@ -45,7 +45,7 @@ ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19
-	MPW_TAG ?= mpw-9e
+	MPW_TAG ?= mpw-9f
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -63,7 +63,7 @@ ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19
-	MPW_TAG ?= mpw-9e
+	MPW_TAG ?= mpw-9f
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -77,15 +77,15 @@ endif
 
 endif
 
-ifeq ($(PDK),gf180mcuC)
+ifeq ($(PDK),gf180mcuD)
 
-	MPW_TAG ?= gfmpw-0b
+	MPW_TAG ?= gfmpw-1c
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel-gf180mcu
 	CARAVEL_TAG := $(MPW_TAG)
 	#OPENLANE_TAG=ddfeab57e3e8769ea3d40dda12be0460e09bb6d9
-	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
-	export OPENLANE_TAG?=2023.02.23
+	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPENLANE_TAG?=2023.07.19
 
 endif
 
