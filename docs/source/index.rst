@@ -72,7 +72,7 @@ Starting your project
 #. To start the project you first need to create a new repository based on the `caravel_user_project <https://github.com/efabless/caravel_user_project/>`_ template and make sure your repo is public and includes a README.
 
    *   Follow https://github.com/efabless/caravel_user_project/generate to create a new repository.
-   *   Clone the reposity using the following command:
+   *   Clone the repository using the following command:
    
        .. code:: bash
         
@@ -100,7 +100,7 @@ Starting your project
     
     - caravel_lite (a lite version of caravel)
     - management core for simulation
-    - openlane to harden your design 
+    - OpenLane to harden your design 
     - pdk
 
 	
@@ -108,7 +108,7 @@ Starting your project
 
     *   To start hardening you project you need 
         - RTL verilog model for your design for OpenLane to harden
-        - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
+        - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include OpenLane configuration files for the macro
 
         .. code:: bash
 
@@ -149,7 +149,7 @@ Starting your project
         * Add cocotb tests under ``verilog/dv/cocotb`` follow steps at `Adding_cocotb_test <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#adding-a-test>`_
         * Run cocotb tests using ``caravel_cocotb`` command steps at `Running_cocotb_tests <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#running-a-test>`_
 
-#.  Run opensta on your design
+#.  Run OpenSTA on your design
 
     *   Extract spefs for ``user_project_wrapper`` and macros inside it:
 
@@ -163,7 +163,7 @@ Starting your project
 
             make create-spef-mapping
 
-    *   Run opensta:
+    *   Run OpenSTA:
 
         .. code:: bash
 
@@ -449,7 +449,7 @@ Crucial steps for integrating project inside ``user_project_wrapper``:
 #. **DON'T** adjust the pin placement or power ring, this will cause errors in precheck and ultimately in tapeout
 #. Make sure you connect the power correctly, by adjusting ``FP_PDN_MACRO_HOOKS`` to your project's needs
 
-Runing transistor level LVS
+Running transistor level LVS
 ============================
 
 For the design to pass precheck, a custom lvs configuration file for your design is needed, config file can be found under ``lvs/<design_name>/lvs_config.json``
@@ -476,7 +476,7 @@ You can install the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ 
 .. code:: bash
 
    # By default, this install the precheck in your home directory
-   # To change the installtion path, run "export PRECHECK_ROOT=<precheck installation path>" 
+   # To change the installation path, run "export PRECHECK_ROOT=<precheck installation path>" 
    make precheck
 
 This will clone the precheck repo and pull the latest precheck docker image. 
