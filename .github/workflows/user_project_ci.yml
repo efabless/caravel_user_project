@@ -27,6 +27,7 @@ jobs:
           echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+          echo "MPW_TAG=main" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
@@ -34,7 +35,7 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
           make install
           cd ${{ env.CARAVEL_ROOT }}
-          rm -rf gds mag maglef def lef openlane scripts signoff spi LICENSE manifest .git
+          rm -rf gds maglef openlane spi LICENSE manifest .git
 
       - name: Tarball Caravel
         run: |
@@ -69,6 +70,7 @@ jobs:
           echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+          echo "MPW_TAG=main" >> $GITHUB_ENV
       
       - name: Get dependencies name
         run: |
@@ -108,7 +110,7 @@ jobs:
           make ${{ matrix.targets }}
           if [[ "${{ env.dep_name }}" == "mgmt_core_wrapper" ]]; then
             cd ${{ env.dep_root }}
-            rm -rf gds mag maglef def lef openlane scripts signoff spi LICENSE manifest docs lib litex lvs .git
+            rm -rf gds maglef openlane spi LICENSE manifest docs litex lvs .git
           fi
 
       - name: Tarball Dependencies
@@ -147,6 +149,7 @@ jobs:
           echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+          echo "MPW_TAG=main" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -174,19 +177,34 @@ jobs:
 
       - name: Harden using Openlane
         run: |
-          make user_proj_example
-          make user_project_wrapper
-          rm -rf openlane/user_proj_example/runs openlane/user_project_wrapper/runs pdk openlane_src caravel mgmt_core_wrapper timing-scripts mpw_precheck
-      
-      - name: Tarball Design
-        run: |
-          tar -cf /tmp/design.tar -C $GITHUB_WORKSPACE .
+          python3 $GITHUB_WORKSPACE/.github/scripts/get_designs.py --design $GITHUB_WORKSPACE
+          for word in $(cat harden_sequence.txt); do
+            echo "CURRENT_DESIGN=${word}" >> $GITHUB_ENV
+            make $word
+          done
+          rm -rf openlane/*/runs pdk openlane_src caravel mgmt_core_wrapper timing-scripts mpw_precheck
 
-      - name: Upload Design Tarball
+      - name: Create reproducible
+        if: failure()
+        run: tar -cf $GITHUB_WORKSPACE/issue_reproducible.tar -C $GITHUB_WORKSPACE/openlane/${{ env.CURRENT_DESIGN }}/runs/${{ env.CURRENT_DESIGN }}/issue_reproducible .
+      
+      - name: upload failure logs
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: openlane-issue-reproducible
+          path: |
+            $GITHUB_WORKSPACE/issue_reproducible.tar
+      
+      - name: Tarball Design_${{ matrix.pdk }}
+        run: |
+          tar -cf /tmp/design_${{ matrix.pdk }}.tar -C $GITHUB_WORKSPACE .
+
+      - name: Upload Design_${{ matrix.pdk }} Tarball
         uses: actions/upload-artifact@v2
         with:
-          name: design-tarball
-          path: /tmp/design.tar
+          name: design_${{ matrix.pdk }}-tarball
+          path: /tmp/design_${{ matrix.pdk }}.tar
 
   precheck:
     timeout-minutes: 720
@@ -194,8 +212,9 @@ jobs:
     strategy:
       matrix:
         pdk: ["gf180mcuD"]
-    needs: [download_deps, hardening]
+    needs: [hardening]
     steps:
+      - uses: actions/checkout@v2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -212,6 +231,7 @@ jobs:
           echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+          echo "MPW_TAG=main" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -237,20 +257,32 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.PRECHECK_ROOT }}
           tar -xf /tmp/precheck.tar -C $PRECHECK_ROOT .
 
-      - name: Download Design Tarball
+      - name: Download Design_${{ matrix.pdk }} Tarball
         uses: actions/download-artifact@v2
         with:
-          name: design-tarball
+          name: design_${{ matrix.pdk }}-tarball
           path: /tmp
 
-      - name: Unpack Design Tarball
+      - name: Unpack Design_${{ matrix.pdk }} Tarball
         run: |
           sudo mkdir -p $GITHUB_WORKSPACE
           sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-          tar -xf /tmp/design.tar -C $GITHUB_WORKSPACE .
+          tar -xf /tmp/design_${{ matrix.pdk }}.tar -C $GITHUB_WORKSPACE .
       
       - name: Run Precheck
-        run: make run-precheck
+        run: |
+          export INPUT_DIRECTORY=$GITHUB_WORKSPACE
+          export PRECHECK_ROOT=$INPUT_DIRECTORY/mpw_precheck
+          export OUTPUT_DIRECTORY=$INPUT_DIRECTORY/mpw_precheck_result
+          export OUTPUT=$OUTPUT_DIRECTORY/logs/precheck.log
+          export PDKPATH=$PDK_ROOT/sky130A
+
+          docker run -v "$PRECHECK_ROOT":"$PRECHECK_ROOT" -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "${{ env.PDK_ROOT }}":"${{ env.PDK_ROOT }}" -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_ROOT="${{ env.PDK_ROOT }}" -e PDKPATH="${{ env.PDKPATH }}" -u $(id -u "$USER"):$(id -g "$USER") efabless/mpw_precheck:latest bash -c "cd $PRECHECK_ROOT; python3 mpw_precheck.py --input_directory $INPUT_DIRECTORY --pdk_path ${{ env.PDKPATH }} --output_directory $OUTPUT_DIRECTORY license makefile consistency xor magic_drc klayout_beol klayout_feol klayout_met_min_ca_density klayout_offgrid klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea lvs"
+
+          cnt=$(grep -c "All Checks Passed" "$OUTPUT")
+          if ! [[ $cnt ]]; then cnt=0; fi
+          if [[ $cnt -eq 1 ]]; then exit 0; fi
+          exit 2
   
   STA:
     timeout-minutes: 720
@@ -258,8 +290,9 @@ jobs:
     strategy:
       matrix:
         pdk: ["gf180mcuD"]
-    needs: [download_deps, hardening]
+    needs: [hardening]
     steps:
+      - uses: actions/checkout@v2
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -276,6 +309,7 @@ jobs:
           echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
           echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
           echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
+          echo "MPW_TAG=main" >> $GITHUB_ENV
 
       - name: Download PDK Tarball
         uses: actions/download-artifact@v2
@@ -301,17 +335,17 @@ jobs:
           sudo chown -R $USER:$USER ${{ env.TIMING_ROOT }}
           tar -xf /tmp/timing-scripts.tar -C $TIMING_ROOT .
 
-      - name: Download Design Tarball
+      - name: Download Design_${{ matrix.pdk }} Tarball
         uses: actions/download-artifact@v2
         with:
-          name: design-tarball
+          name: design_${{ matrix.pdk }}-tarball
           path: /tmp
 
-      - name: Unpack Design Tarball
+      - name: Unpack Design_${{ matrix.pdk }} Tarball
         run: |
           sudo mkdir -p $GITHUB_WORKSPACE
           sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-          tar -xf /tmp/design.tar -C $GITHUB_WORKSPACE .
+          tar -xf /tmp/design_${{ matrix.pdk }}.tar -C $GITHUB_WORKSPACE .
 
       - name: Download Caravel Tarball
         uses: actions/download-artifact@v2
@@ -339,7 +373,23 @@ jobs:
       
       - name: Run STA
         run: |
-          make caravel-extract-parasitics
+          export CUP_ROOT=$GITHUB_WORKSPACE
+          export PROJECT_ROOT=$GITHUB_WORKSPACE
+          cd $CUP_ROOT
           make extract-parasitics
           make create-spef-mapping
           make caravel-sta
+          tar -cf /tmp/timing.tar $CUP_ROOT/signoff/caravel/openlane-signoff/timing
+          find $CUP_ROOT/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
+            | xargs head -n5 | tail -n1 > $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+          find $CUP_ROOT/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" \
+            | xargs -I {} bash -c "head -n7 {} | tail -n1" >> $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt
+          vio=$(grep -c "vio(" $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt || true)
+          if [[ $vio -gt 0 ]];
+          then 
+            echo "STA violation count: $vio"
+            exit 2 
+          else
+            echo "STA run passed"
+            exit 0
+          fi
