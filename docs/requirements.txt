@@ -4,5 +4,4 @@ docutils
 sphinx
 sphinx-autobuild
 sphinxcontrib-wavedrom
-furo>=2023.08.19
-myst-parser>=2,<3
+sphinx-rtd-theme
