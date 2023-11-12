@@ -38,10 +38,9 @@ branch = "main"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "sphinx.ext.todo",
-    "sphinx.ext.autosectionlabel",
-    "image_links",  # CUSTOM
-    "myst_parser",
+  'sphinxcontrib.wavedrom',
+  'sphinx.ext.mathjax',
+  'sphinx.ext.todo'
 ]
 
 source_suffix = {
