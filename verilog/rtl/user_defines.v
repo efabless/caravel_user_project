@@ -30,13 +30,13 @@
 `define GPIO_MODE_MGMT_STD_INPUT_PULLDOWN  10'h047
 `define GPIO_MODE_MGMT_STD_INPUT_PULLUP    10'h087
 `define GPIO_MODE_MGMT_STD_OUTPUT          10'h00b
-`define GPIO_MODE_MGMT_STD_BIDIRECTIONAL   10'h009
+`define GPIO_MODE_MGMT_STD_BIDIRECTIONAL   10'h00d
 
 `define GPIO_MODE_USER_STD_INPUT_NOPULL    10'h006
 `define GPIO_MODE_USER_STD_INPUT_PULLDOWN  10'h046
 `define GPIO_MODE_USER_STD_INPUT_PULLUP    10'h086
 `define GPIO_MODE_USER_STD_OUTPUT          10'h00a
-`define GPIO_MODE_USER_STD_BIDIRECTIONAL   10'h008
+`define GPIO_MODE_USER_STD_BIDIRECTIONAL   10'h00c
 
 // The power-on configuration for GPIO 0 to 4 is fixed and cannot be
 // modified (allowing the SPI and debug to always be accessible unless
