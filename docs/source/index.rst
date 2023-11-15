@@ -57,7 +57,7 @@ shuttle projects.
 Prerequisites
 =============
 
-- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
+- Docker: `Linux <https://docs.docker.com/desktop/install/linux-install/r>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
 
 - Python 3.6+ with PIP
 
@@ -90,22 +90,15 @@ Starting your project
 #.  To setup your local environment run:
 
     .. code:: bash
-	
-    	mkdir dependencies
-	
-	export OPENLANE_ROOT=$(pwd)/dependencies/openlane_src # you need to export this whenever you start a new shell
-	
-	export PDK_ROOT=$(pwd)/dependencies/pdks # you need to export this whenever you start a new shell
-
-	export PDK=gf180mcuC
-
-        make setup
+    
+    	cd <project_name> # project_name is the name of your repo
+      make setup
 
 *   This command will setup your environment by installing the following
     
     - caravel_lite (a lite version of caravel)
     - management core for simulation
-    - openlane to harden your design 
+    - OpenLane to harden your design 
     - pdk
 
 	
@@ -113,7 +106,7 @@ Starting your project
 
     *   To start hardening you project you need 
         - RTL verilog model for your design for OpenLane to harden
-        - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include openlane configuration files for the macro
+        - A subdirectory for each macro in your project under ``openlane/`` directory, each subdirectory should include OpenLane configuration files for the macro
 
         .. code:: bash
 
@@ -124,7 +117,7 @@ Starting your project
 	
 #.  Integrate modules into the user_project_wrapper
 
-    *   Change the environment variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.tcl`` to point to your module
+    *   Change the variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.json`` to point to your module
     *   Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v``
     *   Harden the user_project_wrapper including your module(s), using this command:
 
@@ -146,14 +139,13 @@ Starting your project
             # OR GL simulation using
             make verify-<testbench-name>-gl
 
-            # OR for GL+SDF simulation using 
-            # sdf annotated simulation is slow
-            make verify-<testbench-name>-gl-sdf
+#.  Run OpenSTA on your design
 
-            # for example
-            make verify-io_ports-rtl
+    *   Extract spefs for ``user_project_wrapper`` and macros inside it:
 
-#.  Run opensta on your design
+        .. code:: bash
+
+            make caravel-extract-parasitics
 
     *   Extract spefs for ``user_project_wrapper`` and macros inside it:
 
@@ -167,14 +159,14 @@ Starting your project
 
             make create-spef-mapping
 
-    *   Run opensta:
+    *   Run OpenSTA:
 
         .. code:: bash
 
             make caravel-sta
 
-        **NOTE:** To update timing scripts run ``make setup-timing-scripts``
-	
+      **NOTE:** To update timing scripts run ``make setup-timing-scripts``
+
 #.  Run the precheck locally 
 
     .. code:: bash
@@ -185,6 +177,27 @@ Starting your project
 #. You are done! now go to https://efabless.com/open_shuttle_program/ to submit your project!
 
 
+Updating For New Release
+========================
+
+**NOTE: This is a temporary solution**
+
+
+To update the makefile to get updated PDK and OpenLane versions, you can run this command from the project root
+
+    .. code:: bash
+
+       curl https://raw.githubusercontent.com/efabless/caravel_user_project/gf180mcu/Makefile > Makefile
+
+OR
+
+To update ``precheck`` to the new release
+
+    .. code:: bash
+
+       MPW_TAG=<new_tag> make precheck
+
+
 Caravel Integration
 ===================
 
@@ -192,26 +205,9 @@ Caravel Integration
 Repo Integration
 ----------------
 
-Caravel files are kept separate from the user project by having caravel
-as submodule. The submodule commit should point to the latest of
-caravel/caravel-lite master/main branch. The following files should have a symbolic
-link to `caravel's <https://github.com/efabless/caravel.git>`__
-corresponding files:
-
--  `Openlane Makefile <../../openlane/Makefile>`__: This provides an easier
-   way for running openlane to harden your macros. Refer to `Hardening
-   the User Project Macro using
-   Openlane <#hardening-the-user-project-using-openlane>`__. Also,
-   the makefile retains the openlane summary reports under the signoff
-   directory.
-
--  `Pin order <../../openlane/user_project_wrapper/pin_order.cfg>`__ file for
-   the user wrapper: The hardened user project wrapper macro must have
-   the same pin order specified in caravel's repo. Failing to adhere to
-   the same order will fail the gds integration of the macro with
-   caravel's back-end.
-
-The symbolic links are automatically set when you run ``make install``.
+Caravel and mgmt soc files are kept separate from the user project, when running ``make setup``
+these files are cloned with a specific tag (shuttle tag). caravel-lite is cloned by default,
+which is a lite version of caravel that only has the files needed for a successful user project.
 
 -------------------
 Verilog Integration
@@ -281,7 +277,7 @@ The following values are redefined for assigning to GPIOs.
 - GPIO_MODE_USER_STD_ANALOG
 
 
-MPW_Prececk includes a check to confirm each GPIO is assigned a valid value.
+MPW_Precheck includes a check to confirm each GPIO is assigned a valid value.
 
 -------------------
 Layout Integration
@@ -313,7 +309,6 @@ Then, run the RTL simulation by
 
 .. code:: bash
 
-    export PDK_ROOT=<pdk-installation-path>
     make verify-<testbench-name>-rtl
     
     # For example
@@ -325,22 +320,10 @@ Run the gate-level simulation by:
 
 .. code:: bash
 
-    export PDK_ROOT=<pdk-installation-path>
     make verify-<testbench-name>-gl
 
     # For example
     make verify-io_ports-gl
-
-To make sure that your design is timing clean, one way is running sdf annotated gate-level simulation
-Run the sdf annotated gate-level simulation by: 
-
-.. code:: bash
-
-    export PDK_ROOT=<pdk-installation-path>
-    make verify-<testbench-name>-gl-sdf
-
-    # For example
-    make verify-io_ports-gl-sdf
 
 This sample project comes with four example testbenches to test the IO port connection, wishbone interface, and logic analyzer. The test-benches are under the
 `verilog/dv <https://github.com/efabless/caravel_user_project/tree/main/verilog/dv>`__ directory. For more information on setting up the
@@ -391,8 +374,6 @@ You will need to install openlane by running the following
 
 .. code:: bash
 
-   export OPENLANE_ROOT=<openlane-installation-path>
-
    # you can optionally specify the openlane tag to use
    # by running: export OPENLANE_TAG=<openlane-tag>
    # if you do not set the tag, it defaults to the last verfied tag tested for this project
@@ -419,12 +400,10 @@ openlane:
 | |pic1|                                                       | |pic2|                                     | |pic3|                                     |
 |                                                              |                                            |                                            |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
-|           ex: |link1|                                        |                                            |           ex: |link2|                      |
+|           ex: |link1|                                        |                                            |                                            |
 +--------------------------------------------------------------+--------------------------------------------+--------------------------------------------+
 
 .. |link1| replace:: `caravel_user_project <https://github.com/efabless/caravel_user_project>`__
-
-.. |link2| replace:: `caravel_ibex <https://github.com/efabless/caravel_ibex>`__
 
 
 .. |pic1| image:: ./_static/option1.png
@@ -460,8 +439,8 @@ To reproduce hardening this project, run the following:
 
 .. code:: bash
 
-   # DO NOT cd into openlane
-
+   # From the project root
+   
    # Run openlane to harden user_proj_example
    make user_proj_example
    # Run openlane to harden user_project_wrapper
@@ -469,6 +448,33 @@ To reproduce hardening this project, run the following:
 
 
 For more information on the openlane flow, check `README <https://github.com/The-OpenROAD-Project/OpenLane#readme>`__.
+
+Crucial steps for integrating project inside ``user_project_wrapper``:
+
+#. Instantiate your module(s) in ``verilog/rtl/user_project_wrapper.v`` 
+#. Change the variables ``VERILOG_FILES_BLACKBOX``, ``EXTRA_LEFS``, ``EXTRA_LIBS``, ``EXTRA_SPEFS`` and ``EXTRA_GDS_FILES`` in ``openlane/user_project_wrapper/config.json`` to point to your module
+#. Make sure to adjust the ``openlane/user_project_wrapper/config.json`` file as needed
+#. **DON'T** adjust the pin placement or power ring, this will cause errors in precheck and ultimately in tapeout
+#. Make sure you connect the power correctly, by adjusting ``FP_PDN_MACRO_HOOKS`` to your project's needs
+
+Running transistor level LVS
+============================
+
+For the design to pass precheck, a custom lvs configuration file for your design is needed, config file can be found under ``lvs/<design_name>/lvs_config.json``
+
+The ``lvs_config.json`` files are a possibly hierarchical set of files to set parameters for device level LVS
+
+Required variables:
+
+- **TOP_SOURCE** : Top source cell name.
+- **TOP_LAYOUT** : Top layout cell name.
+- **LAYOUT_FILE** : Layout gds data file. 
+- **LVS_SPICE_FILES** : A list of spice files.
+- **LVS_VERILOG_FILES** : A list of verilog files. Note: files with child modules should be listed before parent modules. Not needed for purely analog designs.
+
+Files must be defined as a absolute path beginning with a shell variable such as ``$PDK_ROOT`` or ``$UPRJ_ROOT``.
+
+For more information on LVS please check `Precheck's backend check documentation <https://github.com/efabless/mpw_precheck/tree/main/checks/be_checks#readme>`__
 
 Running MPW Precheck Locally
 =================================
@@ -478,7 +484,7 @@ You can install the `mpw-precheck <https://github.com/efabless/mpw_precheck>`__ 
 .. code:: bash
 
    # By default, this install the precheck in your home directory
-   # To change the installtion path, run "export PRECHECK_ROOT=<precheck installation path>" 
+   # To change the installation path, run "export PRECHECK_ROOT=<precheck installation path>" 
    make precheck
 
 This will clone the precheck repo and pull the latest precheck docker image. 
@@ -492,12 +498,20 @@ Then, you can run the precheck by running
 
 This will run all the precheck checks on your project and will produce the logs under the ``checks`` directory.
 
+To disable running LVS/Soft/ERC connection checks:
+
+.. code:: bash
+
+   DISABLE_LVS=1 make run-precheck
+
 Running Timing Analysis on Existing Projects
 ========================================================
 
-Starting in the project root...
+Start by updating the Makefile for your project.  Starting in the project root...
 
 .. code:: bash
+  
+   curl -k https://raw.githubusercontent.com/efabless/caravel_user_project/gf180mcu/Makefile > Makefile
    
    make setup-timing-scripts
    
@@ -508,71 +522,21 @@ Starting in the project root...
 
 This will update Caravel design files and install the scripts for running timing. 
 
-Then, you need to extract the caravel macros parasitics if they are not available. this step is only required once. run the following...
+
+Then, you can run then run timing by the following...
 
 .. code:: bash
 
    make caravel-extract-parasitics
-
-
-Then, you can run timing by the following...
-
-.. code:: bash
 
    make extract-parasitics
    
    make create-spef-mapping
    
    make caravel-sta
-
+   
 
 A summary of timing results is provided at the end of the flow. 
-
-
-Other Miscellaneous Targets
-============================
-
-The makefile provides a number of useful that targets that can run LVS, DRC, and XOR checks on your hardened design outside of openlane's flow. 
-
-Run ``make help`` to display available targets. 
-
-Run lvs on the mag view, 
-
-.. code:: bash
-
-   make lvs-<macro_name>
-
-Run lvs on the gds, 
-
-.. code:: bash
-
-   make lvs-gds-<macro_name>
-
-Run lvs on the maglef, 
-
-.. code:: bash
-
-   make lvs-maglef-<macro_name>
-
-Run drc using magic,
-
-.. code:: bash
-
-   make drc-<macro_name>
-
-Run antenna check using magic, 
-
-.. code:: bash
-
-   make antenna-<macro_name>
-
-Run XOR check, 
-
-.. code:: bash
-
-   make xor-wrapper
-   
-   
 
 
 Checklist for Open-MPW Submission
