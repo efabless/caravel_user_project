@@ -31,7 +31,7 @@ void main(){
     GPIOs_loadConfigs(); // load the configuration 
     // configure la 64 (clk enable by la) as output from cpu
     // writing 1 in bit 64(first bit in reg 2) to reset 
-    #ifdef GF
+    #ifdef GF180
     LogicAnalyzer_write(1,0);
     LogicAnalyzer_outputEnable(1, 0x3FFFFFFF);
     // reset counter 
@@ -70,6 +70,6 @@ void main(){
         LogicAnalyzer_write(2,0);// clk pose edge
         ManagmentGpio_write(1); 
         }
-    #endif // GF
+    #endif // GF180
     return;
 }

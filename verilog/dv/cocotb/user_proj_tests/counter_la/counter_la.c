@@ -31,13 +31,13 @@ void main(){
     GPIOs_loadConfigs(); // load the configuration 
     ManagmentGpio_write(1); // configuration finished 
     // configure la [63:32] as output from cpu
-    #ifdef GF
+    #ifdef GF180
     LogicAnalyzer_write(1,7<<14);
     LogicAnalyzer_outputEnable(1,0xC0000000);
     #else
     LogicAnalyzer_write(1,7<<16);
     LogicAnalyzer_outputEnable(1,0);
-    #endif // GF
+    #endif // GF180
     ManagmentGpio_write(0); // configuration finished 
     LogicAnalyzer_outputEnable(1,0xFFFFFFFF);
     return;

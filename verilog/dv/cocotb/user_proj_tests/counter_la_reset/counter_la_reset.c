@@ -30,7 +30,7 @@ void main(){
     GPIOs_configure(37,GPIO_MODE_MGMT_STD_OUTPUT);
     GPIOs_loadConfigs(); // load the configuration 
     // reset counter
-    #ifdef GF
+    #ifdef GF180
     LogicAnalyzer_outputEnable(1,0x3FFFFFFF);
     LogicAnalyzer_write(1,0x80000000);
     LogicAnalyzer_write(1,0);
@@ -38,13 +38,13 @@ void main(){
     LogicAnalyzer_outputEnable(2,0xFFFFFFFD);
     LogicAnalyzer_write(2,2);
     LogicAnalyzer_write(2,0);
-    #endif // GF
+    #endif // GF180
 
     ManagmentGpio_write(1); // configuration finished 
     // configure la 65 (reset enable by la) as output from cpu
     // writing 1 in bit 65(second bit in reg 2) to reset 
     // asset reset
-    #ifdef GF
+    #ifdef GF180
     LogicAnalyzer_write(1,0x80000000);
     LogicAnalyzer_inputEnable(1,0xC0000000);
     LogicAnalyzer_outputEnable(1,0x3FFFFFFF);
@@ -52,16 +52,16 @@ void main(){
     LogicAnalyzer_write(2,2);
     LogicAnalyzer_inputEnable(2,0x2);
     LogicAnalyzer_outputEnable(2,0xFFFFFFFD);
-    #endif // GF
+    #endif // GF180
 
     // deassert reset
-    #ifdef GF
+    #ifdef GF180
     LogicAnalyzer_inputEnable(1,0);
     LogicAnalyzer_outputEnable(1,0xFFFFFFFF);
     #else
     LogicAnalyzer_inputEnable(2,0);
     LogicAnalyzer_outputEnable(2,0xFFFFFFFF);
-    #endif // GF
+    #endif // GF180
 
     return;
 }
