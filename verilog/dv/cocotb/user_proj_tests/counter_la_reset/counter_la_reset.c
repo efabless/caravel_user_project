@@ -31,7 +31,7 @@ void main(){
     GPIOs_loadConfigs(); // load the configuration 
     // reset counter
     #ifdef GF180
-    LogicAnalyzer_outputEnable(1,0x3FFFFFFF);
+    LogicAnalyzer_outputEnable(1,0x7FFFFFFF);
     LogicAnalyzer_write(1,0x80000000);
     LogicAnalyzer_write(1,0);
     #else

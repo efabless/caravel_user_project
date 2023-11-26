@@ -44,7 +44,7 @@ async def counter_la_reset(dut):
         if await get_reset_val(caravelEnv) == 0: 
             cocotb.log.info(f"[TEST] Reset deasserted by la")  
             break
-    counter =0
+    counter =int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2)
 
     for i in range(100):
         if counter != int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2) :
