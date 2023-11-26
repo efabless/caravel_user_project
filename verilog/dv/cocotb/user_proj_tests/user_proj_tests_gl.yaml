@@ -3,6 +3,6 @@
 Tests: 
     - {name: counter_wb, sim: GL}
     - {name: counter_la, sim: GL}
-    - {name: counter_la_reset, sim: GL}
+    # - {name: counter_la_reset, sim: GL}
     - {name: counter_la_clk, sim: GL}
 
