@@ -2,10 +2,17 @@ import argparse
 import json
 import os
 import shutil
+import subprocess
 import tarfile
 import requests
 import volare
-from rich.progress import Progress
+from rich.progress import (
+    Progress,
+    TextColumn,
+    BarColumn,
+    MofNCompleteColumn,
+    TimeElapsedColumn,
+)
 
 
 def parse_json_file(url):
@@ -35,33 +42,38 @@ def download_tools(openlane_root, precheck_root, pdk_root, caravel_root, mcw_roo
     """
     url = 'https://raw.githubusercontent.com/efabless/central_CI/main/tools.json'
     data = parse_json_file(url)
-    with Progress() as progress:
+    f = open("setup.log", "a")
+    with Progress(TextColumn("[progress.description]{task.description}"), BarColumn(), MofNCompleteColumn(), TimeElapsedColumn()) as progress:
         task = progress.add_task("[cyan]Downloading Tools...", total=6)
         for key, value in data.items():
             if key == "OpenLane":
                 progress.update(task, description="[cyan]Downloading OpenLane...")
                 download_tar("OpenLane", value['commit'], value['url'], openlane_root)
-                progress.update(task, completed=1)
+                progress.update(task, description="[cyan]Downloading OpenLane Docker...")
+                os.environ['OPENLANE_IMAGE_NAME'] = f"efabless/openlane:{value['commit']}"
+                os.environ['IMAGE_NAME'] = f"efabless/openlane:{value['commit']}"
+                subprocess.run(["make", "pull-openlane"], cwd=openlane_root, env=os.environ, stderr=subprocess.STDOUT, text=True, check=True, stdout=f)
+                progress.update(task, advance=1)
             elif key == "pdk":
                 progress.update(task, description="[cyan]Downloading pdk...")
                 volare.enable(pdk_root, "sky130", value['commit'])
-                progress.update(task, completed=1)
+                progress.update(task, advance=1)
             elif key == "precheck":
                 progress.update(task, description="[cyan]Downloading precheck...")
                 download_tar("precheck", value['commit'], value['url'], precheck_root)
-                progress.update(task, completed=1)
+                progress.update(task, advance=1)
             elif key == "caravel":
                 progress.update(task, description="[cyan]Downloading caravel...")
                 download_tar("caravel", value['commit'], value['url'], caravel_root)
-                progress.update(task, completed=1)
+                progress.update(task, advance=1)
             elif key == "mgmt_core_wrapper":
                 progress.update(task, description="[cyan]Downloading mgmt_core_wrapper...")
                 download_tar("mgmt_core_wrapper", value['commit'], value['url'], mcw_root)
-                progress.update(task, completed=1)
+                progress.update(task, advance=1)
             elif key == "timing_scripts":
                 progress.update(task, description="[cyan]Downloading timing_scripts...")
                 download_tar("timing_scripts", value['commit'], value['url'], timing_root)
-                progress.update(task, completed=1)
+                progress.update(task, advance=1)
 
 
 def download_tar(tool, version, url, tool_path):
