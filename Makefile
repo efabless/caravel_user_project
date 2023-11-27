@@ -16,7 +16,7 @@
 MAKEFLAGS+=--warn-undefined-variables
 
 export CARAVEL_ROOT?=$(PWD)/caravel
-PRECHECK_ROOT?=${HOME}/mpw_precheck
+export PRECHECK_ROOT?=${HOME}/mpw_precheck
 export MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
@@ -41,11 +41,11 @@ export DISABLE_LVS?=0
 
 export ROOTLESS
 
-ifeq ($(PDK),sky130A)
-	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= mpw-9g
+# ifeq ($(PDK),sky130A)
+# 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+# 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+# 	export OPENLANE_TAG?=2023.07.19-1
+# 	MPW_TAG ?= mpw-9g
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -57,25 +57,25 @@ else
 	CARAVEL_TAG := $(MPW_TAG)
 endif
 
-endif
+# endif
 
-ifeq ($(PDK),sky130B)
-	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= mpw-9g
+# ifeq ($(PDK),sky130B)
+# 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
+# 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+# 	export OPENLANE_TAG?=2023.07.19-1
+# 	MPW_TAG ?= mpw-9g
 
-ifeq ($(CARAVEL_LITE),1)
-	CARAVEL_NAME := caravel-lite
-	CARAVEL_REPO := https://github.com/efabless/caravel-lite
-	CARAVEL_TAG := $(MPW_TAG)
-else
-	CARAVEL_NAME := caravel
-	CARAVEL_REPO := https://github.com/efabless/caravel
-	CARAVEL_TAG := $(MPW_TAG)
-endif
+# ifeq ($(CARAVEL_LITE),1)
+# 	CARAVEL_NAME := caravel-lite
+# 	CARAVEL_REPO := https://github.com/efabless/caravel-lite
+# 	CARAVEL_TAG := $(MPW_TAG)
+# else
+# 	CARAVEL_NAME := caravel
+# 	CARAVEL_REPO := https://github.com/efabless/caravel
+# 	CARAVEL_TAG := $(MPW_TAG)
+# endif
 
-endif
+# endif
 
 ifeq ($(PDK),gf180mcuD)
 
@@ -101,7 +101,9 @@ install:
 		rm -rf $(CARAVEL_ROOT) && sleep 2;\
 	fi
 	echo "Installing $(CARAVEL_NAME).."
-	git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
+	@mkdir -p $(CARAVEL_ROOT)
+	cd $(CARAVEL_ROOT) && \
+	curl -L $(CARAVEL_REPO)/tarball/$(CARAVEL_COMMIT) | tar -xvzC . --strip-components=1
 
 # Install DV setup
 .PHONY: simenv
@@ -114,7 +116,24 @@ simenv-cocotb:
 	docker pull efabless/dv:cocotb
 
 .PHONY: setup
-setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
+# setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
+setup: check-python check_dependencies setup-cocotb install-volare
+# setup:
+	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests
+	./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT)
+
+
+.PHONY: install-volare
+install-volare:
+	rm -rf ./venv
+	$(PYTHON_BIN) -m venv ./venv
+	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
+	./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir volare
+
+check-python:
+ifeq ($(shell which python3),)
+$(error Please install python 3.6+)
+endif
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
@@ -316,6 +335,8 @@ check_dependencies:
 	@if [ ! -d "$(PWD)/dependencies" ]; then \
 		mkdir $(PWD)/dependencies; \
 	fi
+
+# export CARAVEL_COMMIT=$(shell python3 scripts/get_tools.py)
 
 
 export CUP_ROOT=$(shell pwd)
