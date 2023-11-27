@@ -134,10 +134,16 @@ Starting your project
         .. code:: bash
 
             # you can then run RTL simulations using
-            make verify-<testbench-name>-rtl
+            make cocotb-verify-<testbench-name>-rtl
 
-            # OR GL simulation using
-            make verify-<testbench-name>-gl
+            # To test all RTL simulations run
+            make cocotb-verify-<testbench-name>-rtl
+
+            # you can then run GL simulations using
+            make cocotb-verify-<testbench-name>-gl
+
+            # To test all GL simulations run
+            make cocotb-verify-<testbench-name>-gl
 
 #.  Run OpenSTA on your design
 
