@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  download_caravel:
+  download_deps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,95 +33,61 @@ jobs:
         run: |
           sudo mkdir -p ${{ env.PDK_ROOT }}
           sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make install
+          make setup
+          cd ${{ env.MCW_ROOT }}
+          rm -rf gds maglef openlane spi LICENSE manifest docs litex lvs .git
           cd ${{ env.CARAVEL_ROOT }}
           rm -rf gds maglef openlane spi LICENSE manifest .git
 
       - name: Tarball Caravel
         run: |
-          tar -cf /tmp/caravel.tar -C $CARAVEL_ROOT .
+          tar -cf /tmp/caravel.tar -C ${{ env.CARAVEL_ROOT }} .
 
       - name: Upload Caravel Tarball
         uses: actions/upload-artifact@v2
         with:
           name: caravel-tarball
           path: /tmp/caravel.tar
-  
-  download_deps:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        targets: ["pdk-with-volare", "install_mcw", "openlane", "setup-timing-scripts", "precheck"]
-    needs: [download_caravel]
-    steps:
-      - uses: actions/checkout@v2
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Setup Environment Variables
+      - name: Tarball mgmt_core_wrapper
         run: |
-          echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
-          echo "OPENLANE_ROOT=$GITHUB_WORKSPACE/openlane_src" >> $GITHUB_ENV
-          echo "CARAVEL_ROOT=$GITHUB_WORKSPACE/caravel" >> $GITHUB_ENV
-          echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
-          echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
-          echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
-          echo "MPW_TAG=main" >> $GITHUB_ENV
-      
-      - name: Get dependencies name
-        run: |
-          if [[ "${{ matrix.targets }}" == "install_mcw" ]]; then
-            echo "dep_name=mgmt_core_wrapper" >> $GITHUB_ENV
-            echo "dep_root=${{ env.MCW_ROOT }}" >> $GITHUB_ENV
-          elif [[ "${{ matrix.targets }}" == "openlane" ]]; then
-            echo "dep_name=openlane" >> $GITHUB_ENV
-            echo "dep_root=${{ env.OPENLANE_ROOT }}" >> $GITHUB_ENV
-          elif [[ "${{ matrix.targets }}" == "pdk-with-volare" ]]; then
-            echo "dep_name=pdk" >> $GITHUB_ENV
-            echo "dep_root=${{ env.PDK_ROOT }}" >> $GITHUB_ENV
-          elif [[ "${{ matrix.targets }}" == "setup-timing-scripts" ]]; then
-            echo "dep_name=timing-scripts" >> $GITHUB_ENV
-            echo "dep_root=${{ env.TIMING_ROOT }}" >> $GITHUB_ENV
-          elif [[ "${{ matrix.targets }}" == "precheck" ]]; then
-            echo "dep_name=precheck" >> $GITHUB_ENV
-            echo "dep_root=${{ env.PRECHECK_ROOT }}" >> $GITHUB_ENV
-          fi
+          tar -cf /tmp/mgmt_core_wrapper.tar -C ${{ env.MCW_ROOT }} .
 
-      - name: Download caravel Tarball
-        uses: actions/download-artifact@v2
-        with:
-          name: caravel-tarball
-          path: /tmp
-
-      - name: Unpack caravel Tarball
-        run: |
-          sudo mkdir -p ${{ env.CARAVEL_ROOT }}
-          sudo chown -R $USER:$USER ${{ env.CARAVEL_ROOT }}
-          tar -xf /tmp/caravel.tar -C $CARAVEL_ROOT .
-
-      - name: Install dependencies
-        run: |
-          sudo mkdir -p ${{ env.PDK_ROOT }}
-          sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-          make ${{ matrix.targets }}
-          if [[ "${{ env.dep_name }}" == "mgmt_core_wrapper" ]]; then
-            cd ${{ env.dep_root }}
-            rm -rf gds maglef openlane spi LICENSE manifest docs litex lvs .git
-          fi
-
-      - name: Tarball Dependencies
-        run: |
-          tar -cf /tmp/${{ env.dep_name }}.tar -C ${{ env.dep_root }} .
-
-      - name: Upload Dependencies Tarball
+      - name: Upload mgmt_core_wrapper Tarball
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ env.dep_name }}-tarball
-          path: /tmp/${{ env.dep_name }}.tar
+          name: mgmt_core_wrapper-tarball
+          path: /tmp/mgmt_core_wrapper.tar
+
+      - name: Tarball openlane
+        run: |
+          tar -cf /tmp/openlane.tar -C ${{ env.OPENLANE_ROOT }} .
+
+      - name: Upload openlane Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: openlane-tarball
+          path: /tmp/openlane.tar
+
+      - name: Tarball pdk
+        run: |
+          tar -cf /tmp/pdk.tar -C ${{ env.PDK_ROOT }} .
+
+      - name: Upload pdk Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: pdk-tarball
+          path: /tmp/pdk.tar
+
+      - name: Tarball timing_scripts
+        run: |
+          tar -cf /tmp/timing_scripts.tar -C ${{ env.TIMING_ROOT }} .
+
+      - name: Upload timing_scripts Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: timing_scripts-tarball
+          path: /tmp/timing_scripts.tar
 
   hardening:
     timeout-minutes: 720
@@ -469,91 +435,3 @@ jobs:
             echo "STA run passed"
             exit 0
           fi
-  
-  # GL-verification:
-  #   timeout-minutes: 720
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       pdk: ["sky130A", "sky130B"]
-  #   needs: [download_deps]
-  #   steps:
-  #     - uses: actions/checkout@v2
-
-  #     - name: Set up QEMU
-  #       uses: docker/setup-qemu-action@v1
-
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v1
-
-  #     - name: Export ENVIRONMENT VARIABLES
-  #       run: |
-  #         echo "PDK=${{ matrix.pdk }}" >> $GITHUB_ENV
-  #         echo "PDKPATH=$GITHUB_WORKSPACE/pdk/${{ matrix.pdk }}" >> $GITHUB_ENV
-  #         echo "PDK_ROOT=$GITHUB_WORKSPACE/pdk" >> $GITHUB_ENV
-  #         echo "OPENLANE_ROOT=$GITHUB_WORKSPACE/openlane_src" >> $GITHUB_ENV
-  #         echo "CARAVEL_ROOT=$GITHUB_WORKSPACE/caravel" >> $GITHUB_ENV
-  #         echo "MCW_ROOT=$GITHUB_WORKSPACE/mgmt_core_wrapper" >> $GITHUB_ENV
-  #         echo "TIMING_ROOT=$GITHUB_WORKSPACE/timing-scripts" >> $GITHUB_ENV
-  #         echo "PRECHECK_ROOT=$GITHUB_WORKSPACE/mpw_precheck" >> $GITHUB_ENV
-  #         echo "MPW_TAG=main" >> $GITHUB_ENV
-
-  #     - name: Download PDK Tarball
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: pdk-tarball
-  #         path: /tmp
-
-  #     - name: Unpack PDK Tarball
-  #       run: |
-  #         sudo mkdir -p ${{ env.PDK_ROOT }}
-  #         sudo chown -R $USER:$USER ${{ env.PDK_ROOT }}
-  #         tar -xf /tmp/pdk.tar -C $PDK_ROOT .
-      
-  #     - name: Download caravel Tarball
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: caravel-tarball
-  #         path: /tmp
-
-  #     - name: Unpack caravel Tarball
-  #       run: |
-  #         sudo mkdir -p ${{ env.CARAVEL_ROOT }}
-  #         sudo chown -R $USER:$USER ${{ env.CARAVEL_ROOT }}
-  #         tar -xf /tmp/caravel.tar -C $CARAVEL_ROOT .
-      
-  #     - name: Download mgmt_core_wrapper Tarball
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: mgmt_core_wrapper-tarball
-  #         path: /tmp
-
-  #     - name: Unpack mgmt_core_wrapper Tarball
-  #       run: |
-  #         sudo mkdir -p ${{ env.MCW_ROOT }}
-  #         sudo chown -R $USER:$USER ${{ env.MCW_ROOT }}
-  #         tar -xf /tmp/mgmt_core_wrapper.tar -C $MCW_ROOT .
-
-  #     # - name: Download Design Tarball
-  #     #   uses: actions/download-artifact@v2
-  #     #   with:
-  #     #     name: design-tarball
-  #     #     path: /tmp
-
-  #     # - name: Unpack Design Tarball
-  #     #   run: |
-  #     #     sudo mkdir -p $GITHUB_WORKSPACE
-  #     #     sudo chown -R $USER:$USER $GITHUB_WORKSPACE
-  #     #     tar -xf /tmp/design.tar -C $GITHUB_WORKSPACE .
-
-  #     - name: install cocotb
-  #       run: |
-  #         make setup-cocotb
-      
-  #     - name: run RTL verification
-  #       run: |
-  #         cd $GITHUB_WORKSPACE/verilog/dv/cocotb && $GITHUB_WORKSPACE/venv-cocotb/bin/caravel_cocotb -tl user_proj_tests/user_proj_tests_gl.yaml -verbosity debug --CI  -tag gl_verification
-  #         cnt=$(grep -c "failed" "$GITHUB_WORKSPACE/verilog/dv/cocotb/sim/gl_verification/runs.log")
-  #         if ! [[ $cnt ]]; then cnt=0; fi
-  #         if [[ $cnt -eq 1 ]]; then exit 0; fi
-  #         exit 2
