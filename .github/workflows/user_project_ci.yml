@@ -146,7 +146,7 @@ jobs:
           python3 $GITHUB_WORKSPACE/.github/scripts/get_designs.py --design $GITHUB_WORKSPACE
           for word in $(cat harden_sequence.txt); do
             echo "CURRENT_DESIGN=${word}" >> $GITHUB_ENV
-            make $word
+            DISABLE_VERSION_CHECK=1 make $word
           done
           rm -rf openlane/user_proj_example/runs openlane/user_project_wrapper/runs pdk openlane_src caravel mgmt_core_wrapper timing-scripts mpw_precheck
 
@@ -238,7 +238,7 @@ jobs:
 
       - name: install cocotb
         run: |
-          make setup-cocotb
+          DISABLE_VERSION_CHECK=1 make setup-cocotb
       
       - name: run RTL verification
         run: |
@@ -418,9 +418,9 @@ jobs:
           export CUP_ROOT=$GITHUB_WORKSPACE
           export PROJECT_ROOT=$GITHUB_WORKSPACE
           cd $CUP_ROOT
-          make extract-parasitics
-          make create-spef-mapping
-          make caravel-sta
+          DISABLE_VERSION_CHECK=1 make extract-parasitics
+          DISABLE_VERSION_CHECK=1 make create-spef-mapping
+          DISABLE_VERSION_CHECK=1 make caravel-sta
           tar -cf /tmp/timing.tar $CUP_ROOT/signoff/caravel/openlane-signoff/timing
           find $CUP_ROOT/signoff/caravel/openlane-signoff/timing/*/ -name "summary.log" | head -n1 \
             | xargs head -n5 | tail -n1 > $CUP_ROOT/signoff/caravel/openlane-signoff/timing/all-summary.rpt

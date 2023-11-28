@@ -38,6 +38,7 @@ endif
 export OPENLANE_ROOT?=$(PWD)/dependencies/openlane_src
 export PDK_ROOT?=$(PWD)/dependencies/pdks
 export DISABLE_LVS?=0
+export DISABLE_VERSION_CHECK?=0
 
 export ROOTLESS
 
@@ -65,9 +66,9 @@ ifeq ($(PDK),gf180mcuD)
 endif
 
 # Include Caravel Makefile Targets
-# .PHONY: % : check-caravel
-# %:
-# 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export MPW_TAG=$(MPW_TAG) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+.PHONY: % : check-caravel
+%:
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export MPW_TAG=$(MPW_TAG) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 # Install DV setup
 .PHONY: simenv
@@ -222,7 +223,11 @@ uninstall:
 
 .PHONY: check_versions
 check_versions:
-	./venv/bin/$(PYTHON_BIN) -u scripts/compare_versions.py
+	@if [ "$$DISABLE_VERSION_CHECK" = "1" ]; then\
+		echo "Skipping version check"; \
+	else \
+		./venv/bin/$(PYTHON_BIN) -u scripts/compare_versions.py; \
+	fi
 # Install Pre-check
 # Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
 .PHONY: precheck
