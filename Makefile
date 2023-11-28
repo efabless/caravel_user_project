@@ -111,7 +111,7 @@ clean_log:
 .PHONY: print_message
 print_message:
 	@echo "Setting up caravel_user_project environment..."
-	@echo "To check for errors, please see setup.log"
+	@echo "To check for installation logs, please see setup.log"
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 cocotb-dv_patterns=$(shell cd verilog/dv/cocotb && find . -name "*.c"  | sed -e 's|^.*/||' -e 's/.c//')
