@@ -53,26 +53,33 @@ def download_tools(openlane_root, precheck_root, pdk_root, caravel_root, mcw_roo
                 os.environ['OPENLANE_IMAGE_NAME'] = f"efabless/openlane:{value['commit']}"
                 os.environ['IMAGE_NAME'] = f"efabless/openlane:{value['commit']}"
                 subprocess.run(["make", "pull-openlane"], cwd=openlane_root, env=os.environ, stderr=subprocess.STDOUT, text=True, check=True, stdout=f)
+                print("OpenLane downloaded successfully")
                 progress.update(task, advance=1)
             elif key == "pdk":
                 progress.update(task, description="[cyan]Downloading pdk...")
+                progress.stop()
                 volare.enable(pdk_root, "sky130", value['commit'])
+                progress.start()
                 progress.update(task, advance=1)
             elif key == "precheck":
-                progress.update(task, description="[cyan]Downloading precheck...")
+                progress.update(task, description="[cyan]Downloading mpw_precheck...")
                 download_tar("precheck", value['commit'], value['url'], precheck_root)
+                print("mpw_precheck downloaded successfully")
                 progress.update(task, advance=1)
             elif key == "caravel":
                 progress.update(task, description="[cyan]Downloading caravel...")
                 download_tar("caravel", value['commit'], value['url'], caravel_root)
+                print("caravel downloaded successfully")
                 progress.update(task, advance=1)
             elif key == "mgmt_core_wrapper":
                 progress.update(task, description="[cyan]Downloading mgmt_core_wrapper...")
                 download_tar("mgmt_core_wrapper", value['commit'], value['url'], mcw_root)
+                print("mgmt_core_wrapper downloaded successfully")
                 progress.update(task, advance=1)
             elif key == "timing_scripts":
                 progress.update(task, description="[cyan]Downloading timing_scripts...")
                 download_tar("timing_scripts", value['commit'], value['url'], timing_root)
+                print("timing_scripts downloaded successfully")
                 progress.update(task, advance=1)
 
 

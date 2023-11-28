@@ -84,7 +84,9 @@ simenv-cocotb:
 setup: print_message clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
 	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT)
+	@echo "installing cocotb..."
 	@$(MAKE) setup-cocotb >> setup.log
+	@echo "installation complete"
 
 .PHONY: install-volare
 install-volare:
