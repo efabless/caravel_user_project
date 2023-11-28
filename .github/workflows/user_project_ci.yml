@@ -81,13 +81,23 @@ jobs:
 
       - name: Tarball timing_scripts
         run: |
-          tar -cf /tmp/timing_scripts.tar -C ${{ env.TIMING_ROOT }} .
+          tar -cf /tmp/timing-scripts.tar -C ${{ env.TIMING_ROOT }} .
 
       - name: Upload timing_scripts Tarball
         uses: actions/upload-artifact@v2
         with:
-          name: timing_scripts-tarball
-          path: /tmp/timing_scripts.tar
+          name: timing-scripts-tarball
+          path: /tmp/timing-scripts.tar
+
+      - name: Tarball precheck
+        run: |
+          tar -cf /tmp/precheck.tar -C ${{ env.PRECHECK_ROOT }} .
+
+      - name: Upload precheck Tarball
+        uses: actions/upload-artifact@v2
+        with:
+          name: precheck-tarball
+          path: /tmp/precheck.tar
 
   hardening:
     timeout-minutes: 720
