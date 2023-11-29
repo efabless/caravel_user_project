@@ -68,7 +68,9 @@ endif
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
-	@export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+	@if [ -d "$(CARAVEL_ROOT)" ]; then \
+	@export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@; \
+	fi
 
 # Install DV setup
 .PHONY: simenv
@@ -188,16 +190,6 @@ make_what=setup $(blocks) $(dv-targets-rtl) $(dv-targets-gl) $(dv-targets-gl-sdf
 what:
 	# $(make_what)
 
-# Install Openlane
-.PHONY: openlane
-openlane:
-	@if [ "$$(realpath $${OPENLANE_ROOT})" = "$$(realpath $$(pwd)/openlane)" ]; then\
-		echo "OPENLANE_ROOT is set to '$$(pwd)/openlane' which contains openlane config files"; \
-		echo "Please set it to a different directory"; \
-		exit 1; \
-	fi
-	cd openlane && $(MAKE) openlane
-
 #### Not sure if the targets following are of any use
 
 # Create symbolic links to caravel's main files
@@ -235,27 +227,27 @@ install_mcw: clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
 	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool mgmt_core_wrapper
 
-# Install mgmt_core_wrapper
+# Install pdk-with-volare
 .PHONY: pdk-with-volare
 pdk-with-volare: clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
 	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool pdk
 
-# Install mgmt_core_wrapper
+# Install openlane
 .PHONY: openlane
 openlane: clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
 	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool openlane
 
 
-# Install mgmt_core_wrapper
+# Install timing-scripts
 .PHONY: setup-timing-scripts
 setup-timing-scripts: clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
 	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool timing_scripts
 
 
-# Install mgmt_core_wrapper
+# Install precheck
 .PHONY: precheck
 precheck: clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
