@@ -416,17 +416,15 @@ extract-parasitics: check_versions ./verilog/gl/user_project_wrapper.v
 
 
 ifeq ($(wildcard ./tool_versions.json),)
-    # File doesn't exist
-    EXPORT_VARIABLE := 
+# File doesn't exist
+export OPENLANE_TAG=
+export OPEN_PDKS_COMMIT=
 else
-    # File exists
-    EXPORT_VARIABLE := $(shell jq -r '.OpenLane.commit' tool_versions.json)
+# File exists
+export OPENLANE_TAG=$(shell python3 ./scripts/export_env.py OpenLane)
+export OPEN_PDKS_COMMIT=$(shell python3 ./scripts/export_env.py pdk)
 endif
 
-export OPENLANE_TAG=$(EXPORT_VARIABLE)
-
-
-# export OPENLANE_TAG=$(shell jq -r '.OpenLane.commit' tool_versions.json)
 .PHONY: caravel-sta
 caravel-sta: check_versions ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
