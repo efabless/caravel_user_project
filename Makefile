@@ -413,7 +413,20 @@ extract-parasitics: check_versions ./verilog/gl/user_project_wrapper.v
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk rcx-user_project_wrapper
 	@cat ./tmp-macros-list
 	@rm ./tmp-macros-list
-	
+
+
+ifeq ($(wildcard ./tool_versions.json),)
+    # File doesn't exist
+    EXPORT_VARIABLE := 
+else
+    # File exists
+    EXPORT_VARIABLE := $(shell jq -r '.OpenLane.commit' tool_versions.json)
+endif
+
+export OPENLANE_TAG=$(EXPORT_VARIABLE)
+
+
+# export OPENLANE_TAG=$(shell jq -r '.OpenLane.commit' tool_versions.json)
 .PHONY: caravel-sta
 caravel-sta: check_versions ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
