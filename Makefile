@@ -66,9 +66,9 @@ ifeq ($(PDK),gf180mcuD)
 endif
 
 # Include Caravel Makefile Targets
-# .PHONY: % : check-caravel
-# %:
-# 	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export MPW_TAG=$(MPW_TAG) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
+.PHONY: % : check-caravel
+%:
+	@export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
 
 # Install DV setup
 .PHONY: simenv
@@ -223,6 +223,45 @@ update_caravel: check-caravel
 uninstall:
 	rm -rf $(CARAVEL_ROOT)
 
+# Install Caravel
+.PHONY: install
+install: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool caravel
+
+# Install mgmt_core_wrapper
+.PHONY: install_mcw
+install_mcw: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool mgmt_core_wrapper
+
+# Install mgmt_core_wrapper
+.PHONY: pdk-with-volare
+pdk-with-volare: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool pdk
+
+# Install mgmt_core_wrapper
+.PHONY: openlane
+openlane: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool openlane
+
+
+# Install mgmt_core_wrapper
+.PHONY: setup-timing-scripts
+setup-timing-scripts: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool timing_scripts
+
+
+# Install mgmt_core_wrapper
+.PHONY: precheck
+precheck: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool precheck
+
+
 .PHONY: check_versions
 check_versions:
 	@if [ "$$DISABLE_VERSION_CHECK" = "1" ]; then\
@@ -230,17 +269,6 @@ check_versions:
 	else \
 		./venv/bin/$(PYTHON_BIN) -u scripts/compare_versions.py; \
 	fi
-# Install Pre-check
-# Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
-.PHONY: precheck
-precheck:
-	if [ -d "$(PRECHECK_ROOT)" ]; then\
-		echo "Deleting exisiting $(PRECHECK_ROOT)" && \
-		rm -rf $(PRECHECK_ROOT) && sleep 2;\
-	fi
-	@echo "Installing Precheck.."
-	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
-	@docker pull efabless/mpw_precheck:latest
 
 .PHONY: run-precheck
 run-precheck: check_versions check-pdk check-precheck
@@ -324,14 +352,6 @@ export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
 export PROJECT_ROOT=$(CUP_ROOT)
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
-$(TIMING_ROOT):
-	@mkdir -p $(CUP_ROOT)/dependencies
-	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
-
-.PHONY: setup-timing-scripts
-setup-timing-scripts: $(TIMING_ROOT)
-	@( cd $(TIMING_ROOT) && git pull )
-	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
 .PHONY: install-caravel-cocotb
 install-caravel-cocotb:

@@ -52,7 +52,7 @@ def parse_json_file(url):
     return data
 
 
-def download_tools(openlane_root, precheck_root, pdk_root, caravel_root, mcw_root, timing_root):
+def download_tools(openlane_root, precheck_root, pdk_root, caravel_root, mcw_root, timing_root, tool):
     """Downloads the tools from the upstream GitHub repo.
     """
     url = 'https://raw.githubusercontent.com/efabless/central_CI/main/tools.json'
@@ -61,6 +61,8 @@ def download_tools(openlane_root, precheck_root, pdk_root, caravel_root, mcw_roo
     with Progress(TextColumn("[progress.description]{task.description}"), BarColumn(), MofNCompleteColumn(), TimeElapsedColumn()) as progress:
         task = progress.add_task("[cyan]Downloading Tools...", total=6)
         for key, value in data.items():
+            if tool and key != tool:
+                continue
             if key == "OpenLane":
                 progress.update(task, description="[cyan]Downloading OpenLane...")
                 download_tar("OpenLane", value['commit'], value['url'], openlane_root)
@@ -133,6 +135,8 @@ def main():
                         help='Path to the Mgmt Core Wrapper root directory')
     parser.add_argument('--timing_root', required=True,
                         help='Path to the Timing Scripts root directory')
+    parser.add_argument('--tool', required=False,
+                        help='Name of the tool to download')
 
     args = parser.parse_args()
     download_tools(openlane_root=args.openlane_root,
@@ -140,7 +144,8 @@ def main():
                    pdk_root=args.pdk_root,
                    caravel_root=args.caravel_root,
                    mcw_root=args.mcw_root,
-                   timing_root=args.timing_root)
+                   timing_root=args.timing_root,
+                   tool=args.tool)
 
 
 if __name__ == '__main__':

@@ -153,6 +153,7 @@ jobs:
 
       - name: Harden using Openlane
         run: |
+          curl https://raw.githubusercontent.com/efabless/central_CI/main/tools.json > tool_versions.json
           python3 $GITHUB_WORKSPACE/.github/scripts/get_designs.py --design $GITHUB_WORKSPACE
           for word in $(cat harden_sequence.txt); do
             echo "CURRENT_DESIGN=${word}" >> $GITHUB_ENV
@@ -425,6 +426,7 @@ jobs:
       
       - name: Run STA
         run: |
+          curl https://raw.githubusercontent.com/efabless/central_CI/main/tools.json > tool_versions.json
           export CUP_ROOT=$GITHUB_WORKSPACE
           export PROJECT_ROOT=$GITHUB_WORKSPACE
           cd $CUP_ROOT
