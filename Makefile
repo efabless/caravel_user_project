@@ -237,7 +237,7 @@ pdk-with-volare: clean_log check-python check_dependencies install-volare
 .PHONY: openlane
 openlane: clean_log check-python check_dependencies install-volare
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
-	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool openlane
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool OpenLane
 
 
 # Install timing-scripts
