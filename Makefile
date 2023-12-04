@@ -69,7 +69,7 @@ endif
 .PHONY: % : check-caravel
 %:
 	@if [ -d "$(CARAVEL_ROOT)" ]; then \
-	@export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@; \
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@; \
 	fi
 
 # Install DV setup
