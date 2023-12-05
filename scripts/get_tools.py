@@ -59,7 +59,10 @@ def download_tools(openlane_root, precheck_root, pdk_root, caravel_root, mcw_roo
     data = parse_json_file(url)
     f = open("setup.log", "a")
     with Progress(TextColumn("[progress.description]{task.description}"), BarColumn(), MofNCompleteColumn(), TimeElapsedColumn()) as progress:
-        task = progress.add_task("[cyan]Downloading Tools...", total=6)
+        if tool:
+            task = progress.add_task("[cyan]Downloading Tools...", total=1)
+        else:
+            task = progress.add_task("[cyan]Downloading Tools...", total=6)
         for key, value in data.items():
             if tool and key != tool:
                 continue
