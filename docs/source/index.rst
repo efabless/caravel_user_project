@@ -90,7 +90,7 @@ Starting your project
 	export PDK=sky130A
 	
 	# for the gf180 GFMPW shuttles...
-	export PDK=gf180mcuC
+	export PDK=gf180mcuD
 
 
 
