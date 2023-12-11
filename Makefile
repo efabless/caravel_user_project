@@ -97,9 +97,10 @@ install-volare:
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip >> setup.log
 	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir volare >> setup.log
 
+.PHONY: check-python
 check-python:
 ifeq ($(shell which python3),)
-$(error Please install python 3.6+)
+$(error Please install python 3.8+)
 endif
 
 # Openlane
