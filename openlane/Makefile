@@ -37,6 +37,9 @@ openlane_cmd = \
 	-ignore_mismatches"
 openlane_cmd_interactive = "flow.tcl -it -file $$(realpath ./$*/interactive.tcl)"
 
+openlane_gui_klayout_cmd = "python3 $(OPENLANE_ROOT)/gui.py --viewer klayout --format def $$(realpath ./$*/runs/$*)"
+openlane_gui_openroad_cmd = "python3 $(OPENLANE_ROOT)/gui.py --viewer openroad --format odb $$(realpath ./$*/runs/$*)"
+
 docker_mounts = \
 	-v $$(realpath $(PWD)/..):$$(realpath $(PWD)/..) \
 	-v $(PDK_ROOT):$(PDK_ROOT) \
@@ -49,6 +52,13 @@ docker_env = \
 	-e MISMATCHES_OK=1 \
 	-e CARAVEL_ROOT=$(CARAVEL_ROOT) \
 	-e OPENLANE_RUN_TAG=$(OPENLANE_RUN_TAG)
+
+docker_extra_args = \
+	-e DISPLAY=$(DISPLAY) \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-v $(HOME)/.Xauthority:/.Xauthority \
+	--network host \
+	--security-opt seccomp=unconfined
 
 ifneq ($(MCW_ROOT),)
 docker_env += -e MCW_ROOT=$(MCW_ROOT)
@@ -102,3 +112,14 @@ ifeq ($(OPENLANE_ROOT),)
 	@echo "Please export OPENLANE_ROOT"
 	@exit 1
 endif
+
+.PHONY: open-gui-%
+open-gui-%:
+	$(docker_run) $(docker_extra_args) \
+		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_gui_klayout_cmd)
+
+.PHONY: open-odb-gui-%
+open-odb-gui-%:
+	$(docker_run) $(docker_extra_args) \
+		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_gui_openroad_cmd)
+	

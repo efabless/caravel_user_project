@@ -16,7 +16,7 @@
 MAKEFLAGS+=--warn-undefined-variables
 
 export CARAVEL_ROOT?=$(PWD)/caravel
-PRECHECK_ROOT?=${HOME}/mpw_precheck
+export PRECHECK_ROOT?=${HOME}/mpw_precheck
 export MCW_ROOT?=$(PWD)/mgmt_core_wrapper
 SIM?=RTL
 
@@ -38,15 +38,10 @@ endif
 export OPENLANE_ROOT?=$(PWD)/dependencies/openlane_src
 export PDK_ROOT?=$(PWD)/dependencies/pdks
 export DISABLE_LVS?=0
+export DISABLE_VERSION_CHECK?=0
 
 export ROOTLESS
 
-ifeq ($(PDK),sky130A)
-	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= mpw-9g
-
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
 	CARAVEL_REPO := https://github.com/efabless/caravel-lite
@@ -57,25 +52,6 @@ else
 	CARAVEL_TAG := $(MPW_TAG)
 endif
 
-endif
-
-ifeq ($(PDK),sky130B)
-	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
-	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= mpw-9g
-
-ifeq ($(CARAVEL_LITE),1)
-	CARAVEL_NAME := caravel-lite
-	CARAVEL_REPO := https://github.com/efabless/caravel-lite
-	CARAVEL_TAG := $(MPW_TAG)
-else
-	CARAVEL_NAME := caravel
-	CARAVEL_REPO := https://github.com/efabless/caravel
-	CARAVEL_TAG := $(MPW_TAG)
-endif
-
-endif
 
 ifeq ($(PDK),gf180mcuD)
 
@@ -92,16 +68,9 @@ endif
 # Include Caravel Makefile Targets
 .PHONY: % : check-caravel
 %:
-	export CARAVEL_ROOT=$(CARAVEL_ROOT) && export MPW_TAG=$(MPW_TAG) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@
-
-.PHONY: install
-install:
-	if [ -d "$(CARAVEL_ROOT)" ]; then\
-		echo "Deleting exisiting $(CARAVEL_ROOT)" && \
-		rm -rf $(CARAVEL_ROOT) && sleep 2;\
+	@if [ -d "$(CARAVEL_ROOT)" ]; then \
+	export CARAVEL_ROOT=$(CARAVEL_ROOT) && $(MAKE) -f $(CARAVEL_ROOT)/Makefile $@; \
 	fi
-	echo "Installing $(CARAVEL_NAME).."
-	git clone -b $(CARAVEL_TAG) $(CARAVEL_REPO) $(CARAVEL_ROOT) --depth=1
 
 # Install DV setup
 .PHONY: simenv
@@ -114,13 +83,52 @@ simenv-cocotb:
 	docker pull efabless/dv:cocotb
 
 .PHONY: setup
-setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
+setup: print_message clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT)
+	@echo "installing cocotb..."
+	@$(MAKE) setup-cocotb >> setup.log
+	@echo "installation complete"
+
+.PHONY: install-volare
+install-volare:
+	@rm -rf ./venv >> setup.log
+	@$(PYTHON_BIN) -m venv ./venv >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir volare >> setup.log
+
+.PHONY: check-python
+check-python:
+ifeq ($(shell which python3),)
+$(error Please install python 3.8+)
+endif
 
 # Openlane
 blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 .PHONY: $(blocks)
-$(blocks): % :
+$(blocks): % : check_versions
 	$(MAKE) -C openlane $*
+
+# Openlane open last step gui using klayout
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+.PHONY: open-gui-%
+open-gui-% :
+	$(MAKE) -C openlane open-gui-$*
+
+# Openlane open last step gui using openroad
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+.PHONY: open-odb-gui-%
+open-odb-gui-% :
+	$(MAKE) -C openlane open-odb-gui-$*
+
+.PHONY: clean_log
+clean_log:
+	@rm -f setup.log
+
+.PHONY: print_message
+print_message:
+	@echo "Setting up caravel_user_project environment..."
+	@echo "To check for installation logs, please see setup.log"
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
 cocotb-dv_patterns=$(shell cd verilog/dv/cocotb && find . -name "*.c"  | sed -e 's|^.*/||' -e 's/.c//')
@@ -195,16 +203,6 @@ make_what=setup $(blocks) $(dv-targets-rtl) $(dv-targets-gl) $(dv-targets-gl-sdf
 what:
 	# $(make_what)
 
-# Install Openlane
-.PHONY: openlane
-openlane:
-	@if [ "$$(realpath $${OPENLANE_ROOT})" = "$$(realpath $$(pwd)/openlane)" ]; then\
-		echo "OPENLANE_ROOT is set to '$$(pwd)/openlane' which contains openlane config files"; \
-		echo "Please set it to a different directory"; \
-		exit 1; \
-	fi
-	cd openlane && $(MAKE) openlane
-
 #### Not sure if the targets following are of any use
 
 # Create symbolic links to caravel's main files
@@ -230,46 +228,81 @@ update_caravel: check-caravel
 uninstall:
 	rm -rf $(CARAVEL_ROOT)
 
+# Install Caravel
+.PHONY: install
+install: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool caravel
 
-# Install Pre-check
-# Default installs to the user home directory, override by "export PRECHECK_ROOT=<precheck-installation-path>"
+# Install mgmt_core_wrapper
+.PHONY: install_mcw
+install_mcw: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool mgmt_core_wrapper
+
+# Install pdk-with-volare
+.PHONY: pdk-with-volare
+pdk-with-volare: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool pdk
+
+# Install openlane
+.PHONY: openlane
+openlane: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool OpenLane
+
+
+# Install timing-scripts
+.PHONY: setup-timing-scripts
+setup-timing-scripts: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool timing_scripts
+
+
+# Install precheck
 .PHONY: precheck
-precheck:
-	if [ -d "$(PRECHECK_ROOT)" ]; then\
-		echo "Deleting exisiting $(PRECHECK_ROOT)" && \
-		rm -rf $(PRECHECK_ROOT) && sleep 2;\
+precheck: clean_log check-python check_dependencies install-volare
+	@./venv/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir requests >> setup.log
+	@./venv/bin/$(PYTHON_BIN) -u scripts/get_tools.py --openlane_root $(OPENLANE_ROOT) --precheck_root $(PRECHECK_ROOT) --pdk_root $(PDK_ROOT) --caravel_root $(CARAVEL_ROOT) --mcw_root $(MCW_ROOT) --timing_root $(TIMING_ROOT) --tool precheck
+
+
+.PHONY: check_versions
+check_versions:
+	@if [ "$$DISABLE_VERSION_CHECK" = "1" ]; then\
+		echo "Skipping version check"; \
+	else \
+		./venv/bin/$(PYTHON_BIN) -u scripts/compare_versions.py; \
 	fi
-	@echo "Installing Precheck.."
-	@git clone --depth=1 --branch $(MPW_TAG) https://github.com/efabless/mpw_precheck.git $(PRECHECK_ROOT)
-	@docker pull efabless/mpw_precheck:latest
 
 .PHONY: run-precheck
-run-precheck: check-pdk check-precheck
-	@if [ "$$DISABLE_LVS" = "1" ]; then\
-		$(eval INPUT_DIRECTORY := $(shell pwd)) \
-		cd $(PRECHECK_ROOT) && \
-		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
-		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
-		-v $(PDK_ROOT):$(PDK_ROOT) \
-		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
-		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
-		-e PDK_ROOT=$(PDK_ROOT) \
-		-e PDKPATH=$(PDKPATH) \
-		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) license makefile default documentation consistency gpio_defines xor magic_drc klayout_feol klayout_beol klayout_offgrid klayout_met_min_ca_density klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea"; \
-	else \
-		$(eval INPUT_DIRECTORY := $(shell pwd)) \
-		cd $(PRECHECK_ROOT) && \
-		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
-		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
-		-v $(PDK_ROOT):$(PDK_ROOT) \
-		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
-		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
-		-e PDK_ROOT=$(PDK_ROOT) \
-		-e PDKPATH=$(PDKPATH) \
-		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
-		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"; \
-	fi
+run-precheck: check_versions check-pdk check-precheck
+	$(eval INPUT_DIRECTORY := $(shell pwd)) \
+	cd $(PRECHECK_ROOT) && \
+	docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
+	-v $(PDK_ROOT):$(PDK_ROOT) \
+	-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
+	-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
+	-e PDK_ROOT=$(PDK_ROOT) \
+	-e PDKPATH=$(PDKPATH) \
+	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) --private"; \
+
+
+.PHONY: run-precheck-no-lvs
+run-precheck-no-lvs: check_versions check-pdk check-precheck
+	$(eval INPUT_DIRECTORY := $(shell pwd)) \
+	cd $(PRECHECK_ROOT) && \
+	docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
+	-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
+	-v $(PDK_ROOT):$(PDK_ROOT) \
+	-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
+	-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
+	-e PDK_ROOT=$(PDK_ROOT) \
+	-e PDKPATH=$(PDKPATH) \
+	-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
+	efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK) license makefile consistency gpio_defines xor magic_drc klayout_feol klayout_beol klayout_offgrid klayout_met_min_ca_density klayout_pin_label_purposes_overlapping_drawing klayout_zeroarea oeb"; \
 
 
 BLOCKS = $(shell cd lvs && find * -maxdepth 0 -type d)
@@ -317,20 +350,14 @@ check_dependencies:
 		mkdir $(PWD)/dependencies; \
 	fi
 
+# export CARAVEL_COMMIT=$(shell python3 scripts/get_tools.py)
+
 
 export CUP_ROOT=$(shell pwd)
 export TIMING_ROOT?=$(shell pwd)/dependencies/timing-scripts
 export PROJECT_ROOT=$(CUP_ROOT)
 timing-scripts-repo=https://github.com/efabless/timing-scripts.git
 
-$(TIMING_ROOT):
-	@mkdir -p $(CUP_ROOT)/dependencies
-	@git clone $(timing-scripts-repo) $(TIMING_ROOT)
-
-.PHONY: setup-timing-scripts
-setup-timing-scripts: $(TIMING_ROOT)
-	@( cd $(TIMING_ROOT) && git pull )
-	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
 .PHONY: install-caravel-cocotb
 install-caravel-cocotb:
@@ -370,7 +397,7 @@ $(cocotb-dv-targets-gl): cocotb-verify-%-gl:
 	exit 1
 
 .PHONY: create-spef-mapping
-create-spef-mapping: ./verilog/gl/user_project_wrapper.v
+create-spef-mapping: check_versions ./verilog/gl/user_project_wrapper.v
 	docker run \
 		--rm \
 		$(USER_ARGS) \
@@ -390,7 +417,7 @@ create-spef-mapping: ./verilog/gl/user_project_wrapper.v
 
 
 .PHONY: extract-parasitics
-extract-parasitics: ./verilog/gl/user_project_wrapper.v
+extract-parasitics: check_versions ./verilog/gl/user_project_wrapper.v
 	docker run \
 		--rm \
 		$(USER_ARGS) \
@@ -412,9 +439,20 @@ extract-parasitics: ./verilog/gl/user_project_wrapper.v
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk rcx-user_project_wrapper
 	@cat ./tmp-macros-list
 	@rm ./tmp-macros-list
-	
+
+
+ifeq ($(wildcard ./tool_versions.json),)
+# File doesn't exist
+export OPENLANE_TAG=
+export OPEN_PDKS_COMMIT=
+else
+# File exists
+export OPENLANE_TAG=$(shell python3 ./scripts/export_env.py OpenLane)
+export OPEN_PDKS_COMMIT=$(shell python3 ./scripts/export_env.py pdk)
+endif
+
 .PHONY: caravel-sta
-caravel-sta: ./env/spef-mapping.tcl
+caravel-sta: check_versions ./env/spef-mapping.tcl
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-typ -j3
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-fast -j3
 	@$(MAKE) -C $(TIMING_ROOT) -f $(TIMING_ROOT)/timing.mk caravel-timing-slow -j3
