@@ -116,6 +116,22 @@ Starting your project
         ..
 
 		For an example of hardening a project please refer to `Hardening the User Project using OpenLane`_. .
+
+    *   In case a failure happens, view the last generated layout before failure:
+        - Last generated def file using klayout:
+
+        .. code:: bash
+
+           make open-gui-<module_name>	
+        ..
+
+        - Last generated odb file using openroad-gui:
+
+        .. code:: bash
+
+           make open-odb-gui-<module_name>	
+        ..
+
 	
 #.  Integrate modules into the user_project_wrapper
 

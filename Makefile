@@ -109,6 +109,18 @@ blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
 $(blocks): % : check_versions
 	$(MAKE) -C openlane $*
 
+# Openlane open last step gui using klayout
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+.PHONY: open-gui-%
+open-gui-% :
+	$(MAKE) -C openlane open-gui-$*
+
+# Openlane open last step gui using openroad
+blocks=$(shell cd openlane && find * -maxdepth 0 -type d)
+.PHONY: open-odb-gui-%
+open-odb-gui-% :
+	$(MAKE) -C openlane open-odb-gui-$*
+
 .PHONY: clean_log
 clean_log:
 	@rm -f setup.log
