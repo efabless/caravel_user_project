@@ -28,6 +28,8 @@ export PDK?=sky130A
 #export PDK?=gf180mcuC
 export PDKPATH?=$(PDK_ROOT)/$(PDK)
 
+PYTHON_BIN ?= python3
+
 ROOTLESS ?= 0
 USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
 ifeq ($(ROOTLESS), 1)
@@ -41,9 +43,8 @@ export ROOTLESS
 
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=e3b630d9b7c0e23615367d52c4f78b2d2ede58ac
-	export OPENLANE_TAG=2023.07.19
-	export OPENLANE2_TAG?=2.0.0-b10
+	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPENLANE_TAG?=2023.07.19
 	MPW_TAG ?= mpw-9e
 
 ifeq ($(CARAVEL_LITE),1)
@@ -60,9 +61,8 @@ endif
 
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT?=e3b630d9b7c0e23615367d52c4f78b2d2ede58ac
-	export OPENLANE_TAG=2023.07.19
-	export OPENLANE2_TAG?=2.0.0-b10
+	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPENLANE_TAG?=2023.07.19
 	MPW_TAG ?= mpw-9e
 
 ifeq ($(CARAVEL_LITE),1)
@@ -77,15 +77,15 @@ endif
 
 endif
 
-ifeq ($(PDK),gf180mcuC)
+ifeq ($(PDK),gf180mcuD)
 
-	MPW_TAG ?= gfmpw-0b
+	MPW_TAG ?= gfmpw-1c
 	CARAVEL_NAME := caravel
 	CARAVEL_REPO := https://github.com/efabless/caravel-gf180mcu
 	CARAVEL_TAG := $(MPW_TAG)
-	export OPEN_PDKS_COMMIT?=e3b630d9b7c0e23615367d52c4f78b2d2ede58ac
-	export OPENLANE_TAG=2023.07.19
-	export OPENLANE2_TAG?=2.0.0-b10
+	#OPENLANE_TAG=ddfeab57e3e8769ea3d40dda12be0460e09bb6d9
+	export OPEN_PDKS_COMMIT?=e6f9c8876da77220403014b116761b0b2d79aab4
+	export OPENLANE_TAG?=2023.02.23
 
 endif
 
@@ -108,14 +108,22 @@ install:
 simenv:
 	docker pull efabless/dv:latest
 
+# Install cocotb docker
+.PHONY: simenv-cocotb
+simenv-cocotb:
+	docker pull efabless/dv:cocotb
+
 .PHONY: setup
 setup: check_dependencies install check-env install_mcw openlane pdk-with-volare setup-timing-scripts setup-cocotb precheck
 
 # Openlane
 
 dv_patterns=$(shell cd verilog/dv && find * -maxdepth 0 -type d)
+cocotb-dv_patterns=$(shell cd verilog/dv/cocotb && find . -name "*.c"  | sed -e 's|^.*/||' -e 's/.c//')
 dv-targets-rtl=$(dv_patterns:%=verify-%-rtl)
+cocotb-dv-targets-rtl=$(cocotb-dv_patterns:%=cocotb-verify-%-rtl)
 dv-targets-gl=$(dv_patterns:%=verify-%-gl)
+cocotb-dv-targets-gl=$(cocotb-dv_patterns:%=cocotb-verify-%-gl)
 dv-targets-gl-sdf=$(dv_patterns:%=verify-%-gl-sdf)
 
 TARGET_PATH=$(shell pwd)
@@ -328,18 +336,19 @@ setup-timing-scripts: $(TIMING_ROOT)
 	@#( cd $(TIMING_ROOT) && git fetch && git checkout $(MPW_TAG); )
 
 .PHONY: setup-cocotb
-setup-cocotb:
-	@pip install caravel-cocotb==1.0.0
+setup-cocotb: 
+	@pip install caravel-cocotb==1.0.0 
 	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
-	@docker pull efabless/dv:latest
-	@docker pull efabless/dv:cocotb
+
+.PHONY: setup-cocotb
+setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
 
 .PHONY: cocotb-verify-rtl
-cocotb-verify-rtl:
+cocotb-verify-rtl: 
 	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests.yaml -v )
-
+	
 .PHONY: cocotb-verify-gl
-cocotb-verify-gl:
+cocotb-verify-gl: 
 	@(cd $(PROJECT_ROOT)/verilog/dv/cocotb && caravel_cocotb -tl counter_tests/counter_tests_gl.yaml -v -verbosity quiet)
 
 ./verilog/gl/user_project_wrapper.v:

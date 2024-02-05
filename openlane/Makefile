@@ -21,7 +21,7 @@ export OPENLANE2_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
 export CARAVEL_ROOT:=$(CARAVEL_ROOT)
 export PDK:=$(PDK)
 export PDK_ROOT:=$(PDK_ROOT)
-OPENLANE2_TAG ?= 2023.07.19
+OPENLANE2_TAG ?= 2023.07.19-1
 OPENLANE2_IMAGE_NAME ?= efabless/openlane:$(OPENLANE2_TAG)
 designs = $(shell cd $(PROJECT_ROOT)/openlane && find * -maxdepth 0 -type d)
 current_design = null
@@ -77,12 +77,7 @@ ifeq ($(OPENLANE2_USE_NIX),1)
 	nix-shell --pure --command "openlane $(openlane_args) $(openlane_extra_args)"
 else
 	$(PROJECT_ROOT)/openlane2-venv/bin/python3 -m openlane $(docker_mounts) $(openlane_extra_args) --dockerized $(openlane_args) $(openlane_extra_args)
-endif
-	@rm -rf $(PROJECT_ROOT)/openlane/$*/runs/$*
-	@ln -s $$(realpath $(PROJECT_ROOT)/openlane/$*/runs/$(OPENLANE2_RUN_TAG)) $(PROJECT_ROOT)/openlane/$*/runs/$*
-	@mkdir -p $(PROJECT_ROOT)/signoff/$*/
-	@echo $(OPENLANE2_TAG) > $(PROJECT_ROOT)/signoff/$*/OPENLANE_VERSION
-	@cp $(PDK_ROOT)/$(PDK)/SOURCES $(PROJECT_ROOT)/signoff/$*/PDK_SOURCES
+endif<<<<<<< HEADES
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/*.csv $(PROJECT_ROOT)/signoff/$*/
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/def/* $(PROJECT_ROOT)/def/$*.def
 	@cp $(PROJECT_ROOT)/openlane/$*/runs/$*/final/sdc/* $(PROJECT_ROOT)/sdc/$*.sdc

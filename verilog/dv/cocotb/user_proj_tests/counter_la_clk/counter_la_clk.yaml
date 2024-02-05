@@ -14,12 +14,8 @@
 
 # SPDX-License-Identifier: Apache-2.0
 
-from caravel_cocotb.caravel_interfaces import test_configure
-from caravel_cocotb.caravel_interfaces import report_test
-import cocotb
+# Yalm file contain general design information that would mostly need to be updated in the first run only 
+Tests: 
+    - {name: counter_la_clk, sim: RTL}
 
-@cocotb.test()
-@report_test
-async def hello_world(dut):
-    caravelEnv = await test_configure(dut,timeout_cycles=9373)
-    cocotb.log.info("Hello World")
+

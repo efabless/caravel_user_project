@@ -57,7 +57,7 @@ shuttle projects.
 Prerequisites
 =============
 
-- Docker: `Linux <https://hub.docker.com/search?q=&type=edition&offering=community&operating_system=linux&utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
+- Docker: `Linux <https://docs.docker.com/desktop/install/linux-install/r>`_ ||  `Windows <https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with Intel Chip <https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_ || `Mac with M1 Chip <https://desktop.docker.com/mac/main/arm64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header>`_
 
 - Python 3.8 or higher with PIP, Venv and Tkinter
 
@@ -147,6 +147,28 @@ Starting your project
 
             # for example
             make verify-io_ports-rtl
+
+#.  Run cocotb simulation on your design
+
+    * rtl/gl/gl+sdf files in ``verilog/includes/includes.<rtl/gl/gl+sdf>.caravel_user_project`` should be updated
+    * To run GL simulation script ``<caravel>/scripts/gen_gpio_defaults.py`` should be run to generate ``caravel_core.v``
+
+    * To make sure the cocotb flow works, run the following commands for testing the counter example
+
+        .. code:: bash
+            # To run all tests in user_project_tests list found at ``verilog/dv/cocotb/user_project_tests/user_project_tests.yaml``
+               # RTL tests
+               make cocotb-verify-all-rtl
+               # OR GL simulation using
+               make  cocotb-verify-all-gl
+            # To run any test under ``verilog/dv/cocotb/*``
+               # RTL
+               make cocotb-verify-<test_name>-rtl
+               # GL
+               make cocotb-verify-<test_name>-gl
+    * To run cocotb tests on your design, Follow the steps below
+        * Add cocotb tests under ``verilog/dv/cocotb`` follow steps at `Adding_cocotb_test <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#adding-a-test>`_
+        * Run cocotb tests using ``caravel_cocotb`` command steps at `Running_cocotb_tests <https://caravel-sim-infrastructure.readthedocs.io/en/latest/usage.html#running-a-test>`_
 
 #.  Run opensta on your design
 

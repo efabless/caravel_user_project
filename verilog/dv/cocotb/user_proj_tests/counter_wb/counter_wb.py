@@ -1,3 +1,20 @@
+# SPDX-FileCopyrightText: 2023 Efabless Corporation
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#      http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# SPDX-License-Identifier: Apache-2.0
+
+
 from caravel_cocotb.caravel_interfaces import test_configure
 from caravel_cocotb.caravel_interfaces import report_test
 import cocotb
@@ -5,7 +22,7 @@ import cocotb
 @cocotb.test()
 @report_test
 async def counter_wb(dut):
-    caravelEnv = await test_configure(dut,timeout_cycles=3346140)
+    caravelEnv = await test_configure(dut,timeout_cycles=22620)
 
     cocotb.log.info(f"[TEST] Start counter_wb test")  
     # wait for start of sending
@@ -16,8 +33,6 @@ async def counter_wb(dut):
     # expect value bigger than 7 
     received_val = int ((caravelEnv.monitor_gpio(37,30).binstr + caravelEnv.monitor_gpio(7,0).binstr ),2)  
     counter = received_val
-    if received_val <= overwrite_val :
-        cocotb.log.error(f"Counter started late and value captured after configuration is smaller than overwrite value: {overwrite_val} receieved: {received_val}")
     await cocotb.triggers.ClockCycles(caravelEnv.clk,1)
 
     while True: # wait until the value 1 start counting after the initial
