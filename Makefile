@@ -45,7 +45,7 @@ ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= mpw-9g
+	MPW_TAG ?= mpw-9h
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
@@ -63,7 +63,7 @@ ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
 	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
 	export OPENLANE_TAG?=2023.07.19-1
-	MPW_TAG ?= mpw-9g
+	MPW_TAG ?= mpw-9h
 
 ifeq ($(CARAVEL_LITE),1)
 	CARAVEL_NAME := caravel-lite
