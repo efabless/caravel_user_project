@@ -67,7 +67,7 @@ list:
 
 .PHONY: $(designs)
 $(designs) : export current_design=$@
-$(designs) : % : ./%/config.json
+$(designs) : % : ./%/config.json enable-openlane-pdk
 ifneq (,$(wildcard ./$(current_design)/interactive.tcl))
 	$(docker_run) \
 		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive)
@@ -83,6 +83,10 @@ endif
 	@cp ./$*/runs/$*/OPENLANE_VERSION ../signoff/$*/
 	@cp ./$*/runs/$*/PDK_SOURCES ../signoff/$*/
 	@cp ./$*/runs/$*/reports/*.csv ../signoff/$*/
+
+.PHONY: enable-openlane-pdk
+enable-openlane-pdk:
+	$(UPRJ_ROOT)/venv/bin/volare enable $(OPEN_PDKS_COMMIT)
 
 .PHONY: openlane
 openlane: check-openlane-env
