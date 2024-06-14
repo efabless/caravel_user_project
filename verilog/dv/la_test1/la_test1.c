@@ -26,7 +26,7 @@
 		- Observes counter value through LA probes [31:0] 
 		- Sets counter initial value through LA probes [63:32]
 		- Flags when counter value exceeds 500 through the management SoC gpio
-		- Outputs message to the UART when the test concludes successfuly
+		- Outputs message to the UART when the test concludes successfully
 */
 
 void main()
@@ -49,8 +49,8 @@ void main()
 	// all of the GPIO pins to be used for user functions.
 
 	// The upper GPIO pins are configured to be output
-	// and accessble to the management SoC.
-	// Used to flad the start/end of a test 
+	// and accessible to the management SoC.
+	// Used to flag the start/end of a test
 	// The lower GPIO pins are configured to be output
 	// and accessible to the user project.  They show
 	// the project count value, although this test is
