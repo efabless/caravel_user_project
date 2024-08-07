@@ -113,8 +113,8 @@ This repository contains a sample user project for the [Caravel](https://github.
      make caravel-sta
      ```
 
-   > [!NOTE]
-   > To update timing scripts, run `make setup-timing-scripts`.
+ > [!NOTE]
+ > To update timing scripts, run `make setup-timing-scripts`.
 
 7. Run the precheck locally:
 
@@ -215,8 +215,6 @@ For more details, refer to the [Knowledgebase article](https://info.efabless.com
 ### Running OpenLane
 
 For this project, we chose the first option: harden the user macro first, then insert it into the user project wrapper without standard cells at the top level.
-
-![Wrapper](./_static/wrapper.png)
 
 To reproduce this process, run:
 
