@@ -254,6 +254,7 @@ run-precheck: check-pdk check-precheck enable-lvs-pdk
 		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(HOME)/.ipm:$(HOME)/.ipm \
 		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
 		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
 		-e PDK_ROOT=$(PDK_ROOT) \
@@ -266,6 +267,7 @@ run-precheck: check-pdk check-precheck enable-lvs-pdk
 		docker run -it -v $(PRECHECK_ROOT):$(PRECHECK_ROOT) \
 		-v $(INPUT_DIRECTORY):$(INPUT_DIRECTORY) \
 		-v $(PDK_ROOT):$(PDK_ROOT) \
+		-v $(HOME)/.ipm:$(HOME)/.ipm \
 		-e INPUT_DIRECTORY=$(INPUT_DIRECTORY) \
 		-e PDK_PATH=$(PDK_ROOT)/$(PDK) \
 		-e PDK_ROOT=$(PDK_ROOT) \
