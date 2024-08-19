@@ -13,13 +13,13 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+SHELL := /bin/bash
 MAKEFLAGS+=--warn-undefined-variables
 
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
 OPENLANE_TAG ?= 2024.08.15
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
-designs = $(shell find * -maxdepth 0 -type d)
-current_design = null
+designs=$(shell find * -maxdepth 0 -type d)
 
 ROOTLESS ?= 0
 USER_ARGS = -u $$(id -u $$USER):$$(id -g $$USER)
@@ -67,19 +67,17 @@ list:
 	@echo $(designs)
 
 .PHONY: $(designs)
-$(designs) : export current_design=$@
-$(designs) : % : ./%/config.json
-ifneq (,$(wildcard ./$(current_design)/interactive.tcl))
-	$(docker_run) \
-		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive)
-else
-	# $(current_design)
-	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG) 
+$(designs) : % :
+	mkdir -p ./$*/runs/$(OPENLANE_RUN_TAG)
 	rm -rf ./$*/runs/$*
 	ln -s $$(realpath ./$*/runs/$(OPENLANE_RUN_TAG)) ./$*/runs/$*
-	$(docker_run) \
-		$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd)
-endif
+	if [[ -f ./$@/interactive.tcl ]]; then \
+		$(docker_run) \
+			$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd_interactive); \
+	else \
+		$(docker_run) \
+			$(OPENLANE_IMAGE_NAME) sh -c $(openlane_cmd); \
+	fi
 	@mkdir -p ../signoff/$*/
 	@cp ./$*/runs/$*/OPENLANE_VERSION ../signoff/$*/
 	@cp ./$*/runs/$*/PDK_SOURCES ../signoff/$*/
