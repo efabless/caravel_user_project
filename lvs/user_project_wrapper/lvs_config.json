@@ -1,13 +1,18 @@
 {
+	"STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+	"INCLUDE_CONFIGS": [
+		"$LVS_ROOT/tech/$PDK/lvs_config.base.json"
+	],
 	"TOP_SOURCE": "user_project_wrapper",
 	"TOP_LAYOUT": "$TOP_SOURCE",
 	"EXTRACT_FLATGLOB": [
 		""
 	],
 	"EXTRACT_ABSTRACT": [
-		"*__fill_*",
-		"*__fakediode_*",
-		"*__tapvpwrvgnd_*"
+		""
+	],
+	"EXTRACT_CREATE_SUBCUT": [
+		""
 	],
 	"LVS_FLATTEN": [
 		""
@@ -19,8 +24,7 @@
 		""
 	],
 	"LVS_SPICE_FILES": [
-		"$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice",
-		"$PDK_ROOT/$PDK/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice"
+		""
 	],
 	"LVS_VERILOG_FILES": [
 		"$UPRJ_ROOT/verilog/gl/user_proj_example.v",

@@ -44,8 +44,7 @@ export ROOTLESS
 
 ifeq ($(PDK),sky130A)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT_LVS?=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
-	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPEN_PDKS_COMMIT?=0fe599b2afb6708d281543108caf8310912f54af
 	export OPENLANE_TAG?=2023.07.19-1
 	MPW_TAG ?= 2024.09.03-1
 
@@ -63,8 +62,7 @@ endif
 
 ifeq ($(PDK),sky130B)
 	SKYWATER_COMMIT=f70d8ca46961ff92719d8870a18a076370b85f6c
-	export OPEN_PDKS_COMMIT_LVS?=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
-	export OPEN_PDKS_COMMIT?=78b7bc32ddb4b6f14f76883c2e2dc5b5de9d1cbc
+	export OPEN_PDKS_COMMIT?=0fe599b2afb6708d281543108caf8310912f54af
 	export OPENLANE_TAG?=2023.07.19-1
 	MPW_TAG ?= 2024.09.03-1
 
@@ -247,7 +245,7 @@ precheck:
 	@docker pull efabless/mpw_precheck:latest
 
 .PHONY: run-precheck
-run-precheck: check-pdk check-precheck enable-lvs-pdk
+run-precheck: check-pdk check-precheck
 	@if [ "$$DISABLE_LVS" = "1" ]; then\
 		$(eval INPUT_DIRECTORY := $(shell pwd)) \
 		cd $(PRECHECK_ROOT) && \
@@ -275,10 +273,6 @@ run-precheck: check-pdk check-precheck enable-lvs-pdk
 		-u $(shell id -u $(USER)):$(shell id -g $(USER)) \
 		efabless/mpw_precheck:latest bash -c "cd $(PRECHECK_ROOT) ; python3 mpw_precheck.py --input_directory $(INPUT_DIRECTORY) --pdk_path $(PDK_ROOT)/$(PDK)"; \
 	fi
-
-.PHONY: enable-lvs-pdk
-enable-lvs-pdk:
-	$(UPRJ_ROOT)/venv/bin/volare enable $(OPEN_PDKS_COMMIT_LVS)
 
 BLOCKS = $(shell cd lvs && find * -maxdepth 0 -type d)
 LVS_BLOCKS = $(foreach block, $(BLOCKS), lvs-$(block))
@@ -344,12 +338,14 @@ setup-timing-scripts: $(TIMING_ROOT)
 install-caravel-cocotb:
 	rm -rf ./venv-cocotb
 	$(PYTHON_BIN) -m venv ./venv-cocotb
-	./venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip
-	./venv-cocotb/bin/$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
+	. ./venv-cocotb/bin/activate && \
+	$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir pip && \
+	$(PYTHON_BIN) -m pip install --upgrade --no-cache-dir caravel-cocotb
 
 .PHONY: setup-cocotb-env
 setup-cocotb-env:
-	@(python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
+	@(. ./venv-cocotb/bin/activate && \
+	python3 $(PROJECT_ROOT)/verilog/dv/setup-cocotb.py $(CARAVEL_ROOT) $(MCW_ROOT) $(PDK_ROOT) $(PDK) $(PROJECT_ROOT))
 
 .PHONY: setup-cocotb
 setup-cocotb: install-caravel-cocotb setup-cocotb-env simenv-cocotb
