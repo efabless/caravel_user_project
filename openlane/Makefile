@@ -17,7 +17,7 @@ SHELL := /bin/bash
 MAKEFLAGS+=--warn-undefined-variables
 
 export OPENLANE_RUN_TAG = $(shell date '+%y_%m_%d_%H_%M')
-OPENLANE_TAG ?= 2023.07.19-1
+OPENLANE_TAG ?= 2023.07.19-2
 OPENLANE_IMAGE_NAME ?= efabless/openlane:$(OPENLANE_TAG)
 designs=$(shell find * -maxdepth 0 -type d)
 
