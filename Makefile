@@ -435,3 +435,21 @@ caravel-sta: ./env/spef-mapping.tcl
 	@echo "You can find results for all corners in $(CUP_ROOT)/signoff/caravel/openlane-signoff/timing/"
 	@echo "Check summary.log of a specific corner to point to reports with reg2reg violations" 
 	@echo "Cap and slew violations are inside summary.log file itself"
+
+.PHONY: gui
+gui:
+	docker run -v ${TARGET_PATH}:${TARGET_PATH} -v ${PDK_ROOT}:${PDK_ROOT} \
+		-v ${CARAVEL_ROOT}:${CARAVEL_ROOT} \
+		-v ${MCW_ROOT}:${MCW_ROOT} \
+		-e TARGET_PATH=${TARGET_PATH} -e PDK_ROOT=${PDK_ROOT} \
+		-e CARAVEL_ROOT=${CARAVEL_ROOT} \
+		-e DESIGNS=$(TARGET_PATH) \
+		-e USER_PROJECT_VERILOG=$(TARGET_PATH)/verilog \
+		-e PDK=$(PDK) \
+		-e CORE_VERILOG_PATH=$(TARGET_PATH)/mgmt_core_wrapper/verilog \
+		-e CARAVEL_VERILOG_PATH=$(TARGET_PATH)/caravel/verilog \
+		-e MCW_ROOT=$(MCW_ROOT) \
+		--entrypoint "" \
+		-v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=${DISPLAY} -h localhost -v $(HOME)/.Xauthority:$(HOME)/.Xauthority \
+		-u $$(id -u $$USER):$$(id -g $$USER) efabless/openlane:latest \
+		openroad -gui
