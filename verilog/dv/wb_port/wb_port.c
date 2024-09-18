@@ -19,7 +19,7 @@
 #include <defs.h>
 #include <stub.c>
 
-#define reg_mprj_slave (*(volatile uint32_t*)0x30000000)
+#define reg_mprj_secondary (*(volatile uint32_t*)0x30000000)
 
 /*
 	Wishbone Test:
@@ -82,9 +82,9 @@ void main()
     // Flag start of the test
 	reg_mprj_datal = 0xAB600000;
 
-    reg_mprj_slave = 0x00002710;
+    reg_mprj_secondary = 0x00002710;
     reg_mprj_datal = 0xAB610000;
-    if (reg_mprj_slave == 0x2B3D) {
+    if (reg_mprj_secondary == 0x2B3D) {
         reg_mprj_datal = 0xAB610000;
     }
 }

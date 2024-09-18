@@ -43,7 +43,7 @@ module user_proj_example #(
     inout vssd1,	// User area 1 digital ground
 `endif
 
-    // Wishbone Slave ports (WB MI A)
+    // Wishbone Secondary ports (WB MI A)
     input wb_clk_i,
     input wb_rst_i,
     input wbs_stb_i,
