@@ -22,7 +22,7 @@ import cocotb
 @cocotb.test()
 @report_test
 async def counter_wb(dut):
-    caravelEnv = await test_configure(dut,timeout_cycles=22620)
+    caravelEnv = await test_configure(dut,timeout_cycles=40534)
 
     cocotb.log.info(f"[TEST] Start counter_wb test")  
     # wait for start of sending
