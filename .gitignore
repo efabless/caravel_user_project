@@ -8,6 +8,7 @@
 *.gtkw
 /env
 /venv
+/venv-cocotb
 /caravel
 /dependencies
 /mgmt_core_wrapper
