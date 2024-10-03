@@ -119,5 +119,3 @@ user_proj_example mprj (
 );
 
 endmodule	// user_project_wrapper
-
-`default_nettype wire
