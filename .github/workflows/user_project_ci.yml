@@ -9,7 +9,7 @@ on:
 
 jobs:
   download_caravel:
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -48,7 +48,7 @@ jobs:
           path: /tmp/caravel.tar
   
   download_deps:
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         targets: ["pdk-with-volare", "install_mcw", "openlane", "setup-timing-scripts", "precheck"]
@@ -125,7 +125,7 @@ jobs:
 
   hardening:
     timeout-minutes: 720
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A"]
@@ -209,7 +209,7 @@ jobs:
   
   RTL-verification:
     timeout-minutes: 720
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A"]
@@ -285,7 +285,7 @@ jobs:
 
   precheck:
     timeout-minutes: 720
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A"]
@@ -363,7 +363,7 @@ jobs:
   
   STA:
     timeout-minutes: 720
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A"]
@@ -473,7 +473,7 @@ jobs:
   
   GL-verification:
     timeout-minutes: 720
-    runs-on: cpu5
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         pdk: ["sky130A"]
